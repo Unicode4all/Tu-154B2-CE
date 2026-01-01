@@ -2,3 +2,4 @@
 .zed/**
 .claude/**
 .vscode/**
+plugins/sasl/data/output/SASLLog.txt

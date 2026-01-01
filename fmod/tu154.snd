@@ -11,61 +11,6 @@ BEGIN_SOUND_SPACE
 END_SOUND_SPACE
 
 BEGIN_SOUND_ATTACHMENT
-	SNAPSHOT_NAME /init_mute
-	EVENT_START_COND sim/time/total_flight_time_sec > 0
-	EVENT_END_COND sim/time/total_flight_time_sec > 3
-END_SOUND_ATTACHMENT
-
-BEGIN_SOUND_ATTACHMENT
-	SNAPSHOT_NAME /in_cockpit
-	EVENT_START_COND sim/operation/sound/inside_ratio[0] != 0
-	EVENT_END_COND sim/operation/sound/inside_ratio[0] == 0
-END_SOUND_ATTACHMENT
-
-BEGIN_SOUND_ATTACHMENT
-	SNAPSHOT_NAME /windows
-	PARAM_DREF_IDX 0
-	EVENT_START_COND sim/flightmodel2/misc/custom_slider_ratio[0] > 0.1
-	EVENT_END_COND sim/flightmodel2/misc/custom_slider_ratio[0] < 0.1
-END_SOUND_ATTACHMENT
-
-BEGIN_SOUND_ATTACHMENT
-	SNAPSHOT_NAME /windows
-	PARAM_DREF_IDX 1
-	EVENT_START_COND sim/flightmodel2/misc/custom_slider_ratio[1] > 0.1
-	EVENT_END_COND sim/flightmodel2/misc/custom_slider_ratio[1] < 0.1
-END_SOUND_ATTACHMENT
-
-
-BEGIN_SOUND_ATTACHMENT
-	EVENT_NAME /T154/window_open
-	VEH_XYZ			-0.82 0.38 -21.69
-	PARAM_DREF_IDX 0
-	EVENT_START_COND sim/cockpit2/switches/custom_slider_on[0] == 1
-END_SOUND_ATTACHMENT
-
-BEGIN_SOUND_ATTACHMENT
-	EVENT_NAME /T154/window_open
-	VEH_XYZ			0.86 0.38 -21.51
-	PARAM_DREF_IDX 0
-	EVENT_START_COND sim/cockpit2/switches/custom_slider_on[1] == 1
-END_SOUND_ATTACHMENT
-
-BEGIN_SOUND_ATTACHMENT
-	EVENT_NAME /T154/window_close
-	VEH_XYZ			-0.82 0.38 -21.69
-	PARAM_DREF_IDX 0
-	EVENT_START_COND sim/cockpit2/switches/custom_slider_on[0] == 0
-END_SOUND_ATTACHMENT
-
-BEGIN_SOUND_ATTACHMENT
-	EVENT_NAME /T154/window_close
-	VEH_XYZ			0.86 0.38 -21.51
-	PARAM_DREF_IDX 0
-	EVENT_START_COND sim/cockpit2/switches/custom_slider_on[1] == 0
-END_SOUND_ATTACHMENT
-# -------------------- Front gear stowed ---------------------
-BEGIN_SOUND_ATTACHMENT
 	EVENT_NAME /T154/equipment/manipulators/absu_sw_push
 	VEH_XYZ 0.213 -0.121 -23.017
 	PARAM_DREF_IDX 0
@@ -129,11 +74,11 @@ END_SOUND_ATTACHMENT
 BEGIN_SOUND_ATTACHMENT
 	EVENT_NAME /T154/equipment/manipulators/metal_switch
 	VEH_XYZ 0.213 -0.121 -23.017
-	EVENT_START_COND DELTA=tu154b2/custom/switchers/nvu/pa3/power_sw != 0.0
+	EVENT_START_COND DELTA=tu154b2/custom/switchers/nvu/pa3/power_sw != 0
 END_SOUND_ATTACHMENT
 
 BEGIN_SOUND_ATTACHMENT
 	EVENT_NAME /T154/equipment/manipulators/metal_switch
 	VEH_XYZ 0.213 -0.121 -23.017
-	EVENT_START_COND DELTA=tu154b2/custom/switchers/nvu/pa3/mode_sw != 0.0
+	EVENT_START_COND DELTA=tu154b2/custom/switchers/nvu/pa3/mode_sw != 0
 END_SOUND_ATTACHMENT
