@@ -9996,6 +9996,8 @@ IDX 7349
 IDX 7351
 TRIS 0 48
 ANIM_begin
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
 TRIS 48 192
 ANIM_end
@@ -10040,3 +10042,4 @@ ATTR_hard
 TRIS 26028 174
 ATTR_no_hard
 TRIS 26202 57
+ANIM_end

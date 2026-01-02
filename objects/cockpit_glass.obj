@@ -5252,10 +5252,14 @@ IDX 4114
 IDX 4115
 IDX 4112
 IDX 4114
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_panel_int 1000.000000
+ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_panel_int 
 TRIS 0 42
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 1000.000000
-TRIS 42 8754
+ANIM_begin
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+TRIS 42 90
+ANIM_end
+TRIS 132 8664
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/gauges/eng/oil_qty_cap
 ATTR_light_level_reset
@@ -5276,12 +5280,15 @@ ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_90th
 TRIS 9162 540
 ANIM_end
 ANIM_begin
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.004000 0.000000 0.000000 1.000000 sim/custom/arm406_sound_off
 TRIS 9702 90
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.004000 0.000000 0.000000 1.000000 sim/custom/arm406_dejur_contr
 TRIS 9792 90
+ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_trans -0.014863 -1.892190 -21.574200 -0.014863 -1.892190 -21.574200 0.000000 0.000000 none
@@ -5312,9 +5319,9 @@ ANIM_end
 ANIM_begin
 ANIM_trans_begin tu154b2/custom/anim/cockpit_window_left
 ANIM_trans_key 0.000000 0.000000 0.000000 0.000000
-ANIM_trans_key 0.200000 -0.146900 -0.048700 0.388100
+ANIM_trans_key 0.200000 0.000000 0.000000 0.000000
 ANIM_trans_key 0.400000 0.000000 0.000000 0.000000
-ANIM_trans_key 1.000000 0.000000 0.000000 0.000000
+ANIM_trans_key 1.000000 -0.146900 -0.048700 0.388100
 ANIM_trans_end
 ANIM_trans -0.816234 -1.492600 -21.641899 -0.816234 -1.492600 -21.641899 0.000000 0.000000 none
 ANIM_rotate_begin 0.013665 0.000000 0.999907 tu154b2/custom/anim/cockpit_window_left
