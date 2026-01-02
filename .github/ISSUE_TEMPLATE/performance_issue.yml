@@ -1,0 +1,76 @@
+name: Performance Issue
+description: Report FPS drops, stutters, or freezes
+labels: ["BUG", "Priority: High"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Issue Summary
+      description: A brief description of the performance issue
+      placeholder: "e.g., FPS drops when opening fuel panel"
+    validations:
+      required: true
+
+  - type: input
+    id: xplane_version
+    attributes:
+      label: X-Plane Version
+      description: Which version of X-Plane are you using?
+      placeholder: "e.g., 12.1.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: specs
+    attributes:
+      label: System Specifications
+      description: Your computer hardware
+      placeholder: |
+        CPU: Intel i7-12700K
+        GPU: NVIDIA RTX 3080
+        RAM: 32 GB
+        OS: Windows 11
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the performance issue (FPS drop, stutter, freeze, etc.)
+      placeholder: "When I open the fuel panel, the simulator freezes for 2-3 seconds..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: when
+    attributes:
+      label: When Does It Occur?
+      description: During what phase of flight or action does this happen?
+      placeholder: |
+        - During engine start
+        - When switching views
+        - At specific airports
+        - Always / Sometimes / Rarely
+    validations:
+      required: true
+
+  - type: input
+    id: fps
+    attributes:
+      label: FPS Impact
+      description: Approximate FPS before and after the issue
+      placeholder: "e.g., 45 FPS → 15 FPS"
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log File
+      description: |
+        Paste relevant sections from SASLLog.txt
+        (Located at: plugins/sasl/data/output/SASLLog.txt)
+      placeholder: "Paste log contents here..."
+    validations:
+      required: false

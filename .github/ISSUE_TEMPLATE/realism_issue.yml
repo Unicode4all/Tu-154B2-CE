@@ -1,0 +1,89 @@
+name: Realism Issue
+description: Report inaccurate behavior compared to the real aircraft
+labels: ["Type: Realism"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Issue Summary
+      description: A brief description of the realism issue
+      placeholder: "e.g., Incorrect fuel flow rate at cruise altitude"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: System / Area
+      description: Which part of the aircraft is inaccurate?
+      options:
+        - Engines
+        - Fuel System
+        - Electrical
+        - Hydraulics
+        - Flight Controls
+        - APU
+        - Fire System
+        - ABSU (Autopilot)
+        - NVU and DISS (Doppler Navigation)
+        - SVS (CADC, Central Air Data Computer)
+        - TKS (Gyrocompass and Heading Reference System)
+        - RSBN
+        - Radar
+        - Radio
+        - TCAS
+        - TAWS
+        - KLN90B GPS
+        - Transas TSS GPS
+        - Kontur MFD
+        - EFB Tablet
+        - Cockpit
+        - Exterior Model
+        - Sounds
+        - Flight Model
+        - Liveries
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Behavior
+      description: How does the addon currently behave?
+      placeholder: "Currently, the fuel flow shows X kg/h at FL350..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: real
+    attributes:
+      label: Real Aircraft Behavior
+      description: How should it behave according to real-world data?
+      placeholder: "According to the flight manual, fuel flow should be Y kg/h..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Source / Reference
+      description: |
+        Where did you get this information? Please cite your sources.
+        Examples: Flight manual section, pilot testimony, training video, etc.
+      placeholder: |
+        - Tu-154B2 RLE (FCOM), Book 2, Chapter 2, Section 4.1
+        - Video: https://youtube.com/...
+        - Pilot interview: ...
+        - SME suggestion: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting Material
+      description: Attach photos, diagrams, manual excerpts, or other documentation
+      placeholder: "Drag and drop images or documents here..."
+    validations:
+      required: false

@@ -1,0 +1,98 @@
+name: Bug Report
+description: Report something that isn't working correctly
+labels: ["BUG"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Bug Summary
+      description: A brief description of the bug
+      placeholder: "e.g., Engine 2 won't start with APU running"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: System / Area
+      description: Which part of the aircraft is affected?
+      options:
+        - Engines
+        - Fuel System
+        - Electrical
+        - Hydraulics
+        - Flight Controls
+        - APU
+        - Fire System
+        - ABSU (Autopilot)
+        - NVU and DISS (Doppler Navigation)
+        - SVS (CADC, Central Air Data Computer)
+        - TKS (Gyrocompass and Heading Reference System)
+        - RSBN
+        - Radar
+        - Radio
+        - TCAS
+        - TAWS
+        - KLN90B GPS
+        - Transas TSS GPS
+        - Kontur MFD
+        - EFB Tablet
+        - Cockpit
+        - Exterior Model
+        - Sounds
+        - Flight Model
+        - Liveries
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: xplane_version
+    attributes:
+      label: X-Plane Version
+      description: Which version of X-Plane are you using?
+      placeholder: "e.g., 12.1.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened? Describe the bug in detail.
+      placeholder: "Describe what you observed..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this bug?
+      placeholder: |
+        1. Start cold and dark
+        2. Start APU
+        3. Attempt to start Engine 1
+        4. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened instead?
+      placeholder: "Engine 2 should spool up and stabilize at idle..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Screenshots / Logs
+      description: |
+        Attach screenshots or paste relevant sections from SASLLog.txt or X-Plane Log
+        (Located at: plugins/sasl/data/output/SASLLog.txt)
+      placeholder: "Drag and drop images here or paste log contents..."
+    validations:
+      required: false
