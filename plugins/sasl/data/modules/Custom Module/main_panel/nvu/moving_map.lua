@@ -264,6 +264,8 @@ sasl.registerCommandHandler(reset_cmd, 0, function(phase)
         end
         PA3.isCustomScrollActive = false
         PA3.activeCustomScrollName = ""
+        set(nvu_navplan_changed, 1)
+        updateMarks()
     end
 end)
 
