@@ -7,9 +7,9 @@
 - Basic understanding of aircraft systems
 
 ## Development Setup
-
-1. Clone this repository into `X-Plane 12/Aircraft/`
-2. Launch X-Plane and load the Tu-154B2
+1. Fork this repository
+2. Clone your fork repository into `X-Plane 12/Aircraft/`
+3. Launch X-Plane and load the Tu-154B2
 
 ## Making Changes
 
