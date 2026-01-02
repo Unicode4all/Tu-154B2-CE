@@ -3,12 +3,12 @@ name: Build stb_stitch
 on:
   push:
     paths:
-      - 'plugins/sasl/modules/3rd-modules/stb_stitch/**'
+      - "plugins/sasl/data/modules/3rd-modules/stb_stitch/**"
   workflow_dispatch:
 
 defaults:
   run:
-    working-directory: plugins/sasl/modules/3rd-modules/stb_stitch
+    working-directory: plugins/sasl/data/modules/3rd-modules/stb_stitch
 
 jobs:
   build-windows:
@@ -21,12 +21,12 @@ jobs:
           arch: x64
 
       - name: Build Windows x64
-        run: cl /LD /O2 /Fe:win64.xpl stb_image_write_lib.c
+        run: cl /LD /O2 /Fe:win64.dll stb_image_write_lib.c
 
       - uses: actions/upload-artifact@v4
         with:
           name: stb_stitch-windows
-          path: plugins/sasl/modules/3rd-modules/stb_stitch/win64.xpl
+          path: plugins/sasl/data/modules/3rd-modules/stb_stitch/win64.dll
 
   build-linux:
     runs-on: ubuntu-latest
@@ -34,12 +34,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build Linux x64
-        run: gcc -shared -fPIC -O2 -o lin64.xpl stb_image_write_lib.c
+        run: gcc -shared -fPIC -O2 -o lin64.so stb_image_write_lib.c
 
       - uses: actions/upload-artifact@v4
         with:
           name: stb_stitch-linux
-          path: plugins/sasl/modules/3rd-modules/stb_stitch/lin64.xpl
+          path: plugins/sasl/data/modules/3rd-modules/stb_stitch/lin64.so
 
   build-macos:
     runs-on: macos-latest
@@ -47,12 +47,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build macOS Universal
-        run: clang -shared -fPIC -O2 -arch x86_64 -arch arm64 -o mac.xpl stb_image_write_lib.c
+        run: clang -shared -fPIC -O2 -arch x86_64 -arch arm64 -o mac.dylib stb_image_write_lib.c
 
       - uses: actions/upload-artifact@v4
         with:
           name: stb_stitch-macos
-          path: plugins/sasl/modules/3rd-modules/stb_stitch/mac.xpl
+          path: plugins/sasl/data/modules/3rd-modules/stb_stitch/mac.dylib
 
   package:
     needs: [build-windows, build-linux, build-macos]
@@ -65,9 +65,9 @@ jobs:
       - name: Collect binaries
         run: |
           mkdir -p stb_stitch
-          cp binaries/stb_stitch-windows/win64.xpl stb_stitch/
-          cp binaries/stb_stitch-linux/lin64.xpl stb_stitch/
-          cp binaries/stb_stitch-macos/mac.xpl stb_stitch/
+          cp binaries/stb_stitch-windows/win64.dll stb_stitch/
+          cp binaries/stb_stitch-linux/lin64.so stb_stitch/
+          cp binaries/stb_stitch-macos/mac.dylib stb_stitch/
         working-directory: .
 
       - uses: actions/upload-artifact@v4
