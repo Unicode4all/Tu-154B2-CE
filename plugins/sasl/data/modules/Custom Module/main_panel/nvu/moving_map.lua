@@ -160,6 +160,9 @@ local PA3_MAP_HEIGHT = 16000                     -- or as needed for your scroll
 local PA3_MAP_SCALE_KM = PA3_MAP_WIDTH / 160 / 2 -- pixels per km
 local PA3_SCALE_ALT = PA3_MAP_WIDTH / 40 / 2     -- "Airdrome"
 
+-- offset of the mark from beginning of the map
+local MARK_OFFSET = 51
+
 -- Create the render target texture for the map
 local pa3_map_rt = sasl.gl.createRenderTarget(PA3_MAP_WIDTH, PA3_MAP_HEIGHT)
 local pa3_rt = sasl.gl.createRenderTarget(size[1], size[2])
@@ -302,7 +305,7 @@ function findMark(next)
     local current_pos = PA3.ScrollPos
 
     for i = 1, #PA3.Configuration.Marks do
-        local mark = PA3.Configuration.Marks[i]
+        local mark = PA3.Configuration.Marks[i] - MARK_OFFSET
         if math.abs(current_pos - mark) <= radius then
             if not (prev_pos ~= 0 and math.abs(current_pos - prev_pos) <= radius) then
                 sasl.logDebug("Mark found at " .. mark .. " mm")
@@ -340,6 +343,7 @@ function update()
     -- Power logic
     local power_sw = get(PA3.PowerSw)
     local has_power = power_sw == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(cockpit_80s) == 0
+
     if MASTER then
         set(PA3.Power, has_power and 1 or 0)
     end
@@ -818,7 +822,7 @@ function updateMarks()
             if leg then
                 local y_start = y_offset
                 local y_end = y_start + scale(leg.S)
-                PA3.Configuration.Marks[i] = y_end - 15
+                PA3.Configuration.Marks[i] = y_end
                 y_offset = y_end + gap
             end
         end
