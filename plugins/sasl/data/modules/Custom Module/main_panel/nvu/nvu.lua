@@ -116,6 +116,8 @@ components = {
     nvu_panel {},
     nvu_logic {},
     moving_map {
-        position = { 2242, 1144, 793, 900 }
+        --position = { 2242, 1144, 793, 900 }
+        fbo = true,
+        position = { 2050, 834, 2048, 2048 }
     }
 }

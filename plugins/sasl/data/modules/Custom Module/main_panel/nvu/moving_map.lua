@@ -37,7 +37,8 @@
     If cursor reaches max deflection (±160km), Zmax lamp is lit.
 ]]
 
-size = { 1142, 1236 }
+size = { 2048, 2048 }
+--pos = { 2050, 834 }
 
 
 -- TODO: Total code cleanup and refactor
@@ -68,6 +69,12 @@ local function truncate2(num)
 end
 defineProperty("diss_groundspeed", globalPropertyf("tu154b2/custom/nvu/diss_groundspeed")) -- путевая скорость по ДИСС - km/h
 defineProperty("diss_slip_angle", globalPropertyf("tu154b2/custom/nvu/diss_slip_angle"))   -- угол сноса по ДИСС
+
+local morseFont = sasl.gl.loadFont("morse.ttf")
+
+
+pa3_draw_interval = createGlobalPropertyf("tu154b2/custom/nvu/pa3/draw_interval", 0.5)
+
 --delta_course_property = globalPropertyf("tu154b2/custom/nvu/delta_course")
 effective_speed_property = createGlobalPropertyf("tu154b2/custom/nvu/effective_speed", 0.0)
 
@@ -88,10 +95,11 @@ local scroll_velocity = 0 -- mm/sec
 local SCROLL_ACCEL = 600    -- mm/sec^2, acceleration when button held
 local SCROLL_FRICTION = 800 -- mm/sec^2, deceleration when button released
 local SCROLL_VEL_MAX = 1000 -- mm/sec, maximum scroll speed
-json = require("json")
+local json = require("json")
 local stb_stitch = require("stb_stitch")
+include("navaid_cache")
 MAP_END = 0
-
+local GLOBAL_SCALE = 2
 -- PA-3 scale modes
 Modes = {
     Airdrome = 1, -- Airport/terminal area mode (larger scale)
@@ -132,15 +140,18 @@ PA3 = {
 
     ScrollOffset = createGlobalPropertyf("tu154b2/custom/nvu/pa3/scroll_offset", 0.0),
     Configuration = {
-        Marks = {} -- this table of numbers stores markpoints on the map roll. Recoupling will set the nearest markpoint as offset
+        Marks = {}, -- this table of numbers stores markpoints on the map roll. Recoupling will set the nearest markpoint as offset
+        Visibility = {
+            NDBs = true,
+            VORs = true,
+            APTs = true,
+            FIXes = true,
+            RSBNs = true
+        }
     }
 }
 
--- Constants
-local CURSOR_MAX = 160          -- Maximum cursor deflection in mm
-local SCROLL_MAX = 12000        -- Maximum scroll in mm (12 meters)
-local MANUAL_SCROLL_SPEED = 100 -- Manual scroll speed in mm/sec when using buttons
-local MANUAL_CURSOR_SPEED = 300 -- Manual cursor speed in mm/sec when using buttons
+
 
 -- Power consumption constants
 local BASE_CURRENT_DRAW = 0.05    -- Base current draw when powered (0.05A)
@@ -159,22 +170,44 @@ local prev_scroll_pos = 0      -- Previous scroll position for detecting movemen
 
 
 
-
-local PA3_MAP_WIDTH = 1142                       -- pixels, corresponds to 160km
-local PA3_MAP_HEIGHT = 20000                     -- or as needed for your scrollable area
+-- local PA3_MAP_WIDTH = 1142
+local PA3_MAP_WIDTH = 2048                       -- pixels, corresponds to 160km
+local PA3_MAP_HEIGHT = 30000 * GLOBAL_SCALE      -- or as needed for your scrollable area
 local PA3_MAP_SCALE_KM = PA3_MAP_WIDTH / 160 / 2 -- pixels per km
 local PA3_SCALE_ALT = PA3_MAP_WIDTH / 40 / 2     -- "Airdrome"
+
+-- Constants
+local CURSOR_MAX = 160            -- Maximum cursor deflection in mm
+local SCROLL_MAX = PA3_MAP_HEIGHT -- Maximum scroll in mm (12 meters)
+local MANUAL_SCROLL_SPEED = 100   -- Manual scroll speed in mm/sec when using buttons
+local MANUAL_CURSOR_SPEED = 300   -- Manual cursor speed in mm/sec when using buttons
 
 local TILE_HEIGHT = 4096
 local NUM_TILES = math.ceil(PA3_MAP_HEIGHT / TILE_HEIGHT)
 local pa3_map_tiles = {}
 
+-- Map dirty flag - when true, tiles need to be redrawn
+-- Set to true initially so map renders on first frame
+local mapNeedsRedraw = true
+
+-- Forward declaration (actual function defined in cluster section)
+local clearTextWidthCache
+local drawRSBNLabel
+-- Function to mark map as needing redraw (call when flight plan or visibility changes)
+function invalidateMap()
+    mapNeedsRedraw = true
+    if clearTextWidthCache then
+        clearTextWidthCache() -- Also clear text cache since labels may change
+    end
+    buildNavaidCache()
+end
+
 -- offset of the mark from beginning of the map
-local MARK_OFFSET = 51
+local MARK_OFFSET = 22
 
 -- Create the render target texture for the map
-local pa3_map_rt = sasl.gl.createRenderTarget(PA3_MAP_WIDTH, PA3_MAP_HEIGHT)
-local pa3_rt = sasl.gl.createRenderTarget(size[1], size[2])
+--local pa3_map_rt = sasl.gl.createRenderTarget(PA3_MAP_WIDTH, PA3_MAP_HEIGHT)
+--local pa3_rt = sasl.gl.createRenderTarget(size[1], size[2])
 local pa3_custom_scroll = nil
 
 local pa3_shader = sasl.gl.createShaderProgram()
@@ -239,7 +272,6 @@ local function activateCustomScroll(index)
         sasl.gl.unloadTexture(pa3_custom_scroll)
         pa3_custom_scroll = nil
     end
-
 
     local ok, err = stb_stitch.loadToRenderTargets(
         scrollPath,
@@ -307,6 +339,13 @@ sasl.registerCommandHandler(reset_cmd, 0, function(phase)
     end
 end)
 
+local redraw_map = sasl.createCommand("tu154b2/custom/nvu/pa3/redraw", "Trigger map update")
+sasl.registerCommandHandler(redraw_map, 0, function(phase)
+    if phase == SASL_COMMAND_END then
+        invalidateMap()
+    end
+end)
+
 
 
 
@@ -340,7 +379,7 @@ function findMark(next)
     local current_pos = PA3.ScrollPos
 
     for i = 1, #PA3.Configuration.Marks do
-        local mark = PA3.Configuration.Marks[i] - MARK_OFFSET
+        local mark = PA3.Configuration.Marks[i] + MARK_OFFSET
         if math.abs(current_pos - mark) <= radius then
             if not (prev_pos ~= 0 and math.abs(current_pos - prev_pos) <= radius) then
                 sasl.logDebug("Mark found at " .. mark .. " mm")
@@ -365,10 +404,20 @@ function handleLegChange()
     nvu_switch = 1
 end
 
+local pa3_mapInvalidateTimer = 0
 function update()
     local MASTER = get(ismaster) ~= 1
 
     local passed = get(frame_time)
+
+    -- Ensure map is invalidated every 100 ms so tiled render target stays fresh
+    if pa3_mapInvalidateTimer == nil then pa3_mapInvalidateTimer = 0 end
+    pa3_mapInvalidateTimer = pa3_mapInvalidateTimer + passed
+    if pa3_mapInvalidateTimer >= get(pa3_draw_interval) then
+        pa3_mapInvalidateTimer = pa3_mapInvalidateTimer - get(pa3_draw_interval)
+        --invalidateMap()
+    end
+    --invalidateMap()
 
     if MASTER then
         updateSwitches()
@@ -377,7 +426,8 @@ function update()
 
     -- Power logic
     local power_sw = get(PA3.PowerSw)
-    local has_power = power_sw == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(cockpit_80s) == 0
+    local has_power = power_sw == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and
+        get(cockpit_80s) == 0
 
     if MASTER then
         set(PA3.Power, has_power and 1 or 0)
@@ -394,9 +444,9 @@ function update()
 
     if get(cockpit_80s) == 0 then
         set(nav_sel, 0) -- temporary crutch so that nav sel switch is always on NVU while 80s cockpit is selected
-        set(sd75_on, 1) -- TODO: Implement SD75
+        --set(sd75_on, 1) -- TODO: Implement SD75
     end
-    has_power = true
+    --has_power = true
     -- Only process if we have power
     if has_power then
         -- Add base current draw when powered
@@ -579,7 +629,7 @@ end
 
 local gap = 580 * PA3_MAP_SCALE_KM
 function drawMapBackground()
-    sasl.gl.drawRectangle(0, 0, PA3_MAP_WIDTH, PA3_MAP_HEIGHT, { 1, 1, 1, 0.9 })
+    sasl.gl.drawRectangle(0, 0, PA3_MAP_WIDTH, PA3_MAP_HEIGHT, { 0.92, 0.90, 0.85, 0.96 })
 end
 
 function drawMapTitle(y_offset)
@@ -587,18 +637,26 @@ function drawMapTitle(y_offset)
     sasl.gl.setInternalLineWidth(15)
     sasl.gl.drawLine(0, 0, PA3_MAP_WIDTH, 0, { 0, 0, 0, 1 })
     sasl.gl.drawLine(0, y_offset - gap / 3, PA3_MAP_WIDTH, y_offset - gap / 3, { 0, 0, 0, 1 })
-    sasl.gl.drawText(avia_font, 200, 200, "Н А Ч А Л О  К А Р Т Ы", 72, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
-    sasl.gl.drawText(avia_font, 20, 600, "Маршрутная карта. Масштаб 1:2000000", 52, false, false, TEXT_ALIGN_LEFT,
+    sasl.gl.drawText(avia_font, 200 * GLOBAL_SCALE, 200 * GLOBAL_SCALE, "Н А Ч А Л О  К А Р Т Ы", 72 * GLOBAL_SCALE,
+        false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+    sasl.gl.drawText(avia_font, 20 * GLOBAL_SCALE, 600 * GLOBAL_SCALE, "Маршрутная карта. Масштаб 1:2000000",
+        52 * GLOBAL_SCALE, false, false, TEXT_ALIGN_LEFT,
         { 0, 0, 0, 1 })
     --route name
     if nvu_navplan.Name and nvu_navplan.Name ~= "" then
-        sasl.gl.drawText(avia_font, 20, 530, nvu_navplan.Name, 60, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+        sasl.gl.drawText(avia_font, 20 * GLOBAL_SCALE, 530 * GLOBAL_SCALE, nvu_navplan.Name, 60 * GLOBAL_SCALE, false,
+            false, TEXT_ALIGN_LEFT,
+            { 0, 0, 0, 1 })
     end
     if nvu_navplan.ShortDesc and nvu_navplan.ShortDesc ~= "" then
-        sasl.gl.drawText(avia_font, 50, 480, nvu_navplan.ShortDesc, 42, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+        sasl.gl.drawText(avia_font, 50 * GLOBAL_SCALE, 480 * GLOBAL_SCALE, nvu_navplan.ShortDesc, 42 * GLOBAL_SCALE,
+            false, false, TEXT_ALIGN_LEFT,
+            { 0, 0, 0, 1 })
     end
     if nvu_navplan.LongDesc and nvu_navplan.LongDesc ~= "" then
-        sasl.gl.drawText(avia_font, 50, 430, nvu_navplan.LongDesc, 32, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+        sasl.gl.drawText(avia_font, 50 * GLOBAL_SCALE2, 430 * GLOBAL_SCALE, nvu_navplan.LongDesc, 32 * GLOBAL_SCALE,
+            false, false, TEXT_ALIGN_LEFT,
+            { 0, 0, 0, 1 })
     end
 
     sasl.gl.restoreInternalLineState()
@@ -614,12 +672,12 @@ end
 
 function drawLegSegment(x, y_start, y_end)
     sasl.gl.saveInternalLineState()
-    sasl.gl.setInternalLineWidth(15)
+    sasl.gl.setInternalLineWidth(4 * GLOBAL_SCALE)
     sasl.gl.drawLine(x, y_start, x, y_end, { 0.6, 0, 0, 1 })
-    sasl.gl.setInternalLineWidth(5)
-    sasl.gl.drawCircle(x, y_start, 12, true, { 0, 0, 0, 1 })
-    sasl.gl.drawCircle(x, y_end, 12, true, { 0, 0, 0, 1 })
-    sasl.gl.drawCircle(x, y_end, 24, false, { 0, 0, 0, 1 })
+    sasl.gl.setInternalLineWidth(4 * GLOBAL_SCALE)
+    sasl.gl.drawCircle(x, y_start, 6 * GLOBAL_SCALE, true, { 0, 0, 0, 1 })
+    sasl.gl.drawCircle(x, y_end, 6 * GLOBAL_SCALE, true, { 0, 0, 0, 1 })
+    sasl.gl.drawCircle(x, y_end, 12 * GLOBAL_SCALE, false, { 0, 0, 0, 1 })
     sasl.gl.restoreInternalLineState()
 end
 
@@ -628,10 +686,13 @@ function drawLegLabels(x, y_start, y_end, i, leg)
     if leg.NAME and leg.NAME ~= "" then
         local start_wp, end_wp = string.match(leg.NAME, "([^-]+)-([^-]+)")
         if start_wp and end_wp then
-            drawText(avia_font, x + 60, y_start + 20, start_wp, 48, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
-            drawText(avia_font, x + 60, y_end - 60, end_wp, 48, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+            drawText(avia_font, x + 60 * GLOBAL_SCALE, y_start + 20 * GLOBAL_SCALE, start_wp, 48 * GLOBAL_SCALE, false,
+                false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+            drawText(avia_font, x + 60 * GLOBAL_SCALE, y_end - 60 * GLOBAL_SCALE, end_wp, 48 * GLOBAL_SCALE, false, false,
+                TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
         else
-            drawText(avia_font, x - 300, y_start + 370, leg.NAME, 54, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+            drawText(avia_font, x - 300 * GLOBAL_SCALE, y_start + 370 * GLOBAL_SCALE, leg.NAME, 54 * GLOBAL_SCALE, false,
+                false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
         end
     end
 
@@ -640,14 +701,18 @@ function drawLegLabels(x, y_start, y_end, i, leg)
         local dtk = nvu_navplan.Legs[i + 1].DTK or 0
         local degrees = math.floor(dtk)
         local minutes = math.floor((dtk - degrees) * 60 + 0.5)
-        drawText(avia_font, x + 60, y_end + 20, "ЗПУ " .. tostring(dtk), 54, false, false, TEXT_ALIGN_LEFT,
+        drawText(avia_font, x + 60 * GLOBAL_SCALE, y_end + 20 * GLOBAL_SCALE, "ЗПУ " .. tostring(dtk), 54 * GLOBAL_SCALE,
+            false, false, TEXT_ALIGN_LEFT,
             { 0, 0, 0, 1 })
-        drawText(avia_font, x + 160, y_end + 60, string.format("%03d°%02d'", degrees, minutes), 40, false, false,
+        drawText(avia_font, x + 160 * GLOBAL_SCALE, y_end + 60 * GLOBAL_SCALE,
+            string.format("%03d°%02d'", degrees, minutes), 40 * GLOBAL_SCALE, false, false,
             TEXT_ALIGN_LEFT, { 0.4, 0.4, 0.2, 1 })
     end
 
-    drawText(avia_font, x + 20, y_start + 20, tostring(i), 54, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
-    drawText(avia_font, x + 20, y_end - 60, tostring(i + 1), 54, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+    drawText(avia_font, x + 20 * GLOBAL_SCALE, y_start + 20 * GLOBAL_SCALE, tostring(i), 54 * GLOBAL_SCALE, false, false,
+        TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+    drawText(avia_font, x + 20 * GLOBAL_SCALE, y_end - 60 * GLOBAL_SCALE, tostring(i + 1), 54 * GLOBAL_SCALE, false,
+        false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
 
     -- Draw leg info (bearing, distance, etc)
     -- ЗПУ (DTK) and DDDMM format below
@@ -677,29 +742,32 @@ function drawLegMarkers(y_start, y_end, leg)
         sasl.gl.drawLine(0, v, PA3_MAP_WIDTH, v, { 0, 0, 0, 1 })
     end
     --sasl.gl.drawLine(0, y_end, PA3_MAP_WIDTH, y_end, { 0, 0, 0, 1 })
-    sasl.gl.setInternalLineWidth(5)
+    sasl.gl.setInternalLineWidth(5 * GLOBAL_SCALE)
     for i = 0, leg.S + 100, 10 do
-        sasl.gl.drawLine(0, y_end - i * PA3_MAP_SCALE_KM, 20, y_end - i * PA3_MAP_SCALE_KM, { 0, 0, 0, 1 })
+        sasl.gl.drawLine(0, y_end - i * PA3_MAP_SCALE_KM, 20 * GLOBAL_SCALE, y_end - i * PA3_MAP_SCALE_KM, { 0, 0, 0, 1 })
     end
     for i = 0, leg.S + 100, 100 do
-        sasl.gl.drawLine(0, y_end - i * PA3_MAP_SCALE_KM, 140, y_end - i * PA3_MAP_SCALE_KM, { 0, 0, 0, 1 })
-        drawText(avia_font, 145, y_end - i * PA3_MAP_SCALE_KM - 20, tostring(i), 60, false, false, TEXT_ALIGN_LEFT,
+        sasl.gl.drawLine(0, y_end - i * PA3_MAP_SCALE_KM, 140 * GLOBAL_SCALE, y_end - i * PA3_MAP_SCALE_KM,
+            { 0, 0, 0, 1 })
+        drawText(avia_font, 145 * GLOBAL_SCALE, y_end - i * PA3_MAP_SCALE_KM - 20, tostring(i), 60 * GLOBAL_SCALE, false,
+            false,
+            TEXT_ALIGN_LEFT,
             { 0, 0, 0, 1 })
     end
 
     -- Draw the scale on the right side in nautical miles
-    sasl.gl.setInternalLineWidth(5)
+    sasl.gl.setInternalLineWidth(5 * GLOBAL_SCALE)
     for i = 0, leg.S + 100, 5 do      -- NM markers every 5 NM
         local nm_position = i * 1.852 -- Convert NM to km (1 NM = 1.852 km)
-        sasl.gl.drawLine(PA3_MAP_WIDTH - 20, y_end - nm_position * PA3_MAP_SCALE_KM, PA3_MAP_WIDTH,
+        sasl.gl.drawLine(PA3_MAP_WIDTH - 20 * GLOBAL_SCALE, y_end - nm_position * PA3_MAP_SCALE_KM, PA3_MAP_WIDTH,
             y_end - nm_position * PA3_MAP_SCALE_KM, { 0.3, 0, 0, 1 })
     end
     for i = 0, leg.S + 100, 50 do     -- Major NM markers every 50 NM
         local nm_position = i * 1.852 -- Convert NM to km
-        sasl.gl.drawLine(PA3_MAP_WIDTH - 52, y_end - nm_position * PA3_MAP_SCALE_KM, PA3_MAP_WIDTH,
+        sasl.gl.drawLine(PA3_MAP_WIDTH - 52 * GLOBAL_SCALE, y_end - nm_position * PA3_MAP_SCALE_KM, PA3_MAP_WIDTH,
             y_end - nm_position * PA3_MAP_SCALE_KM, { 0.3, 0, 0, 1 })
-        drawText(avia_font, PA3_MAP_WIDTH - 72, y_end - nm_position * PA3_MAP_SCALE_KM - 20,
-            tostring(i) .. " NM", 42, false, false, TEXT_ALIGN_RIGHT, { 0.3, 0, 0, 1 })
+        drawText(avia_font, PA3_MAP_WIDTH - 72 * GLOBAL_SCALE, y_end - nm_position * PA3_MAP_SCALE_KM - 20,
+            tostring(i) .. " NM", 42 * GLOBAL_SCALE, false, false, TEXT_ALIGN_RIGHT, { 0.3, 0, 0, 1 })
     end
 
     sasl.gl.restoreInternalLineState()
@@ -745,7 +813,7 @@ function drawLegCourseArrows(x, y_start, y_end, i, leg, next_DTK)
 
 
 
-    sasl.gl.setInternalLineWidth(7)
+    sasl.gl.setInternalLineWidth(4)
     if i < #nvu_navplan.Legs then
         sasl.gl.drawLine(x, y_end, x + dx, y_end - dy, { 0, 0, 0, 1 })
     end
@@ -762,18 +830,1575 @@ function drawMapEnding(y_offset)
     sasl.gl.setInternalLineWidth(15)
     local ending_size = 400 * PA3_MAP_SCALE_KM
     sasl.gl.drawLine(0, y_offset + ending_size + 800, PA3_MAP_WIDTH, y_offset + ending_size + 800, { 0, 0, 0, 1 })
-    sasl.gl.drawText(avia_font, PA3_MAP_WIDTH / 2, y_offset + ending_size + 400, "К О Н Е Ц  К А Р Т Ы", 72, false, false,
+    sasl.gl.drawText(avia_font, PA3_MAP_WIDTH / 2, y_offset + ending_size + 400, "К О Н Е Ц  К А Р Т Ы",
+        72 * GLOBAL_SCALE, false, false,
         TEXT_ALIGN_CENTER, { 0, 0, 0, 1 })
     sasl.gl.restoreInternalLineState()
     MAP_END = y_offset + ending_size + 800
 end
 
--- returns scaled value in pixels
+-- Navaid symbol sizes (pixels)
+local SYMBOL_SIZE = {
+    VOR = 20 * GLOBAL_SCALE,
+    NDB = 16 * GLOBAL_SCALE,
+    AIRPORT = 24 * GLOBAL_SCALE,
+    RSBN = 20 * GLOBAL_SCALE,
+    FIX = 12 * GLOBAL_SCALE
+}
 
+-- airport chart symbol size
+local APT_SYMBOL_SIZE = {
+    VOR = 8 * GLOBAL_SCALE,
+    NDB = 6 * GLOBAL_SCALE,
+    AIRPORT = 4 * GLOBAL_SCALE,
+    RSBN = 8 * GLOBAL_SCALE,
+    FIX = 4 * GLOBAL_SCALE
+}
+
+-- Navaid symbol colors (map-style, readable on white background)
+local SYMBOL_COLORS = {
+    VOR = { 0.1, 0.1, 0.6, 1 },     -- Dark blue
+    NDB = { 0.5, 0.2, 0.5, 1 },     -- Purple
+    AIRPORT = { 0.1, 0.1, 0.1, 1 }, -- Black
+    RSBN = { 0.7, 0.1, 0.1, 1 },    -- Dark red (Soviet/Russian system)
+    FIX = { 0.1, 0.5, 0.1, 1 }      -- Dark green
+}
+
+-- Morse code lookup table for ident label
+
+local MORSE_CODE = {
+    A = ".-",
+    B = "-...",
+    C = "-.-·",
+    D = "-..",
+    E = ".",
+    F = "..-.",
+    G = "--.",
+    H = "....",
+    I = "..",
+    J = ".---",
+    K = "-.-",
+    L = ".-..",
+    M = "--",
+    N = "-.",
+    O = "---",
+    P = ".--.",
+    Q = "--.-",
+    R = ".-.",
+    S = "...",
+    T = "-",
+    U = "..-",
+    V = "...-",
+    W = ".--",
+    X = "-..-",
+    Y = "-.--",
+    Z = "--..",
+    ["0"] = "-----",
+    ["1"] = ".----",
+    ["2"] = "..---",
+    ["3"] = "...--",
+    ["4"] = "....-",
+    ["5"] = ".....",
+    ["6"] = "-....",
+    ["7"] = "--...",
+    ["8"] = "---..",
+    ["9"] = "----."
+}
+
+
+--[[
+local MORSE_CODE = {
+    A = " ▄ ▄▄▄ ",
+    B = " ▄▄▄ ▄ ▄ ▄ ",
+    C = " ▄▄▄ ▄ ▄▄▄ ▄ ",
+    D = " ▄▄▄ ▄ ▄ ",
+    E = " ▄ ",
+    F = " ▄ ▄ ▄▄▄ ▄ ",
+    G = " ▄▄▄ ▄▄▄ ▄ ",
+    H = " ▄ ▄ ▄ ▄ ",
+    I = " ▄ ▄ ",
+    J = " ▄ ▄▄▄ ▄▄▄ ▄ ",
+    K = " ▄▄▄ ▄ ▄▄▄ ",
+    L = " ▄ ▄▄▄ ▄ ▄ ",
+    M = " ▄▄▄ ▄▄▄ ",
+    N = " ▄▄▄ ▄ ",
+    O = " ▄▄▄ ▄▄▄ ▄▄▄ ",
+    P = " ▄ ▄▄▄ ▄▄▄ ▄ ",
+    Q = " ▄▄▄ ▄▄▄ ▄ ▄ ",
+    R = " ▄ ▄▄▄ ▄ ",
+    S = " ▄ ▄ ▄ ",
+    T = " ▄▄▄ ",
+    U = " ▄ ▄ ▄▄▄ ",
+    V = " ▄ ▄ ▄▄▄ ▄ ",
+    W = " ▄ ▄▄▄ ▄▄▄ ",
+    X = " ▄▄▄ ▄ ▄ ▄▄▄ ",
+    Y = " ▄▄▄ ▄ ▄▄▄ ▄▄▄ ",
+    Z = " ▄▄▄ ▄▄▄ ▄ ",
+    ["0"] = " ▄▄▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄▄▄ ",
+    ["1"] = " ▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄▄▄ ",
+    ["2"] = " ▄ ▄ ▄▄▄ ▄▄▄ ▄▄▄ ",
+    ["3"] = " ▄ ▄ ▄ ▄▄▄ ▄▄▄ ",
+    ["4"] = " ▄ ▄ ▄ ▄ ▄▄▄ ",
+    ["5"] = " ▄ ▄ ▄ ▄ ▄ ",
+    ["6"] = " ▄▄▄ ▄ ▄ ▄ ▄ ",
+    ["7"] = " ▄▄▄ ▄▄▄ ▄ ▄ ▄ ",
+    ["8"] = " ▄▄▄ ▄▄▄ ▄▄▄ ▄ ▄ ",
+    ["9"] = " ▄▄▄ ▄▄▄ ▄▄▄ ▄▄▄ ▄ "
+}
+]]
+
+-- Convert identifier to morse code string
+local function idToMorse(id)
+    if not id or id == "" then return "" end
+    local morse = {}
+    for i = 1, #id do
+        local char = string.upper(string.sub(id, i, i))
+        local code = MORSE_CODE[char]
+        if code then
+            morse[#morse + 1] = code
+        end
+    end
+    return table.concat(morse, " ")
+end
+
+-- VOR bearing ring radius
+local VOR_RING_RADIUS = 32 * GLOBAL_SCALE
+
+-- legDTK: the leg's designated track (degrees), used to rotate bearing ring
+-- so that the leg's track direction aligns with "up" on the map
+function drawVORSymbol(x, y, hasDME, legDTK, scale)
+    scale = scale or 1
+    legDTK = legDTK or 0 -- Default to north if not provided
+
+    -- Hexagon with center dot (standard VOR symbol)
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(1 * GLOBAL_SCALE)
+    local r = SYMBOL_SIZE.VOR * scale
+    --for i = 0, 5 do
+    --    local a1 = math.rad(i * 60)
+    --    local a2 = math.rad((i + 1) * 60)
+    --    sasl.gl.drawLine(
+    --        x + r * math.cos(a1), y + r * math.sin(a1),
+    --        x + r * math.cos(a2), y + r * math.sin(a2),
+    --        SYMBOL_COLORS.VOR
+    --    )
+    --end
+    --sasl.gl.drawCircle(x, y, 5 * scale, true, SYMBOL_COLORS.VOR)
+    -- DME indicator: outer square
+    if hasDME then
+        local s = r + 6 * scale
+        sasl.gl.drawLine(x - s, y - s, x + s, y - s, SYMBOL_COLORS.VOR)
+        sasl.gl.drawLine(x + s, y - s, x + s, y + s, SYMBOL_COLORS.VOR)
+        sasl.gl.drawLine(x + s, y + s, x - s, y + s, SYMBOL_COLORS.VOR)
+        sasl.gl.drawLine(x - s, y + s, x - s, y - s, SYMBOL_COLORS.VOR)
+    end
+
+    -- VOR bearing ring (compass rose) - rotated so leg track is "up"
+    local ringR = VOR_RING_RADIUS
+    local ringColor = { 0.2, 0.2, 0.5, 1.0 }
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+    sasl.gl.drawCircle(x, y, ringR, false, ringColor)
+
+    -- Rotation offset: leg track should point up (90° in screen coords)
+    -- Screen: 0° = right, 90° = up, so we need to rotate by (90 - legDTK)
+    --sasl.logDebug("Rotation offset: %f", 90 - legDTK)
+    local rotationOffset = 90 - legDTK
+
+    -- Draw bearing tick marks every 10 degrees, longer at 30 degree intervals
+    for deg = 0, 350, 30 do
+        local a = math.rad(deg + rotationOffset)
+        local tickInner = ringR - (deg % 30 == 0 and 10 * GLOBAL_SCALE or 5 * GLOBAL_SCALE)
+        local tickOuter = ringR
+        sasl.gl.drawLine(
+            x + tickInner * math.cos(a), y + tickInner * math.sin(a),
+            x + tickOuter * math.cos(a), y + tickOuter * math.sin(a),
+            ringColor
+        )
+    end
+
+    -- Draw cardinal direction labels rotated with the ring
+    local labelR = ringR + 12 * GLOBAL_SCALE
+    local labelSize = 18 * GLOBAL_SCALE
+    local labelColor = { 0.2, 0.2, 0.5, 0.8 }
+
+    -- Cardinal directions: N=0°, E=90°, S=180°, W=270°
+    --[[
+    local cardinals = { { "N", 0 }, { "E", 90 }, { "S", 180 }, { "W", 270 } }
+    for _, card in ipairs(cardinals) do
+        local label, bearing = card[1], card[2]
+        local a = math.rad(bearing + rotationOffset)
+        local lx = x + labelR * math.cos(a)
+        local ly = y + labelR * math.sin(a) - 5
+        sasl.gl.drawText(avia_font, lx, ly, label, labelSize, false, false, TEXT_ALIGN_CENTER, labelColor)
+    end
+]]
+
+    labelR = labelR - 54
+
+    -- draw degrees every 10 degrees
+    --for i = 0, 330, 30 do
+    --    local a = math.rad(i + rotationOffset)
+    --    local lx = x + labelR * math.cos(a)
+    --    local ly = y + labelR * math.sin(a) - 5
+    --    sasl.gl.drawText(avia_font, lx, ly, tostring(i), labelSize - 20, true, false, TEXT_ALIGN_CENTER, labelColor)
+    --end
+
+    -- Draw
+
+    sasl.gl.restoreInternalLineState()
+end
+
+function drawNDBSymbol(x, y)
+    -- Concentric dotted circles (standard NDB symbol)
+    sasl.gl.saveInternalLineState()
+
+    -- Small center circle
+    sasl.gl.drawCircle(x, y, 3 * GLOBAL_SCALE, false, SYMBOL_COLORS.NDB)
+
+    -- Draw concentric rings of dots
+    local baseRadius = SYMBOL_SIZE.NDB * 0.4
+    local rings = {
+        { radius = baseRadius * 0.8, dots = 8 },
+        { radius = baseRadius * 1.4, dots = 12 },
+        { radius = baseRadius * 2.0, dots = 16 },
+        { radius = baseRadius * 2.6, dots = 20 }
+    }
+
+    for _, ring in ipairs(rings) do
+        for i = 0, ring.dots - 1 do
+            local angle = math.rad((i * 360) / ring.dots)
+            local dotX = x + ring.radius * math.cos(angle)
+            local dotY = y + ring.radius * math.sin(angle)
+            sasl.gl.drawCircle(dotX, dotY, 2 * GLOBAL_SCALE, true, SYMBOL_COLORS.NDB)
+        end
+    end
+
+    sasl.gl.restoreInternalLineState()
+end
+
+function drawAirportSymbol(x, y)
+    -- Circle with four boxes around it (standard aerodrome symbol)
+    sasl.gl.saveInternalLineState()
+    local r = SYMBOL_SIZE.AIRPORT - 10
+
+    -- Draw center circle
+    sasl.gl.setInternalLineWidth(3 * GLOBAL_SCALE)
+    sasl.gl.drawCircle(x, y, r, false, SYMBOL_COLORS.AIRPORT)
+
+    -- Draw four boxes at cardinal directions
+    local boxSize = r * 0.3                          -- Box half-width
+    local boxOffset = r + boxSize - 1 * GLOBAL_SCALE -- Position outside circle with small gap
+
+    -- North box
+    sasl.gl.drawRectangle(x - boxSize, y + boxOffset - boxSize, boxSize * 2, boxSize, SYMBOL_COLORS.AIRPORT)
+    -- East box
+    sasl.gl.drawRectangle(x + boxOffset - boxSize, y - boxSize, boxSize, boxSize * 2, SYMBOL_COLORS.AIRPORT)
+    -- South box
+    sasl.gl.drawRectangle(x - boxSize, y - boxOffset, boxSize * 2, boxSize, SYMBOL_COLORS.AIRPORT)
+    -- West box
+    sasl.gl.drawRectangle(x - boxOffset, y - boxSize, boxSize, boxSize * 2, SYMBOL_COLORS.AIRPORT)
+
+    sasl.gl.restoreInternalLineState()
+end
+
+function drawRSBNSymbol(x, y)
+    -- Triangle with center dot (distinctive RSBN symbol)
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(3 * GLOBAL_SCALE)
+    local r = SYMBOL_SIZE.RSBN
+    -- Draw equilateral triangle pointing up
+    local a1, a2, a3 = math.rad(90), math.rad(210), math.rad(330)
+    sasl.gl.drawLine(x + r * math.cos(a1), y + r * math.sin(a1),
+        x + r * math.cos(a2), y + r * math.sin(a2), SYMBOL_COLORS.RSBN)
+    sasl.gl.drawLine(x + r * math.cos(a2), y + r * math.sin(a2),
+        x + r * math.cos(a3), y + r * math.sin(a3), SYMBOL_COLORS.RSBN)
+    sasl.gl.drawLine(x + r * math.cos(a3), y + r * math.sin(a3),
+        x + r * math.cos(a1), y + r * math.sin(a1), SYMBOL_COLORS.RSBN)
+    -- Center dot
+    sasl.gl.drawCircle(x, y, 5, true, SYMBOL_COLORS.RSBN)
+    -- Inner circle for RSBN distinction
+    --sasl.gl.setInternalLineWidth(2)
+    --sasl.gl.drawCircle(x, y, r - 5, false, SYMBOL_COLORS.RSBN)
+    sasl.gl.restoreInternalLineState()
+end
+
+function drawFIXSymbol(x, y)
+    -- Small triangle (standard FIX/waypoint symbol)
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+    local r = SYMBOL_SIZE.FIX
+    -- Draw small equilateral triangle pointing up
+    local a1, a2, a3 = math.rad(90), math.rad(210), math.rad(330)
+    sasl.gl.drawLine(x + r * math.cos(a1), y + r * math.sin(a1),
+        x + r * math.cos(a2), y + r * math.sin(a2), SYMBOL_COLORS.FIX)
+    sasl.gl.drawLine(x + r * math.cos(a2), y + r * math.sin(a2),
+        x + r * math.cos(a3), y + r * math.sin(a3), SYMBOL_COLORS.FIX)
+    sasl.gl.drawLine(x + r * math.cos(a3), y + r * math.sin(a3),
+        x + r * math.cos(a1), y + r * math.sin(a1), SYMBOL_COLORS.FIX)
+    sasl.gl.restoreInternalLineState()
+end
+
+--------------------------------------------------------------------------------
+-- Airport Chart System
+--------------------------------------------------------------------------------
+
+-- Forward declaration for label collision function (defined later in file)
+local resetLabelRects
+
+-- Airport chart constants
+local AIRPORT_CHART_HEIGHT = 3200   -- Chart height in pixels
+local AIRPORT_CHART_RADIUS_NM = 100 -- Navaid display radius
+--local AIRPORT_CHART_SCALE = PA3_MAP_WIDTH / 100  -- Pixels per km for airport chart (approx 1:500000)--
+local AIRPORT_CHART_SCALE = PA3_SCALE_ALT
+
+-- Draw compass rose for airport chart
+-- cx, cy: center position
+-- radius: rose radius in pixels
+-- trackOut: outbound track direction (degrees, 0 = north)
+local function drawAirportCompassRose(cx, cy, radius, trackOut)
+    sasl.gl.saveInternalLineState()
+
+    local roseColor = { 0.3, 0.3, 0.4, 0.8 }
+    local trackColor = { 0.6, 0.1, 0.1, 1 }
+
+    -- Outer circle
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+    sasl.gl.drawCircle(cx, cy, radius, false, roseColor)
+
+    -- Cardinal directions in Russian: С (North), В (East), Ю (South), З (West)
+    local cardinals = {
+        { "С", 0 }, -- North
+        { "В", 90 }, -- East
+        { "Ю", 180 }, -- South
+        { "З", 270 } -- West
+    }
+
+    local labelSize = 36 * GLOBAL_SCALE
+    local labelR = radius + 30 * GLOBAL_SCALE
+
+    for _, card in ipairs(cardinals) do
+        local label, bearing = card[1], card[2]
+        local a = math.rad(90 - bearing) -- Convert to screen angle (90° = up)
+
+        -- Tick mark (longer for cardinals)
+        local tickLen = 25 * GLOBAL_SCALE
+        sasl.gl.setInternalLineWidth(3 * GLOBAL_SCALE)
+        sasl.gl.drawLine(
+            cx + (radius - tickLen) * math.cos(a),
+            cy + (radius - tickLen) * math.sin(a),
+            cx + radius * math.cos(a),
+            cy + radius * math.sin(a),
+            roseColor
+        )
+
+        -- Label
+        sasl.gl.drawText(avia_font,
+            cx + labelR * math.cos(a) - 10,
+            cy + labelR * math.sin(a) - 15,
+            label, labelSize, false, false, TEXT_ALIGN_CENTER, roseColor)
+    end
+
+    -- 30-degree tick marks
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+    for deg = 0, 330, 30 do
+        if deg % 90 ~= 0 then -- Skip cardinals (already drawn)
+            local a = math.rad(90 - deg)
+            local tickLen = 15 * GLOBAL_SCALE
+            sasl.gl.drawLine(
+                cx + (radius - tickLen) * math.cos(a),
+                cy + (radius - tickLen) * math.sin(a),
+                cx + radius * math.cos(a),
+                cy + radius * math.sin(a),
+                roseColor
+            )
+        end
+    end
+
+    -- 10-degree tick marks (shorter)
+    sasl.gl.setInternalLineWidth(1 * GLOBAL_SCALE)
+    for deg = 0, 350, 10 do
+        if deg % 30 ~= 0 then -- Skip 30-degree marks
+            local a = math.rad(90 - deg)
+            local tickLen = 8 * GLOBAL_SCALE
+            sasl.gl.drawLine(
+                cx + (radius - tickLen) * math.cos(a),
+                cy + (radius - tickLen) * math.sin(a),
+                cx + radius * math.cos(a),
+                cy + radius * math.sin(a),
+                { roseColor[1], roseColor[2], roseColor[3], 0.5 }
+            )
+        end
+    end
+
+    -- Outbound track indicator (arrow)
+    if trackOut then
+        local trackAngle = math.rad(90 - trackOut) -- Convert to screen angle
+        local arrowLen = radius * 0.75
+        local arrowColor = trackColor
+
+        sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+        sasl.gl.drawLine(cx, cy,
+            cx + arrowLen * math.cos(trackAngle),
+            cy + arrowLen * math.sin(trackAngle),
+            arrowColor)
+
+        -- Arrowhead
+        local headSize = 25 * GLOBAL_SCALE
+        local headAngle1 = trackAngle + math.rad(150)
+        local headAngle2 = trackAngle - math.rad(150)
+        local tipX = cx + arrowLen * math.cos(trackAngle)
+        local tipY = cy + arrowLen * math.sin(trackAngle)
+
+        sasl.gl.drawLine(tipX, tipY,
+            tipX + headSize * math.cos(headAngle1),
+            tipY + headSize * math.sin(headAngle1),
+            arrowColor)
+        sasl.gl.drawLine(tipX, tipY,
+            tipX + headSize * math.cos(headAngle2),
+            tipY + headSize * math.sin(headAngle2),
+            arrowColor)
+
+        -- Track label
+        local labelX = cx + (arrowLen + 40 * GLOBAL_SCALE) * math.cos(trackAngle)
+        local labelY = cy + (arrowLen + 40 * GLOBAL_SCALE) * math.sin(trackAngle)
+        sasl.gl.drawText(avia_font, labelX, labelY - 10,
+            tostring(math.floor(trackOut)) .. "°",
+            28 * GLOBAL_SCALE, false, false, TEXT_ALIGN_CENTER, arrowColor)
+    end
+
+    sasl.gl.restoreInternalLineState()
+end
+
+
+
+
+
+--------------------------------------------------------------------------------
+-- Cluster Callout System
+--------------------------------------------------------------------------------
+
+-- Pre-computed map center (avoid division each frame)
+local PA3_MAP_CENTER_X = PA3_MAP_WIDTH / 2
+
+-- Cluster configuration
+local CLUSTER_THRESHOLD_KM = 18                                          -- Navaids within this distance form clusters
+local CLUSTER_THRESHOLD_SQ = CLUSTER_THRESHOLD_KM * CLUSTER_THRESHOLD_KM -- Pre-squared for fast comparison
+local MIN_CLUSTER_SIZE = 3                                               -- Minimum navaids to form a cluster
+local CALLOUT_PADDING = 20                                               -- Internal padding for minimap
+local CALLOUT_MIN_SIZE = 60                                              -- Minimum minimap dimension
+local CALLOUT_MAX_SIZE = 480                                             -- Maximum minimap dimension
+local CALLOUT_LEADER_MIN = 150                                           -- Minimum leader line length
+local CALLOUT_SYMBOL_SCALE = 1.8                                         -- Scale factor for symbols in minimap
+local CALLOUT_LABEL_FONT = 20                                            -- Font size for minimap labels
+local CALLOUT_MIN_ZOOM = 3.0                                             -- Minimum zoom factor for minimap
+local CALLOUT_MAX_ZOOM = 12.0                                            -- Maximum zoom factor for minimap
+
+-- Performance: Text width cache to avoid repeated measureText calls
+local textWidthCache = {}
+local function getCachedTextWidth(text, fontSize, font)
+    font = font or avia_font
+    local key = text .. "_" .. fontSize
+    if not textWidthCache[key] then
+        textWidthCache[key] = sasl.gl.measureText(font, text, fontSize, false, false)
+    end
+    return textWidthCache[key]
+end
+
+-- Clear text cache periodically (call when flight plan changes)
+-- Assigns to forward-declared local from top of file
+clearTextWidthCache = function()
+    textWidthCache = {}
+end
+
+-- Callout box registry for collision detection
+local calloutRects = {}
+
+local function resetCalloutRects()
+    calloutRects = {}
+end
+
+-- Calculate squared distance between two navaids (avoids sqrt)
+local function navaidDistanceSq(nav1, nav2)
+    local ds = nav1.S_offset - nav2.S_offset
+    local dz = nav1.Z_offset - nav2.Z_offset
+    return ds * ds + dz * dz
+end
+
+-- Reusable Union-Find arrays (avoid allocations per frame)
+local uf_parent = {}
+local uf_rank = {}
+
+-- Union-Find operations using module-level arrays
+local function uf_find(x)
+    if uf_parent[x] ~= x then
+        uf_parent[x] = uf_find(uf_parent[x]) -- Path compression
+    end
+    return uf_parent[x]
+end
+
+local function uf_union(x, y)
+    local px, py = uf_find(x), uf_find(y)
+    if px == py then return false end -- Already in same set
+    if uf_rank[px] < uf_rank[py] then
+        uf_parent[px] = py
+    elseif uf_rank[px] > uf_rank[py] then
+        uf_parent[py] = px
+    else
+        uf_parent[py] = px
+        uf_rank[px] = uf_rank[px] + 1
+    end
+    return true
+end
+
+-- Initialize Union-Find for n elements
+local function uf_init(n)
+    for i = 1, n do
+        uf_parent[i] = i
+        uf_rank[i] = 0
+    end
+end
+
+-- Reusable result tables
+local clusterResult = { singles = {}, clusters = {} }
+local clusterGroups = {}
+
+-- Detect clusters of nearby navaids (optimized)
+local function detectClusters(navaids)
+    local n = #navaids
+
+    -- Clear reusable tables
+    local singles = clusterResult.singles
+    local clusters = clusterResult.clusters
+    for k in pairs(singles) do singles[k] = nil end
+    for k in pairs(clusters) do clusters[k] = nil end
+    for k in pairs(clusterGroups) do clusterGroups[k] = nil end
+
+    if n < 2 then
+        for i, nav in ipairs(navaids) do
+            singles[i] = nav
+        end
+        return clusterResult
+    end
+
+    uf_init(n)
+
+    -- Find all pairs within threshold using squared distance (no sqrt)
+    for i = 1, n do
+        local nav_i = navaids[i]
+        for j = i + 1, n do
+            -- Skip if already in same cluster (optimization)
+            if uf_find(i) ~= uf_find(j) then
+                if navaidDistanceSq(nav_i, navaids[j]) <= CLUSTER_THRESHOLD_SQ then
+                    uf_union(i, j)
+                end
+            end
+        end
+    end
+
+    -- Group by cluster root
+    for i = 1, n do
+        local root = uf_find(i)
+        if not clusterGroups[root] then
+            clusterGroups[root] = {}
+        end
+        clusterGroups[root][#clusterGroups[root] + 1] = navaids[i]
+    end
+
+    -- Separate singles from clusters
+    local singleIdx, clusterIdx = 1, 1
+    for _, group in pairs(clusterGroups) do
+        if #group >= MIN_CLUSTER_SIZE then
+            clusters[clusterIdx] = { navaids = group }
+            clusterIdx = clusterIdx + 1
+        else
+            for _, nav in ipairs(group) do
+                table.insert(singles, nav)
+            end
+        end
+    end
+
+    return clusterResult
+end
+
+-- Calculate cluster centroid and bounding box
+local function calculateClusterCenter(cluster)
+    local sum_S, sum_Z = 0, 0
+    local min_S, max_S = math.huge, -math.huge
+    local min_Z, max_Z = math.huge, -math.huge
+
+    for _, nav in ipairs(cluster.navaids) do
+        sum_S = sum_S + nav.S_offset
+        sum_Z = sum_Z + nav.Z_offset
+        min_S = math.min(min_S, nav.S_offset)
+        max_S = math.max(max_S, nav.S_offset)
+        min_Z = math.min(min_Z, nav.Z_offset)
+        max_Z = math.max(max_Z, nav.Z_offset)
+    end
+
+    local n = #cluster.navaids
+    cluster.center_S = sum_S / n
+    cluster.center_Z = sum_Z / n
+
+    -- Store bounding box (in km)
+    cluster.bounds = {
+        min_S = min_S,
+        max_S = max_S,
+        min_Z = min_Z,
+        max_Z = max_Z,
+        width_km = max_Z - min_Z,
+        height_km = max_S - min_S
+    }
+end
+
+-- Format navaid label for callout display (compact version)
+-- Returns label and optional morse code
+local function formatNavaidLabel(nav)
+    local label = nav.id or ""
+    local morse = nil
+
+    if nav.type == NAV_NDB and nav.freq and nav.freq > 0 then
+        label = label .. " " .. tostring(math.floor(nav.freq))
+    elseif nav.type == NAV_VOR and nav.freq and nav.freq > 0 then
+        label = label .. " " .. string.format("%.2f", nav.freq / 100)
+        morse = nav.id
+    elseif nav.type == NAV_RSBN and nav.freq and nav.freq > 0 then
+        label = label .. " кн:" .. tostring(math.floor(nav.freq))
+    end
+    return label, morse
+end
+
+-- Get text color for navaid type
+local function getNavaidTextColor(navType)
+    if navType == NAV_VOR then
+        return SYMBOL_COLORS.VOR
+    elseif navType == NAV_NDB then
+        return SYMBOL_COLORS.NDB
+    elseif navType == NAV_RSBN then
+        return SYMBOL_COLORS.RSBN
+    elseif navType == NAV_FIX then
+        return SYMBOL_COLORS.FIX
+    elseif navType == NAV_AIRPORT then
+        return SYMBOL_COLORS.AIRPORT
+    else
+        return { 0, 0, 0, 1 }
+    end
+end
+
+-- Calculate minimap callout dimensions and zoom factor
+local function calculateCalloutSize(cluster)
+    local bounds = cluster.bounds
+    if not bounds then return CALLOUT_MIN_SIZE, CALLOUT_MIN_SIZE, CALLOUT_MIN_ZOOM end
+
+    -- Add margin around bounds (in km) for labels
+    local margin_km = 1
+    local content_width_km = bounds.width_km + margin_km * 2
+    local content_height_km = bounds.height_km + margin_km * 2
+
+    -- Ensure minimum content size
+    content_width_km = math.max(content_width_km, 10)
+    content_height_km = math.max(content_height_km, 10)
+
+    -- Calculate zoom to fit content in callout box
+    -- We want the larger dimension to fit within CALLOUT_MAX_SIZE - padding
+    local available_size = CALLOUT_MAX_SIZE - CALLOUT_PADDING * 2
+    local zoom_for_width = available_size / (content_width_km * PA3_MAP_SCALE_KM)
+    local zoom_for_height = available_size / (content_height_km * PA3_MAP_SCALE_KM)
+
+    -- Use the smaller zoom to ensure both dimensions fit
+    local zoom = math.min(zoom_for_width, zoom_for_height)
+
+    -- Clamp zoom to reasonable range
+    zoom = math.max(CALLOUT_MIN_ZOOM, math.min(zoom, CALLOUT_MAX_ZOOM))
+
+    -- Calculate actual minimap dimensions
+    local minimap_width = content_width_km * PA3_MAP_SCALE_KM * zoom
+    local minimap_height = content_height_km * PA3_MAP_SCALE_KM * zoom
+
+    -- Add padding for final callout dimensions
+    local width = math.max(CALLOUT_MIN_SIZE, minimap_width + CALLOUT_PADDING * 2)
+    local height = math.max(CALLOUT_MIN_SIZE, minimap_height + CALLOUT_PADDING * 2)
+
+    -- Cap dimensions
+    width = math.min(width, CALLOUT_MAX_SIZE)
+    height = math.min(height, CALLOUT_MAX_SIZE)
+
+    -- Store zoom and content bounds for rendering
+    cluster.minimap = {
+        zoom = zoom,
+        content_width_km = content_width_km,
+        content_height_km = content_height_km,
+        margin_km = margin_km
+    }
+
+    return width, height
+end
+
+-- Check if rectangle overlaps with any registered callout or track line
+local function checkCalloutCollision(x, y, width, height, track_x)
+    local TRACK_MARGIN = 40 -- Keep callouts away from track line
+
+    -- Check track line collision
+    if x < track_x + TRACK_MARGIN and x + width > track_x - TRACK_MARGIN then
+        return true
+    end
+
+    -- Check other callout collisions
+    for _, rect in ipairs(calloutRects) do
+        if not (x + width < rect.x or rect.x + rect.width < x or
+                y + height < rect.y or rect.y + rect.height < y) then
+            return true
+        end
+    end
+
+    return false
+end
+
+-- Find optimal callout placement
+local function placeCalloutBox(cluster, y_start, track_x, mapWidth)
+    local width, height = calculateCalloutSize(cluster)
+
+    -- Convert cluster center to screen coordinates
+    local cluster_screen_x = PA3_MAP_CENTER_X + cluster.center_Z * PA3_MAP_SCALE_KM
+    local cluster_screen_y = y_start + cluster.center_S * PA3_MAP_SCALE_KM
+
+    cluster.screen_x = cluster_screen_x
+    cluster.screen_y = cluster_screen_y
+
+    -- Determine preferred side (opposite to cluster's cross-track position)
+    local preferRight = cluster.center_Z < 0
+
+    -- Try placement options in order of preference
+    local placements = {}
+
+    if preferRight then
+        table.insert(placements, { x = cluster_screen_x + CALLOUT_LEADER_MIN, side = "right" })
+        table.insert(placements, { x = cluster_screen_x - width - CALLOUT_LEADER_MIN, side = "left" })
+    else
+        table.insert(placements, { x = cluster_screen_x - width - CALLOUT_LEADER_MIN, side = "left" })
+        table.insert(placements, { x = cluster_screen_x + CALLOUT_LEADER_MIN, side = "right" })
+    end
+
+    -- Try vertical offsets if horizontal placement fails
+    local verticalOffsets = { 0, height + 20, -height - 20, height * 2 + 40, -height * 2 - 40 }
+
+    for _, placement in ipairs(placements) do
+        for _, vOffset in ipairs(verticalOffsets) do
+            local testX = placement.x
+            local testY = cluster_screen_y - height / 2 + vOffset
+
+            -- Clamp to map bounds
+            testX = math.max(10, math.min(testX, mapWidth - width - 10))
+            testY = math.max(10, testY)
+
+            if not checkCalloutCollision(testX, testY, width, height, track_x) then
+                cluster.callout = {
+                    x = testX,
+                    y = testY,
+                    width = width,
+                    height = height,
+                    placement = placement.side
+                }
+
+                table.insert(calloutRects, {
+                    x = testX,
+                    y = testY,
+                    width = width,
+                    height = height
+                })
+
+                return true
+            end
+        end
+    end
+
+    -- Fallback: force placement on preferred side
+    local fallbackX = preferRight and (cluster_screen_x + CALLOUT_LEADER_MIN)
+        or (cluster_screen_x - width - CALLOUT_LEADER_MIN)
+    fallbackX = math.max(10, math.min(fallbackX, mapWidth - width - 10))
+
+    cluster.callout = {
+        x = fallbackX,
+        y = cluster_screen_y - height / 2,
+        width = width,
+        height = height,
+        placement = preferRight and "right" or "left"
+    }
+
+    table.insert(calloutRects, cluster.callout)
+    return true
+end
+
+-- Draw cluster indicator symbol (circle with count)
+local function drawClusterIndicator(x, y, count)
+    local radius = 20 * GLOBAL_SCALE
+    local color = { 0.2, 0.2, 0.5, 1 }
+
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(3 * GLOBAL_SCALE)
+
+    -- Outer circle
+    sasl.gl.drawCircle(x, y, radius, false, color)
+    -- Inner filled circle
+    sasl.gl.drawCircle(x, y, radius - 4, true, { 0.95, 0.95, 1, 0.2 })
+    -- Count text
+    --sasl.gl.drawText(avia_font, x, y - 10 * GLOBAL_SCALE, tostring(count), 28 * GLOBAL_SCALE, false, false,
+    --    TEXT_ALIGN_CENTER, color)
+
+    sasl.gl.restoreInternalLineState()
+end
+
+-- Draw small navaid position dots at original locations
+local function drawClusterDots(cluster, y_start)
+    local dotRadius = 5
+    local dotColor = { 0.4, 0.1, 0.1, 1.0 }
+
+    for _, nav in ipairs(cluster.navaids) do
+        local x = PA3_MAP_CENTER_X + nav.Z_offset * PA3_MAP_SCALE_KM
+        local y = y_start + nav.S_offset * PA3_MAP_SCALE_KM
+        sasl.gl.drawCircle(x, y, dotRadius, true, dotColor)
+    end
+end
+
+-- Draw leader line connecting callout to cluster
+local function drawCalloutLeader(cluster)
+    local callout = cluster.callout
+    local color = { 0.3, 0.3, 0.5, 0.8 }
+
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+
+    -- Determine connection points
+    local callout_cx, callout_cy
+    if callout.placement == "right" then
+        callout_cx = callout.x
+        callout_cy = callout.y + callout.height / 2
+    else
+        callout_cx = callout.x + callout.width
+        callout_cy = callout.y + callout.height / 2
+    end
+
+    -- Draw angled leader line
+    local midX = (cluster.screen_x + callout_cx) / 2
+    sasl.gl.drawLine(cluster.screen_x, cluster.screen_y, midX, callout_cy, color)
+    sasl.gl.drawLine(midX, callout_cy, callout_cx, callout_cy, color)
+
+    sasl.gl.restoreInternalLineState()
+end
+
+-- Draw miniature navaid symbol for minimap callout
+local function drawMiniNavaidSymbol(x, y, navType, hasDME)
+    local scale = CALLOUT_SYMBOL_SCALE
+
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+
+    if navType == NAV_VOR then
+        local r = 10 * scale
+        for i = 0, 5 do
+            local a1 = math.rad(i * 60 + 30)
+            local a2 = math.rad((i + 1) * 60 + 30)
+            sasl.gl.drawLine(x + r * math.cos(a1), y + r * math.sin(a1),
+                x + r * math.cos(a2), y + r * math.sin(a2),
+                SYMBOL_COLORS.VOR)
+        end
+        sasl.gl.drawCircle(x, y, 3, true, SYMBOL_COLORS.VOR)
+    elseif navType == NAV_NDB then
+        sasl.gl.drawCircle(x, y, 8 * scale, false, SYMBOL_COLORS.NDB)
+        sasl.gl.drawCircle(x, y, 3, true, SYMBOL_COLORS.NDB)
+    elseif navType == NAV_AIRPORT then
+        local r = 12 * scale
+        sasl.gl.setInternalLineWidth(3)
+        sasl.gl.drawLine(x - r, y, x + r, y, SYMBOL_COLORS.AIRPORT)
+        sasl.gl.setInternalLineWidth(2)
+        sasl.gl.drawLine(x, y - r * 0.5, x, y + r * 0.5, SYMBOL_COLORS.AIRPORT)
+    elseif navType == NAV_RSBN then
+        local r = 10 * scale
+        local a1, a2, a3 = math.rad(90), math.rad(210), math.rad(330)
+        sasl.gl.drawLine(x + r * math.cos(a1), y + r * math.sin(a1),
+            x + r * math.cos(a2), y + r * math.sin(a2), SYMBOL_COLORS.RSBN)
+        sasl.gl.drawLine(x + r * math.cos(a2), y + r * math.sin(a2),
+            x + r * math.cos(a3), y + r * math.sin(a3), SYMBOL_COLORS.RSBN)
+        sasl.gl.drawLine(x + r * math.cos(a3), y + r * math.sin(a3),
+            x + r * math.cos(a1), y + r * math.sin(a1), SYMBOL_COLORS.RSBN)
+        sasl.gl.drawCircle(x, y, 3, true, SYMBOL_COLORS.RSBN)
+    elseif navType == NAV_FIX then
+        local r = 6 * scale
+        local a1, a2, a3 = math.rad(90), math.rad(210), math.rad(330)
+        sasl.gl.drawLine(x + r * math.cos(a1), y + r * math.sin(a1),
+            x + r * math.cos(a2), y + r * math.sin(a2), SYMBOL_COLORS.FIX)
+        sasl.gl.drawLine(x + r * math.cos(a2), y + r * math.sin(a2),
+            x + r * math.cos(a3), y + r * math.sin(a3), SYMBOL_COLORS.FIX)
+        sasl.gl.drawLine(x + r * math.cos(a3), y + r * math.sin(a3),
+            x + r * math.cos(a1), y + r * math.sin(a1), SYMBOL_COLORS.FIX)
+    end
+
+    sasl.gl.restoreInternalLineState()
+end
+
+-- Draw compact label for minimap navaid
+local function drawMinimapLabel(x, y, nav, zoom)
+    local label, morse = formatNavaidLabel(nav)
+    local fontSize = CALLOUT_LABEL_FONT
+    local morseFontSize = fontSize - 4
+    local textColor = getNavaidTextColor(nav.type)
+
+    -- Offset label to the right of symbol
+    local labelX = x + 12 * GLOBAL_SCALE
+    local labelY = y - fontSize / 2 * GLOBAL_SCALE
+
+    -- Calculate dimensions including morse if present
+    local labelWidth = getCachedTextWidth(label, fontSize)
+    local totalHeight = fontSize + 2
+    if morse then
+        local morseWidth = getCachedTextWidth(morse, morseFontSize)
+        labelWidth = math.max(labelWidth, morseWidth)
+        totalHeight = totalHeight + morseFontSize + 2
+    end
+
+    -- Draw background for readability
+    sasl.gl.drawRectangle(labelX - 2, labelY - 1, labelWidth + 4, totalHeight, { 1, 1, 1, 0.8 })
+
+    -- Draw main label
+    local mainLabelY = morse and (labelY + morseFontSize + 2) or labelY
+    sasl.gl.drawText(avia_font, labelX, mainLabelY, label, fontSize,
+        false, false, TEXT_ALIGN_LEFT, textColor)
+
+    -- Draw morse code below (for VOR)
+    if morse then
+        sasl.gl.drawText(morseFont, labelX, labelY, morse:gsub(".", "%1 "):sub(1, -2), morseFontSize,
+            false, false, TEXT_ALIGN_LEFT, { 0.3, 0.3, 0.5, 0.7 })
+    end
+end
+
+-- Draw the minimap callout box
+local function drawCalloutBox(cluster)
+    local callout = cluster.callout
+    local minimap = cluster.minimap
+    local x, y = callout.x, callout.y
+    local width, height = callout.width, callout.height
+
+    if not minimap then return end
+
+    local zoom = minimap.zoom
+    local scale = PA3_MAP_SCALE_KM * zoom
+
+    -- Minimap content area (inside padding)
+    local content_x = x + CALLOUT_PADDING
+    local content_y = y + CALLOUT_PADDING
+    local content_w = width - CALLOUT_PADDING * 2
+    local content_h = height - CALLOUT_PADDING * 2
+
+    -- Center of minimap in screen coords
+    local center_x = content_x + content_w / 2
+    local center_y = content_y + content_h / 2
+
+    -- Draw box background with slight paper texture color
+    sasl.gl.drawRectangle(x, y, width, height, { 0.98, 0.97, 0.95, 0.98 })
+
+    -- Draw box border
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+    sasl.gl.drawFrame(x, y, width, height, { 0.3, 0.3, 0.4, 1 })
+
+    -- Draw scale ruler on left side (vertical line with 1km tick marks)
+    local rulerColor = { 0.4, 0.4, 0.4, 1.0 }
+    local rulerX = content_x
+
+    sasl.gl.setInternalLineWidth(3)
+    sasl.gl.drawLine(rulerX, content_y, rulerX, content_y + content_h, rulerColor)
+
+    -- Draw 1km tick marks along the ruler
+    -- scale = pixels per km in minimap
+    local kmSpacing = scale -- 1km in pixels
+    local tickLength = 8 * GLOBAL_SCALE
+    local tickY = content_y
+    local kmCount = 0
+
+    sasl.gl.setInternalLineWidth(3)
+    while tickY <= content_y + content_h do
+        -- Draw tick mark
+        sasl.gl.drawLine(rulerX, tickY, rulerX + tickLength, tickY, rulerColor)
+
+        -- Draw km label every 5km for readability (if space permits)
+        if kmCount > 0 and kmCount % 5 == 0 and tickY + 10 < content_y + content_h then
+            sasl.gl.drawText(avia_font, rulerX + tickLength + 2, tickY - 6,
+                tostring(kmCount) .. "км", 22, false, false, TEXT_ALIGN_LEFT, rulerColor)
+        end
+
+        tickY = tickY + kmSpacing
+        kmCount = kmCount + 1
+    end
+
+
+    sasl.gl.restoreInternalLineState()
+
+    -- Draw zoom indicator in corner
+    local zoomText = string.format("Степень x%.1f", zoom)
+    sasl.gl.drawText(avia_font, x + width - 8, y + 5, zoomText, 14 * GLOBAL_SCALE,
+        false, false, TEXT_ALIGN_RIGHT, { 0.5, 0.5, 0.5, 1.0 })
+
+    -- Draw each navaid at scaled position relative to cluster center
+    for _, nav in ipairs(cluster.navaids) do
+        -- Calculate position relative to cluster center, then scale
+        local rel_Z = nav.Z_offset - cluster.center_Z
+        local rel_S = nav.S_offset - cluster.center_S
+
+        -- Convert to screen coordinates within minimap
+        local nav_x = center_x + rel_Z * scale
+        local nav_y = center_y + rel_S * scale
+
+        -- Clamp to content area with margin
+        local margin = 15
+        nav_x = math.max(content_x + margin, math.min(nav_x, content_x + content_w - margin))
+        nav_y = math.max(content_y + margin, math.min(nav_y, content_y + content_h - margin))
+
+        -- Draw symbol (scaled)
+        drawMiniNavaidSymbol(nav_x, nav_y, nav.type, nav.hasDME)
+
+        -- Draw compact label
+        drawMinimapLabel(nav_x, nav_y, nav, zoom)
+    end
+
+    -- Draw border accent (inner shadow effect)
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(1 * GLOBAL_SCALE)
+    sasl.gl.drawFrame(x + 2, y + 2, width - 4, height - 4, { 0.6, 0.6, 0.7, 0.3 })
+    sasl.gl.restoreInternalLineState()
+end
+
+--------------------------------------------------------------------------------
+-- Label collision detection system
+local labelRects = {} -- Stores placed label rectangles for current leg
+
+-- Assign to forward-declared variable (declared in Airport Chart section)
+resetLabelRects = function()
+    labelRects = {}
+end
+
+local function rectsOverlap(r1, r2)
+    return not (r1.x2 < r2.x1 or r2.x2 < r1.x1 or
+        r1.y2 < r2.y1 or r2.y2 < r1.y1)
+end
+
+local function findNonOverlappingPosition(x, baseY, width, height)
+    local padding = 5
+    local testRect = { x1 = x, y1 = baseY, x2 = x + width, y2 = baseY + height }
+    local offset = 0
+    local maxIterations = 20 -- Prevent infinite loop
+
+    for _ = 1, maxIterations do
+        local hasCollision = false
+        for _, existing in ipairs(labelRects) do
+            if rectsOverlap(testRect, existing) then
+                hasCollision = true
+                break
+            end
+        end
+
+        if not hasCollision then
+            -- Register this label's rectangle
+            table.insert(labelRects, testRect)
+            return baseY + offset, offset > 0
+        end
+
+        -- Try stacking upward
+        offset = offset + height + padding
+        testRect = { x1 = x, y1 = baseY + offset, x2 = x + width, y2 = baseY + offset + height }
+    end
+
+    -- Fallback: just use the offset position
+    table.insert(labelRects, testRect)
+    return baseY + offset, true
+end
+
+local function drawLeaderLine(symbolX, symbolY, labelX, labelY, color)
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(2)
+    sasl.gl.drawLine(symbolX, symbolY, labelX, labelY, color or { 0, 0, 0, 1 })
+    sasl.gl.restoreInternalLineState()
+end
+
+local function drawRSBNLabel(symbolX, symbolY, name, id, freq, scale)
+    scale = scale or 1
+    local label = id or ""
+    name = name or ""
+    if freq and freq > 0 then
+        label = label .. " кн: " .. tostring(math.floor(freq)) -- RSBN channel number
+    end
+
+    -- Calculate label dimensions (use cached text width)
+    local nameWidth = getCachedTextWidth(name, 28)
+    local labelWidth = getCachedTextWidth(label, 24)
+    local textWidth = math.max(nameWidth, labelWidth)
+    local boxWidth = textWidth + 30
+    local boxHeight = 60
+    local labelX = symbolX + 30
+    local baseY = symbolY - 30
+
+    -- Find non-overlapping position
+    local labelY, wasOffset = findNonOverlappingPosition(labelX, baseY, boxWidth, boxHeight)
+
+    -- Draw leader line if label was offset
+    if wasOffset then
+        drawLeaderLine(symbolX + 15, symbolY, labelX, labelY, SYMBOL_COLORS.RSBN)
+    end
+
+    sasl.gl.setInternalLineWidth(3)
+    sasl.gl.drawFrame(labelX, labelY, boxWidth, boxHeight, { 0.5, 0, 0, 0.9 })
+    sasl.gl.drawRectangle(labelX, labelY, boxWidth, boxHeight, { 1, 1, 1, 0.7 })
+    sasl.gl.drawText(avia_font, labelX + 20, labelY + 30, name, 28, false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 0.9 })
+    sasl.gl.drawText(avia_font, labelX + 20, labelY + 10, label, 24, false, false, TEXT_ALIGN_LEFT, { 0.5, 0, 0, 0.9 })
+end
+
+-- Convert decimal degrees to degrees, minutes, seconds
+local function deg2dms(dd)
+    dd = math.abs(dd)
+    local d = math.floor(dd)
+    local m = math.floor((dd - d) * 60)
+    local s = math.floor((dd - d - m / 60) * 3600)
+    return d, m, s
+end
+
+-- Convert decimal degrees coordinates to DMS (Degrees Minutes Seconds) format
+local function formatCoordinatesDMS(lat, lon)
+    local lat_d, lat_m, lat_s = deg2dms(lat)
+    local lon_d, lon_m, lon_s = deg2dms(lon)
+
+    local lat_dir = lat >= 0 and "N" or "S"
+    local lon_dir = lon >= 0 and "E" or "W"
+
+    return string.format("%s%02d %02d %02d %s%03d %02d %02d",
+        lat_dir, lat_d, lat_m, lat_s,
+        lon_dir, lon_d, lon_m, lon_s)
+end
+
+-- Draw comprehensive VOR infobox with station name, frequency, ID, and coordinates
+local function drawVORInfoBox(symbolX, symbolY, id, freq, name, lat, lon, hasDME, scale)
+    scale = scale or 1
+
+    -- Line 1: Station name (bold, larger font)
+    local line1 = name or id or ""
+
+    -- Line 2: Frequency + ID
+    local freqMHz = string.format("%.2f", freq / 100)
+    local line2 = freqMHz .. " " .. (id or "")
+
+    -- Line 3: Coordinates in DMS
+    local line3 = formatCoordinatesDMS(lat, lon)
+
+    -- Calculate box dimensions
+    local fontSize1 = 56 * scale -- Name (larger)
+    local fontSize2 = 48 * scale -- Freq+ID
+    local fontSize3 = 40 * scale -- Coordinates
+
+    local width1 = getCachedTextWidth(line1, fontSize1)
+    local width2 = getCachedTextWidth(line2, fontSize2)
+    local width3 = getCachedTextWidth(line3, fontSize3)
+    local boxWidth = math.max(width1, width2, width3) + 40
+    local boxHeight = fontSize1 + fontSize2 + fontSize3 + 50
+
+    -- Position label outside VOR bearing ring
+    local labelX = symbolX + VOR_RING_RADIUS + 30
+    local baseY = symbolY - boxHeight / 2
+
+    -- Find non-overlapping position
+    local labelY, wasOffset = findNonOverlappingPosition(
+        labelX, baseY, boxWidth, boxHeight
+    )
+
+    -- Draw leader line if offset
+    if wasOffset then
+        drawLeaderLine(symbolX, symbolY, labelX - 10, labelY + boxHeight / 2, SYMBOL_COLORS.VOR)
+    end
+
+    -- Draw box with thick border (matching reference)
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(6 * GLOBAL_SCALE) -- Thick border
+    sasl.gl.drawFrame(labelX, labelY, boxWidth, boxHeight, { 0, 0, 0, 1 })
+    sasl.gl.drawRectangle(labelX, labelY, boxWidth, boxHeight, { 1, 1, 1, 0.85 })
+    sasl.gl.restoreInternalLineState()
+
+    -- Draw text (bottom to top, with spacing)
+    local textX = labelX + 10
+    local y = labelY + 10
+
+    -- Line 3: Coordinates (bottom)
+    sasl.gl.drawText(avia_font, textX, y, line3, fontSize3,
+        false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+    y = y + fontSize3 + 8
+
+    -- Line 2: Frequency + ID (middle)
+    sasl.gl.drawText(avia_font, textX, y, line2, fontSize2,
+        false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+    y = y + fontSize2 + 8
+
+    -- Line 1: Station name (top)
+    sasl.gl.drawText(avia_font, textX, y, line1, fontSize1,
+        false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 1 })
+end
+
+function drawNavaidLabel(symbolX, symbolY, id, freq, navType, scale, name, lat, lon, hasDME)
+    -- VOR: Use specialized infobox with comprehensive information
+    if navType == NAV_VOR and name and lat and lon then
+        drawVORInfoBox(symbolX, symbolY, id, freq, name, lat, lon, hasDME, scale)
+        return
+    end
+
+    -- For other navaid types, keep existing implementation
+    scale = scale or 1
+    local label = id or ""
+    local morseCode = nil
+
+    if freq and freq > 0 then
+        if navType == NAV_NDB then
+            label = label .. " " .. tostring(math.floor(freq)) -- NDB freq in kHz
+        elseif navType == NAV_RSBN then
+            label = label .. "\nКанал:" .. tostring(math.floor(freq)) -- RSBN channel number
+        else
+            label = label .. " " .. string.format("%.2f", freq / 100) -- VOR freq in MHz
+        end
+    end
+
+    -- Add morse code for VOR
+    if navType == NAV_VOR and id then
+        morseCode = id
+    end
+
+    -- Calculate label dimensions (use cached text width)
+    local fontSize = 62 * scale
+    local morseFontSize = 24
+    local labelWidth = getCachedTextWidth(label, fontSize)
+    local labelHeight = fontSize
+
+    -- Expand height if morse code is present
+    if morseCode then
+        local morseWidth = getCachedTextWidth(morseCode, morseFontSize, morseFont)
+        labelWidth = math.max(labelWidth, morseWidth)
+        labelHeight = labelHeight + morseFontSize + 4
+    end
+
+    -- Position label outside bearing ring for VOR, normal offset for others
+    local labelX = symbolX + (navType == NAV_VOR and (VOR_RING_RADIUS + 20) or 60)
+    local baseY = symbolY - 10
+    local color = { 0, 0, 0, 1 }
+    local label_margin = 10
+
+    -- Find non-overlapping position
+    local labelY, wasOffset = findNonOverlappingPosition(labelX, baseY, labelWidth + 10, labelHeight + 10)
+
+    -- Draw leader line if label was offset
+    if wasOffset then
+        if navType == NAV_VOR then
+            color = SYMBOL_COLORS.VOR
+        elseif navType == NAV_NDB then
+            color = SYMBOL_COLORS.NDB
+        elseif navType == NAV_FIX then
+            color = SYMBOL_COLORS.FIX
+        end
+        drawLeaderLine(symbolX, symbolY, labelX - label_margin, labelY - label_margin, color)
+    end
+
+    sasl.gl.drawFrame(labelX - label_margin, labelY - label_margin, labelWidth + label_margin * 2,
+        labelHeight + label_margin, color)
+    sasl.gl.drawRectangle(labelX - label_margin, labelY - label_margin, labelWidth + label_margin * 2,
+        labelHeight + label_margin, { 1, 1, 1, 0.7 })
+
+    -- Draw main label
+    sasl.gl.drawText(avia_font, labelX, labelY + (morseCode and morseFontSize + 4 or 0), label, fontSize,
+        false, false, TEXT_ALIGN_LEFT, { 0, 0, 0, 0.9 })
+
+    -- Draw morse code below main label (for VOR)
+    --
+    local spacedID = id:gsub(".", "%1 "):sub(1, -2)
+    if morseCode then
+        sasl.gl.drawText(morseFont, labelX, labelY, spacedID, morseFontSize,
+            false, false, TEXT_ALIGN_LEFT, { 0.3, 0.3, 0.5, 0.8 })
+    end
+end
+
+-- Check if navaid passes visibility filter
+local function isNavaidVisible(nav)
+    if nav.type == NAV_VOR then
+        return PA3.Configuration.Visibility.VORs
+    elseif nav.type == NAV_NDB then
+        return PA3.Configuration.Visibility.NDBs
+    elseif nav.type == NAV_AIRPORT then
+        return PA3.Configuration.Visibility.APTs
+    elseif nav.type == NAV_RSBN then
+        return PA3.Configuration.Visibility.RSBNs
+    elseif nav.type == NAV_FIX then
+        return PA3.Configuration.Visibility.FIXes
+    end
+    return false
+end
+
+-- Draw a single navaid with its symbol and label
+-- legDTK: the leg's designated track (degrees) for VOR bearing ring orientation
+local function drawSingleNavaid(nav, y_start, legDTK)
+    local x = PA3_MAP_CENTER_X + nav.Z_offset * PA3_MAP_SCALE_KM
+    local y = y_start + nav.S_offset * PA3_MAP_SCALE_KM
+
+    if nav.type == NAV_VOR then
+        drawVORSymbol(x, y, nav.hasDME, legDTK)
+        drawNavaidLabel(x, y, nav.id, nav.freq, nav.type, 1.0, nav.name, nav.lat, nav.lon, nav.hasDME)
+    elseif nav.type == NAV_NDB then
+        drawNDBSymbol(x, y)
+        drawNavaidLabel(x, y, nav.id, nav.freq, nav.type)
+    elseif nav.type == NAV_AIRPORT then
+        drawAirportSymbol(x, y)
+        drawNavaidLabel(x, y, nav.id, nav.freq, nav.type)
+    elseif nav.type == NAV_RSBN then
+        drawRSBNSymbol(x, y)
+        drawRSBNLabel(x, y, nav.name, nav.id, nav.freq)
+    elseif nav.type == NAV_FIX then
+        drawFIXSymbol(x, y)
+        drawNavaidLabel(x, y, nav.id, nil, nav.type)
+    end
+end
+
+-- Reusable table for visible navaids
+local visibleNavaids = {}
+
+function drawLegNavaids(leg_index, y_start, y_end, leg)
+    local cached = navaidCache.legs[leg_index]
+    if not cached or not cached.valid then return end
+
+    -- Reset collision tracking
+    resetLabelRects()
+    resetCalloutRects()
+
+    -- Clear reusable visibleNavaids table
+    for k in pairs(visibleNavaids) do visibleNavaids[k] = nil end
+
+    -- Step 1: Filter visible navaids by bounds and visibility settings
+    local leg_S = leg.S
+    local visCount = 0
+    for _, nav in ipairs(cached.navaids) do
+        local s_off = nav.S_offset
+        -- Check bounds and visibility
+        if s_off >= -20 and s_off <= leg_S + 20 and isNavaidVisible(nav) then
+            visCount = visCount + 1
+            visibleNavaids[visCount] = nav
+        end
+    end
+
+    -- Step 2: Detect clusters among visible navaids
+    local result = detectClusters(visibleNavaids)
+
+    -- Step 3: Draw single (non-clustered) navaids normally
+    for _, nav in ipairs(result.singles) do
+        drawSingleNavaid(nav, y_start, leg.DTK or 0)
+    end
+
+    -- Step 4: Draw clustered navaids with callout system
+    for _, cluster in ipairs(result.clusters) do
+        -- Calculate cluster center in screen coordinates
+        calculateClusterCenter(cluster)
+        cluster.screen_x = PA3_MAP_CENTER_X + cluster.center_Z * PA3_MAP_SCALE_KM
+        cluster.screen_y = y_start + cluster.center_S * PA3_MAP_SCALE_KM
+
+        -- Place callout box (finds non-overlapping position)
+        placeCalloutBox(cluster, y_start, PA3_MAP_CENTER_X, PA3_MAP_WIDTH)
+
+        -- Draw position dots at actual navaid locations
+        drawClusterDots(cluster, y_start)
+
+        -- Draw cluster indicator at centroid
+        drawClusterIndicator(cluster.screen_x, cluster.screen_y, #cluster.navaids)
+
+        -- Draw leader line connecting indicator to callout
+        drawCalloutLeader(cluster)
+
+        -- Draw the callout box with navaid list
+        drawCalloutBox(cluster)
+    end
+end
 
 -- returns scaled value in pixels
 local function scale(km)
     return km * PA3_MAP_SCALE_KM
+end
+
+-- Draw airport chart section
+-- airportData: from airportChartCache (departure or arrival)
+-- y_center: vertical center position for the chart
+-- isDeparture: true for departure chart, false for arrival
+-- trackDirection: DTK for outbound (departure) or inbound (arrival) track
+function drawAirportChart(airportData, y_center, isDeparture, trackDirection)
+    if not airportData or not airportData.valid then return 0 end
+
+    local chartHeight = AIRPORT_CHART_HEIGHT
+    local cx = PA3_MAP_WIDTH / 2 -- Center horizontally
+    local scale = AIRPORT_CHART_SCALE
+
+    local y_top = y_center + chartHeight / 2
+    local y_bottom = y_center - chartHeight / 2
+
+    -- for placement debug
+    --sasl.gl.drawRectangle(0, y_bottom, cx * 2, chartHeight, { 1, 0, 0, 1 })
+
+    sasl.gl.saveInternalLineState()
+
+    -- Title bar at BOTTOM (scroll goes bottom-to-top, so title appears first)
+    local titleBarHeight = 180 * GLOBAL_SCALE
+    sasl.gl.drawRectangle(0, y_bottom, PA3_MAP_WIDTH, titleBarHeight, { 0.92, 0.90, 0.85, 1 })
+
+    -- Title bar borders
+    sasl.gl.setInternalLineWidth(4 * GLOBAL_SCALE)
+    sasl.gl.drawLine(0, y_bottom, PA3_MAP_WIDTH, y_bottom, { 0, 0, 0, 1 })
+    sasl.gl.drawLine(0, y_bottom + titleBarHeight, PA3_MAP_WIDTH, y_bottom + titleBarHeight, { 0, 0, 0, 1 })
+
+    -- Title text (in title bar at bottom)
+    local titleText = isDeparture and "А Э Р О П О Р Т   В Ы Л Е Т А" or "А Э Р О П О Р Т   П Р И Л Ё Т А"
+    local titleY = y_bottom + titleBarHeight - 50 * GLOBAL_SCALE
+    sasl.gl.drawText(avia_font, cx, titleY, titleText, 48 * GLOBAL_SCALE,
+        false, false, TEXT_ALIGN_CENTER, { 0, 0, 0, 1 })
+
+    -- Airport name and ICAO
+    local airportLabel = (airportData.name or "") .. " (" .. (airportData.icao or "????") .. ")"
+    sasl.gl.drawText(avia_font, cx, titleY - 55 * GLOBAL_SCALE, airportLabel,
+        40 * GLOBAL_SCALE, false, false, TEXT_ALIGN_CENTER, { 0.2, 0.2, 0.2, 1 })
+
+    -- Elevation info
+    local elevText = "Высота: " .. tostring(airportData.elevation or 0) .. " м"
+    sasl.gl.drawText(avia_font, cx, titleY - 100 * GLOBAL_SCALE, elevText,
+        32 * GLOBAL_SCALE, false, false, TEXT_ALIGN_CENTER, { 0.4, 0.4, 0.4, 1 })
+
+    -- Chart content area center (above title bar)
+    local contentY = y_bottom + titleBarHeight + (y_top - y_bottom - titleBarHeight) / 2
+
+    -- Draw compass rose
+    local roseRadius = 200 * GLOBAL_SCALE
+    drawAirportCompassRose(cx, contentY, roseRadius, trackDirection)
+
+    -- Draw airport symbol at center (larger than enroute symbol)
+    sasl.gl.setInternalLineWidth(6 * GLOBAL_SCALE)
+    local aptR = 40 * GLOBAL_SCALE
+    sasl.gl.drawLine(cx - aptR, contentY, cx + aptR, contentY, SYMBOL_COLORS.AIRPORT)
+    sasl.gl.setInternalLineWidth(4 * GLOBAL_SCALE)
+    sasl.gl.drawLine(cx, contentY - aptR * 0.7, cx, contentY + aptR * 0.7, SYMBOL_COLORS.AIRPORT)
+    sasl.gl.setInternalLineWidth(2 * GLOBAL_SCALE)
+    sasl.gl.drawCircle(cx, contentY, aptR + 10, false, SYMBOL_COLORS.AIRPORT)
+
+    -- Draw navaids around airport
+    resetLabelRects() -- Reset label collision tracking for this chart
+
+    for _, nav in ipairs(airportData.navaids or {}) do
+        -- Convert bearing/distance to screen coordinates
+        local bearingRad = math.rad(90 - (nav.bearing or 0)) -- Convert to screen angle
+        local distPx = (nav.dist or 0) * 1.852 * scale       -- NM to km to pixels
+
+        local navX = cx + distPx * math.cos(bearingRad)
+        local navY = contentY + distPx * math.sin(bearingRad)
+
+        -- Clamp to chart bounds (above title bar, below top)
+        local margin = 150 * GLOBAL_SCALE
+        navX = math.max(margin, math.min(navX, PA3_MAP_WIDTH - margin))
+        navY = math.max(y_bottom + titleBarHeight + margin, math.min(navY, y_top - margin))
+
+        -- Draw navaid symbol and label (reuse existing functions)
+        local symbol_size = SYMBOL_SIZE
+        SYMBOL_SIZE = APT_SYMBOL_SIZE
+
+        if nav.type == NAV_VOR then
+            drawVORSymbol(navX, navY, nav.hasDME, 0, 1.0) -- No rotation for airport chart
+            drawNavaidLabel(navX, navY, nav.id, nav.freq, nav.type, 0.3, nav.name, nav.lat, nav.lon, nav.hasDME)
+        elseif nav.type == NAV_NDB then
+            drawNDBSymbol(navX, navY)
+            drawNavaidLabel(navX, navY, nav.id, nav.freq, nav.type, 0.3)
+        elseif nav.type == NAV_RSBN then
+            drawRSBNSymbol(navX, navY)
+            drawRSBNLabel(navX, navY, nav.name, nav.id, nav.freq, 0.3)
+        end
+
+        SYMBOL_SIZE = symbol_size
+    end
+
+    -- Draw scale bar just above the title card
+    local scaleBarX = 120 * GLOBAL_SCALE
+    local scaleBarY = y_bottom + titleBarHeight + 50 * GLOBAL_SCALE
+    local scaleBarLen = 10 * scale -- 10km bar
+
+    sasl.gl.setInternalLineWidth(4 * GLOBAL_SCALE)
+    sasl.gl.drawLine(scaleBarX, scaleBarY, scaleBarX + scaleBarLen, scaleBarY, { 0, 0, 0, 1 })
+    sasl.gl.drawLine(scaleBarX, scaleBarY - 15, scaleBarX, scaleBarY + 15, { 0, 0, 0, 1 })
+    sasl.gl.drawLine(scaleBarX + scaleBarLen, scaleBarY - 15, scaleBarX + scaleBarLen, scaleBarY + 15, { 0, 0, 0, 1 })
+    sasl.gl.drawText(avia_font, scaleBarX + scaleBarLen / 2, scaleBarY + 25 * GLOBAL_SCALE, "10 км",
+        28 * GLOBAL_SCALE, false, false, TEXT_ALIGN_CENTER, { 0, 0, 0, 1 })
+
+    -- Scale ratio label
+    sasl.gl.drawText(avia_font, PA3_MAP_WIDTH - 80 * GLOBAL_SCALE, scaleBarY, "М 1:500000",
+        28 * GLOBAL_SCALE, false, false, TEXT_ALIGN_RIGHT, { 0.4, 0.4, 0.4, 1 })
+
+    -- Top separator line
+    sasl.gl.setInternalLineWidth(8 * GLOBAL_SCALE)
+    sasl.gl.drawLine(0, y_top, PA3_MAP_WIDTH, y_top, { 0, 0, 0, 1 })
+
+    sasl.gl.restoreInternalLineState()
+
+    return chartHeight
+end
+
+-- Draw transition connector from airport chart to first leg (dashed line)
+function drawDepartureTransition(y_chartBottom, y_legStart, firstLeg)
+    local cx = PA3_MAP_WIDTH / 2
+    local legX = PA3_MAP_WIDTH / 2 + ((firstLeg and firstLeg.Z or 0) * PA3_MAP_SCALE_KM)
+
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(4 * GLOBAL_SCALE)
+
+    local transitionColor = { 0.5, 0.1, 0.1, 0.8 }
+    local dashLen = 30 * GLOBAL_SCALE
+    local gapLen = 15 * GLOBAL_SCALE
+    local y = y_chartBottom
+
+    while y < y_legStart do
+        local segEnd = math.min(y + dashLen, y_legStart)
+        -- Interpolate X position
+        local t = (y - y_chartBottom) / (y_legStart - y_chartBottom)
+        local x = cx + (legX - cx) * t
+        local xEnd = cx + (legX - cx) * ((segEnd - y_chartBottom) / (y_legStart - y_chartBottom))
+
+        sasl.gl.drawLine(x, y, xEnd, segEnd, transitionColor)
+        y = y + dashLen + gapLen
+    end
+
+    -- Course label at midpoint
+    if firstLeg and firstLeg.DTK then
+        local midY = (y_chartBottom + y_legStart) / 2
+        local midX = (cx + legX) / 2
+        sasl.gl.drawText(avia_font, midX + 60 * GLOBAL_SCALE, midY - 15,
+            "ЗПУ " .. tostring(math.floor(firstLeg.DTK)) .. "°",
+            32 * GLOBAL_SCALE, false, false, TEXT_ALIGN_LEFT, transitionColor)
+    end
+
+    sasl.gl.restoreInternalLineState()
+end
+
+-- Draw transition connector from last leg to arrival airport chart
+function drawArrivalTransition(y_legEnd, y_chartTop, lastLeg)
+    local cx = PA3_MAP_WIDTH / 2
+    local legX = PA3_MAP_WIDTH / 2 + ((lastLeg and lastLeg.Z or 0) * PA3_MAP_SCALE_KM)
+
+    sasl.gl.saveInternalLineState()
+    sasl.gl.setInternalLineWidth(4 * GLOBAL_SCALE)
+
+    local transitionColor = { 0.5, 0.1, 0.1, 0.8 }
+    local dashLen = 30 * GLOBAL_SCALE
+    local gapLen = 15 * GLOBAL_SCALE
+    local y = y_legEnd
+
+    while y < y_chartTop do
+        local segEnd = math.min(y + dashLen, y_chartTop)
+        local t = (y - y_legEnd) / (y_chartTop - y_legEnd)
+        local x = legX + (cx - legX) * t
+        local xEnd = legX + (cx - legX) * ((segEnd - y_legEnd) / (y_chartTop - y_legEnd))
+
+        sasl.gl.drawLine(x, y, xEnd, segEnd, transitionColor)
+        y = y + dashLen + gapLen
+    end
+
+    sasl.gl.restoreInternalLineState()
 end
 
 local map_shader = sasl.gl.createShaderProgram()
@@ -782,7 +2407,12 @@ sasl.gl.loadShader(map_shader, "pa3_handdrawn_vert.glsl", SHADER_TYPE_VERTEX)
 sasl.gl.linkShaderProgram(map_shader)
 
 function drawMap()
-    sasl.gl.setRenderTarget(pa3_map_rt)
+    -- Skip rendering if map doesn't need redraw (already rendered to tiles)
+    if not mapNeedsRedraw then
+        return
+    end
+
+    --sasl.gl.setRenderTarget(pa3_map_rt)
     if PA3.isCustomScrollActive then
         return
     else
@@ -803,32 +2433,65 @@ function drawMap()
                 local n = #nvu_navplan.Legs
                 if n > 0 then
                     local y_offset = scale(400)
+
+                    -- ===== DEPARTURE AIRPORT CHART =====
+                    local depChartHeight = 0
+                    if airportChartCache and airportChartCache.departure and airportChartCache.departure.valid then
+                        local depTrack = nvu_navplan.Legs[1] and nvu_navplan.Legs[1].DTK or 0
+                        depChartHeight = drawAirportChart(
+                            airportChartCache.departure,
+                            y_offset + AIRPORT_CHART_HEIGHT / 2 - 610,
+                            true, -- isDeparture
+                            depTrack
+                        )
+                        y_offset = y_offset + depChartHeight + gap / 2
+
+                        -- Draw transition to first leg
+                        local firstLeg = nvu_navplan.Legs[1]
+                        if firstLeg then
+                            local y_legStart = y_offset + gap / 2
+                            drawDepartureTransition(y_offset - gap / 4, y_legStart, firstLeg)
+                        end
+                    end
+
+                    -- ===== MAP TITLE =====
                     drawMapTitle(y_offset)
-                    for i = 1, n do
-                        local leg = nvu_navplan.Legs[i]
+
+                    -- Track last leg info for arrival chart
+                    local lastLegEnd = 0
+                    local lastLeg = nil
+
+                    -- ===== ENROUTE LEGS =====
+                    for legIdx = 1, n do
+                        local leg = nvu_navplan.Legs[legIdx]
                         if leg then
-                            local x = PA3_MAP_WIDTH / 2 + scale(leg.Z)
+                            local x = PA3_MAP_CENTER_X + scale(leg.Z)
                             local y_start = y_offset
                             local y_end = y_start + scale(leg.S)
                             drawLegSeparators(y_start, y_end)
-                            if i ~= #nvu_navplan.Legs or i == #nvu_navplan.Legs - 1 then
+                            if legIdx ~= n or legIdx == n - 1 then
                                 sasl.gl.setClipArea(0, ((y_start - (gap / 1.5)) + ((gap / 2) / 1.5)), PA3_MAP_WIDTH,
                                     (scale(leg.S)) + (gap / 1.5))
                             end
 
                             drawLegSegment(x, y_start, y_end)
-                            drawLegLabels(x, y_start, y_end, i, leg)
+                            drawLegLabels(x, y_start, y_end, legIdx, leg)
                             drawLegMarkers(y_start, y_end, leg)
+                            drawLegNavaids(legIdx, y_start, y_end, leg)
                             local next_DTK = 0
-                            if i < #nvu_navplan.Legs - 1 then
-                                next_DTK = (nvu_navplan.Legs[i + 1].DTK or 0)
+                            if legIdx < n - 1 then
+                                next_DTK = (nvu_navplan.Legs[legIdx + 1].DTK or 0)
                             end
-                            drawLegCourseArrows(x, y_start, y_end, i, leg, next_DTK)
+                            drawLegCourseArrows(x, y_start, y_end, legIdx, leg, next_DTK)
 
                             y_offset = y_end + gap
-                            if i == #nvu_navplan.Legs then
-                                drawMapEnding(y_end)
+
+                            -- Store last leg info for arrival chart
+                            if legIdx == n then
+                                lastLegEnd = y_end
+                                lastLeg = leg
                             end
+
                             sasl.gl.resetClipArea()
                             if y_offset > PA3_MAP_HEIGHT then
                                 PA3_MAP_HEIGHT = PA3_MAP_HEIGHT + 4096
@@ -837,13 +2500,39 @@ function drawMap()
                             end
                         end
                     end
+
+                    -- ===== ARRIVAL AIRPORT CHART =====
+                    if airportChartCache and airportChartCache.arrival and airportChartCache.arrival.valid then
+                        -- Draw transition from last leg
+                        local arrChartStart = y_offset + gap / 4
+                        drawArrivalTransition(lastLegEnd, arrChartStart, lastLeg)
+
+                        -- Inbound track is the last leg's DTK
+                        local arrTrack = lastLeg and lastLeg.DTK or 0
+                        -- Inbound track shown as opposite direction (arriving)
+                        local inboundTrack = (arrTrack + 180) % 360
+
+                        local arrChartHeight = drawAirportChart(
+                            airportChartCache.arrival,
+                            y_offset + AIRPORT_CHART_HEIGHT / 2,
+                            false, -- isDeparture
+                            inboundTrack
+                        )
+                        y_offset = y_offset + arrChartHeight
+                    end
+
+                    -- ===== MAP ENDING =====
+                    drawMapEnding(y_offset)
                 end
             end
             sasl.gl.restoreGraphicsContext()
         end
         sasl.gl.restoreRenderTarget()
+
+        -- Map has been rendered, clear dirty flag
+        mapNeedsRedraw = false
+        --sasl.logDebug("PA-3: Map tiles rendered")
     end
-    --sasl.gl.stopShaderProgram(map_shader)
 end
 
 function updateMarks()
@@ -851,6 +2540,17 @@ function updateMarks()
         sasl.logDebug("updating marks")
         PA3.Configuration.Marks = {}
         local y_offset = scale(400)
+
+        -- Rebuild navaid cache first (this also builds airport chart cache)
+        buildNavaidCache()
+
+        -- Account for departure airport chart if present
+        -- Note: gap / 2 is only added when departure chart exists, matching drawMap() logic
+        if airportChartCache and airportChartCache.departure and airportChartCache.departure.valid then
+            y_offset = y_offset + AIRPORT_CHART_HEIGHT + gap / 2
+        end
+
+        -- Calculate leg marks
         for i = 1, #nvu_navplan.Legs do
             local leg = nvu_navplan.Legs[i]
             if leg then
@@ -860,7 +2560,16 @@ function updateMarks()
                 y_offset = y_end + gap
             end
         end
+
+        -- Add arrival chart mark if present
+        if airportChartCache and airportChartCache.arrival and airportChartCache.arrival.valid then
+            local arrivalChartEnd = y_offset + AIRPORT_CHART_HEIGHT
+            PA3.Configuration.Marks[#PA3.Configuration.Marks + 1] = arrivalChartEnd
+        end
+
         set(nvu_navplan_changed, 0)
+        -- Mark map for redraw with new flight plan
+        invalidateMap()
     end
 end
 
@@ -894,9 +2603,13 @@ function draw()
                 if i >= 1 and i <= NUM_TILES then
                     local tile_y = (i - 1) * TILE_HEIGHT
                     local local_y = tile_y - scroll_pos + size[2] / 2
+                    sasl.gl.drawMaskStart()
+                    sasl.gl.drawRectangle(0, 0, size[1], size[2], { 1, 1, 1, 1 })
+                    sasl.gl.drawUnderMask()
                     sasl.gl.drawTexturePart(pa3_map_tiles[i],
                         0, local_y, size[1], TILE_HEIGHT,
                         0, 0, PA3_MAP_WIDTH, TILE_HEIGHT, { 1, 1, 1, 1 })
+                    sasl.gl.drawMaskEnd()
                 end
             end
         end
@@ -912,6 +2625,8 @@ function onModuleInit()
     sasl.logDebug("Tiles num: " .. NUM_TILES)
     PA3.ScrollPos = 600
     stb_stitch:init()
+    -- Initialize navaid cache
+    buildNavaidCache()
 end
 
 function onModuleDone()
