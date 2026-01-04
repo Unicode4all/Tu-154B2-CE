@@ -19837,6 +19837,12 @@ ATTR_manip_wheel 1.000000
 TRIS 19491 6
 ANIM_end
 ANIM_begin
+ANIM_trans 0 -0.01 0 0 -0.01 0 0.000000 0.000000 none
+ATTR_manip_drag_axis rotate_small 5.000000 0.000000 0.000000 0.000000 1.000000 tu154b2/custom/switchers/SD67_1_vol
+ATTR_manip_wheel 0.100000
+TRIS 19497 6
+ANIM_end
+ANIM_begin
 ATTR_manip_drag_axis rotate_large 5.000000 0.000000 0.000000 -5.000000 100.000000 sim/cockpit2/radios/actuators/nav_frequency_khz[4]
 ATTR_manip_wheel 5.000000
 TRIS 19497 6
@@ -19844,6 +19850,12 @@ ANIM_end
 ANIM_begin
 ATTR_manip_command_knob rotate_small sim/radios/actv_nav1_fine_up sim/radios/actv_nav1_fine_down
 TRIS 19503 6
+ANIM_end
+ANIM_begin
+ANIM_trans 0 -0.01 0 0 -0.01 0 0.000000 0.000000 none
+ATTR_manip_drag_axis rotate_small 5.000000 0.000000 0.000000 0.000000 1.000000 tu154b2/custom/switchers/SD67_2_vol
+ATTR_manip_wheel 0.100000
+TRIS 19509 6
 ANIM_end
 ANIM_begin
 ATTR_manip_drag_axis rotate_large 5.000000 0.000000 0.000000 -5.000000 100.000000 sim/cockpit2/radios/actuators/nav_frequency_khz[5]

@@ -394,7 +394,6 @@ function update()
 
     if get(cockpit_80s) == 0 then
         set(nav_sel, 0) -- temporary crutch so that nav sel switch is always on NVU while 80s cockpit is selected
-        set(sd75_on, 1) -- TODO: Implement SD75
     end
     has_power = true
     -- Only process if we have power

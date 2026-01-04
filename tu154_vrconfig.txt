@@ -43,7 +43,7 @@ END_TELEPORT_HOTSPOT
 
 BEGIN_TELEPORT_HOTSPOT SITTING Engineer's Seat
 	AABB 0.0 -0.2 -21.5 0.6 0.5 -20.9
-	PRESET_XYZ 0.2 0.46 -21.3
+	PRESET_XYZ 0.35 0.46 -21.3
 	PRESET_PSI 90
 	PRESET_THE 0.0
 	PRESET_PHI 0.0
@@ -458,9 +458,17 @@ BEGIN_MANIP drag_axis tu154b2/custom/switchers/console/rls_brt
 	DEG_PER_ACTION 15
 END_MANIP
 
-tu154b2/custom/switchers/console/rls_tilt
-
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/console/rls_tilt
 	ACTION axis_knob -10 10 0.5 tu154b2/custom/switchers/console/rls_tilt
+	DEG_PER_ACTION 5
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/switchers/SD67_2_vol
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/switchers/SD67_2_vol
+	DEG_PER_ACTION 5
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/switchers/SD67_1_vol
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/switchers/SD67_1_vol
 	DEG_PER_ACTION 5
 END_MANIP

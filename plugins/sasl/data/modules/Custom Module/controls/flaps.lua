@@ -466,7 +466,7 @@ if MASTER then
 		-- if flap_lever_pos < 1 and flap_pos_L_last < 25 and flap_pos_R_last < 25 then 
 			-- stab_pos_cmd = 0 
 		--end -- flight position
-		if flap_lever_pos>0 or flap_pos_L_last>25 then
+		if flap_lever_pos>2 or flap_pos_L_last>25 then
 			if stab_dirr ==1 then
 				if flap_pos_L_last<31 then
 					if stab_set == 2 then

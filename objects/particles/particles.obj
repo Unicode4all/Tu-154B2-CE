@@ -7,7 +7,7 @@ PARTICLE_SYSTEM aircraft_particles.pss
 
 POINT_COUNTS	0 0 0 0
 
-
+EMITTER		apu_effects	0 -0.05 17.2		0 0 0
 EMITTER		de_ice1		-9.936 -2.94227 1.80017		0 0 0
 EMITTER		de_ice2		10.1831 -3.1795 5.21665		0 0 0
 

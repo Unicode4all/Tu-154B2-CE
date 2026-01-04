@@ -13,9 +13,10 @@ defineProperty("audio_selection_dme2", globalPropertyi("sim/cockpit2/radios/actu
 defineProperty("sd67_1_dme_res", globalPropertyi("sim/custom/b2/sd67_1_dme_reserv"))
 defineProperty("sd67_2_dme_res", globalPropertyi("sim/custom/b2/sd67_1_dme_reserv"))
 defineProperty("sd75_1_on", globalPropertyi("tu154b2/custom/switchers/ovhd/sd75_1_on"))
-defineProperty("sd75_2_on", globalPropertyi("tu154b2/custom/switchers/ovhd/sd75_1_on"))
-
-
+defineProperty("sd75_2_on", globalPropertyi("tu154b2/custom/switchers/ovhd/sd75_2_on"))
+defineProperty("sd67_vol_1", globalPropertyf("tu154b2/custom/switchers/SD67_1_vol"))
+defineProperty("sd67_vol_2", globalPropertyf("tu154b2/custom/switchers/SD67_2_vol"))
+defineProperty("panel_80", globalPropertyi("sim/custom/b2/kontur_70th"))
 --defineProperty("audio_dme_enabled", globalPropertyi("sim/cockpit2/radios/actuators/audio_dme_enabled"))
 
 defineProperty("com1_right_is_selected", globalPropertyi("sim/cockpit2/radios/actuators/com1_right_is_selected"))
@@ -106,6 +107,12 @@ function update()
 	local spu1=get(spu_volume1)
 	local spu2=get(spu_volume2)
 	local spu_volume=math.min(spu1,spu2)
+	local sdvol_1=get(sd67_vol_1)
+	local sdvol_2=get(sd67_vol_2)
+	if get(panel_80)==0 then
+		set(sd75_1_on,bool2int(sdvol_1>0))
+		set(sd75_2_on,bool2int(sdvol_2>0))
+	end
 	if mode == 0 and power then -- COM 1
 		set(audio_selection_com1, bool2int(get(bus27_L) > 20 and get(vhf_1_on) == 1))
         set(audio_panel,6)
@@ -173,9 +180,9 @@ function update()
 			elseif isSamplePlaying(noise) and vor_left==1  then
 				stopSample(noise)
 			end
-			setSampleGain(noise,(1-vor_left)*1000*spu_volume)
-			setSampleGain(morse_dash,vor_left*1000*spu_volume)
-			setSampleGain(morse_dot,vor_left*1000*spu_volume)
+			setSampleGain(noise,(1-vor_left)*1000*spu_volume*sdvol_1)
+			setSampleGain(morse_dash,vor_left*1000*spu_volume*sdvol_1)
+			setSampleGain(morse_dot,vor_left*1000*spu_volume*sdvol_1)
 		end
 	elseif mode == 5 and power then -- NAV 2 or ADF 2
         if get(ushdb_mode_2) == 0 then
@@ -223,9 +230,9 @@ function update()
 			elseif isSamplePlaying(noise) and vor_right==1  then
 				stopSample(noise)
 			end
-			setSampleGain(noise,(1-vor_right)*1000*spu_volume)
-			setSampleGain(morse_dash,vor_right*1000*spu_volume)
-			setSampleGain(morse_dot,vor_right*1000*spu_volume)
+			setSampleGain(noise,(1-vor_right)*1000*spu_volume*sdvol_2)
+			setSampleGain(morse_dash,vor_right*1000*spu_volume*sdvol_2)
+			setSampleGain(morse_dot,vor_right*1000*spu_volume*sdvol_2)
 		end
 	else -- none
 		set(audio_selection_com1, 0)

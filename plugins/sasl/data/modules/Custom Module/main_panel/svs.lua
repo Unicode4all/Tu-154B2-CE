@@ -168,7 +168,7 @@ function update()
 		end
 	end
 	if get(sensors_caps) < 1 and not pitot_fail then
-		p_q=get(q)*(1-get(ppd_ice))
+		p_q=get(q)*(1-math.pow(get(ppd_ice),2))
 	end
 	-- low pass for Q
 	p_q_ind=passed/(T_m+passed)*p_q + p_q_ind*T_m/(T_m+passed)

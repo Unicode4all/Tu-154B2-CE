@@ -508,6 +508,8 @@ defineProperty("stab_set", globalPropertyi("tu154b2/custom/controll/stab_setting
 defineProperty("nav_select", globalPropertyi("tu154b2/custom/switchers/nav_select"))
 defineProperty("obs_L", globalPropertyf("tu154b2/custom/gauges/compas/pkp_obs_L"))
 defineProperty("obs_R", globalPropertyf("tu154b2/custom/gauges/compas/pkp_obs_R"))
+defineProperty("sd67_vol_1", globalPropertyf("tu154b2/custom/switchers/SD67_1_vol"))
+defineProperty("sd67_vol_2", globalPropertyf("tu154b2/custom/switchers/SD67_2_vol"))
 
 defineProperty("cargo1", globalProperty("sim/flightmodel/weight/m_stations[0]")) 
 defineProperty("cargo2", globalProperty("sim/flightmodel/weight/m_stations[1]"))
@@ -1028,6 +1030,8 @@ local var_table = {}
 	var_table["navsel"] = get(nav_select)
 	var_table["obsl"] = get(obs_L)
 	var_table["obsr"] = get(obs_R)
+	var_table["sdvol1"] = get(sd67_vol_1)*10
+	var_table["sdvol2"] = get(sd67_vol_2)*10
 
 local function write_file()
 
@@ -1510,6 +1514,8 @@ local function write_file()
 		savefile:write("navsel="..get(nav_select).."\n")	
 		savefile:write("obsl="..get(obs_L).."\n")	
 		savefile:write("obsr="..get(obs_R).."\n")
+		savefile:write("sdvol1="..get(sd67_vol_1)*10 .."\n")
+		savefile:write("sdvol2="..get(sd67_vol_2)*10 .."\n")
 		savefile:write("fltnum1="..get(flt_1).."\n")
 		savefile:write("fltnum2="..get(flt_2).."\n")
 		savefile:write("fltnum3="..get(flt_3).."\n")
@@ -2036,6 +2042,8 @@ local function read_file()
 		if var_table["navsel"] then set(nav_select,var_table["navsel"]) end
 		if var_table["obsl"] then set(obs_L,var_table["obsl"]) end
 		if var_table["obsr"] then set(obs_R,var_table["obsr"]) end
+		if var_table["sdvol1"] then set(sd67_vol_1,var_table["sdvol1"]/10) end
+		if var_table["sdvol2"] then set(sd67_vol_2,var_table["sdvol2"]/10) end
 		savefile:close()
 		print("reading last state: OK")
 	else
