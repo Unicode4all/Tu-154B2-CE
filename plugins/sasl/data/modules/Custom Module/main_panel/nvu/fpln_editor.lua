@@ -1,9 +1,8 @@
 -- NVU Flight Plan Editor (contextWindow)
--- SASL 3 style scaffold for Tu-154M
 
 size = { 1000, 350 } -- TODO: Adjust to actual desired size
 
--- Properties for editor state (SASL 3 assignment style)
+-- Properties for editor state
 editorVisible = true -- set true to show, false to hide
 font = sasl.gl.loadFont("Verdana.ttf", 24)
 filename = ""
@@ -11,19 +10,28 @@ status = ""
 
 json = require("json")
 
+local function redrawMap()
+    local cmd = sasl.findCommand("tu154b2/custom/nvu/pa3/redraw")
+    if cmd then
+        sasl.commandOnce(cmd)
+    end
+end
+
 function addLeg()
     if #nvu_navplan.Legs < 10 then
-        table.insert(nvu_navplan.Legs,{
+        table.insert(nvu_navplan.Legs, {
             NAME = "",
             S = 100,
             Z = 0,
             DTK = 0
         })
+        redrawMap()
     end
 end
 
 function removeLeg()
     table.remove(nvu_navplan.Legs)
+    redrawMap()
 end
 
 --function onModuleInit()
@@ -39,7 +47,7 @@ end
 --        else
 --            v.Active = 0
 --        end
---    end    
+--    end
 --end
 
 function saveFPLN()
@@ -55,7 +63,6 @@ function saveFPLN()
     else
         sasl.logWarning("saveFPLN: Cannot open file for writing: " .. fullpath)
     end
-    
 end
 
 local function loadFPLN()
@@ -87,6 +94,7 @@ local function loadFPLN()
         end
         f:close()
         set(nvu_navplan_changed, 1)
+        redrawMap()
     else
         sasl.logWarning("PA-3: loadFPLN: Cannot open file for reading: " .. fullpath)
     end
@@ -102,7 +110,7 @@ components = {
         position = { 5, 5, 50, 25 },
         text = "Add Leg",
         hover = 0,
-        color = {0, 0.6, 0, 1},
+        color = { 0, 0.6, 0, 1 },
         onMouseClick = function()
             addLeg()
         end
@@ -111,7 +119,7 @@ components = {
         position = { 60, 5, 70, 25 },
         text = "Remove Leg",
         hover = 0,
-        color = {0.8, 0, 0, 1},
+        color = { 0.8, 0, 0, 1 },
         onMouseClick = function()
             removeLeg()
         end
@@ -120,7 +128,7 @@ components = {
         position = { 135, 5, 70, 25 },
         text = "Save",
         hover = 0,
-        color = {0.2, 0.6, 0.8, 1},
+        color = { 0.2, 0.6, 0.8, 1 },
         onMouseClick = function()
             saveFPLN()
         end
@@ -129,7 +137,7 @@ components = {
         position = { 210, 5, 70, 25 },
         text = "Load",
         hover = 0,
-        color = {0.2, 0.6, 0.8, 1},
+        color = { 0.2, 0.6, 0.8, 1 },
         onMouseClick = function()
             loadFPLN()
         end
@@ -142,44 +150,44 @@ components = {
         label = "NAME",
         type = "string",
         max_length = 32,
-        color = {0.4, 0.4, 0.2, 1},
+        color = { 0.4, 0.4, 0.2, 1 },
     },
     editor_label {
-        position = { size[1]/1.5 + 10, size[2] - 150 - 5, 300, 25 },
+        position = { size[1] / 1.5 + 10, size[2] - 150 - 5, 300, 25 },
         text = function() return status end,
         font_size = 16,
         font = avia_font,
-        color = {1, 1, 1, 1},
+        color = { 1, 1, 1, 1 },
     },
     editor_textfield {
-        position = { size[1]/1.5 + 10, size[2] - 60 - 5, 300, 25 },
+        position = { size[1] / 1.5 + 10, size[2] - 60 - 5, 300, 25 },
         data = function() return nvu_navplan.Name end,
         setData = function(v) nvu_navplan.Name = v end,
         label = "FPLN Name",
         type = "string",
         max_length = 32,
-        color = {0.4, 0.4, 0.2, 1},
+        color = { 0.4, 0.4, 0.2, 1 },
     },
     editor_textfield {
-        position = { size[1]/1.5 + 10, size[2] - 90 - 5, 300, 25 },
+        position = { size[1] / 1.5 + 10, size[2] - 90 - 5, 300, 25 },
         data = function() return nvu_navplan.ShortDesc end,
         setData = function(v) nvu_navplan.ShortDesc = v end,
         label = "Short Desc",
         type = "string",
         max_length = 32,
-        color = {0.4, 0.4, 0.2, 1},
+        color = { 0.4, 0.4, 0.2, 1 },
     },
     editor_textfield {
-        position = { size[1]/1.5 + 10, size[2] - 120 - 5, 300, 25 },
+        position = { size[1] / 1.5 + 10, size[2] - 120 - 5, 300, 25 },
         data = function() return nvu_navplan.LongDesc end,
         setData = function(v) nvu_navplan.LongDesc = v end,
         label = "Desc",
         type = "string",
         max_length = 32,
-        color = {0.4, 0.4, 0.2, 1},
+        color = { 0.4, 0.4, 0.2, 1 },
     },
     editor_label {
-        position = { size[1]/1.5 + 10, size[2] - 150 - 5, 300, 25 },
+        position = { size[1] / 1.5 + 10, size[2] - 150 - 5, 300, 25 },
         text = [[
 Note: you can't enter cyrillic characters,
 it's a sim's limitation.
@@ -189,7 +197,7 @@ The default flightplan name is fpln.json
         ]],
         font_size = 16,
         font = avia_font,
-        color = {1, 1, 1, 1},
+        color = { 1, 1, 1, 1 },
     },
     editor_leg {
         position = { 5, 290, size[1], 32 },
@@ -242,3 +250,8 @@ The default flightplan name is fpln.json
         visible = nvu_navplan.Legs[10] ~= nil,
     },
 }
+
+function onModuleInit()
+    -- load default flightplan
+    loadFPLN()
+end
