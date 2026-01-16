@@ -1,0 +1,3047 @@
+panels.txt|2641456210
+smartcopilot.cfg|3306672298
+KLNconfig.txt|638401823
+CONTRIBUTING.md|574610998
+LICENSE.md|2540125440
+cockpit/-PANELS-/Panel.png|1294082873
+cockpit/radios/GPS FMS/CDU739_screen.png|1764371993
+cockpit/radios/GPS FMS/Garmin_530_screen.png|2585056304
+cockpit/EFIS/RADAR.png|3837817261
+cockpit/EFIS/EFIS maps/map_s_HM.txt|691506296
+cockpit/EFIS/EFIS maps/map_s_HM-1.png|746417493
+cockpit/EFIS/EFIS maps/map_s_HM-4.png|427997029
+cockpit/EFIS/EFIS maps/map_s_HM-2.png|2086776577
+cockpit/EFIS/EFIS maps/map_s_HM-3.png|4080548798
+cockpit/EFIS/EFIS maps/map_s_HM.png|455098011
+tu154_cockpit.obj|3235885758
+liveries/85554/T154_config.dat|2647689046
+liveries/85554/tu154_icon11.png|3851220177
+liveries/85554/objects/gears_b2.png|1609052253
+liveries/85554/objects/engines_b2.png|965388535
+liveries/85554/objects/fuselage.png|1043574300
+liveries/85554/objects/cockpit_chairs.png|2107448534
+liveries/85554/objects/wings_b2.png|1556188065
+liveries/85554/tu154_icon11_thumb.png|479694826
+liveries/85554/saved_state.ini|2653318989
+liveries/Aeroflot СССР-85565/T154_config.dat|1555134216
+liveries/Aeroflot СССР-85565/tu154_icon11.png|1513661480
+liveries/Aeroflot СССР-85565/objects/test.pdn|1435523731
+liveries/Aeroflot СССР-85565/objects/engines_b2.png|2937386846
+liveries/Aeroflot СССР-85565/objects/gears.png|2593990314
+liveries/Aeroflot СССР-85565/objects/fuselage.png|3574734382
+liveries/Aeroflot СССР-85565/objects/salon2.png|2116317182
+liveries/Aeroflot СССР-85565/objects/wings_b2.png|2296529176
+liveries/Aeroflot СССР-85565/tu154_icon11_thumb.png|1072644893
+liveries/Aeroflot СССР-85565/saved_state.ini|2343109442
+liveries/Air_Ukraine_85535/T154_config.dat|3287832596
+liveries/Air_Ukraine_85535/tu154_icon11.png|3667756951
+liveries/Air_Ukraine_85535/objects/fuselage.pdn|2433313252
+liveries/Air_Ukraine_85535/objects/gears_b2.png|2593990314
+liveries/Air_Ukraine_85535/objects/engines_b2.png|2937386846
+liveries/Air_Ukraine_85535/objects/fuselage.png|3421063533
+liveries/Air_Ukraine_85535/objects/salon2.png|514428783
+liveries/Air_Ukraine_85535/objects/salon2.pdn|2802932078
+liveries/Air_Ukraine_85535/objects/wings_b2.png|3601127884
+liveries/Air_Ukraine_85535/objects/wings_b2.pdn|1485163248
+liveries/Air_Ukraine_85535/tu154_icon11_thumb.png|2245452971
+liveries/Air_Ukraine_85535/saved_state.ini|3201454287
+tu154_paint2.png|50155071
+airfoils/wing_tip_orig.afl|1296979795
+airfoils/wing_tip.afl|1296979795
+airfoils/NACA 0009 (symmetrical).afl|1525331587
+airfoils/wing_orig.afl|2361956735
+airfoils/vstab.afl|3800326313
+airfoils/hstab.afl|1427296503
+airfoils/wing_mod.afl|2994963053
+airfoils/wing.afl|769509988
+airfoils/hstab_orig.afl|3880302419
+paperwork/Readme RUS.txt|281795520
+paperwork/assets/img2.png|665229566
+paperwork/assets/img6.png|3323797444
+paperwork/assets/segoepr.ttf|2046905699
+paperwork/assets/segoeprb.ttf|3406116303
+paperwork/assets/img4.png|4151678510
+paperwork/assets/img5.png|968259389
+paperwork/assets/img1.png|3255725415
+paperwork/assets/img3.png|273873985
+paperwork/assets/sticky.png|812368645
+paperwork/sets/example.json|2004979575
+paperwork/sets/example2.json|2525702608
+paperwork/Readme.txt|3460208150
+tu154.acf|3457443487
+.github/workflows/create-release.yml|595833665
+.github/workflows/nightly-build.yml|1866559001
+.github/workflows/build-stb-stitch.yml|22782387
+.github/ISSUE_TEMPLATE/realism_issue.yml|1519638077
+.github/ISSUE_TEMPLATE/bug_report.yml|2260662276
+.github/ISSUE_TEMPLATE/config.yml|2227175257
+.github/ISSUE_TEMPLATE/performance_issue.yml|2798791437
+.github/ISSUE_TEMPLATE/feature_request.yml|3046704198
+fmod/tu154.snd|657156233
+fmod/Master Bank.strings.bank|1091576901
+fmod/GUIDs.txt|684579397
+fmod/Master Bank.bank|3599197065
+cockpit_3d/-PANELS-/Panel2.png|2196464229
+cockpit_3d/-PANELS-/Panel.png|3502180221
+cockpit_3d/-PANELS-/Panel-assets/Panel.png|3502180221
+cockpit_3d/-PANELS-/Panel_Preview_0.png|3428490982
+cockpit_3d/-PANELS-/Panel_Preview_Lit_0.png|2282796358
+cockpit_3d/generic/VBE/infotest-1.png|599459947
+cockpit_3d/generic/VBE/bg_M-1.png|2830620725
+cockpit_3d/generic/VBE/neg.png|1810094602
+cockpit_3d/generic/VBE/bg.png|3422985272
+cockpit_3d/generic/VBE/neg-1.png|1452822981
+cockpit_3d/generic/VBE/infoperc-1.png|2793205023
+cockpit_3d/generic/VBE/infomft_1-1.png|1899987232
+cockpit_3d/generic/VBE/border.png|2811411413
+cockpit_3d/generic/VBE/infoperc.png|1051722505
+cockpit_3d/generic/VBE/test_wh_line-1.png|1425049406
+cockpit_3d/generic/VBE/exit.png|3539953373
+cockpit_3d/generic/VBE/border_3.png|4042099197
+cockpit_3d/generic/VBE/sel_2-1.png|3220758418
+cockpit_3d/generic/VBE/test_bl_line.png|3907236262
+cockpit_3d/generic/VBE/black.png|598671712
+cockpit_3d/generic/VBE/exit-1.png|4118831499
+cockpit_3d/generic/VBE/bg_test_start-1.png|1606567525
+cockpit_3d/generic/VBE/needle.png|2244954827
+cockpit_3d/generic/VBE/infob_bg-1.png|2870320845
+cockpit_3d/generic/VBE/infop2.png|2433704192
+cockpit_3d/generic/VBE/test_bl_line-1.png|1536473248
+cockpit_3d/generic/VBE/bg_test-1.png|3784008611
+cockpit_3d/generic/VBE/infoh1.png|2433704192
+cockpit_3d/generic/VBE/infop1.png|2433704192
+cockpit_3d/generic/VBE/bg_test.png|2920166466
+cockpit_3d/generic/VBE/black_2-1.png|1691865465
+cockpit_3d/generic/VBE/black-1.png|2711454774
+cockpit_3d/generic/VBE/border-1.png|1012575754
+cockpit_3d/generic/VBE/infotest.png|911047556
+cockpit_3d/generic/VBE/sel-1.png|2575475394
+cockpit_3d/generic/VBE/bg_M.png|2920166466
+cockpit_3d/generic/VBE/sel.png|3237671323
+cockpit_3d/generic/VBE/mode2-1.png|1309126449
+cockpit_3d/generic/VBE/100-1.png|77924390
+cockpit_3d/generic/VBE/sel_2.png|92268466
+cockpit_3d/generic/VBE/border_3-1.png|1557377356
+cockpit_3d/generic/VBE/mode2.png|3560586215
+cockpit_3d/generic/VBE/black_2.png|1406537818
+cockpit_3d/generic/VBE/bg_FT-1.png|1690810566
+cockpit_3d/generic/VBE/infoh2.png|2433704192
+cockpit_3d/generic/VBE/border_2-1.png|2113920211
+cockpit_3d/generic/VBE/infoh2-1.png|664729195
+cockpit_3d/generic/VBE/needle-1.png|328738117
+cockpit_3d/generic/VBE/bg_test_scr-1.png|1890495684
+cockpit_3d/generic/VBE/bg_test_scr.png|2920166466
+cockpit_3d/generic/VBE/infop2-1.png|3102322287
+cockpit_3d/generic/VBE/bg-1.png|3070582194
+cockpit_3d/generic/VBE/100.png|2067565955
+cockpit_3d/generic/VBE/infob2.png|762752680
+cockpit_3d/generic/VBE/infop1-1.png|1547663805
+cockpit_3d/generic/VBE/infob1-1.png|2525795808
+cockpit_3d/generic/VBE/border_2.png|3514855222
+cockpit_3d/generic/VBE/infob2-1.png|138574794
+cockpit_3d/generic/VBE/bg_FT.png|2920166466
+cockpit_3d/generic/VBE/infoh1-1.png|1244098265
+cockpit_3d/generic/VBE/test_wh_line.png|559975460
+cockpit_3d/generic/VBE/infob1.png|762752680
+cockpit_3d/generic/VBE/infob_bg.png|1254927563
+cockpit_3d/generic/VBE/bg_test_start.png|2920166466
+cockpit_3d/generic/VBE/infomft_1.png|911047556
+cockpit_3d/generic/TSS/bg_tss.png|1064745552
+cockpit_3d/generic/TSS/bg_tss-1.png|3546388271
+cockpit_3d/generic/GLASS/glass1-1.png|2396311075
+cockpit_3d/generic/GLASS/glass2-1.png|3142162170
+cockpit_3d/generic/GLASS/glass2.png|3227127344
+cockpit_3d/generic/GLASS/glass-1.png|3392458787
+cockpit_3d/generic/GLASS/glass1.png|3227127344
+cockpit_3d/generic/GLASS/glass.png|3227127344
+cockpit_3d/generic/KONTUR/bg_test_2.png|1241613894
+cockpit_3d/generic/KONTUR/bg_dist_7-1.png|2905682514
+cockpit_3d/generic/KONTUR/tape_rru_bg.png|3462654955
+cockpit_3d/generic/KONTUR/bg_dist_6-1.png|1584848467
+cockpit_3d/generic/KONTUR/bg_test_6-1.png|3633300735
+cockpit_3d/generic/KONTUR/km35 copy.png|4101491364
+cockpit_3d/generic/KONTUR/bg.png|1367607999
+cockpit_3d/generic/KONTUR/km260-1.png|335883880
+cockpit_3d/generic/KONTUR/bg_test_3-1.png|1701297572
+cockpit_3d/generic/KONTUR/mode_rlsplus_3-1.png|3327616056
+cockpit_3d/generic/KONTUR/bg_dist_6.png|1666422930
+cockpit_3d/generic/KONTUR/mode_tcas_3.png|321236284
+cockpit_3d/generic/KONTUR/no_taws.png|1598579658
+cockpit_3d/generic/KONTUR/tape_rru_bg-1.png|2625468002
+cockpit_3d/generic/KONTUR/km20-1.png|4157220932
+cockpit_3d/generic/KONTUR/no_stab-1.png|3693424018
+cockpit_3d/generic/KONTUR/no_wp_1.png|2979417842
+cockpit_3d/generic/KONTUR/bg_coords.png|3709730425
+cockpit_3d/generic/KONTUR/bg_test_4.png|1241613894
+cockpit_3d/generic/KONTUR/bg_black2-1.png|3830207479
+cockpit_3d/generic/KONTUR/mode_tcas_5-1.png|486475671
+cockpit_3d/generic/KONTUR/bg_dist_4.png|1666422930
+cockpit_3d/generic/KONTUR/test_rad1-1.png|2007446715
+cockpit_3d/generic/KONTUR/bg_test_3.png|1241613894
+cockpit_3d/generic/KONTUR/tape_rru_step-1.png|2231811824
+cockpit_3d/generic/KONTUR/test_ok.png|4200871957
+cockpit_3d/generic/KONTUR/bg_dtk.png|2265945993
+cockpit_3d/generic/KONTUR/mode_rls_1.png|3616808623
+cockpit_3d/generic/KONTUR/mode_rlsplus_2.png|1277188735
+cockpit_3d/generic/KONTUR/MILES/bg_dist_7-1.png|3213585093
+cockpit_3d/generic/KONTUR/MILES/bg_dist_6-1.png|2560219144
+cockpit_3d/generic/KONTUR/MILES/km260-1.png|463236591
+cockpit_3d/generic/KONTUR/MILES/bg_dist_6.png|1666422930
+cockpit_3d/generic/KONTUR/MILES/km20-1.png|345684611
+cockpit_3d/generic/KONTUR/MILES/bg_dist_4.png|1666422930
+cockpit_3d/generic/KONTUR/MILES/bg_dtk.png|2265945993
+cockpit_3d/generic/KONTUR/MILES/bg_dist_3.png|1666422930
+cockpit_3d/generic/KONTUR/MILES/bg_dist_5-1.png|3024764040
+cockpit_3d/generic/KONTUR/MILES/km35.png|4101491364
+cockpit_3d/generic/KONTUR/MILES/km75.png|897074256
+cockpit_3d/generic/KONTUR/MILES/km8_5.png|4200871957
+cockpit_3d/generic/KONTUR/MILES/bg_dist_2-1.png|26065043
+cockpit_3d/generic/KONTUR/MILES/bg_dist_3-1.png|546466168
+cockpit_3d/generic/KONTUR/MILES/km140.png|3441198695
+cockpit_3d/generic/KONTUR/MILES/bg_dist_4-1.png|3766807049
+cockpit_3d/generic/KONTUR/MILES/bg_dist_7.png|1666422930
+cockpit_3d/generic/KONTUR/MILES/bg_wpt-1.png|3025283594
+cockpit_3d/generic/KONTUR/MILES/km140-1.png|1164275072
+cockpit_3d/generic/KONTUR/MILES/bg_dtk-1.png|3696156726
+cockpit_3d/generic/KONTUR/MILES/km20.png|4265978633
+cockpit_3d/generic/KONTUR/MILES/km4-1.png|3321407694
+cockpit_3d/generic/KONTUR/MILES/km8_5-1.png|2407737467
+cockpit_3d/generic/KONTUR/MILES/bg_wpt.png|440010963
+cockpit_3d/generic/KONTUR/MILES/km260.png|3441198695
+cockpit_3d/generic/KONTUR/MILES/km35-1.png|689980603
+cockpit_3d/generic/KONTUR/MILES/bg_dist_1-1.png|2819308396
+cockpit_3d/generic/KONTUR/MILES/bg_dist_1.png|1666422930
+cockpit_3d/generic/KONTUR/MILES/bg_dist_2.png|1666422930
+cockpit_3d/generic/KONTUR/MILES/km4.png|4138090614
+cockpit_3d/generic/KONTUR/MILES/bg_dist_5.png|1666422930
+cockpit_3d/generic/KONTUR/MILES/km75-1.png|1732831011
+cockpit_3d/generic/KONTUR/mode_tcas_3-1.png|1586579021
+cockpit_3d/generic/KONTUR/bg_dist_3.png|1666422930
+cockpit_3d/generic/KONTUR/tape_rru_no-1.png|2331484538
+cockpit_3d/generic/KONTUR/no_wp_1-1.png|51273434
+cockpit_3d/generic/KONTUR/test_ok-1.png|2910044992
+cockpit_3d/generic/KONTUR/tape_rru_step.png|1691833199
+cockpit_3d/generic/KONTUR/bg_dist_5-1.png|1221517795
+cockpit_3d/generic/KONTUR/km35.png|4101491364
+cockpit_3d/generic/KONTUR/no_rls-1.png|3157724614
+cockpit_3d/generic/KONTUR/no_wp_2.png|1013858182
+cockpit_3d/generic/KONTUR/test_rad1.png|2019009852
+cockpit_3d/generic/KONTUR/tape_rru_no.png|2034872805
+cockpit_3d/generic/KONTUR/km75.png|897074256
+cockpit_3d/generic/KONTUR/mode_rlsplus_4.png|1277188735
+cockpit_3d/generic/KONTUR/wxr_test_0.png|3813537358
+cockpit_3d/generic/KONTUR/km8_5.png|4200871957
+cockpit_3d/generic/KONTUR/no_stab.png|1288296576
+cockpit_3d/generic/KONTUR/mode_rls_4.png|911182624
+cockpit_3d/generic/KONTUR/bg_taws_test-1.png|2327426006
+cockpit_3d/generic/KONTUR/bg_black-1.png|3418290961
+cockpit_3d/generic/KONTUR/INFO/green.png|1392444006
+cockpit_3d/generic/KONTUR/INFO/mtr_white-1.png|2769204898
+cockpit_3d/generic/KONTUR/INFO/mps_purp.png|871593848
+cockpit_3d/generic/KONTUR/INFO/no_taws.png|422318793
+cockpit_3d/generic/KONTUR/INFO/mtr_blue-1.png|2828362449
+cockpit_3d/generic/KONTUR/INFO/mps_purp-1.png|1406036274
+cockpit_3d/generic/KONTUR/INFO/mtr_purp.png|3293236698
+cockpit_3d/generic/KONTUR/INFO/mode_fl-1.png|3635186608
+cockpit_3d/generic/KONTUR/INFO/min.png|2441122634
+cockpit_3d/generic/KONTUR/INFO/mps_blue-1.png|661770947
+cockpit_3d/generic/KONTUR/INFO/c_blue.png|1384809013
+cockpit_3d/generic/KONTUR/INFO/mode_fl.png|321236284
+cockpit_3d/generic/KONTUR/INFO/bg_info_1.png|1367607999
+cockpit_3d/generic/KONTUR/INFO/no_taws-1.png|567922651
+cockpit_3d/generic/KONTUR/INFO/c_white.png|1757233273
+cockpit_3d/generic/KONTUR/INFO/c_blue-1.png|3649240924
+cockpit_3d/generic/KONTUR/INFO/mode_ld.png|321236284
+cockpit_3d/generic/KONTUR/INFO/mtr_white.png|2582138307
+cockpit_3d/generic/KONTUR/INFO/bg_info_2-1.png|1137114401
+cockpit_3d/generic/KONTUR/INFO/mode_ld-1.png|2788593204
+cockpit_3d/generic/KONTUR/INFO/min-1.png|130691104
+cockpit_3d/generic/KONTUR/INFO/plus_nobg.png|2441122634
+cockpit_3d/generic/KONTUR/INFO/green-1.png|4099468026
+cockpit_3d/generic/KONTUR/INFO/mode_gr-1.png|2423465705
+cockpit_3d/generic/KONTUR/INFO/mps_white.png|3420157893
+cockpit_3d/generic/KONTUR/INFO/mode_gr.png|321236284
+cockpit_3d/generic/KONTUR/INFO/mps_blue.png|829514011
+cockpit_3d/generic/KONTUR/INFO/plus-1.png|3513565318
+cockpit_3d/generic/KONTUR/INFO/mtr_purp-1.png|1555075921
+cockpit_3d/generic/KONTUR/INFO/mps_white-1.png|3130120052
+cockpit_3d/generic/KONTUR/INFO/bg_info_2.png|1367607999
+cockpit_3d/generic/KONTUR/INFO/bg_info_1-1.png|1726600800
+cockpit_3d/generic/KONTUR/INFO/mtr_blue.png|3026178693
+cockpit_3d/generic/KONTUR/INFO/plus_nobg-1.png|3814998062
+cockpit_3d/generic/KONTUR/INFO/c_white-1.png|1524557647
+cockpit_3d/generic/KONTUR/INFO/bg_info-1.png|3360265042
+cockpit_3d/generic/KONTUR/INFO/plus.png|2441122634
+cockpit_3d/generic/KONTUR/INFO/bg_info.png|1367607999
+cockpit_3d/generic/KONTUR/bg_dtk_pu.png|414266362
+cockpit_3d/generic/KONTUR/bg_taws-1.png|2326940126
+cockpit_3d/generic/KONTUR/mode_tcas-1.png|2454060129
+cockpit_3d/generic/KONTUR/bg_test_2-1.png|90614015
+cockpit_3d/generic/KONTUR/bg_black3.png|4273015206
+cockpit_3d/generic/KONTUR/taws_msl_ft-1.png|958366055
+cockpit_3d/generic/KONTUR/bg_test-1.png|2456809099
+cockpit_3d/generic/KONTUR/bg_dist_2-1.png|3174697978
+cockpit_3d/generic/KONTUR/test_gl.png|4253659075
+cockpit_3d/generic/KONTUR/mode_tcas_7-1.png|2350272641
+cockpit_3d/generic/KONTUR/bg_tcas-1.png|2683333004
+cockpit_3d/generic/KONTUR/hdg_deg-1.png|892427945
+cockpit_3d/generic/KONTUR/bg_dist_3-1.png|1694055090
+cockpit_3d/generic/KONTUR/bg_test.png|1241613894
+cockpit_3d/generic/KONTUR/mode_tcas_5.png|321236284
+cockpit_3d/generic/KONTUR/km140.png|3441198695
+cockpit_3d/generic/KONTUR/plane-1.png|2485915514
+cockpit_3d/generic/KONTUR/bg_dist_4-1.png|3728246892
+cockpit_3d/generic/KONTUR/trafficallert.png|4284996755
+cockpit_3d/generic/KONTUR/mode_tcas_4-1.png|3266598471
+cockpit_3d/generic/KONTUR/tape_rru_text.png|3462654955
+cockpit_3d/generic/KONTUR/bg_dist_7.png|1666422930
+cockpit_3d/generic/KONTUR/no_taws-1.png|608445861
+cockpit_3d/generic/KONTUR/mode_rls_4-1.png|2042911253
+cockpit_3d/generic/KONTUR/wxr_test.png|3813537358
+cockpit_3d/generic/KONTUR/bg_wpt-1.png|1834043624
+cockpit_3d/generic/KONTUR/trafficallert-1.png|2888488243
+cockpit_3d/generic/KONTUR/wxr_test_0-1.png|924140963
+cockpit_3d/generic/KONTUR/TAWS/pull_up-1.png|2293509118
+cockpit_3d/generic/KONTUR/TAWS/terrainahead-1.png|3902842475
+cockpit_3d/generic/KONTUR/TAWS/lowflaps-1.png|1042666107
+cockpit_3d/generic/KONTUR/TAWS/sinkrate.png|438506713
+cockpit_3d/generic/KONTUR/TAWS/lowgear-1.png|880992959
+cockpit_3d/generic/KONTUR/TAWS/dontsink-1.png|4114906932
+cockpit_3d/generic/KONTUR/TAWS/gs-1.png|1046090137
+cockpit_3d/generic/KONTUR/TAWS/check-alt.png|987747412
+cockpit_3d/generic/KONTUR/TAWS/lowterr.png|2986559076
+cockpit_3d/generic/KONTUR/TAWS/lowterr-1.png|4134903919
+cockpit_3d/generic/KONTUR/TAWS/lowflaps.png|1621081684
+cockpit_3d/generic/KONTUR/TAWS/terrain.png|2782252260
+cockpit_3d/generic/KONTUR/TAWS/gs.png|2228504114
+cockpit_3d/generic/KONTUR/TAWS/lowgear.png|3367100247
+cockpit_3d/generic/KONTUR/TAWS/terrain-1.png|2666077011
+cockpit_3d/generic/KONTUR/TAWS/check-alt-1.png|4203766222
+cockpit_3d/generic/KONTUR/TAWS/terrainahead.png|4284996755
+cockpit_3d/generic/KONTUR/TAWS/pull_up.png|3975448128
+cockpit_3d/generic/KONTUR/TAWS/dontsink.png|3402694291
+cockpit_3d/generic/KONTUR/TAWS/sinkrate-1.png|2761176864
+cockpit_3d/generic/KONTUR/mode_taws.png|321236284
+cockpit_3d/generic/KONTUR/no_tcas.png|1598579658
+cockpit_3d/generic/KONTUR/km140-1.png|1368348289
+cockpit_3d/generic/KONTUR/mode_taws-1.png|4171048259
+cockpit_3d/generic/KONTUR/bg_dtk-1.png|2054787896
+cockpit_3d/generic/KONTUR/bg_test_5-1.png|1595225325
+cockpit_3d/generic/KONTUR/test_gl-1.png|3076838740
+cockpit_3d/generic/KONTUR/no_tcas-1.png|1116017128
+cockpit_3d/generic/KONTUR/mode_rls_2-1.png|2886089843
+cockpit_3d/generic/KONTUR/mode_tcas_4.png|321236284
+cockpit_3d/generic/KONTUR/mode_plan.png|1626462063
+cockpit_3d/generic/KONTUR/km20.png|4265978633
+cockpit_3d/generic/KONTUR/no_rls.png|1122407880
+cockpit_3d/generic/KONTUR/bg_test_4-1.png|2346837275
+cockpit_3d/generic/KONTUR/bg_hdg-1.png|3319443102
+cockpit_3d/generic/KONTUR/bg_black2.png|4273015206
+cockpit_3d/generic/KONTUR/mode_prof-1.png|387651126
+cockpit_3d/generic/KONTUR/km4-1.png|3321407694
+cockpit_3d/generic/KONTUR/km8_5-1.png|2171650893
+cockpit_3d/generic/KONTUR/bg_wpt.png|440010963
+cockpit_3d/generic/KONTUR/mode_rls_1-1.png|4236301049
+cockpit_3d/generic/KONTUR/km260.png|3441198695
+cockpit_3d/generic/KONTUR/test_rad2-1.png|4106262829
+cockpit_3d/generic/KONTUR/km35-1.png|2275984924
+cockpit_3d/generic/KONTUR/mode_tcas_1-1.png|4252576803
+cockpit_3d/generic/KONTUR/mode_rlsplus_4-1.png|3327616056
+cockpit_3d/generic/KONTUR/bg_taws_test.png|1241613894
+cockpit_3d/generic/KONTUR/bg_dtk_pu-1.png|3018460616
+cockpit_3d/generic/KONTUR/bg_test_5.png|1241613894
+cockpit_3d/generic/KONTUR/wxr_test-1.png|3721991341
+cockpit_3d/generic/KONTUR/bg_test_7.png|1241613894
+cockpit_3d/generic/KONTUR/bg_dist_1-1.png|297741910
+cockpit_3d/generic/KONTUR/bg-1.png|2011535323
+cockpit_3d/generic/KONTUR/taws_msl_ft.png|416955500
+cockpit_3d/generic/KONTUR/mode_tcas_7.png|321236284
+cockpit_3d/generic/KONTUR/test_rad2.png|3789752591
+cockpit_3d/generic/KONTUR/mode_rls_3.png|954404854
+cockpit_3d/generic/KONTUR/bg_hdg1-1.png|3121670279
+cockpit_3d/generic/KONTUR/bg_coords-1.png|4056960862
+cockpit_3d/generic/KONTUR/bg_dist_1.png|1666422930
+cockpit_3d/generic/KONTUR/bg_hdg1.png|603719015
+cockpit_3d/generic/KONTUR/mode_tcas_1.png|321236284
+cockpit_3d/generic/KONTUR/bg_black.png|4273015206
+cockpit_3d/generic/KONTUR/taws_msl_m-1.png|2396791417
+cockpit_3d/generic/KONTUR/mode_plan-1.png|2085805483
+cockpit_3d/generic/KONTUR/mode_tcas.png|321236284
+cockpit_3d/generic/KONTUR/no_wp_2-1.png|3507785167
+cockpit_3d/generic/KONTUR/bg_test_7-1.png|2409596070
+cockpit_3d/generic/KONTUR/mode_tcas_6-1.png|4249654728
+cockpit_3d/generic/KONTUR/bg_dist_2.png|1666422930
+cockpit_3d/generic/KONTUR/no_wp_3.png|2242552127
+cockpit_3d/generic/KONTUR/km4.png|4138090614
+cockpit_3d/generic/KONTUR/tape_rru_text-1.png|1814349681
+cockpit_3d/generic/KONTUR/mode_prof.png|3711564248
+cockpit_3d/generic/KONTUR/mode_fp.png|4030360946
+cockpit_3d/generic/KONTUR/mode_rls_2.png|4188421312
+cockpit_3d/generic/KONTUR/NOMODE/no_mode11.png|2054782829
+cockpit_3d/generic/KONTUR/NOMODE/no_mode5.png|3376722058
+cockpit_3d/generic/KONTUR/NOMODE/no_mode6-1.png|212784976
+cockpit_3d/generic/KONTUR/NOMODE/no_mode27-1.png|3423690299
+cockpit_3d/generic/KONTUR/NOMODE/no_mode7-1.png|3883982669
+cockpit_3d/generic/KONTUR/NOMODE/no_mode25.png|2316727607
+cockpit_3d/generic/KONTUR/NOMODE/no_mode8-1.png|615186843
+cockpit_3d/generic/KONTUR/NOMODE/no_mode27.png|1303258642
+cockpit_3d/generic/KONTUR/NOMODE/no_mode4-1.png|2837970754
+cockpit_3d/generic/KONTUR/NOMODE/no_mode2-1.png|2216810955
+cockpit_3d/generic/KONTUR/NOMODE/no_mode19.png|1470841241
+cockpit_3d/generic/KONTUR/NOMODE/no_mode21.png|3309362634
+cockpit_3d/generic/KONTUR/NOMODE/no_mode13.png|984962795
+cockpit_3d/generic/KONTUR/NOMODE/no_mode15.png|652170835
+cockpit_3d/generic/KONTUR/NOMODE/no_mode23-1.png|4181045289
+cockpit_3d/generic/KONTUR/NOMODE/no_mode11-1.png|1172365435
+cockpit_3d/generic/KONTUR/NOMODE/no_mode13-1.png|2810949174
+cockpit_3d/generic/KONTUR/NOMODE/no_mode8.png|3427042987
+cockpit_3d/generic/KONTUR/NOMODE/no_mode20-1.png|1093751649
+cockpit_3d/generic/KONTUR/NOMODE/no_mode3-1.png|1089051723
+cockpit_3d/generic/KONTUR/NOMODE/no_mode10.png|15850606
+cockpit_3d/generic/KONTUR/NOMODE/no_mode4.png|3391750381
+cockpit_3d/generic/KONTUR/NOMODE/no_mode18-1.png|3011050150
+cockpit_3d/generic/KONTUR/NOMODE/no_mode5-1.png|892870677
+cockpit_3d/generic/KONTUR/NOMODE/no_mode6.png|1083262600
+cockpit_3d/generic/KONTUR/NOMODE/no_mode24-1.png|3596375932
+cockpit_3d/generic/KONTUR/NOMODE/no_mode14.png|1968231881
+cockpit_3d/generic/KONTUR/NOMODE/no_mode26.png|2022076933
+cockpit_3d/generic/KONTUR/NOMODE/no_mode14-1.png|478088783
+cockpit_3d/generic/KONTUR/NOMODE/no_mode3.png|787821396
+cockpit_3d/generic/KONTUR/NOMODE/no_mode21-1.png|2332281967
+cockpit_3d/generic/KONTUR/NOMODE/no_mode16-1.png|2219073581
+cockpit_3d/generic/KONTUR/NOMODE/no_mode7.png|3823410316
+cockpit_3d/generic/KONTUR/NOMODE/no_mode10-1.png|3734932234
+cockpit_3d/generic/KONTUR/NOMODE/no_mode28.png|788993741
+cockpit_3d/generic/KONTUR/NOMODE/no_mode12.png|3547915703
+cockpit_3d/generic/KONTUR/NOMODE/no_mode23.png|2160740552
+cockpit_3d/generic/KONTUR/NOMODE/no_mode1-1.png|1535803849
+cockpit_3d/generic/KONTUR/NOMODE/no_mode20.png|2553076941
+cockpit_3d/generic/KONTUR/NOMODE/no_mode28-1.png|2382775510
+cockpit_3d/generic/KONTUR/NOMODE/no_mode18.png|2446349994
+cockpit_3d/generic/KONTUR/NOMODE/no_mode12-1.png|3177578355
+cockpit_3d/generic/KONTUR/NOMODE/no_mode9-1.png|2135908364
+cockpit_3d/generic/KONTUR/NOMODE/no_mode17.png|2089806986
+cockpit_3d/generic/KONTUR/NOMODE/no_mode24.png|1118603980
+cockpit_3d/generic/KONTUR/NOMODE/no_mode1.png|1582898757
+cockpit_3d/generic/KONTUR/NOMODE/no_mode9.png|1251783466
+cockpit_3d/generic/KONTUR/NOMODE/no_mode22-1.png|1310700124
+cockpit_3d/generic/KONTUR/NOMODE/no_mode22.png|2913826633
+cockpit_3d/generic/KONTUR/NOMODE/no_mode15-1.png|1948668816
+cockpit_3d/generic/KONTUR/NOMODE/no_mode2.png|4236572622
+cockpit_3d/generic/KONTUR/NOMODE/no_mode25-1.png|2961400058
+cockpit_3d/generic/KONTUR/NOMODE/no_mode26-1.png|321040684
+cockpit_3d/generic/KONTUR/NOMODE/no_mode16.png|553129939
+cockpit_3d/generic/KONTUR/NOMODE/no_mode19-1.png|404584712
+cockpit_3d/generic/KONTUR/NOMODE/no_mode17-1.png|4151712208
+cockpit_3d/generic/KONTUR/no_wp_3-1.png|3995843671
+cockpit_3d/generic/KONTUR/bg_dist_5.png|1666422930
+cockpit_3d/generic/KONTUR/MENU/time_hl1-1.png|332492735
+cockpit_3d/generic/KONTUR/MENU/time1.png|3601331586
+cockpit_3d/generic/KONTUR/MENU/time1-1.png|3381691990
+cockpit_3d/generic/KONTUR/MENU/h_light2.png|2879865840
+cockpit_3d/generic/KONTUR/MENU/h_light1-1.png|3630862916
+cockpit_3d/generic/KONTUR/MENU/bg2-1.png|3656953147
+cockpit_3d/generic/KONTUR/MENU/bg1.png|3314514378
+cockpit_3d/generic/KONTUR/MENU/time_hl1.png|3577207421
+cockpit_3d/generic/KONTUR/MENU/dist1-1.png|3875392678
+cockpit_3d/generic/KONTUR/MENU/mode_enter-1.png|2696870612
+cockpit_3d/generic/KONTUR/MENU/h_light2-1.png|1177257608
+cockpit_3d/generic/KONTUR/MENU/h_light3.png|56903400
+cockpit_3d/generic/KONTUR/MENU/bg1-1.png|307256896
+cockpit_3d/generic/KONTUR/MENU/h_light3-1.png|3544871509
+cockpit_3d/generic/KONTUR/MENU/h_light4.png|1644644957
+cockpit_3d/generic/KONTUR/MENU/time_hl2-1.png|2588175576
+cockpit_3d/generic/KONTUR/MENU/h_light4-1.png|2073339894
+cockpit_3d/generic/KONTUR/MENU/time2-1.png|3622002028
+cockpit_3d/generic/KONTUR/MENU/time2.png|541367605
+cockpit_3d/generic/KONTUR/MENU/bg2.png|555514309
+cockpit_3d/generic/KONTUR/MENU/time_hl2.png|384289694
+cockpit_3d/generic/KONTUR/MENU/mode_enter.png|2125769004
+cockpit_3d/generic/KONTUR/MENU/h_light1.png|3003954297
+cockpit_3d/generic/KONTUR/MENU/dist2.png|713882895
+cockpit_3d/generic/KONTUR/MENU/dist2-1.png|3360437462
+cockpit_3d/generic/KONTUR/MENU/dist1.png|2879614574
+cockpit_3d/generic/KONTUR/hdg_deg.png|3762984320
+cockpit_3d/generic/KONTUR/bg_hdg.png|169905348
+cockpit_3d/generic/KONTUR/bg_tcas.png|1666422930
+cockpit_3d/generic/KONTUR/plane.png|3486067000
+cockpit_3d/generic/KONTUR/mode_rlsplus_3.png|1277188735
+cockpit_3d/generic/KONTUR/bg_black3-1.png|2919693389
+cockpit_3d/generic/KONTUR/mode_tcas_2-1.png|3006671832
+cockpit_3d/generic/KONTUR/bg_taws.png|1666422930
+cockpit_3d/generic/KONTUR/bg_test_6.png|1241613894
+cockpit_3d/generic/KONTUR/km75-1.png|645886295
+cockpit_3d/generic/KONTUR/mode_tcas_2.png|321236284
+cockpit_3d/generic/KONTUR/mode_tcas_6.png|321236284
+cockpit_3d/generic/KONTUR/mode_rls_3-1.png|643291473
+cockpit_3d/generic/KONTUR/mode_rlsplus_2-1.png|3327616056
+cockpit_3d/generic/KONTUR/taws_msl_m.png|3559360190
+cockpit_3d/generic/RSBN/greens.png|1730264364
+cockpit_3d/generic/RSBN/zero-1.png|987954087
+cockpit_3d/generic/RSBN/zero.png|2985859402
+cockpit_3d/generic/RSBN/greens-4.png|2759457505
+cockpit_3d/generic/RSBN/reds.png|1730264364
+cockpit_3d/generic/RSBN/reds-4.png|2033894124
+cockpit_3d/generic/TCAS/10.png|2732547707
+cockpit_3d/generic/TCAS/atc2.png|846565787
+cockpit_3d/generic/TCAS/tcasfail.png|2205273342
+cockpit_3d/generic/TCAS/rply-1.png|3110263883
+cockpit_3d/generic/TCAS/xpndr_fail.png|4219918812
+cockpit_3d/generic/TCAS/15.png|2732547707
+cockpit_3d/generic/TCAS/5-1.png|2426614139
+cockpit_3d/generic/TCAS/atc2-1.png|1628809163
+cockpit_3d/generic/TCAS/atc1.png|2541121457
+cockpit_3d/generic/TCAS/notcas.png|998127244
+cockpit_3d/generic/TCAS/tcasbg-1.png|2795648629
+cockpit_3d/generic/TCAS/ta.png|1652040425
+cockpit_3d/generic/TCAS/ta-1.png|132690962
+cockpit_3d/generic/TCAS/blw-1.png|437960184
+cockpit_3d/generic/TCAS/arrow-1.png|138891302
+cockpit_3d/generic/TCAS/xpndr_fail-1.png|3141245637
+cockpit_3d/generic/TCAS/fid.png|4287199320
+cockpit_3d/generic/TCAS/tcasbg.png|227098086
+cockpit_3d/generic/TCAS/abv-1.png|617578942
+cockpit_3d/generic/TCAS/atc.png|2440778694
+cockpit_3d/generic/TCAS/notcas-1.png|1125651416
+cockpit_3d/generic/TCAS/fid-1.png|2936534862
+cockpit_3d/generic/TCAS/abv.png|2732547707
+cockpit_3d/generic/TCAS/tcasfail-1.png|2811949249
+cockpit_3d/generic/TCAS/15-1.png|2828014792
+cockpit_3d/generic/TCAS/arrow.png|4170109253
+cockpit_3d/generic/TCAS/10-1.png|1454498584
+cockpit_3d/generic/TCAS/atc-1.png|3693179165
+cockpit_3d/generic/TCAS/test.png|2452784285
+cockpit_3d/generic/TCAS/rply.png|2440778694
+cockpit_3d/generic/TCAS/atc1-1.png|3747574796
+cockpit_3d/generic/TCAS/blw.png|2732547707
+cockpit_3d/generic/TCAS/5.png|2732547707
+cockpit_3d/generic/TCAS/test-1.png|606019861
+cockpit_3d/generic/TYPE/green.png|1730264364
+cockpit_3d/generic/TYPE/dig_type_5-4.png|3947359665
+cockpit_3d/generic/TYPE/dig_type_bl-4.png|1151050420
+cockpit_3d/generic/TYPE/norm.png|649165282
+cockpit_3d/generic/TYPE/text_bl-4.png|2044066142
+cockpit_3d/generic/TYPE/dig_type_3-4.png|2464531449
+cockpit_3d/generic/TYPE/blue_type.png|215156985
+cockpit_3d/generic/TYPE/dig_text-4.png|257413931
+cockpit_3d/generic/TYPE/info_type_6-4.png|1948887236
+cockpit_3d/generic/TYPE/norm-4.png|2140250965
+cockpit_3d/generic/TYPE/dig_type-4.png|3831482064
+cockpit_3d/generic/TYPE/info_type_2-4.png|58601349
+cockpit_3d/generic/TYPE/dig_type_7-4.png|4235253904
+cockpit_3d/generic/TYPE/textblue-4.png|2447759281
+cockpit_3d/generic/TYPE/info_type_5-4.png|3311282888
+cockpit_3d/generic/TYPE/dig_type_bl.png|3277117314
+cockpit_3d/generic/TYPE/info_type_4-4.png|1636546901
+cockpit_3d/generic/TYPE/wide.png|1100929191
+cockpit_3d/generic/TYPE/dig_type.png|3277117314
+cockpit_3d/generic/TYPE/yellow.png|1730264364
+cockpit_3d/generic/TYPE/normbl.png|1000497146
+cockpit_3d/generic/TYPE/info_type_6.png|1059771218
+cockpit_3d/generic/TYPE/dig_type_7.png|215156985
+cockpit_3d/generic/TYPE/info_type_3.png|215156985
+cockpit_3d/generic/TYPE/dig_type_2.png|215156985
+cockpit_3d/generic/TYPE/dig_type_3.png|215156985
+cockpit_3d/generic/TYPE/textgr.png|257610634
+cockpit_3d/generic/TYPE/yellow-4.png|314199274
+cockpit_3d/generic/TYPE/textgr-4.png|1330610028
+cockpit_3d/generic/TYPE/info_type_4.png|215156985
+cockpit_3d/generic/TYPE/text-4.png|4026182960
+cockpit_3d/generic/TYPE/dig_text.png|3343972390
+cockpit_3d/generic/TYPE/textblue.png|3054095852
+cockpit_3d/generic/TYPE/info_type_3-4.png|2975282334
+cockpit_3d/generic/TYPE/info_type_2.png|215156985
+cockpit_3d/generic/TYPE/blue_type-4.png|3572183274
+cockpit_3d/generic/TYPE/TransponderOrange-4.png|2155864329
+cockpit_3d/generic/TYPE/text.png|3054095852
+cockpit_3d/generic/TYPE/info_type_1.png|215156985
+cockpit_3d/generic/TYPE/info_type_5.png|215156985
+cockpit_3d/generic/TYPE/info_type_1-4.png|888923652
+cockpit_3d/generic/TYPE/short.png|3868597913
+cockpit_3d/generic/TYPE/green-4.png|3711756682
+cockpit_3d/generic/TYPE/dig_type_5.png|3277117314
+cockpit_3d/generic/TYPE/textblue2.png|2842665523
+cockpit_3d/generic/TYPE/short2.png|3868597913
+cockpit_3d/generic/TYPE/dig_type_2-4.png|391211110
+cockpit_3d/generic/TYPE/TransponderOrange.png|1532037200
+cockpit_3d/generic/TYPE/short2-4.png|1496832975
+cockpit_3d/generic/TYPE/wide-4.png|2206522146
+cockpit_3d/generic/TYPE/normbl-4.png|1752978525
+cockpit_3d/generic/TYPE/short-4.png|446683471
+cockpit_3d/generic/TYPE/textblue2-4.png|3474363979
+cockpit_3d/generic/CRT Displays/bg.png|1367607999
+cockpit_3d/generic/CRT Displays/ND/Glideslope/HrznGSscale-1.png|3083769278
+cockpit_3d/generic/CRT Displays/ND/Glideslope/HrznGSscale.png|481395753
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/WPT-1.png|2594538115
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/ARPT-1.png|2869009672
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/TFC-1.png|717391482
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/WXR-1.png|4202402469
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/WXR.png|2339832944
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/ARPT.png|2339832944
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/WPT.png|2339832944
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/STA-1.png|1190590557
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/TFC.png|2339832944
+cockpit_3d/generic/CRT Displays/ND/EFIS annun/STA.png|2339832944
+cockpit_3d/generic/CRT Displays/ND/vtkX.png|1705381792
+cockpit_3d/generic/CRT Displays/ND/tcasX.png|2592164765
+cockpit_3d/generic/CRT Displays/ND/adf_L_bkgnd-1.png|2592011070
+cockpit_3d/generic/CRT Displays/ND/tas_gs_wind_overlay-1.png|607444127
+cockpit_3d/generic/CRT Displays/ND/vor_R_bkgnd-1.png|1313717398
+cockpit_3d/generic/CRT Displays/ND/wind_arrow-1.png|4043544149
+cockpit_3d/generic/CRT Displays/ND/trkX-1.png|1247502069
+cockpit_3d/generic/CRT Displays/ND/dmeX_bkgnd_L-1.png|171937785
+cockpit_3d/generic/CRT Displays/ND/dme_bkgnd-1.png|84049177
+cockpit_3d/generic/CRT Displays/ND/dmeX_bkgnd_L.png|2422820085
+cockpit_3d/generic/CRT Displays/ND/vor_L_bkgnd-1.png|4103269315
+cockpit_3d/generic/CRT Displays/ND/hdgX.png|1891864210
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/ils_C_bkgnd-1.png|1594724752
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/ils_L_bkgnd.png|1964559863
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/crs_bkgnd.png|3407218007
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/ils_C_bkgnd.png|1964559863
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/ils_L_bkgnd-1.png|256448395
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/dme_bkgnd-1.png|3540450094
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/ils_R_bkgnd-1.png|4237678467
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/ils_R_bkgnd.png|1964559863
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/dme_bkgnd.png|3407218007
+cockpit_3d/generic/CRT Displays/ND/Ref Rcvr/crs_bkgnd-1.png|366469434
+cockpit_3d/generic/CRT Displays/ND/vor_R_bkgnd.png|1964559863
+cockpit_3d/generic/CRT Displays/ND/trkX.png|1779695748
+cockpit_3d/generic/CRT Displays/ND/dmeX_bkgnd_R-1.png|2382155160
+cockpit_3d/generic/CRT Displays/ND/vor_L_bkgnd.png|1964559863
+cockpit_3d/generic/CRT Displays/ND/mapX-1.png|716458611
+cockpit_3d/generic/CRT Displays/ND/nd_icons-1.png|4162081294
+cockpit_3d/generic/CRT Displays/ND/adf_R_bkgnd.png|1964559863
+cockpit_3d/generic/CRT Displays/ND/wind_arrow.png|349762176
+cockpit_3d/generic/CRT Displays/ND/adf_R_bkgnd-1.png|2935170816
+cockpit_3d/generic/CRT Displays/ND/dmeX_bkgnd.png|2595190432
+cockpit_3d/generic/CRT Displays/ND/nd_icons.png|3791617668
+cockpit_3d/generic/CRT Displays/ND/tcasX-1.png|1923839878
+cockpit_3d/generic/CRT Displays/ND/hdgX-1.png|1534902513
+cockpit_3d/generic/CRT Displays/ND/dme_bkgnd.png|3407218007
+cockpit_3d/generic/CRT Displays/ND/dmeX_bkgnd_R.png|2422820085
+cockpit_3d/generic/CRT Displays/ND/adf_L_bkgnd.png|1964559863
+cockpit_3d/generic/CRT Displays/ND/vtkX-1.png|1485998449
+cockpit_3d/generic/CRT Displays/ND/dmeX_bkgnd-1.png|2348460821
+cockpit_3d/generic/CRT Displays/ND/tas_gs_wind_overlay.png|2738407654
+cockpit_3d/generic/CRT Displays/ND/mapX.png|2384789586
+cockpit_3d/generic/CRT Displays/bg-1.png|2011535323
+cockpit_3d/generic/CRT Displays/TEXT/LED_8.21R.xxx#00.blue.png|129234252
+cockpit_3d/generic/CRT Displays/TEXT/TXT.8.27.green.png|2598555896
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.red-4.png|3971470865
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.white.png|2842665523
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.white-4.png|719925131
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.green.png|2457116299
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.blue-4.png|2445123236
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.green-4.png|2526020688
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.red.png|2842665523
+cockpit_3d/generic/CRT Displays/TEXT/ND/TXT.2.28.blue.png|2166293953
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.red-4.png|346654743
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.white.png|2842665523
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.amber-4.png|2391681337
+cockpit_3d/generic/CRT Displays/TEXT/TXT.8.27.green-4.png|313111214
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.magenta-4.png|1219553434
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.white-4.png|1313780316
+cockpit_3d/generic/CRT Displays/TEXT/TXT.8.27.blue-5.png|1225521985
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.green.png|2457116299
+cockpit_3d/generic/CRT Displays/TEXT/TXT.1.24.white-4.png|3642633345
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.magenta.png|891244749
+cockpit_3d/generic/CRT Displays/TEXT/TXT.8.27.blue.png|2598555896
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.magenta-4|1219553434
+cockpit_3d/generic/CRT Displays/TEXT/LED_8.21R.xxx#00.green.png|129234252
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.amber.png|2842665523
+cockpit_3d/generic/CRT Displays/TEXT/TXT.8.27.blue-4.png|2565223255
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.green-4.png|3767826022
+cockpit_3d/generic/CRT Displays/TEXT/TXT.2.28.red.png|2842665523
+cockpit_3d/generic/CRT Displays/TEXT/TXT.1.24.white.png|834049105
+cockpit_3d/generic/VBE2A/bg_M-1.png|213357545
+cockpit_3d/generic/VBE2A/bg.png|2920166466
+cockpit_3d/generic/VBE2A/bg_M.png|2920166466
+cockpit_3d/generic/VBE2A/bg_FT-1.png|2123156381
+cockpit_3d/generic/VBE2A/bg-1.png|642772216
+cockpit_3d/generic/VBE2A/bg_FT.png|2920166466
+cockpit_3d/generic/EFB/en/bg_pg5.png|1154405160
+cockpit_3d/generic/EFB/en/bg_pg4pu1-1.png|3751136533
+cockpit_3d/generic/EFB/en/bg_pg4pu2.png|4075285333
+cockpit_3d/generic/EFB/en/bg_pg53-1.png|4153538315
+cockpit_3d/generic/EFB/en/deice-1.png|3750891708
+cockpit_3d/generic/EFB/en/bg_ie.png|3865024947
+cockpit_3d/generic/EFB/en/bg_pg4pu21-1.png|2255637926
+cockpit_3d/generic/EFB/en/remove_all_btn-1.png|615796995
+cockpit_3d/generic/EFB/en/bg_pg41.png|1154405160
+cockpit_3d/generic/EFB/en/yel_btn.png|2336502418
+cockpit_3d/generic/EFB/en/bg_test1-1.png|918902427
+cockpit_3d/generic/EFB/en/slash.png|2374084632
+cockpit_3d/generic/EFB/en/bg_test2-1.png|4081767141
+cockpit_3d/generic/EFB/en/deice_remain.png|1306476043
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_g.png|3226747664
+cockpit_3d/generic/EFB/en/popups/popup2_1.png|2451824132
+cockpit_3d/generic/EFB/en/popups/popup2_0.png|1232360749
+cockpit_3d/generic/EFB/en/popups/lang_ru.png|2293758014
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_g-1.png|4040645019
+cockpit_3d/generic/EFB/en/popups/popup3_vol-1.png|2046074470
+cockpit_3d/generic/EFB/en/popups/popup5_min.png|686250019
+cockpit_3d/generic/EFB/en/popups/popup3_1.png|4103057860
+cockpit_3d/generic/EFB/en/popups/popup3_mute.png|1643722465
+cockpit_3d/generic/EFB/en/popups/battery_bg-1.png|946229594
+cockpit_3d/generic/EFB/en/popups/popup3_mute-1.png|655283578
+cockpit_3d/generic/EFB/en/popups/popup5_1-1.png|3084578938
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_log-1.png|1216325385
+cockpit_3d/generic/EFB/en/popups/popup_startlogo.png|1119251645
+cockpit_3d/generic/EFB/en/popups/kbd_popup.png|2601863987
+cockpit_3d/generic/EFB/en/popups/popup5_hour.png|172068492
+cockpit_3d/generic/EFB/en/popups/popup1_1-1.png|508782440
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_r-1.png|2964101435
+cockpit_3d/generic/EFB/en/popups/notepad-1.png|2604415627
+cockpit_3d/generic/EFB/en/popups/battery_chrg-1.png|2960801346
+cockpit_3d/generic/EFB/en/popups/popup5_sec.png|1179018265
+cockpit_3d/generic/EFB/en/popups/popup3_1-1.png|1171111807
+cockpit_3d/generic/EFB/en/popups/notepad.png|1813460604
+cockpit_3d/generic/EFB/en/popups/kbd_popup-1.png|358553376
+cockpit_3d/generic/EFB/en/popups/pu2_battery_bg-1.png|2487892008
+cockpit_3d/generic/EFB/en/popups/lang_en.png|372410548
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_log.png|707007695
+cockpit_3d/generic/EFB/en/popups/battery_bg.png|3703527025
+cockpit_3d/generic/EFB/en/popups/lang_en-1.png|2851705539
+cockpit_3d/generic/EFB/en/popups/icon_ntpd_open.png|2201396320
+cockpit_3d/generic/EFB/en/popups/popup4_1-1.png|2901744738
+cockpit_3d/generic/EFB/en/popups/pu2_battery_bg.png|3408424456
+cockpit_3d/generic/EFB/en/popups/battery_chrg.png|378545959
+cockpit_3d/generic/EFB/en/popups/popup5_hour-1.png|40364967
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_y.png|1624453168
+cockpit_3d/generic/EFB/en/popups/popup2_1-1.png|1759674920
+cockpit_3d/generic/EFB/en/popups/popup9_1.png|25247954
+cockpit_3d/generic/EFB/en/popups/popup9_1-1.png|113002912
+cockpit_3d/generic/EFB/en/popups/battery_perc-1.png|2420215751
+cockpit_3d/generic/EFB/en/popups/popup1_1.png|3079255336
+cockpit_3d/generic/EFB/en/popups/lang_ru-1.png|3897690586
+cockpit_3d/generic/EFB/en/popups/popup3_vol.png|1355197050
+cockpit_3d/generic/EFB/en/popups/popup9.png|25247954
+cockpit_3d/generic/EFB/en/popups/popup5_1.png|795836716
+cockpit_3d/generic/EFB/en/popups/battery_perc.png|1655357618
+cockpit_3d/generic/EFB/en/popups/popup_startlogo-1.png|929325630
+cockpit_3d/generic/EFB/en/popups/icon_ntpd_open-1.png|3199729272
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_y-1.png|4232826257
+cockpit_3d/generic/EFB/en/popups/mnths/jul-1.png|530653845
+cockpit_3d/generic/EFB/en/popups/mnths/aug.png|2318493321
+cockpit_3d/generic/EFB/en/popups/mnths/mrc-1.png|3217401360
+cockpit_3d/generic/EFB/en/popups/mnths/nov.png|492250058
+cockpit_3d/generic/EFB/en/popups/mnths/jun.png|3020254732
+cockpit_3d/generic/EFB/en/popups/mnths/feb.png|3316033839
+cockpit_3d/generic/EFB/en/popups/mnths/jan.png|704539969
+cockpit_3d/generic/EFB/en/popups/mnths/dec.png|577610775
+cockpit_3d/generic/EFB/en/popups/mnths/sep.png|3531443238
+cockpit_3d/generic/EFB/en/popups/mnths/jan-1.png|914494233
+cockpit_3d/generic/EFB/en/popups/mnths/jul.png|4089169295
+cockpit_3d/generic/EFB/en/popups/mnths/oct.png|896371376
+cockpit_3d/generic/EFB/en/popups/mnths/maj-1.png|1652935360
+cockpit_3d/generic/EFB/en/popups/mnths/apr-1.png|4130994330
+cockpit_3d/generic/EFB/en/popups/mnths/jun-1.png|1115187612
+cockpit_3d/generic/EFB/en/popups/mnths/sep-1.png|3630576358
+cockpit_3d/generic/EFB/en/popups/mnths/feb-1.png|1275240735
+cockpit_3d/generic/EFB/en/popups/mnths/dec-1.png|3092251955
+cockpit_3d/generic/EFB/en/popups/mnths/oct-1.png|3144680313
+cockpit_3d/generic/EFB/en/popups/mnths/maj.png|2300496178
+cockpit_3d/generic/EFB/en/popups/mnths/mrc.png|3964241059
+cockpit_3d/generic/EFB/en/popups/mnths/apr.png|161720696
+cockpit_3d/generic/EFB/en/popups/mnths/nov-1.png|325349301
+cockpit_3d/generic/EFB/en/popups/mnths/aug-1.png|2417028438
+cockpit_3d/generic/EFB/en/popups/popup9-1.png|1572343116
+cockpit_3d/generic/EFB/en/popups/popup5_min-1.png|3110124904
+cockpit_3d/generic/EFB/en/popups/popup2_0-1.png|1016123794
+cockpit_3d/generic/EFB/en/popups/popup5_sec-1.png|3017028917
+cockpit_3d/generic/EFB/en/popups/pu2_battery_chrg_r.png|3865576256
+cockpit_3d/generic/EFB/en/popups/popup4_1.png|3504637387
+cockpit_3d/generic/EFB/en/bg_test4-1.png|273251925
+cockpit_3d/generic/EFB/en/bg_pg4pu1.png|4075285333
+cockpit_3d/generic/EFB/en/bg_ie-1.png|3743092046
+cockpit_3d/generic/EFB/en/bg_pg22-1.png|2251274208
+cockpit_3d/generic/EFB/en/bg_pg0-1.png|2787504920
+cockpit_3d/generic/EFB/en/remove_all_btn.png|3347141864
+cockpit_3d/generic/EFB/en/dig_type_7-4.png|4235253904
+cockpit_3d/generic/EFB/en/deice_remain-1.png|286770891
+cockpit_3d/generic/EFB/en/bg_pg51-1.png|3592696092
+cockpit_3d/generic/EFB/en/folder/file9-1.png|2418088327
+cockpit_3d/generic/EFB/en/folder/file8-1.png|397242210
+cockpit_3d/generic/EFB/en/folder/file3.png|3503831670
+cockpit_3d/generic/EFB/en/folder/file2-1.png|2089209641
+cockpit_3d/generic/EFB/en/folder/file7.png|2898104302
+cockpit_3d/generic/EFB/en/folder/file2.png|4249255573
+cockpit_3d/generic/EFB/en/folder/file10.png|1346210256
+cockpit_3d/generic/EFB/en/folder/file7-1.png|330796558
+cockpit_3d/generic/EFB/en/folder/bg_pg0-1.png|1265472516
+cockpit_3d/generic/EFB/en/folder/bg_pg0.png|3703892930
+cockpit_3d/generic/EFB/en/folder/file4-1.png|698678866
+cockpit_3d/generic/EFB/en/folder/file6-1.png|1841803641
+cockpit_3d/generic/EFB/en/folder/file6.png|3071613713
+cockpit_3d/generic/EFB/en/folder/file5-1.png|3916045993
+cockpit_3d/generic/EFB/en/folder/icon_wpv.png|3052211765
+cockpit_3d/generic/EFB/en/folder/file9.png|4206663832
+cockpit_3d/generic/EFB/en/folder/file5.png|3866482600
+cockpit_3d/generic/EFB/en/folder/file3-1.png|3522913542
+cockpit_3d/generic/EFB/en/folder/file8.png|3838340937
+cockpit_3d/generic/EFB/en/folder/icon_wpv-1.png|1617099114
+cockpit_3d/generic/EFB/en/folder/file1-1.png|2704569852
+cockpit_3d/generic/EFB/en/folder/file1.png|3934966830
+cockpit_3d/generic/EFB/en/folder/file4.png|1383429359
+cockpit_3d/generic/EFB/en/folder/file10-1.png|2997373108
+cockpit_3d/generic/EFB/en/bg_pg21.png|1154405160
+cockpit_3d/generic/EFB/en/deice_running-1.png|424143054
+cockpit_3d/generic/EFB/en/bg_pg23.png|1154405160
+cockpit_3d/generic/EFB/en/bg_pg0.png|1154405160
+cockpit_3d/generic/EFB/en/bg_black-1.png|1154405160
+cockpit_3d/generic/EFB/en/bg_pg4-1.png|681105702
+cockpit_3d/generic/EFB/en/trnsp.png|2336502418
+cockpit_3d/generic/EFB/en/bg_pg21_err-1.png|3773165975
+cockpit_3d/generic/EFB/en/bg_pg3-1.png|1162151963
+cockpit_3d/generic/EFB/en/dig_type_7.png|215156985
+cockpit_3d/generic/EFB/en/yel_btn-1.png|3222320666
+cockpit_3d/generic/EFB/en/slash-1.png|1103203162
+cockpit_3d/generic/EFB/en/bg_pg5-1.png|1761066255
+cockpit_3d/generic/EFB/en/trnsp_1-1.png|320952846
+cockpit_3d/generic/EFB/en/bg_pg4.png|1154405160
+cockpit_3d/generic/EFB/en/bg_test1.png|2757015703
+cockpit_3d/generic/EFB/en/bg_pg52.png|1294222789
+cockpit_3d/generic/EFB/en/page1/loaded_fuel.png|264130683
+cockpit_3d/generic/EFB/en/page1/bg_pg11.png|1584851102
+cockpit_3d/generic/EFB/en/page1/podlozhka-1.png|2737942426
+cockpit_3d/generic/EFB/en/page1/bg_pg12-1.png|3170656101
+cockpit_3d/generic/EFB/en/page1/bg_pg1-1.png|255006062
+cockpit_3d/generic/EFB/en/page1/podlozhka.png|3720575907
+cockpit_3d/generic/EFB/en/page1/smooth_load-1.png|3853526339
+cockpit_3d/generic/EFB/en/page1/bg_pg12.png|1584851102
+cockpit_3d/generic/EFB/en/page1/smooth_load.png|1002098797
+cockpit_3d/generic/EFB/en/page1/bg_pg11-1.png|3638099132
+cockpit_3d/generic/EFB/en/page1/loaded_cargo-1.png|4262921085
+cockpit_3d/generic/EFB/en/page1/bg_pg1.png|60323864
+cockpit_3d/generic/EFB/en/page1/loaded_fuel-1.png|1444385615
+cockpit_3d/generic/EFB/en/page1/dangermac-1.png|3934783255
+cockpit_3d/generic/EFB/en/page1/loaded_cargo.png|727034306
+cockpit_3d/generic/EFB/en/page1/dangermac.png|3733234264
+cockpit_3d/generic/EFB/en/no_deice.png|3835020265
+cockpit_3d/generic/EFB/en/text/white_type.png|1746030291
+cockpit_3d/generic/EFB/en/text/blue_type.png|2843631264
+cockpit_3d/generic/EFB/en/text/white_type-4.png|4188689996
+cockpit_3d/generic/EFB/en/text/yel_type.png|2843631264
+cockpit_3d/generic/EFB/en/text/blue_low_type.png|2843631264
+cockpit_3d/generic/EFB/en/text/white_type2-4.png|3377445261
+cockpit_3d/generic/EFB/en/text/black_type-4.png|4191780818
+cockpit_3d/generic/EFB/en/text/black_type2-4.png|2244810621
+cockpit_3d/generic/EFB/en/text/blue_low_type-4.png|1325147944
+cockpit_3d/generic/EFB/en/text/yel_type-4.png|1437183918
+cockpit_3d/generic/EFB/en/text/black_type.png|1877199590
+cockpit_3d/generic/EFB/en/text/blue_slow_type-4.png|1104314952
+cockpit_3d/generic/EFB/en/text/blue_type-4.png|853859544
+cockpit_3d/generic/EFB/en/text/white_type3.png|1746030291
+cockpit_3d/generic/EFB/en/text/short.png|492312582
+cockpit_3d/generic/EFB/en/text/white_type3-4.png|1817468985
+cockpit_3d/generic/EFB/en/text/white_type2.png|1746030291
+cockpit_3d/generic/EFB/en/text/black_type2.png|1877199590
+cockpit_3d/generic/EFB/en/text/short-4.png|133229017
+cockpit_3d/generic/EFB/en/bg_pg3.png|1154405160
+cockpit_3d/generic/EFB/en/bg_pg2.png|1154405160
+cockpit_3d/generic/EFB/en/bg_pg21-1.png|1853123740
+cockpit_3d/generic/EFB/en/trnsp_1.png|320952846
+cockpit_3d/generic/EFB/en/bg_pg23-1.png|870617379
+cockpit_3d/generic/EFB/en/no_deice-1.png|4169285403
+cockpit_3d/generic/EFB/en/trnsp-1.png|2336502418
+cockpit_3d/generic/EFB/en/deice_less1.png|2609260262
+cockpit_3d/generic/EFB/en/bg_pg52-1.png|4113013075
+cockpit_3d/generic/EFB/en/bg_pg53.png|1294222789
+cockpit_3d/generic/EFB/en/bg_pg41-1.png|2321592113
+cockpit_3d/generic/EFB/en/bg_pg31.png|1154405160
+cockpit_3d/generic/EFB/en/bg_test2.png|2757015703
+cockpit_3d/generic/EFB/en/bg_test3.png|2757015703
+cockpit_3d/generic/EFB/en/bg_pg4pu21.png|4075285333
+cockpit_3d/generic/EFB/en/bg_pg51.png|1154405160
+cockpit_3d/generic/EFB/en/bg_pg31-1.png|1346590179
+cockpit_3d/generic/EFB/en/bg_pg2-1.png|3318190361
+cockpit_3d/generic/EFB/en/deice_running.png|1928700597
+cockpit_3d/generic/EFB/en/config/civ-1.png|4178305159
+cockpit_3d/generic/EFB/en/config/med-1.png|3325290233
+cockpit_3d/generic/EFB/en/config/kontur80-1.png|1587070862
+cockpit_3d/generic/EFB/en/config/gps-1.png|4258517698
+cockpit_3d/generic/EFB/en/config/kontur90-1.png|3166872335
+cockpit_3d/generic/EFB/en/config/high-1.png|211439354
+cockpit_3d/generic/EFB/en/config/mil.png|1776029178
+cockpit_3d/generic/EFB/en/config/cpt-1.png|1533076575
+cockpit_3d/generic/EFB/en/config/tiller-1.png|4172969619
+cockpit_3d/generic/EFB/en/config/smooth_load-1.png|1703999854
+cockpit_3d/generic/EFB/en/config/gps.png|3071656289
+cockpit_3d/generic/EFB/en/config/mil-1.png|2095927256
+cockpit_3d/generic/EFB/en/config/cpt.png|3831225981
+cockpit_3d/generic/EFB/en/config/smooth_load.png|1002098797
+cockpit_3d/generic/EFB/en/config/kontur80.png|1776029178
+cockpit_3d/generic/EFB/en/config/kontur90.png|1776029178
+cockpit_3d/generic/EFB/en/config/high.png|3071656289
+cockpit_3d/generic/EFB/en/config/civ.png|1776029178
+cockpit_3d/generic/EFB/en/config/kontur.png|1776029178
+cockpit_3d/generic/EFB/en/config/med.png|3071656289
+cockpit_3d/generic/EFB/en/config/fo-1.png|1232668109
+cockpit_3d/generic/EFB/en/config/low-1.png|2036765893
+cockpit_3d/generic/EFB/en/config/off.png|3071656289
+cockpit_3d/generic/EFB/en/config/off-1.png|3089731652
+cockpit_3d/generic/EFB/en/config/tiller.png|3071656289
+cockpit_3d/generic/EFB/en/config/fo.png|3831225981
+cockpit_3d/generic/EFB/en/config/low.png|3071656289
+cockpit_3d/generic/EFB/en/config/kontur-1.png|2924937067
+cockpit_3d/generic/EFB/en/bg_pg22.png|1154405160
+cockpit_3d/generic/EFB/en/bg_black.png|1154405160
+cockpit_3d/generic/EFB/en/plus-1.png|1136683046
+cockpit_3d/generic/EFB/en/bg_pg4pu2-1.png|1556641003
+cockpit_3d/generic/EFB/en/bg_test4.png|2757015703
+cockpit_3d/generic/EFB/en/deice.png|4018549923
+cockpit_3d/generic/EFB/en/deice_less1-1.png|49065078
+cockpit_3d/generic/EFB/en/plus.png|2336502418
+cockpit_3d/generic/EFB/en/grn_btn-1.png|707958098
+cockpit_3d/generic/EFB/en/grn_btn.png|2336502418
+cockpit_3d/generic/EFB/en/bg_pg21_err.png|782622787
+cockpit_3d/generic/EFB/en/bg_test3-1.png|654505115
+cockpit_3d/generic/EFB/ru/bg_pg5.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_pg4pu1-1.png|311534074
+cockpit_3d/generic/EFB/ru/bg_pg4pu2.png|4075285333
+cockpit_3d/generic/EFB/ru/bg_pg53-1.png|1085371350
+cockpit_3d/generic/EFB/ru/deice-1.png|2022280359
+cockpit_3d/generic/EFB/ru/bg_ie.png|3865024947
+cockpit_3d/generic/EFB/ru/bg_pg4pu21-1.png|2272489838
+cockpit_3d/generic/EFB/ru/remove_all_btn-1.png|314587614
+cockpit_3d/generic/EFB/ru/bg_pg41.png|1154405160
+cockpit_3d/generic/EFB/ru/yel_btn.png|2336502418
+cockpit_3d/generic/EFB/ru/bg_test1-1.png|918902427
+cockpit_3d/generic/EFB/ru/slash.png|2374084632
+cockpit_3d/generic/EFB/ru/bg_test2-1.png|576039918
+cockpit_3d/generic/EFB/ru/deice_remain.png|1306476043
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_g.png|3226747664
+cockpit_3d/generic/EFB/ru/popups/popup2_1.png|2451824132
+cockpit_3d/generic/EFB/ru/popups/popup2_0.png|1232360749
+cockpit_3d/generic/EFB/ru/popups/lang_ru.png|2293758014
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_g-1.png|4040645019
+cockpit_3d/generic/EFB/ru/popups/popup3_vol-1.png|2046074470
+cockpit_3d/generic/EFB/ru/popups/popup5_min.png|686250019
+cockpit_3d/generic/EFB/ru/popups/popup3_1.png|4103057860
+cockpit_3d/generic/EFB/ru/popups/popup3_mute.png|1643722465
+cockpit_3d/generic/EFB/ru/popups/battery_bg-1.png|946229594
+cockpit_3d/generic/EFB/ru/popups/popup3_mute-1.png|655283578
+cockpit_3d/generic/EFB/ru/popups/popup5_1-1.png|3671582167
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_log-1.png|1216325385
+cockpit_3d/generic/EFB/ru/popups/popup_startlogo.png|1119251645
+cockpit_3d/generic/EFB/ru/popups/kbd_popup.png|2601863987
+cockpit_3d/generic/EFB/ru/popups/popup5_hour.png|172068492
+cockpit_3d/generic/EFB/ru/popups/popup1_1-1.png|747249319
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_r-1.png|2964101435
+cockpit_3d/generic/EFB/ru/popups/notepad-1.png|3846073903
+cockpit_3d/generic/EFB/ru/popups/battery_chrg-1.png|2960801346
+cockpit_3d/generic/EFB/ru/popups/popup5_sec.png|1179018265
+cockpit_3d/generic/EFB/ru/popups/popup3_1-1.png|2229092618
+cockpit_3d/generic/EFB/ru/popups/notepad.png|1813460604
+cockpit_3d/generic/EFB/ru/popups/kbd_popup-1.png|1800608905
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_bg-1.png|2487892008
+cockpit_3d/generic/EFB/ru/popups/lang_en.png|372410548
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_log.png|707007695
+cockpit_3d/generic/EFB/ru/popups/battery_bg.png|3703527025
+cockpit_3d/generic/EFB/ru/popups/lang_en-1.png|2851705539
+cockpit_3d/generic/EFB/ru/popups/icon_ntpd_open.png|2201396320
+cockpit_3d/generic/EFB/ru/popups/popup4_1-1.png|2350840941
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_bg.png|3408424456
+cockpit_3d/generic/EFB/ru/popups/battery_chrg.png|378545959
+cockpit_3d/generic/EFB/ru/popups/popup5_hour-1.png|40364967
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_y.png|1624453168
+cockpit_3d/generic/EFB/ru/popups/popup2_1-1.png|2833924549
+cockpit_3d/generic/EFB/ru/popups/popup9_1.png|25247954
+cockpit_3d/generic/EFB/ru/popups/popup9_1-1.png|1540804130
+cockpit_3d/generic/EFB/ru/popups/battery_perc-1.png|2420215751
+cockpit_3d/generic/EFB/ru/popups/popup1_1.png|3079255336
+cockpit_3d/generic/EFB/ru/popups/lang_ru-1.png|3897690586
+cockpit_3d/generic/EFB/ru/popups/popup3_vol.png|1355197050
+cockpit_3d/generic/EFB/ru/popups/popup9.png|25247954
+cockpit_3d/generic/EFB/ru/popups/popup5_1.png|795836716
+cockpit_3d/generic/EFB/ru/popups/battery_perc.png|1655357618
+cockpit_3d/generic/EFB/ru/popups/popup_startlogo-1.png|929325630
+cockpit_3d/generic/EFB/ru/popups/icon_ntpd_open-1.png|3199729272
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_y-1.png|4232826257
+cockpit_3d/generic/EFB/ru/popups/mnths/jul-1.png|2239112679
+cockpit_3d/generic/EFB/ru/popups/mnths/aug.png|2318493321
+cockpit_3d/generic/EFB/ru/popups/mnths/mrc-1.png|4098435935
+cockpit_3d/generic/EFB/ru/popups/mnths/nov.png|492250058
+cockpit_3d/generic/EFB/ru/popups/mnths/jun.png|3020254732
+cockpit_3d/generic/EFB/ru/popups/mnths/feb.png|3316033839
+cockpit_3d/generic/EFB/ru/popups/mnths/jan.png|704539969
+cockpit_3d/generic/EFB/ru/popups/mnths/dec.png|577610775
+cockpit_3d/generic/EFB/ru/popups/mnths/sep.png|3531443238
+cockpit_3d/generic/EFB/ru/popups/mnths/jan-1.png|1546222153
+cockpit_3d/generic/EFB/ru/popups/mnths/jul.png|4089169295
+cockpit_3d/generic/EFB/ru/popups/mnths/oct.png|896371376
+cockpit_3d/generic/EFB/ru/popups/mnths/maj-1.png|3908710740
+cockpit_3d/generic/EFB/ru/popups/mnths/apr-1.png|3790067612
+cockpit_3d/generic/EFB/ru/popups/mnths/jun-1.png|3253720710
+cockpit_3d/generic/EFB/ru/popups/mnths/sep-1.png|4172406698
+cockpit_3d/generic/EFB/ru/popups/mnths/feb-1.png|2344116507
+cockpit_3d/generic/EFB/ru/popups/mnths/dec-1.png|18915806
+cockpit_3d/generic/EFB/ru/popups/mnths/oct-1.png|2071398233
+cockpit_3d/generic/EFB/ru/popups/mnths/maj.png|2300496178
+cockpit_3d/generic/EFB/ru/popups/mnths/mrc.png|3964241059
+cockpit_3d/generic/EFB/ru/popups/mnths/apr.png|161720696
+cockpit_3d/generic/EFB/ru/popups/mnths/nov-1.png|3601160074
+cockpit_3d/generic/EFB/ru/popups/mnths/aug-1.png|2036019830
+cockpit_3d/generic/EFB/ru/popups/popup9-1.png|49264053
+cockpit_3d/generic/EFB/ru/popups/popup5_min-1.png|3110124904
+cockpit_3d/generic/EFB/ru/popups/popup2_0-1.png|2536026112
+cockpit_3d/generic/EFB/ru/popups/popup5_sec-1.png|3017028917
+cockpit_3d/generic/EFB/ru/popups/pu2_battery_chrg_r.png|3865576256
+cockpit_3d/generic/EFB/ru/popups/popup4_1.png|3504637387
+cockpit_3d/generic/EFB/ru/bg_test4-1.png|273251925
+cockpit_3d/generic/EFB/ru/bg_pg4pu1.png|4075285333
+cockpit_3d/generic/EFB/ru/bg_ie-1.png|1192114761
+cockpit_3d/generic/EFB/ru/bg_pg22-1.png|1310578448
+cockpit_3d/generic/EFB/ru/bg_pg0-1.png|1891898530
+cockpit_3d/generic/EFB/ru/remove_all_btn.png|3347141864
+cockpit_3d/generic/EFB/ru/dig_type_7-4.png|4235253904
+cockpit_3d/generic/EFB/ru/deice_remain-1.png|209142398
+cockpit_3d/generic/EFB/ru/bg_pg51-1.png|20751729
+cockpit_3d/generic/EFB/ru/folder/file9-1.png|172991572
+cockpit_3d/generic/EFB/ru/folder/file8-1.png|1148604081
+cockpit_3d/generic/EFB/ru/folder/file3.png|3503831670
+cockpit_3d/generic/EFB/ru/folder/file2-1.png|4223809936
+cockpit_3d/generic/EFB/ru/folder/file7.png|2898104302
+cockpit_3d/generic/EFB/ru/folder/file2.png|4249255573
+cockpit_3d/generic/EFB/ru/folder/file10.png|1346210256
+cockpit_3d/generic/EFB/ru/folder/file7-1.png|1408867995
+cockpit_3d/generic/EFB/ru/folder/bg_pg0-1.png|2357682835
+cockpit_3d/generic/EFB/ru/folder/bg_pg0.png|3703892930
+cockpit_3d/generic/EFB/ru/folder/file4-1.png|1277401211
+cockpit_3d/generic/EFB/ru/folder/file6-1.png|2593697429
+cockpit_3d/generic/EFB/ru/folder/file6.png|3071613713
+cockpit_3d/generic/EFB/ru/folder/file5-1.png|993982190
+cockpit_3d/generic/EFB/ru/folder/icon_wpv.png|3052211765
+cockpit_3d/generic/EFB/ru/folder/file9.png|4206663832
+cockpit_3d/generic/EFB/ru/folder/file5.png|3866482600
+cockpit_3d/generic/EFB/ru/folder/file3-1.png|391693435
+cockpit_3d/generic/EFB/ru/folder/file8.png|3838340937
+cockpit_3d/generic/EFB/ru/folder/icon_wpv-1.png|1617099114
+cockpit_3d/generic/EFB/ru/folder/file1-1.png|1139723818
+cockpit_3d/generic/EFB/ru/folder/file1.png|3934966830
+cockpit_3d/generic/EFB/ru/folder/file4.png|1383429359
+cockpit_3d/generic/EFB/ru/folder/file10-1.png|3209940413
+cockpit_3d/generic/EFB/ru/bg_pg21.png|1154405160
+cockpit_3d/generic/EFB/ru/deice_running-1.png|2327491606
+cockpit_3d/generic/EFB/ru/bg_pg23.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_pg0.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_black-1.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_pg4-1.png|3376403564
+cockpit_3d/generic/EFB/ru/trnsp.png|2336502418
+cockpit_3d/generic/EFB/ru/bg_pg21_err-1.png|684599663
+cockpit_3d/generic/EFB/ru/bg_pg3-1.png|1692182730
+cockpit_3d/generic/EFB/ru/dig_type_7.png|215156985
+cockpit_3d/generic/EFB/ru/yel_btn-1.png|3222320666
+cockpit_3d/generic/EFB/ru/slash-1.png|1103203162
+cockpit_3d/generic/EFB/ru/bg_pg5-1.png|2082141484
+cockpit_3d/generic/EFB/ru/trnsp_1-1.png|320952846
+cockpit_3d/generic/EFB/ru/bg_pg4.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_test1.png|2757015703
+cockpit_3d/generic/EFB/ru/bg_pg52.png|1294222789
+cockpit_3d/generic/EFB/ru/page1/loaded_fuel.png|264130683
+cockpit_3d/generic/EFB/ru/page1/bg_pg11.png|1584851102
+cockpit_3d/generic/EFB/ru/page1/podlozhka-1.png|2737942426
+cockpit_3d/generic/EFB/ru/page1/bg_pg12-1.png|497649244
+cockpit_3d/generic/EFB/ru/page1/bg_pg1-1.png|2306642446
+cockpit_3d/generic/EFB/ru/page1/podlozhka.png|3720575907
+cockpit_3d/generic/EFB/ru/page1/smooth_load-1.png|2564247170
+cockpit_3d/generic/EFB/ru/page1/bg_pg12.png|1584851102
+cockpit_3d/generic/EFB/ru/page1/smooth_load.png|1002098797
+cockpit_3d/generic/EFB/ru/page1/bg_pg11-1.png|2969016505
+cockpit_3d/generic/EFB/ru/page1/loaded_cargo-1.png|4262921085
+cockpit_3d/generic/EFB/ru/page1/bg_pg1.png|60323864
+cockpit_3d/generic/EFB/ru/page1/loaded_fuel-1.png|1444385615
+cockpit_3d/generic/EFB/ru/page1/dangermac-1.png|3934783255
+cockpit_3d/generic/EFB/ru/page1/loaded_cargo.png|727034306
+cockpit_3d/generic/EFB/ru/page1/dangermac.png|3733234264
+cockpit_3d/generic/EFB/ru/no_deice.png|3835020265
+cockpit_3d/generic/EFB/ru/text/white_type.png|1746030291
+cockpit_3d/generic/EFB/ru/text/blue_type.png|2843631264
+cockpit_3d/generic/EFB/ru/text/white_type-4.png|4188689996
+cockpit_3d/generic/EFB/ru/text/yel_type.png|2843631264
+cockpit_3d/generic/EFB/ru/text/blue_low_type.png|2843631264
+cockpit_3d/generic/EFB/ru/text/white_type2-4.png|3377445261
+cockpit_3d/generic/EFB/ru/text/black_type-4.png|4191780818
+cockpit_3d/generic/EFB/ru/text/black_type2-4.png|2244810621
+cockpit_3d/generic/EFB/ru/text/blue_low_type-4.png|1325147944
+cockpit_3d/generic/EFB/ru/text/yel_type-4.png|1437183918
+cockpit_3d/generic/EFB/ru/text/black_type.png|1877199590
+cockpit_3d/generic/EFB/ru/text/blue_slow_type-4.png|1104314952
+cockpit_3d/generic/EFB/ru/text/blue_type-4.png|853859544
+cockpit_3d/generic/EFB/ru/text/white_type3.png|1746030291
+cockpit_3d/generic/EFB/ru/text/short.png|492312582
+cockpit_3d/generic/EFB/ru/text/white_type3-4.png|1817468985
+cockpit_3d/generic/EFB/ru/text/white_type2.png|1746030291
+cockpit_3d/generic/EFB/ru/text/black_type2.png|1877199590
+cockpit_3d/generic/EFB/ru/text/short-4.png|133229017
+cockpit_3d/generic/EFB/ru/bg_pg3.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_pg2.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_pg21-1.png|512342159
+cockpit_3d/generic/EFB/ru/trnsp_1.png|320952846
+cockpit_3d/generic/EFB/ru/bg_pg23-1.png|3812390070
+cockpit_3d/generic/EFB/ru/no_deice-1.png|353086557
+cockpit_3d/generic/EFB/ru/trnsp-1.png|2336502418
+cockpit_3d/generic/EFB/ru/deice_less1.png|2609260262
+cockpit_3d/generic/EFB/ru/bg_pg52-1.png|4063708358
+cockpit_3d/generic/EFB/ru/bg_pg53.png|1294222789
+cockpit_3d/generic/EFB/ru/bg_pg41-1.png|797280741
+cockpit_3d/generic/EFB/ru/bg_pg31.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_test2.png|2757015703
+cockpit_3d/generic/EFB/ru/bg_test3.png|2757015703
+cockpit_3d/generic/EFB/ru/bg_pg4pu21.png|4075285333
+cockpit_3d/generic/EFB/ru/bg_pg51.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_pg31-1.png|2612223967
+cockpit_3d/generic/EFB/ru/bg_pg2-1.png|751939178
+cockpit_3d/generic/EFB/ru/deice_running.png|1928700597
+cockpit_3d/generic/EFB/ru/config/civ-1.png|3278265909
+cockpit_3d/generic/EFB/ru/config/med-1.png|3522413683
+cockpit_3d/generic/EFB/ru/config/kontur80-1.png|3567548143
+cockpit_3d/generic/EFB/ru/config/gps-1.png|4258517698
+cockpit_3d/generic/EFB/ru/config/kontur90-1.png|2048399243
+cockpit_3d/generic/EFB/ru/config/high-1.png|4024676276
+cockpit_3d/generic/EFB/ru/config/mil.png|1776029178
+cockpit_3d/generic/EFB/ru/config/cpt-1.png|2419500865
+cockpit_3d/generic/EFB/ru/config/tiller-1.png|762207996
+cockpit_3d/generic/EFB/ru/config/gps.png|3071656289
+cockpit_3d/generic/EFB/ru/config/mil-1.png|3961189130
+cockpit_3d/generic/EFB/ru/config/cpt.png|3831225981
+cockpit_3d/generic/EFB/ru/config/kontur80.png|1776029178
+cockpit_3d/generic/EFB/ru/config/kontur90.png|1776029178
+cockpit_3d/generic/EFB/ru/config/high.png|3071656289
+cockpit_3d/generic/EFB/ru/config/civ.png|1776029178
+cockpit_3d/generic/EFB/ru/config/kontur.png|1776029178
+cockpit_3d/generic/EFB/ru/config/med.png|3071656289
+cockpit_3d/generic/EFB/ru/config/fo-1.png|2465809355
+cockpit_3d/generic/EFB/ru/config/low-1.png|425371498
+cockpit_3d/generic/EFB/ru/config/off.png|3071656289
+cockpit_3d/generic/EFB/ru/config/off-1.png|3701151713
+cockpit_3d/generic/EFB/ru/config/tiller.png|3071656289
+cockpit_3d/generic/EFB/ru/config/fo.png|3831225981
+cockpit_3d/generic/EFB/ru/config/low.png|3071656289
+cockpit_3d/generic/EFB/ru/config/kontur-1.png|4248933137
+cockpit_3d/generic/EFB/ru/bg_pg22.png|1154405160
+cockpit_3d/generic/EFB/ru/bg_black.png|1154405160
+cockpit_3d/generic/EFB/ru/plus-1.png|1136683046
+cockpit_3d/generic/EFB/ru/bg_pg4pu2-1.png|1781231336
+cockpit_3d/generic/EFB/ru/bg_test4.png|2757015703
+cockpit_3d/generic/EFB/ru/deice.png|4018549923
+cockpit_3d/generic/EFB/ru/deice_less1-1.png|49065078
+cockpit_3d/generic/EFB/ru/plus.png|2336502418
+cockpit_3d/generic/EFB/ru/grn_btn-1.png|707958098
+cockpit_3d/generic/EFB/ru/grn_btn.png|2336502418
+cockpit_3d/generic/EFB/ru/bg_pg21_err.png|782622787
+cockpit_3d/generic/EFB/ru/bg_test3-1.png|654505115
+cockpit_3d/radios/GPS FMS/CDU739_screen.png|1299186924
+cockpit_3d/radios/GPS FMS/Garmin_530_screen.png|3016776006
+cockpit_3d/EFIS/EFIS maps/map_s_HM.txt|1621216720
+cockpit_3d/EFIS/EFIS maps/map_s_HM-1.png|1740093914
+cockpit_3d/EFIS/EFIS maps/map_s_HM-4.png|1066073556
+cockpit_3d/EFIS/EFIS maps/map_s_HM-2.png|3236869943
+cockpit_3d/EFIS/EFIS maps/map_s_HM-3.png|3586033435
+cockpit_3d/EFIS/EFIS maps/map_s_HM.png|1041723797
+tu154_vrconfig.txt|1175163025
+tu154_icon11.png|2913622315
+pa3/scroll_01.json|1211262817
+pa3/nvu_map-assets/nvu_map.png|1370362143
+pa3/gen_plans/USRR-UWUU.json|1958861853
+pa3/gen_plans/fpln.json|2869203586
+pa3/nvu_map.png|2393828143
+pa3/scroll_01.png|637475312
+.gitignore|3895376522
+README.md|3393680624
+tu154_prefs.txt|1550425475
+objects/salon3.png|2493398238
+objects/cockpit_windows_RUS.obj|2815576459
+objects/salon_floor.obj|1196396544
+objects/wings.obj|1232116760
+objects/vm15_scale_LIT.png|3048920610
+objects/Planchet_LIT.png|4212555587
+objects/azs_panels.obj|1323267695
+objects/windshield_thermal_side.png|3330504173
+objects/antenna_NML.png|891662323
+objects/windshield_thermal.png|2904432936
+objects/cockpit_front_panel_70th_RUS.obj|3015494151
+objects/salon2.obj|242817647
+objects/cockpit_windows_RUS copy.obj|2311280396
+objects/cockpit_1_RUS.objbak|4241729373
+objects/gps_LIT.png|2920839496
+objects/glass.obj|1202201852
+objects/srd_panel_RUS.png|1085055320
+objects/ground_lit.png|1919347166
+objects/aux_stuff.png|1206325960
+objects/sard_scales.obj|1828980485
+objects/engines_NML.png|1988640117
+objects/vm15_scale.obj|291662801
+objects/outside_misc.png|3153306431
+objects/Cabin Rain Glass Left2.obj|235009278
+objects/glass_LIT.png|4180819564
+objects/ext_stuff.png|2179852355
+objects/glass1.obj|1102458037
+objects/salon_NML.png|3657748222
+objects/Door_Right_Rain.png|1914850632
+objects/cockpit_shtorki.obj|739685473
+objects/Planchet.obj|1753571807
+objects/cockpit_side_panel_RUS_NML.png|1398836309
+objects/ipad.obj|203739363
+objects/gears_b2_NML.png|3266345967
+objects/gns430.obj|1355510642
+objects/cockpit_1_RUS_NML.png|312669665
+objects/cockpit_front_panel_blend_RUS.obj|2116994804
+objects/cockpit_1_RUS_nm.obj|3064354683
+objects/cockpit_front_panel_RUS_LIT.png|3424891924
+objects/aux_stuff.obj|1544447746
+objects/cockpit_glass_NML.png|1150728792
+objects/outside_misc.obj|2710254612
+objects/salon3.obj|4122101692
+objects/sard_panel_RUS.obj|3075688531
+objects/snow_on_fuse.png|2371783371
+objects/Cabin Rain Glass2.obj|3564414731
+objects/glass2_NML.png|2662120511
+objects/azs_panel_LIT.png|47489282
+objects/salon.png|207548374
+objects/glass2.png|1439950380
+objects/glass_NML.png|2662120511
+objects/engines.obj|1341567746
+objects/gears_b2.png|3691927322
+objects/cockpit_prefill.obj|3235098260
+objects/cockpit_front_panel_kontur_RUS.png|1753704953
+objects/srd_panel_b2_RUS.png|1085055320
+objects/engines_b2.png|3934162242
+objects/cockpit_lamps_RUS.obj|3804231911
+objects/drops_window.png|902548881
+objects/cockpit_eng_panel_RUS_LIT.png|2981392672
+objects/cockpit_center_panel_RUS_70th.obj|3086312965
+objects/ground_def/gpu_hobart.png|1609502480
+objects/ground_def/ground_lit.png|1707369570
+objects/ground_def/ground.obj|697877269
+objects/ground_def/gpu_hobart.obj|376941916
+objects/ground_def/gpu_hobart_LIT.png|2170747766
+objects/ground_def/ground.png|4267480177
+objects/ground.obj|1503750194
+objects/cockpit_front_panel_90th_RUS.png|1008059467
+objects/snow_on_fuse_NML.png|520408085
+objects/cockpit_lt.obj|1988476229
+objects/azs_panel.png|3950294998
+objects/cockpit_2_LIT.png|4024883899
+objects/snow_window.png|342933848
+objects/gears.png|1988345228
+objects/salon_LIT.png|1205058783
+objects/Door_Right_Rain.obj|286419266
+objects/plackards.obj|2585673336
+objects/cockpit_details_NML.png|856661332
+objects/cockpit_center_panel_RUS_70th.png|1124112537
+objects/gps.png|1095161610
+objects/cockpit_1_RUS.png|3144126885
+objects/gns430_LIT.png|1364944192
+objects/drops_window.obj|2833305015
+objects/cockpit_center_panel_RUS.png|1647058495
+objects/cockpit_front_panel_RUS_NML.png|3373680064
+objects/glass2.obj|4275021341
+objects/cockpit_details.png|3761200128
+objects/Cabin_Rain.png|1914850632
+objects/Cabin_Rain_thermal.png|3705429068
+objects/cockpit_1_RUS.obj|2180363194
+objects/windshield_thermal_out.png|1736708862
+objects/cockpit_front_panel_90th_RUS_LIT.png|2731952455
+objects/wings_NML.png|3433649610
+objects/cockpit_side_panel_blend_RUS.obj|4007032766
+objects/antenna.png|1731289868
+objects/plackards.png|2205193085
+objects/lamps_LIT.png|3794550326
+objects/cockpit_shtorki_NML.png|1221710152
+objects/Door_Right_Rain2.obj|1219802436
+objects/salon.obj|2569038384
+objects/cockpit_chairs.obj|2304140694
+objects/snow_window.obj|266730664
+objects/Ipad.png|3813904688
+objects/cockpit_1_RUS_NML.pngbak|2957128373
+objects/Groza_Glass.png|2055858894
+objects/Planchet_NML.png|4130529678
+objects/Cockpit_glass_in2.obj|1634586976
+objects/textures_rus/GrozaGlass_MAT.png|3970365985
+objects/textures_rus/PA3_ALB.png|1381172531
+objects/textures_rus/GrozaBody_MAT.png|1549589703
+objects/textures_rus/GrozaGlass_NRM.png|2569660255
+objects/textures_rus/GrozaGlass_ALB.png|4044117388
+objects/textures_rus/PA3_LIT.png|3290119283
+objects/textures_rus/WXR_Screen.png|1203229946
+objects/textures_rus/GrozaGlass_LIT.png|4110209324
+objects/textures_rus/GrozaBody_NRM.png|1420889032
+objects/textures_rus/GrozaBody_LIT.png|2770465968
+objects/textures_rus/PA3_MAT.png|3220938925
+objects/textures_rus/GrozaBody_ALB.png|2482035251
+objects/textures_rus/PA3_NRM.png|2065432073
+objects/cockpit_side_panel_90th_RUS.png|876280016
+objects/cockpit_eng_panel_RUS.png|1512551951
+objects/cockpit_glass_LIT.png|1291223038
+objects/fuselage.png|4181294180
+objects/Cockpit_glass_out2.obj|2846387465
+objects/PA3.obj|3418948273
+objects/cockpit_shtorki.png|3211810447
+objects/cockpit_lamps_RUS.png|1998942280
+objects/cockpit_front_panel_70th_RUS.png|3722537776
+objects/cockpit_side_panel_RUS.png|1047014443
+objects/cockpit_front_panel_RUS.png|1856479937
+objects/sard_scales.png|4274033360
+objects/tks_scale_RUS_LIT.png|3294666674
+objects/cockpit_chairs.png|1886447054
+objects/cockpit_2.png|4170032056
+objects/antenna.obj|3100674355
+objects/wiper.png|1324392964
+objects/glass2_LIT.png|182879220
+objects/cockpit_center_panel_RUS_LIT.png|1082739747
+objects/tks_scale_RUS.png|4150692280
+objects/Floor_LIT.png|1208099769
+objects/gps.obj|3212553505
+objects/cockpit_lamps_RUS_LIT.png|3723819279
+objects/Cockpit_glass_out.obj|1991023277
+objects/cockpit_front_panel_RUS.obj|1034296074
+objects/cockpit_1_RUS_nm.png|3170011948
+objects/cockpit_windows_RUS.png|2998258646
+objects/lamps.obj|2403751977
+objects/wiper_out.png|3224037843
+objects/gears.obj|304376213
+objects/vm15_scale.png|1802933560
+objects/sard_scales_LIT.png|265877268
+objects/salon2_LIT.png|4258973186
+objects/ground_civil/gpu_hobart.png|3965390024
+objects/ground_civil/ground_lit.png|1919347166
+objects/ground_civil/ground.obj|1651453722
+objects/ground_civil/gpu_hobart.obj|3194093783
+objects/ground_civil/gpu_hobart_LIT.png|2170747766
+objects/ground_civil/ground.png|331207770
+objects/ground_civil/ground copy.obj|2662646270
+objects/tks_scale_RUS.obj|3481563616
+objects/salon2.png|494355731
+objects/engines_b2_NML.png|3235278311
+objects/lamps.png|1818992829
+objects/cockpit_glass - Copy.obj|4002349081
+objects/cockpit_chairs_NML.png|3721951477
+objects/Cabin Rain Glass.obj|2814088176
+objects/fuselage.obj|602466296
+objects/kln.obj|4000313818
+objects/cockpit_details.obj|1931365074
+objects/wings_b2_NML.png|2765239761
+objects/snow_on_fuse.obj|866482546
+objects/ground.png|3491672178
+objects/untitled.obj|1329619931
+objects/Ipad_NML.png|814613966
+objects/cockpit_center_panel_RUS_NML.png|2090372637
+objects/cockpit_2.obj|2368475654
+objects/azs_panels.objbak|3552174051
+objects/lites.png|2288562687
+objects/lites.obj|2008930922
+objects/Planchet.png|4271953549
+objects/cockpit_side_panel_RUS.obj|1140278108
+objects/cockpit_glass.obj|3026448416
+objects/Cockpit_glass_in.png|1914850632
+objects/snow_window_LIT.png|2033646503
+objects/Cockpit_glass_in.obj|3719780672
+objects/wings_b2.png|3719715911
+objects/cockpit_front_panel_kontur_RUS.obj|1794986659
+objects/cockpit_1_RUS_LIT.png|1329775771
+objects/Floor.png|3355269007
+objects/Cockpit_glass_out.png|1914850632
+objects/ground_vvs/gpu_hobart.png|2410232736
+objects/ground_vvs/ground_lit.png|1919347166
+objects/ground_vvs/ground.obj|717745519
+objects/ground_vvs/gpu_hobart.obj|3194093783
+objects/ground_vvs/gpu_hobart_LIT.png|2170747766
+objects/ground_vvs/ground.png|1794922035
+objects/kln_NML.png|4026407826
+objects/salon3_NML.png|4004104415
+objects/gears_NML.png|3266345967
+objects/cockpit_center_panel_blend_RUS.obj|3309978406
+objects/glass.png|1544424938
+objects/Cabin Rain Glass Left.obj|2888942428
+objects/particles/aircraft_particles.pss~|3928643070
+objects/particles/particles.obj|3449320233
+objects/particles/aircraft_particles.png|2598893857
+objects/particles/aircraft_particles.pss_autosave|73819967
+objects/particles/aircraft_particles.pss|3523354216
+objects/cockpit_center_panel_RUS.obj|2039229700
+objects/prefill.obj|3045401947
+objects/gns430.png|1364139620
+objects/Groza_Glass.obj|1624590522
+objects/drops_window_LIT.png|2205082963
+objects/srd_panel_RUS_LIT.png|3291304809
+objects/cockpit_eng_panel_RUS.obj|1849427275
+objects/cockpit_side_panel_90th_RUS.obj|1859775105
+objects/kln.png|642130278
+objects/cockpit_glass.png|3901994029
+objects/cockpit_front_panel_90th_RUS.obj|3379799443
+objects/fuselage_NML.png|446249948
+objects/Cabin_Rain_Left.png|1914850632
+objects/cockpit_side_panel_RUS_LIT.png|2569089845
+docs/Tu-154B_RLYE_kn2_ch2.pdf|2682111848
+docs/pttu154_94eng.pdf|3621419549
+docs/Tu-154B_RLYE_kn2_ch1.pdf|206184853
+docs/154b2_readme.pdf|3500407410
+docs/Tu-154B_RLYE_kn1.pdf|1334698797
+docs/Tu-154B_RLYE_kn1_dop_PDO.pdf|3402168674
+docs/Tu-154B_RLYE_kn1_dop_SPPZ.pdf|1831253682
+plugins/kontur_fp_transfer/64/win.xpl|2938899017
+plugins/xtlua_keysystems/64/win.xpl|4039218813
+plugins/xtlua_keysystems/64/mac.xpl|3255125264
+plugins/xtlua_keysystems/64/lin.xpl|2239928941
+plugins/xtlua_keysystems/scripts/T154.kontur.nd/numberlua.lua|1255200620
+plugins/xtlua_keysystems/scripts/T154.kontur.nd/json/LICENSE|1170876161
+plugins/xtlua_keysystems/scripts/T154.kontur.nd/json/json.lua|2860559897
+plugins/xtlua_keysystems/scripts/T154.kontur.nd/T154.kontur.nd.lua|4289627376
+plugins/xtlua_keysystems/StackTracePlus.lua|2753230619
+plugins/xtlua_keysystems/init.lua|3538877786
+plugins/xtlua_keysystems/init/scripts/T154.kontur.nd_in/T154.kontur.nd_in.lua|352493969
+plugins/xtlua_keysystems/init/init.lua|2064971322
+plugins/xtlua/64/win.xpl|4039218813
+plugins/xtlua/64/mac.xpl|3255125264
+plugins/xtlua/64/lin.xpl|2239928941
+plugins/xtlua/.vscode/sftp.json|2782490967
+plugins/xtlua/scripts/T154.zwalk/T154.zwalk.lua|2655735238
+plugins/xtlua/scripts/T154.config/json/LICENSE|1170876161
+plugins/xtlua/scripts/T154.config/json/json.lua|2792159939
+plugins/xtlua/scripts/T154.config/T154.config.lua|2916109814
+plugins/xtlua/scripts/T154.ipad_s/T154.ipad_s.lua|2625673023
+plugins/xtlua/scripts/T154.ipad_s/json/LICENSE|1170876161
+plugins/xtlua/scripts/T154.ipad_s/json/json.lua|2792159939
+plugins/xtlua/StackTracePlus.lua|2753230619
+plugins/xtlua/init.lua|3406705961
+plugins/xtlua/init/scripts/T154.ipad/T154.ipad.lua|3202877080
+plugins/xtlua/init/scripts/T154.egpws/T154.egpws.lua|1775297070
+plugins/xtlua/init/scripts/T154.vbe_cm/T154.vbe_cm.lua|2790642189
+plugins/xtlua/init/scripts/T154.config_i/T154.config_i.lua|3267323599
+plugins/xtlua/init/scripts/T154.zwalk/T154.zwalk.lua|1752246963
+plugins/xtlua/init/scripts/T154.ubs/T154.ubs.lua|2929049591
+plugins/xtlua/init/scripts/T154.zmisc/T154.zmisc.lua|1109938832
+plugins/xtlua/init/scripts/T154.tcasCAS67/T154.tcasCAS67.lua|3164984505
+plugins/xtlua/init/scripts/T154.zmisc3/T154.zmisc3.lua|2562115266
+plugins/xtlua/init/scripts/T154.zzgnd_tech/T154.zzgnd_tech.lua|3595831514
+plugins/xtlua/init/scripts/T154.systems/T154.systems.lua|4280482952
+plugins/xtlua/init/scripts/T154.kontur/T154.kontur.lua|2302842219
+plugins/xtlua/init/scripts/T154.radio/T154.radio.lua|2525787242
+plugins/xtlua/init/scripts/T154.xsmooth_lights_blink/T154.xsmooth_lights_blink.lua|27021044
+plugins/xtlua/init/scripts/T154.zmisc2/T154.zmisc2.lua|418841511
+plugins/xtlua/init/scripts/T154.arm406/T154.arm406.lua|1875648857
+plugins/xtlua/init/scripts/T154.btwo/T154.btwo.lua|3105274065
+plugins/xtlua/init/scripts/T154.zsmooth_lights/T154.zsmooth_lights.lua|1997755297
+plugins/xtlua/init/init.lua|2064971322
+plugins/sasl/functions.txt|3249875689
+plugins/sasl/64/win.xpl|109697470
+plugins/sasl/64/mac.xpl|513659679
+plugins/sasl/64/libssl-3-x64.dll|1603419901
+plugins/sasl/64/lin.xpl|2988520251
+plugins/sasl/64/libcrypto-3-x64.dll|159876504
+plugins/sasl/version.txt|160857366
+plugins/sasl/OpenAL32.dll|3600708951
+plugins/sasl/changelog.txt|3236786541
+plugins/sasl/data/api/api.lua|3053097978
+plugins/sasl/data/modulesdataref_creator_4.lua|0
+plugins/sasl/data/.vscode/settings.json|2035468846
+plugins/sasl/data/scripts/init.lua|2732355382
+plugins/sasl/data/components/bu/cursors.png|1347121235
+plugins/sasl/data/components/bu/rotateright.png|2312097029
+plugins/sasl/data/components/bu/interactive.png|1903396470
+plugins/sasl/data/components/bu/text.lua|180820684
+plugins/sasl/data/components/bu/clickable.png|1903396470
+plugins/sasl/data/components/bu/frame.lua|3031289993
+plugins/sasl/data/components/bu/needle.lua|3854063145
+plugins/sasl/data/components/bu/freeTexture.lua|2288865584
+plugins/sasl/data/components/bu/rotatedTape.lua|3562988961
+plugins/sasl/data/components/bu/mouseFocusedZone.lua|4064094842
+plugins/sasl/data/components/bu/lamp.lua|2975537385
+plugins/sasl/data/components/bu/togglePanelButton.lua|3246034381
+plugins/sasl/data/components/bu/free_texture.lua|3034505414
+plugins/sasl/data/components/bu/rotary.png|3949235407
+plugins/sasl/data/components/bu/interactive.lua|4036951352
+plugins/sasl/data/components/bu/Roboto-Regular.ttf|3583548654
+plugins/sasl/data/components/bu/rotateleft.png|4278988963
+plugins/sasl/data/components/bu/rotary.lua|668873960
+plugins/sasl/data/components/bu/Roboto-Regular-LICENSE.txt|2263004340
+plugins/sasl/data/components/bu/readme.txt|590206480
+plugins/sasl/data/components/bu/rotated_tape.lua|3562988961
+plugins/sasl/data/components/bu/rectangle.lua|1113385763
+plugins/sasl/data/components/bu/digitstape.lua|2751811882
+plugins/sasl/data/components/bu/white-digits.png|223411218
+plugins/sasl/data/components/bu/popupResizeButton.lua|538402406
+plugins/sasl/data/components/bu/button.lua|486175049
+plugins/sasl/data/components/bu/needle-top.png|3594056781
+plugins/sasl/data/components/bu/defdecore.png|3324412294
+plugins/sasl/data/components/bu/clickable.lua|3157148583
+plugins/sasl/data/components/bu/texture.lua|2780984902
+plugins/sasl/data/components/bu/switch.lua|2229182087
+plugins/sasl/data/components/bu/digits-tape-bg.png|92211059
+plugins/sasl/data/components/bu/close.png|1026565542
+plugins/sasl/data/components/bu/none.png|3033048508
+plugins/sasl/data/components/bu/textureLit.lua|824074567
+plugins/sasl/data/components/bu/popupCloseButton.lua|2471236451
+plugins/sasl/data/components/bu/needle.tga|3322087998
+plugins/sasl/data/components/bu/tape.lua|3958801499
+plugins/sasl/data/components/bu/digits-tape.png|1194698876
+plugins/sasl/data/components/cursors.png|1347121235
+plugins/sasl/data/components/rotateright.png|2312097029
+plugins/sasl/data/components/interactive.png|1903396470
+plugins/sasl/data/components/text.lua|180820684
+plugins/sasl/data/components/clickable.png|1903396470
+plugins/sasl/data/components/frame.lua|3031289993
+plugins/sasl/data/components/needle.lua|3854063145
+plugins/sasl/data/components/freeTexture.lua|2288865584
+plugins/sasl/data/components/rotatedTape.lua|3562988961
+plugins/sasl/data/components/mouseFocusedZone.lua|4064094842
+plugins/sasl/data/components/lamp.lua|2975537385
+plugins/sasl/data/components/togglePanelButton.lua|3246034381
+plugins/sasl/data/components/free_texture.lua|3034505414
+plugins/sasl/data/components/rotary.png|3949235407
+plugins/sasl/data/components/rectangle2.lua|2130726772
+plugins/sasl/data/components/interactive.lua|4036951352
+plugins/sasl/data/components/Roboto-Regular.ttf|3583548654
+plugins/sasl/data/components/rotateleft.png|4278988963
+plugins/sasl/data/components/rotary.lua|668873960
+plugins/sasl/data/components/Roboto-Regular-LICENSE.txt|2263004340
+plugins/sasl/data/components/readme.txt|590206480
+plugins/sasl/data/components/rotated_tape.lua|3562988961
+plugins/sasl/data/components/rectangle.lua|1113385763
+plugins/sasl/data/components/digitstape.lua|2751811882
+plugins/sasl/data/components/white-digits.png|223411218
+plugins/sasl/data/components/popupResizeButton.lua|538402406
+plugins/sasl/data/components/button.lua|486175049
+plugins/sasl/data/components/needle-top.png|3594056781
+plugins/sasl/data/components/defdecore.png|3324412294
+plugins/sasl/data/components/clickable.lua|982279601
+plugins/sasl/data/components/texture.lua|2780984902
+plugins/sasl/data/components/switch.lua|2229182087
+plugins/sasl/data/components/digits-tape-bg.png|92211059
+plugins/sasl/data/components/close.png|1026565542
+plugins/sasl/data/components/none.png|3033048508
+plugins/sasl/data/components/textureLit.lua|824074567
+plugins/sasl/data/components/popupCloseButton.lua|2471236451
+plugins/sasl/data/components/needle.tga|3322087998
+plugins/sasl/data/components/tape.lua|3958801499
+plugins/sasl/data/components/digits-tape.png|1194698876
+plugins/sasl/data/init/initSubpanelCreator.lua|715211282
+plugins/sasl/data/init/initMathHelpers.lua|1362382491
+plugins/sasl/data/init/initAvionics.lua|2078921058
+plugins/sasl/data/init/initBasicHelpers.lua|1472302477
+plugins/sasl/data/init/readme.txt|2409820552
+plugins/sasl/data/init/initProjectTree.lua|3400866564
+plugins/sasl/data/init/initProperties.lua|1041753767
+plugins/sasl/data/init/initTableHelpers.lua|4131520496
+plugins/sasl/data/init/initContextWindows.lua|1823763928
+plugins/sasl/data/init/initResourcesLoaders.lua|2410274477
+plugins/sasl/data/init/initMain.lua|976970061
+plugins/sasl/data/init/initDefaultEventHandlers.lua|1510071501
+plugins/sasl/data/init/initFilesystemHelpers.lua|3384004779
+plugins/sasl/data/init/initProcessing.lua|3365491890
+plugins/sasl/data/output/readme.txt|1889794412
+plugins/sasl/data/modules/state.txt|3802318611
+plugins/sasl/data/modules/configuration/readme.txt|598693735
+plugins/sasl/data/modules/configuration/widgetResources/SourceCodePro-LICENSE.txt|3071477787
+plugins/sasl/data/modules/configuration/widgetResources/SourceCodePro.ttf|193207767
+plugins/sasl/data/modules/configuration/configuration.ini|1551855089
+plugins/sasl/data/modules/configuration/wprefs.ini|38007144
+plugins/sasl/data/modules/configuration/configurationExample.ini|3620610359
+plugins/sasl/data/modules/3rd-modules/stb_stitch/stb_image_write.h|3233375141
+plugins/sasl/data/modules/3rd-modules/stb_stitch/BUILD.md|3885090449
+plugins/sasl/data/modules/3rd-modules/stb_stitch/stb_image_write_lib.c|1547310178
+plugins/sasl/data/modules/3rd-modules/stb_stitch/mac.dylib|687094799
+plugins/sasl/data/modules/3rd-modules/stb_stitch/lin64.so|3671307314
+plugins/sasl/data/modules/3rd-modules/stb_stitch/CMakeLists.txt|3983630487
+plugins/sasl/data/modules/3rd-modules/stb_stitch/win64.dll|4290076989
+plugins/sasl/data/modules/3rd-modules/stb_stitch/stb_image.h|1634844724
+plugins/sasl/data/modules/3rd-modules/stb_stitch.lua|1793406360
+plugins/sasl/data/modules/3rd-modules/readme.txt|4035264026
+plugins/sasl/data/modules/3rd-modules/json.lua|1024322645
+plugins/sasl/data/modules/Custom Sounds/ark_out.wav|4244360226
+plugins/sasl/data/modules/Custom Sounds/plastic_switch_L.wav|107635090
+plugins/sasl/data/modules/Custom Sounds/tcas/climb_crossing.wav|525246761
+plugins/sasl/data/modules/Custom Sounds/tcas/maintain_crossing.wav|1509636301
+plugins/sasl/data/modules/Custom Sounds/tcas/climb.wav|2950300799
+plugins/sasl/data/modules/Custom Sounds/tcas/maintain_v_speed.wav|305211810
+plugins/sasl/data/modules/Custom Sounds/tcas/traffic.wav|454153629
+plugins/sasl/data/modules/Custom Sounds/tcas/increase_descend.wav|629734377
+plugins/sasl/data/modules/Custom Sounds/tcas/increase_climb.wav|222535760
+plugins/sasl/data/modules/Custom Sounds/tcas/climb_now.wav|1893228169
+plugins/sasl/data/modules/Custom Sounds/tcas/monitor_v_speed.wav|3451532853
+plugins/sasl/data/modules/Custom Sounds/tcas/descend_crossing.wav|3346758500
+plugins/sasl/data/modules/Custom Sounds/tcas/old/climb_crossing.wav|2309415181
+plugins/sasl/data/modules/Custom Sounds/tcas/old/tcas_test.wav|1930059424
+plugins/sasl/data/modules/Custom Sounds/tcas/old/maintain_crossing.wav|2968712741
+plugins/sasl/data/modules/Custom Sounds/tcas/old/climb.wav|2317996496
+plugins/sasl/data/modules/Custom Sounds/tcas/old/maintain_v_speed.wav|2676088389
+plugins/sasl/data/modules/Custom Sounds/tcas/old/traffic.wav|3275917507
+plugins/sasl/data/modules/Custom Sounds/tcas/old/increase_descend.wav|2190525049
+plugins/sasl/data/modules/Custom Sounds/tcas/old/increase_climb.wav|2495481567
+plugins/sasl/data/modules/Custom Sounds/tcas/old/climb_now.wav|3331489905
+plugins/sasl/data/modules/Custom Sounds/tcas/old/monitor_v_speed.wav|2481657475
+plugins/sasl/data/modules/Custom Sounds/tcas/old/descend_crossing.wav|1221109849
+plugins/sasl/data/modules/Custom Sounds/tcas/old/clear_conflict.wav|2460973412
+plugins/sasl/data/modules/Custom Sounds/tcas/old/descend.wav|2117967709
+plugins/sasl/data/modules/Custom Sounds/tcas/old/descend_now.wav|2280119129
+plugins/sasl/data/modules/Custom Sounds/tcas/old/tcas_test_passed.wav|98804480
+plugins/sasl/data/modules/Custom Sounds/tcas/old/ajust_v_speed.wav|971099566
+plugins/sasl/data/modules/Custom Sounds/tcas/clear_conflict.wav|1098192573
+plugins/sasl/data/modules/Custom Sounds/tcas/descend.wav|2616764362
+plugins/sasl/data/modules/Custom Sounds/tcas/tcas_test_fail.wav|1006630173
+plugins/sasl/data/modules/Custom Sounds/tcas/descend_now.wav|2747503964
+plugins/sasl/data/modules/Custom Sounds/tcas/tcas_test_passed.wav|2302825265
+plugins/sasl/data/modules/Custom Sounds/tcas/ajust_v_speed.wav|2789484610
+plugins/sasl/data/modules/Custom Sounds/gear_emer_R.wav|626291570
+plugins/sasl/data/modules/Custom Sounds/metal_switch.wav|48542977
+plugins/sasl/data/modules/Custom Sounds/ark_out_R.wav|2385412856
+plugins/sasl/data/modules/Custom Sounds/plastic_btn.wav|3974977614
+plugins/sasl/data/modules/Custom Sounds/flaps_hnd_L.wav|2999320743
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/rudders_ailerons.wav|4131418276
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/TKS_aligned.wav|3945481830
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/booster.wav|1938288779
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/SRD.wav|989810307
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/navigation_complex.wav|3277470352
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/pressure_of_the_airfield.wav|1615863377
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/4.wav|212548857
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/altimeters.wav|4122124072
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/doors.wav|214244408
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/befor_DPRM.wav|248163879
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/flaps.wav|2619663830
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/fail_4.wav|3639593495
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/fail_5.wav|2109146604
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/ARK.wav|1627303722
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/gear.wav|964504234
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/course_mp.wav|3697131094
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/stabilizer.wav|2358656489
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/before_3_turn.wav|895767789
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/vents.wav|4014525205
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/ready_takeoff.wav|245559271
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/switch_on_1.wav|341168793
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/switch_on_agreed.wav|2798832697
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/3.wav|1687976807
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/pressure_hydraulic_systems.wav|2293921813
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/course_mp_ark.wav|170407365
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/deicing.wav|1357491795
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/landing_lights.wav|111308960
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/pre_start.wav|1709420294
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/V2.wav|3518231321
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/trim.wav|1589770347
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/stabilizer_RV.wav|3895983149
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/fail_3.wav|4236889036
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/switch_on_date.wav|2305895755
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/checklist_completed.wav|1519033618
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/before_taxiing.wav|577830081
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/prepared.wav|1522677475
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/Hold_short.wav|11597739
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/TKS_ready.wav|147881203
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/ABSU.wav|2144231763
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/7.wav|3645114641
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/EUP.wav|2570072353
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/takeoff_data.wav|2311094889
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/1.wav|2500908316
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/course_PNP.wav|2780794924
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/elektro_system.wav|2096763811
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/on_taxiing.wav|3559191348
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/air_horizons.wav|2538448302
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/ready.wav|218194693
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/0.wav|2499377574
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/fuel_quantity.wav|498819906
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/takeoff_start.wav|4101148766
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/RV_RN.wav|928095612
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/befor_eng_run.wav|243132578
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/fail_2.wav|1178574351
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/RV.wav|155827005
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/Vr.wav|3326306760
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/5.wav|1350586095
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/TKS.wav|173186420
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/PN-5_PN-6.wav|2275937335
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/landing_date.wav|2450622333
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/TOD.wav|3840188120
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/brake.wav|566525857
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/speed_br.wav|895471789
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/recorder.wav|1405848190
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/8.wav|1146130932
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/V1.wav|2954822019
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/adjuster_stabilizer.wav|3538037947
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/6.wav|2076494954
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/plugs_keys_rod.wav|1885833895
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/fail_1.wav|3698893584
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/UVD.wav|2102715947
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/msrp_ssos_rv1.wav|2479662772
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/2.wav|2802247525
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/fuel_pumps.wav|216266129
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/VSU_fuel_sis.wav|2050282128
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/plan.wav|1492034832
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/9.wav|3673538041
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/nav/switch_on.wav|2407275183
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/210.wav|3646561474
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/4.wav|2464584137
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/off.wav|3883071478
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/fail_4.wav|645588370
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/fail_5.wav|1568435722
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/on_board.wav|2397713888
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/3.wav|3525765065
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/fail_3.wav|779580735
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/180.wav|3648439626
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/turned_on_2.wav|33153911
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/turned_off_2.wav|2251505250
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/closed_tablo_off.wav|1987001016
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/7.wav|4227484127
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/1.wav|4004644869
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/ready.wav|2202434321
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/pumps_on.wav|1475173317
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/0.wav|4242288591
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/tonns.wav|3361689661
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/fail_2.wav|2110706084
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/5.wav|1824224677
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/8.wav|1420997026
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/absu_ok.wav|1433609787
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/on_data_set.wav|1092776605
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/auto.wav|963298286
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/6.wav|2621888990
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/fail_1.wav|3676834816
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/chk_on.wav|606264780
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/2.wav|2413426626
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/9.wav|1906617077
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/on.wav|4017473422
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/eng/press_650_set.wav|1465989241
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/removed_tablo_off.wav|1587382486
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/4.wav|1075641103
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/rv_setting.wav|2599576806
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/ext_flaps_.wav|1274752661
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/stab_0.wav|1680585790
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/120.wav|586837327
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/fail_4.wav|645588370
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/fail_5.wav|1568435722
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/off_tablo_lit.wav|3017247940
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/rv_on.wav|1889732617
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/-15.wav|1364334350
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/3.wav|1317933972
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/ext_tablo_lit.wav|2894191005
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/chk_lines_up.wav|1795641657
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/fail_3.wav|779580735
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/turned_on_2.wav|33153911
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/ext_green_neutr.wav|2567739974
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/turned_on.wav|2881680125
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/7.wav|1441282770
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/1.wav|1187071153
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/ready.wav|3775396560
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/0.wav|2147196717
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/fail_2.wav|2110706084
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/5.wav|1883685396
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/weight.wav|3553692068
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/synced.wav|2927113028
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/8.wav|2636167590
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/pressure.wav|1494150621
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/turned_on_chk.wav|2152220278
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/-3.wav|3540630634
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/closed.wav|750147819
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/6.wav|477649635
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/fail_1.wav|3676834816
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/2.wav|671432096
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/checked.wav|2863078231
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/9.wav|1194757121
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cop/cg_pos.wav|451426068
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/retracted.wav|237574637
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/removed_lights_off.wav|780669045
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/4.wav|3099713452
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/ready_to_takeoff.wav|3447367716
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/fail_4.wav|645588370
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/fail_5.wav|1568435722
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/pressure_set_to.wav|3629388497
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/neutral.wav|2358312650
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/turned_on_cap_closed_auto.wav|3993375457
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/stab_set_m.wav|2915662894
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/3.wav|97667825
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/fail_3.wav|779580735
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/turned_off.wav|2640162346
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/turned_on.wav|1417653631
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/check_lines_fit.wav|2631854781
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/set_up.wav|3949114252
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/7.wav|3905992722
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/1.wav|3694420343
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/0.wav|3541898345
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/turned_on2.wav|2863988635
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/fail_2.wav|2110706084
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/stab_set_f.wav|1330280379
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/5.wav|3131236632
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/check_free.wav|2355249262
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/stab_set_b.wav|1924939875
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/8.wav|2162220519
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/closed.wav|455879597
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/extended.wav|811509137
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/read.wav|2197722318
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/6.wav|2292409130
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/fail_1.wav|3676834816
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/meters.wav|3869305990
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/2.wav|48348886
+plugins/sasl/data/modules/Custom Sounds/chklist/rus/cpt/9.wav|1183381540
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/rudders_ailerons.wav|1627023871
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/TKS_aligned.wav|1488002983
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/booster.wav|2660097994
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/SRD.wav|3639621179
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/navigation_complex.wav|1143829116
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/pressure_of_the_airfield.wav|3327711587
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/removed_lights_off.wav|4035732574
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/4.wav|3582454436
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/altimeters.wav|480800967
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/doors.wav|3755920487
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/befor_DPRM.wav|866104423
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/flaps.wav|2648822483
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/fail_4.wav|2917390395
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/fail_5.wav|3223720616
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/ARK.wav|1587824963
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/gear.wav|3659916627
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/course_mp.wav|3164979371
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/stabilizer.wav|1801764292
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/before_3_turn.wav|4156138411
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/vents.wav|4151046623
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/ready_takeoff.wav|3382376052
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/switch_on_1.wav|3934273485
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/switch_on_agreed.wav|440767483
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/3.wav|1316891480
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/pressure_hydraulic_systems.wav|2591719672
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/course_mp_ark.wav|1784091937
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/deicing.wav|1631122507
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/landing_lights.wav|1723404329
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/pre_start.wav|2374806866
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/V2.wav|3526272735
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/trim.wav|1766737047
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/stabilizer_RV.wav|2477376450
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/fail_3.wav|3087551248
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/switch_on_date.wav|1836338575
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/checklist_completed.wav|3118782946
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/before_taxiing.wav|3063063289
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/prepared.wav|772933339
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/Hold_short.wav|3763778495
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/TKS_ready.wav|2431904812
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/ABSU.wav|3714143275
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/7.wav|2696783625
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/EUP.wav|2096802341
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/takeoff_data.wav|2111238087
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/1.wav|2459449485
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/course_PNP.wav|3719484567
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/elektro_system.wav|2721619124
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/on_taxiing.wav|366092572
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/air_horizons.wav|2699913840
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/ready.wav|3893877063
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/0.wav|3288978128
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/fuel_quantity.wav|1234155695
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/takeoff_start.wav|729643676
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/RV_RN.wav|2023858412
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/befor_eng_run.wav|3547093416
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/fail_2.wav|2359843801
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/RV.wav|3950031033
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/Vr.wav|770024209
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/5.wav|1769720196
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/TKS.wav|1986233811
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/PN-5_PN-6.wav|3052223401
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/landing_date.wav|708813632
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/TOD.wav|183773459
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/brake.wav|2859278183
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/speed_br.wav|2418599919
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/recorder.wav|3511475553
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/8.wav|950558571
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/V1.wav|3495277157
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/adjuster_stabilizer.wav|4083592328
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/6.wav|2334945854
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/plugs_keys_rod.wav|2464902796
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/fail_1.wav|3017909793
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/UVD.wav|2601086130
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/msrp_ssos_rv1.wav|1673448202
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/2.wav|3863861106
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/fuel_pumps.wav|1635242887
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/VSU_fuel_sis.wav|4112062371
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/plan.wav|1800379920
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/9.wav|1755996131
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/nav/switch_on.wav|2196205646
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/210.wav|908028800
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/4.wav|3582454436
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/off.wav|768770274
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/fail_4.wav|2917390395
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/fail_5.wav|3223720616
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/on_board.wav|1299070101
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/3.wav|1316891480
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/fail_3.wav|3087551248
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/180.wav|1928426309
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/turned_on_2.wav|3367543862
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/turned_off_2.wav|372718461
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/closed_tablo_off.wav|2822664914
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/7.wav|2696783625
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/1.wav|2459449485
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/ready.wav|4149145070
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/pumps_on.wav|106557031
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/0.wav|3288978128
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/tonns.wav|3608703853
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/fail_2.wav|2359843801
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/5.wav|1769720196
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/8.wav|950558571
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/absu_ok.wav|1344558004
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/on_data_set.wav|686306401
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/auto.wav|2376520117
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/6.wav|2334945854
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/fail_1.wav|3017909793
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/chk_on.wav|261377862
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/2.wav|3863861106
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/9.wav|1755996131
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/on.wav|3533079396
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/eng/press_650_set.wav|394244113
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/removed_tablo_off.wav|1911090541
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/4.wav|3582454436
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/rv_setting.wav|4189022660
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/ext_flaps_.wav|1395101476
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/stab_0.wav|2010990712
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/120.wav|487724167
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/fail_4.wav|2917390395
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/fail_5.wav|3223720616
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/off_tablo_lit.wav|3468910568
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/rv_on.wav|2072366671
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/-15.wav|1623733355
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/3.wav|1316891480
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/ext_tablo_lit.wav|1645482028
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/chk_lines_up.wav|3962369225
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/fail_3.wav|3087551248
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/turned_on_2.wav|36920396
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/ext_green_neutr.wav|1555409549
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/turned_on.wav|3768693528
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/7.wav|2696783625
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/1.wav|2459449485
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/ready.wav|2426244696
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/0.wav|3288978128
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/fail_2.wav|2359843801
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/5.wav|1769720196
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/weight.wav|2002562136
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/synced.wav|3423405721
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/8.wav|950558571
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/pressure.wav|3227460646
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/turned_on_chk.wav|1381567436
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/-3.wav|3540630634
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/closed.wav|4194500927
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/6.wav|2334945854
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/fail_1.wav|3017909793
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/2.wav|3863861106
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/checked.wav|1339158752
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/9.wav|1755996131
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cop/cg_pos.wav|2748333541
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/retracted.wav|1618305094
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/removed_lights_off.wav|1847329669
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/4.wav|3582454436
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/ready_to_takeoff.wav|118348374
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/fail_4.wav|2917390395
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/fail_5.wav|3223720616
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/pressure_set_to.wav|1654075286
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/neutral.wav|3131728329
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/turned_on_cap_closed_auto.wav|2072573006
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/stab_set_m.wav|606031390
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/3.wav|1316891480
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/fail_3.wav|3087551248
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/turned_off.wav|3064550495
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/turned_on.wav|1820747065
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/check_lines_fit.wav|3962369225
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/set_up.wav|2359272160
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/7.wav|2696783625
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/1.wav|2459449485
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/0.wav|3288978128
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/turned_on2.wav|1048750009
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/fail_2.wav|2359843801
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/stab_set_f.wav|2988082187
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/5.wav|1769720196
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/check_free.wav|1072707068
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/stab_set_b.wav|1227993628
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/8.wav|950558571
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/closed.wav|3452241161
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/extended.wav|4044062830
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/read.wav|3048994352
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/6.wav|2334945854
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/fail_1.wav|3017909793
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/meters.wav|145820961
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/2.wav|3863861106
+plugins/sasl/data/modules/Custom Sounds/chklist/eng/cpt/9.wav|1755996131
+plugins/sasl/data/modules/Custom Sounds/acs_tik_tik.wav|2279463224
+plugins/sasl/data/modules/Custom Sounds/gpu_start_R.wav|299004537
+plugins/sasl/data/modules/Custom Sounds/metal_switch2_L.wav|2216684499
+plugins/sasl/data/modules/Custom Sounds/inverters - копия.wav|1291847664
+plugins/sasl/data/modules/Custom Sounds/gpu_run_out.wav|2608932557
+plugins/sasl/data/modules/Custom Sounds/cap.wav|245046232
+plugins/sasl/data/modules/Custom Sounds/gpu_start_inn.wav|3828799795
+plugins/sasl/data/modules/Custom Sounds/cursmp_L.wav|240077953
+plugins/sasl/data/modules/Custom Sounds/absu_up_L.wav|4216416911
+plugins/sasl/data/modules/Custom Sounds/ROD_OFF.wav|4024833285
+plugins/sasl/data/modules/Custom Sounds/metal_switch_R.wav|2878581940
+plugins/sasl/data/modules/Custom Sounds/plastic_switch_R.wav|995974299
+plugins/sasl/data/modules/Custom Sounds/cap_R.wav|1979119302
+plugins/sasl/data/modules/Custom Sounds/gear_lock.wav|3608810962
+plugins/sasl/data/modules/Custom Sounds/cockpit_fan.wav|1655070730
+plugins/sasl/data/modules/Custom Sounds/roll_inn.wav|4162324535
+plugins/sasl/data/modules/Custom Sounds/short_speaker.wav|4138783557
+plugins/sasl/data/modules/Custom Sounds/absu_dn_L.wav|4158259761
+plugins/sasl/data/modules/Custom Sounds/ROD_ON.wav|120477067
+plugins/sasl/data/modules/Custom Sounds/rot_click_L.wav|1429824451
+plugins/sasl/data/modules/Custom Sounds/metal_switch_L.wav|3783594126
+plugins/sasl/data/modules/Custom Sounds/engines/inn_reverse.wav|2946970154
+plugins/sasl/data/modules/Custom Sounds/engines/kvd_start_inn_R.wav|3646731468
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_left - копия.wav|3351270522
+plugins/sasl/data/modules/Custom Sounds/engines/out_idle_left.wav|3397560456
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_cutout_R.wav|2097492339
+plugins/sasl/data/modules/Custom Sounds/engines/out_mid_right.wav|3178234517
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_right_new.wav|1681951780
+plugins/sasl/data/modules/Custom Sounds/engines/whine_right.wav|3434714932
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_right - копия.wav|436523870
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_left_new.wav|3155947266
+plugins/sasl/data/modules/Custom Sounds/engines/inn_middle_left.wav|3692946828
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_cutout_L_new.wav|895053447
+plugins/sasl/data/modules/Custom Sounds/engines/blast_far_L.wav|2866360916
+plugins/sasl/data/modules/Custom Sounds/engines/out_reverse_right.wav|1809263114
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_left - копия.wav|42123856
+plugins/sasl/data/modules/Custom Sounds/engines/blast_far_L_new.wav|952812643
+plugins/sasl/data/modules/Custom Sounds/engines/inn_middle_right.wav|3742646000
+plugins/sasl/data/modules/Custom Sounds/engines/blast_far_R_new.wav|1789341854
+plugins/sasl/data/modules/Custom Sounds/engines/blast_far_R.wav|862231188
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_left_new.wav|2870186471
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_right.wav|2297205997
+plugins/sasl/data/modules/Custom Sounds/engines/out_reverse.wav|3619614946
+plugins/sasl/data/modules/Custom Sounds/engines/blast_low_R.wav|2691540887
+plugins/sasl/data/modules/Custom Sounds/engines/inn_apu_right.wav|3478916327
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_cutout_L.wav|4003688949
+plugins/sasl/data/modules/Custom Sounds/engines/kvd_start_L.wav|2311609422
+plugins/sasl/data/modules/Custom Sounds/engines/kvd_start_inn_L.wav|174628929
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_right - копия.wav|1054944239
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_cutout_R_new.wav|2644009039
+plugins/sasl/data/modules/Custom Sounds/engines/out_idle_right.wav|1011766423
+plugins/sasl/data/modules/Custom Sounds/engines/blast_full_R.wav|615549654
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_left.wav|2082744719
+plugins/sasl/data/modules/Custom Sounds/engines/out_reverse_left.wav|357389557
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_cutout_R.wav|436059496
+plugins/sasl/data/modules/Custom Sounds/engines/inn_apu_left.wav|1801707437
+plugins/sasl/data/modules/Custom Sounds/engines/blast_low_L.wav|3201582322
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_right_new.wav|1258462904
+plugins/sasl/data/modules/Custom Sounds/engines/out_mid_left.wav|1355707994
+plugins/sasl/data/modules/Custom Sounds/engines/out_apu_left.wav|3012885935
+plugins/sasl/data/modules/Custom Sounds/engines/out_behind_right.wav|859974937
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_cutout_L.wav|4140371353
+plugins/sasl/data/modules/Custom Sounds/engines/kvd_start_R.wav|1134897268
+plugins/sasl/data/modules/Custom Sounds/engines/out_high_right.wav|1428467871
+plugins/sasl/data/modules/Custom Sounds/engines/out_behind_left.wav|1289353287
+plugins/sasl/data/modules/Custom Sounds/engines/out_apu_right.wav|1416276482
+plugins/sasl/data/modules/Custom Sounds/engines/blast_full_L.wav|685267184
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_cutout_R_new.wav|987327345
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_right.wav|3239125603
+plugins/sasl/data/modules/Custom Sounds/engines/whine_left.wav|1548571648
+plugins/sasl/data/modules/Custom Sounds/engines/inn_starter_cutout_L_new.wav|1017467233
+plugins/sasl/data/modules/Custom Sounds/engines/out_starter_left.wav|2130250330
+plugins/sasl/data/modules/Custom Sounds/engines/out_high_left.wav|1836830785
+plugins/sasl/data/modules/Custom Sounds/rot_click_R.wav|4287733211
+plugins/sasl/data/modules/Custom Sounds/trimm_down_L.wav|1582793240
+plugins/sasl/data/modules/Custom Sounds/mrp_bell.wav|911380086
+plugins/sasl/data/modules/Custom Sounds/parking_off_R.wav|510612712
+plugins/sasl/data/modules/Custom Sounds/ark_mid.wav|2710787241
+plugins/sasl/data/modules/Custom Sounds/cap_L.wav|2043376772
+plugins/sasl/data/modules/Custom Sounds/dot_MORSE.wav|604075408
+plugins/sasl/data/modules/Custom Sounds/parking_off_L.wav|332066925
+plugins/sasl/data/modules/Custom Sounds/ROD_ON_L.wav|2143958636
+plugins/sasl/data/modules/Custom Sounds/gpu_start_out.wav|338641151
+plugins/sasl/data/modules/Custom Sounds/inverters_L.wav|3964214834
+plugins/sasl/data/modules/Custom Sounds/com_R.wav|1989792945
+plugins/sasl/data/modules/Custom Sounds/window_close.wav|1358824775
+plugins/sasl/data/modules/Custom Sounds/ark_out_L.wav|80707466
+plugins/sasl/data/modules/Custom Sounds/gpu_run_inn.wav|4121487010
+plugins/sasl/data/modules/Custom Sounds/TCAS_click_L.wav|3957715134
+plugins/sasl/data/modules/Custom Sounds/pong.wav|4198652563
+plugins/sasl/data/modules/Custom Sounds/acs_btn_R.wav|2780257347
+plugins/sasl/data/modules/Custom Sounds/gpu_stop_inn.wav|729641988
+plugins/sasl/data/modules/Custom Sounds/TCAS_rot_L.wav|3845016160
+plugins/sasl/data/modules/Custom Sounds/inverters.wav|2556702118
+plugins/sasl/data/modules/Custom Sounds/dash_MORSE.wav|884461490
+plugins/sasl/data/modules/Custom Sounds/metal_switch!!.wav|1656175750
+plugins/sasl/data/modules/Custom Sounds/noise.wav|1403848246
+plugins/sasl/data/modules/Custom Sounds/geal_lvr.wav|736870769
+plugins/sasl/data/modules/Custom Sounds/tss_rot_L.wav|3474211454
+plugins/sasl/data/modules/Custom Sounds/TCAS_release_R.wav|381210041
+plugins/sasl/data/modules/Custom Sounds/rv5_tone.wav|4656319
+plugins/sasl/data/modules/Custom Sounds/cursmp_R.wav|2845700428
+plugins/sasl/data/modules/Custom Sounds/phones.wav|4656319
+plugins/sasl/data/modules/Custom Sounds/cockpit_fan_R.wav|466877424
+plugins/sasl/data/modules/Custom Sounds/gpu_run_R.wav|2503890376
+plugins/sasl/data/modules/Custom Sounds/parking_on.wav|3995091450
+plugins/sasl/data/modules/Custom Sounds/gpu_start_L.wav|98269116
+plugins/sasl/data/modules/Custom Sounds/cursmp.wav|2744695436
+plugins/sasl/data/modules/Custom Sounds/geal_lvr_L.wav|485684245
+plugins/sasl/data/modules/Custom Sounds/geal_lvr_R.wav|1051812465
+plugins/sasl/data/modules/Custom Sounds/rot_click_big_L.wav|4193434379
+plugins/sasl/data/modules/Custom Sounds/trimm_up_R.wav|451725892
+plugins/sasl/data/modules/Custom Sounds/parking_on_L.wav|808362334
+plugins/sasl/data/modules/Custom Sounds/acs_tik_tik_R.wav|3503591992
+plugins/sasl/data/modules/Custom Sounds/ROD_OFF_R.wav|4065948225
+plugins/sasl/data/modules/Custom Sounds/com.wav|3274113049
+plugins/sasl/data/modules/Custom Sounds/TCAS_press_R.wav|3158549139
+plugins/sasl/data/modules/Custom Sounds/acs_btn_L.wav|3214740901
+plugins/sasl/data/modules/Custom Sounds/TCAS_press_L.wav|603134295
+plugins/sasl/data/modules/Custom Sounds/absu_up.wav|3039927672
+plugins/sasl/data/modules/Custom Sounds/tss_rot_R.wav|4287390283
+plugins/sasl/data/modules/Custom Sounds/trimm_up.wav|1458218120
+plugins/sasl/data/modules/Custom Sounds/trimm_ctr.wav|1474061152
+plugins/sasl/data/modules/Custom Sounds/window_open.wav|3822993567
+plugins/sasl/data/modules/Custom Sounds/parking_on_R.wav|2827341953
+plugins/sasl/data/modules/Custom Sounds/inverters - ¦¦¦-¦¬¦¬TП.wav|1291847664
+plugins/sasl/data/modules/Custom Sounds/ROD_OFF_L.wav|3395022817
+plugins/sasl/data/modules/Custom Sounds/gear_emer_L.wav|2059341267
+plugins/sasl/data/modules/Custom Sounds/square.wav|3456953319
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rv_stop.wav|781334815
+plugins/sasl/data/modules/Custom Sounds/new_snds/door_close_L.wav|3752398310
+plugins/sasl/data/modules/Custom Sounds/new_snds/po_start.wav|714582034
+plugins/sasl/data/modules/Custom Sounds/new_snds/roll_asphalt.wav|2505222152
+plugins/sasl/data/modules/Custom Sounds/new_snds/ambient_wind_t154_left.wav|1990913218
+plugins/sasl/data/modules/Custom Sounds/new_snds/dlt1.wav|2987594861
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_EL_R.wav|4064157283
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_RN.wav|991936887
+plugins/sasl/data/modules/Custom Sounds/new_snds/seat_move.wav|759859115
+plugins/sasl/data/modules/Custom Sounds/new_snds/touchdown.wav|2635121532
+plugins/sasl/data/modules/Custom Sounds/new_snds/po_stop.wav|1115225020
+plugins/sasl/data/modules/Custom Sounds/new_snds/bat_conn_R.wav|478096088
+plugins/sasl/data/modules/Custom Sounds/new_snds/po_run.wav|1487467272
+plugins/sasl/data/modules/Custom Sounds/new_snds/vu6_start_R.wav|2147331159
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rn_run.wav|3606974362
+plugins/sasl/data/modules/Custom Sounds/new_snds/rain_sound.wav|70702238
+plugins/sasl/data/modules/Custom Sounds/new_snds/yoke_down.wav|1314368215
+plugins/sasl/data/modules/Custom Sounds/new_snds/eup53_L.wav|2395722587
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rv_run_L.wav|1604181087
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_close_L.wav|2191907239
+plugins/sasl/data/modules/Custom Sounds/new_snds/fuel_click_R.wav|2076779126
+plugins/sasl/data/modules/Custom Sounds/new_snds/touch_main_asph.wav|3207937655
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_slide.wav|617602925
+plugins/sasl/data/modules/Custom Sounds/new_snds/yoke_up_L.wav|3402104440
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rn_stop_L.wav|903811133
+plugins/sasl/data/modules/Custom Sounds/new_snds/roll_ground.wav|2722922597
+plugins/sasl/data/modules/Custom Sounds/new_snds/door_open.wav|3909032630
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rn_run_L.wav|1550601550
+plugins/sasl/data/modules/Custom Sounds/new_snds/ppo.wav|3479754916
+plugins/sasl/data/modules/Custom Sounds/new_snds/engine_howl.wav|3539987411
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rn_stop.wav|3776795705
+plugins/sasl/data/modules/Custom Sounds/new_snds/rain_outside_R.wav|393999212
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_eng.wav|1459822539
+plugins/sasl/data/modules/Custom Sounds/new_snds/door_close.wav|1392465904
+plugins/sasl/data/modules/Custom Sounds/new_snds/lustra_skrip_R.wav|3338189991
+plugins/sasl/data/modules/Custom Sounds/new_snds/eup53_R.wav|2992615263
+plugins/sasl/data/modules/Custom Sounds/new_snds/lustra_L.wav|1827584248
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_close.wav|3960758315
+plugins/sasl/data/modules/Custom Sounds/new_snds/pts_run.wav|2937973433
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_EL_L.wav|2711696451
+plugins/sasl/data/modules/Custom Sounds/new_snds/door_open_L.wav|274102298
+plugins/sasl/data/modules/Custom Sounds/new_snds/seat_move_L.wav|4243892493
+plugins/sasl/data/modules/Custom Sounds/new_snds/arm_R.wav|2643281080
+plugins/sasl/data/modules/Custom Sounds/new_snds/lustra.wav|1761984822
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_open_R.wav|852673360
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rv_stop_L.wav|3338377101
+plugins/sasl/data/modules/Custom Sounds/new_snds/WalkSound.wav|2515772991
+plugins/sasl/data/modules/Custom Sounds/new_snds/absu_mode_chg_R.wav|1949438951
+plugins/sasl/data/modules/Custom Sounds/new_snds/bat_disc_L.wav|1711127967
+plugins/sasl/data/modules/Custom Sounds/new_snds/ambient_wind_t154_left_inn.wav|1537752826
+plugins/sasl/data/modules/Custom Sounds/new_snds/gear_shake.wav|3878085854
+plugins/sasl/data/modules/Custom Sounds/new_snds/touch_nose_asph.wav|2565481566
+plugins/sasl/data/modules/Custom Sounds/new_snds/yoke_up.wav|1191177330
+plugins/sasl/data/modules/Custom Sounds/new_snds/arm_L.wav|2131955992
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_eng2.wav|2375001405
+plugins/sasl/data/modules/Custom Sounds/new_snds/arm.wav|2956148769
+plugins/sasl/data/modules/Custom Sounds/new_snds/door_close_R.wav|1648543541
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_close_R.wav|1109638309
+plugins/sasl/data/modules/Custom Sounds/new_snds/agr_72_R.wav|2689902791
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rn_run_R.wav|1995930223
+plugins/sasl/data/modules/Custom Sounds/new_snds/yoke_up_R.wav|3108285687
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rv_run_R.wav|251865953
+plugins/sasl/data/modules/Custom Sounds/new_snds/ppo_L.wav|4063400834
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_R.wav|2272114992
+plugins/sasl/data/modules/Custom Sounds/new_snds/vu6_run_R.wav|1911249018
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_open.wav|3831305673
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_slide_L.wav|4034911049
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_slide2_R.wav|2288217672
+plugins/sasl/data/modules/Custom Sounds/new_snds/lustra_skrip.wav|1224712728
+plugins/sasl/data/modules/Custom Sounds/new_snds/yoke_down_R.wav|3026095845
+plugins/sasl/data/modules/Custom Sounds/new_snds/lustra_R.wav|1673320229
+plugins/sasl/data/modules/Custom Sounds/new_snds/ppo_R.wav|1922206360
+plugins/sasl/data/modules/Custom Sounds/new_snds/bat_conn_L.wav|149157717
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_EL.wav|3728539912
+plugins/sasl/data/modules/Custom Sounds/new_snds/roll_thump.wav|297396001
+plugins/sasl/data/modules/Custom Sounds/new_snds/fuel_click_L.wav|3085270975
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rv_stop_R.wav|205211270
+plugins/sasl/data/modules/Custom Sounds/new_snds/ambient_wind_t154_right.wav|1236006442
+plugins/sasl/data/modules/Custom Sounds/new_snds/rain_inflight.wav|1689365871
+plugins/sasl/data/modules/Custom Sounds/new_snds/rain_outside_L.wav|3701718587
+plugins/sasl/data/modules/Custom Sounds/new_snds/vu6_start_L.wav|372818794
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_open_L.wav|4286347018
+plugins/sasl/data/modules/Custom Sounds/new_snds/ARM406.wav|3129776831
+plugins/sasl/data/modules/Custom Sounds/new_snds/absu_mode_chg_L.wav|3641929861
+plugins/sasl/data/modules/Custom Sounds/new_snds/door_open_R.wav|946313305
+plugins/sasl/data/modules/Custom Sounds/new_snds/seat_move_R.wav|635377022
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_L.wav|3193184659
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_RN_R.wav|3546612604
+plugins/sasl/data/modules/Custom Sounds/new_snds/deice_out.wav|3609266417
+plugins/sasl/data/modules/Custom Sounds/new_snds/door_open1.wav|2120670016
+plugins/sasl/data/modules/Custom Sounds/new_snds/refuel.wav|93207972
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_slide_R.wav|2200155262
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_slide2_L.wav|1583271168
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_slow_R.wav|25485159
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm.wav|4127731690
+plugins/sasl/data/modules/Custom Sounds/new_snds/deice_out_L.wav|1041481382
+plugins/sasl/data/modules/Custom Sounds/new_snds/deice_out_R.wav|4013706387
+plugins/sasl/data/modules/Custom Sounds/new_snds/agr_72.wav|20889503
+plugins/sasl/data/modules/Custom Sounds/new_snds/table_L.wav|2247528193
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rn_stop_R.wav|2095215738
+plugins/sasl/data/modules/Custom Sounds/new_snds/lustra_skrip_L.wav|3505477262
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_fast.wav|602114732
+plugins/sasl/data/modules/Custom Sounds/new_snds/gear_noise.wav|4003746600
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_eng_L.wav|2622244794
+plugins/sasl/data/modules/Custom Sounds/new_snds/zagr_rv_run.wav|3565541444
+plugins/sasl/data/modules/Custom Sounds/new_snds/window_slide2.wav|4100891149
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_slow_L.wav|2268474784
+plugins/sasl/data/modules/Custom Sounds/new_snds/absu_mode_chg.wav|339556746
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_slow.wav|1128006841
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_eng_R.wav|3820801603
+plugins/sasl/data/modules/Custom Sounds/new_snds/tr_run.wav|111985710
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_fast_L.wav|1857848375
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_off.wav|1462566783
+plugins/sasl/data/modules/Custom Sounds/new_snds/bat_disc_R.wav|1413691048
+plugins/sasl/data/modules/Custom Sounds/new_snds/trimm_RN_L.wav|3505973008
+plugins/sasl/data/modules/Custom Sounds/new_snds/pts_start.wav|2985801934
+plugins/sasl/data/modules/Custom Sounds/new_snds/smoke_alarm.wav|2004983940
+plugins/sasl/data/modules/Custom Sounds/new_snds/table.wav|3427987263
+plugins/sasl/data/modules/Custom Sounds/new_snds/vu6_run_L.wav|3338168308
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_fast_R.wav|4271164694
+plugins/sasl/data/modules/Custom Sounds/new_snds/dlt.wav|2316368033
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_off_R.wav|2335871347
+plugins/sasl/data/modules/Custom Sounds/new_snds/yoke_down_L.wav|4146059925
+plugins/sasl/data/modules/Custom Sounds/new_snds/ambient_wind_t154_right_inn.wav|4061583026
+plugins/sasl/data/modules/Custom Sounds/new_snds/wiper_off_L.wav|1004672943
+plugins/sasl/data/modules/Custom Sounds/new_snds/table_R.wav|3328433531
+plugins/sasl/data/modules/Custom Sounds/new_snds/rain_sound2.wav|1774058787
+plugins/sasl/data/modules/Custom Sounds/new_snds/agr_72_L.wav|524848648
+plugins/sasl/data/modules/Custom Sounds/taws/rus/glideslope.wav|367756294
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_150.wav|3839276177
+plugins/sasl/data/modules/Custom Sounds/taws/rus/too_low_flaps.wav|3212731479
+plugins/sasl/data/modules/Custom Sounds/taws/rus/pull_up.wav|2172054239
+plugins/sasl/data/modules/Custom Sounds/taws/rus/sink_rate.wav|1931874657
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_5.wav|787351848
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_10.wav|2601482197
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_50.wav|2046214868
+plugins/sasl/data/modules/Custom Sounds/taws/rus/too_low_gear.wav|3601818130
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_25.wav|2413105437
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_60.wav|3517297328
+plugins/sasl/data/modules/Custom Sounds/taws/rus/check_alt.wav|2883217160
+plugins/sasl/data/modules/Custom Sounds/taws/rus/terrain_ahead.wav|313317238
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_15.wav|1914017805
+plugins/sasl/data/modules/Custom Sounds/taws/rus/dont_sink.wav|717773905
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_40.wav|1449180755
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_20.wav|549196212
+plugins/sasl/data/modules/Custom Sounds/taws/rus/alt_30.wav|2143995205
+plugins/sasl/data/modules/Custom Sounds/taws/rus/terrain.wav|2777352195
+plugins/sasl/data/modules/Custom Sounds/taws/rus/too_low_terrain.wav|2178784566
+plugins/sasl/data/modules/Custom Sounds/taws/eng/alt_1000.wav|2758394514
+plugins/sasl/data/modules/Custom Sounds/taws/eng/glideslope.wav|2600611682
+plugins/sasl/data/modules/Custom Sounds/taws/eng/too_low_flaps.wav|1832669724
+plugins/sasl/data/modules/Custom Sounds/taws/eng/pull_up.wav|1043614897
+plugins/sasl/data/modules/Custom Sounds/taws/eng/sink_rate.wav|1606154012
+plugins/sasl/data/modules/Custom Sounds/taws/eng/alt_500.wav|685350371
+plugins/sasl/data/modules/Custom Sounds/taws/eng/alt_50.wav|3314633193
+plugins/sasl/data/modules/Custom Sounds/taws/eng/too_low_gear.wav|3194994847
+plugins/sasl/data/modules/Custom Sounds/taws/eng/check_alt.wav|37010667
+plugins/sasl/data/modules/Custom Sounds/taws/eng/alt_200.wav|2801778538
+plugins/sasl/data/modules/Custom Sounds/taws/eng/terrain_ahead.wav|4084251761
+plugins/sasl/data/modules/Custom Sounds/taws/eng/dont_sink.wav|2670718242
+plugins/sasl/data/modules/Custom Sounds/taws/eng/terrain.wav|3850495216
+plugins/sasl/data/modules/Custom Sounds/taws/eng/too_low_terrain.wav|2404458753
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/glideslope.wav|3306118480
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/pull_up.wav|1912642469
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/sink_rate.wav|1051366057
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/lo_terrain.wav|3392278387
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/lo_gear.wav|3552192919
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/minimums.wav|2514389234
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/dont_sink.wav|4231618541
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/caution_terrain.wav|2928355234
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/terrain_terrain.wav|2174973083
+plugins/sasl/data/modules/Custom Sounds/taws/recorded/lo_flaps.wav|3205364749
+plugins/sasl/data/modules/Custom Sounds/taws/wha_wha.wav|938112293
+plugins/sasl/data/modules/Custom Sounds/absu_dn_R.wav|1644315670
+plugins/sasl/data/modules/Custom Sounds/rot_click.wav|3097170297
+plugins/sasl/data/modules/Custom Sounds/com_L.wav|3520235638
+plugins/sasl/data/modules/Custom Sounds/metal_switch2_R.wav|1407646245
+plugins/sasl/data/modules/Custom Sounds/trimm_up_L.wav|1849011174
+plugins/sasl/data/modules/Custom Sounds/absu_up_R.wav|2014242427
+plugins/sasl/data/modules/Custom Sounds/cockpit_fan_L.wav|3356261836
+plugins/sasl/data/modules/Custom Sounds/rot_click_big.wav|1703163364
+plugins/sasl/data/modules/Custom Sounds/acs_btn.wav|1146445419
+plugins/sasl/data/modules/Custom Sounds/ark_mid_R.wav|2860246849
+plugins/sasl/data/modules/Custom Sounds/metal_switch2.wav|3061537612
+plugins/sasl/data/modules/Custom Sounds/deice_out.wav|3609266417
+plugins/sasl/data/modules/Custom Sounds/inverters_res_L.wav|4154602311
+plugins/sasl/data/modules/Custom Sounds/air_noise.wav|3240499750
+plugins/sasl/data/modules/Custom Sounds/plastic_btn!.wav|1922496431
+plugins/sasl/data/modules/Custom Sounds/inverters_R.wav|4158435961
+plugins/sasl/data/modules/Custom Sounds/ark_inn.wav|3094744786
+plugins/sasl/data/modules/Custom Sounds/roll_inn-old1.wav|510076239
+plugins/sasl/data/modules/Custom Sounds/parking_off.wav|3669287463
+plugins/sasl/data/modules/Custom Sounds/plastic_btn_L.wav|2729400227
+plugins/sasl/data/modules/Custom Sounds/lights_noise.wav|1304326817
+plugins/sasl/data/modules/Custom Sounds/gpu_stop_out.wav|1727206310
+plugins/sasl/data/modules/Custom Sounds/wind.wav|1395809330
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/good_bye.wav|1994378005
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/blocks_not_removed.wav|1673875486
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/start_2.wav|113303453
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/start_3.wav|1008317480
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/doors_open.wav|3333141967
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/start_1.wav|1834054405
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/covers_not_removed.wav|4079130315
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/engines_run.wav|684223655
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/apu_start_ready.wav|47294112
+plugins/sasl/data/modules/Custom Sounds/crew/rus/ground/eng_start_ready.wav|4251296487
+plugins/sasl/data/modules/Custom Sounds/crew/rus/copilot/gear_up.wav|3766738289
+plugins/sasl/data/modules/Custom Sounds/crew/rus/copilot/gear_down.wav|134811061
+plugins/sasl/data/modules/Custom Sounds/crew/rus/copilot/ready_to_taxi.wav|324574099
+plugins/sasl/data/modules/Custom Sounds/crew/rus/copilot/pressure_1013.wav|3182417332
+plugins/sasl/data/modules/Custom Sounds/crew/rus/copilot/down_gear.wav|1718171409
+plugins/sasl/data/modules/Custom Sounds/crew/rus/copilot/brakes_check.wav|4062553641
+plugins/sasl/data/modules/Custom Sounds/crew/rus/copilot/gear_lever_neutr.wav|4140733023
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/stab_1_5.wav|1308073158
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/flaps_retracted.wav|1545085375
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spd_330.wav|1753050525
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/stab_0.wav|943175979
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/slats_released.wav|2741466108
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/score.wav|2536192672
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spd_360.wav|3194819290
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/slats_ret.wav|2297682738
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spd_160.wav|284915786
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/flaps_45.wav|900187275
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/stab_move.wav|1663466772
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/3.wav|228757133
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/v1.wav|1179971689
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/alt_50.wav|3646498984
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/lights_on.wav|938917496
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spd_200.wav|3017014361
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/tks_eup.wav|2892499139
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/lights_off.wav|2272510202
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/set_ort_course.wav|3241948701
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/flaps_ret_sin.wav|739933018
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/minimums.wav|550068098
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/pos_rate.wav|871313549
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/1.wav|2335148294
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/flaps_rel_sin.wav|3322493324
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/stab_3.wav|1952650146
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/flaps_28.wav|3745319138
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spd_220.wav|68800828
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/5.wav|1704096823
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/flaps_15.wav|865817234
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/10.wav|2263151891
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/stab_5_5.wav|430270564
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spd_240.wav|2543795870
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spoilers_out.wav|330158298
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/rotate.wav|2698092161
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/2.wav|2128796561
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/flaps_36.wav|1825525359
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/slats_rel.wav|377377009
+plugins/sasl/data/modules/Custom Sounds/crew/rus/navigator/spd_alive.wav|1524656369
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/reverse.wav|2808700789
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/oppa.wav|826622560
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/gear_up.wav|4224820996
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/engies_go_goodbye.wav|3697704635
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/gear_down.wav|994435106
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/turn_on_users.wav|3156810755
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/flaps_0.wav|916912133
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/remove_flaps_lights.wav|363330322
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/lights_off.wav|1205185179
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/lights_out.wav|3027037968
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/parking_brakes.wav|1099099627
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/lights_landing.wav|3068196119
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/ap_enable.wav|3834746359
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/flaps_15.wav|939410418
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/checklist.wav|3672590782
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/takeoff_mode.wav|400222618
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/check_brakes.wav|1598228399
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/approcah.wav|3624834185
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/attention_start_taxi.wav|469979724
+plugins/sasl/data/modules/Custom Sounds/crew/rus/cpt/reverse_off.wav|2862090213
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/gear_down.wav|4264249834
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/at_on.wav|2559077394
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/gear_neutr.wav|1422846200
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/check_before_start.wav|3124189898
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/clear_engines.wav|1945970635
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/start_2.wav|87404571
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/start_3.wav|3741974881
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/start_apu.wav|4277045350
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/start_1.wav|2703351261
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/reverse_on.wav|1440256006
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/turn_63_on.wav|778214414
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/takeoff_mode.wav|2705887572
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/valves_closed.wav|563627226
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/engines_run.wav|3883249510
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/generators_on.wav|698557695
+plugins/sasl/data/modules/Custom Sounds/crew/rus/engineer/gears_up.wav|1438545283
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/good_bye.wav|1229006325
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/blocks_not_removed.wav|3846292062
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/start_2.wav|574849033
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/start_3.wav|1401716809
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/doors_open.wav|2343058597
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/start_1.wav|2768745255
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/covers_not_removed.wav|2304128381
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/engines_run.wav|227022480
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/apu_start_ready.wav|3059092410
+plugins/sasl/data/modules/Custom Sounds/crew/eng/ground/eng_start_ready.wav|523838663
+plugins/sasl/data/modules/Custom Sounds/crew/eng/copilot/gear_up.wav|2400749935
+plugins/sasl/data/modules/Custom Sounds/crew/eng/copilot/gear_down.wav|2926183045
+plugins/sasl/data/modules/Custom Sounds/crew/eng/copilot/ready_to_taxi.wav|3979368764
+plugins/sasl/data/modules/Custom Sounds/crew/eng/copilot/pressure_1013.wav|2718944035
+plugins/sasl/data/modules/Custom Sounds/crew/eng/copilot/down_gear.wav|1096613089
+plugins/sasl/data/modules/Custom Sounds/crew/eng/copilot/brakes_check.wav|1659961711
+plugins/sasl/data/modules/Custom Sounds/crew/eng/copilot/gear_lever_neutr.wav|2029341280
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/stab_1_5.wav|1561428801
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/flaps_retracted.wav|2811666295
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spd_330.wav|3695421334
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/stab_0.wav|3722154174
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/slats_released.wav|2176122691
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/score.wav|4029198944
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spd_360.wav|3884391960
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/slats_ret.wav|2302064316
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spd_160.wav|1431995690
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/flaps_45.wav|3139923265
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/stab_move.wav|935821882
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/3.wav|414093839
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/v1.wav|3482321215
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/alt_50.wav|2335757085
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/lights_on.wav|3551618103
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spd_200.wav|303999727
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/tks_eup.wav|1152559629
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/lights_off.wav|341836473
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/set_ort_course.wav|724039720
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/flaps_ret_sin.wav|2935921656
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/minimums.wav|1091529879
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/pos_rate.wav|194628106
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/1.wav|541929939
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/flaps_rel_sin.wav|3450899155
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/stab_3.wav|3123096825
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/flaps_28.wav|411494844
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spd_220.wav|1465686128
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/5.wav|424303939
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/flaps_15.wav|4205899094
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/10.wav|1651742957
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/stab_5_5.wav|2473480010
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spd_240.wav|914313508
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spoilers_out.wav|3928951344
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/rotate.wav|3510385611
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/2.wav|1656649333
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/flaps_36.wav|2363726549
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/slats_rel.wav|3854225737
+plugins/sasl/data/modules/Custom Sounds/crew/eng/navigator/spd_alive.wav|3878254714
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/reverse.wav|2596143730
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/oppa.wav|826622560
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/gear_up.wav|1572258473
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/engies_go_goodbye.wav|4071043551
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/gear_down.wav|4089300952
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/turn_on_users.wav|3386281909
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/flaps_0.wav|3600559021
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/remove_flaps_lights.wav|2277128065
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/lights_off.wav|748483252
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/lights_out.wav|3697118690
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/parking_brakes.wav|2118303852
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/lights_landing.wav|3990433839
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/ap_enable.wav|4248392178
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/flaps_15.wav|3873800194
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/checklist.wav|3672590782
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/takeoff_mode.wav|3879496874
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/check_brakes.wav|1796233630
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/approcah.wav|3624834185
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/attention_start_taxi.wav|1677462100
+plugins/sasl/data/modules/Custom Sounds/crew/eng/cpt/reverse_off.wav|2625192819
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/gear_down.wav|992059078
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/at_on.wav|2428709359
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/gear_neutr.wav|2425956000
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/check_before_start.wav|1150524413
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/clear_engines.wav|1950119038
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/start_2.wav|2879289463
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/start_3.wav|2721019808
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/start_apu.wav|3951326155
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/start_1.wav|1301259887
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/reverse_on.wav|481679068
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/turn_63_on.wav|4257204733
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/takeoff_mode.wav|3550974380
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/valves_closed.wav|2615761208
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/engines_run.wav|378209568
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/generators_on.wav|2954313123
+plugins/sasl/data/modules/Custom Sounds/crew/eng/engineer/gears_up.wav|167480666
+plugins/sasl/data/modules/Custom Sounds/metal_switch!!!.wav|3028481307
+plugins/sasl/data/modules/Custom Sounds/inverters_res_R.wav|80093971
+plugins/sasl/data/modules/Custom Sounds/plastic_btn_R.wav|352576962
+plugins/sasl/data/modules/Custom Sounds/TCAS_click_R.wav|67378772
+plugins/sasl/data/modules/Custom Sounds/gpu_stop_R.wav|2967579394
+plugins/sasl/data/modules/Custom Sounds/ark_mid_L.wav|2922961331
+plugins/sasl/data/modules/Custom Sounds/mrp_bell2.wav|2485261382
+plugins/sasl/data/modules/Custom Sounds/gpu_stop_L.wav|1279172073
+plugins/sasl/data/modules/Custom Sounds/metal_switch!.wav|1637850387
+plugins/sasl/data/modules/Custom Sounds/short_siren.wav|1853323304
+plugins/sasl/data/modules/Custom Sounds/ark_inn_L.wav|3352579871
+plugins/sasl/data/modules/Custom Sounds/vbe_alarm.wav|2019884446
+plugins/sasl/data/modules/Custom Sounds/plastic_switch.wav|1008295139
+plugins/sasl/data/modules/Custom Sounds/flaps_hnd.wav|3762363311
+plugins/sasl/data/modules/Custom Sounds/flaps_hnd_R.wav|4248162218
+plugins/sasl/data/modules/Custom Sounds/ROD_ON_R.wav|2883171297
+plugins/sasl/data/modules/Custom Sounds/trimm_down.wav|3862260684
+plugins/sasl/data/modules/Custom Sounds/absu_dn.wav|220685919
+plugins/sasl/data/modules/Custom Sounds/TCAS_rot_R.wav|3211311011
+plugins/sasl/data/modules/Custom Sounds/TCAS_release_L.wav|1651218343
+plugins/sasl/data/modules/Custom Sounds/rot_click_big_R.wav|1306490233
+plugins/sasl/data/modules/Custom Sounds/long_speaker.wav|2019451883
+plugins/sasl/data/modules/Custom Sounds/acs_tik_tik_L.wav|1776023776
+plugins/sasl/data/modules/Custom Sounds/long_siren.wav|1261144197
+plugins/sasl/data/modules/Custom Sounds/gpu_run_L.wav|4178052704
+plugins/sasl/data/modules/Custom Sounds/trimm_down_R.wav|3566369503
+plugins/sasl/data/modules/Custom Sounds/ark_inn_R.wav|787747921
+plugins/sasl/data/modules/Custom Module/tape_lit.lua|2353493603
+plugins/sasl/data/modules/Custom Module/digitstapeLit.lua|1325890183
+plugins/sasl/data/modules/Custom Module/fire_system/fire_panel.lua|4092357996
+plugins/sasl/data/modules/Custom Module/fire_system/fire_system.lua|3545672572
+plugins/sasl/data/modules/Custom Module/fire_system/fire_panel copy.lua|639794505
+plugins/sasl/data/modules/Custom Module/fire_system/fire_logic.lua|1482779382
+plugins/sasl/data/modules/Custom Module/kskv/kskv_bleed.lua|1829033447
+plugins/sasl/data/modules/Custom Module/kskv/kskv_sard.lua|649720222
+plugins/sasl/data/modules/Custom Module/kskv/kskv_cond.lua|1796294738
+plugins/sasl/data/modules/Custom Module/kskv/kskv.lua|3846519517
+plugins/sasl/data/modules/Custom Module/kskv/kskv_panel.lua|2993057878
+plugins/sasl/data/modules/Custom Module/kskv/kskv_fails.lua|882815993
+plugins/sasl/data/modules/Custom Module/engines_system/vibration_logic.lua|2595737452
+plugins/sasl/data/modules/Custom Module/engines_system/fuel_consumption.lua|2577693080
+plugins/sasl/data/modules/Custom Module/engines_system/engines_panel.lua|711212035
+plugins/sasl/data/modules/Custom Module/engines_system/eng_fails.lua|2338432106
+plugins/sasl/data/modules/Custom Module/engines_system/rud_logic copy.lua|4070400486
+plugins/sasl/data/modules/Custom Module/engines_system/engines_system.lua|4006634294
+plugins/sasl/data/modules/Custom Module/engines_system/rud_logic.lua|1004308499
+plugins/sasl/data/modules/Custom Module/engines_system/rt12.lua|3745828307
+plugins/sasl/data/modules/Custom Module/engines_system/engine_gauges.lua|2215839878
+plugins/sasl/data/modules/Custom Module/rectangle_ctr.lua|1928446887
+plugins/sasl/data/modules/Custom Module/draw_bezier.lua|915029455
+plugins/sasl/data/modules/Custom Module/KLNconfig.txt|4015033158
+plugins/sasl/data/modules/Custom Module/lever.lua|1111308067
+plugins/sasl/data/modules/Custom Module/clickable.png|1903396470
+plugins/sasl/data/modules/Custom Module/arc_alpha_decay.lua|1056793961
+plugins/sasl/data/modules/Custom Module/bold_digit_strip.png|337613646
+plugins/sasl/data/modules/Custom Module/needle.lua|341026696
+plugins/sasl/data/modules/Custom Module/green_digit_strip.png|461111927
+plugins/sasl/data/modules/Custom Module/afl_ch.lua|408473625
+plugins/sasl/data/modules/Custom Module/digitstapeSmoothLit.lua|2161767903
+plugins/sasl/data/modules/Custom Module/controls/landing_gears.lua|35998423
+plugins/sasl/data/modules/Custom Module/controls/flight_controls.lua|3411466249
+plugins/sasl/data/modules/Custom Module/controls/trimmers.lua|1069990597
+plugins/sasl/data/modules/Custom Module/controls/controls.lua|3202332120
+plugins/sasl/data/modules/Custom Module/controls/controls_panel.lua|250995295
+plugins/sasl/data/modules/Custom Module/controls/nosewheel.lua|2655821626
+plugins/sasl/data/modules/Custom Module/controls/control_fails.lua|1227701382
+plugins/sasl/data/modules/Custom Module/controls/flaps.lua|2569923487
+plugins/sasl/data/modules/Custom Module/rectangle_ctr_fuel.lua|887126476
+plugins/sasl/data/modules/Custom Module/apu_system/apu_fails.lua|2387723232
+plugins/sasl/data/modules/Custom Module/apu_system/apu_logic.lua|733191916
+plugins/sasl/data/modules/Custom Module/apu_system/apu_system.lua|3302941457
+plugins/sasl/data/modules/Custom Module/apu_system/apu_panel.lua|3353435510
+plugins/sasl/data/modules/Custom Module/free_texture.lua|1375699146
+plugins/sasl/data/modules/Custom Module/dataref_creator_1.lua|733296530
+plugins/sasl/data/modules/Custom Module/DataRefsTu154_int.txt|4259398555
+plugins/sasl/data/modules/Custom Module/digital7_space.fnt|707880073
+plugins/sasl/data/modules/Custom Module/basic_font_0.png|2855065150
+plugins/sasl/data/modules/Custom Module/msrp/msrp.lua|2404095170
+plugins/sasl/data/modules/Custom Module/msrp/msrp_panel.lua|3867963128
+plugins/sasl/data/modules/Custom Module/msrp/msrp_logic.lua|3400453716
+plugins/sasl/data/modules/Custom Module/AVIA.ttf|1368415574
+plugins/sasl/data/modules/Custom Module/free_texture_lit.lua|3180233231
+plugins/sasl/data/modules/Custom Module/flap_aero.lua|3704266708
+plugins/sasl/data/modules/Custom Module/functions.lua|1317632995
+plugins/sasl/data/modules/Custom Module/transsonic.lua|906805015
+plugins/sasl/data/modules/Custom Module/text_draw.lua|3880984230
+plugins/sasl/data/modules/Custom Module/black_digit_strip.png|3719846
+plugins/sasl/data/modules/Custom Module/digital7_it_0.png|1829220883
+plugins/sasl/data/modules/Custom Module/basic_font.fnt|2606671770
+plugins/sasl/data/modules/Custom Module/digital7_0.png|251499910
+plugins/sasl/data/modules/Custom Module/needleLit.lua|3852558775
+plugins/sasl/data/modules/Custom Module/nav_funcs.lua|4241203495
+plugins/sasl/data/modules/Custom Module/flap_aero_temp.lua|2874923163
+plugins/sasl/data/modules/Custom Module/bold_digit_strip.psd|2809799231
+plugins/sasl/data/modules/Custom Module/arc_LIT.lua|2231617903
+plugins/sasl/data/modules/Custom Module/tcas_scr.fnt|2732631709
+plugins/sasl/data/modules/Custom Module/text_draw3.lua|1330798472
+plugins/sasl/data/modules/Custom Module/save_state.lua|3927728800
+plugins/sasl/data/modules/Custom Module/flap_aero.luabak|4064012130
+plugins/sasl/data/modules/Custom Module/camera_shake.lua|577045963
+plugins/sasl/data/modules/Custom Module/time_logic.lua|3306150783
+plugins/sasl/data/modules/Custom Module/overhead/overhead.lua|3826572603
+plugins/sasl/data/modules/Custom Module/digital7_it.fnt|1515533005
+plugins/sasl/data/modules/Custom Module/readme.txt|417127972
+plugins/sasl/data/modules/Custom Module/dataref_creator_3.lua|3898612441
+plugins/sasl/data/modules/Custom Module/creator_script.lua|3810326189
+plugins/sasl/data/modules/Custom Module/texture_ctr.lua|3556765118
+plugins/sasl/data/modules/Custom Module/digital7_space_0.png|2105407371
+plugins/sasl/data/modules/Custom Module/antiice/antiice.lua|2388107875
+plugins/sasl/data/modules/Custom Module/antiice/antiice_panel.lua|1192640796
+plugins/sasl/data/modules/Custom Module/antiice/antiice_fails.lua|3139044144
+plugins/sasl/data/modules/Custom Module/antiice/antiice_logic.lua|177870388
+plugins/sasl/data/modules/Custom Module/digitstape.lua|519572603
+plugins/sasl/data/modules/Custom Module/animation/ext_anim.lua|2512547677
+plugins/sasl/data/modules/Custom Module/animation/slow_load.lua|23318824
+plugins/sasl/data/modules/Custom Module/animation/animation.lua|3302829135
+plugins/sasl/data/modules/Custom Module/animation/rain_mask.lua|3318468538
+plugins/sasl/data/modules/Custom Module/black_box/25_06_59_005.bbox|3107197779
+plugins/sasl/data/modules/Custom Module/black_box/01_07_59_007.bbox|1442208826
+plugins/sasl/data/modules/Custom Module/black_box/26_06_59_006.bbox|4013094554
+plugins/sasl/data/modules/Custom Module/walk.lua|2363159110
+plugins/sasl/data/modules/Custom Module/black_digit_strip.psd|2684129675
+plugins/sasl/data/modules/Custom Module/sounds/touchdown.lua|1009905869
+plugins/sasl/data/modules/Custom Module/sounds/left_panel_sounds.lua|1484844117
+plugins/sasl/data/modules/Custom Module/sounds/voice_tables.lua|1696483171
+plugins/sasl/data/modules/Custom Module/sounds/cabin_sounds2.lua|1411482904
+plugins/sasl/data/modules/Custom Module/sounds/voice_talk.lua|1186723877
+plugins/sasl/data/modules/Custom Module/sounds/chk_after_press_set.lua|511535066
+plugins/sasl/data/modules/Custom Module/sounds/right_panel_sounds.lua|811851918
+plugins/sasl/data/modules/Custom Module/sounds/chk_before_start.lua|3902928081
+plugins/sasl/data/modules/Custom Module/sounds/cabin_sounds.lua|113453725
+plugins/sasl/data/modules/Custom Module/sounds/chk_before_taxi.lua|691242961
+plugins/sasl/data/modules/Custom Module/sounds/crew_voices.lua|4231002645
+plugins/sasl/data/modules/Custom Module/sounds/engine_whine.lua|1519591451
+plugins/sasl/data/modules/Custom Module/sounds/chk_before_base.lua|333100557
+plugins/sasl/data/modules/Custom Module/sounds/temp.aaa|2389211811
+plugins/sasl/data/modules/Custom Module/sounds/starter_cutout.lua|3498492514
+plugins/sasl/data/modules/Custom Module/sounds/engines_sound.lua|266346943
+plugins/sasl/data/modules/Custom Module/sounds/chk_on_taxi.lua|101154424
+plugins/sasl/data/modules/Custom Module/sounds/chk_before_descend.lua|610724718
+plugins/sasl/data/modules/Custom Module/sounds/voice_func.lua|2922089639
+plugins/sasl/data/modules/Custom Module/sounds/chk_before_takeoff.lua|3723024020
+plugins/sasl/data/modules/Custom Module/sounds/sounds.lua|3436443358
+plugins/sasl/data/modules/Custom Module/sounds/cockpit_sounds.lua|934617331
+plugins/sasl/data/modules/Custom Module/sounds/chk_before_land.lua|2010192253
+plugins/sasl/data/modules/Custom Module/sounds/chk_before_lineup.lua|3478323477
+plugins/sasl/data/modules/Custom Module/sounds/FE_top_sounds.lua|1329555101
+plugins/sasl/data/modules/Custom Module/green_digit_strip.psd|2418764855
+plugins/sasl/data/modules/Custom Module/creator_script_SC.lua|111584067
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_not_climb_2.png|3945286466
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_marks.png|2811310534
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_text.lua|1147382290
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/so72_panel.lua|549041473
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_marks.psd|1977074679
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_not_climb.png|3267473034
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/fl_text.lua|3470149742
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale.png|3342513694
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_logic.lua|592623620
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_panel.lua|3070041515
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scr.fnt|2732631709
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_not_descend.png|1113627413
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas.lua|2011884508
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_RA.psd|4282705440
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_maintain_lvl.png|169697568
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_descend.png|1419134027
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/segmental_0.png|3229792377
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_not_descend_2.png|2481303532
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scr_0.png|2151533846
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_draw.lua|3762493629
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_descend_10.png|959703666
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/segmental.fnt|2853166380
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_gau.lua|4047621088
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_climb_10.png|2277558761
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale_climb.png|676989286
+plugins/sasl/data/modules/Custom Module/main_panel/tcas/tcas_scale.psd|2710904175
+plugins/sasl/data/modules/Custom Module/main_panel/diss/diss_logic.lua|3910787142
+plugins/sasl/data/modules/Custom Module/main_panel/diss/diss.lua|45584016
+plugins/sasl/data/modules/Custom Module/main_panel/diss/diss_panel.lua|3120126999
+plugins/sasl/data/modules/Custom Module/main_panel/mach_meters.lua|1349447372
+plugins/sasl/data/modules/Custom Module/main_panel/mech_aneroid.lua|2821858116
+plugins/sasl/data/modules/Custom Module/main_panel/bkk.lua|2165954704
+plugins/sasl/data/modules/Custom Module/main_panel/misc_lamps.lua|2605703749
+plugins/sasl/data/modules/Custom Module/main_panel/water_panel.lua|2484036438
+plugins/sasl/data/modules/Custom Module/main_panel/uap14.lua|1084786466
+plugins/sasl/data/modules/Custom Module/main_panel/termo.lua|3977053021
+plugins/sasl/data/modules/Custom Module/main_panel/sc_controls.lua|1190921477
+plugins/sasl/data/modules/Custom Module/main_panel/rsbn/rsbn_logic.lua|1995907526
+plugins/sasl/data/modules/Custom Module/main_panel/rsbn/rsbn_panel.lua|1617299044
+plugins/sasl/data/modules/Custom Module/main_panel/rsbn/rsbn.lua|1400300496
+plugins/sasl/data/modules/Custom Module/main_panel/ins_test.lua|2161270574
+plugins/sasl/data/modules/Custom Module/main_panel/radio/radio_fails.lua|1006523615
+plugins/sasl/data/modules/Custom Module/main_panel/radio/spu.lua|3592287480
+plugins/sasl/data/modules/Custom Module/main_panel/radio/course_mp.lua|1786879442
+plugins/sasl/data/modules/Custom Module/main_panel/radio/dme.lua|3994353610
+plugins/sasl/data/modules/Custom Module/main_panel/radio/radio.lua|37832516
+plugins/sasl/data/modules/Custom Module/main_panel/radio/mrp.lua|3143167202
+plugins/sasl/data/modules/Custom Module/main_panel/radio/vhf.lua|2313081245
+plugins/sasl/data/modules/Custom Module/main_panel/radio/ark15.lua|2342067845
+plugins/sasl/data/modules/Custom Module/main_panel/uvid_15fk.lua|574095515
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/nvu_panel.lua|2689689171
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/drefs.txt|985135991
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/nvu_logic.lua|2802117039
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/moving_map.lua|944058907
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/pa3_handdrawn_frag.glsl|4093923675
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/fpln_editor.lua|2745926293
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/rsbn_names_ru.lua|1852044540
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/pa3_handdrawn_vert.glsl|795535536
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/navaid_cache.lua|1156525842
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/editor/editor_leg.lua|1232633778
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/editor/editor_textfield.lua|2876467327
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/editor/editor_button.lua|3593250814
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/editor/editor_label.lua|1076207770
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/editor/editor_background.lua|2677748391
+plugins/sasl/data/modules/Custom Module/main_panel/nvu/nvu.lua|1358670451
+plugins/sasl/data/modules/Custom Module/main_panel/radio_display.lua|3273121120
+plugins/sasl/data/modules/Custom Module/main_panel/rv5.lua|2725353282
+plugins/sasl/data/modules/Custom Module/main_panel/clock24.lua|2803754153
+plugins/sasl/data/modules/Custom Module/main_panel/tks/tks.lua|1373166083
+plugins/sasl/data/modules/Custom Module/main_panel/tks/km5.lua|1835119487
+plugins/sasl/data/modules/Custom Module/main_panel/tks/bgmk.lua|2559677883
+plugins/sasl/data/modules/Custom Module/main_panel/tks/tks_panel.lua|1892996586
+plugins/sasl/data/modules/Custom Module/main_panel/tks/tks_fails.lua|3045025005
+plugins/sasl/data/modules/Custom Module/main_panel/tks/ush3.lua|2690305635
+plugins/sasl/data/modules/Custom Module/main_panel/tks/gyro.lua|1358202965
+plugins/sasl/data/modules/Custom Module/main_panel/pnp.lua|1632424156
+plugins/sasl/data/modules/Custom Module/main_panel/msrp_clock.lua|0
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_indicator.lua|1856700851
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_svk.lua|661588037
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_controls.lua|386909171
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu.lua|3636877055
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_commands.lua|1791297223
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_mode.lua|1866197407
+plugins/sasl/data/modules/Custom Module/main_panel/absu/ra56_roll_logic.lua|948272118
+plugins/sasl/data/modules/Custom Module/main_panel/absu/ra56_yaw_logic.lua|3633058069
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_fails.lua|903252600
+plugins/sasl/data/modules/Custom Module/main_panel/absu/ra56_pitch_logic.lua|2711795016
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_integrator.lua|2544118421
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_at.lua|1184843089
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_ppn.lua|2405996319
+plugins/sasl/data/modules/Custom Module/main_panel/absu/absu_panel.lua|1159744173
+plugins/sasl/data/modules/Custom Module/main_panel/vers.lua|3459965402
+plugins/sasl/data/modules/Custom Module/main_panel/test_hud.lua|2052140875
+plugins/sasl/data/modules/Custom Module/main_panel/main_panel.lua|1847133652
+plugins/sasl/data/modules/Custom Module/main_panel/pkp.lua|1949808281
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_welcome.png|279030940
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_scale_2.psd|4118011956
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_panel.lua|1010282131
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_map_side.lua|3828364765
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_clock_spd.lua|1377900545
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_welcome.psd|3116753238
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws.ttf|4045856595
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_map_top.lua|4259812211
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_scale_2.png|1730098549
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_game.lua|2552084743
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws.lua|2411527017
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_welcome.lua|3832404193
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_warn_logic.lua|1852314749
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_test.lua|2258613090
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_scale_1.psd|1178870705
+plugins/sasl/data/modules/Custom Module/main_panel/taws/draw_map.lua|4108216244
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_scr.fnt|2742511865
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_clock.png|1893762444
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_msg.lua|2209476598
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_clock.lua|1135164112
+plugins/sasl/data/modules/Custom Module/main_panel/taws/side_draw.lua|2750882260
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_clock.psd|75840836
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_logic.lua|207828059
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_scr_0.png|1388118370
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_clock_crs.lua|3976949233
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_sound.lua|249382889
+plugins/sasl/data/modules/Custom Module/main_panel/taws/scr_clock_sec.lua|934794864
+plugins/sasl/data/modules/Custom Module/main_panel/taws/taws_scale_1.png|877751742
+plugins/sasl/data/modules/Custom Module/main_panel/usvp.lua|4041490179
+plugins/sasl/data/modules/Custom Module/main_panel/rmi.lua|1269609717
+plugins/sasl/data/modules/Custom Module/main_panel/door_panel.lua|327954315
+plugins/sasl/data/modules/Custom Module/main_panel/achs1.lua|2618968740
+plugins/sasl/data/modules/Custom Module/main_panel/agr.lua|3903518078
+plugins/sasl/data/modules/Custom Module/main_panel/svs.lua|1193763941
+plugins/sasl/data/modules/Custom Module/main_panel/radar/radar_mask_drift.png|3131120754
+plugins/sasl/data/modules/Custom Module/main_panel/radar/radar_mask_drift2.png|2868637760
+plugins/sasl/data/modules/Custom Module/main_panel/radar/radar_line.png|786570983
+plugins/sasl/data/modules/Custom Module/main_panel/radar/radar_exp.lua|827025924
+plugins/sasl/data/modules/Custom Module/main_panel/radar/radar.lua|3986600167
+plugins/sasl/data/modules/Custom Module/main_panel/radar/radar_angle_scale.png|395874987
+plugins/sasl/data/modules/Custom Module/main_panel/radar/radar_mask.png|1808843093
+plugins/sasl/data/modules/Custom Module/main_panel/vent.lua|577254796
+plugins/sasl/data/modules/Custom Module/main_panel/radar_kontur.lua|325790616
+plugins/sasl/data/modules/Custom Module/main_panel/mgv.lua|2062529328
+plugins/sasl/data/modules/Custom Module/main_panel/misc_fails.lua|2162217096
+plugins/sasl/data/modules/Custom Module/main_panel/eup53.lua|1690184004
+plugins/sasl/data/modules/Custom Module/main_panel/gns430.lua|1613272055
+plugins/sasl/data/modules/Custom Module/main_panel/vbe_altimeter/vbe_scale.psd|2344225948
+plugins/sasl/data/modules/Custom Module/main_panel/vbe_altimeter/vbe_altimeter.lua|187068165
+plugins/sasl/data/modules/Custom Module/main_panel/vbe_altimeter/vbe_scale2.png|3268808992
+plugins/sasl/data/modules/Custom Module/main_panel/vbe_altimeter/vbe_scale.png|2788738693
+plugins/sasl/data/modules/Custom Module/digital7.ttf|2524047910
+plugins/sasl/data/modules/Custom Module/lever_hor.lua|2629711118
+plugins/sasl/data/modules/Custom Module/lights_system/light_commands.lua|2898357829
+plugins/sasl/data/modules/Custom Module/lights_system/cockpit_lights.lua|2665377543
+plugins/sasl/data/modules/Custom Module/lights_system/light_panel.lua|3659432394
+plugins/sasl/data/modules/Custom Module/lights_system/ext_lights.lua|405922795
+plugins/sasl/data/modules/Custom Module/lights_system/cockpit_lights_bright.lua|698208661
+plugins/sasl/data/modules/Custom Module/lights_system/light_fails.lua|1897506651
+plugins/sasl/data/modules/Custom Module/lights_system/lights_system.lua|1279737565
+plugins/sasl/data/modules/Custom Module/DataRefsTu154_fail.txt|824404045
+plugins/sasl/data/modules/Custom Module/Verdana.ttf|3954709801
+plugins/sasl/data/modules/Custom Module/clickable.lua|943487698
+plugins/sasl/data/modules/Custom Module/fuel_system/fuel_panel.lua|490789898
+plugins/sasl/data/modules/Custom Module/fuel_system/fuel_fails.lua|1592656559
+plugins/sasl/data/modules/Custom Module/fuel_system/fuel_tanks.lua|338088869
+plugins/sasl/data/modules/Custom Module/fuel_system/fuel_engines.lua|731225233
+plugins/sasl/data/modules/Custom Module/fuel_system/fuel_system.lua|3322382118
+plugins/sasl/data/modules/Custom Module/fuel_system/fuel_pumps.lua|4060359638
+plugins/sasl/data/modules/Custom Module/texture.lua|2851819356
+plugins/sasl/data/modules/Custom Module/electric_system/electric_panel.lua|3355391665
+plugins/sasl/data/modules/Custom Module/electric_system/bus115_logic.lua|1000068133
+plugins/sasl/data/modules/Custom Module/electric_system/battery_logic.lua|2488620267
+plugins/sasl/data/modules/Custom Module/electric_system/gpu_logic.lua|457027566
+plugins/sasl/data/modules/Custom Module/electric_system/electric_system.lua|3691688140
+plugins/sasl/data/modules/Custom Module/electric_system/bus36_logic.lua|707391566
+plugins/sasl/data/modules/Custom Module/electric_system/generators_logic.lua|2605208726
+plugins/sasl/data/modules/Custom Module/electric_system/fms_test.txt|177047676
+plugins/sasl/data/modules/Custom Module/electric_system/current_counter.lua|3078271045
+plugins/sasl/data/modules/Custom Module/electric_system/electric_fails.lua|1362653928
+plugins/sasl/data/modules/Custom Module/electric_system/bus27_logic.lua|2975953840
+plugins/sasl/data/modules/Custom Module/brake_system/brake_system.lua|1503710279
+plugins/sasl/data/modules/Custom Module/hydro_system/hydro_panel.lua|2330758994
+plugins/sasl/data/modules/Custom Module/hydro_system/hydro_logic.lua|520537037
+plugins/sasl/data/modules/Custom Module/hydro_system/hydro_fails.lua|4022167922
+plugins/sasl/data/modules/Custom Module/hydro_system/hydro_logic_old.lua|2556970490
+plugins/sasl/data/modules/Custom Module/hydro_system/hydro_logic_old_old.lua|665400968
+plugins/sasl/data/modules/Custom Module/hydro_system/hydro_system.lua|1065570783
+plugins/sasl/data/modules/Custom Module/DataRefsTu154_1.txt|3525253911
+plugins/sasl/data/modules/Custom Module/close.png|1026565542
+plugins/sasl/data/modules/Custom Module/dataref_creator_2.lua|2030528681
+plugins/sasl/data/modules/Custom Module/switch_lit.lua|683674566
+plugins/sasl/data/modules/Custom Module/panels_2d/load_panel.psd|2055659224
+plugins/sasl/data/modules/Custom Module/panels_2d/checklist_tex.psd|1699617342
+plugins/sasl/data/modules/Custom Module/panels_2d/overhead_2d.lua|199208189
+plugins/sasl/data/modules/Custom Module/panels_2d/fuel_tables.lua|1716972960
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_panel_2d.lua|3810928944
+plugins/sasl/data/modules/Custom Module/panels_2d/tks_scale.png|2046490032
+plugins/sasl/data/modules/Custom Module/panels_2d/load_panel.lua|3766240352
+plugins/sasl/data/modules/Custom Module/panels_2d/checklist_tex.png|1495373687
+plugins/sasl/data/modules/Custom Module/panels_2d/menus.png|3583683635
+plugins/sasl/data/modules/Custom Module/panels_2d/loading.png|1157535651
+plugins/sasl/data/modules/Custom Module/panels_2d/ground_tex_RUS.png|604554375
+plugins/sasl/data/modules/Custom Module/panels_2d/nvu_tex.png|2312318730
+plugins/sasl/data/modules/Custom Module/panels_2d/white_digits.png|970239532
+plugins/sasl/data/modules/Custom Module/panels_2d/panels_2d.lua|4043047705
+plugins/sasl/data/modules/Custom Module/panels_2d/failures_2d.lua|1558915070
+plugins/sasl/data/modules/Custom Module/panels_2d/test_draw.lua|2067251574
+plugins/sasl/data/modules/Custom Module/panels_2d/ground_tex.png|1237942129
+plugins/sasl/data/modules/Custom Module/panels_2d/checklist_tex_RUS.png|47407452
+plugins/sasl/data/modules/Custom Module/panels_2d/ground_panel.lua|2817016873
+plugins/sasl/data/modules/Custom Module/panels_2d/palette_2d.lua|573749764
+plugins/sasl/data/modules/Custom Module/panels_2d/Repair.psd|2095386632
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UTurn.png|3792356327
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UMETAR.png|2537368977
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UHUD.png|239345133
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UHUD.lua|1708287409
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UConvert.png|2797625326
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UTurn.lua|2393876424
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UConvert.psd|3429487984
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UPhone.png|3625255192
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/rotated_tapeLit.lua|3829287640
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UPhone.lua|3182978166
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UConvert.lua|1661056937
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UPhone_0.png|999316755
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UMETAR.lua|4231762420
+plugins/sasl/data/modules/Custom Module/panels_2d/UPhone/UPhone.fnt|2295954664
+plugins/sasl/data/modules/Custom Module/panels_2d/png_backup/absu_bk.png|3359251536
+plugins/sasl/data/modules/Custom Module/panels_2d/png_backup/absu_ess_RUS.png|521034363
+plugins/sasl/data/modules/Custom Module/panels_2d/png_backup/absu_ess_RUS copy.png|2470939074
+plugins/sasl/data/modules/Custom Module/panels_2d/png_backup/absu_bk_RUS.png|1004313970
+plugins/sasl/data/modules/Custom Module/panels_2d/png_backup/absu_ess.png|4234443612
+plugins/sasl/data/modules/Custom Module/panels_2d/ground_tex.psd|3257100802
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_bk.png|3359251536
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_ess_RUS.png|3882779261
+plugins/sasl/data/modules/Custom Module/panels_2d/overhead_tex.png|2267808789
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_ess_RUS copy.png|2470939074
+plugins/sasl/data/modules/Custom Module/panels_2d/overhead_tex.psd|1190412874
+plugins/sasl/data/modules/Custom Module/panels_2d/overhead_tex_RUS.png|62361477
+plugins/sasl/data/modules/Custom Module/panels_2d/repair_tex.png|984312913
+plugins/sasl/data/modules/Custom Module/panels_2d/load_panel_RUS.png|3788486630
+plugins/sasl/data/modules/Custom Module/panels_2d/nvu_tex_RUS.png|2314430197
+plugins/sasl/data/modules/Custom Module/panels_2d/fail_runtime.lua|221793929
+plugins/sasl/data/modules/Custom Module/panels_2d/nvu_tex.psd|1817506446
+plugins/sasl/data/modules/Custom Module/panels_2d/checklist_panel_2d.lua|2561281872
+plugins/sasl/data/modules/Custom Module/panels_2d/cam_panel.png|3016867308
+plugins/sasl/data/modules/Custom Module/panels_2d/palette.psd|4201241998
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_bk.psd|608125523
+plugins/sasl/data/modules/Custom Module/panels_2d/white_digits_scale.png|2741767674
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_panel_2d_bak.lua|2335301117
+plugins/sasl/data/modules/Custom Module/panels_2d/camera.lua|3430277087
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_ess.psd|3785111812
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_bk_RUS.png|449301451
+plugins/sasl/data/modules/Custom Module/panels_2d/absu_ess.png|3495035500
+plugins/sasl/data/modules/Custom Module/panels_2d/yellow_digits.png|4026104290
+plugins/sasl/data/modules/Custom Module/panels_2d/failures_draw.lua|3502140682
+plugins/sasl/data/modules/Custom Module/panels_2d/cam_panel.psd|2927335455
+plugins/sasl/data/modules/Custom Module/panels_2d/palette.png|3373855947
+plugins/sasl/data/modules/Custom Module/panels_2d/load_panel.png|458834075
+plugins/sasl/data/modules/Custom Module/panels_2d/nvu_panel_2d.lua|3683302914
+plugins/sasl/data/modules/Custom Module/panels_2d/menus.psd|1509028049
+plugins/sasl/data/modules/Custom Module/start_system/start_logic.lua|1755815755
+plugins/sasl/data/modules/Custom Module/start_system/start_system.lua|2800573749
+plugins/sasl/data/modules/Custom Module/start_system/start_panel.lua|3308506748
+plugins/sasl/data/modules/Custom Module/text_draw2.lua|3810147579
+plugins/sasl/data/modules/Custom Module/digital7.fnt|3777592078
+plugins/sasl/data/modules/Custom Module/textureLit.lua|1441095145
+plugins/sasl/data/modules/Custom Module/morse.ttf|4039758605
+plugins/sasl/data/modules/Custom Module/textureLit_alpha.lua|3119611921
+plugins/sasl/data/modules/Custom Module/textureLit_alpha_coords.lua|3259576509
+plugins/sasl/data/modules/main.lua|3117109663
+plugins/sasl/License|1607398952
+plugins/sasl/liblinux/libc++.so|644484154
+plugins/sasl/liblinux/libc++abi.so|126283024
+plugins/sasl/liblinux/libc++abi.so.1|126283024
+plugins/sasl/liblinux/readme.txt|1538643556
+plugins/sasl/liblinux/libc++abi.so.1.0|126283024
+plugins/sasl/liblinux/libc++.so.1|3505504099
+plugins/sasl/liblinux/libc++.so.1.0|3505504099
+plugins/KLN90B/functions.txt|3249875689
+plugins/KLN90B/64/win.xpl|3317071615
+plugins/KLN90B/64/mac.xpl|3079127770
+plugins/KLN90B/64/lin.xpl|2619763611
+plugins/KLN90B/version.txt|2225128295
+plugins/KLN90B/changelog.txt|793976785
+plugins/KLN90B/data/api/api.lua|3214725694
+plugins/KLN90B/data/components/cursors.png|1347121235
+plugins/KLN90B/data/components/interactive.png|1903396470
+plugins/KLN90B/data/components/mouseFocusedZone.lua|4064094842
+plugins/KLN90B/data/components/interactive.lua|4036951352
+plugins/KLN90B/data/components/Roboto-Regular.ttf|3583548654
+plugins/KLN90B/data/components/Roboto-Regular-LICENSE.txt|2263004340
+plugins/KLN90B/data/components/readme.txt|590206480
+plugins/KLN90B/data/components/rectangle.lua|1113385763
+plugins/KLN90B/data/components/popupResizeButton.lua|538402406
+plugins/KLN90B/data/components/defdecore.png|3324412294
+plugins/KLN90B/data/components/popupCloseButton.lua|2471236451
+plugins/KLN90B/data/init/initSubpanelCreator.lua|715211282
+plugins/KLN90B/data/init/initMathHelpers.lua|292890679
+plugins/KLN90B/data/init/initBasicHelpers.lua|1472302477
+plugins/KLN90B/data/init/readme.txt|2409820552
+plugins/KLN90B/data/init/initProjectTree.lua|3400866564
+plugins/KLN90B/data/init/initProperties.lua|1041753767
+plugins/KLN90B/data/init/initTableHelpers.lua|4131520496
+plugins/KLN90B/data/init/initContextWindows.lua|3160775541
+plugins/KLN90B/data/init/initResourcesLoaders.lua|2410274477
+plugins/KLN90B/data/init/initMain.lua|2040407613
+plugins/KLN90B/data/init/initDefaultEventHandlers.lua|1510071501
+plugins/KLN90B/data/init/initFilesystemHelpers.lua|3384004779
+plugins/KLN90B/data/init/initProcessing.lua|3769136801
+plugins/KLN90B/data/output/readme.txt|1889794412
+plugins/KLN90B/data/modules/state.txt|75169901
+plugins/KLN90B/data/modules/popupsPositions.txt|1935643396
+plugins/KLN90B/data/modules/configuration/ovrdconfiguration.ini|1930847585
+plugins/KLN90B/data/modules/configuration/readme.txt|598693735
+plugins/KLN90B/data/modules/configuration/widgetResources/SourceCodePro-LICENSE.txt|3071477787
+plugins/KLN90B/data/modules/configuration/widgetResources/SourceCodePro.ttf|193207767
+plugins/KLN90B/data/modules/configuration/configuration.ini|1243143425
+plugins/KLN90B/data/modules/configuration/wprefs.ini|2171059470
+plugins/KLN90B/data/modules/configuration/configurationExample.ini|3620610359
+plugins/KLN90B/data/modules/3rd-modules/readme.txt|4035264026
+plugins/KLN90B/data/modules/Custom Module/background.png|625747198
+plugins/KLN90B/data/modules/Custom Module/KLN90_panel_sc2.lua|1047270534
+plugins/KLN90B/data/modules/Custom Module/KLN90_panel_sc.lua|1438595594
+plugins/KLN90B/data/modules/Custom Module/KLN90_2_0.dds|3566028547
+plugins/KLN90B/data/modules/Custom Module/KLN90.dds|2382959608
+plugins/KLN90B/data/modules/Custom Module/KLN90_2.fnt|3174616943
+plugins/KLN90B/data/modules/Custom Module/test2.lua|0
+plugins/KLN90B/data/modules/Custom Module/KLN90_3_0.dds|129238993
+plugins/KLN90B/data/modules/Custom Module/rectangle2.lua|3142283834
+plugins/KLN90B/data/modules/Custom Module/KLN90_0.dds|1457517942
+plugins/KLN90B/data/modules/Custom Module/KLN90.fnt|3675105754
+plugins/KLN90B/data/modules/Custom Module/dataref_creator_1.lua|3975097427
+plugins/KLN90B/data/modules/Custom Module/kln90b_2d.png|441558898
+plugins/KLN90B/data/modules/Custom Module/test.lua|1383849458
+plugins/KLN90B/data/modules/Custom Module/KLN90_3.fnt|3872656922
+plugins/KLN90B/data/modules/Custom Module/KLN90.png|4134395867
+plugins/KLN90B/data/modules/Custom Module/KLNpopup_panel.lua|2353995380
+plugins/KLN90B/data/modules/Custom Module/readme.txt|417127972
+plugins/KLN90B/data/modules/Custom Module/textureRotate.lua|3885945715
+plugins/KLN90B/data/modules/Custom Module/sounds/click_R.wav|2784099229
+plugins/KLN90B/data/modules/Custom Module/sounds/pull_R.wav|3605015115
+plugins/KLN90B/data/modules/Custom Module/sounds/click2_L.wav|4289868345
+plugins/KLN90B/data/modules/Custom Module/sounds/button_click2_R.wav|4023203187
+plugins/KLN90B/data/modules/Custom Module/sounds/button_click_R.wav|16795272
+plugins/KLN90B/data/modules/Custom Module/sounds/pull.wav|3642754623
+plugins/KLN90B/data/modules/Custom Module/sounds/knob_R.wav|2098743454
+plugins/KLN90B/data/modules/Custom Module/sounds/button_click_L.wav|4043660825
+plugins/KLN90B/data/modules/Custom Module/sounds/click2.wav|245702795
+plugins/KLN90B/data/modules/Custom Module/sounds/knob.wav|1031856562
+plugins/KLN90B/data/modules/Custom Module/sounds/click2_R.wav|2185968807
+plugins/KLN90B/data/modules/Custom Module/sounds/button_click2.wav|1806277642
+plugins/KLN90B/data/modules/Custom Module/sounds/click.wav|2146456297
+plugins/KLN90B/data/modules/Custom Module/sounds/altitude_alerts.wav|2550884643
+plugins/KLN90B/data/modules/Custom Module/sounds/pull_L.wav|2931978876
+plugins/KLN90B/data/modules/Custom Module/sounds/knob_L.wav|4202947812
+plugins/KLN90B/data/modules/Custom Module/sounds/altitude_alert.wav|1841485916
+plugins/KLN90B/data/modules/Custom Module/sounds/click_L.wav|424873886
+plugins/KLN90B/data/modules/Custom Module/sounds/button_click.wav|3656031869
+plugins/KLN90B/data/modules/Custom Module/sounds/button_click2_L.wav|3783134787
+plugins/KLN90B/data/modules/Custom Module/KLN90_2D_display.lua|1946697649
+plugins/KLN90B/data/modules/Custom Module/MD41.png|3190393597
+plugins/KLN90B/data/modules/Custom Module/clickable.lua|4184668782
+plugins/KLN90B/data/modules/Custom Module/texture.lua|140583046
+plugins/KLN90B/data/modules/Custom Module/KLN90_panel.lua|927677566
+plugins/KLN90B/data/modules/Custom Module/textureLit2.lua|2284938635
+plugins/KLN90B/data/modules/Custom Module/KLNmap.dds|2430684004
+plugins/KLN90B/data/modules/Custom Module/textureLit.lua|1273905124
+plugins/KLN90B/data/modules/Custom Module/KLNpopup.dds|935196742
+plugins/KLN90B/data/modules/Custom Module/KLN90_2D.lua|203156983
+plugins/KLN90B/data/modules/Custom Module/MD41_2D.lua|572602576
+plugins/KLN90B/data/modules/main.lua|3535876057
+plugins/KLN90B/License|3323010213
+plugins/KLN90B/liblinux/libc++.so|644484154
+plugins/KLN90B/liblinux/libc++abi.so|126283024
+plugins/KLN90B/liblinux/libc++abi.so.1|126283024
+plugins/KLN90B/liblinux/readme.txt|1538643556
+plugins/KLN90B/liblinux/libc++abi.so.1.0|126283024
+plugins/KLN90B/liblinux/libc++.so.1|3505504099
+plugins/KLN90B/liblinux/libc++.so.1.0|3505504099
+black_box/02_01_00_000.bbox|729079125
+sounds/weather/wind.wav|1395809330
+sounds/engine/tu154 engn3_out.wav|2005905547
+sounds/engine/tu154_XP10 star2_out.wav|2005905547
+sounds/engine/tu154 engn1_inn.wav|2005905547
+sounds/engine/tu154_XP10 star3_out.wav|2005905547
+sounds/engine/REVERSE_THRUST_inn.wav|2005905547
+sounds/engine/tu154_XP10 engn1_inn.wav|2005905547
+sounds/engine/tu154 engn2_inn.wav|2005905547
+sounds/engine/tu154 engn1_out.wav|2005905547
+sounds/engine/tu154_XP10 engn2_inn.wav|2005905547
+sounds/engine/tu154_XP10 engn2_out.wav|2005905547
+sounds/engine/tu154 engn2_out.wav|2005905547
+sounds/engine/tu154_XP10 star1_out.wav|2005905547
+sounds/engine/REVERSE_THRUST_out.wav|2005905547
+sounds/engine/tu154 star1_inn.wav|2005905547
+sounds/engine/tu154 star3_inn.wav|2005905547
+sounds/engine/tu154_XP10 engn3_inn.wav|2005905547
+sounds/engine/tu154_XP10 engn3_out.wav|2005905547
+sounds/engine/tu154 star1_out.wav|2005905547
+sounds/engine/tu154_XP10 star1_inn.wav|2005905547
+sounds/engine/tu154 star2_out.wav|2005905547
+sounds/engine/tu154 star2_inn.wav|2005905547
+sounds/engine/tu154 star3_out.wav|2005905547
+sounds/engine/tu154_XP10 star3_inn.wav|2005905547
+sounds/engine/tu154 engn3_inn.wav|2005905547
+sounds/engine/tu154_XP10 engn1_out.wav|2005905547
+sounds/engine/tu154_XP10 star2_inn.wav|2005905547
+sounds/alert/te_climb.wav|2005905547
+sounds/alert/dot_OUTER.wav|2005905547
+sounds/alert/dot_MIDDLE.wav|2005905547
+sounds/alert/dot_MORSE.wav|2268718440
+sounds/alert/dash_INNER.wav|2005905547
+sounds/alert/tcas.wav|2005905547
+sounds/alert/dash_MIDDLE.wav|2005905547
+sounds/alert/dash_MORSE.wav|1753196737
+sounds/alert/wshr.wav|2005905547
+sounds/alert/te_descend.wav|2005905547
+sounds/alert/fire_bell.wav|2005905547
+sounds/alert/dash_OUTER.wav|2005905547
+sounds/alert/dot_INNER.wav|2005905547
+sounds/systems/flap.wav|2005905547
+sounds/systems/gear.wav|2005905547
+sounds/systems/click.wav|2005905547
+sounds/systems/APU.wav|2005905547
+sounds/systems/avionics.wav|2005905547
+sounds/contact/skid_wet.wav|3966356212
+sounds/contact/land_water.wav|2256996860
+sounds/contact/roll_runway.wavbak|775333766
+sounds/contact/roll_ground.wav|2722922597
+sounds/contact/boom4.wav|3966356212
+sounds/contact/clunck.wav|1108319758
+sounds/contact/roll_runway.wav|2005905547
+sounds/contact/boom3.wav|3966356212
+sounds/contact/boom2.wav|3966356212
+sounds/contact/boom1.wav|3966356212
+sounds/contact/skid_dry.wav|3966356212
+tu154_icon11_thumb.png|2223285862
+mag_dec.dat|272610606
+tu154_paint.png|1900202556
+tu154.acf~|3253407654
+AviTab.json|1925732311
+rsbn.dat|4100489803
+CLAUDE.md|1601211619
+version.mak|1415776742
