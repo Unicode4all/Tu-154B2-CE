@@ -46433,7 +46433,7 @@ P acf/_bouncer_spring_k/9,1 0.000000000
 P acf/_bouncer_spring_k/9,2 0.000000000
 P acf/_bouncer_spring_k/i_count 14
 P acf/_bouncer_spring_k/j_count 3
-P acf/_brake_co 0.300000012
+P acf/_brake_co 0.750000000
 P acf/_brake_max_stopping_KTGS 92.000000000
 P acf/_brake_to_steer_power 0.000000000
 P acf/_burner_delay_sec 0.000000000
@@ -48405,7 +48405,7 @@ P acf/_rock_max_vac 0.000000000
 P acf/_roll_acft_lf_trim_rat 0.250000000
 P acf/_roll_acft_rt_trim_rat 0.250000000
 P acf/_roll_acft_trim_mode 0
-P acf/_roll_co 0.012000000
+P acf/_roll_co 0.015000000
 P acf/_roll_max_full_def_KIAS 999.000000000
 P acf/_roll_to_eng_spo1 0.050000001
 P acf/_roll_to_eng_spo2 0.050000001

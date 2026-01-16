@@ -26,11 +26,11 @@ createGlobalPropertyf("tu154b2/custom/elec/vu2_amp", 0																) -- то�
 createGlobalPropertyf("tu154b2/custom/elec/vu_res_amp", 0																) -- ток ВУ
 createGlobalPropertyi("tu154b2/custom/elec/vu_res_to_L", 0																) -- резервное ВУ подключено на лев сеть
 createGlobalPropertyi("tu154b2/custom/elec/vu_res_to_R", 0																) -- резервное ВУ подключено на прав сеть
-createGlobalPropertyf("tu154b2/custom/elec/bus27_volt_left", 27																) -- напряжение левой сети 27
-createGlobalPropertyf("tu154b2/custom/elec/bus27_amp_left", 27																) -- напряжение левой сети 27
+createGlobalPropertyf("tu154b2/custom/elec/bus27_volt_left", 0																) -- напряжение левой сети 27
+createGlobalPropertyf("tu154b2/custom/elec/bus27_amp_left", 0																) -- напряжение левой сети 27
 createGlobalPropertyf("tu154b2/custom/elec/bus27_amp_right", 0																) -- ток правой сети 27
 createGlobalPropertyf("tu154b2/custom/elec/bus27_volt_right", 0																) -- ток правой сети 27
-createGlobalPropertyi("tu154b2/custom/elec/bus27_source_left", 1																) -- источник питания левой сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 4- бат 1, 5 - бат 2
+createGlobalPropertyi("tu154b2/custom/elec/bus27_source_left", 0																) -- источник питания левой сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 4- бат 1, 5 - бат 2
 createGlobalPropertyi("tu154b2/custom/elec/bus27_source_right", 0																) -- источник питания правой сети. 0 - ничего. 1 - ВУ2, 2 - ВУрезерв, 3 - батареи 1 и 3, 4- бат 1, 5 - бат 2
 createGlobalPropertyi("tu154b2/custom/elec/bat_is_source_1", 1																) -- батарея является источником
 createGlobalPropertyi("tu154b2/custom/elec/bat_is_source_2", 1																) -- батарея является источником
@@ -743,6 +743,8 @@ createGlobalPropertyi("tu154b2/custom/failures/gen_4_regulator_fail",0)
 createGlobalPropertyi("tu154b2/custom/failures/gpu_regulator_fail",0)
 createGlobalPropertyf("tu154b2/custom/SC/true_airspeed", 0)
 createGlobalPropertyi("tu154b2/custom/svs/svs_ready", 0)
+createGlobalPropertyf("tu154b2/custom/svs/svs_alt_rel", 0)	
+createGlobalPropertyf("tu154b2/custom/svs/p_s_smoothed", 0)	
 --createGlobalPropertyf("tu154b2/custom/rls/rls_drift_angle",0)
 -- createGlobalPropertyi("tu154b2/custom/gauges/eng/opora_sel_vibro",0)
 -- createGlobalPropertyi("tu154b2/custom/gauges/eng/vibro_pwr1",0)

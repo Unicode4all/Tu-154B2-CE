@@ -93,6 +93,8 @@ defineProperty("therm_L_3", globalPropertyi("tu154b2/custom/failures/sard/brake_
 defineProperty("therm_R_1", globalPropertyi("tu154b2/custom/failures/sard/brake_R_overheat_1"))
 defineProperty("therm_R_2", globalPropertyi("tu154b2/custom/failures/sard/brake_R_overheat_2"))
 defineProperty("therm_R_3", globalPropertyi("tu154b2/custom/failures/sard/brake_R_overheat_3"))
+defineProperty("pave", globalPropertyi("sim/flightmodel/ground/surface_texture_type")) -- type of pavement
+defineProperty("frict", globalPropertyi("sim/weather/runway_friction"))
 --defineProperty("speed", globalPropertyf("sim/flightmodel/parts/tire_speed_now[1]"))
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -162,6 +164,12 @@ local termo_coef = {
 {1000000, 500}
 }
 
+-- local speed_coef = {{-100, 1},
+-- {0, 1},
+-- {40, 1},
+-- {250, 0.4},
+-- {1000000, 0.4}
+-- }
 
 -- sim/joystick/joystick_axis_assignments
 
@@ -396,7 +404,6 @@ local act_L=0
 local act_R=0
 local act_L_prev=0
 local act_R_prev=0
-
 local axisCheckTimer = 0
 
 local fail_counter = 0
@@ -552,8 +559,14 @@ function update()
 	-- set(db1,act_L)
 	-- set(db2,act_R)
 	
-	
-	local park = math.max(0, act_L/120,act_R/120)*park_lvr
+	local brake_c=0.25
+	local friction=get(frict)
+	if friction==15 or friction==12 then -- adjust braking power under heavy icing to compensate XP's excessive grip loss
+		brake_c=0.4
+	-- elseif friction==14 or friction==11 then
+		-- brake_c=0.3
+	end
+	local park = math.max(0, act_L/120,act_R/120)*park_lvr*brake_c
 	--set(db3,park)
 	--
 	
@@ -660,8 +673,11 @@ if have_control then
 	else
 		set(anti_skid,1)
 	end
-	set(l_brake_add, math.max(left_blake*(1-park_lvr),left_blake_emer))
-	set(r_brake_add, math.max(right_blake*(1-park_lvr),right_blake_emer))
+	local spd_coef=math.min(1,(1.333e-05*math.pow(spd*3.6,2) -0.007*spd*3.6+1.317)*(1+0.75*bool2int(get(pave)==3))) --brakes better on asphalt due to lower vibrations
+	local max_brake=brake_c*spd_coef
+
+	set(l_brake_add, math.min(math.max(left_blake*(1-park_lvr),left_blake_emer)*brake_c,max_brake))
+	set(r_brake_add, math.min(math.max(right_blake*(1-park_lvr),right_blake_emer)*brake_c,max_brake))
 	set(int_brakes_L, math.max(left_blake,park ))
 	set(int_brakes_R, math.max(right_blake, park))
 	--set(parkbrake, park)
@@ -710,6 +726,6 @@ end
 	
 end
 
-function onAvionicsDone()
+function onModuleDone()
 	set(overr, 0)
 end

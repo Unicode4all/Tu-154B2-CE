@@ -2,10 +2,11 @@
 
 
 defineProperty("static_fail_L", globalPropertyi("sim/operation/failures/rel_static"))  -- static fail
-
+defineProperty("static_fail_R", globalPropertyi("sim/operation/failures/rel_static2"))
 defineProperty("bus27_volt", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
 defineProperty("bus115_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt")) -- напряжение на сети 115в
-
+defineProperty("bus27_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+defineProperty("bus115_right", globalPropertyf("tu154b2/custom/elec/bus115_3_volt")) -- напряжение на сети 115в
 -- time
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
 
@@ -15,7 +16,8 @@ defineProperty("uvid_fail", globalPropertyi("tu154b2/custom/failures/uvid15_fail
 
 
 -- current altitude
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude")) 
+--defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude")) 
+defineProperty("p_stat", globalPropertyf("tu154b2/custom/svs/p_s_smoothed"))
 --defineProperty("msl_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
 
 
@@ -35,15 +37,28 @@ defineProperty("uvid_on", globalPropertyi("tu154b2/custom/switchers/ovhd/uvid_on
 
 defineProperty("sim_barometer_setting", globalPropertyf("sim/cockpit/misc/barometer_setting"))  -- лампочка УВИД15
 defineProperty("vd15_lamp", globalPropertyf("tu154b2/custom/lights/small/vd15_lamp"))  -- лампочка УВИД15
+--VEM-72
+defineProperty("vem_press", globalPropertyf("sim/custom/vem72_press_knob"))
+defineProperty("vem_tst", globalPropertyi("sim/custom/vem72_btn"))
+defineProperty("vem_light", globalPropertyi("sim/custom/vem72_lit"))
+defineProperty("vem_altitude", globalPropertyf("sim/custom/vem72_needle"))
+defineProperty("vem_sw", globalPropertyi("tu154b2/custom/switchers/ovhd/vbe_1_on"))
+
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 -- sounds
 local switcher_sound = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch.wav')
 
 local left_MSL = 0
+local right_MSL = 0
 local uvid_alt = 0
 local uvid_alt_act = 0
-local msl_counter = 0
+local vem_alt = 0
+local vem_alt_act = 0
+--local msl_counter = 0
 local msl = 0
 
 local err_tbl={{ -1000, -1000},
@@ -68,23 +83,33 @@ function update()
 	
 	-- calculate altitude
 	local staticFail_left = get(static_fail_L) == 6
-    msl_counter = msl_counter +math.random(0.07,0.1)
-    if msl_counter > 1 then
-       msl_counter = 0
-	   msl = get(msl_alt) -- real alt MSL in feetl
-    end
-
-
+	local staticFail_right = get(static_fail_R) == 6
+    -- msl_counter = msl_counter +math.random(0.07,0.1)
+    -- if msl_counter > 1 then
+       -- msl_counter = 0
+	local p_s=get(p_stat)
+	msl=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
+	if p_s< 22250 then
+		msl=11000+28.96*216.6500*math.log(22250/p_s)
+	end
+    --end
 	if not staticFail_left then
-		left_MSL = msl -- update altitudes for left altimeters
+		left_MSL = msl * 3.28084 
+	end
+	if not staticFail_right then
+		right_MSL = msl 
 	end
 	
 	-- check power
 	local power27 = get(bus27_volt) > 13
 	local power115 = get(bus115_volt) > 110
+	local power27_r = get(bus27_right) > 13
+	local power115_r = get(bus115_right) > 110
 	local sw_on = get(uvid_on) == 1
+	local vem_on = get(vem_sw) == 1
 	local press_set = get(uvid_pressure_knob)
-	local press_inHg = press_set * 0.0295300586467
+	local press_vem = get(vem_press)
+	--local press_inHg = press_set 
 	
 	-- sounds
 	-- if switcher_last ~= sw_on then
@@ -94,11 +119,20 @@ function update()
 	
 	-- calculate indicated altidude
 	if power27 and power115 and sw_on and get(uvid_fail) == 0 then
-		uvid_alt = left_MSL + (press_inHg-29.92 ) * 1000  -- calculate barometric altitude in feet
+		uvid_alt = left_MSL + (press_set-1013.25 ) * 27  -- calculate barometric altitude in feet
 		uvid_alt=interpolate(err_tbl,uvid_alt)
+	end
+	local vem72_test=get(vem_tst)
+	if power27_r and power115_r and vem_on then
+		vem_alt = right_MSL + (get(vem_press) * 0.0393701 - 29.92) * 1000 * 0.3048 +(vem72_test*150)
+		set(vem_light,vem72_test)
+	else
+		set(vem_light,0)
 	end
 	-- altitude on needle
 	uvid_alt_act = uvid_alt_act + (uvid_alt - uvid_alt_act) * passed * 5
+	uvid_alt_act=math.max(0,uvid_alt_act)
+	vem_alt_act = vem_alt_act + (vem_alt - vem_alt_act) * passed * 5
 	-- altitude on first drumm
 	local alt_dr_1 = uvid_alt_act % 100
 	
@@ -125,9 +159,10 @@ function update()
 	-- thausands
 	local press_1000 = math.floor((press_set % 10000) * 0.001) + math.max(math.max((press_100 - 9), 0), 0)
 	
-	local lamp_shine = power27 and sw_on and (not power115 or uvid_alt > 50000 or press_set < 788 or press_set > 1074)
+	local lamp_shine = power27 and sw_on and (not power115 or uvid_alt > 50000 or uvid_alt < 0 or press_set < 787 or press_set > 1075)
 		
 	set(vd15_lamp, bool2int(lamp_shine))
+	
 	
 	-- set results
 	if get(ismaster)~=1 then
@@ -136,12 +171,12 @@ function update()
 		set(uvid_hundreads_counter, alt_dr_100)
 		set(uvid_thousands_counter, alt_dr_1000)
 		set(uvid_tens_thousands_counter, alt_dr_10th)
+		set(vem_altitude,vem_alt_act)
 	end
 	set(uvid_pressure_one, press_1)
 	set(uvid_pressure_ten, press_10)
 	set(uvid_pressure_hund, press_100)
 	set(uvid_pressure_thous, press_1000)
-	
-	set(sim_barometer_setting, press_inHg)
+	--set(sim_barometer_setting, press_inHg)
 
 end

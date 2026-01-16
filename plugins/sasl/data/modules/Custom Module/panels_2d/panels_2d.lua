@@ -21,7 +21,7 @@ defineProperty("show_phone",globalPropertyi("tu154b2/custom/panels/show_phone"))
 defineProperty("show_cam",globalPropertyi("tu154b2/custom/panels/show_cam")) -- показать панель камеры
 defineProperty("show_palette",globalPropertyi("tu154b2/custom/panels/show_palette")) -- показать панель камеры
 defineProperty("show_fail_panel",globalPropertyi("tu154b2/custom/panels/show_fail_panel")) -- показать панель отказов
-
+cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
 
 
 --defineProperty("KLN90visible", globalPropertyi("tu154b2/custom/xap/KLN90/visible"))
@@ -70,11 +70,12 @@ palette = subpanel {
 
 
 
-payload_panel = subpanel {
+payload_panel = contextWindow {
 	position = { 50, 50, 1024 * coef, 683 * coef };
 	noBackground = true;
 	noClose = true;
-	resizeProportional = true;
+	noDecore = true;
+	--resizeProportional = true;
 	savePosition = true;
 	name = "payload_panel";	
 	components = {
@@ -200,11 +201,13 @@ checklist_panel = contextWindow {
 
 }
 
-ground_srv_panel = subpanel {
+
+ground_srv_panel = contextWindow {
 	position = { 50, 50, 655 * coef, 880 * coef };
 	noBackground = true;
 	noClose = true;
-	resizeProportional = true;
+	noDecore = true;
+	--resizeProportional = true;
 	savePosition = true;
 	name = "ground_srv_panel";	
 	components = {
@@ -217,9 +220,8 @@ ground_srv_panel = subpanel {
 			position = { 655 * coef - 15, 880 * coef - 15, 15, 15 },
 			image = get(closeImage),
 		};
-
+		
 	};
-
 }
 
 -- uphone = subpanel {
@@ -303,8 +305,10 @@ defineProperty("nav_menu_wt", loadImage("menus.png", 60, 29, 121, 31))
 defineProperty("serv_menu_wt", loadImage("menus.png", 60, 59, 61, 31))
 defineProperty("misc_menu_wt", loadImage("menus.png", 60, 89, 121, 31))
 
-defineProperty("thro_red", loadImage("menus.png", 90, 226, 31, 30))
-defineProperty("thro_grn", loadImage("menus.png", 120, 226, 31, 30))
+defineProperty("thro_red", loadImage("menus.png", 90, 226, 32, 31))
+defineProperty("thro_grn", loadImage("menus.png", 120, 226, 32, 31))
+defineProperty("load_men", loadImage("menus.png", 60, 166, 32, 31))
+defineProperty("gnd_men", loadImage("menus.png", 90, 166, 32, 31))
 
 local main_menu_ext = false
 local nav_ext = false
@@ -619,6 +623,86 @@ thro_button = contextWindow {
 	};
 }
 
+load_button = contextWindow {
+	position = { 0, 610, 31, 30 };
+	noBackground = false;
+	noResize = true;
+	noDecore = true;
+	noMove = true;
+
+	
+	components = {
+		-- textureLit {
+			-- position = { 0, 0, 31, 30 };
+			-- image = get(thro_red);
+			-- visible = function()
+				-- return true
+			-- end;
+		-- },
+		
+		textureLit {
+			position = { 0, 0, 31, 30 };
+			image = get(load_men);
+			-- visible = function()
+				-- return get(cockpit_80s)==0
+			-- end;
+		},	
+
+		clickable {
+			position = {0, 0, 31, 30 },
+		  
+			onMouseDown = function() 
+				set(show_load_panel, 1 - get(show_load_panel))
+				return true
+			end,
+		},
+		
+		
+		
+	};
+}
+
+
+gnd_button = contextWindow {
+	position = { 0, 580, 31, 30 };
+	noBackground = false;
+	noResize = true;
+	noDecore = true;
+	noMove = true;
+
+	
+	components = {
+		-- textureLit {
+			-- position = { 0, 0, 31, 30 };
+			-- image = get(thro_red);
+			-- visible = function()
+				-- return true
+			-- end;
+		-- },
+		
+		textureLit {
+			position = { 0, 0, 31, 30 };
+			image = get(gnd_men);
+			-- visible = function()
+				-- return get(cockpit_80s)==0
+			-- end;
+		},	
+
+		clickable {
+			position = {0, 0, 31, 30 },
+		  
+			onMouseDown = function() 
+				set(show_ground_panel, 1 - get(show_ground_panel))
+				return true
+			end,
+		},
+		
+		
+		
+	};
+}
+
+
 
 
 function update()
@@ -633,18 +717,19 @@ function update()
 	
 	
 	
-	payload_panel.visible = false
+	payload_panel:setIsVisible(get(show_load_panel) == 1)
 	absu_2d_panel:setIsVisible(get(show_absu_panel) == 1)
 	-- absu_2d_panel.visible = false
 	-- ovhd_2d_panel.visible = false
 	-- nvu_2D_panel.visible = false
 	checklist_panel:setIsVisible(get(show_checklist_panel) == 1)
-	-- ground_srv_panel.visible = false
+	ground_srv_panel:setIsVisible(get(show_ground_panel) == 1)
 	--uphone.visible = get(show_phone) == 1
 	-- camera_panel.visible = false
 	-- palette.visible = false
 	fails_panel:setIsVisible(get(show_fail_panel) == 1)
-	
+	load_button:setIsVisible(get(cockpit_80s)==0)
+	gnd_button:setIsVisible(get(cockpit_80s)==0)
 	thro_button:setIsVisible(get(ismaster) > 0)
 	
 	

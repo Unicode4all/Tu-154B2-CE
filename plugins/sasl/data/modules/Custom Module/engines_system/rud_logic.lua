@@ -81,7 +81,7 @@ defineProperty("rt1_red", globalPropertyf("tu154b2/custom/SC/engine/rt_red1"))
 defineProperty("rt2_red", globalPropertyf("tu154b2/custom/SC/engine/rt_red2"))
 defineProperty("rt3_red", globalPropertyf("tu154b2/custom/SC/engine/rt_red3"))
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 defineProperty("rho", globalPropertyf("sim/weather/rho"))
@@ -137,6 +137,10 @@ defineProperty("bleed_3", globalPropertyf("tu154b2/custom/bleedair/eng_3_bleed")
 defineProperty("eng1_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[0]"))
 defineProperty("eng2_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]"))
 defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]"))
+
+defineProperty("rpm_low_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1")) -- обороты турбины низкого давления №1
+defineProperty("rpm_low_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2")) -- обороты турбины низкого давления №2
+defineProperty("rpm_low_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3")) -- обороты турбины низкого давления №3
 
 local t1_corr=0
 local t2_corr=0
@@ -439,12 +443,12 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	-- max N2
 	local thr_max=math.min(97.5,97.5-bool2int(alt_baro<4000)*(30-temp-4.5)*0.1411)
 	-- max N1
-	local n2_at_max_n1=n2_from_n1 (100,d_isa,alt_baro/1000,tas)
+	--local n2_at_max_n1=n2_from_n1 (100,d_isa,alt_baro/1000,tas)
 	--set(db1,n2_at_max_n1)
-	local n2_at_max_n1_norev=n2_from_n1 (100,d_isa,alt_baro/1000,tas)+0.5
+	--local n2_at_max_n1_norev=n2_from_n1 (100,d_isa,alt_baro/1000,tas)+0.5
 	-- max N2 limited by max N1
-	local thr_max1=math.min(n2_at_max_n1,thr_max)
-	local thr_max2=math.min(n2_at_max_n1_norev,thr_max)
+	-- local thr_max1=math.min(n2_at_max_n1,thr_max)
+	-- local thr_max2=math.min(n2_at_max_n1_norev,thr_max)
 
 	-- Anti Surge Bypass Valves
 	if kvd1>74.6 and kpp_1>0 and not kp1_fail then
@@ -519,19 +523,19 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		n2_tgt1=n2_from_uprt (virtual_rud_1_act,corr_temp)
 		n2_1=n2_tgt1
 	else
-		n2_1=nom_rpm+(thr_max1-nom_rpm)*(virtual_rud_1_act-0.89)/0.11-- seperate logic between nominal and max power
+		n2_1=nom_rpm+(thr_max-nom_rpm)*(virtual_rud_1_act-0.89)/0.11-- seperate logic between nominal and max power
 	end
 	if virtual_rud_2_act+shift_2<=0.89 then
 		n2_tgt2=n2_from_uprt (virtual_rud_2_act+shift_2,corr_temp)
 		n2_2=n2_tgt2
 	else
-		n2_2=nom_rpm+(thr_max2-nom_rpm)*(virtual_rud_2_act+shift_2-0.89)/0.11
+		n2_2=nom_rpm+(thr_max-nom_rpm)*(virtual_rud_2_act+shift_2-0.89)/0.11
 	end
 	if virtual_rud_3_act+shift_3<=0.89 then
 		n2_tgt3=n2_from_uprt (virtual_rud_3_act+shift_3,corr_temp)
 		n2_3=n2_tgt3
 	else
-		n2_3=nom_rpm+(thr_max1-nom_rpm)*(virtual_rud_3_act+shift_3-0.89)/0.11
+		n2_3=nom_rpm+(thr_max-nom_rpm)*(virtual_rud_3_act+shift_3-0.89)/0.11
 	end
 	-- increase idle at altitude
 	n2_1=math.max(min_idle+kpp_idle_corr*kpp_1,n2_1)
@@ -570,9 +574,12 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		d_kvd_2=(kvd2-kvd2_prev)/passed
 		d_kvd_3=(kvd3-kvd3_prev)/passed
 	end
-	local contr_1_spd=p_kvd_1*k_p-k_d*d_kvd_1+i_kvd_1*k_i
-	local contr_2_spd=p_kvd_2*k_p-k_d*d_kvd_2+i_kvd_2*k_i
-	local contr_3_spd=p_kvd_3*k_p-k_d*d_kvd_3+i_kvd_3*k_i
+	local contr_1_spd=p_kvd_1*k_p-k_d*d_kvd_1+i_kvd_1*k_i-math.max(0,get(rpm_low_1)-101.5)
+	local contr_2_spd=p_kvd_2*k_p-k_d*d_kvd_2+i_kvd_2*k_i-math.max(0,get(rpm_low_2)-101.25)
+	local contr_3_spd=p_kvd_3*k_p-k_d*d_kvd_3+i_kvd_3*k_i-math.max(0,get(rpm_low_3)-101.4)
+	-- if contr_1_spd>0 and get(rpm_low_1)>98.5 then
+		-- contr_1_spd=-1*get(db1)
+	-- end
 	-- if get(FF_1)<850/3600 then
 		-- contr_1_spd=0
 		-- set(db1,1)
@@ -748,7 +755,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		end
 
 		set(flt_idle,min_idle)
-		set(max_n2,thr_max1)
+		set(max_n2,thr_max)
 		set(nom_n2,nom_rpm)
 
 

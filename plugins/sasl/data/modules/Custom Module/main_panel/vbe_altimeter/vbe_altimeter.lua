@@ -4,7 +4,9 @@ size = {424, 424}
 defineProperty("gauge_num", 0)
 
 -- current altitude
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- 
+--defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- 
+defineProperty("p_stat", globalPropertyf("tu154b2/custom/svs/p_s_smoothed"))
+defineProperty("temp", globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c"))
 --defineProperty("msl_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
 -- failures
 defineProperty("static_fail", globalPropertyi("sim/operation/failures/rel_static"))  -- static fail
@@ -210,7 +212,7 @@ if MASTER then
 		end
 	end
 	
-	if flight_level > 12000 then flight_level = 12000
+	if flight_level > 13000 then flight_level = 13000
 	elseif flight_level < 0 then flight_level = 0 end
 
 	-- set(db1,flight_level)
@@ -233,17 +235,20 @@ if MASTER then
 		-- vbe_MSL = msl -- update altitudes for left altimeters
 	-- end
 
-	local press_inHg = press * 0.0295300586467
+	--local press_inHg = press * 0.0295300586467
 	
 	if power and not staticFail then
-		altitude_ft =get(msl_alt)  + (press_inHg - 29.92) * 1000  -- calculate barometric altitude in feet
+		local t_avg=(288.15-get(temp)-273.15)/2*11000/math.max(11000,altitude_mtr)+get(temp)+273.15
+		altitude_mtr=28.96*t_avg*math.log(press*100/get(p_stat))
+		--altitude_ft =get(msl_alt)  + (press_inHg - 29.92) * 1000  -- calculate barometric altitude in feet
 	end
 	
-	altitude_mtr = altitude_ft * 0.3048 -- meters
-	
+	--altitude_mtr = altitude_ft * 0.3048 -- meters
+	altitude_ft=altitude_mtr*3.28084
 	set(alt_mtr, altitude_mtr)
 else
 	altitude_mtr=get(alt_mtr)
+	altitude_ft=altitude_mtr*3.28084
 end	
 
 	

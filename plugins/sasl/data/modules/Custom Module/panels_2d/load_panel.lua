@@ -14,12 +14,13 @@ defineProperty("show_load_panel",globalPropertyi("tu154b2/custom/panels/show_loa
 -- load images
 defineProperty("bg_img", loadImage("load_panel.png"))
 defineProperty("bg_img_rus", loadImage("load_panel_RUS.png"))
+defineProperty("loading_im", loadImage("loading.png"))
 
 -- define global properties
 defineProperty("crew_num_pr",globalPropertyi("tu154b2/custom/payload/crew_num"))
 defineProperty("zone_1_pr",globalPropertyi("tu154b2/custom/payload/zone_1"))
 defineProperty("zone_2_pr",globalPropertyi("tu154b2/custom/payload/zone_2"))
-defineProperty("cabin_num_pr",globalPropertyi("tu154b2/custom/payload/cabin_num"))
+--defineProperty("cabin_num_pr",globalPropertyi("tu154b2/custom/payload/cabin_num"))
 defineProperty("zone_4_pr",globalPropertyi("tu154b2/custom/payload/zone_4"))
 defineProperty("zone_5_pr",globalPropertyi("tu154b2/custom/payload/zone_5"))
 defineProperty("zone_6_pr",globalPropertyi("tu154b2/custom/payload/zone_6"))
@@ -28,7 +29,7 @@ defineProperty("cargo_1_pr",globalPropertyi("tu154b2/custom/payload/cargo_1"))
 defineProperty("cargo_2_pr",globalPropertyi("tu154b2/custom/payload/cargo_2"))
 
 defineProperty("kitchens_pr",globalPropertyi("tu154b2/custom/payload/kitchens"))
-defineProperty("various_pr",globalPropertyi("tu154b2/custom/payload/various"))
+--defineProperty("various_pr",globalPropertyi("tu154b2/custom/payload/various"))
 
 defineProperty("main_dist_pr",globalPropertyi("tu154b2/custom/payload/main_dist"))
 defineProperty("alt_dist_pr",globalPropertyi("tu154b2/custom/payload/alt_dist"))
@@ -77,8 +78,10 @@ defineProperty("cg_set", globalPropertyf("tu154b2/custom/payload/cg_set")) -- Н
 
 defineProperty("load_fuel_btn",globalPropertyi("tu154b2/custom/payload/load_fuel_btn")) -- кнопка загрузки топлива
 defineProperty("load_fast_btn",globalPropertyi("tu154b2/custom/payload/load_fast_btn")) -- кнопка загрузки
-defineProperty("load_slow_btn",globalPropertyi("tu154b2/custom/payload/load_slow_btn")) -- кнопка загрузки
-
+defineProperty("load_slow_btn",globalPropertyi("sim/custom/payload/load_slow_btn_new")) -- кнопка загрузки
+cargo_req = globalPropertyi("sim/custom/cargo_req")
+fuel_req = globalPropertyi("sim/custom/fuel_req")
+pax_req = globalPropertyi("sim/custom/pax_req")
 defineProperty("rp_main_sw",globalPropertyi("sim/custom/t154gnd/rp_main_sw")) -- кнопка загрузки
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
@@ -96,7 +99,7 @@ defineProperty("to_weight",globalPropertyi("sim/custom/t154_efb/takeoff_weight")
 defineProperty("cax_to",globalPropertyf("sim/custom/t154_efb/cax_to"))
 defineProperty("cax_nf",globalPropertyf("sim/custom/t154_efb/cax_nf"))
 defineProperty("onground",globalPropertyi("sim/flightmodel/failures/onground_all"))
-
+defineProperty("empty_wt", globalPropertyf("sim/aircraft/weight/acf_m_empty"))
 
 
 
@@ -106,9 +109,9 @@ include("fuel_tables.lua")
 
 
 
-local draw_font = loadBitmapFont(moduleDirectory .."/Custom Module/basic_font.fnt")
+--local draw_font = loadBitmapFont(moduleDirectory .."/Custom Module/basic_font.fnt")
 
-local EMPTY_WEIGHT = 53189
+local EMPTY_WEIGHT = get(empty_wt)
 
 -- load parameters
 local crew_num = 4
@@ -123,7 +126,7 @@ local cargo_1 = 12900
 local cargo_2 = 10400
 
 local kitchens = 500
-local various = 500
+--local various = 500
 
 local main_dist = 5000
 local alt_dist = 5000
@@ -138,7 +141,7 @@ local taxi_fuel = 500
 local total_pax_load = zone_1 + zone_2 + zone_4 + zone_5 + zone_6
 local cargo_load = cargo_1 + cargo_2
 local traffic_load = total_pax_load + cargo_load
-local dry_op_weight = EMPTY_WEIGHT + crew_num * 80 + cabin_num * 80 + kitchens + various
+local dry_op_weight = EMPTY_WEIGHT + 1090 + kitchens
 local zero_fuel_weight = dry_op_weight + traffic_load
 local main_fuel = 20000
 local alt_fuel = 15000
@@ -159,9 +162,9 @@ local total_fuel_actual = tank_1 + tank_4 + tank_2L + tank_2R + tank_3L + tank_3
 --local takeoff_fuel = total_fuel - taxi_fuel
 local takeoff_weight = zero_fuel_weight + total_fuel--takeoff_fuel
 
-local trip_fuel = main_fuel + nav_fuel
+local trip_fuel = 0
 
-local landing_weight = get(ld_weight)
+local landing_weight = 0
 
 local zfw_cg = 35.9587
 local to_cg = 19.9587
@@ -187,9 +190,9 @@ local tank_2R_fill = 1
 local tank_3L_fill = 1
 local tank_3R_fill = 1
 
-local main_fuel_show = fc_main
-local alt_fuel_show = fc_alt
-local total_fuel_show = fc_full
+local main_fuel_show = get(fc_main)
+local alt_fuel_show = get(fc_alt)
+local total_fuel = get(fc_full)
 
 ---local stab_to_color = {}
 
@@ -200,7 +203,7 @@ local click_timer = 0
 local dist_fl_M_last = 0
 local dist_fl_A_last = 0
 
-
+local loading=false
 
 local function calc_opt_fl(dist)
 	
@@ -213,24 +216,24 @@ local function calc_opt_fl(dist)
 end
 
 
-local function calc_fuel(dist, flightlevel)
+-- local function calc_fuel(dist, flightlevel)
 	
-	local fuel_tbl = {
-	{200, interpolate(fl_200_tbl, dist)},
-	{230, interpolate(fl_230_tbl, dist)},
-	{250, interpolate(fl_250_tbl, dist)},
-	{270, interpolate(fl_270_tbl, dist)},
-	{290, interpolate(fl_290_tbl, dist)},
-	{310, interpolate(fl_310_tbl, dist)},
-	{330, interpolate(fl_330_tbl, dist)},
-	{350, interpolate(fl_350_tbl, dist)},
-	{370, interpolate(fl_370_tbl, dist)},
-	{390, interpolate(fl_390_tbl, dist)}}
+	-- local fuel_tbl = {
+	-- {200, interpolate(fl_200_tbl, dist)},
+	-- {230, interpolate(fl_230_tbl, dist)},
+	-- {250, interpolate(fl_250_tbl, dist)},
+	-- {270, interpolate(fl_270_tbl, dist)},
+	-- {290, interpolate(fl_290_tbl, dist)},
+	-- {310, interpolate(fl_310_tbl, dist)},
+	-- {330, interpolate(fl_330_tbl, dist)},
+	-- {350, interpolate(fl_350_tbl, dist)},
+	-- {370, interpolate(fl_370_tbl, dist)},
+	-- {390, interpolate(fl_390_tbl, dist)}}
 	
-	return interpolate(fuel_tbl, flightlevel)
+	-- return interpolate(fuel_tbl, flightlevel)
 
 
-end
+-- end
 
 -- initial weights setup
 
@@ -247,27 +250,29 @@ end
 	
 
 
-local function calc_CG(weight, index) -- try to unify calculations of CG by diagramm
-	
-	local MID_CG = 40 -- %MAC, centerline of diagramm
-	local MID_CG_POS = 60 -- position of middle in index CG on diagramm
-	local MIN_WEIGHT = 54000 -- mininmum weight on diagramm, kg
-	local MAX_WEIGHT = 74000 -- maximum weight on diagramm, kg
-	local MAX_WEIGHT_POS = 1 -- position of max weight in index on diagramm
-	local MIN_CG = 22 -- minimum CG on diagramm
-	local MIN_CG_LOW_POS = MID_CG_POS - 34.3 -- MIN CG position on low weight scale in index of diagramm
-	local MIN_CG_HIGH_POS = MID_CG_POS - 24.8 -- MIN CG position on high weight scale in index of diagramm
-	
-	-- calculate relative position of weight on diagramm
-	local z = (weight - MIN_WEIGHT) * MAX_WEIGHT_POS / (MAX_WEIGHT - MIN_WEIGHT)  
-	
-	-- calculate CG in index from middle line
-	local b = ((MID_CG_POS - index) * MIN_CG_LOW_POS * MAX_WEIGHT_POS) / (z * MIN_CG_HIGH_POS - z * MIN_CG_LOW_POS + MIN_CG_LOW_POS * MAX_WEIGHT_POS)
-	
-	-- calculate CG in % of MAC
-	local result_CG = MID_CG - b * (MID_CG - MIN_CG) / MIN_CG_LOW_POS
+local function calc_CG(pax1_weight,pax2_weight,pax3_weight,pax4_weight,pax5_weight,equip_weight,cargo3,cargo1,cargo2,tank1,tank4,tank2_l,tank2_r,tank3_l,tank3_r,empty_weight) 
 
-	return result_CG
+	local pos1 = pax1_weight*75*-16.06
+	local pos2 = pos1+pax2_weight*75*-12.02
+	local pos3 = pos2+pax3_weight*75*-3.295
+	local pos4 = pos3+pax4_weight*75*2.33
+	local pos5 = pos4+pax5_weight*75*6.15
+	local pos6 = pos5+equip_weight*-10.54
+	local pos7 = pos6+empty_weight*1.528--+cabin_weight*-8.7775
+	local pos8 = pos7+cargo3*-10.68
+	local pos9 = pos8--+simDR_payload_cargo4*-9.51
+	local pos10 = pos9+cargo1*-8.89
+	local pos11 = pos10+cargo2*4.18
+	local pos12 = pos11+tank1*-0.85
+	local pos13 = pos12+tank4*-2.75
+	local pos14 = pos13+tank2_l*-1
+	local pos15 = pos14+tank2_r*-1
+	local pos16 = pos15+tank3_l*3.3
+	local pos17 = pos16+tank3_r*3.3
+	local m=pax1_weight+pax2_weight+pax3_weight+pax4_weight+pax5_weight+equip_weight+cargo3+cargo1+cargo2+tank1+tank4+tank2_l+tank2_r+tank3_l+tank3_r+empty_weight
+	local CG = ((pos17/m + 0.982)/ 5.285) *100
+
+	return CG
 
 end
 
@@ -287,7 +292,7 @@ function update()
 	crew_num = get(crew_num_pr)
 	zone_1 = get(zone_1_pr)
 	zone_2 = get(zone_2_pr)
-	cabin_num = get(cabin_num_pr)
+	--cabin_num = get(cabin_num_pr)
 	zone_4 = get(zone_4_pr)
 	zone_5 = get(zone_5_pr)
 	zone_6 = get(zone_6_pr)
@@ -296,7 +301,7 @@ function update()
 	cargo_2 = get(cargo_2_pr)
 
 	kitchens = get(kitchens_pr)
-	various = get(various_pr)
+	--various = get(various_pr)
 
 	main_dist = get(main_dist_pr)
 	alt_dist = get(alt_dist_pr)
@@ -320,35 +325,35 @@ function update()
 	
 	-- calculate final load
 	local pax_num = zone_1 + zone_2 + zone_4 + zone_5 + zone_6
-	local pax_weight = pax_num * 80 -- weight of passengers
+	local pax_weight = pax_num * 75 -- weight of passengers
 	
 	cargo_load = cargo_1 + cargo_2
 	
 	traffic_load = pax_weight + cargo_load
 	
-	dry_op_weight = EMPTY_WEIGHT + crew_num * 80 + cabin_num * 80 + kitchens + various
+	dry_op_weight = EMPTY_WEIGHT + 1090 + kitchens
 	
 	zero_fuel_weight = dry_op_weight + traffic_load
 	--set(db1,dry_op_weight)
 	--set(db2,zero_fuel_weight)
 	--set(db3,traffic_load)
 	-- calculate main fuel
-	local dist_fl_M = main_dist + main_fl
-	local dist_fl_A = alt_dist + alt_fl
+	-- local dist_fl_M = main_dist + main_fl
+	-- local dist_fl_A = alt_dist + alt_fl
 	
-	if dist_fl_M ~= dist_fl_M_last then 
-		main_fuel = calc_fuel(main_dist, main_fl) 
-		nav_fuel = math.ceil((main_fuel + alt_fuel) * 0.05)
-		set(nav_fuel_pr, nav_fuel)
-	end
-	if dist_fl_A ~= dist_fl_A_last then 
-		alt_fuel = calc_fuel(alt_dist, alt_fl) 
-		nav_fuel = math.ceil((main_fuel + alt_fuel) * 0.05)
-		set(nav_fuel_pr, nav_fuel)
-	end
+	-- if dist_fl_M ~= dist_fl_M_last then 
+		-- main_fuel = calc_fuel(main_dist, main_fl) 
+		-- nav_fuel = math.ceil((main_fuel + alt_fuel) * 0.05)
+		-- set(nav_fuel_pr, nav_fuel)
+	-- end
+	-- if dist_fl_A ~= dist_fl_A_last then 
+		-- alt_fuel = calc_fuel(alt_dist, alt_fl) 
+		-- nav_fuel = math.ceil((main_fuel + alt_fuel) * 0.05)
+		-- set(nav_fuel_pr, nav_fuel)
+	-- end
 	
-	main_fuel = math.ceil(main_fuel)
-	alt_fuel = math.ceil(alt_fuel)
+	-- main_fuel = math.ceil(main_fuel)
+	-- alt_fuel = math.ceil(alt_fuel)
 	
 	
 	dist_fl_M_last = get(main_dist_pr) + get(main_fl_pr)
@@ -356,7 +361,7 @@ function update()
 	
 	
 	
-	total_fuel = main_fuel + alt_fuel + nav_fuel + taxi_fuel
+	total_fuel = get(fc_full)
 	
 	total_fuel_actual = tank_1 + tank_4 + tank_2L + tank_2R + tank_3L + tank_3R
 	
@@ -364,32 +369,32 @@ function update()
 	
 	takeoff_weight = get(to_weight)
 	
-	trip_fuel = main_fuel + nav_fuel
+	trip_fuel = main_fuel_show + alt_fuel_show
 	
 	landing_weight = get(ld_weight)
 	
 	-- CG calculations
-	local index = {
-		["initial_index"] = 72.03,
-		["cockpit_crew_idx"] = -0.84,
-		["cabin_crew_idx"] = -0.413,
-		["zone_1_idx"] = -0.63,
-		["zone_2_idx"] = -0.49,
-		["zone_4_idx"] = -0.17,
-		["zone_5_idx"] = 0.04,
-		["zone_6_idx"] = 0.18,
+	-- local index = {
+		-- ["initial_index"] = 72.03,
+		-- ["cockpit_crew_idx"] = -0.84,
+		-- ["cabin_crew_idx"] = -0.413,
+		-- ["zone_1_idx"] = -0.63,
+		-- ["zone_2_idx"] = -0.49,
+		-- ["zone_4_idx"] = -0.17,
+		-- ["zone_5_idx"] = 0.04,
+		-- ["zone_6_idx"] = 0.18,
 		
-		["kitchen_idx"] = -0.0059,
-		["tools_tdx"] = -0.0053,
+		-- ["kitchen_idx"] = -0.0059,
+		-- ["tools_tdx"] = -0.0053,
 		
-		["cargo_1_idx"] = -0.0050667,
-		["cargo_2_idx"] = 0.0014933,
+		-- ["cargo_1_idx"] = -0.0050667,
+		-- ["cargo_2_idx"] = 0.0014933,
 		
-		["tank_1_idx"] = -0.0011993,
-		["tank_2_idx"] = -0.0000509,
-		["tank_3_idx"] = 0.0014161,
-		["tank_4_idx"] = -0.00194
-	}
+		-- ["tank_1_idx"] = -0.0011993,
+		-- ["tank_2_idx"] = -0.0000509,
+		-- ["tank_3_idx"] = 0.0014161,
+		-- ["tank_4_idx"] = -0.00194
+	-- }
 	
 	--[[
 	local initial_index = 72.03
@@ -425,41 +430,51 @@ function update()
 		бак 3 расположен +3.30 от ЦТ на вес 10850 это 0.3041475 на 1000кг индекс 1.4161106 на 1000кг
 	--]]
 	
-	local ZFW_idx = index["initial_index"] + index["cockpit_crew_idx"] * crew_num + index["cabin_crew_idx"] * cabin_num + index["zone_1_idx"] * zone_1 + index["zone_2_idx"] * zone_2
-	ZFW_idx = ZFW_idx + index["zone_4_idx"] * zone_4 + index["zone_5_idx"] * zone_5 + index["zone_6_idx"] * zone_6
-	ZFW_idx = ZFW_idx + index["cargo_1_idx"] * cargo_1 + index["cargo_2_idx"] * cargo_2 + index["kitchen_idx"] * kitchens + index["tools_tdx"] * various
+	-- local ZFW_idx = index["initial_index"] + index["cockpit_crew_idx"] * crew_num + index["cabin_crew_idx"] * cabin_num + index["zone_1_idx"] * zone_1 + index["zone_2_idx"] * zone_2
+	-- ZFW_idx = ZFW_idx + index["zone_4_idx"] * zone_4 + index["zone_5_idx"] * zone_5 + index["zone_6_idx"] * zone_6
+	-- ZFW_idx = ZFW_idx + index["cargo_1_idx"] * cargo_1 + index["cargo_2_idx"] * cargo_2 + index["kitchen_idx"] * kitchens + index["tools_tdx"] * various
 	
-	local TOW_idx = ZFW_idx + index["tank_1_idx"] * tank_1 + index["tank_2_idx"] * (tank_2L + tank_2R) + index["tank_3_idx"] * (tank_3L + tank_3R) + index["tank_4_idx"] * tank_4
+	-- local TOW_idx = ZFW_idx + index["tank_1_idx"] * tank_1 + index["tank_2_idx"] * (tank_2L + tank_2R) + index["tank_3_idx"] * (tank_3L + tank_3R) + index["tank_4_idx"] * tank_4
 	
 
 	-- calculate landing fuel amount
-	local tank2_land = tank_2L + tank_2R
-	local tank3_land = tank_3L + tank_3R
-	local tank4_land = tank_4
-	local tank1_land = tank_1
-	--take fuel from tanks
-	tank2_land = tank2_land - trip_fuel
-	if tank2_land < 100 then 
-		tank2_land = 100
-		tank3_land = tank3_land - (trip_fuel - (tank_2L + tank_2R))
-		if tank3_land < 100 then 
-			tank3_land = 100
-			tank4_land = tank4_land - (trip_fuel - (tank_2L + tank_2R + tank_3L + tank_3R))
-			if tank4_land < 50 then
-				tank4_land = 50
-				tank1_land = tank1_land - (trip_fuel - (tank_2L + tank_2R + tank_3L + tank_3R + tank4_land))
-				if tank1_land < 50 then tank1_land = 50 end
-			end
-		end
-	end
+	-- local tank2_land = tank_2L + tank_2R
+	-- local tank3_land = tank_3L + tank_3R
+	-- local tank4_land = tank_4
+	-- local tank1_land = tank_1
+	-- --take fuel from tanks
+	-- tank2_land = tank2_land - trip_fuel
+	-- if tank2_land < 100 then 
+		-- tank2_land = 100
+		-- tank3_land = tank3_land - (trip_fuel - (tank_2L + tank_2R))
+		-- if tank3_land < 100 then 
+			-- tank3_land = 100
+			-- tank4_land = tank4_land - (trip_fuel - (tank_2L + tank_2R + tank_3L + tank_3R))
+			-- if tank4_land < 50 then
+				-- tank4_land = 50
+				-- tank1_land = tank1_land - (trip_fuel - (tank_2L + tank_2R + tank_3L + tank_3R + tank4_land))
+				-- if tank1_land < 50 then tank1_land = 50 end
+			-- end
+		-- end
+	-- end
 	
-	local LFW_idx = ZFW_idx + index["tank_1_idx"] * tank1_land + index["tank_2_idx"] * tank2_land + index["tank_3_idx"] * tank3_land + index["tank_4_idx"] * tank4_land
+	-- local LFW_idx = ZFW_idx + index["tank_1_idx"] * tank1_land + index["tank_2_idx"] * tank2_land + index["tank_3_idx"] * tank3_land + index["tank_4_idx"] * tank4_land
 	
 	
 	
 	zfw_cg = get(cax_nf)
 	to_cg = get(cax_to)
-	land_cg = calc_CG(landing_weight, LFW_idx)
+	alt_fuel_show = get(fc_alt)
+	local delta_anz=math.max(0,alt_fuel_show-6000)
+	local tank3_ldg=2700
+	local tank2_ldg=0
+	if delta_anz<750 then
+		tank3_ldg=alt_fuel_show-3300
+	else
+		tank3_ldg=alt_fuel_show/2
+		tank2_ldg=alt_fuel_show/2-3300
+	end
+	land_cg = calc_CG(zone_1,zone_2,zone_4,zone_5,zone_6,1090,kitchens,cargo_1,cargo_2,3300,0,tank2_ldg/2,tank2_ldg/2,tank3_ldg/2,tank3_ldg/2,get(empty_wt)) 
 
 
 	cargo_1_fill = cargo_1 / 12900
@@ -531,7 +546,7 @@ function update()
 	
 	if kitchens < 100 then kitchens = " "..kitchens end
 	
-	if various < 100 then various = " "..various end
+	--if various < 100 then various = " "..various end
 	
 	
 	
@@ -548,7 +563,6 @@ function update()
 	if main_fuel < 1000 then main_fuel_show = "  "..main_fuel_show
 	elseif main_fuel < 10000 then main_fuel_show = " "..main_fuel_show end
 	
-	alt_fuel_show = get(fc_alt)
 	
 	if alt_fuel < 1000 then alt_fuel_show = "  "..alt_fuel_show
 	elseif alt_fuel < 10000 then alt_fuel_show = " "..alt_fuel_show end
@@ -557,20 +571,23 @@ function update()
 	
 	if taxi_fuel < 1000 then taxi_fuel = " "..taxi_fuel end
 	
-	total_fuel_show = get(fc_full)
+	--total_fuel = get(fc_full)
+	local total_fuel_show=get(fc_full)
+	if total_fuel < 1000 then total_fuel = "  "..total_fuel
+	elseif total_fuel < 10000 then total_fuel = " "..total_fuel end
 	
-	if total_fuel < 1000 then total_fuel_show = "  "..total_fuel_show
-	elseif total_fuel < 10000 then total_fuel_show = " "..total_fuel_show end
+	if total_fuel_show > 39750 or total_fuel_show < 12750 then total_fuel = total_fuel.." !" end
 	
-	if total_fuel > 39750 or total_fuel < 12750 then total_fuel_show = total_fuel_show.." !" end
-	
-	if total_fuel < 12750 then fuel_over_limits = -1 
-	elseif total_fuel > 39750 then fuel_over_limits = 1 
+	if total_fuel_show < 12750 then fuel_over_limits = -1 
+	elseif total_fuel_show > 39750 then fuel_over_limits = 1 
 	else fuel_over_limits = 0 end
 	
 	--zfw_cg = math.floor(zfw_cg * 100 + 0.5)/ 100
 	to_cg = math.floor(to_cg * 100 + 0.5)/ 100
 	land_cg = math.floor(land_cg * 100 + 0.5)/ 100
+	zfw_cg = math.floor(zfw_cg * 100 + 0.5)/ 100
+	dry_op_weight = math.floor(dry_op_weight / 10)*10
+	zero_fuel_weight = math.floor(zero_fuel_weight / 10)*10
 	--set(db1,zfw_cg)
 	
 	
@@ -696,7 +713,7 @@ function update()
 		--set(show_load_panel, 0)	
 	end
 	
-	
+	--loading=get(pax_req)>10 or get(cargo_req)>10 or get(fuel_req)>300
 	
 	
 	
@@ -729,7 +746,7 @@ components = {
 
 
 	-- cargo_1 fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -743,7 +760,7 @@ components = {
 	},	
 	
 	-- cargo_2 fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -758,7 +775,7 @@ components = {
 
 	
 	-- tank_1_fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -772,7 +789,7 @@ components = {
 	},		
 	
 	-- tank_4_fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -786,7 +803,7 @@ components = {
 	},		
 	
 	-- tank_2L_fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -800,7 +817,7 @@ components = {
 	},		
 	
 	-- tank_2R_fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -814,7 +831,7 @@ components = {
 	},		
 	
 	-- tank_3L_fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -828,7 +845,7 @@ components = {
 	},	
 	
 	-- tank_3R_fill
-	rectangle_ctr {
+	rectangle_ctr_fuel {
 		R = 0.5,
 		G = 0.5,
 		B = 1.0,
@@ -949,6 +966,7 @@ components = {
 	
 	-------------------------------
 	-- background
+	
 	textureLit {
 		position = {0, 0, size[1], size[2]},
 		image = get(bg_img),
@@ -962,6 +980,13 @@ components = {
 		image = get(bg_img_rus),
 		visible = function()
 			return get(hide_eng_objects) == 1
+		end,
+	},
+	textureLit {
+		position = {198, 16, 210,47},
+		image = get(loading_im),
+		visible = function()
+			return get(pax_req)>10 or get(cargo_req)>10 or get(fuel_req)>300
 		end,
 	},
 	
@@ -1053,14 +1078,14 @@ components = {
 		end,
 	},
 
-	-- kitchens load
-	text_draw {
-		position = {930, 494, 60, 60},
-		color = {0, 0, 0, 1},
-		text = function()
-			return various
-		end,
-	},
+	-- -- kitchens load
+	-- text_draw {
+		-- position = {930, 494, 60, 60},
+		-- color = {0, 0, 0, 1},
+		-- text = function()
+			-- return various
+		-- end,
+	-- },
 	
 	---------------------------
 	-- fuel values --
@@ -1145,7 +1170,7 @@ components = {
 		position = {495, 255, 60, 60},
 		color = {0, 0, 0, 1},
 		text = function()
-			return total_fuel_show
+			return total_fuel
 		end,
 	},	
 	
@@ -1361,21 +1386,21 @@ components = {
 	
 	-- ZONE 1
 	clickable {
-		position = {194, 572, 30, 30 },
+		position = {194, 568, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_1_pr) - 1
 			if a < 0 then a = 0 end
 			set(zone_1_pr, a)
 			
 			return true
 		end,
-	}, 
+	},
 
 	clickable {
 		position = {237, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_1_pr) + 1
 			if a > 18 then a = 18 end
 			set(zone_1_pr, a)
@@ -1388,7 +1413,7 @@ components = {
 	clickable {
 		position = {278, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_2_pr) - 1
 			if a < 0 then a = 0 end
 			set(zone_2_pr, a)
@@ -1400,7 +1425,7 @@ components = {
 	clickable {
 		position = {338, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_2_pr) + 1
 			if a > 44 then a = 44 end
 			set(zone_2_pr, a)
@@ -1414,7 +1439,7 @@ components = {
 	clickable {
 		position = {481, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_4_pr) - 1
 			if a < 0 then a = 0 end
 			set(zone_4_pr, a)
@@ -1426,7 +1451,7 @@ components = {
 	clickable {
 		position = {540, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_4_pr) + 1
 			if a > 48 then a = 48 end
 			set(zone_4_pr, a)
@@ -1439,7 +1464,7 @@ components = {
 	clickable {
 		position = {606, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_5_pr) - 1
 			if a < 0 then a = 0 end
 			set(zone_5_pr, a)
@@ -1451,7 +1476,7 @@ components = {
 	clickable {
 		position = {665, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_5_pr) + 1
 			if a > 42 then a = 42 end
 			set(zone_5_pr, a)
@@ -1464,7 +1489,7 @@ components = {
 	clickable {
 		position = {703, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_6_pr) - 1
 			if a < 0 then a = 0 end
 			set(zone_6_pr, a)
@@ -1476,7 +1501,7 @@ components = {
 	clickable {
 		position = {748, 572, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(zone_6_pr) + 1
 			if a > 14 then a = 14 end
 			set(zone_6_pr, a)
@@ -1490,7 +1515,7 @@ components = {
 	clickable {
 		position = {211, 533, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(cargo_1_pr) - 100
 			if a < 0 then a = 0 end
 			set(cargo_1_pr, a)
@@ -1502,7 +1527,7 @@ components = {
 	clickable {
 		position = {362, 533, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(cargo_1_pr) + 100
 			if a > 12900 then a = 12900 end
 			set(cargo_1_pr, a)
@@ -1515,7 +1540,7 @@ components = {
 	clickable {
 		position = {572, 533, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(cargo_2_pr) - 100
 			if a < 0 then a = 0 end
 			set(cargo_2_pr, a)
@@ -1527,7 +1552,7 @@ components = {
 	clickable {
 		position = {706, 533, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(cargo_2_pr) + 100
 			if a > 10400 then a = 10400 end
 			set(cargo_2_pr, a)
@@ -1541,7 +1566,7 @@ components = {
 	clickable {
 		position = {631, 488, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(kitchens_pr) - 10
 			if a < 0 then a = 0 end
 			set(kitchens_pr, a)
@@ -1553,7 +1578,7 @@ components = {
 	clickable {
 		position = {705, 488, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(kitchens_pr) + 10
 			if a > 200 then a = 200 end
 			set(kitchens_pr, a)
@@ -1562,44 +1587,46 @@ components = {
 		end,
 	},	
 
-	-- Equipment
-	clickable {
-		position = {896, 488, 30, 30 },
+	-- -- Equipment
+	-- clickable {
+		-- position = {896, 488, 30, 30 },
       
-		onMouseClick = function() 
-			local a = get(various_pr) - 10
-			if a < 50 then a = 50 end
-			set(various_pr, a)
+		-- onMouseDown = function() 
+			-- local a = get(various_pr) - 10
+			-- if a < 50 then a = 50 end
+			-- set(various_pr, a)
 			
-			return true
-		end,
-	}, 
+			-- return true
+		-- end,
+	-- }, 
 
-	clickable {
-		position = {971, 488, 30, 30 },
+	-- clickable {
+		-- position = {971, 488, 30, 30 },
       
-		onMouseClick = function() 
-			local a = get(various_pr) + 10
-			if a > 370 then a = 370 end
-			set(various_pr, a)
+		-- onMouseDown = function() 
+			-- local a = get(various_pr) + 10
+			-- if a > 370 then a = 370 end
+			-- set(various_pr, a)
 			
-			return true
-		end,
-	},	
+			-- return true
+		-- end,
+	-- },	
 	
 
 	-- 0% load
 	clickable {
 		position = {185, 486, 45, 35 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(zone_1_pr, 0)
 			set(zone_2_pr, 0)
 			set(zone_4_pr, 0)
 			set(zone_5_pr, 0)
 			set(zone_6_pr, 0)
-			set(cabin_num_pr, 0)
-			
+			--set(cabin_num_pr, 0)
+			set(cargo_1_pr,0)
+            set(cargo_2_pr,0)
+            set(kitchens_pr,0)
 			return true
 		end,
 	}, 
@@ -1608,14 +1635,16 @@ components = {
 	clickable {
 		position = {233, 486, 53, 35 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(zone_1_pr, math.random(3, 6))
 			set(zone_2_pr, math.random(8, 14))
 			set(zone_4_pr, math.random(9, 15))
 			set(zone_5_pr, math.random(7, 13))
 			set(zone_6_pr, math.random(2, 6))
-			set(cabin_num_pr, 3)
-			
+			--set(cabin_num_pr, 3)
+			set(cargo_1_pr,math.ceil(math.random(1000,3000)*0.01) * 100)
+            set(cargo_2_pr,math.ceil(math.random(0,600)*0.01) * 100)
+            set(kitchens_pr,math.ceil(math.random(0,200)*0.01) * 100)
 			return true
 		end,
 	}, 	
@@ -1624,13 +1653,16 @@ components = {
 	clickable {
 		position = {290, 486, 53, 35 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(zone_1_pr, math.random(7, 11))
 			set(zone_2_pr, math.random(19, 25))
 			set(zone_4_pr, math.random(21, 27))
 			set(zone_5_pr, math.random(18, 24))
 			set(zone_6_pr, math.random(5, 9))
-			set(cabin_num_pr, 4)
+			set(cargo_1_pr,math.ceil(math.random(2500,4000)*0.01) * 100)
+            set(cargo_2_pr,math.ceil(math.random(0,900)*0.01) * 100)
+            set(kitchens_pr,math.ceil(math.random(0,200)*0.01) * 100)
+			--set(cabin_num_pr, 4)
 			
 			return true
 		end,
@@ -1640,14 +1672,16 @@ components = {
 	clickable {
 		position = {346, 486, 53, 35 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(zone_1_pr, math.random(12, 16))
 			set(zone_2_pr, math.random(30, 36))
 			set(zone_4_pr, math.random(33, 39))
 			set(zone_5_pr, math.random(29, 35))
 			set(zone_6_pr, math.random(8, 12))
-			set(cabin_num_pr, 5)
-			
+			--set(cabin_num_pr, 5)
+			set(cargo_1_pr,math.ceil(math.random(3500,4500)*0.01) * 100)
+            set(cargo_2_pr,math.ceil(math.random(0,900)*0.01) * 100)
+            set(kitchens_pr,math.ceil(math.random(0,200)*0.01) * 100)
 			return true
 		end,
 	}, 	
@@ -1656,13 +1690,13 @@ components = {
 	clickable {
 		position = {402, 486, 61, 35 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(zone_1_pr, 18)
 			set(zone_2_pr, 44)
 			set(zone_4_pr, 48)
 			set(zone_5_pr, 42)
 			set(zone_6_pr, 14)
-			set(cabin_num_pr, 6)
+			--set(cabin_num_pr, 6)
 			
 			return true
 		end,
@@ -1672,7 +1706,7 @@ components = {
 	clickable {
 		position = {186, 398, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(main_dist_pr) - 100
 			if a < 0 then a = 0 end
 			set(main_dist_pr, a)
@@ -1684,7 +1718,7 @@ components = {
 	clickable {
 		position = {263, 398, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(main_dist_pr) + 100
 			if a > 5000 then a = 5000 end
 			set(main_dist_pr, a)
@@ -1697,8 +1731,8 @@ components = {
 	clickable {
 		position = {471, 398, 30, 30 },
       
-		onMouseClick = function() 
-			local a = get(alt_dist_pr) - 100
+		onMouseDown = function() 
+			local a = get(alt_dist_pr) - 50
 			if a < 0 then a = 0 end
 			set(alt_dist_pr, a)
 			
@@ -1709,8 +1743,8 @@ components = {
 	clickable {
 		position = {549, 398, 30, 30 },
       
-		onMouseClick = function() 
-			local a = get(alt_dist_pr) + 100
+		onMouseDown = function() 
+			local a = get(alt_dist_pr) + 50
 			if a > 5000 then a = 5000 end
 			set(alt_dist_pr, a)
 			
@@ -1723,7 +1757,7 @@ components = {
 	clickable {
 		position = {186, 366, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(main_fl_pr) - 10
 			if a < 200 then a = 200 end
 			set(main_fl_pr, a)
@@ -1735,7 +1769,7 @@ components = {
 	clickable {
 		position = {263, 366, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(main_fl_pr) + 10
 			if a > 390 then a = 390 end
 			set(main_fl_pr, a)
@@ -1748,7 +1782,7 @@ components = {
 	clickable {
 		position = {471, 366, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(alt_fl_pr) - 10
 			if a < 200 then a = 200 end
 			set(alt_fl_pr, a)
@@ -1760,7 +1794,7 @@ components = {
 	clickable {
 		position = {549, 366, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(alt_fl_pr) + 10
 			if a > 390 then a = 390 end
 			set(alt_fl_pr, a)
@@ -1774,7 +1808,7 @@ components = {
 	clickable {
 		position = {133, 362, 50, 35 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local fl = calc_opt_fl(get(main_dist_pr))
 			set(main_fl_pr, fl)
 			return true
@@ -1786,7 +1820,7 @@ components = {
 	clickable {
 		position = {419, 362, 50, 35 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local fl = calc_opt_fl(get(alt_dist_pr))
 			set(alt_fl_pr, fl)
 			return true
@@ -1798,7 +1832,7 @@ components = {
 	clickable {
 		position = {186, 282, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(nav_fuel_pr) - 100
 			if a < 0 then a = 0 end
 			set(nav_fuel_pr, a)
@@ -1810,7 +1844,7 @@ components = {
 	clickable {
 		position = {263, 282, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(nav_fuel_pr) + 100
 			if a > 5000 then a = 5000 end
 			set(nav_fuel_pr, a)
@@ -1823,7 +1857,7 @@ components = {
 	clickable {
 		position = {471, 282, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(taxi_fuel_pr) - 100
 			if a < 0 then a = 0 end
 			set(taxi_fuel_pr, a)
@@ -1835,7 +1869,7 @@ components = {
 	clickable {
 		position = {549, 282, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(taxi_fuel_pr) + 100
 			if a > 1000 then a = 1000 end
 			set(taxi_fuel_pr, a)
@@ -1848,7 +1882,7 @@ components = {
 	clickable {
 		position = {20, 202, 56, 37 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(tank_1_pr, 3300)
 			set(tank_4_pr, 0)
 			set(tank_2L_pr, 1500)
@@ -1864,7 +1898,7 @@ components = {
 	clickable {
 		position = {84, 202, 56, 37 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(tank_1_pr, 3300)
 			set(tank_4_pr, 6595)
 			set(tank_2L_pr, 9500)
@@ -1881,7 +1915,7 @@ components = {
 	clickable {
 		position = {242, 161, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_4_pr) - 25
 			if a < 0 then a = 0 end
 			set(tank_4_pr, a)
@@ -1893,7 +1927,7 @@ components = {
 	clickable {
 		position = {310, 161, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_4_pr) + 25
 			if a > 6595 then a = 6595 end
 			set(tank_4_pr, a)
@@ -1906,7 +1940,7 @@ components = {
 	clickable {
 		position = {242, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_1_pr) - 25
 			if a < 0 then a = 0 end
 			set(tank_1_pr, a)
@@ -1918,7 +1952,7 @@ components = {
 	clickable {
 		position = {310, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_1_pr) + 25
 			if a > 3300 then a = 3300 end
 			set(tank_1_pr, a)
@@ -1932,7 +1966,7 @@ components = {
 	clickable {
 		position = {29, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_3L_pr) - 25
 			if a < 0 then a = 0 end
 			set(tank_3L_pr, a)
@@ -1944,7 +1978,7 @@ components = {
 	clickable {
 		position = {102, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_3L_pr) + 25
 			if a > 5405 then a = 5405 end
 			set(tank_3L_pr, a)
@@ -1957,7 +1991,7 @@ components = {
 	clickable {
 		position = {137, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_2L_pr) - 25
 			if a < 0 then a = 0 end
 			set(tank_2L_pr, a)
@@ -1969,7 +2003,7 @@ components = {
 	clickable {
 		position = {211, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_2L_pr) + 25
 			if a > 9500 then a = 9500 end
 			set(tank_2L_pr, a)
@@ -1982,7 +2016,7 @@ components = {
 	clickable {
 		position = {341, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_2R_pr) - 25
 			if a < 0 then a = 0 end
 			set(tank_2R_pr, a)
@@ -1994,7 +2028,7 @@ components = {
 	clickable {
 		position = {416, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_2R_pr) + 25
 			if a > 9500 then a = 9500 end
 			set(tank_2R_pr, a)
@@ -2008,7 +2042,7 @@ components = {
 	clickable {
 		position = {448, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_3R_pr) - 25
 			if a < 0 then a = 0 end
 			set(tank_3R_pr, a)
@@ -2020,7 +2054,7 @@ components = {
 	clickable {
 		position = {523, 93, 30, 30 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(tank_3R_pr) + 25
 			if a > 5405 then a = 5405 end
 			set(tank_3R_pr, a)
@@ -2060,27 +2094,28 @@ components = {
 		end,
 	},
 
-	--[[
 	-- slow load
 		clickable {
 		position = {200, 17, 210, 45 },
       
 		onMouseDown = function() 
-			set(load_slow_btn, 1)
+			if get(pax_req)<10 and get(cargo_req)<10 and get(fuel_req)<300 then
+				set(load_slow_btn, 1)
+			end
 			return true
 		end,
 		onMouseUp = function() 
 			set(load_slow_btn, 0)
+			set(show_load_panel, 0)
 			return true
 		end,
 	},
---]]
 	
 	-- close button
 	clickable {
-		position = {429, 17, 130, 45 },
+		position = {426, 17, 126, 45 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(show_load_panel, 0)
 			return true
 		end,
@@ -2089,7 +2124,7 @@ components = {
 	clickable {
 		position = {size[1]-15, size[2]-15, 15, 15 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(show_load_panel, 0)
 			return true
 		end,

@@ -159,10 +159,10 @@ defineProperty("tas", globalPropertyf("sim/flightmodel2/position/true_airspeed")
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
 --defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
 
 local wing_heat_tbl = {{ -100, 0 },    -- bugs walkaround
@@ -417,8 +417,8 @@ function update()
 			set(sim_pitot_heat_1, pitot_sw_1) 
 			set(sim_pitot_heat_3, pitot_sw_3) 
 			set(AOA_heat_on, pitot_sw_1)
-			set(stat_1,1)
-			set(stat_3,1)
+			-- set(stat_1,1)
+			-- set(stat_3,1)
 			set(tat,1)
 			set(ai_27_L_cc, 5.5 * pitot_sw_1+so_ht + 6 * pitot_sw_3)
 		else
@@ -426,24 +426,28 @@ function update()
 			set(AOA_heat_on, 0)
 			set(sim_pitot_heat_3, 0) 
 			set(ai_27_L_cc, 0)
-			set(stat_1,0)
-			set(stat_3,0)
-			set(tat,0)
+			-- set(stat_1,0)
+			-- set(stat_3,0)
+			--set(tat,0)
 		end
 		
 		if power27_R then -- add third Pitot here
 			set(sim_pitot_heat_2, pitot_sw_2) 
 			set(AOA_heat_on_copilot, pitot_sw_2)
-			set(stat_2,1)
-			set(tat2,1)
+			--set(stat_2,1)
+			--set(tat2,1)
 			set(ai_27_R_cc, 5.6 * pitot_sw_2 )
 		else
 			set(sim_pitot_heat_2, 0) 
 			set(AOA_heat_on_copilot, 0)
 			set(ai_27_R_cc, 0)
-			set(stat_2,0)
-			set(tat2,0)
+			--set(stat_2,0)
+			--set(tat2,0)
 		end
+		local static_heat=bool2int(temp_cab>3)
+		set(stat_1,static_heat)
+		set(stat_2,static_heat)
+		set(stat_3,static_heat)
 		-- if get(db3)==0 then
 			-- start_timer=0
 			-- notLoaded = true

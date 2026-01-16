@@ -342,6 +342,8 @@ if MASTER then
 		stab_dirr=1
 	elseif flaps_dirr_L==-1 or flaps_dirr_R==-1 then
 		stab_dirr=-1
+	elseif get(stab_man_cap) == 1 or not power27_L then 
+		stab_dirr=0
 	end		
 
 	-- brake unsynced flaps
@@ -428,6 +430,7 @@ if MASTER then
 	
 	local stab_mechs = 2 - get(stab_eng_fail) -- two engines working normally. can add failures here
 	local stab_move=0
+	local stab_move_act=0
 	-- calculate new stab position and dirrection of movement
 	if get(stab_man_cap) == 0 and get(stab_automatic_fail) == 0 then -- automatic controls and no automatic fails
 		local stab_set = get(stab_setting)
@@ -495,6 +498,7 @@ if MASTER then
 		else
 			stab_move=-bool2int(stab_pos_now >0)
 		end
+		stab_move_act=stab_move
 		--set(db1,stab_dirr)
 		--stab_must_move = math.abs(stab_pos_cmd - stab_pos_now) > 0.01 and math.abs(flap_pos_L_last - flaps_pos_L_cmd) > 0.1 and math.abs(flap_pos_R_last - flaps_pos_R_cmd) > 0.1
 		
@@ -505,14 +509,14 @@ if MASTER then
 		
 		
 	elseif get(stab_man_cap) == 1 then -- manual stab control
-		stab_move = get(stab_manual)
-		stab_pos_cmd = stab_pos_now
+		stab_move_act = get(stab_manual)
+		--stab_pos_cmd = stab_pos_now
 	end
 	
 	
 	
 	-- stab movements
-	stab_pos_now = stab_pos_now + stab_move * passed * (bool2int(stab_mechs > 0) * power115_1 + bool2int(stab_mechs > 1) * power115_3) * 0.11
+	stab_pos_now = stab_pos_now + stab_move_act * passed * (bool2int(stab_mechs > 0) * power115_1 + bool2int(stab_mechs > 1) * power115_3) * 0.11 * bool2int(power27_L)
 	
 	if stab_move ~= 0 then
 		if stab_mechs > 1 then CC_115_1 = CC_115_1 + 6.5 end

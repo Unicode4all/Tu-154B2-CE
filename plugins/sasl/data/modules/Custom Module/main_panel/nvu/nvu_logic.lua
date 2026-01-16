@@ -102,7 +102,7 @@ local nvu_switched = false
 
 local change_cho_timer = 10
 local change_timer = 0
-local groundspeed
+local groundspeed=0
 local diss_wind_speed = get(diss_wind_spd) / 3.6
 local diss_wind_dir = get(diss_wind_course) - get(course_gpk)
 function update()
@@ -426,30 +426,30 @@ end
 	
 	
 	-- set limits
-	if cur_S1 > 950 then cur_S1 = 950
-	elseif cur_S1 < -950 then cur_S1 = -950 end
+	if cur_S1 > 9999 then cur_S1 = 9999
+	elseif cur_S1 < -9999 then cur_S1 = -9999 end
 	
-	if cur_Z1 > 500 then cur_Z1 = 500
-	elseif cur_Z1 < -500 then cur_Z1 = -500 end
+	if cur_Z1 > 9999 then cur_Z1 = 9999
+	elseif cur_Z1 < -9999 then cur_Z1 = -9999 end
 	
-	if nxt_S1 > 950 then nxt_S1 = 950
-	elseif nxt_S1 < -950 then nxt_S1 = -950 end
+	if nxt_S1 > 9999 then nxt_S1 = 9999
+	elseif nxt_S1 < -9999 then nxt_S1 = -9999 end
 	
-	if nxt_Z1 > 500 then nxt_Z1 = 500
-	elseif nxt_Z1 < -500 then nxt_Z1 = -500 end
+	if nxt_Z1 > 9999 then nxt_Z1 = 9999
+	elseif nxt_Z1 < -9999 then nxt_Z1 = -9999 end
 	
 
-	if cur_S2 > 950 then cur_S2 = 950
-	elseif cur_S2 < -950 then cur_S2 = -950 end
+	if cur_S2 > 9999 then cur_S2 = 9999
+	elseif cur_S2 < -9999 then cur_S2 = -9999 end
 	
-	if cur_Z2 > 500 then cur_Z2 = 500
-	elseif cur_Z2 < -500 then cur_Z2 = -500 end
+	if cur_Z2 > 9999 then cur_Z2 = 9999
+	elseif cur_Z2 < -9999 then cur_Z2 = -9999 end
 	
-	if nxt_S2 > 950 then nxt_S2 = 950
-	elseif nxt_S2 < -950 then nxt_S2 = -950 end
+	if nxt_S2 > 9999 then nxt_S2 = 9999
+	elseif nxt_S2 < -9999 then nxt_S2 = -9999 end
 	
-	if nxt_Z2 > 500 then nxt_Z2 = 500
-	elseif nxt_Z2 < -500 then nxt_Z2 = -500 end	
+	if nxt_Z2 > 9999 then nxt_Z2 = 9999
+	elseif nxt_Z2 < -9999 then nxt_Z2 = -9999 end	
 	
 	
 	

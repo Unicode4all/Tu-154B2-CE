@@ -113,7 +113,7 @@ defineProperty("deflection_mtr_2", globalProperty("sim/flightmodel2/gear/tire_ve
 defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]")) -- 
 
 
-defineProperty("indicated_airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed")) -- приборная скорость
+defineProperty("indicated_airspeed", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot")) -- приборная скорость
 defineProperty("machno", globalPropertyf("sim/flightmodel/misc/machno")) -- скорость Маха
 
 defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
@@ -164,7 +164,8 @@ defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
 
-
+cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
+flaps_lever = globalPropertyf("tu154b2/custom/controll/flaps_lever")
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
@@ -435,8 +436,11 @@ local function lamps()
 	local gear_L_pos = get(gear2_deploy)
 	local gear_R_pos = get(gear3_deploy)
 	
-	local gear_not_ext = (gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(indicated_airspeed) * 1.852 < 325 and math.min(get(rv5_alt_L), get(rv5_alt_R)) < 250)
-	gear_not_ext = gear_not_ext and (get(anim_rud1) + get(anim_rud2) + get(anim_rud3) < 2 and get(gear_lever) <= 0) 
+	local gear_not_ext =(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(anim_rud1) < 0.77 and get(anim_rud2)  < 0.77 and get(anim_rud3) < 0.77 ) and get(rv5_alt_L)<250 --(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(indicated_airspeed) * 1.852 < 325 and math.min(get(rv5_alt_L), get(rv5_alt_R)) < 250)
+	if get(cockpit_80s)==0 then
+	--gear_not_ext = gear_not_ext and (get(anim_rud1) < 0.77 and get(anim_rud2)  < 0.77 and get(anim_rud3) < 0.77 and get(gear_lever) <= 0) 
+		gear_not_ext =(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(anim_rud1) < 0.77 and get(anim_rud2)  < 0.77 and get(anim_rud3) < 0.77 ) and (get(indicated_airspeed) * 1.852 < 325 or get(flaps_lever)>2)
+	end
 	-- any gear not on lock, speed less than 325 and throttles set les than 90%
 	
 	
@@ -513,7 +517,7 @@ local function lamps()
 	
 	
 	-- alarm
-	local sound_alarm = gear_not_ext or ((flap_pos_now_L < 14 or flap_pos_now_R < 14 or slats_now < 0.5) and (get(anim_rud1)+get(anim_rud2)+get(anim_rud3))/3 > 0.7 and math.max(get(deflection_mtr_2), get(deflection_mtr_3)) > 0.05)
+	local sound_alarm = gear_not_ext or ((flap_pos_now_L < 14 or flap_pos_now_R < 14 or slats_now < 0.5) and (get(anim_rud1) > 0.63 or get(anim_rud2) > 0.63 or get(anim_rud3) > 0.63) and math.max(get(deflection_mtr_2), get(deflection_mtr_3)) > 0.05)
 	
 	set(main_gear_flaps, bool2int(sound_alarm))
 	

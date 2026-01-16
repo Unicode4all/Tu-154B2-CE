@@ -163,8 +163,8 @@ defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = p
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
@@ -179,7 +179,7 @@ defineProperty("igv3", globalPropertyi("tu154b2/custom/engines/rna_3"))
 defineProperty("flt_idle_rpm", globalPropertyf("tu154b2/custom/engines/flight_idle"))
 
 defineProperty("true_airspeed", globalPropertyf("sim/flightmodel2/position/true_airspeed"))
-defineProperty("true_airspeed2", globalPropertyf("sim/cockpit2/gauges/indicators/true_airspeed_kts_copilot"))
+--defineProperty("true_airspeed2", globalPropertyf("sim/cockpit2/gauges/indicators/true_airspeed_kts_copilot"))
 defineProperty("sim_time", globalPropertyf("sim/time/total_flight_time_sec"))
 
 defineProperty("max_n2", globalPropertyf("tu154b2/engine/max_KVD"))
@@ -283,6 +283,9 @@ local c_vibr_3=(math.random()-0.5)/3.5
 local t_turb_1=get(thermo)
 local t_turb_2=get(thermo)
 local t_turb_3=get(thermo)
+
+local tas_LP=0
+local T_tas=10 --TAS lowpass constant
 
 local rudder_corr_tbl={
 {-10000, 1},
@@ -806,23 +809,25 @@ local c_aero=0.0035 -- drag coefficient
 local a_N1=0
 local q=0
 local c_q=0.0001 -- windmilling coefficient
-local c_f=0.0004 -- friction coefficient
+local c_f=0.003 -- friction coefficient
 
 local n2_1_runout=0
 local n2_2_runout=0
 local n2_3_runout=0
 local n2_c_aero=0.0003
 local n2_c_f=0.01
-local n2_c_q=0.000008
+local n2_c_q=0.00002
 local n2_M_rot=0.15
 
 local fan_1=math.random()*360
 local fan_3=math.random()*360
 local rpm_knd=5900/0.97 --rpm @ 100% N1		 
 
-local function n1_from_n2 (rpm,d_isa,alt,tas)
-	local knd=2.27883656454638781896e-02 + 1.48521461357922052691e-03*d_isa + 2.85578535694455237781e-01*rpm -9.80969385717822827146e-05*d_isa*rpm + 5.06556388550356579553e-03*math.pow(rpm,2) -1.81250059943665734515e-05*d_isa*math.pow(rpm,2) + 2.76277805413032983845e-05*math.pow(rpm,3)
-	knd=knd+math.max(2.55665280454449340030e-16 -9.80392156862750505444e-04*tas + 6.66666666666667073748e-01*alt,0)-- altitude correction
+local function n1_from_n2 (rpm,d_isa,altitude,tas)
+	--local knd=2.27883656454638781896e-02 + 1.48521461357922052691e-03*d_isa + 2.85578535694455237781e-01*rpm -9.80969385717822827146e-05*d_isa*rpm + 5.06556388550356579553e-03*math.pow(rpm,2) -1.81250059943665734515e-05*d_isa*math.pow(rpm,2) + 2.76277805413032983845e-05*math.pow(rpm,3)
+	local knd=1.35432317320705628561e+01 + 1.05818030992323813821e-01*d_isa -2.41159426273638954896e-01*rpm -2.88293089248683933462e-03*d_isa*rpm + 1.17362636037093952257e-02*math.pow(rpm,2)
+	knd=knd+math.max(-2.69166791400897068343e+02 + 2.22049699099214983278e+01*altitude + 1.46945301863934254527e+01*rpm -9.85089687252083234803e-01*altitude*rpm -2.96261417738032106772e-01*math.pow(rpm,2) + 1.41929325403952685813e-02*altitude*math.pow(rpm,2) + 2.61617340318329736140e-03*math.pow(rpm,3) -6.56641350639726608220e-05*altitude*math.pow(rpm,3) -8.54680990421439715666e-06*math.pow(rpm,4),0)*tas/850
+	--math.max(2.55665280454449340030e-16 -9.80392156862750505444e-04*tas + 6.66666666666667073748e-01*alt,0)-- altitude correction
 	return knd
 end
 
@@ -873,11 +878,10 @@ if MASTER then
 	local rna_thres=temp*(44-36.5)/100+43
 	temp=temp+(760-press)/40*14.7
 	tme=tme+passed
-	local tas=get(true_airspeed)*3.6
-	local tas2=get(true_airspeed2)/1.852
+	tas_LP=passed/(T_tas+passed)*get(true_airspeed)*3.6+tas_LP*T_tas/(T_tas+passed)
 	local high_idle=idle_rpm
 	local d_isa=get(isa_temp_d)
-	q=dens*math.pow((tas/3.6),2)/2
+	q=dens*math.pow((tas_LP/3.6),2)/2
 	
 	-- N2 windmilling and runout calculations
 	if flame1>0 or get(apd_working_1)>0 then
@@ -972,27 +976,27 @@ if MASTER then
 	-- low pressure turbine
 	
     -- expected N1 at idle N2
-	local low_idle1=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas)-rna1
-	local low_idle2=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas)-rna2-interpolate(eng2_n1_corr_tbl,idle_rpm)
-	local low_idle3=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas)-rna3
+	local low_idle1=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna1
+	local low_idle2=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,idle_rpm)
+	local low_idle3=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna3
 	-- correct turbine power coefficient to match idle N1
 	c_turb1=c_aero*dens*math.pow(low_idle1,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
 	c_turb2=c_aero*dens*math.pow(low_idle2,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
 	c_turb3=c_aero*dens*math.pow(low_idle3,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
 	local ias=get(indicated_airspeed)*1.852
 	local wind_angle=math.min(get(wind_dir)-get(acft_dir),360-get(wind_dir)+get(acft_dir))
-	if math.abs(wind_angle)>90 then
+	if tas_LP>80 then
 		wind_angle=0
 	end
-	if tas>60 then
-		wind_angle=1
-	end
-	q2=dens*math.pow((tas2/3.6),2)/2*math.cos(wind_angle/180*3.14)
+	-- if tas_LP>60 then
+		-- wind_angle=1
+	-- end
+	q=q*math.cos(wind_angle/180*3.14)
 
 	--N1 as function of N2
-	eng1_N2_need_old=n1_from_n2 (eng1_1_ang_act,d_isa,alt_baro/1000,tas)-rna1
+	eng1_N2_need_old=n1_from_n2 (eng1_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna1
 	eng1_N2_need_old=eng1_N2_need_old*interpolate(n1_start_corr_tbl_1,eng1_1_ang_act) -- blend base N1 with start N1
-
+	set(db1,eng1_N2_need_old)
 	--IGV
 	if eng1_N2_need>rna_thres and rna1>0 then
 		rna1=rna1 -rna1*passed*(1-0.8*math.max(math.max(rna1,4)-4,0)/2)/2
@@ -1006,7 +1010,7 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q2-c_f*bool2int(eng1_N2_need>0.01)
+	a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*1.1*bool2int(eng1_N2_need>0.01)
 	eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
 	--set(db1,eng1_N2_need)
 	--set(db2,eng1_N2_need_old)
@@ -1020,7 +1024,7 @@ if MASTER then
 	end
 	set(rpm_low_1, eng1_2_ang_act)
 	--N1 Engine 2
-	eng2_N2_need_old=n1_from_n2 (eng2_1_ang_act,d_isa,alt_baro/1000,tas)-rna2-interpolate(eng2_n1_corr_tbl,eng2_1_ang_act)--small correction for engine without reverse thrust
+	eng2_N2_need_old=n1_from_n2 (eng2_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,eng2_1_ang_act)--small correction for engine without reverse thrust
 	eng2_N2_need_old=eng2_N2_need_old*interpolate(n1_start_corr_tbl_1,eng2_1_ang_act)
 	--IGV
 	if eng2_N2_need>rna_thres+0.5 and rna2>0 then
@@ -1035,7 +1039,7 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q-c_f*bool2int(eng2_N2_need>0.01)
+	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q-c_f*1.3*bool2int(eng2_N2_need>0.01)
 	eng2_N2_need = eng2_N2_need+a_N1/M_rot*passed
 	eng2_N2_need=math.max(eng2_N2_need_old*flame2,eng2_N2_need)
 	if (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2  then
@@ -1047,7 +1051,7 @@ if MASTER then
 	end
 	set(rpm_low_2, eng2_2_ang_act)
 	--N1 Engine 3
-	eng3_N2_need_old=n1_from_n2 (eng3_1_ang_act,d_isa,alt_baro/1000,tas)-rna3
+	eng3_N2_need_old=n1_from_n2 (eng3_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna3
 	eng3_N2_need_old=eng3_N2_need_old*interpolate(n1_start_corr_tbl_1,eng3_1_ang_act)
 	--IGV
 	if eng3_N2_need>rna_thres-0.5 and rna3>0 then
@@ -1063,7 +1067,7 @@ if MASTER then
 	end
 	--N1 for low and high N2
 	-- Startup N1
-	a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*get(rho)*math.pow(eng3_N2_need,2)+c_q*q2-c_f*bool2int(eng3_N2_need>0.01)
+	a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*get(rho)*math.pow(eng3_N2_need,2)+c_q*q-c_f*bool2int(eng3_N2_need>0.01)
 	eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
 	eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
 	if (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2  then

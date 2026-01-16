@@ -1,7 +1,7 @@
 -- this is ground service panel
 size = {655, 880}
 
-defineProperty("save_state", globalPropertyi("tu154b2/custom/save_state")) -- принудительное сохранение состояния самолета
+--defineProperty("save_state", globalPropertyi("tu154b2/custom/save_state")) -- принудительное сохранение состояния самолета
 -- time
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
 
@@ -97,10 +97,10 @@ defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_ve
 defineProperty("enable_crew_vo", globalPropertyi("tu154b2/custom/sounds/enable_crew_vo")) -- включены фразы екипажа
 defineProperty("show_fail_panel",globalPropertyi("tu154b2/custom/panels/show_fail_panel")) -- показать панель отказов
 defineProperty("show_gns", globalPropertyi("tu154b2/custom/anim/show_gns"))
-defineProperty("show_RXP",globalPropertyi("tu154b2/custom/anim/RXP"))
+--defineProperty("show_RXP",globalPropertyi("tu154b2/custom/anim/RXP"))
 --defineProperty("RXP_ID",globalPropertyi("RXP/radios/indicators/gps_nav_id"))
 
-defineProperty("starter_torq", globalPropertyf("sim/aircraft/engine/acf_starter_torque_ratio")) -- мощность стартера. 0.18 для нормального запуска
+defineProperty("thro_spread", globalPropertyf("tu154b2/custom/engines/thro_spread")) -- мощность стартера. 0.18 для нормального запуска
 
 -- custom fails
 defineProperty("pitot_fail1", globalPropertyi("tu154b2/custom/failures/pitot1")) -- Pitot 1 - Blockage
@@ -108,9 +108,11 @@ defineProperty("pitot_fail2", globalPropertyi("tu154b2/custom/failures/pitot2"))
 defineProperty("static_fail_L", globalPropertyi("tu154b2/custom/failures/static1"))  -- static fail
 defineProperty("static_fail_R", globalPropertyi("tu154b2/custom/failures/static2"))  -- static fail
 defineProperty("uap_fail", globalPropertyi("tu154b2/custom/failures/AOA")) -- fail
+ai_type = globalPropertyi("sim/custom/t154gnd/ai_fluid_type")
+ai_timeout = globalPropertyf("sim/custom/t154gnd/ai_fluid_timeout_set")
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 
-local text_font = loadBitmapFont(moduleDirectory .."/Custom Module/basic_font.fnt")
+local text_-- font = loadBitmapFont(moduleDirectory .."/Custom Module/basic_font.fnt")
 
 
 -- load images
@@ -118,10 +120,10 @@ local text_font = loadBitmapFont(moduleDirectory .."/Custom Module/basic_font.fn
 defineProperty("bg_img", loadImage("ground_tex.png")) -- ENG
 defineProperty("bg_img_rus", loadImage("ground_tex_RUS.png")) -- ENG
 
-defineProperty("green_lamp", loadImage("overhead_tex.png", 1825, 299, 19, 19))
-defineProperty("yellow_lamp", loadImage("overhead_tex.png", 1825, 333, 19, 19))
+defineProperty("green_lamp", loadImage("overhead_tex.png", 1825, 706, 19, 19))
+defineProperty("yellow_lamp", loadImage("overhead_tex.png", 1825, 672, 19, 19))
 
-defineProperty("lev_img", loadImage("absu_ess_RUS.png", 432, 160, 30, 29))
+defineProperty("lev_img", loadImage("absu_ess_RUS.png", 432, 323, 30, 29))
 
 
 
@@ -549,6 +551,24 @@ components = {
 			return get(slider_4) == 0
 		end,
 	},
+	
+	--  de-icing
+	textureLit {
+		position = {396, 288, 22,22},
+		image = get(yellow_lamp),
+		visible = function()
+			return get(deice_call) > 0
+		end,
+	},
+
+	--  de-iced
+	textureLit {
+		position = {396, 288, 22,22},
+		image = get(green_lamp),
+		visible = function()
+			return get(ai_timeout) > 10 and get(deice_call) == 0
+		end,
+	},
 
 
 	-- ladder 1
@@ -704,7 +724,7 @@ components = {
 		position = {23, 385, 200, 35},
       
 		onMouseDown = function() 
-			if get(ismaster)==1 then
+			if get(ismaster)~=1 then
 				if get(gear_blocks) ~= 1 and get(GS) < 2 then 
 					set(gear_blocks, 1) 
 				else 
@@ -821,7 +841,18 @@ components = {
 			return true
 		end,
 	},	
-
+		-- deice
+	clickable {
+		position = {424, 280, 200, 35},
+      
+		onMouseDown = function()
+			if get(deice_call)==0 and get(gear_blocks)==0 then
+				set(deice_call,1)
+				set(ai_type,1)
+			end
+			return true
+		end,
+	},	
 	---------------------------
 	-- service button --
 	---------------------------
@@ -845,7 +876,7 @@ components = {
 	clickable {
 		position = {23, 230, 200, 35},
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			if reset_click then
 				set(reset_crew, 0)
 			end
@@ -873,17 +904,17 @@ components = {
        lever_img = get(lev_img),
        minimum = 0,
        maximum = 1000,
-	   addFunc = function() set(save_state, 1) return true end,
+	   --addFunc = function() set(save_state, 1) return true end,
    },	
 
 	clickable {
 		position = {426, 125, 30, 29},
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(sounds_volume) - 100
 			if a < 0 then a = 0 end
 			set(sounds_volume, a)
-			set(save_state, 1)
+			--set(save_state, 1)
 			return true
 		end,
 	},
@@ -891,11 +922,11 @@ components = {
 	clickable {
 		position = {595, 125, 30, 29},
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			local a = get(sounds_volume) + 100
 			if a > 1000 then a = 1000 end
 			set(sounds_volume, a)
-			set(save_state, 1)
+			--set(save_state, 1)
 			return true
 		end,
 	},	
@@ -909,7 +940,7 @@ components = {
 			if get(enable_crew_vo) == 1 then return "CREW VO ENABLED"
 			else return	"CREW VO DISABLED" end
 		end,
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = true,
 	},
@@ -919,7 +950,7 @@ components = {
       
 		onMouseDown = function() 
 			set(enable_crew_vo, 1 - get(enable_crew_vo))
-			set(save_state, 1)
+			--set(save_state, 1)
 			return true
 		end,
 	},
@@ -938,7 +969,7 @@ components = {
 			--if get(failures_enabled) == 1 then return "FAILURES ENABLED"
 			--else return	"FAILURES DISABLED" end
 		end,
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = true,
 	},
@@ -950,7 +981,7 @@ components = {
 			local a = get(failures_enabled) + 1
 			if a > 3 then a = 0 end
 			set(failures_enabled, a)
-			set(save_state, 1)			
+			--set(save_state, 1)			
 			return true
 		end,
 	},
@@ -963,7 +994,7 @@ components = {
 	text_draw {
 		position = {32, 78, 55, 60},
 		text = "NW uses YAW",
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = function()
 			return get(have_pedals) == 0
@@ -973,7 +1004,7 @@ components = {
 	text_draw {
 		position = {32, 78, 55, 60},
 		text = "NW uses Tiller",
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = function()
 			return get(have_pedals) == 1
@@ -986,14 +1017,14 @@ components = {
 	text_draw {
 		position = {32, 50, 55, 60},
 		text = "WARNING, HOLD FOR 5 SEC",
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = true,
 	},
 	text_draw {
 		position = {32, 30, 55, 60},
 		text = "TO RESET ALL JOYSTICKS",
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = true,
 	},
@@ -1005,7 +1036,7 @@ components = {
       
 		onMouseDown = function() 
 			set(have_pedals, 1-get(have_pedals))
-			set(save_state, 1)
+			--set(save_state, 1)
 			return true
 		end,
 		onMouseUp = function() 
@@ -1024,7 +1055,7 @@ components = {
 			if get(enable_walk) == 1 then return "Walking ENABLED"
 			else return	"Walking DISABLED" end
 		end,
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = true,
 	},
@@ -1034,7 +1065,7 @@ components = {
       
 		onMouseDown = function() 
 			set(enable_walk, 1 - get(enable_walk))
-			set(save_state, 1)
+			--set(save_state, 1)
 			return true
 		end,
 	},
@@ -1043,11 +1074,10 @@ components = {
 	text_draw {
 		position = {32, 120, 55, 60},
 		text = function()
-			if get(show_gns) == 1 and get(show_RXP) == 0 then return "GNS430 INSTALLED"
-			elseif get(show_gns) == 1 and get(show_RXP) == 1 then return "RXP INSTALLED"
+			if get(show_gns) == 1 then return "GNS430 INSTALLED"
 			else return	"KLN90 INSTALLED" end
 		end,
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = true,
 	},
@@ -1056,23 +1086,7 @@ components = {
 		position = {23, 110, 200, 35},
       
 		onMouseDown = function() 
-			local a = get(show_gns) + get(show_RXP) + 1
-			if a > 2 then a = 0 end
-			
-			if a == 0 then 
-				set(show_gns, 0)
-				set(show_RXP, 0)
-			elseif a == 1 then
-				set(show_gns, 1)
-				set(show_RXP, 0)
-			elseif a == 2 then
-				set(show_gns, 1)
-				set(show_RXP, 1)
-			end
-			
-			
-			
-			set(save_state, 1)
+			set(show_gns, 1 - get(show_gns))
 			return true
 		end,
 	},	
@@ -1082,41 +1096,41 @@ components = {
 	text_draw {
 		position = {507, 52, 55, 60},
 		text = function()
-			return math.floor(get(starter_torq) *100 + 0.5) / 100
+			return math.floor(get(thro_spread)*10)/10
 		end,
-		font = text_font,
+		-- font = text_font,
 		color = {0,0,0,1},
 		visible = true,
 	},
 	
-	-- clickable {
-		-- position = {426, 47, 30, 29},
+	clickable {
+		position = {426, 47, 30, 29},
       
-		-- onMouseClick = function() 
-			-- local a = get(starter_torq) - 0.01
-			-- if a < 0.1 then a = 0.1 end
-			-- set(starter_torq, a)
-			-- set(save_state, 1)
-			-- return true
-		-- end,
-	-- },
+		onMouseDown = function() 
+			local a = get(thro_spread) 
+			if a > 0 then a = a- 0.1 end
+			set(thro_spread, a)
+			--set(save_state, 1)
+			return true
+		end,
+	},
 
-	-- clickable {
-		-- position = {595, 47, 30, 29},
+	clickable {
+		position = {595, 47, 30, 29},
       
-		-- onMouseClick = function() 
-			-- local a = get(starter_torq) + 0.01
-			-- if a > 1 then a = 1 end
-			-- set(starter_torq, a)
-			-- set(save_state, 1)
-			-- return true
-		-- end,
-	-- },	
+		onMouseDown = function() 
+			local a = get(thro_spread) 
+			if a < 1 then a = a + 0.1 end
+			set(thro_spread, a)
+			--set(save_state, 1)
+			return true
+		end,
+	},	
 	
 	-- clickable {
 		-- position = {476, 12, 100, 29},
       
-		-- onMouseClick = function() 
+		-- onMouseDown = function() 
 			-- set(starter_torq, 0.2)
 			-- set(save_state, 1)
 			-- return true
@@ -1145,7 +1159,7 @@ components = {
 	clickable {
 		position = {size[1] - 15, size[2] - 15, 15, 15 },
       
-		onMouseClick = function() 
+		onMouseDown = function() 
 			set(show_ground_panel, 0)
 			
 			return true

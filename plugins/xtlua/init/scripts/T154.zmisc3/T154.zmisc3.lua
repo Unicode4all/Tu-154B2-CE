@@ -120,6 +120,7 @@ simDR_gear_deploy = find_dataref("sim/cockpit2/tcas/targets/position/gear_deploy
 simDR_ping_pong = find_dataref("sim/graphics/animation/ping_pong_2")
 simDR_tks_sw = find_dataref("tu154b2/custom/switchers/ovhd/tks_course_set")
 simDR_tks_corr = find_dataref("tu154b2/custom/switchers/ovhd/tks_mode_right")
+simDR_svs_rel = find_dataref("tu154b2/custom/svs/svs_alt_rel")
 
 local ssos_test_alarm = 0
 local ssos_loc_alarm = 0
@@ -1455,19 +1456,19 @@ end
 
 
 function uvo15()
-    vbe_press_l = uvo15_press_knob*1.33
+    --vbe_press_l = uvo15_press_knob*1.33
         -- altitude on needle
-        if static_fail < 6 then
+        --if static_fail < 6 then
             -- if svs_test > 0 then
                 -- left_MSL = svs_alt
             -- else
-                left_MSL = svs_alt
+                --left_MSL = svs_alt
             --end
-        end
-        if svs_pwr > 0 then
-            uvo15_alt_calc = left_MSL + (uvo15_press_knob-760) * 0.0393701  * 1000 * 0.3048
-            uvo15_alt_act = uvo15_alt_act + (uvo15_alt_calc - uvo15_alt_act) * SIM_PERIOD * 6
-        end
+        --end
+       -- if svs_pwr > 0 then
+            --uvo15_alt_calc = left_MSL + (uvo15_press_knob-760) * 0.0393701  * 1000 * 0.3048
+            uvo15_alt_act = simDR_svs_rel--uvo15_alt_act + (uvo15_alt_calc - uvo15_alt_act) * SIM_PERIOD * 6
+       -- end
 
         uvo15_alt_dr_100 = math.floor((uvo15_alt_act % 1000) * 0.01) + math.max(math.max(((uvo15_alt_act % 100) - 50), 0) / 50, 0)
 
@@ -1488,18 +1489,18 @@ end
 
 
 function vem72()
-    vbe_press_r = vem72_press_knob*1.33
-    if static_fail2 < 6 then
-        right_MSL = press_alt* 0.3048
-    end
-        -- altitude on needle
-if vem72_on > 0 and (simDR_36vl+simDR_36vr) > 5 and (simDR_bus27left+simDR_bus27right) > 5 then
-    vem72_alt_calc = right_MSL + (vem72_press_knob - 760) * 0.0393701 * 1000 * 0.3048+(vem72_btn*150)
-    vem72_alt_act = vem72_alt_act + (vem72_alt_calc - vem72_alt_act) * SIM_PERIOD * 4
-    vem72_lit = vem72_btn
-else
-    vem72_lit = 0
-end
+    -- vbe_press_r = vem72_press_knob*1.33
+    -- if static_fail2 < 6 then
+        -- right_MSL = press_alt* 0.3048
+    -- end
+        -- -- altitude on needle
+-- if vem72_on > 0 and (simDR_36vl+simDR_36vr) > 5 and (simDR_bus27left+simDR_bus27right) > 5 then
+    -- vem72_alt_calc = right_MSL + (vem72_press_knob - 760) * 0.0393701 * 1000 * 0.3048+(vem72_btn*150)
+    -- vem72_alt_act = vem72_alt_act + (vem72_alt_calc - vem72_alt_act) * SIM_PERIOD * 4
+    -- vem72_lit = vem72_btn
+-- else
+    -- vem72_lit = 0
+-- end
 
         vem72_alt_dr_100 = math.floor((vem72_alt_act % 1000) * 0.01) + math.max(math.max(((vem72_alt_act % 100) - 50), 0) / 50, 0)
 

@@ -418,7 +418,22 @@ function update()
 		wx_tilt=get(rls_nakl)-40*bool2int(mode==1 or mode==4)
 		--local sweep_a=get(sweep_angle)
 		--local alt=get(agl)
-		if mode==1 then -- ground
+		if mode==0 or not power then -- stby
+			--set(wxr_mode,0)
+			wx_mode=0
+			wx_gain=0
+			if blanking_timer<10 then
+				blanking_timer=blanking_timer+passed
+			end
+			wx_speed=0.01
+			--set(az,sweep_a+1)
+			--set(az_lim,1)
+			-- set(sec_width,104)
+			-- brg=0
+			-- if get(sweep_angle)<1 and get(sweep_angle)>-1 then
+			--set(sweep,0.000001)
+			-- end
+		elseif mode==1 then -- ground
 			wx_az=0
 			wx_speed=2/3
 			wx_mode=4*xmt_work
@@ -510,21 +525,6 @@ function update()
 				wx_sect=1
 				wx_speed=1
 			end
-		else -- stby
-			--set(wxr_mode,0)
-			wx_mode=0
-			wx_gain=0
-			if blanking_timer<10 then
-				blanking_timer=blanking_timer+passed
-			end
-			wx_speed=0.01
-			--set(az,sweep_a+1)
-			--set(az_lim,1)
-			-- set(sec_width,104)
-			-- brg=0
-			-- if get(sweep_angle)<1 and get(sweep_angle)>-1 then
-			--set(sweep,0.000001)
-			-- end
 		end
 		--set(db1,blanking_timer)
 		------ This array shows which angles are blanked in 375km range mode----------

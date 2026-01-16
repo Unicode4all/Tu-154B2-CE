@@ -92,12 +92,12 @@ defineProperty("chok", globalProperty("sim/flightmodel2/gear/is_chocked[1]"))
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
-defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
-defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 
 
 local passed = 0
@@ -188,7 +188,7 @@ function ga3 (pwr,rpm_prev,a_prev,fail,block,fail_arm,heat_pwr,temp_out,temp_pre
     if rpm>20000 then
         fail_arm=1
     end
-    local L=I_lit*rpm/60*2*math.pi
+    local L=I_lit*math.max(rpm,100)/60*2*math.pi
     local w_p=M_fric/L*180/math.pi--% Precession speed during runout
 	if pwr>0 and block==0 and math.abs(a_prev)>0.001 then	
 		a=a-math.min(a*c_corr,M_gimb)*dt
@@ -221,7 +221,7 @@ end
 function ga_precession (rpm,gyro_psi,a_side,a_fwd,a_nrml,rc,phi_c,temp,gyro_angle_speed)
 	rc=rc*(1+(20-temp)/200) -- distance from gimbal axis to gyro center of gravity, changes with temperature
 	local I=8.6/1000--Moment of Inertia from literature
-	local L=I*rpm/60*2*math.pi
+	local L=I*math.max(rpm,100)/60*2*math.pi
 	local m_rot=8.8 -- rotor mass
 	local F_side=m_rot*a_side -- forces
 	local F_acc=m_rot*a_fwd

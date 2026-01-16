@@ -12,7 +12,7 @@ defineProperty("actual_cabin_alt", globalPropertyf("sim/cockpit2/pressurization/
 defineProperty("cabin_press_diff", globalPropertyf("sim/cockpit2/pressurization/indicators/pressure_diffential_psi"))
 
 -- current altitude
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- phisical altitude MSL. meters
+--defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- phisical altitude MSL. meters
 --defineProperty("msl_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
 
 -- failures
@@ -58,7 +58,9 @@ defineProperty("vd15_pressure_right", globalPropertyf("tu154b2/custom/gauges/alt
 defineProperty("vd15_alt_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_eng")) -- высота на ВД15 БИ
 --defineProperty("vd15_tri_needle_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_eng")) -- стрелка коррекции на ВД15 БИ
 defineProperty("vd15_pressure_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_eng")) -- давление на ВД15 БИ
-
+defineProperty("p_stat", globalPropertyf("tu154b2/custom/svs/p_s_smoothed"))
+-- defineProperty("true_mach", globalPropertyf("sim/flightmodel/misc/machno"))
+--defineProperty("temp", globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c"))
 
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -189,13 +191,24 @@ function update()
 local MASTER = get(ismaster) ~= 1
 	
 	local passed = get(frame_time)
-	local alt_QNE = get(msl_alt)   -- calculate altitude in feet above standart pressure
+	--local alt_QNE = get(msl_alt)   
+	-- Barometric altitude formula
+	local p_s=get(p_stat)
+	local alt_QNE=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
+	local temp=288-alt_QNE*6.5/1000
+	if p_s< 22250 then
+		alt_QNE=11000+28.96*216.6500*math.log(22250/p_s)
+		temp=216.65
+	end
 	local alt_tas_coef = interpolate(alt_kus_tbl, alt_QNE)
-	
 	local airspeed_L = get(ias_L) * 1.852
 	local airspeed_R = get(ias_R) * 1.852
 	airspeed_L=interpolate(err_tbl_kus,airspeed_L)
 	airspeed_R=interpolate(err_tbl_us,airspeed_R)
+	local p_q_L=math.pow(airspeed_L/3.6,2)*1.225/2
+	local p_q_R=math.pow(airspeed_R/3.6,2)*1.225/2
+	local tas_L=math.sqrt(9.81*29.27*temp*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_L)/p_s+1,(1.4-1)/1.4)-1))*3.6
+	local tas_R=math.sqrt(9.81*29.27*temp*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_R)/p_s+1,(1.4-1)/1.4)-1))*3.6
 	--local blocked = get(sensors_caps) == 1
 	
 	-- KUS 750/1100 Captain
@@ -207,7 +220,7 @@ local MASTER = get(ismaster) ~= 1
 		cpt_speed_ang = 339
 	end
 	-- TAS
-	local tas_L = airspeed_L * alt_tas_coef
+	--local tas_L = airspeed_L * alt_tas_coef
 	local cpt_tas_ang = 0
 	if tas_L >= 400 and tas_L < 1100 then
 		cpt_tas_ang = (tas_L - 400) * 330 / 700 + 15
@@ -253,7 +266,7 @@ local MASTER = get(ismaster) ~= 1
 	end
 	
 	-- TAS
-	local tas_R = airspeed_R * alt_tas_coef
+	--local tas_R = airspeed_R * alt_tas_coef
 	local copil_tas_ang = 0
 	if tas_R >= 400 and tas_R < 1100 then
 		copil_tas_ang = (tas_R - 400) * 330 / 700 + 15
@@ -288,7 +301,7 @@ local MASTER = get(ismaster) ~= 1
 
 	local staticFail_left = get(static_fail_L) == 6
 	local staticFail_right = get(static_fail_R) == 6
-	local msl = get(msl_alt)  -- real alt MSL in feet
+	--local msl =alt_QNE  -- real alt MSL in feet
 
 	-- variometers
 	local var=interpolate(var75_tbl, get(vvi_L) * 0.00508) * bool2int(not staticFail_left)
@@ -309,25 +322,25 @@ local MASTER = get(ismaster) ~= 1
 	-- altimeters
 
 	if not staticFail_left then
-		left_MSL = msl -- update altitudes for left altimeters
+		left_MSL = alt_QNE -- update altitudes for left altimeters
 	end
 	
 	if not staticFail_right then
-		right_MSL = msl -- update altitudes for left altimeters
+		right_MSL = alt_QNE -- update altitudes for left altimeters
 	end	
 	
 	-- Captain's altimeter VM15
 	local cpt_VM15_press = get(vd15_pressure_left) * 0.0393701
-	local cpt_VM15_alt = left_MSL * 0.3048 + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local cpt_VM15_alt = left_MSL  + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	cpt_VM15_alt=interpolate(err_tbl,cpt_VM15_alt)
 	
 	-- Co-Pilot's altimeter VM15
 	local copt_VM15_press = get(vd15_pressure_right) * 0.0393701
-	local copt_VM15_alt = right_MSL * 0.3048 + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local copt_VM15_alt = right_MSL  + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	copt_VM15_alt=interpolate(err_tbl,copt_VM15_alt)
 	-- Engineer's altimeter VM15
 	local eng_VM15_press = get(vd15_pressure_eng) * 0.0393701
-	local eng_VM15_alt = right_MSL * 0.3048 + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local eng_VM15_alt = right_MSL  + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	eng_VM15_alt=interpolate(err_tbl,eng_VM15_alt)
 	-- cabin altitude
 	local cab_alt = get(actual_cabin_alt) * 0.3048 * 0.001 -- kilometers
