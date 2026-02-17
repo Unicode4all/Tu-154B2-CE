@@ -55,7 +55,7 @@ local customFails = {}
 local simFails = {}
 
 -- failures
-customFails["ABSU Pitot heat"] = globalPropertyi("tu154b2/custom/antiice/ppd_3_heat_fail")
+customFails["ABSU Pitot heat"] = globalPropertyi("sim/operation/failures/rel_ice_pitot_heat_stby")
 
 simFails["Engine #1 inlet heat"] = globalPropertyi("sim/operation/failures/rel_ice_inlet_heat")
 simFails["Engine #2 inlet heat"] = globalPropertyi("sim/operation/failures/rel_ice_inlet_heat2")
@@ -316,6 +316,9 @@ customFails["Generator 2 Power Regulator"] = globalPropertyi("tu154b2/custom/fai
 customFails["Generator 3 Power Regulator"] = globalPropertyi("tu154b2/custom/failures/gen_3_regulator_fail")
 customFails["APU Generator Power Regulator"] = globalPropertyi("tu154b2/custom/failures/gen_4_regulator_fail")
 customFails["GPU Power Regulator"] = globalPropertyi("tu154b2/custom/failures/gpu_regulator_fail")
+customFails["Bearing Overtemp Sensor 1 Fail"] = globalPropertyi("tu154b2/custom/failures/stp_fail_1")
+customFails["Bearing Overtemp Sensor 2 Fail"] = globalPropertyi("tu154b2/custom/failures/stp_fail_2")
+customFails["Bearing Overtemp Sensor 3 Fail"] = globalPropertyi("tu154b2/custom/failures/stp_fail_3")
 
 
 

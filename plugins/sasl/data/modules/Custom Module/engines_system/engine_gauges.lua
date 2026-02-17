@@ -41,6 +41,10 @@ defineProperty("oil_temp_1", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp
 defineProperty("oil_temp_2", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp_2")) -- температура масла двиг 2
 defineProperty("oil_temp_3", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp_3")) -- температура масла двиг 3
 
+defineProperty("oil_temp_act_1", globalPropertyf("tu154b2/custom/eng/oil_temp_1")) -- температура масла двиг 1
+defineProperty("oil_temp_act_2", globalPropertyf("tu154b2/custom/eng/oil_temp_2")) -- температура масла двиг 2
+defineProperty("oil_temp_act_3", globalPropertyf("tu154b2/custom/eng/oil_temp_3")) -- температура масла двиг 3
+
 defineProperty("fuel_flow_1", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_1")) -- расход топлива двиг 1
 defineProperty("fuel_flow_2", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_2")) -- расход топлива двиг 2
 defineProperty("fuel_flow_3", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_3")) -- расход топлива двиг 3
@@ -75,9 +79,9 @@ defineProperty("oil_p_1", globalProperty("sim/cockpit2/engine/indicators/oil_pre
 defineProperty("oil_p_2", globalProperty("sim/cockpit2/engine/indicators/oil_pressure_psi[1]"))
 defineProperty("oil_p_3", globalProperty("sim/cockpit2/engine/indicators/oil_pressure_psi[2]"))
 
-defineProperty("oil_t_1", globalProperty("sim/cockpit2/engine/indicators/oil_temperature_deg_C[0]"))
-defineProperty("oil_t_2", globalProperty("sim/cockpit2/engine/indicators/oil_temperature_deg_C[1]"))
-defineProperty("oil_t_3", globalProperty("sim/cockpit2/engine/indicators/oil_temperature_deg_C[2]"))
+defineProperty("oil_t_1", globalProperty("sim/flightmodel/engine/ENGN_oil_temp_c[0]"))
+defineProperty("oil_t_2", globalProperty("sim/flightmodel/engine/ENGN_oil_temp_c[1]"))
+defineProperty("oil_t_3", globalProperty("sim/flightmodel/engine/ENGN_oil_temp_c[2]"))
 
 defineProperty("vibr_needle", globalPropertyf("sim/custom/gauges/eng/needle_eng_vibro"))
 defineProperty("vibr_eng_sel", globalPropertyi("sim/custom/gauges/eng/eng_sel_vibro"))
@@ -165,7 +169,7 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 
 defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
 defineProperty("revers_flap_R", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]")) -- reverse on right engine
@@ -235,6 +239,9 @@ defineProperty("eng1_ice", globalProperty("sim/flightmodel/failures/inlet_ice_pe
 defineProperty("eng2_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]"))
 defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]"))
 defineProperty("override_egt", globalPropertyf("sim/operation/override/override_itt_egt"))
+bearing_1_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_1")
+bearing_2_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_2")
+bearing_3_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_3")
 
 local MASTER = get(ismaster) ~= 1	
 
@@ -292,6 +299,24 @@ local rudder_corr_tbl={
 {0, 1},
 {12000, 0.5},
 {20000, 0.5}}
+
+-- engine oil temp model (based on fuel/oil heat exchanger
+function oil_temp(flow,nk8_temp,rpm,rpm_knd,pump_press,oil_tmp_prev,case_prev,brg_prev,therm,fuel_temp,passed)
+		if flow>100 then
+			flow=-4.131e+05*math.pow(flow,-0.8401)+ 2497
+		end
+		local oil_flow_coef=math.min(1,pump_press/2)
+		local case_heat_spd_1= nk8_temp*2.1
+		local case_cool_spd_1=(case_prev-therm)*40*1.003*math.exp(-2.922e-05*math.max(0,rpm_knd)) -0.9027*math.exp(-0.1749*math.max(0,rpm_knd))
+		local oil_heat_spd_1 = nk8_temp*0.5+math.pow(math.max(0,rpm),1.9)*0.36
+		local oil_cool_spd_1 = (oil_tmp_prev-fuel_temp)*flow*bool2int(oil_tmp_prev>90)
+		local case_temp= case_prev+(case_heat_spd_1-case_cool_spd_1)*passed*0.000125
+		local oil_tmp = oil_tmp_prev + (oil_heat_spd_1 - oil_cool_spd_1*0.02) * passed * 0.00015 * oil_flow_coef-(oil_tmp_prev-case_temp)*passed*0.003
+		local brg_heat = math.max(0,rpm)
+		local brg_cool = brg_prev-oil_tmp
+		local brg_temp = brg_prev + (brg_heat-brg_cool*2*math.max(0.1,oil_flow_coef))*passed*0.05
+		return oil_tmp,case_temp,brg_temp
+end
 
 local function vibra_gau()
 
@@ -380,11 +405,14 @@ local oilT_3_actual = 0
 
 local oil_tmp_1= get(thermo)
 local case_temp_1=oil_tmp_1
+local brg_temp_1=oil_tmp_1
 local oil_tmp_2= get(thermo)
 local case_temp_2=oil_tmp_2
+local brg_temp_2=oil_tmp_2
 local case_temp_22=oil_tmp_2
 local oil_tmp_3= get(thermo)
 local case_temp_3=oil_tmp_3
+local brg_temp_3=oil_tmp_3
 
 local fuel_P_table = {{ -100000, 0.0 },    -- bugs walkaround
                   {  0, 00 }, -- zero pressure
@@ -433,51 +461,21 @@ local function emi3()
 		fuelP_2 = interpolate(fuel_P_table, get(fuel_p_2))-- * gau_2_on
 		fuelP_3 = interpolate(fuel_P_table, get(fuel_p_3))-- * gau_3_on
 		
-		oilP_2 = interpolate(oil_P_table, get(eng2_N2)) * 0.1* 1/(get(oil_t_1)*0.27/80+0.85)*(1-get(oil_pump_otk_2)/6)-- * gau_2_on
-		oilP_3 = interpolate(oil_P_table, get(eng3_N2)) * 0.1* 1/(get(oil_t_1)*0.27/80+0.85)*(1-get(oil_pump_otk_3)/6)-- * gau_3_on
+		oilP_2 = interpolate(oil_P_table, get(eng2_N2)) * 0.1* 1/(get(oil_t_2)*0.27/80+0.85)*(1-get(oil_pump_otk_2)/6)-- * gau_2_on
+		oilP_3 = interpolate(oil_P_table, get(eng3_N2)) * 0.1* 1/(get(oil_t_3)*0.27/80+0.85)*(1-get(oil_pump_otk_3)/6)-- * gau_3_on
 	end
 	--Oil and case temperatures
 	local fuel_temp=(get(fuel_temp_1)+get(fuel_temp_2))/2
-	local flow1=get(ENGN_FF_1)
-	if flow1>100 then
-		flow1=-4.131e+05*math.pow(flow1,-0.8401)+ 2497
-	end
 	if rep_mode==0 then
-		--engine1
-		local case_heat_spd_1= get(nk8_temp1)*2.1
-		local case_cool_spd_1=(case_temp_1-get(thermo))*40*1.003*math.exp(-2.922e-05*math.max(0,get(rpm_low_1))) -0.9027*math.exp(-0.1749*math.max(0,get(rpm_low_1)))
-		local oil_heat_spd_1 = get(nk8_temp1)*0.5+math.pow(math.max(0,get(rpm_high_1)),1.9)*0.36
-		local oil_cool_spd_1 = (oil_tmp_1-fuel_temp)*flow1*(1-0.9*get(oil_pump_otk_1)/6)*bool2int(oil_tmp_1>90)
-		case_temp_1= case_temp_1+(case_heat_spd_1-case_cool_spd_1)*passed*0.000125
-		oil_tmp_1 = oil_tmp_1 + (oil_heat_spd_1 - oil_cool_spd_1*0.027) * passed*0.00015-(oil_tmp_1-case_temp_1)*passed*0.003
-		--engine2
-		local flow2=get(ENGN_FF_2)
-		if flow2>100 then
-			flow2=-4.131e+05*math.pow(flow2,-0.8401)+ 2497
-		end
-		local case_heat_spd_2= get(nk8_temp2)*2.1
-		local case_cool_spd_2=(case_temp_2-get(thermo))*40*1.003*math.exp(-2.922e-05*get(rpm_low_2)) -0.9027*math.exp(-0.1749*get(rpm_low_2))
+		-- oil temps
+		oil_tmp_1,case_temp_1,brg_temp_1 = oil_temp(get(ENGN_FF_1),get(nk8_temp1),get(rpm_high_1),get(rpm_low_1),oilP_1,oil_tmp_1,case_temp_1,brg_temp_1,get(thermo),fuel_temp,passed)
+		oil_tmp_2,case_temp_2,brg_temp_2 = oil_temp(get(ENGN_FF_2),get(nk8_temp2),get(rpm_high_2),get(rpm_low_2),oilP_2,oil_tmp_2,case_temp_2,brg_temp_2,get(thermo),fuel_temp,passed)
+		oil_tmp_3,case_temp_3,brg_temp_3 = oil_temp(get(ENGN_FF_3),get(nk8_temp3),get(rpm_high_3),get(rpm_low_3),oilP_3,oil_tmp_3,case_temp_3,brg_temp_3,get(thermo),fuel_temp,passed)
 		-- middle/rear end case temp for APU oil heat
 		local case_heat_spd_22= get(nk8_temp2)*7.5
 		local case_cool_spd_22=(case_temp_22-get(thermo))*40*1.003*math.exp(-2.922e-05*get(rpm_low_2)) -0.9027*math.exp(-0.1749*get(rpm_low_2))
-		
-		local oil_heat_spd_2 = get(nk8_temp2)*0.5+math.pow(get(rpm_high_2),1.9)*0.36
-		local oil_cool_spd_2 = (oil_tmp_2-fuel_temp)*flow2*(1-0.9*get(oil_pump_otk_2)/6)*bool2int(oil_tmp_2>90)
-		case_temp_2= case_temp_2+(case_heat_spd_2-case_cool_spd_2)*passed*0.000125
+
 		case_temp_22= case_temp_22+(case_heat_spd_22-case_cool_spd_22)*passed*0.000125
-		oil_tmp_2 = oil_tmp_2 + (oil_heat_spd_2 - oil_cool_spd_2*0.027) * passed*0.00015-(oil_tmp_2-case_temp_2)*passed*0.003
-		--set(db1,case_temp_2)
-		--engine3
-		local flow3=get(ENGN_FF_3)
-		if flow3>100 then
-			flow3=-4.131e+05*math.pow(flow3,-0.8401)+ 2497
-		end
-		local case_heat_spd_3= get(nk8_temp3)*2.1
-		local case_cool_spd_3=(case_temp_3-get(thermo))*40*1.003*math.exp(-2.922e-05*get(rpm_low_3)) -0.9027*math.exp(-0.1749*get(rpm_low_3))
-		local oil_heat_spd_3 = get(nk8_temp3)*0.5+math.pow(get(rpm_high_3),1.9)*0.36
-		local oil_cool_spd_3 = (oil_tmp_3-fuel_temp)*flow3*(1-0.9*get(oil_pump_otk_3)/6)*bool2int(oil_tmp_3>90)
-		case_temp_3= case_temp_3+(case_heat_spd_3-case_cool_spd_3)*passed*0.000125
-		oil_tmp_3 = oil_tmp_3 + (oil_heat_spd_3 - oil_cool_spd_3*0.027) * passed*0.00015-(oil_tmp_3-case_temp_3)*passed*0.003
 	end
 		if power_27_L then --and gau_1_on == 1 then
 			oilT_1 = oil_tmp_1
@@ -491,6 +489,9 @@ local function emi3()
 			oilT_3 = oil_tmp_3
 		end
 	set(eng2_case_temp,case_temp_22)
+	set(bearing_1_temp,brg_temp_1)
+	set(bearing_2_temp,brg_temp_2)
+	set(bearing_3_temp,brg_temp_3)
 	--oilP_2 = get(oil_p_2) * 0.1
 	-- smooth movements
 	fuelP_1_actual = fuelP_1_actual + (fuelP_1 - fuelP_1_actual) * passed * 3
@@ -522,6 +523,10 @@ local function emi3()
 	set(oil_temp_1, oilT_1_actual)
 	set(oil_temp_2, oilT_2_actual)
 	set(oil_temp_3, oilT_3_actual)
+	
+	set(oil_t_1,oil_tmp_1)
+	set(oil_t_2,oil_tmp_2)
+	set(oil_t_3,oil_tmp_3)
 
 
 end

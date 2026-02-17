@@ -490,8 +490,8 @@ function update()
 			set(pkp_course_flag, course_flag)
 			set(pkp_slip_angle, slip_ang_act)
 			set(pkp_obs_flag,obs_flg)
-			set(obs, math.floor(obs_now + 0.4))
 		end		
+		set(obs, math.floor(obs_now + 0.4))
 		set(pkp_main_flag, ks_flag)
 		set(pkp_obs_knob, obs_knob_now) 
 		-- set numbers

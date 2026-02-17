@@ -331,17 +331,17 @@ elev_trimm_1_pk_cap = deferred_dataref("sim/custom/b2/elev_trimm_1_pk_cap", "num
 elev_trimm_2_pk_cap = deferred_dataref("sim/custom/b2/elev_trimm_2_pk_cap", "number")
 
 
-stp_eng1_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng1_temp_podsh", "number")
-stp_eng2_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng2_temp_podsh", "number")
-stp_eng3_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng3_temp_podsh", "number")
+-- stp_eng1_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng1_temp_podsh", "number")
+-- stp_eng2_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng2_temp_podsh", "number")
+-- stp_eng3_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng3_temp_podsh", "number")
 
 stp_eng1_stop_gas = deferred_dataref("sim/custom/lights/engines/eng1_stop_gas", "number")
 stp_eng2_stop_gas = deferred_dataref("sim/custom/lights/engines/eng2_stop_gas", "number")
 stp_eng3_stop_gas = deferred_dataref("sim/custom/lights/engines/eng3_stop_gas", "number")
 
-simDR_stp_eng1_lit = find_dataref("sim/custom/lights/engines/eng1_chips_new")
-simDR_stp_eng2_lit = find_dataref("sim/custom/lights/engines/eng2_chips_new")
-simDR_stp_eng3_lit = find_dataref("sim/custom/lights/engines/eng3_chips_new")
+simDR_stp_eng1_lit = find_dataref("tu154b2/custom/lights/engines/eng1_stp")
+simDR_stp_eng2_lit = find_dataref("tu154b2/custom/lights/engines/eng2_stp")
+simDR_stp_eng3_lit = find_dataref("tu154b2/custom/lights/engines/eng3_stp")
 
 simDR_eng1_rod = find_dataref("tu154b2/custom/controlls/fuel_cutoff_1")
 simDR_eng2_rod = find_dataref("tu154b2/custom/controlls/fuel_cutoff_2")
@@ -387,27 +387,27 @@ if simDR_gear_fan > 0 then
     end
 end
 
-    if simDR_eng_lamp_test > 0 then
-        -- if stp_eng1_stop_gas < 1 then
-            -- stp_eng1_stop_gas = simDR_stp_eng1_lit 
+    -- if simDR_eng_lamp_test > 0 then
+        -- -- if stp_eng1_stop_gas < 1 then
+            -- -- stp_eng1_stop_gas = simDR_stp_eng1_lit 
+        -- -- end
+        -- -- if stp_eng2_stop_gas < 1 then
+            -- -- stp_eng2_stop_gas = simDR_stp_eng2_lit 
+        -- -- end
+        -- -- if stp_eng3_stop_gas < 1 then
+            -- -- stp_eng3_stop_gas = simDR_stp_eng3_lit 
+        -- -- end
+        -- if stp_eng1_temp_podsh < 1 then
+            -- stp_eng1_temp_podsh = simDR_stp_eng1_lit 
         -- end
-        -- if stp_eng2_stop_gas < 1 then
-            -- stp_eng2_stop_gas = simDR_stp_eng2_lit 
+        -- if stp_eng2_temp_podsh < 1 then
+            -- stp_eng2_temp_podsh = simDR_stp_eng2_lit
         -- end
-        -- if stp_eng3_stop_gas < 1 then
-            -- stp_eng3_stop_gas = simDR_stp_eng3_lit 
+        -- if stp_eng3_temp_podsh < 1 then
+            -- stp_eng3_temp_podsh = simDR_stp_eng3_lit 
         -- end
-        if stp_eng1_temp_podsh < 1 then
-            stp_eng1_temp_podsh = simDR_stp_eng1_lit 
-        end
-        if stp_eng2_temp_podsh < 1 then
-            stp_eng2_temp_podsh = simDR_stp_eng2_lit
-        end
-        if stp_eng3_temp_podsh < 1 then
-            stp_eng3_temp_podsh = simDR_stp_eng3_lit 
-        end
         
-    end
+    -- end
 
     -- if  rt12_1_dis > 1 then
         -- stp_test1_loc = 0
@@ -453,33 +453,33 @@ end
             -- simDR_eng3_stall = 0
         -- end
 
-        if math.abs(stp_test_4) > 0 then
-            if stp_eng1_temp_podsh < 1 then
-                stp_eng1_temp_podsh = stp_eng1_temp_podsh + 7*SIM_PERIOD
-            end
-        elseif simDR_eng_lamp_test < 1 then
-            if stp_eng1_temp_podsh > 0 then
-                stp_eng1_temp_podsh = stp_eng1_temp_podsh - 7*SIM_PERIOD
-            end
-        end
-        if math.abs(stp_test_5) > 0 then
-            if stp_eng2_temp_podsh < 1 then
-                stp_eng2_temp_podsh = stp_eng2_temp_podsh + 7*SIM_PERIOD
-            end
-        elseif simDR_eng_lamp_test < 1 then
-            if stp_eng2_temp_podsh > 0 then
-                stp_eng2_temp_podsh = stp_eng2_temp_podsh - 7*SIM_PERIOD
-            end
-        end
-        if math.abs(stp_test_6) > 0 then
-            if stp_eng3_temp_podsh < 1 then
-                stp_eng3_temp_podsh = stp_eng3_temp_podsh + 7*SIM_PERIOD
-            end
-        elseif simDR_eng_lamp_test < 1 then
-            if stp_eng3_temp_podsh > 0 then
-                stp_eng3_temp_podsh = stp_eng3_temp_podsh - 7*SIM_PERIOD
-            end
-        end
+        -- if math.abs(stp_test_4) > 0 or simDR_stp_eng1_lit>0 then
+            -- if stp_eng1_temp_podsh < 1 then
+                -- stp_eng1_temp_podsh = stp_eng1_temp_podsh + 7*SIM_PERIOD
+            -- end
+        -- else
+            -- if stp_eng1_temp_podsh > 0 then
+                -- stp_eng1_temp_podsh = stp_eng1_temp_podsh - 7*SIM_PERIOD
+            -- end
+        -- end
+        -- if math.abs(stp_test_5) > 0 or simDR_stp_eng2_lit>0 then
+            -- if stp_eng2_temp_podsh < 1 then
+                -- stp_eng2_temp_podsh = stp_eng2_temp_podsh + 7*SIM_PERIOD
+            -- end
+        -- else
+            -- if stp_eng2_temp_podsh > 0 then
+                -- stp_eng2_temp_podsh = stp_eng2_temp_podsh - 7*SIM_PERIOD
+            -- end
+        -- end
+        -- if math.abs(stp_test_6) > 0 or simDR_stp_eng3_lit>0 then
+            -- if stp_eng3_temp_podsh < 1 then
+                -- stp_eng3_temp_podsh = stp_eng3_temp_podsh + 7*SIM_PERIOD
+            -- end
+        -- else
+            -- if stp_eng3_temp_podsh > 0 then
+                -- stp_eng3_temp_podsh = stp_eng3_temp_podsh - 7*SIM_PERIOD
+            -- end
+        -- end
         -- if stp_test_1 < 0 and simDR_eng1_rod > 0.95 and rt12_1_dis < 1 then
             -- stp_test1_loc = 1
         -- end
@@ -850,13 +850,13 @@ function misc()
        groza_rot = 0 
     end
     
-    if flaps_power < 1 then
-       simDR_flaps_ratio[0] = flap1_ratio_loc
-       simDR_flaps_ratio[1] = flap2_ratio_loc
-    else
-       flap1_ratio_loc= simDR_flaps_ratio[0]
-       flap2_ratio_loc= simDR_flaps_ratio[1]
-    end
+    -- if flaps_power < 1 then
+       -- simDR_flaps_ratio[0] = flap1_ratio_loc
+       -- simDR_flaps_ratio[1] = flap2_ratio_loc
+    -- else
+       -- flap1_ratio_loc= simDR_flaps_ratio[0]
+       -- flap2_ratio_loc= simDR_flaps_ratio[1]
+    -- end
     
 
     if simDR_bus27_volt > 5 then

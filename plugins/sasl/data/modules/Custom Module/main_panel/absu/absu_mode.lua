@@ -852,7 +852,7 @@ local MASTER = get(ismaster) ~= 1
 				GS_arm=0
 				gliss_arm=0
 				
-			elseif get(absu_stab_h) == 1 and pitch_mode_main == 2 and svs and get(vkv_fail)==0 then -- Stab H mode
+			elseif get(absu_stab_h) == 1 and pitch_mode_main == 2 and get(vkv_fail)==0 then -- Stab H mode
 				pitch_submode = 4
 				GS_arm=0
 				gliss_arm=0
@@ -983,7 +983,7 @@ local MASTER = get(ismaster) ~= 1
 		end
 		-- Speed/alt modes fail
 		if power27 and pitch_mode_main == 2 then
-			if ((get(vkv2_fail)==1 and pitch_submode == 2) or ((get(vkv_fail)==1 or get(svs_on)==0) and pitch_submode == 4)) or (pitch_submode == 3 and get(svs_on)==0) then
+			if ((get(vkv2_fail)==1 and pitch_submode == 2) or (get(vkv_fail)==1 and pitch_submode == 4)) or (pitch_submode == 3 and get(svs_on)==0) then
 				pitch_submode = 1
 				pitch_mode_main = 1
 				set(man_pitch_lamp, 1)

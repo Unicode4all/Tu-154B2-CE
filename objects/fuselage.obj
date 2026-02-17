@@ -4,7 +4,7 @@ OBJ
 
 TEXTURE		fuselage.png
 TEXTURE_NORMAL	fuselage_NML.png
-GLOBAL_specular 1.0
+GLOBAL_specular 0.7
 NORMAL_METALNESS
 
 POINT_COUNTS 24004 0 0 81930

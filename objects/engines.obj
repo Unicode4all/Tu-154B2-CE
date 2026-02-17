@@ -4,7 +4,7 @@ OBJ
 
 TEXTURE		engines_b2.png
 TEXTURE_NORMAL	engines_b2_NML.png
-GLOBAL_specular 1.0
+GLOBAL_specular 0.6
 NORMAL_METALNESS
 
 POINT_COUNTS 10558 0 0 25326

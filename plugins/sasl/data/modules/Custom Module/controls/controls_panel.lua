@@ -514,10 +514,10 @@ local function lamps()
 	
 	
 	
-	
+	local rud_alarm=(get(anim_rud1) > 0.63 and get(anim_rud2) > 0.63) or (get(anim_rud2) > 0.63 and get(anim_rud3) > 0.63) or (get(anim_rud1) > 0.63 and get(anim_rud3) > 0.63)
 	
 	-- alarm
-	local sound_alarm = gear_not_ext or ((flap_pos_now_L < 14 or flap_pos_now_R < 14 or slats_now < 0.5) and (get(anim_rud1) > 0.63 or get(anim_rud2) > 0.63 or get(anim_rud3) > 0.63) and math.max(get(deflection_mtr_2), get(deflection_mtr_3)) > 0.05)
+	local sound_alarm = gear_not_ext or ((flap_pos_now_L < 14 or flap_pos_now_R < 14 or slats_now < 0.5) and rud_alarm and math.max(get(deflection_mtr_2), get(deflection_mtr_3)) > 0.05)
 	
 	set(main_gear_flaps, bool2int(sound_alarm))
 	

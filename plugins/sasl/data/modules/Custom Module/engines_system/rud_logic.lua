@@ -181,8 +181,8 @@ local kpp_table={{-1, 0 },
 					{  55.5,0.0}, 
 					{  74.5,-0.1 },
 					{  200,-0.1 }} 	
-local kpp_idle_corr_table={{-1000, 1.5 }, 
-					{  0, 1.5}, 
+local kpp_idle_corr_table={{-1000, 1.2 }, 
+					{  0, 1.2}, 
 					{  4, 0.0}, 
 					{  100,0.0 }} 	
 					
@@ -439,7 +439,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	--min_idle=math.max(55.5,-1.6402629234e-01*math.pow(alt_baro/1000,2) + 4.6498254605e+00*alt_baro/1000 + 4.4995506536e+01) --- This is the old model
 	local mid_idle_isa_corr=0.12*d_isa
 	min_idle=math.max(53.5,-2.2412587413e-01*math.pow(alt_baro/1000,2) + 5.3544289044e+00*alt_baro/1000 + 4.4647086247e+01+mid_idle_isa_corr)
-	local kpp_idle_corr=interpolate(kpp_idle_corr_table,71-min_idle)
+	local kpp_idle_corr=interpolate(kpp_idle_corr_table,73-min_idle)
 	--math.max(55.5,1.945*alt_baro/1000+53.61)+get(db1)
 	-- max N2
 	local thr_max=math.min(97.5,97.5-bool2int(alt_baro<4000)*(30-temp-4.5)*0.1411)
@@ -457,7 +457,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		if kpp_1<0 then
 			kpp_1=0
 		end
-	elseif kvd1<71 and kpp_1<1 then
+	elseif kvd1<73 and kpp_1<1 then
 		kpp_1=kpp_1+passed
 		if kpp_1>1 then
 			kpp_1=1
@@ -468,7 +468,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		if kpp_2<0 then
 			kpp_2=0
 		end
-	elseif kvd2<71.1 and kpp_2<1 then
+	elseif kvd2<73.5 and kpp_2<1 then
 		kpp_2=kpp_2+passed
 		if kpp_2>1 then
 			kpp_2=1
@@ -479,7 +479,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		if kpp_3<0 then
 			kpp_3=0
 		end
-	elseif kvd3<71.05 and kpp_3<1 then
+	elseif kvd3<73.8 and kpp_3<1 then
 		kpp_3=kpp_3+passed
 		if kpp_3>1 then
 			kpp_3=1
@@ -678,10 +678,10 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		if n2_from_uprt (joy_rud_pos_2,corr_temp,0)<min_idle-0.05 then
 			virtual_rud_2_act =joy_rud_pos_2
 		else
-			virtual_rud_2_act = virtual_rud_2_act - math.max((virtual_rud_2_act - joy_rud_pos_2),-0.14*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed--*(1-bool2int(rev_L))
+			virtual_rud_2_act = virtual_rud_2_act - math.max((virtual_rud_2_act - joy_rud_pos_2),-0.1,-0.14*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed--*(1-bool2int(rev_L))
 		end
 	else -- spool-down
-		virtual_rud_2_act = virtual_rud_2_act - math.min((virtual_rud_2_act - joy_rud_pos_2),0.16*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed * 1.5--*(1-bool2int(rev_L))
+		virtual_rud_2_act = virtual_rud_2_act - math.min((virtual_rud_2_act - joy_rud_pos_2),0.12,0.16*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed * 1.5--*(1-bool2int(rev_L))
 	end
 	
 	if virtual_rud_3_act < joy_rud_pos_3 then -- spool-up, throt delay*altitude corrector (4-7km) 

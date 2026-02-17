@@ -169,7 +169,9 @@ end
             if ai_time > 5 and ai_fluid_timeout_set < 50 then
                   ai_fluid_timeout_set = 50
             end
-         elseif snow_fuse < 0.01 then
+		elseif ai_time <= 0 and snow_fuse >= 0.01 then
+			ai_time = ai_time + 30
+		elseif snow_fuse < 0.01 then
             ai_fluid_timeout_set = ai_fluid_timeout
             ai_fluid_type_was = ai_fluid_type+1
             ai_started_h = simDR_zulu_h

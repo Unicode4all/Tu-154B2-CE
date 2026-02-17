@@ -58,11 +58,16 @@ defineProperty("spu_volume1", globalPropertyf("sim/custom/radio/spu_volume1_n"))
 defineProperty("spu_volume2", globalPropertyf("sim/custom/radio/spu_volume2_n"))
 defineProperty("vor1_signal", globalPropertyf("sim/cockpit2/radios/indicators/nav1_flag_from_to_pilot"))
 defineProperty("vor2_signal", globalPropertyf("sim/cockpit2/radios/indicators/nav2_flag_from_to_pilot"))
+rsbn_rec = globalPropertyi("tu154b2/custom/failures/rsbn_rec")
+rsbn_dist = globalPropertyf("tu154b2/custom/rsbn/distance")
 
 defineProperty("n_id1", globalPropertys("sim/cockpit2/radios/indicators/adf1_nav_id"))
 defineProperty("n_id2", globalPropertys("sim/cockpit2/radios/indicators/adf2_nav_id"))
 defineProperty("v_id1", globalPropertys("sim/cockpit2/radios/indicators/nav1_nav_id"))
 defineProperty("v_id2", globalPropertys("sim/cockpit2/radios/indicators/nav2_nav_id"))
+
+rsbn_dot = globalPropertyi("tu154b2/custom/rsbn/morse_dot")
+rsbn_dash = globalPropertyi("tu154b2/custom/rsbn/morse_dash")
 --defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 
 
@@ -109,6 +114,7 @@ function update()
 	local spu_volume=math.min(spu1,spu2)
 	local sdvol_1=get(sd67_vol_1)
 	local sdvol_2=get(sd67_vol_2)
+	local rsbn=get(rsbn_rec)
 	if get(panel_80)==0 then
 		set(sd75_1_on,bool2int(sdvol_1>0))
 		set(sd75_2_on,bool2int(sdvol_2>0))
@@ -133,6 +139,22 @@ function update()
 		set(audio_selection_adf2, 0)
         set(audio_selection_dme1, 0)
         set(audio_selection_dme2, 0)
+	elseif mode == 3 and power then -- RSBN
+		local rsbn_distance=100/math.max(100,get(rsbn_dist))
+		set(audio_selection_com1, 0)
+		set(audio_selection_com2, 0)
+		set(audio_selection_nav1, 0)
+		set(audio_selection_nav2, 0)
+		set(audio_selection_adf1, 0)
+		set(audio_selection_adf2, 0)
+		set(audio_selection_dme1, 0)
+		set(audio_selection_dme2, 0)
+		if not isSamplePlaying(noise) then
+			playSample(noise,true)
+		end
+		setSampleGain(noise,(500-400*rsbn)*spu_volume*bool2int(rsbn~=-1))
+		setSampleGain(morse_dash,1000*spu_volume*rsbn_distance*rsbn)
+		setSampleGain(morse_dot,1000*spu_volume*rsbn_distance*rsbn)
 	elseif mode == 4 and power then -- NAV 1 or ADF 1
 		
         if get(ushdb_mode_1) == 0 then
@@ -161,7 +183,7 @@ function update()
                 set(audio_selection_dme1, 0)
                 set(audio_selection_dme2, 0)
 				if isSamplePlaying(noise) then
-					stopSample(noise,1)
+					stopSample(noise)
 				end
 				setSampleGain(morse_dash,1000*spu_volume)
 				setSampleGain(morse_dot,1000*spu_volume)
@@ -251,8 +273,8 @@ function update()
 	end
 
 	-- Morse Codes
-	local morse_dsh=get(nav1_morse)==2 or get(nav2_morse)==2 or get(adf1_morse)==2 or get(adf2_morse)==2 or get(dme1_morse)==2 or get(dme2_morse)==2
-	local morse_dt=get(nav1_morse)==1 or get(nav2_morse)==1 or get(adf1_morse)==1 or get(adf2_morse)==1 or get(dme1_morse)==1 or get(dme2_morse)==1
+	local morse_dsh=get(nav1_morse)==2 or get(nav2_morse)==2 or get(adf1_morse)==2 or get(adf2_morse)==2 or get(dme1_morse)==2 or get(dme2_morse)==2 or (get(rsbn_dash)==1 and mode == 3)
+	local morse_dt=get(nav1_morse)==1 or get(nav2_morse)==1 or get(adf1_morse)==1 or get(adf2_morse)==1 or get(dme1_morse)==1 or get(dme2_morse)==1 or (get(rsbn_dot)==1 and mode == 3)
 	if morse_dsh and not isSamplePlaying(morse_dash) then
 		playSample(morse_dash,false)
 	end

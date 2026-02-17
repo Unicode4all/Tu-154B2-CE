@@ -83,7 +83,7 @@ defineProperty("slip", globalPropertyf("sim/cockpit2/gauges/indicators/sideslip_
 
 -- SVS
 defineProperty("mach_svs", globalPropertyf("tu154b2/custom/svs/machno")) -- Mach number
---defineProperty("alt_svs", globalPropertyf("tu154b2/custom/svs/altitude")) --
+defineProperty("h", globalPropertyf("tu154b2/custom/svs/altitude")) --
 --defineProperty("tas_svs", globalPropertyf("tu154b2/custom/svs/true_airspeed")) -- TAS
 
 defineProperty("ias", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_stby")) -- indicated airspeed in KTS
@@ -244,7 +244,7 @@ defineProperty("gps_dot", globalPropertyf("sim/cockpit/radios/gps2_hdef_nm_per_d
 defineProperty("absu_pnp_mode", globalPropertyi("tu154b2/custom/absu/absu_pnp_mode_1"))
 --defineProperty("at_mode", globalPropertyi("tu154b2/custom/absu/stu_mode"))
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 -- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
@@ -256,9 +256,11 @@ defineProperty("sta_type_right", globalPropertyi("tu154b2/custom/radio/ils_right
 defineProperty("absu_power", globalPropertyi("tu154b2/custom/absu_power_cc"))
 defineProperty("v_left", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_stby"))
 defineProperty("v_right", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
-defineProperty("h", globalPropertyf("tu154b2/custom/svs/altitude"))
+--defineProperty("h", globalPropertyf("tu154b2/custom/svs/altitude"))
 defineProperty("absu_gs", globalPropertyi("tu154b2/custom/buttons/console/absu_gs")) -- кнопка глиссада на панели АБСУ
 cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
+--temp = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
+p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 --defineProperty("h_right", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot"))
 
 --local pitch_act = 0
@@ -439,6 +441,7 @@ local loc_dev2=0
 local thet_gs_last=0
 local thet_hp = 0
 local elev_cmd_gs=0
+
 -- local d_contr_roll=0
 -- local d_contr_pitch=0
 -- local d_contr_yaw=0
@@ -518,7 +521,15 @@ function update()
 	local mach = get(mach_svs)
 	local airspeed = (get(v_left)/2+get(v_right)/2) * 1.852 -- mean of two channels
 	local gnd_spd = get(diss_groundspeed)
-	local alt = get(h)
+	
+	-- Barometric altitude
+	local p_s=get(p_stat_smoothed)
+	local alt=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
+	if p_s< 22250 then
+		alt=11000+28.96*216.6500*math.log(22250/p_s)
+	end
+	
+	set(db1,alt)
 	local RV_alt = get(rv5_alt)
 	
 	gear_down = get(gear1_deploy) + get(gear2_deploy) + get(gear3_deploy) > 0.05
@@ -1615,7 +1626,7 @@ function pitch_holder(elev_cmd) -- manipulates the elevator and trimmer by given
 	local delta = (elev_cmd-theta_dop*bool2int(gear_down or get(cockpit_80s)==1)*bool2int(pitch_submode<5))/29
 	local roll_part = math.abs(get(bkk_roll))*(0.00137+0.0031*bool2int(gear_down or RV_alt<700))
 	if pitch_submode==5 then
-		delta = (elev_cmd-get(bkk_pitch))*4/29
+		delta = (elev_cmd)*4/29
 		if delta > 7/29-bool2int(RV_alt <= 250)*3.5/29 then 
 			delta = 7/29-bool2int(RV_alt <= 250)*3.5/29
 		elseif delta < -7/29+bool2int(RV_alt <= 250)*3.5/29 then 

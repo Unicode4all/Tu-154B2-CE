@@ -97,7 +97,7 @@ function update()
 		set(search,1)
 	end
 	if get(search)>0 then
-		if search_run<1 then
+		if search_run<0.05 then
 			search_run=search_run+passed
 		else 
 			search_run=1

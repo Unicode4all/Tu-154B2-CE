@@ -107,8 +107,11 @@ defineProperty("pitch_main_mode", globalPropertyi("tu154b2/custom/absu/pitch_mai
 
 
 -- CourseMP
-defineProperty("nav_cs_flag", globalPropertyi("tu154b2/custom/radio/nav1_cs_flag"))
-defineProperty("nav_gs_flag", globalPropertyi("tu154b2/custom/radio/nav1_gs_flag"))
+nav_cs_flag = globalPropertyi("tu154b2/custom/radio/nav1_cs_flag")
+nav_gs_flag = globalPropertyi("tu154b2/custom/radio/nav1_gs_flag")
+
+nav2_cs_flag = globalPropertyi("tu154b2/custom/radio/nav2_cs_flag")
+nav2_gs_flag = globalPropertyi("tu154b2/custom/radio/nav2_gs_flag")
 
 defineProperty("nav1_pow_cc", globalPropertyf("tu154b2/custom/radio/nav1_pow_cc")) -- потребление тока от КурсМП
 defineProperty("nav2_pow_cc", globalPropertyf("tu154b2/custom/radio/nav2_pow_cc")) -- потребление тока от КурсМП
@@ -283,10 +286,11 @@ function update()
 	set(damper_pitch, damper_pitch_brt)
 	local absu_power=get(absu_power_27)>0
 	-- CourseMP
-	local no_reserve_c_brt = math.max(bool2int(get(absu_landing_on) == 1 and absu_power and (get(nav1_fail) == 1 or get(nav2_fail) == 1 or get(nav1_pow_cc) == 0 or get(nav2_pow_cc) == 0)) * lamps_brt, test_btn)
+	local no_reserve_c_brt = math.max(bool2int(get(absu_landing_on) == 1 and absu_power and get(nav_cs_flag) == 0 and get(nav2_cs_flag)==1) * lamps_brt, test_btn)
 	set(no_reserve_c, no_reserve_c_brt)
 	
-	local no_reserve_g_brt = math.max(bool2int(get(absu_landing_on) == 1 and absu_power and (get(nav1_fail) == 1 or get(nav2_fail) == 1 or get(nav1_pow_cc) == 0 or get(nav2_pow_cc) == 0)) * lamps_brt, test_btn)
+	local no_reserve_g_brt = math.max(bool2int(get(absu_landing_on) == 1 and absu_power and get(nav_gs_flag) == 0 and get(nav2_gs_flag)==1) * lamps_brt, test_btn)
+	--math.max(bool2int(get(absu_landing_on) == 1 and absu_power and (get(nav1_fail) == 1 or get(nav2_fail) == 1 or get(nav1_pow_cc) == 0 or get(nav2_pow_cc) == 0)) * lamps_brt, test_btn)
 	set(no_reserve_g, no_reserve_g_brt)
 	
 	

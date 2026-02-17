@@ -295,7 +295,7 @@ function update()
 	
 	local mode = get(tks_mode)
 	
-	local corr_turn = get(tks_course_set)
+	local corr_turn = get(tks_course_set)*3
 	
 	local lat_set = get(tks_lat_set)
 	local lat_now = get(latitude)

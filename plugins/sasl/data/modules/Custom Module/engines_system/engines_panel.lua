@@ -214,6 +214,22 @@ defineProperty("kpp3", globalPropertyf("tu154b2/custom/engine/kpp3"))
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+
+bearing_1_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_1")
+bearing_2_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_2")
+bearing_3_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_3")
+
+stp_1 = globalPropertyf("tu154b2/custom/lights/engines/eng1_stp")
+stp_2 = globalPropertyf("tu154b2/custom/lights/engines/eng2_stp")
+stp_3 = globalPropertyf("tu154b2/custom/lights/engines/eng3_stp")
+
+stp_1_test = globalPropertyi("sim/custom/b2/stp_test_4")
+stp_2_test = globalPropertyi("sim/custom/b2/stp_test_5")
+stp_3_test = globalPropertyi("sim/custom/b2/stp_test_6")
+
+stp_1_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_1")
+stp_2_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_2")
+stp_3_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_3")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
@@ -391,9 +407,13 @@ local function lamps_eng1()
 	if rev_L > 0.7 then eng1_reverse_doors_brt = 1 end
 	eng1_reverse_doors_brt = math.max(eng1_reverse_doors_brt * lamps_brt, test_btn) 
 	set(eng1_reverse_doors, eng1_reverse_doors_brt)
-		
 	
-	
+	local eng1_stp_brt = 0
+	if (get(bearing_1_temp)>190 or get(stp_1_test)~=0) and get(stp_1_fail)==0 then
+		eng1_stp_brt = 1
+	end
+	eng1_stp_brt = math.max(eng1_stp_brt * lamps_brt, test_btn) 
+	set(stp_1,eng1_stp_brt)
 	
 	eng_1_fail_src = bool2int(oil_p < 2.3 or (rev_L ~= revers_flap_L_last and rev_L > 0.05 and rev_L < 0.95) or vibr > 55 or chip_det == 1 or fuel_p == 0 or (get(fire_main_switch) * get(sim_engine_on_fire1) == 6) or get(egt_1) > 710)
 	--set(eng_debug1,eng_1_fail_src)
@@ -477,6 +497,12 @@ local function lamps_eng2()
 	eng_block_brt = math.max(eng_block_brt * lamps_brt, test_btn)
 	set(eng_block, eng_block_brt)
 		
+	local eng2_stp_brt = 0
+	if (get(bearing_2_temp)>190 or get(stp_2_test)~=0) and get(stp_2_fail)==0 then
+		eng2_stp_brt = 1
+	end
+	eng2_stp_brt = math.max(eng2_stp_brt * lamps_brt, test_btn) 
+	set(stp_2,eng2_stp_brt)
 
 	eng_2_fail_src = bool2int(oil_p < 2.3 or vibr > 55 or chip_det == 1 or fuel_p == 0 or (get(fire_main_switch) * get(sim_engine_on_fire2) == 6) or get(egt_2) > 710)
 		
@@ -561,6 +587,13 @@ local function lamps_eng3()
 	if rev_R > 0.7 then eng3_reverse_doors_brt = 1 end
 	eng3_reverse_doors_brt = math.max(eng3_reverse_doors_brt * lamps_brt, test_btn)
 	set(eng3_reverse_doors, eng3_reverse_doors_brt)
+	
+	local eng3_stp_brt = 0
+	if (get(bearing_3_temp)>185 or get(stp_3_test)~=0) and get(stp_3_fail)==0 then
+		eng3_stp_brt = 1
+	end
+	eng3_stp_brt = math.max(eng3_stp_brt * lamps_brt, test_btn) 
+	set(stp_3,eng3_stp_brt)
 		
 	eng_3_fail_src = bool2int(oil_p < 2.3 or (rev_R ~= revers_flap_R_last and rev_R > 0.05 and rev_R < 0.95) or vibr > 55 or chip_det == 1 or fuel_p == 0 or (get(fire_main_switch) * get(sim_engine_on_fire3) == 6) or get(egt_3) > 710)	
 	

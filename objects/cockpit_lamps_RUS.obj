@@ -79341,7 +79341,7 @@ TRIS 82290 70053
 ANIM_begin
 ANIM_begin
 ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_70th
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
+##ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
 TRIS 152343 36
 ATTR_light_level_reset
 ATTR_no_hard
