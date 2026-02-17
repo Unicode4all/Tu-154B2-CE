@@ -244,7 +244,7 @@ defineProperty("gps_dot", globalPropertyf("sim/cockpit/radios/gps2_hdef_nm_per_d
 defineProperty("absu_pnp_mode", globalPropertyi("tu154b2/custom/absu/absu_pnp_mode_1"))
 --defineProperty("at_mode", globalPropertyi("tu154b2/custom/absu/stu_mode"))
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 -- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
@@ -529,7 +529,7 @@ function update()
 		alt=11000+28.96*216.6500*math.log(22250/p_s)
 	end
 	
-	set(db1,alt)
+	-- set(db1,alt)
 	local RV_alt = get(rv5_alt)
 	
 	gear_down = get(gear1_deploy) + get(gear2_deploy) + get(gear3_deploy) > 0.05
