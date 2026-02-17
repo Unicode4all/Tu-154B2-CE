@@ -156,11 +156,12 @@ absu_2d_panel = contextWindow {
 	-- };
 -- }
 
--- nvu_2D_panel = subpanel {
+-- nvu_2D_panel =  contextWindow {
 	-- position = { 50, 0, 636 * coef, 786 * coef };
-	-- noBackground = false;
+	-- noBackground = true;
 	-- noClose = true;
-	-- resizeProportional = true;
+	-- noDecore = true;
+	-- --resizeProportional = true;
 	-- savePosition = true;
 	-- name = "nvu_2D_panel";	
 	-- components = {
@@ -721,7 +722,7 @@ function update()
 	absu_2d_panel:setIsVisible(get(show_absu_panel) == 1)
 	-- absu_2d_panel.visible = false
 	-- ovhd_2d_panel.visible = false
-	-- nvu_2D_panel.visible = false
+	-- nvu_2D_panel:setIsVisible(get(show_nvu_panel) == 1)
 	checklist_panel:setIsVisible(get(show_checklist_panel) == 1)
 	ground_srv_panel:setIsVisible(get(show_ground_panel) == 1)
 	--uphone.visible = get(show_phone) == 1

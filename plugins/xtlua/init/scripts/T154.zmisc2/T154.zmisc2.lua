@@ -1261,13 +1261,13 @@ end
         pump_test = 3
     end
     
-    if bus27 > 0 then
-      if simDR_gear_fan > 0 and simDR_on_ground > 0 then
-           simDR_start_apu = 1
-      elseif simDR_lamp_test_apu < 1 then
-           simDR_start_apu = 0
-      end
-    end
+    -- if bus27 > 0 then
+      -- if simDR_gear_fan > 0 and simDR_on_ground > 0 then
+           -- simDR_start_apu = 1
+      -- elseif simDR_lamp_test_apu < 1 then
+           -- simDR_start_apu = 0
+      -- end
+    -- end
     
 
     if simDR_bus27left > 5 then

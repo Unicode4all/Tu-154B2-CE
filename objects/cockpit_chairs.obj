@@ -67304,14 +67304,20 @@ ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/b2/kontur_on
 ANIM_begin
 ANIM_hide -1.000000 -1.000000 sim/custom/b2/kontur_90th
-TRIS 90744 1332
+# TRIS 90744 1332
 ANIM_end
 TRIS 92076 6
 ANIM_end
+# ANIM_begin
+# ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
+# TRIS 92082 2238
+# ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
-TRIS 92082 2238
+TRIS 92082 888
+TRIS 94302 18
 ANIM_end
+TRIS 92970 1332
 ANIM_begin
 ANIM_hide -1.000000 0.100000 tu154b2/custom/switchers/eng/emerg_gen_on_3_cap
 ATTR_no_cull

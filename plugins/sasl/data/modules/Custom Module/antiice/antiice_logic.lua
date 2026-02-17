@@ -156,6 +156,7 @@ defineProperty("ice_add", globalPropertyf("sim/flightmodel/failures/window_ice_a
 defineProperty("ice_now", globalProperty("sim/flightmodel/failures/window_ice_per_window[1]"))
 defineProperty("snow_rat", globalPropertyf("sim/weather/aircraft/snow_on_aircraft_ratio"))
 defineProperty("tas", globalPropertyf("sim/flightmodel2/position/true_airspeed"))
+defineProperty("nosewheel_turn_sel", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel")) -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
@@ -163,7 +164,7 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 -- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
---defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
 
 local wing_heat_tbl = {{ -100, 0 },    -- bugs walkaround
 				  {  0, 0 }, -- 0.0-
@@ -410,9 +411,10 @@ function update()
 		local rate_ctr=1690/(math.max(0.1,temp3)+0.06897)
 		local rate_rest=1690/(math.max(0.1,temp4)+0.06897)
 			-- heat Pitots and AOA sensor
-		local pitot_sw_1 = math.max(get(pitot_heat_1) * bool2int(get(rel_ice_pitot_heat1) ~= 6), 0)
-		local pitot_sw_2 = math.max(get(pitot_heat_2) * bool2int(get(rel_ice_pitot_heat2) ~= 6), 0)
-		local pitot_sw_3 = math.max(get(pitot_heat_3) * bool2int(get(ppd_3_heat_fail) ~= 1), 0)
+		local nws=get(nosewheel_turn_sel)==0
+		local pitot_sw_1 = bool2int(get(pitot_heat_1)>0 or nws) * bool2int(get(rel_ice_pitot_heat1) ~= 6)
+		local pitot_sw_2 = bool2int(get(pitot_heat_2)>0 or nws) * bool2int(get(rel_ice_pitot_heat2) ~= 6)
+		local pitot_sw_3 = bool2int(get(pitot_heat_3)>0 or nws) * bool2int(get(ppd_3_heat_fail) ~= 1)
 		if power27_L then 
 			set(sim_pitot_heat_1, pitot_sw_1) 
 			set(sim_pitot_heat_3, pitot_sw_3) 
@@ -477,13 +479,13 @@ function update()
 				init_rate2= 0.1
 			end
 			set(ice_add,init_rate2)
-			set(left_ht,1)
-			set(right_ht,1)
-			set(ctr_ht,1)
+			--set(left_ht,1)
+			--set(right_ht,1)
+			--set(ctr_ht,1)
 			set(rest_ht,1)
-			set(left_rate,5)
-			set(right_rate,5)
-			set(ctr_rate,5)
+			--set(left_rate,5)
+			--set(right_rate,5)
+			--set(ctr_rate,5)
 			set(rest_rate,init_rate)
 			set(side_rate,init_rate/4)
 		end

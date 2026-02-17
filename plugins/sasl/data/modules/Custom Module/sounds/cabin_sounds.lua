@@ -666,15 +666,33 @@ function update()
 	-- elseif invert_counter < 0 then invert_counter = 0 end
 	
 	local dist = -get(pilot_Z) + 7 +1.42
-	local door=1	
+	local dist2 = math.min(1,-0.1667*get(pilot_Z)  -2.5)
+	local door=1
+	local door2=1	
 	if get(pilot_Z) +1.42>-19 then
 		door=0.05+0.95*get(cockpit_door)
+		door2=0.2+0.8*get(cockpit_door)
 	end
-    if get(power_115L)>105 or get(power_115R)>105 then
+    if get(power_115L)>100 or get(power_115R)>100 then
 		setSampleGain(tr36,1000* (1 - external) * math.max(dist - 25, 0)*run*door)
 	else
 		setSampleGain(tr36,0)
 	end
+		
+	--------------------
+	-- wind noise --
+	--------------------
+	local MASTER = get(ismaster) ~= 1
+	local tas=get(true_airspeed)*3.6
+	if not MASTER then
+		tas=get(tas_sc)*3.6
+	end
+	-- if tas<80 then
+		-- tas=0
+	-- end
+	setSampleGain(wind_sound, (tas-80)/0.82*run*(1 - external)*0.5* math.max(dist2*door,0.5))
+	setSamplePitch(wind_sound, 600+tas*2/3)
+	--set(db1,math.max(dist - 25, 0)*door)
     
     if switchers ~= switchers_last then playSample(switcher_sound, false) end
 	
@@ -844,20 +862,6 @@ function update()
 		stopSample(lights_noise)
 		
 	end
-local MASTER = get(ismaster) ~= 1	
-	--------------------
-	-- wind noise --
-	--------------------
-	local tas=get(true_airspeed)*3.6
-	if not MASTER then
-		tas=get(tas_sc)*3.6
-	end
-	-- if tas<80 then
-		-- tas=0
-	-- end
-	setSampleGain(wind_sound, (tas-80)/0.82*run*(1 - external)*0.5)
-	setSamplePitch(wind_sound, 600+tas*2/3)
-
 	
 
 if MASTER then	

@@ -99,6 +99,7 @@ defineProperty("door_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_d
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+defineProperty("gear_defl", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]"))
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster"))
 
 
@@ -388,7 +389,7 @@ local function lamps()
 	set(work_mode, work_mode_brt)
 	
 	local start_apu_brt = 0
-	if rpm < 92 and get(gear_vent_set) == 1 then start_apu_brt = 1 end
+	if rpm < 92 and get(gear_vent_set) == 1 and get(gear_defl)>0.05 then start_apu_brt = 1 end
 	start_apu_brt = math.max(start_apu_brt * lamps_brt, test_btn) -- вентиляция щасси и когда ВСУ выклчюено.
 	set(start_apu, start_apu_brt)
 

@@ -186,29 +186,44 @@ local var30_cabin_act = 0
 local left_MSL = 0
 local right_MSL = 0
 
+local p_s_L=get(p_stat)
+local p_s_R=get(p_stat)
+
 function update()
 
 local MASTER = get(ismaster) ~= 1
 	
 	local passed = get(frame_time)
-	--local alt_QNE = get(msl_alt)   
+	local staticFail_left = get(static_fail_L) == 6
+	local staticFail_right = get(static_fail_R) == 6	
+	if not staticFail_left then
+		p_s_L=get(p_stat)
+	end	
+	if not staticFail_right then
+		p_s_R=get(p_stat)
+	end	
 	-- Barometric altitude formula
-	local p_s=get(p_stat)
-	local alt_QNE=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
-	local temp=288-alt_QNE*6.5/1000
-	if p_s< 22250 then
-		alt_QNE=11000+28.96*216.6500*math.log(22250/p_s)
-		temp=216.65
+	left_MSL=288/0.0065*(1-math.pow(p_s_L/101325,0.0065*28.96))
+	right_MSL=288/0.0065*(1-math.pow(p_s_R/101325,0.0065*28.96))
+	local temp_L=288-left_MSL*6.5/1000
+	local temp_R=288-right_MSL*6.5/1000
+	if p_s_L< 22250 then
+		left_MSL=11000+28.96*216.6500*math.log(22250/p_s_L)
+		temp_L=216.65
 	end
-	local alt_tas_coef = interpolate(alt_kus_tbl, alt_QNE)
+	if p_s_R< 22250 then
+		right_MSL=11000+28.96*216.6500*math.log(22250/p_s_R)
+		temp_R=216.65
+	end
+	--local alt_tas_coef = interpolate(alt_kus_tbl, alt_QNE)
 	local airspeed_L = get(ias_L) * 1.852
 	local airspeed_R = get(ias_R) * 1.852
 	airspeed_L=interpolate(err_tbl_kus,airspeed_L)
 	airspeed_R=interpolate(err_tbl_us,airspeed_R)
 	local p_q_L=math.pow(airspeed_L/3.6,2)*1.225/2
 	local p_q_R=math.pow(airspeed_R/3.6,2)*1.225/2
-	local tas_L=math.sqrt(9.81*29.27*temp*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_L)/p_s+1,(1.4-1)/1.4)-1))*3.6
-	local tas_R=math.sqrt(9.81*29.27*temp*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_R)/p_s+1,(1.4-1)/1.4)-1))*3.6
+	local tas_L=math.sqrt(9.81*29.27*temp_L*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_L)/p_s_L+1,(1.4-1)/1.4)-1))*3.6
+	local tas_R=math.sqrt(9.81*29.27*temp_R*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_R)/p_s_R+1,(1.4-1)/1.4)-1))*3.6
 	--local blocked = get(sensors_caps) == 1
 	
 	-- KUS 750/1100 Captain
@@ -270,7 +285,7 @@ local MASTER = get(ismaster) ~= 1
 	local copil_tas_ang = 0
 	if tas_R >= 400 and tas_R < 1100 then
 		copil_tas_ang = (tas_R - 400) * 330 / 700 + 15
-	elseif tas_L > 1100 then
+	elseif tas_R > 1100 then
 		copil_tas_ang = 345
 	end
 	
@@ -287,11 +302,11 @@ local MASTER = get(ismaster) ~= 1
 		eng_speed_ang = 339
 	end
 	-- TAS
-	local tas_ENG = airspeed_R * alt_tas_coef
+	--local tas_ENG = airspeed_R * alt_tas_coef
 	local eng_tas_ang = 0
-	if tas_ENG >= 400 and tas_ENG < 1100 then
-		eng_tas_ang = (tas_ENG - 400) * 330 / 700 + 15
-	elseif tas_ENG > 1100 then
+	if tas_R >= 400 and tas_R < 1100 then
+		eng_tas_ang = (tas_R - 400) * 330 / 700 + 15
+	elseif tas_R > 1100 then
 		eng_tas_ang = 345
 	end
 	
@@ -299,8 +314,7 @@ local MASTER = get(ismaster) ~= 1
 	kus_ias_act_ENG = kus_ias_act_ENG + (eng_speed_ang - kus_ias_act_ENG) * passed * 10
 	kus_tas_act_ENG = kus_tas_act_ENG + (eng_tas_ang - kus_tas_act_ENG) * passed * 10	
 
-	local staticFail_left = get(static_fail_L) == 6
-	local staticFail_right = get(static_fail_R) == 6
+	
 	--local msl =alt_QNE  -- real alt MSL in feet
 
 	-- variometers
@@ -321,13 +335,6 @@ local MASTER = get(ismaster) ~= 1
 	
 	-- altimeters
 
-	if not staticFail_left then
-		left_MSL = alt_QNE -- update altitudes for left altimeters
-	end
-	
-	if not staticFail_right then
-		right_MSL = alt_QNE -- update altitudes for left altimeters
-	end	
 	
 	-- Captain's altimeter VM15
 	local cpt_VM15_press = get(vd15_pressure_left) * 0.0393701

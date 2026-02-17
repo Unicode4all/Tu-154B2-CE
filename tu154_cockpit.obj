@@ -16760,18 +16760,18 @@ ATTR_manip_drag_axis rotate_large 0.200000 0.000000 0.000000 0.000000 1.000000 t
 ATTR_manip_wheel 0.100000
 TRIS 3066 6
 ANIM_end
-ANIM_begin
-ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn3
-TRIS 3072 6
-ANIM_end
-ANIM_begin
-ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn1
-TRIS 3078 6
-ANIM_end
-ANIM_begin
-ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn2
-TRIS 3084 6
-ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn3
+# TRIS 3072 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn1
+# TRIS 3078 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn2
+# TRIS 3084 6
+# ANIM_end
 ANIM_begin
 ATTR_manip_drag_axis rotate_large 0.200000 0.000000 0.000000 0.000000 1.000000 tu154b2/custom/lights/front_panel_flood_set
 ATTR_manip_wheel 0.100000
@@ -16782,59 +16782,131 @@ ATTR_manip_drag_axis rotate_large 0.200000 0.000000 0.000000 0.000000 1.000000 t
 ATTR_manip_wheel 0.100000
 TRIS 3096 6
 ANIM_end
+# ANIM_begin
+# ANIM_begin
+# ANIM_trans 0.658142 -0.884258 -19.437201 0.658142 -0.884258 -19.437201 0.000000 0.000000 none
+# ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_2_dis_cap
+# ANIM_trans -0.658142 0.884258 19.437201 -0.658142 0.884258 19.437201 0.000000 0.000000 none
+# ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_2_dis_cap
+# TRIS 3102 6
+# ANIM_end
+# ANIM_begin
+# ANIM_trans 0.658142 -0.884259 -19.468300 0.658142 -0.884259 -19.468300 0.000000 0.000000 none
+# ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_1_dis_cap
+# ANIM_trans -0.658142 0.884259 19.468300 -0.658142 0.884259 19.468300 0.000000 0.000000 none
+# ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_1_dis_cap
+# TRIS 3108 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_1_dis
+# TRIS 3114 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_3_dis
+# TRIS 3120 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_2_dis
+# TRIS 3126 6
+# ANIM_end
+# ANIM_begin
+# ANIM_trans 0.658142 -0.884259 -19.452801 0.658142 -0.884259 -19.452801 0.000000 0.000000 none
+# ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_3_dis_cap
+# ANIM_trans -0.658142 0.884259 19.452801 -0.658142 0.884259 19.452801 0.000000 0.000000 none
+# ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_3_dis_cap
+# TRIS 3132 6
+# ANIM_end
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 tu154b2/custom/buttons/eng/tail_temp_signal_control_1
+# TRIS 3138 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 tu154b2/custom/buttons/eng/tail_temp_signal_control_2
+# TRIS 3144 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/switchers/eng/tail_temp_heat
+# TRIS 3150 6
+# ANIM_end
+# ANIM_begin
+# ANIM_begin
+# ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/switchers/eng/door_heat
+# TRIS 3156 6
+# ANIM_end
+# ANIM_end
+
 ANIM_begin
-ANIM_begin
-ANIM_trans 0.658142 -0.884258 -19.437201 0.658142 -0.884258 -19.437201 0.000000 0.000000 none
-ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_2_dis_cap
-ANIM_trans -0.658142 0.884258 19.437201 -0.658142 0.884258 19.437201 0.000000 0.000000 none
-ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_2_dis_cap
-TRIS 3102 6
-ANIM_end
-ANIM_begin
-ANIM_trans 0.658142 -0.884259 -19.468300 0.658142 -0.884259 -19.468300 0.000000 0.000000 none
-ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_1_dis_cap
-ANIM_trans -0.658142 0.884259 19.468300 -0.658142 0.884259 19.468300 0.000000 0.000000 none
-ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_1_dis_cap
-TRIS 3108 6
-ANIM_end
-ANIM_begin
-ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_1_dis
-TRIS 3114 6
-ANIM_end
-ANIM_begin
-ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_3_dis
-TRIS 3120 6
-ANIM_end
-ANIM_begin
-ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_2_dis
-TRIS 3126 6
-ANIM_end
-ANIM_begin
-ANIM_trans 0.658142 -0.884259 -19.452801 0.658142 -0.884259 -19.452801 0.000000 0.000000 none
-ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_3_dis_cap
-ANIM_trans -0.658142 0.884259 19.452801 -0.658142 0.884259 19.452801 0.000000 0.000000 none
-ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_3_dis_cap
-TRIS 3132 6
-ANIM_end
-ANIM_end
-ANIM_begin
+ANIM_trans 0.000000 0.0014 -0.0425 0.000000 0.0014 -0.0425 0.000000 0.000000 none
 ATTR_manip_push button 1.000000 0.000000 tu154b2/custom/buttons/eng/tail_temp_signal_control_1
-TRIS 3138 6
+TRIS 3420 6
 ANIM_end
 ANIM_begin
+ANIM_trans 0.000000 0.0014 -0.023 0.000000 0.0014 -0.023 0.000000 0.000000 none
 ATTR_manip_push button 1.000000 0.000000 tu154b2/custom/buttons/eng/tail_temp_signal_control_2
-TRIS 3144 6
+TRIS 3444 6
 ANIM_end
 ANIM_begin
 ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/switchers/eng/tail_temp_heat
-TRIS 3150 6
+TRIS 3450 6
 ANIM_end
 ANIM_begin
+ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/switchers/eng/gear_fan
+TRIS 3456 6
+ANIM_end
+ANIM_begin
+ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_1_dis
+TRIS 3462 6
+ANIM_end
+ANIM_begin
+ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_2_dis
+TRIS 3468 6
+ANIM_end
+ANIM_begin
+ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/rt12_3_dis
+TRIS 3474 6
+ANIM_end
 ANIM_begin
 ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/switchers/eng/door_heat
-TRIS 3156 6
+TRIS 3480 6
 ANIM_end
+ANIM_begin
+ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn3
+TRIS 3372 6
 ANIM_end
+ANIM_begin
+ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn1
+TRIS 3378 6
+ANIM_end
+ANIM_begin
+ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn2
+TRIS 3384 6
+ANIM_end
+ANIM_begin
+ANIM_trans 0.658142 -0.794574 -19.379200 0.658142 -0.794574 -19.379200 0.000000 0.000000 none
+ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_3_dis_cap
+ANIM_trans -0.658142 0.794574 19.379200 -0.658142 0.794574 19.379200 0.000000 0.000000 none
+ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_3_dis_cap
+TRIS 3390 6
+ANIM_end
+ANIM_begin
+ANIM_trans 0.658142 -0.794574 -19.363600 0.658142 -0.794574 -19.363600 0.000000 0.000000 none
+ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_2_dis_cap
+ANIM_trans -0.658142 0.794574 19.363600 -0.658142 0.794574 19.363600 0.000000 0.000000 none
+ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_2_dis_cap
+TRIS 3396 6
+ANIM_end
+ANIM_begin
+ANIM_trans 0.658142 -0.794574 -19.394699 0.658142 -0.794574 -19.394699 0.000000 0.000000 none
+ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_1_dis_cap
+ANIM_trans -0.658142 0.794574 19.394699 -0.658142 0.794574 19.394699 0.000000 0.000000 none
+ATTR_manip_toggle hand 1.000000 0.000000 sim/custom/b2/rt12_1_dis_cap
+TRIS 3402 6
+ANIM_end
+
+
+
+
 ANIM_begin
 ATTR_manip_drag_axis rotate_medium 0.500000 0.000000 0.000000 0.000000 1.000000 sim/custom/b2/rv5_1_lit_lim
 ATTR_manip_wheel 0.100000
@@ -17008,18 +17080,18 @@ ANIM_begin
 ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/elev_trimm_2_pk
 TRIS 3366 6
 ANIM_end
-ANIM_begin
-ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn3
-TRIS 3372 6
-ANIM_end
-ANIM_begin
-ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn1
-TRIS 3378 6
-ANIM_end
-ANIM_begin
-ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn2
-TRIS 3384 6
-ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn3
+# TRIS 3372 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn1
+# TRIS 3378 6
+# ANIM_end
+# ANIM_begin
+# ATTR_manip_push button 1.000000 0.000000 sim/custom/ssos_test_btn2
+# TRIS 3384 6
+# ANIM_end
 ANIM_begin
 ANIM_trans 0.658142 -0.794574 -19.379200 0.658142 -0.794574 -19.379200 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.000000 1.000000 0.000000 115.000000 0.000000 1.000000 sim/custom/b2/rt12_3_dis_cap
@@ -17050,6 +17122,7 @@ ATTR_manip_push button 1.000000 0.000000 sim/custom/b2/sbros_stop
 TRIS 3414 6
 ANIM_end
 ANIM_begin
+# ANIM_trans 0.000000 -0.0127 -0.0425 0.000000 -0.0127 -0.0425 0.000000 0.000000 none
 ATTR_manip_push button 1.000000 0.000000 tu154b2/custom/buttons/eng/tail_temp_signal_control_1
 TRIS 3420 6
 ANIM_end
@@ -17068,6 +17141,7 @@ ATTR_manip_wheel 5.000000
 TRIS 3438 6
 ANIM_end
 ANIM_begin
+# ANIM_trans 0.000000 -0.0127 -0.023 0.000000 -0.0127 -0.023 0.000000 0.000000 none
 ATTR_manip_push button 1.000000 0.000000 tu154b2/custom/buttons/eng/tail_temp_signal_control_2
 TRIS 3444 6
 ANIM_end
@@ -17768,7 +17842,7 @@ ANIM_trans_begin tu154b2/custom/anim/cockpit_window_right
 ANIM_trans_key 0.000000 0.000000 0.000000 0.000000
 ANIM_trans_key 0.200000 0.000000 0.000000 0.000000
 ANIM_trans_key 0.400000 0.000000 0.000000 0.000000
-ANIM_trans_key 1.000000 -0.146900 -0.048700 0.388100
+ANIM_trans_key 1.000000 0.146900 -0.048700 0.388100
 ANIM_trans_end
 ANIM_trans 0.830300 -1.492600 -21.641899 0.830300 -1.492600 -21.641899 0.000000 0.000000 none
 ANIM_rotate_begin 0.000000 0.000000 1.000000 tu154b2/custom/anim/cockpit_window_right

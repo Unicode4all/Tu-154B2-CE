@@ -147,7 +147,7 @@ function engine_airflow(altitude,cab_altitude,kvd,temperature,density)
 	local scale=-2.727*altitude/1000 +330-- flow meter scale
 	local flow=0.4897*math.pow(kvd,2)+21.97*kvd--base flow at SL
 	local temp_correction=0.0002778*math.pow(temperature,2)-0.0225*temperature+1.275-- temperature correction
-	flow=flow/scale/3*density/1.225*(1+cab_altitude*0.0001)*temp_correction
+	flow=flow/scale/3*density/1.225*(1+cab_altitude*0.00005)*temp_correction
 	if flow<0 then
 		flow=0
 	end

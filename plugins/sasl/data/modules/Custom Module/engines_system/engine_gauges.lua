@@ -828,6 +828,7 @@ local function n1_from_n2 (rpm,d_isa,altitude,tas)
 	local knd=1.35432317320705628561e+01 + 1.05818030992323813821e-01*d_isa -2.41159426273638954896e-01*rpm -2.88293089248683933462e-03*d_isa*rpm + 1.17362636037093952257e-02*math.pow(rpm,2)
 	knd=knd+math.max(-2.69166791400897068343e+02 + 2.22049699099214983278e+01*altitude + 1.46945301863934254527e+01*rpm -9.85089687252083234803e-01*altitude*rpm -2.96261417738032106772e-01*math.pow(rpm,2) + 1.41929325403952685813e-02*altitude*math.pow(rpm,2) + 2.61617340318329736140e-03*math.pow(rpm,3) -6.56641350639726608220e-05*altitude*math.pow(rpm,3) -8.54680990421439715666e-06*math.pow(rpm,4),0)*tas/850
 	--math.max(2.55665280454449340030e-16 -9.80392156862750505444e-04*tas + 6.66666666666667073748e-01*alt,0)-- altitude correction
+	--set(db1,math.max(-2.69166791400897068343e+02 + 2.22049699099214983278e+01*altitude + 1.46945301863934254527e+01*rpm -9.85089687252083234803e-01*altitude*rpm -2.96261417738032106772e-01*math.pow(rpm,2) + 1.41929325403952685813e-02*altitude*math.pow(rpm,2) + 2.61617340318329736140e-03*math.pow(rpm,3) -6.56641350639726608220e-05*altitude*math.pow(rpm,3) -8.54680990421439715666e-06*math.pow(rpm,4),0)*tas/850)
 	return knd
 end
 
@@ -996,7 +997,7 @@ if MASTER then
 	--N1 as function of N2
 	eng1_N2_need_old=n1_from_n2 (eng1_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna1
 	eng1_N2_need_old=eng1_N2_need_old*interpolate(n1_start_corr_tbl_1,eng1_1_ang_act) -- blend base N1 with start N1
-	set(db1,eng1_N2_need_old)
+	--set(db1,eng1_N2_need_old)
 	--IGV
 	if eng1_N2_need>rna_thres and rna1>0 then
 		rna1=rna1 -rna1*passed*(1-0.8*math.max(math.max(rna1,4)-4,0)/2)/2

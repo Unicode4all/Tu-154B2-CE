@@ -85,14 +85,16 @@ function update()
 	
 	local passed = get(frame_time)
 	local fail = get(diss_fail) == 1
-    local warmup = warmup_timer > 140
+    local warmup = warmup_timer > 1
 	-- calculate DISS mode
     if power then
-      if not warmup then
-        warmup_timer = warmup_timer + passed +math.random(0.01,0.1)
-      end
+		if warmup_timer<140 then
+			warmup_timer = warmup_timer + passed +math.random(0.01,0.1)
+		end
     else
-        warmup_timer = 0
+		if warmup_timer>0 then
+			warmup_timer = warmup_timer - passed /5
+		end
     end
 	
 	
@@ -113,15 +115,15 @@ function update()
 	elseif power and warmup and nvu_mode == -1 then
 		mode = 3	
 	elseif not power then
-		g_spd = 0
-		slip_angle = 0
+		g_spd_prev=0
+		slip_angle_prev=0
 	end
 	
 	-- wind and speed calculations
 	
 	
-	local TAS = get(tas_svs) / 3.6 -- m/s
-	local acf_course = get(course_gpk)
+	-- local TAS = get(tas_svs) / 3.6 -- m/s
+	-- local acf_course = get(course_gpk)
 	
 	if mode == 1 then -- normal work
 		g_spd = math.abs(get(groundspeed))*math.cos(math.rad(get(v_path))) -- m/s
@@ -131,25 +133,25 @@ function update()
 		if slip_angle > 180 then slip_angle = slip_angle - 360
 		elseif slip_angle < -180 then slip_angle = slip_angle + 360 end
 		
-		if slip_angle > 30 then slip_angle = 30
-		elseif slip_angle < -30 then slip_angle = -30 end
+		-- if slip_angle > 30 then slip_angle = 30
+		-- elseif slip_angle < -30 then slip_angle = -30 end
 		
-		diss_wind_speed = math.sqrt((g_spd * math.sin(math.rad(slip_angle)))^2 + (g_spd * math.cos(math.rad(slip_angle)) - TAS)^2 )
+		-- diss_wind_speed = math.sqrt((g_spd * math.sin(math.rad(slip_angle)))^2 + (g_spd * math.cos(math.rad(slip_angle)) - TAS)^2 )
 		
-		diss_wind_dir = math.deg(math.atan2(g_spd * math.sin(math.rad(slip_angle)), g_spd * math.cos(math.rad(slip_angle)) - TAS))
+		-- diss_wind_dir = math.deg(math.atan2(g_spd * math.sin(math.rad(slip_angle)), g_spd * math.cos(math.rad(slip_angle)) - TAS))
 		
-		if diss_wind_dir > 360 then diss_wind_dir = diss_wind_dir - 360
-		elseif diss_wind_dir < 0 then diss_wind_dir = diss_wind_dir + 360 end
+		-- if diss_wind_dir > 360 then diss_wind_dir = diss_wind_dir - 360
+		-- elseif diss_wind_dir < 0 then diss_wind_dir = diss_wind_dir + 360 end
 		g_spd_prev=g_spd
-		wind_speed_prev=diss_wind_speed
-		wind_dir_prev=diss_wind_dir
+		-- wind_speed_prev=diss_wind_speed
+		-- wind_dir_prev=diss_wind_dir
 		slip_angle_prev=slip_angle
 	
 	elseif mode == 2 then -- memory mode or fail
 		--if mode_prev==3 then
 			g_spd=g_spd_prev
-			diss_wind_speed=wind_speed_prev
-			diss_wind_dir=wind_dir_prev
+			-- diss_wind_speed=wind_speed_prev
+			-- diss_wind_dir=wind_dir_prev
 			slip_angle=slip_angle_prev
 		--end
 		-- diss_wind_speed = get(diss_wind_spd) / 3.6
@@ -183,9 +185,9 @@ function update()
 		
 	elseif mode == 3 then -- test mode
 		g_spd = 197.222 -- m/s
-		
+		g_spd_prev=g_spd
 		slip_angle = 0
-		
+		slip_angle_prev=slip_angle
 		--if slip_angle > 180 then slip_angle = slip_angle - 360
 		--elseif slip_angle < -180 then slip_angle = slip_angle + 360 end
 		
@@ -208,47 +210,47 @@ function update()
 	
 	-- smooth movements
 	
-	local wind_dir_act = get(diss_wind_course) - acf_course
+	-- local wind_dir_act = get(diss_wind_course) - acf_course
 	
-	local delta_dir = diss_wind_dir - wind_dir_act
+	-- local delta_dir = diss_wind_dir - wind_dir_act
 		
-	if delta_dir > 180 then delta_dir = delta_dir - 360
-	elseif delta_dir < -180 then delta_dir = delta_dir + 360 end
+	-- if delta_dir > 180 then delta_dir = delta_dir - 360
+	-- elseif delta_dir < -180 then delta_dir = delta_dir + 360 end
 		
-	if delta_dir > 1 then wind_dir_act = wind_dir_act + passed * 30
-	elseif delta_dir < -1 then wind_dir_act = wind_dir_act - passed * 30
-	else wind_dir_act = wind_dir_act + delta_dir * passed * 30
-	end
+	-- if delta_dir > 1 then wind_dir_act = wind_dir_act + passed * 30
+	-- elseif delta_dir < -1 then wind_dir_act = wind_dir_act - passed * 30
+	-- else wind_dir_act = wind_dir_act + delta_dir * passed * 30
+	-- end
 	
-	if wind_dir_act > 360 then wind_dir_act = wind_dir_act - 360
-	elseif wind_dir_act < 0 then wind_dir_act = wind_dir_act + 360 end	
-	
-	
+	-- if wind_dir_act > 360 then wind_dir_act = wind_dir_act - 360
+	-- elseif wind_dir_act < 0 then wind_dir_act = wind_dir_act + 360 end	
 	
 	
-	local wind_spd_act = get(diss_wind_spd) / 3.6
 	
-	local delta_spd = diss_wind_speed - wind_spd_act 
+	
+	-- local wind_spd_act = get(diss_wind_spd) / 3.6
+	
+	-- local delta_spd = diss_wind_speed - wind_spd_act 
 		
-	if delta_spd > 1 then wind_spd_act = wind_spd_act + passed * 20
-	elseif delta_spd < -1 then wind_spd_act = wind_spd_act - passed * 20
-	else wind_spd_act = wind_spd_act + delta_spd * passed * 20
-	end
+	-- if delta_spd > 1 then wind_spd_act = wind_spd_act + passed * 20
+	-- elseif delta_spd < -1 then wind_spd_act = wind_spd_act - passed * 20
+	-- else wind_spd_act = wind_spd_act + delta_spd * passed * 20
+	-- end
 	
 	
 local MASTER = get(ismaster) ~= 1
 
 if MASTER then
-	if get(nvu_calc_set)~=0 then
-		set(diss_slip_angle, slip_angle)
-	end
+	--if get(nvu_calc_set)~=0 then
+	set(diss_slip_angle, slip_angle)
+	--end
 	set(diss_groundspeed, g_spd * 3.6)
-	local nvu_power = get(nvu_power_on) == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100 and get(nvu_fail)==0
-	-- set results
-	if nvu_power then
-		set(diss_wind_course, wind_dir_act + acf_course)
-		set(diss_wind_spd, wind_spd_act * 3.6)
-	end
+	-- local nvu_power = get(nvu_power_on) == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100 and get(nvu_fail)==0
+	-- -- set results
+	-- if nvu_power then
+		-- set(diss_wind_course, wind_dir_act + acf_course)
+		-- set(diss_wind_spd, wind_spd_act * 3.6)
+	-- end
 	
 	set(diss_mode, mode)
 	
