@@ -384,12 +384,12 @@ if MASTER then
 	local elec_pump_3 = bool2int(power115_3 and power27R and get(pump_3) == 1 and get(hydro_elec_fail_3) == 0)
 	
 	if hs2_qty > 0 then 
-		local flow = elec_pump_2 * interpolate(electric_pumps_t, acc_2) * passed *1 * elec_pump_2_start_timer *(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
+		local flow = elec_pump_2 * interpolate(electric_pumps_t, acc_2) * passed *0.8 * elec_pump_2_start_timer *(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
 		acc_2 = acc_2 + flow
 		hs2_qty = hs2_qty - flow
 	end
 	if hs3_qty > 0 then 
-		local flow = elec_pump_3 * interpolate(electric_pumps_t, acc_3) * passed *0.95 * elec_pump_3_start_timer*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
+		local flow = elec_pump_3 * interpolate(electric_pumps_t, acc_3) * passed *0.75 * elec_pump_3_start_timer*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
 		acc_3 = acc_3 + flow
 		hs3_qty = hs3_qty - flow
 	end

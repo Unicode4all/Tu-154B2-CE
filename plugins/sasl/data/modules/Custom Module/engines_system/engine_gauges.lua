@@ -193,7 +193,7 @@ defineProperty("kpp_dn", globalPropertyf("tu154b2/engine/kpp_dn"))
 defineProperty("rot_1", globalPropertyf("tu154b2/custom/engines/nk_rotation_1"))
 defineProperty("rot_3", globalPropertyf("tu154b2/custom/engines/nk_rotation_3"))
 
-defineProperty("wind_dir", globalPropertyf("sim/cockpit2/gauges/indicators/wind_heading_deg_mag"))
+defineProperty("wind_dir", globalPropertyf("sim/weather/aircraft/wind_now_direction_degt"))
 defineProperty("acft_dir", globalPropertyf("sim/flightmodel/position/mag_psi"))
 
 defineProperty("eng2_case_temp", globalPropertyf("tu154b2/custom/engines/engine2_case_temp"))
@@ -242,6 +242,9 @@ defineProperty("override_egt", globalPropertyf("sim/operation/override/override_
 bearing_1_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_1")
 bearing_2_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_2")
 bearing_3_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_3")
+
+knd_1 = globalPropertyf("tu154b2/custom/engines/knd_1")
+knd_3 = globalPropertyf("tu154b2/custom/engines/knd_3")
 
 local MASTER = get(ismaster) ~= 1	
 
@@ -299,6 +302,12 @@ local rudder_corr_tbl={
 {0, 1},
 {12000, 0.5},
 {20000, 0.5}}
+
+local c_q_corr_table={
+{-10000, 0.3},
+{80, 0.3},
+{360, 1},
+{20000, 1}}
 
 -- engine oil temp model (based on fuel/oil heat exchanger
 function oil_temp(flow,nk8_temp,rpm,rpm_knd,pump_press,oil_tmp_prev,case_prev,brg_prev,therm,fuel_temp,passed)
@@ -813,8 +822,8 @@ local M_rot=0.35 -- rotor mass
 local c_aero=0.0035 -- drag coefficient
 local a_N1=0
 local q=0
-local c_q=0.0001 -- windmilling coefficient
-local c_f=0.003 -- friction coefficient
+local c_q_base=0.0001 -- windmilling coefficient
+local c_f=0.0004 -- friction coefficient
 
 local n2_1_runout=0
 local n2_2_runout=0
@@ -827,6 +836,10 @@ local n2_M_rot=0.15
 local fan_1=math.random()*360
 local fan_3=math.random()*360
 local rpm_knd=5900/0.97 --rpm @ 100% N1		 
+
+local needle_1_move=0
+local needle_2_move=0
+local needle_3_move=0
 
 local function n1_from_n2 (rpm,d_isa,altitude,tas)
 	--local knd=2.27883656454638781896e-02 + 1.48521461357922052691e-03*d_isa + 2.85578535694455237781e-01*rpm -9.80969385717822827146e-05*d_isa*rpm + 5.06556388550356579553e-03*math.pow(rpm,2) -1.81250059943665734515e-05*d_isa*math.pow(rpm,2) + 2.76277805413032983845e-05*math.pow(rpm,3)
@@ -985,6 +998,7 @@ if MASTER then
 	local low_idle1=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna1
 	local low_idle2=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,idle_rpm)
 	local low_idle3=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna3
+	local c_q=c_q_base*interpolate(c_q_corr_table,tas_LP)
 	-- correct turbine power coefficient to match idle N1
 	c_turb1=c_aero*dens*math.pow(low_idle1,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
 	c_turb2=c_aero*dens*math.pow(low_idle2,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
@@ -1016,17 +1030,21 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*1.1*bool2int(eng1_N2_need>0.01)
+	a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f--*1.1*bool2int(eng1_N2_need>0.01)
 	eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
 	--set(db1,eng1_N2_need)
 	--set(db2,eng1_N2_need_old)
 	eng1_N2_need=math.max(eng1_N2_need_old*flame1,eng1_N2_need)
-	if (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2  then
-		eng1_2_ang_act=0
+	if ((eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2) or eng1_N2_need<0.5  then
+		eng1_2_ang_act=eng1_2_ang_act-eng1_2_ang_act*passed
 	elseif (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need>=2 and eng1_N2_need<3 then
 		eng1_2_ang_act= eng1_2_ang_act+((2* math.exp(-(eng1_N2_need-2)*5)*math.sin(10*(eng1_N2_need-2))+eng1_N2_need)- eng1_2_ang_act)* passed * 20
+		needle_1_move=1
 	else
-		eng1_2_ang_act = eng1_2_ang_act + (eng1_N2_need+(-0.04167*math.pow(eng1_N2_need,2)+0.5417*eng1_N2_need-1.5)*0.57*math.sin(20*tme+2)*bool2int(eng1_N2_need>3 and eng1_N2_need<9) - eng1_2_ang_act) * passed * 20
+		eng1_2_ang_act = eng1_2_ang_act + (eng1_N2_need+(-0.04167*math.pow(eng1_N2_need,2)+0.5417*eng1_N2_need-1.5)*0.57*math.sin(20*tme+2)*bool2int(eng1_N2_need>3 and eng1_N2_need<9) - eng1_2_ang_act) * passed * 20  * needle_1_move
+	end
+	if eng1_2_ang_act<0.4 then
+		needle_1_move=0
 	end
 	set(rpm_low_1, eng1_2_ang_act)
 	--N1 Engine 2
@@ -1045,15 +1063,19 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q-c_f*1.3*bool2int(eng2_N2_need>0.01)
+	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q-c_f--*1.3*bool2int(eng2_N2_need>0.01)
 	eng2_N2_need = eng2_N2_need+a_N1/M_rot*passed
 	eng2_N2_need=math.max(eng2_N2_need_old*flame2,eng2_N2_need)
-	if (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2  then
-		eng2_2_ang_act=0
+	if ((eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2) or eng2_N2_need<0.5  then
+		eng2_2_ang_act=eng2_2_ang_act-eng2_2_ang_act*passed
 	elseif (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need>=2 and eng2_N2_need<3 then
 		eng2_2_ang_act= eng2_2_ang_act+((2* math.exp(-(eng2_N2_need-2)*5)*math.sin(10*(eng2_N2_need-2))+eng2_N2_need)- eng2_2_ang_act)* passed * 20
+		needle_2_move=1
 	else
-		eng2_2_ang_act = eng2_2_ang_act + (eng2_N2_need+(-0.04167*math.pow(eng2_N2_need,2)+0.5417*eng2_N2_need-1.5)*0.66*math.sin(20*tme+3)*bool2int(eng2_N2_need>3 and eng2_N2_need<9) - eng2_2_ang_act) * passed * 20
+		eng2_2_ang_act = eng2_2_ang_act + (eng2_N2_need+(-0.04167*math.pow(eng2_N2_need,2)+0.5417*eng2_N2_need-1.5)*0.66*math.sin(20*tme+3)*bool2int(eng2_N2_need>3 and eng2_N2_need<9) - eng2_2_ang_act) * passed * 20 * needle_2_move
+	end
+	if eng2_2_ang_act<0.4 then
+		needle_2_move=0
 	end
 	set(rpm_low_2, eng2_2_ang_act)
 	--N1 Engine 3
@@ -1073,15 +1095,19 @@ if MASTER then
 	end
 	--N1 for low and high N2
 	-- Startup N1
-	a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*get(rho)*math.pow(eng3_N2_need,2)+c_q*q-c_f*bool2int(eng3_N2_need>0.01)
+	a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*get(rho)*math.pow(eng3_N2_need,2)+c_q*q-c_f--*bool2int(eng3_N2_need>0.01)
 	eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
 	eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
-	if (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2  then
-		eng3_2_ang_act=0
+	if ((eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2) or eng3_N2_need<0.5 then
+		eng3_2_ang_act=eng3_2_ang_act-eng3_2_ang_act*passed
 	elseif (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need>=2 and eng3_N2_need<3 then
 		eng3_2_ang_act= eng3_2_ang_act+((2* math.exp(-(eng3_N2_need-2)*5)*math.sin(10*(eng3_N2_need-2))+eng3_N2_need)- eng3_2_ang_act)* passed * 20
+		needle_3_move=1
 	else
-		eng3_2_ang_act = eng3_2_ang_act + (eng3_N2_need+(-0.04167*math.pow(eng3_N2_need,2)+0.5417*eng3_N2_need-1.5)*0.45*math.sin(20*tme+1)*bool2int(eng3_N2_need>3 and eng3_N2_need<9) - eng3_2_ang_act) * passed * 20
+		eng3_2_ang_act = eng3_2_ang_act + (eng3_N2_need+(-0.04167*math.pow(eng3_N2_need,2)+0.5417*eng3_N2_need-1.5)*0.45*math.sin(20*tme+1)*bool2int(eng3_N2_need>3 and eng3_N2_need<9) - eng3_2_ang_act) * passed * 20 * needle_3_move
+	end
+	if eng3_2_ang_act<0.4 then
+		needle_3_move=0
 	end
 	if eng1_N2_need<20 then
 		fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
@@ -1095,6 +1121,9 @@ if MASTER then
 			fan_3=fan_3-360
 		end
 	end
+	-- set(db1,eng3_N2_need)
+	-- set(db2,q)
+	-- set(db3,wind_angle)
 	eng1_N2_need_prev=eng1_N2_need
 	eng2_N2_need_prev=eng2_N2_need
 	eng3_N2_need_prev=eng3_N2_need
@@ -1105,6 +1134,8 @@ if MASTER then
 	set(igv3,bool2int(rna3>5))
 	set(rot_1,fan_1)
 	set(rot_3,fan_3)
+	set(knd_1,eng1_N2_need)
+	set(knd_3,eng3_N2_need)
 
 end
 

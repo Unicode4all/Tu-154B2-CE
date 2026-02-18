@@ -82,7 +82,7 @@ components = {
 			set(value, val)
 			mouse_stat = false
 			was_click = false
-			addFunc()
+			--addFunc()
 			return true
         end,
 		
