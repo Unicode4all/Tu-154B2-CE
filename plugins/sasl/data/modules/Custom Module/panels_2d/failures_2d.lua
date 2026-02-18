@@ -275,7 +275,8 @@ customFails["Clock left"] = globalPropertyi("tu154b2/custom/failures/acs1_fail")
 customFails["Clock right"] = globalPropertyi("tu154b2/custom/failures/acs2_fail")
 customFails["Clock engineer"] = globalPropertyi("tu154b2/custom/failures/acs3_fail")
 customFails["Aux art horizon"] = globalPropertyi("tu154b2/custom/failures/agr_fail")
-customFails["BKK system"] = globalPropertyi("tu154b2/custom/failures/bkk_fail")
+customFails["BKK channel 1"] = globalPropertyi("tu154b2/custom/failures/bkk_fail")
+customFails["BKK channel 2"] = globalPropertyi("tu154b2/custom/failures/bkk_fail_2")
 
 customFails["!!!Left pitot block"] = globalPropertyi("tu154b2/custom/failures/pitot1") -- Pitot 1 - Blockage
 customFails["!!!Right pitot block"] = globalPropertyi("tu154b2/custom/failures/pitot2") -- Pitot 2 - Blockage

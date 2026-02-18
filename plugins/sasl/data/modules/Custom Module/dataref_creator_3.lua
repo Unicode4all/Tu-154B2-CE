@@ -138,6 +138,7 @@ createGlobalPropertyi("tu154b2/custom/failures/tks_bgmk1_fail", 0) -- отказ
 createGlobalPropertyi("tu154b2/custom/failures/tks_bgmk2_fail", 0) -- отказ ТКС
 createGlobalPropertyi("tu154b2/custom/failures/agr_fail", 0) -- отказ АГР
 createGlobalPropertyi("tu154b2/custom/failures/bkk_fail", 0) -- отказ БКК
+createGlobalPropertyi("tu154b2/custom/failures/bkk_fail_2", 0)
 createGlobalPropertyi("tu154b2/custom/failures/mgv_fail", 0) -- отказ МГВ
 createGlobalPropertyi("tu154b2/custom/failures/rv1_fail", 0) -- отказ РВ5
 createGlobalPropertyi("tu154b2/custom/failures/rv2_fail", 0) -- отказ РВ5

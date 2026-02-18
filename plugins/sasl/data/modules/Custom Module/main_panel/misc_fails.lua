@@ -13,6 +13,7 @@ defineProperty("acs3_fail", globalPropertyi("tu154b2/custom/failures/acs3_fail")
 
 defineProperty("agr_fail", globalPropertyi("tu154b2/custom/failures/agr_fail"))
 defineProperty("bkk_fail", globalPropertyi("tu154b2/custom/failures/bkk_fail"))
+defineProperty("bkk_fail2", globalPropertyi("tu154b2/custom/failures/bkk_fail_2"))
 
 defineProperty("pitot1", globalPropertyi("tu154b2/custom/failures/pitot1"))
 defineProperty("pitot2", globalPropertyi("tu154b2/custom/failures/pitot2"))
@@ -97,6 +98,7 @@ if MASTER then
 			
 			if get(agr_fail) ~= 1 then set(agr_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(bkk_fail) ~= 1 then set(bkk_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(bkk_fail2) ~= 1 then set(bkk_fail2, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			
 			if get(pitot1) ~= 1 then set(pitot1, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(pitot2) ~= 1 then set(pitot2, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
@@ -149,6 +151,7 @@ if MASTER then
 		
 		set(agr_fail, 0)
 		set(bkk_fail, 0)
+		set(bkk_fail2, 0)
 		
 		set(pitot1, 0)
 		set(pitot2, 0)
