@@ -823,7 +823,7 @@ local c_aero=0.0035 -- drag coefficient
 local a_N1=0
 local q=0
 local c_q_base=0.0001 -- windmilling coefficient
-local c_f=0.0004 -- friction coefficient
+local c_f=0.0003 -- friction coefficient
 
 local n2_1_runout=0
 local n2_2_runout=0
@@ -949,8 +949,8 @@ if MASTER then
 	-- if rpm_2<idle_rpm-0.5 then
 		-- eng2_N1_need=math.max(eng2_N1_need*flame2,interpolate(N2_windmill_table,rpm_2))
 	-- end
-	if ((rpm_2-rpm_2_last)>0 and eng2_N1_need<3.5) or eng2_N1_need<0.3 then
-		eng2_1_ang_act =eng2_1_ang_act-eng2_1_ang_act* passed
+	if ((rpm_2-rpm_2_last)>0 and eng2_N1_need<3.5) or eng2_N1_need<0.9 then
+		eng2_1_ang_act =eng2_1_ang_act-eng2_1_ang_act* passed*2
 	elseif (rpm_2-rpm_2_last)>0 and eng2_N1_need>=3.5 and eng2_N1_need<5 then
 		eng2_1_ang_act = eng2_1_ang_act+((10* math.exp(-(eng2_N1_need-3.5)*5)*math.sin(10*(eng2_N1_need-3.5))+eng2_N1_need)- eng2_1_ang_act)* passed * 20
 	else
@@ -1035,15 +1035,17 @@ if MASTER then
 	--set(db1,eng1_N2_need)
 	--set(db2,eng1_N2_need_old)
 	eng1_N2_need=math.max(eng1_N2_need_old*flame1,eng1_N2_need)
-	if ((eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2) or eng1_N2_need<0.5  then
-		eng1_2_ang_act=eng1_2_ang_act-eng1_2_ang_act*passed
+	if ((eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2) or eng1_N2_need<1  then
+		eng1_2_ang_act=eng1_2_ang_act-eng1_2_ang_act*passed*2
 	elseif (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need>=2 and eng1_N2_need<3 then
 		eng1_2_ang_act= eng1_2_ang_act+((2* math.exp(-(eng1_N2_need-2)*5)*math.sin(10*(eng1_N2_need-2))+eng1_N2_need)- eng1_2_ang_act)* passed * 20
 		needle_1_move=1
 	else
 		eng1_2_ang_act = eng1_2_ang_act + (eng1_N2_need+(-0.04167*math.pow(eng1_N2_need,2)+0.5417*eng1_N2_need-1.5)*0.57*math.sin(20*tme+2)*bool2int(eng1_N2_need>3 and eng1_N2_need<9) - eng1_2_ang_act) * passed * 20  * needle_1_move
 	end
-	if eng1_2_ang_act<0.4 then
+	if eng1_N2_need>20 then
+		needle_1_move=1
+	elseif eng1_2_ang_act<0.4 then
 		needle_1_move=0
 	end
 	set(rpm_low_1, eng1_2_ang_act)
@@ -1066,15 +1068,17 @@ if MASTER then
 	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q-c_f--*1.3*bool2int(eng2_N2_need>0.01)
 	eng2_N2_need = eng2_N2_need+a_N1/M_rot*passed
 	eng2_N2_need=math.max(eng2_N2_need_old*flame2,eng2_N2_need)
-	if ((eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2) or eng2_N2_need<0.5  then
-		eng2_2_ang_act=eng2_2_ang_act-eng2_2_ang_act*passed
+	if ((eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2) or eng2_N2_need<1  then
+		eng2_2_ang_act=eng2_2_ang_act-eng2_2_ang_act*passed*2
 	elseif (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need>=2 and eng2_N2_need<3 then
 		eng2_2_ang_act= eng2_2_ang_act+((2* math.exp(-(eng2_N2_need-2)*5)*math.sin(10*(eng2_N2_need-2))+eng2_N2_need)- eng2_2_ang_act)* passed * 20
 		needle_2_move=1
 	else
 		eng2_2_ang_act = eng2_2_ang_act + (eng2_N2_need+(-0.04167*math.pow(eng2_N2_need,2)+0.5417*eng2_N2_need-1.5)*0.66*math.sin(20*tme+3)*bool2int(eng2_N2_need>3 and eng2_N2_need<9) - eng2_2_ang_act) * passed * 20 * needle_2_move
 	end
-	if eng2_2_ang_act<0.4 then
+	if eng2_N2_need>20 then
+		needle_2_move=1
+	elseif eng2_2_ang_act<0.4 then
 		needle_2_move=0
 	end
 	set(rpm_low_2, eng2_2_ang_act)
@@ -1106,21 +1110,23 @@ if MASTER then
 	else
 		eng3_2_ang_act = eng3_2_ang_act + (eng3_N2_need+(-0.04167*math.pow(eng3_N2_need,2)+0.5417*eng3_N2_need-1.5)*0.45*math.sin(20*tme+1)*bool2int(eng3_N2_need>3 and eng3_N2_need<9) - eng3_2_ang_act) * passed * 20 * needle_3_move
 	end
-	if eng3_2_ang_act<0.4 then
+	if eng3_N2_need>20 then
+		needle_3_move=1
+	elseif eng3_2_ang_act<0.4 then
 		needle_3_move=0
 	end
-	if eng1_N2_need<20 then
-		fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
-		if fan_1>=360 then
-			fan_1=fan_1-360
-		end
+	--if eng1_N2_need<80 then
+	fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
+	if fan_1>=360 then
+		fan_1=fan_1-360
 	end
-	if eng3_N2_need<20 then	
-		fan_3=fan_3+eng3_N2_need/100*rpm_knd/60*360*passed
-		if fan_3>=360 then
-			fan_3=fan_3-360
-		end
+	--end
+	--if eng3_N2_need<40 then	
+	fan_3=fan_3+eng3_N2_need/100*rpm_knd/60*360*passed
+	if fan_3>=360 then
+		fan_3=fan_3-360
 	end
+	--end
 	-- set(db1,eng3_N2_need)
 	-- set(db2,q)
 	-- set(db3,wind_angle)
