@@ -32,6 +32,7 @@ T154_kontur_on = find_dataref("tu154b2/custom/b2/kontur_on")
 T154_kontur_off = deferred_dataref("sim/custom/b2/kontur_off", "number")
 T154_kontur_90th = deferred_dataref("sim/custom/b2/kontur_90th", "number")
 T154_kontur_70th = deferred_dataref("sim/custom/b2/kontur_70th", "number")
+T154_pa_off = deferred_dataref("sim/custom/b2/kontur_pa_off", "number")
 
 
 changesynclights_CMD = deferred_command("t154cfg/changesynclights", "Change sync lights CFG", simconfig_change_sync_lights_CMDhandler)

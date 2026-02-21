@@ -2553,7 +2553,7 @@ TRIS 0 240
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_pa_off
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_gns
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/gns430_lit 1000.000000
 TRIS 240 2127

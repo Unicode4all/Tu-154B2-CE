@@ -19723,7 +19723,7 @@ ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/switchers/ovhd/tks_on
 TRIS 19215 6
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_pa_off
 ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/switchers/ovhd/kln_on
 TRIS 19221 6
 ANIM_end
@@ -20484,7 +20484,7 @@ ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/b2/flaps_power
 TRIS 20229 6
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_pa_off
 ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_gns
 ATTR_manip_command hand custom/KLN90/Toggle_KLN_90B_Panel Toggle KLN90B Window
 TRIS 20235 6
@@ -20519,7 +20519,7 @@ ATTR_manip_command button custom/KLN90/Toggle_Altitude_Page Altitude
 TRIS 21441 36
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_pa_off
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_gns
 ATTR_solid_camera
 ATTR_draw_enable
@@ -21159,7 +21159,7 @@ ATTR_manip_drag_axis up_down 0.000000 1.000000 0.000000 0.000000 1.000000 sim/cu
 TRIS 25869 540
 ANIM_end
 ANIM_begin
-ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_70th
+ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_pa_off
 ATTR_manip_drag_axis hand 0.000000 0.200000 0.000000 0.000000 12000.000000 tu154b2/custom/nvu/pa3/scroll_offset PA-3 Move Scroll
 ATTR_manip_wheel 1.000000
 TRIS 26409 36

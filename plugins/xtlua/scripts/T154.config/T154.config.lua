@@ -42,6 +42,7 @@ T154_kontur_on = find_dataref("tu154b2/custom/b2/kontur_on")
 T154_kontur_off = deferred_dataref("sim/custom/b2/kontur_off", "number")
 T154_kontur_90th = deferred_dataref("sim/custom/b2/kontur_90th", "number")
 T154_kontur_70th = deferred_dataref("sim/custom/b2/kontur_70th", "number")
+T154_pa_off = deferred_dataref("sim/custom/b2/kontur_pa_off", "number")
 
 simDR_on_ground = find_dataref("sim/flightmodel/failures/onground_all") 
 simDR_kill_fms = find_dataref("sim/graphics/misc/kill_map_fms_line")
@@ -371,24 +372,28 @@ function simconfig_kontur_onoff_CMDhandler(phase, duration)
                 T154_kontur_off = 0
                 T154_kontur_90th = 1
                 T154_kontur_70th = 1
+				T154_pa_off = 1
             elseif kontur_on_off_cur == "YES" then
                 kontur_on_off_cur = "NO"
                 T154_kontur_on = 0
                 T154_kontur_off = 1
                 T154_kontur_90th = 1
                 T154_kontur_70th = 1
+				T154_pa_off = 1
             elseif kontur_on_off_cur == "NO" then
                 kontur_on_off_cur = "PA3"
                 T154_kontur_on = 0
                 T154_kontur_off = 1
                 T154_kontur_90th = 0
                 T154_kontur_70th = 0
+				T154_pa_off = 0
             else
                 kontur_on_off_cur = "OTHER"
                 T154_kontur_on = 0
                 T154_kontur_off = 1
                 T154_kontur_90th = 0
-                T154_kontur_70th = 1
+                T154_kontur_70th = 0
+				T154_pa_off = 1
             end
             simConfigData["data"].SIM.kontur_on_off = kontur_on_off_cur
             pushSimConfig(simConfigData["data"]["values"])
@@ -505,21 +510,25 @@ function set_loaded_configs()
         T154_kontur_off = 0
         T154_kontur_90th = 1
         T154_kontur_70th = 1
+		T154_pa_off = 1
     elseif simConfigData["data"].SIM.kontur_on_off == "NO" then
         T154_kontur_on = 0
         T154_kontur_off = 1
         T154_kontur_90th = 1
         T154_kontur_70th = 1
+		T154_pa_off = 1
     elseif simConfigData["data"].SIM.kontur_on_off == "OTHER" then
         T154_kontur_on = 0
         T154_kontur_off = 1
         T154_kontur_90th = 0
-        T154_kontur_70th = 1
+        T154_kontur_70th = 0
+		T154_pa_off = 1
     elseif simConfigData["data"].SIM.kontur_on_off == "PA3" then
         T154_kontur_on = 0
         T154_kontur_off = 1
         T154_kontur_90th = 0
         T154_kontur_70th = 0
+		T154_pa_off = 0
 	end
 	T154_newsimconfig_data = 0
 end

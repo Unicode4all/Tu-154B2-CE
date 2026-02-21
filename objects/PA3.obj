@@ -9415,7 +9415,7 @@ IDX	7035
 IDX	7037
 
 	ANIM_begin
-	ANIM_hide	1	1	sim/custom/b2/kontur_70th
+	ANIM_hide	1	1	sim/custom/b2/kontur_pa_off
 	TRIS	492 186
 		TRIS	0 492
 		ATTR_light_level	0	1	tu154b2/custom/lights/mid_right_panel_int

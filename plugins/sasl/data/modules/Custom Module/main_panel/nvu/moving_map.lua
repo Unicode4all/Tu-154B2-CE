@@ -79,6 +79,7 @@ pa3_draw_interval = createGlobalPropertyf("tu154b2/custom/nvu/pa3/draw_interval"
 effective_speed_property = createGlobalPropertyf("tu154b2/custom/nvu/effective_speed", 0.0)
 
 cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
+PA_off = globalPropertyi("sim/custom/b2/kontur_pa_off")
 
 PA3_ENABLED = createGlobalPropertyi("tu154b2/custom/nvu/pa3/enabled", 0)
 pa3_showscrollmenu = createGlobalPropertyi("tu154b2/custom/nvu/pa3/showscrollmenu", 0)
@@ -2593,7 +2594,7 @@ function onMouseDown(component, x, y, button)
 end
 
 function draw()
-    if get(cockpit_80s) == 0 then -- we draw only if 80s variant is chosen, because the moving map overlaps the Kontur
+    if get(cockpit_80s) == 0 and get(PA_off)==0 then -- we draw only if 80s variant is chosen, because the moving map overlaps the Kontur
         if isNonLitStage() then
             local scroll_pos = get(PA3.Scroll)
             local start_tile = math.floor((scroll_pos - size[2] / 2) / TILE_HEIGHT) + 1
