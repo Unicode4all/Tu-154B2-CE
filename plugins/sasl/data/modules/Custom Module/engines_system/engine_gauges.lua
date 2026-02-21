@@ -167,9 +167,9 @@ defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = p
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
 defineProperty("revers_flap_R", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]")) -- reverse on right engine
@@ -242,6 +242,8 @@ defineProperty("override_egt", globalPropertyf("sim/operation/override/override_
 bearing_1_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_1")
 bearing_2_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_2")
 bearing_3_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_3")
+
+eng_covers = globalPropertyi("tu154b2/custom/anim/engine_caps")
 
 knd_1 = globalPropertyf("tu154b2/custom/engines/knd_1")
 knd_3 = globalPropertyf("tu154b2/custom/engines/knd_3")
@@ -823,7 +825,7 @@ local c_aero=0.0035 -- drag coefficient
 local a_N1=0
 local q=0
 local c_q_base=0.0001 -- windmilling coefficient
-local c_f=0.0003 -- friction coefficient
+local c_f=0.0002 -- friction coefficient
 
 local n2_1_runout=0
 local n2_2_runout=0
@@ -1011,7 +1013,10 @@ if MASTER then
 	-- if tas_LP>60 then
 		-- wind_angle=1
 	-- end
-	q=q*math.cos(wind_angle/180*3.14)
+	q=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))
+	if math.abs(wind_angle)>90 then
+		q=q/2
+	end
 
 	--N1 as function of N2
 	eng1_N2_need_old=n1_from_n2 (eng1_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna1
@@ -1030,11 +1035,17 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f--*1.1*bool2int(eng1_N2_need>0.01)
+	if eng1_N2_need>=0 then
+		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*math.min(eng1_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+	else
+		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*math.max(eng1_N2_need/0.001,-1)
+	end
 	eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
 	--set(db1,eng1_N2_need)
 	--set(db2,eng1_N2_need_old)
-	eng1_N2_need=math.max(eng1_N2_need_old*flame1,eng1_N2_need)
+	if math.abs(eng1_N2_need)<eng1_N2_need_old*flame1 then
+		eng1_N2_need=eng1_N2_need_old*flame1
+	end
 	if ((eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2) or eng1_N2_need<1  then
 		eng1_2_ang_act=eng1_2_ang_act-eng1_2_ang_act*passed*2
 	elseif (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need>=2 and eng1_N2_need<3 then
@@ -1100,8 +1111,16 @@ if MASTER then
 	--N1 for low and high N2
 	-- Startup N1
 	a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*get(rho)*math.pow(eng3_N2_need,2)+c_q*q-c_f--*bool2int(eng3_N2_need>0.01)
+	if eng3_N2_need>=0 then
+		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q-c_f*math.min(eng3_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+	else
+		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q-c_f*math.max(eng3_N2_need/0.001,-1)
+	end
 	eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
-	eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
+	--eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
+	if math.abs(eng3_N2_need)<eng3_N2_need_old*flame3 then
+		eng3_N2_need=eng3_N2_need_old*flame3
+	end
 	if ((eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2) or eng3_N2_need<0.5 then
 		eng3_2_ang_act=eng3_2_ang_act-eng3_2_ang_act*passed
 	elseif (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need>=2 and eng3_N2_need<3 then
