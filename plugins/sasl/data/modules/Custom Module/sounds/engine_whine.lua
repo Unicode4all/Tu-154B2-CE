@@ -70,8 +70,8 @@ knd_3 = globalPropertyf("tu154b2/custom/engines/knd_3")
 
 defineProperty("vr_outside", globalPropertyi("sim/graphics/VR/teleport_on_ground"))
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 -- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
 -- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
@@ -530,12 +530,12 @@ function update()
 	local out_high_gn_2=interpolate(out_gain_tbl,rpm_2)
 	local out_high_gn_3=interpolate(out_gain_tbl,rpm_3)
 	
-	local n1_1=get(knd_1)
-	local rattle_gn_1=1000*0.2*math.exp(-math.pow((n1_1-0.6)/ 0.218, 2))*4
-	local rattle_pitch_1=1000*(0.8421*n1_1+0.5579)
-	local n1_3=get(knd_3)
-	local rattle_gn_3=1000*0.2*math.exp(-math.pow((n1_3-0.6)/ 0.218, 2))*4
-	local rattle_pitch_3=1000*(0.8421*n1_3+0.5579)
+	local n1_1=math.abs(get(knd_1))
+	local rattle_gn_1=1000*0.2*math.exp(-math.pow((n1_1-0.6)/  0.2543, 2))*4*math.min(n1_1/0.05,1)
+	local rattle_pitch_1=1000*(0.9747*n1_1+0.381)
+	local n1_3=math.abs(get(knd_3))
+	local rattle_gn_3=1000*0.2*math.exp(-math.pow((n1_3-0.6)/  0.2543, 2))*4*math.min(n1_3/0.05,1)
+	local rattle_pitch_3=1000*(0.9747*n1_3+0.381)
 
 	local out_high_pitch_1=interpolate(out_pitch_tbl2,rpm_1)+dopp
 	local out_high_pitch_2=interpolate(out_pitch_tbl2,rpm_2)+dopp
