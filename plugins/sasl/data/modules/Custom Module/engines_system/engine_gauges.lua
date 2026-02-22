@@ -1038,7 +1038,7 @@ if MASTER then
 	if eng1_N2_need>=0 then
 		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*math.min(eng1_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
 	else
-		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*math.max(eng1_N2_need/0.001,-1)
+		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)+c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*math.max(eng1_N2_need/0.001,-1)
 	end
 	eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
 	--set(db1,eng1_N2_need)
@@ -1114,7 +1114,7 @@ if MASTER then
 	if eng3_N2_need>=0 then
 		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q-c_f*math.min(eng3_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
 	else
-		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q-c_f*math.max(eng3_N2_need/0.001,-1)
+		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)+c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q-c_f*math.max(eng3_N2_need/0.001,-1)
 	end
 	eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
 	--eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
