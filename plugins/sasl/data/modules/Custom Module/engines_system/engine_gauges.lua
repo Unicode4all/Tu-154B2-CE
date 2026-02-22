@@ -820,7 +820,7 @@ local eng1_N1_need=0
 local eng2_N1_need=0
 local eng3_N1_need=0
 
-local M_rot=0.35 -- rotor mass
+local M_rot=0.45 -- rotor mass
 local c_aero=0.0035 -- drag coefficient
 local a_N1=0
 local q=0
@@ -1013,9 +1013,12 @@ if MASTER then
 	-- if tas_LP>60 then
 		-- wind_angle=1
 	-- end
-	q=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))
+	local q1=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_L))
+	local q2=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))
+	local q3=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_R))
 	if math.abs(wind_angle)>90 then
-		q=q/2
+		q1=q1/2*(1-get(revers_flap_L))
+		q3=q3/2*(1-get(revers_flap_R))
 	end
 
 	--N1 as function of N2
@@ -1036,11 +1039,13 @@ if MASTER then
 	end
 	-- Startup N1
 	if eng1_N2_need>=0 then
-		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*math.min(eng1_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.min(eng1_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
 	else
-		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)+c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*math.max(eng1_N2_need/0.001,-1)
+		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)+c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.max(eng1_N2_need/0.001,-1)
 	end
-	eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
+	if start_timer>3 then
+		eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
+	end
 	--set(db1,eng1_N2_need)
 	--set(db2,eng1_N2_need_old)
 	if math.abs(eng1_N2_need)<eng1_N2_need_old*flame1 then
@@ -1076,7 +1081,7 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q-c_f--*1.3*bool2int(eng2_N2_need>0.01)
+	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q2-c_f--*1.3*bool2int(eng2_N2_need>0.01)
 	eng2_N2_need = eng2_N2_need+a_N1/M_rot*passed
 	eng2_N2_need=math.max(eng2_N2_need_old*flame2,eng2_N2_need)
 	if ((eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2) or eng2_N2_need<1  then
@@ -1110,18 +1115,19 @@ if MASTER then
 	end
 	--N1 for low and high N2
 	-- Startup N1
-	a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*get(rho)*math.pow(eng3_N2_need,2)+c_q*q-c_f--*bool2int(eng3_N2_need>0.01)
 	if eng3_N2_need>=0 then
-		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q-c_f*math.min(eng3_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.min(eng3_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
 	else
-		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)+c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q-c_f*math.max(eng3_N2_need/0.001,-1)
+		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)+c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.max(eng3_N2_need/0.001,-1)
 	end
-	eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
+	if start_timer>3 then
+		eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
+	end
 	--eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
 	if math.abs(eng3_N2_need)<eng3_N2_need_old*flame3 then
 		eng3_N2_need=eng3_N2_need_old*flame3
 	end
-	if ((eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2) or eng3_N2_need<0.5 then
+	if ((eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2) or eng3_N2_need<1.1 then
 		eng3_2_ang_act=eng3_2_ang_act-eng3_2_ang_act*passed
 	elseif (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need>=2 and eng3_N2_need<3 then
 		eng3_2_ang_act= eng3_2_ang_act+((2* math.exp(-(eng3_N2_need-2)*5)*math.sin(10*(eng3_N2_need-2))+eng3_N2_need)- eng3_2_ang_act)* passed * 20
