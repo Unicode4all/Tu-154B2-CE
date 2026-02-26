@@ -202,12 +202,19 @@ function update()
 		angle_2, water2= beam_intersect(aircraft_x,aircraft_y,aircraft_z,beam2_1_rot,beam2_2_rot,beam2_3_rot)
 		angle_3, water3= beam_intersect(aircraft_x,aircraft_y,aircraft_z,beam3_1_rot,beam3_2_rot,beam3_3_rot)
 		-- Return signal fades at high angles or over calm water
+		local speed = math.sqrt(math.pow(1/2*(dopp_2-dopp_1)/math.cos((90-B)*math.pi/180)/math.cos((gamma)*math.pi/180),2)+math.pow(1/2*(dopp_3-dopp_2)/math.cos((90-B)*math.pi/180)/math.sin((gamma)*math.pi/180),2))
 		local wave=get(wave_amplitude)
-		beam1_fail=angle_1>42.5-math.random(0,2*(1-wave)*water1) or (water1==1 and wave < 0.1 ) or math.abs(dopp_1)<18
-		beam2_fail=angle_2>42  -math.random(0,2*(1-wave)*water2) or (water2==1 and wave < 0.1 ) or math.abs(dopp_2)<18.5
-		beam3_fail=angle_3>41.5-math.random(0,2*(1-wave)*water3) or (water3==1 and wave < 0.1 ) or math.abs(dopp_3)<17.5
+		beam1_fail=angle_1>45.5-math.random(0,2*(1-wave)*water1) or (water1==1 and wave < 0.1 ) or math.abs(dopp_1)<10 or speed<180/3.6
+		beam2_fail=angle_2>45  -math.random(0,2*(1-wave)*water2) or (water2==1 and wave < 0.1 ) or math.abs(dopp_2)<10 or speed<180/3.6
+		beam3_fail=angle_3>44.5-math.random(0,2*(1-wave)*water3) or (water3==1 and wave < 0.1 ) or math.abs(dopp_3)<10 or speed<180/3.6
 		check_timer=0
 	end
+	-- set(db1,angle_1)
+	-- set(db2,angle_2)
+	-- set(db3,angle_3)
+	-- set(db4,dopp_1)
+	-- set(db5,dopp_2)
+	-- set(db6,dopp_3)
 	-- calculate DISS mode
 	local power = get(diss_on) == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100
 	set(diss_cc, bool2int(power))
@@ -242,7 +249,7 @@ function update()
 	
 	
 	if mode == 1 then -- normal work
-		--- GS and slip from doppler shifts 
+		-- GS and slip from doppler shifts 
 		local Wz= 1/2*(dopp_2-dopp_1)/math.cos((90-B)*math.pi/180)/math.cos((gamma)*math.pi/180)
 		local Wx= 1/2*(dopp_3-dopp_2)/math.cos((90-B)*math.pi/180)/math.sin((gamma)*math.pi/180)
 		slip_angle=math.atan(Wx/Wz)*180/math.pi

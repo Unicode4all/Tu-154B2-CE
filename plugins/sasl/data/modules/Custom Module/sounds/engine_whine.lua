@@ -531,10 +531,10 @@ function update()
 	local out_high_gn_3=interpolate(out_gain_tbl,rpm_3)
 	
 	local n1_1=math.abs(get(knd_1))
-	local rattle_gn_1=1000*0.2*math.exp(-math.pow((n1_1-0.6)/  0.2543, 2))*4*math.min(n1_1/0.05,1)
+	local rattle_gn_1=1000*0.2*math.exp(-math.pow((n1_1-0.5)/  0.2543, 2))*2*math.min(n1_1/0.05,1)
 	local rattle_pitch_1=1000*(0.9747*n1_1+0.381)
 	local n1_3=math.abs(get(knd_3))
-	local rattle_gn_3=1000*0.2*math.exp(-math.pow((n1_3-0.6)/  0.2543, 2))*4*math.min(n1_3/0.05,1)
+	local rattle_gn_3=1000*0.2*math.exp(-math.pow((n1_3-0.5)/  0.2543, 2))*2*math.min(n1_3/0.05,1)
 	local rattle_pitch_3=1000*(0.9747*n1_3+0.381)
 
 	local out_high_pitch_1=interpolate(out_pitch_tbl2,rpm_1)+dopp
