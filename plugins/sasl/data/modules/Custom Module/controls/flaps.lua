@@ -207,7 +207,8 @@ local flap_pos_R_last = flaps_pos_R_cmd
 
 local slats_pos_cmd = get(slats)
 local slats_dirr = 0
-local spats_spd = 0.035
+local slats_spd = 0.035
+local slats_prev = 0
 
 local stab_pos_now = get(stab_ratio) * 5.5 -- 0 - 5.5 degrees
 local stab_pos_cmd = stab_pos_now
@@ -450,13 +451,13 @@ if MASTER then
 	slats_dirr = slats_dirr * bool2int(power27_L+power27_R>0)
 	
 	-- set movement
-	slats_pos = slats_pos + slats_dirr * passed * spats_spd * (bool2int(stats_eng > 1) * power115_1 * power27_L + bool2int(stats_eng > 0) * power115_3 * power27_R)
+	slats_pos = slats_pos + slats_dirr * passed * slats_spd * (bool2int(stats_eng > 1) * power115_1 * power27_L + bool2int(stats_eng > 0) * power115_3 * power27_R)
 	
-	if slats_dirr ~= 0 then
-		if stats_eng > 1 then CC_115_1 = 6.5 end
-		if stats_eng > 0 then CC_115_3 = 6.5 end
+	if slats_pos ~= slats_prev then
+		if stats_eng > 1 then CC_115_1 = 6 end
+		if stats_eng > 0 then CC_115_3 = 6 end
 	end
-	
+	slats_prev=slats_pos
 	if slats_pos > 1 then slats_pos = 1
 	elseif slats_pos < 0 then slats_pos = 0 end
 	

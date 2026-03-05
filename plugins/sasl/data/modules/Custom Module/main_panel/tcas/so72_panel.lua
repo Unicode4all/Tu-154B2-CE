@@ -7,7 +7,7 @@ defineProperty("xpdr_code", globalPropertyf("sim/cockpit/radios/transponder_code
 defineProperty("so72_code", globalPropertyi("tu154b2/custom/ovhd/so72_code"))  -- выключатель TCAS
 
 
-defineProperty("tra_scr", globalPropertyi("tu154b2/custom/tcas/screen_mode"))  -- выключатель TCAS
+tcas_pow = globalPropertyi("tu154b2/custom/switchers/ovhd/tra_67_on")  -- выключатель TCAS
 
 ident_cmd = findCommand("sim/transponder/transponder_ident")  -- comand of transponder ident
 defineProperty("xpdr_fail", globalPropertyi("sim/operation/failures/rel_xpndr"))
@@ -37,6 +37,9 @@ defineProperty("transponder_green", globalPropertyf("tu154b2/custom/lights/small
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+so_fail = globalPropertyi("tu154b2/custom/failures/so72_fail")
+so_mode = globalPropertyi("tu154b2/custom/tcas/co72_mode")
 
 
 
@@ -105,9 +108,16 @@ function update()
 	--sounds()
 	
 	local mode = get(transponder_mode)
-	
-	power = mode > 0 and get(bus27_volt_left) > 13 and (get(tra_scr) == -1 or get(tra_scr) == 100)
-	
+	local fail=get(so_fail)
+	power = mode > 0 and get(bus27_volt_left) > 13 and get(tcas_pow) == 0 and get(bus115_1_volt)>100
+	local xpdr_mode=0
+	if power and mode==5 and fail==0 then
+		xpdr_mode=2
+	elseif power and mode==6 and fail==0 then
+		xpdr_mode=3
+	elseif power then
+		xpdr_mode=1
+	end
 	local d1, d2, d3, d4 = getDigits(code)
 	
 	-- show code
@@ -159,9 +169,9 @@ function update()
 	buttons_summ_last = buttons_summ
 	
 	-- set emergency code
-	if power and (mode-4) > 1 and get(transponder_emerg) == 1 then
-		set(xpdr_code, 7700)
-	end
+	-- if power and (mode-4) > 1 and get(transponder_emerg) == 1 then
+		-- set(xpdr_code, 7700)
+	-- end
 	
 	-- send IDENT signal
 	if power and mode > 1 and get(transponder_sign) == 1 then
@@ -174,15 +184,16 @@ function update()
 		self_test_cnt = 0
 	end
 	
-	-- fake test. need to add failure logic here.
 	if self_test and power and mode > 0 then
 		self_test_cnt = self_test_cnt + passed
 		if self_test_cnt > 0 and self_test_cnt < 30 then
 			set(transponder_red, 1)
 			set(transponder_green, 0)
-		elseif self_test_cnt >= 30 and self_test_cnt < 55 then
+			xpdr_mode=1
+		elseif self_test_cnt >= 30 and self_test_cnt < 55 and  fail==0 then
 			set(transponder_red, 0)
 			set(transponder_green, 1)
+			xpdr_mode=1
 		else
 			self_test_cnt = 0
 			self_test = false
@@ -199,7 +210,10 @@ function update()
 		set(transponder_green, 0)
     end
 	
-	if get(ismaster) ~= 1 then set(so72_code,code) end
+	if get(ismaster) ~= 1 then
+		set(so_mode,xpdr_mode)
+		set(so72_code,code) 
+	end
 	
 
 end

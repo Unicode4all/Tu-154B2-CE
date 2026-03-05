@@ -609,12 +609,12 @@ ppn13_lamp28 = deferred_dataref("sim/custom/t154/ppn13_lamp28", "number")
 -- simDR_ppn13_fail13 = find_dataref("tu154b2/custom/failures/absu_calc_pitch_fail") -- отказ продольного канала СТУ
 
 
-simDR_svs_fail = find_dataref("sim/operation/failures/rel_adc_comp")
+-- simDR_svs_fail = find_dataref("sim/operation/failures/rel_adc_comp")
 
-simDR_sau = find_dataref("tu154b2/custom/switchers/ovhd/sau_stu_on")
-simDR_absu_work = find_dataref("tu154b2/custom/lights/absu_work")
-simDR_ahz_flag_L = find_dataref("tu154b2/custom/gauges/ahz/ahz_flag_L")
-simDR_ahz_flag_R = find_dataref("tu154b2/custom/gauges/ahz/ahz_flag_R")
+-- simDR_sau = find_dataref("tu154b2/custom/switchers/ovhd/sau_stu_on")
+-- simDR_absu_work = find_dataref("tu154b2/custom/lights/absu_work")
+-- simDR_ahz_flag_L = find_dataref("tu154b2/custom/gauges/ahz/ahz_flag_L")
+-- simDR_ahz_flag_R = find_dataref("tu154b2/custom/gauges/ahz/ahz_flag_R")
 
 -- simDR_ra56_pitch1_lit = find_dataref("tu154b2/custom/failures/absu_ra1_pitch_fail")
 -- simDR_ra56_pitch2_lit = find_dataref("tu154b2/custom/failures/absu_ra2_pitch_fail")
@@ -626,19 +626,20 @@ simDR_ahz_flag_R = find_dataref("tu154b2/custom/gauges/ahz/ahz_flag_R")
 -- simDR_ra56_course2_lit = find_dataref("tu154b2/custom/failures/absu_ra2_yaw_fail")
 -- simDR_ra56_course3_lit = find_dataref("tu154b2/custom/failures/absu_ra3_yaw_fail")
 
-simDR_ra56_kolcev = find_dataref("tu154b2/custom/switchers/eng/hydro_circuit_auto_man")
-simDR_absu_roll_mode = find_dataref("tu154b2/custom/gauges/console/absu_roll_mode")
-simDR_absu_pitch_mode = find_dataref("tu154b2/custom/gauges/console/absu_pitch_mode")
+-- simDR_ra56_kolcev = find_dataref("tu154b2/custom/switchers/eng/hydro_circuit_auto_man")
+-- simDR_absu_roll_mode = find_dataref("tu154b2/custom/gauges/console/absu_roll_mode")
+-- simDR_absu_pitch_mode = find_dataref("tu154b2/custom/gauges/console/absu_pitch_mode")
+simDR_bus_115 = find_dataref("tu154b2/custom/elec/bus115_1_volt")
 
-local ppn13_count_test_search = 0
-local ppn13_count_test_start = 0
-local ppn13_count_test_run = 0
-local ppn13_push_pusk = 0
-local ppn13_push_pol = 0
-local ppn13_sbk_test_loc = 0
-local ppn13_test_started = 0
-local simDR_ra56_kolcev_last = 0
-local ppn13_to_pwr_was = 1
+-- local ppn13_count_test_search = 0
+-- local ppn13_count_test_start = 0
+-- local ppn13_count_test_run = 0
+-- local ppn13_push_pusk = 0
+-- local ppn13_push_pol = 0
+-- local ppn13_sbk_test_loc = 0
+-- local ppn13_test_started = 0
+-- local simDR_ra56_kolcev_last = 0
+-- local ppn13_to_pwr_was = 1
 
 -- simDR_oil_qty1 = find_dataref("tu154b2/custom/gauges/eng/oil_qty_1")
 -- simDR_oil_qty2 = find_dataref("tu154b2/custom/gauges/eng/oil_qty_2")
@@ -666,7 +667,6 @@ oil_qty_cap = deferred_dataref("sim/custom/gauges/eng/oil_qty_cap", "number")
 -- otk_ra56_tang=find_dataref("tu154b2/custom/failures/absu_ra56_pitch_fail")
 -- otk_ra56_kren=find_dataref("tu154b2/custom/failures/absu_ra56_roll_fail")
 -- otk_ra56_kurs=find_dataref("tu154b2/custom/failures/absu_ra56_yaw_fail")
-press_alt=find_dataref("sim/flightmodel2/position/pressure_altitude")
 
 
 
@@ -1528,7 +1528,7 @@ function co63_co70()
         co63_co70_control_timeout = co63_co70_control_timeout - 1 *SIM_PERIOD
     end
 
-    if co70_pwr < co63_pwr and simDR_bus27left > 5 then
+    if co70_pwr < co63_pwr and simDR_bus27left > 15 and simDR_bus_115>100 then
         simDR_transponder_code = co63_sqwk_1*1000+co63_sqwk_2*100+co63_sqwk_3*10+co63_sqwk_4
 		if  co63_mode==2 then
 			if co63_mode2==0 then
@@ -1553,7 +1553,7 @@ function co63_co70()
             co63_lit_test = simDR_transponder_light
         end
         co70_lit_test = 0
-    elseif co70_pwr > 0 and simDR_bus27left > 5 then
+    elseif co70_pwr > 0 and simDR_bus27left > 15 and simDR_bus_115>100 then
 		if co70_mode==0 then
 			simDR_transponder_mode = 1
 		elseif co70_mode==1 then

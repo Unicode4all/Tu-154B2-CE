@@ -104,8 +104,8 @@ function update()
 	local passed = get(frame_time)
 	local mode_sw = get(auasp_contr)
 	
-	set(auasp_pow27_cc, power * 10)
-	set(auasp_pow115_cc, power * 3)
+	set(auasp_pow27_cc, power * (15+20*bool2int(mode_sw==1))/27)
+	set(auasp_pow115_cc, power * 30/115)
 	
 	-- critical AOA sector logic
 	

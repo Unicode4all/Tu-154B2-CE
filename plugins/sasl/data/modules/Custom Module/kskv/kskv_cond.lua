@@ -472,7 +472,7 @@ function update()
 	elseif fast_hc_sw == 1 and power_R then fast_heat_cool_T = hot_air_T end
 	
 	--------------------------------------------------
-	local termo_tech=cabin_2_T-(cabin_2_T-termo_out)/2 -- tech compartment temperature
+	local termo_tech=cabin_1_T*3/4+termo_out/4 -- tech compartment temperature
 	-- door heat temperature
 	door_heat_T = door_heat_T + (termo_tech - door_heat_T) * passed * 0.01 -- cooling by time
 	local door_ht_sw = get(door_heat)

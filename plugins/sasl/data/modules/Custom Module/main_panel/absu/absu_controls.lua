@@ -260,7 +260,9 @@ defineProperty("v_right", globalPropertyf("sim/cockpit2/gauges/indicators/airspe
 defineProperty("absu_gs", globalPropertyi("tu154b2/custom/buttons/console/absu_gs")) -- кнопка глиссада на панели АБСУ
 cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
 --temp = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
-p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
+--p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
+p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
+--press_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")
 --defineProperty("h_right", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot"))
 
 --local pitch_act = 0
@@ -441,7 +443,8 @@ local loc_dev2=0
 local thet_gs_last=0
 local thet_hp = 0
 local elev_cmd_gs=0
-
+local p_s=101325
+local airspeed=0
 -- local d_contr_roll=0
 -- local d_contr_pitch=0
 -- local d_contr_yaw=0
@@ -517,18 +520,24 @@ function update()
 	local pitch_cmd = get(joy_pitch)
 	local roll_cmd = get(joy_roll)
 	local yaw_cmd = get(joy_yaw)
-	
+	-- speeds
+	local T_kzs=2
+	local v_kzs  = (get(v_left)+get(v_right))/2 * 1.852-- mean of two channels
+	airspeed=passed/(T_kzs+passed)*v_kzs + airspeed*T_kzs/(T_kzs+passed) -- delay
 	local mach = get(mach_svs)
-	local airspeed = (get(v_left)/2+get(v_right)/2) * 1.852 -- mean of two channels
 	local gnd_spd = get(diss_groundspeed)
 	
 	-- Barometric altitude
-	local p_s=get(p_stat_smoothed)
+	local T_stat=1
+	p_s = passed/(T_stat+passed)*get(p_stat)+p_s*T_stat/(T_stat+passed)
+	--local p_s=get(p_stat_smoothed)
 	local alt=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
 	if p_s< 22250 then
 		alt=11000+28.96*216.6500*math.log(22250/p_s)
 	end
-	
+	-- if get(db2)==2 then
+		-- alt=get(press_alt)*0.3048
+	-- end
 	-- set(db1,alt)
 	local RV_alt = get(rv5_alt)
 	
@@ -774,7 +783,7 @@ function update()
 		elseif pitch_submode == 5 then -- GS mode
 			-- constants
 			local KZ_gs = 15
-			local KDZ_gs=200
+			local KDZ_gs=150
 			local K_thet1_gs=1
 			local K_thet2_gs=2
 			-- P and D parts
@@ -1486,7 +1495,7 @@ function update()
 		if flag_pitch >0 then
 			pitch_show = 10
 		elseif pitch_submode == 5 and flag_pitch==0 then 
-			pitch_show = pitch_show - pitch_now
+			pitch_show = pitch_need
 		else
 			pitch_show = 0					
 		end			

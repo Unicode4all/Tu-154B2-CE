@@ -49,7 +49,7 @@ defineProperty("xpdr_mode", globalPropertyf("sim/cockpit/radios/transponder_mode
 defineProperty("xpdr_led", globalPropertyf("sim/cockpit/radios/transponder_light"))
 defineProperty("xpdr_fail", globalPropertyi("sim/operation/failures/rel_xpndr"))
 
-defineProperty("ovhd_mode", globalPropertyi("tu154b2/custom/switchers/ovhd/transponder_mode"))
+--defineProperty("ovhd_mode", globalPropertyi("tu154b2/custom/switchers/ovhd/transponder_mode"))
 
 
 defineProperty("var_on_1", globalPropertyi("tu154b2/custom/switchers/ovhd/var_left"))  -- оерхед. var
@@ -168,9 +168,10 @@ defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = p
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 defineProperty("ta_sel", globalPropertyi("sim/custom/tcas2000/ta_sel"))  -- появление желтых или красных меток
-defineProperty("kontur90", globalPropertyi("sim/custom/b2/kontur_90th"))
+defineProperty("kontur90", globalPropertyi("sim/custom/b2/kontur_70th"))
 defineProperty("tra_transponder", globalPropertyi("tu154b2/custom/switchers/ovhd/tra_67_on"))
 defineProperty("cas_pwr", globalPropertyi("sim/custom/tcas2000/tcas_pwr"))
+so_mode = globalPropertyi("tu154b2/custom/tcas/co72_mode")
 
 
 local MASTER = get(ismaster) ~= 1
@@ -698,13 +699,13 @@ if MASTER then
 	elseif mode == 4 then tcas_int_mode = 7 -- work
 	end
 	
-	local so72_mode = get(ovhd_mode)
+	local so72_mode = get(so_mode)
 	
-	if so72_mode == 0 or get(bus27_volt_left) < 13 then so72_int_mode = 0 -- off
-	elseif so72_mode == 1 then so72_int_mode = 1 -- stby
-	elseif so72_mode == 5 then so72_int_mode = 3 -- work
-	elseif so72_mode == 6 then so72_int_mode = 2 -- work
-	end 
+	-- if so72_mode == 0 or get(bus27_volt_left) < 13 then so72_int_mode = 0 -- off
+	-- elseif so72_mode == 1 then so72_int_mode = 1 -- stby
+	-- elseif so72_mode == 5 then so72_int_mode = 3 -- work
+	-- elseif so72_mode == 6 then so72_int_mode = 2 -- work
+	-- end 
 	
 	
 	-- results
@@ -717,7 +718,7 @@ if MASTER then
 				set(xpdr_mode,0)
 			end
 		else
-			set(xpdr_mode,so72_int_mode)
+			set(xpdr_mode,so72_mode)
 		end
 	end
 end	
