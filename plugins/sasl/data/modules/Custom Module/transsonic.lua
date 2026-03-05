@@ -247,6 +247,8 @@ local stab_tbl = {{ -1000, 0 },    -- bugs walkaround
 
 defineProperty("machno", globalProperty("sim/flightmodel/misc/machno"))
 
+local stalled=0
+
 function update()
 	local mach=math.min(get(machno)+0.002,0.84)
 	local aoa=get(angle)+3
@@ -280,8 +282,15 @@ function update()
 	drag_add=drag_add*interpolate(lift_corr_tbl,mach)+aoa_drag_add
 	
 	--local moment_add_stall=math.min(-2*(-0.0007311*math.pow(aoa+5,2)+0.03024*(aoa+5)-0.3157),0.5)-- add moment at high aoa for a somewhat realistic stall behavior
-	local moment_add_stall=0.5/(1+math.exp(-0.8079*(aoa+5)+19.79))
-	if aoa<10 then
+	local moment_add_stall_1=0.5/(1+math.exp(-0.8079*(aoa+5)+19.79))
+	local moment_add_stall_2=0.3*math.exp(-math.pow((aoa-30)/5.45,2))
+	if aoa>30 then
+		stalled=1
+	elseif aoa<15 then
+		stalled=0
+	end
+	local moment_add_stall=moment_add_stall_1*stalled+moment_add_stall_2*(1-stalled)
+	if aoa<14 then
 		moment_add_stall=0
 	end
 	-- this accounts for backward CoL shift in the transsonic region
