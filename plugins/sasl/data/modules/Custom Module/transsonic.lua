@@ -279,8 +279,9 @@ function update()
 	end
 	drag_add=drag_add*interpolate(lift_corr_tbl,mach)+aoa_drag_add
 	
-	local moment_add_stall=math.min(-2*(-0.0007311*math.pow(aoa+5,2)+0.03024*(aoa+5)-0.3157),0.5)-- add moment at high aoa for a somewhat realistic stall behavior
-	if aoa<15 then
+	--local moment_add_stall=math.min(-2*(-0.0007311*math.pow(aoa+5,2)+0.03024*(aoa+5)-0.3157),0.5)-- add moment at high aoa for a somewhat realistic stall behavior
+	local moment_add_stall=0.5/(1+math.exp(-0.8079*(aoa+5)+19.79))
+	if aoa<10 then
 		moment_add_stall=0
 	end
 	-- this accounts for backward CoL shift in the transsonic region
