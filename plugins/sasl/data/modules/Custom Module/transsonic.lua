@@ -283,7 +283,7 @@ function update()
 	
 	--local moment_add_stall=math.min(-2*(-0.0007311*math.pow(aoa+5,2)+0.03024*(aoa+5)-0.3157),0.5)-- add moment at high aoa for a somewhat realistic stall behavior
 	local moment_add_stall_1=0.5/(1+math.exp(-0.8079*(aoa+5)+19.79))
-	local moment_add_stall_2=0.3*math.exp(-math.pow((aoa-30)/5.45,2))
+	local moment_add_stall_2=0.3*math.exp(-math.pow((aoa-33)/5.45,2))
 	if aoa>30 then
 		stalled=1
 	elseif aoa<15 then
