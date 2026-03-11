@@ -261,8 +261,8 @@ defineProperty("pnp_gs_flag", globalPropertyi("tu154b2/custom/gauges/compas/pkp_
 -- defineProperty("alt_set_left", globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_copilot"))
 -- defineProperty("alt_set_right", globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_stby"))
 defineProperty("at_blocked", globalPropertyi("tu154b2/custom/failures/absu_at_blocked"))
-
-
+kolc = globalPropertyi("tu154b2/custom/absu/kolc")
+hydro_circuit_auto_man = globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
@@ -292,6 +292,8 @@ local GS_arm=0
 local toga_arm=0
 local gs_block=0
 local gs_captured=0
+local kolc_timer=0
+local power_36_prev=0
 if get(ismaster)~=1 then
 	function TOGA_comm_hnd(phase)
 		if 1 == phase then
@@ -1193,10 +1195,19 @@ local MASTER = get(ismaster) ~= 1
 
 
 		land_sw_last = land_prep
-		
-		
-		
-		
+		local kolc_avt=get(hydro_circuit_auto_man)
+		local power_36 = bool2int(get(bus36_volt_left)>30)
+		-- this reactivates servos if power is restored after 36V power loss
+		if kolc_timer>0 then
+			kolc_timer=kolc_timer-passed
+			kolc_avt=1
+		end
+		if power_36>power_36_prev then
+			kolc_timer=3
+		end
+		if power27 then
+			power_36_prev=power_36
+		end
 		
 
 
@@ -1218,6 +1229,7 @@ local MASTER = get(ismaster) ~= 1
 		set(absu_az2_arm,AZ2_mode_arm)
 		set(absu_app_arm,zach_arm)
 		set(absu_gs_arm,gliss_arm)
+		set(kolc,kolc_avt)
 		-- set(alt_set_left,29.92)
 		-- set(alt_set_right,29.92)
 	end
