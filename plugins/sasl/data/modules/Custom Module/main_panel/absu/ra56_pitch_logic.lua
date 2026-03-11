@@ -47,7 +47,7 @@ defineProperty("absu_ra1_pitch_fail", globalPropertyi("tu154b2/custom/failures/a
 defineProperty("absu_ra2_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_pitch_fail"))
 defineProperty("absu_ra3_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_pitch_fail"))
 
-defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man"))
+defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/absu/kolc"))
 defineProperty("absu_contr_pitch", globalPropertyf("tu154b2/custom/absu/contr_pitch")) -- отклонение штока РА56 по тангажу
 -- defineProperty("absu_contr_roll", globalPropertyf("tu154b2/custom/absu/contr_roll")) -- отклонение штока РА56 по крену
 -- defineProperty("absu_contr_yaw", globalPropertyf("tu154b2/custom/absu/contr_yaw")) -- отклонение штока РА56 по направлению
@@ -76,9 +76,10 @@ defineProperty("absu_power", globalPropertyi("tu154b2/custom/absu_power_cc"))
 --defineProperty("eng1_N1", globalPropertyf("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("absu_damp_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_damp_pitch_fail"))
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+bus36_volt = globalPropertyf("tu154b2/custom/elec/bus36_volt_left")
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 local ra56_act_p=0
 local ra1_act_p=math.random()*0.12-0.06
@@ -103,7 +104,7 @@ local d_ra1_p=0
 local d_ra2_p=0
 local d_ra3_p=0
 local centr=0
-
+local pow_36_prev=0
 local elev_lim = 0.345
 --local ail_lim = 0.4
 --local yaw_lim = 0.4
@@ -152,7 +153,16 @@ function update()
 		local ppn_test2=get(ppn_ra)+get(t2)>1 and get(ppn_snp)>0 and get(pol)>0
 		local ppn_test3=get(ppn_ra)+get(t3)>1 and get(ppn_snp)>0 and get(pol)>0
 		local power27=get(absu_power_27)
-		local power=bool2int(get(absu_power)>0)
+		local pow_36=bool2int(get(bus36_volt)>30)
+		-- if pow_36>pow_36_prev then
+			-- start_timer=3
+		-- end
+		-- pow_36_prev=pow_36
+		local power=bool2int(get(absu_power)>0 and pow_36>0)
+		
+		local power_1=get(hydro_ra56_elev_1)*pow_36
+		local power_2=get(hydro_ra56_elev_2)*pow_36
+		local power_3=get(hydro_ra56_elev_3)*pow_36
 		
 		if power27==1 then
 			fail1=p_kolc1
@@ -223,21 +233,21 @@ function update()
 		ra2_act_p=ra2_act_p+d_ra2_p*dt-(ra2_act_p-ra56_act_p)*c_hs*fail2*(1-locked_2)
 		ra3_act_p=ra3_act_p+d_ra3_p*dt-(ra3_act_p-ra56_act_p)*c_hs*fail3*(1-locked_3)
 		if power27==1 then
-			if (math.abs(ra1_act_p-ra2_act_p)>0.075 and math.abs(ra2_act_p-ra3_act_p)<0.075 and p_kolc2==0) or ppn_test1 or get(hydro_ra56_elev_1)==0 then
+			if (math.abs(ra1_act_p-ra2_act_p)>0.075 and math.abs(ra2_act_p-ra3_act_p)<0.075 and p_kolc2==0) or ppn_test1 or power_1==0 then
 				p_kolc1t=kolc_zad
 			else
 				if p_kolc1t>0  and avt==1 then
 					p_kolc1t=p_kolc1t-dt
 				end
 			end
-			if (math.abs(ra1_act_p-ra2_act_p)>0.075 and math.abs(ra3_act_p-ra2_act_p)>0.075 and math.abs(ra1_act_p-ra3_act_p)<0.075) or ppn_test2 or get(hydro_ra56_elev_2)==0 then
+			if (math.abs(ra1_act_p-ra2_act_p)>0.075 and math.abs(ra3_act_p-ra2_act_p)>0.075 and math.abs(ra1_act_p-ra3_act_p)<0.075) or ppn_test2 or power_2==0 then
 				p_kolc2t=kolc_zad
 			else
 				if p_kolc2t>0 and avt==1 then
 					p_kolc2t=p_kolc2t-dt
 				end
 			end
-			if (math.abs(ra3_act_p-ra1_act_p)>0.075 and math.abs(ra1_act_p-ra2_act_p)<0.075)or ppn_test3 or get(hydro_ra56_elev_3)==0 then
+			if (math.abs(ra3_act_p-ra1_act_p)>0.075 and math.abs(ra1_act_p-ra2_act_p)<0.075)or ppn_test3 or power_3==0 then
 				p_kolc3t=kolc_zad
 			else
 				if p_kolc3t>0   and avt==1 then
@@ -256,17 +266,17 @@ function update()
 				end
 			end   
 			
-			if p_kolc1t>0 or (get(hydro_ra56_elev_1)==0) then
+			if p_kolc1t>0 or (power_1==0) then
 				p_kolc1=1
 			else
 				p_kolc1=0
 			end
-			if p_kolc2t>0 or (get(hydro_ra56_elev_2)==0) then
+			if p_kolc2t>0 or (power_2==0) then
 				p_kolc2=1
 			else
 				p_kolc2=0
 			end
-			if p_kolc3t>0 or (get(hydro_ra56_elev_3)==0) then
+			if p_kolc3t>0 or (power_3==0) then
 				p_kolc3=1
 			else
 				p_kolc3=0
@@ -285,13 +295,13 @@ function update()
 			p_kolc3t=0
 		end
 		-- Unlock servos with hydraulic power application
-		if (fail1+avt==0 or get(hydro_ra56_elev_1)*avt==1) and power27==1 and locked_1==1 then
+		if (fail1+avt==0 or power_1*avt==1) and power27==1 and locked_1==1 then
 			locked_1=0
 		end
-		if (fail2+avt==0 or get(hydro_ra56_elev_2)*avt==1) and power27==1 and locked_2==1 then
+		if (fail2+avt==0 or power_2*avt==1) and power27==1 and locked_2==1 then
 			locked_2=0
 		end
-		if (fail3+avt==0 or get(hydro_ra56_elev_3)*avt==1) and power27==1 and locked_3==1 then
+		if (fail3+avt==0 or power_3*avt==1) and power27==1 and locked_3==1 then
 			locked_3=0
 		end
 		-- if p_kolc1+p_kolc2+p_kolc3<3  then 

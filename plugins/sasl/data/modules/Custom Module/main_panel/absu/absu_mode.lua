@@ -261,8 +261,8 @@ defineProperty("pnp_gs_flag", globalPropertyi("tu154b2/custom/gauges/compas/pkp_
 -- defineProperty("alt_set_left", globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_copilot"))
 -- defineProperty("alt_set_right", globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_stby"))
 defineProperty("at_blocked", globalPropertyi("tu154b2/custom/failures/absu_at_blocked"))
-
-
+kolc = globalPropertyi("tu154b2/custom/absu/kolc")
+hydro_circuit_auto_man = globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
@@ -292,6 +292,8 @@ local GS_arm=0
 local toga_arm=0
 local gs_block=0
 local gs_captured=0
+local kolc_timer=0
+local power_36_prev=0
 if get(ismaster)~=1 then
 	function TOGA_comm_hnd(phase)
 		if 1 == phase then
@@ -383,8 +385,8 @@ local MASTER = get(ismaster) ~= 1
 		
 		local sau_sw = get(sau_stu_on) == 1
 		
-		local power = get(bus27_volt_left) > 13 and get(bus27_volt_right) > 13 and get(bus115_3_volt) > 100 and get(bus36_volt_left) > 30 and get(bus36_volt_right) > 30 and get(bus36_volt_pts250_1) and sau_sw -- temp
-		local power27 =get(bus27_volt_left) > 13 and get(bus27_volt_right) > 13 and sau_sw
+		local power = get(bus27_volt_left) > 19  and get(bus115_1_volt) > 100 and get(bus36_volt_left) > 30 and sau_sw -- temp
+		local power27 = get(bus27_volt_left) > 19 and sau_sw
 		
 		local passed = get(frame_time)
 		
@@ -963,6 +965,7 @@ local MASTER = get(ismaster) ~= 1
 		-- Localizer mode fail
 		if (get(absu_calc_roll_fail)==1 or get(nav_cs_flag_1)==1 or get(tks_fail_left) + get(tks_fail_right) == 2 or get(absu_bns_roll_fail)==1 or get(absu_contr_roll_fail)==1) and roll_submode == 6 and roll_mode_main == 2 then
 			roll_submode = 1
+			zach_arm = 0
 			set(man_roll_lamp, 1)
 			set(absu_fail_signal, 1)
 		end
@@ -996,6 +999,7 @@ local MASTER = get(ismaster) ~= 1
 			if (get(absu_calc_pitch_fail) == 1 or get(nav_gs_flag_1)==1 or (get(rv_flag)+get(rv_flag2)>1 and marker_passed>0) or get(absu_contr_pitch_fail)==1 or get(absu_bns_pitch_fail)==1) and pitch_submode == 5 and pitch_mode_main == 2 then
 				pitch_mode_main = 1
 				pitch_submode = 1
+				gliss_arm = 0
 				set(man_pitch_lamp, 1)
 				set(absu_fail_signal, 1)
 			end
@@ -1191,10 +1195,19 @@ local MASTER = get(ismaster) ~= 1
 
 
 		land_sw_last = land_prep
-		
-		
-		
-		
+		local kolc_avt=get(hydro_circuit_auto_man)
+		local power_36 = bool2int(get(bus36_volt_left)>30)
+		-- this reactivates servos if power is restored after 36V power loss
+		if kolc_timer>0 then
+			kolc_timer=kolc_timer-passed
+			kolc_avt=1
+		end
+		if power_36>power_36_prev then
+			kolc_timer=3
+		end
+		if power27 then
+			power_36_prev=power_36
+		end
 		
 
 
@@ -1216,6 +1229,7 @@ local MASTER = get(ismaster) ~= 1
 		set(absu_az2_arm,AZ2_mode_arm)
 		set(absu_app_arm,zach_arm)
 		set(absu_gs_arm,gliss_arm)
+		set(kolc,kolc_avt)
 		-- set(alt_set_left,29.92)
 		-- set(alt_set_right,29.92)
 	end

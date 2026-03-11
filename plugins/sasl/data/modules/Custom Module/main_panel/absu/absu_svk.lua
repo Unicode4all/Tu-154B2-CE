@@ -149,7 +149,7 @@ defineProperty("at_mode", globalPropertyi("tu154b2/custom/absu/stu_mode"))
 defineProperty("land_mode", globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on"))
 defineProperty("nav_mode", globalPropertyi("tu154b2/custom/switchers/console/absu_nav_on"))
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
-defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man"))
+defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/absu/kolc"))
 
 defineProperty("mgv_thet_2", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L"))
 defineProperty("mgv_thet_3", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R"))
@@ -1460,6 +1460,9 @@ function update()
 			set(otk_4,0)
 			set(absu_bns_pitch_fail,1)
 			set(absu_bns_roll_fail,1)
+			set(absu_damp_pitch_fail,0)
+			set(absu_damp_roll_fail,0)
+			set(absu_damp_yaw_fail,0)
 			set(work_state,0)
 			s_run=0
 			s_reg=-2
