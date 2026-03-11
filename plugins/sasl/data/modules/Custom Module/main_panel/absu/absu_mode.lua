@@ -294,6 +294,7 @@ local gs_block=0
 local gs_captured=0
 local kolc_timer=0
 local power_36_prev=0
+local power27_prev=false
 if get(ismaster)~=1 then
 	function TOGA_comm_hnd(phase)
 		if 1 == phase then
@@ -1202,14 +1203,11 @@ local MASTER = get(ismaster) ~= 1
 			kolc_timer=kolc_timer-passed
 			kolc_avt=1
 		end
-		if power_36>power_36_prev then
-			kolc_timer=3
+		if power_36>power_36_prev and power27_prev then
+			kolc_timer=1.5
 		end
-		if power27 then
-			power_36_prev=power_36
-		end
-		
-
+		power_36_prev=power_36
+		power27_prev=power27
 
 		-- set results
 		set(roll_main_mode, roll_mode_main)
