@@ -40,14 +40,14 @@ simDR_apu_start_mode  = find_dataref("tu154b2/custom/switchers/eng/apu_start_mod
 simDR_oat  = find_dataref("sim/cockpit2/temperature/outside_air_temp_deg")
 simDR_passed = find_dataref("sim/operation/misc/frame_rate_period")
 simDR_time  = find_dataref("sim/time/total_running_time_sec")
-simDR_flaps_cl = find_dataref("sim/aircraft/controls/acf_flap_cl") 
-simDR_flaps_cm = find_dataref("sim/aircraft/controls/acf_flap_cm") 
-simDR_flaps_cd = find_dataref("sim/aircraft/controls/acf_flap_cd") 
-simDR_flaps2_cm = find_dataref("sim/aircraft/controls/acf_flap2_cm") 
-simDR_flaps2_cl = find_dataref("sim/aircraft/controls/acf_flap2_cl")  
-simDR_flaps2_cd = find_dataref("sim/aircraft/controls/acf_flap2_cd")  
-simDR_flap_ratio_deg = find_dataref("sim/flightmodel2/wing/flap1_deg") 
-simDR_flap_ratio_set = find_dataref("sim/cockpit2/controls/flap_ratio") 
+-- simDR_flaps_cl = find_dataref("sim/aircraft/controls/acf_flap_cl") 
+-- simDR_flaps_cm = find_dataref("sim/aircraft/controls/acf_flap_cm") 
+-- simDR_flaps_cd = find_dataref("sim/aircraft/controls/acf_flap_cd") 
+-- simDR_flaps2_cm = find_dataref("sim/aircraft/controls/acf_flap2_cm") 
+-- simDR_flaps2_cl = find_dataref("sim/aircraft/controls/acf_flap2_cl")  
+-- simDR_flaps2_cd = find_dataref("sim/aircraft/controls/acf_flap2_cd")  
+-- simDR_flap_ratio_deg = find_dataref("sim/flightmodel2/wing/flap1_deg") 
+-- simDR_flap_ratio_set = find_dataref("sim/cockpit2/controls/flap_ratio") 
 simDR_absu_turn = find_dataref("tu154b2/custom/switchers/console/absu_turn_handle") 
 simDR_absu_zk = find_dataref("tu154b2/custom/buttons/console/absu_zk") 
 simDR_absu_reset = find_dataref("tu154b2/custom/buttons/console/absu_reset") 
@@ -467,81 +467,81 @@ if lights == 0 and wait < 0.1 and lights_set > 0 then
     simDR_light_r_ext = 0
 end
     
-if simDR_flap_ratio_deg[0] > 0 then
-    flap_ratio = simDR_flap_ratio_deg[0]
-elseif simDR_flap_ratio_deg[1] > 0 then
-    flap_ratio = simDR_flap_ratio_deg[1]
-else 
-    flap_ratio = 0
-end
+-- if simDR_flap_ratio_deg[0] > 0 then
+    -- flap_ratio = simDR_flap_ratio_deg[0]
+-- elseif simDR_flap_ratio_deg[1] > 0 then
+    -- flap_ratio = simDR_flap_ratio_deg[1]
+-- else 
+    -- flap_ratio = 0
+-- end
     
-if simDR_gear_lev[1] > 0 then
-    gear_ratio = simDR_gear_lev[1]
-elseif simDR_gear_lev[2] > 0 then
-    gear_ratio = simDR_gear_lev[2]
-else 
-    gear_ratio = 0
-end
-    
-    
+-- if simDR_gear_lev[1] > 0 then
+    -- gear_ratio = simDR_gear_lev[1]
+-- elseif simDR_gear_lev[2] > 0 then
+    -- gear_ratio = simDR_gear_lev[2]
+-- else 
+    -- gear_ratio = 0
+-- end
     
     
     
-if flap_ratio > 6 then 
-   if no_flap_correct > 0 then 
-        no_flap_correct = no_flap_correct -0.0002
-   else
-        no_flap_correct = 0
-   end
-else
-   if no_flap_correct < 0.28 then 
-        no_flap_correct = no_flap_correct +0.001
-   else
-        no_flap_correct = 0.28
-   end
-end
     
     
-
-if simDR_spd > 126 and simDR_spd < 227 then        
-  spd_delta = 226 - simDR_spd
-else
-  if simDR_spd > 226 then
-    spd_delta = 1
-  end
-  if simDR_spd < 127 then
-    spd_delta = 0
-  end
-end
-
-if simDR_ralt < 40 then
-    ralt_delta = (40 - simDR_ralt) * 0.005
-else
-    ralt_delta = 0
-end
-
-if simDR_cg < 29 then
-    if simDR_cg > 21 then
-        cg_delta = (29 - simDR_cg) * 0.125
-    else
-        cg_delta = 1
-    end
-else
-    cg_delta = 0
-end
+-- if flap_ratio > 6 then 
+   -- if no_flap_correct > 0 then 
+        -- no_flap_correct = no_flap_correct -0.0002
+   -- else
+        -- no_flap_correct = 0
+   -- end
+-- else
+   -- if no_flap_correct < 0.28 then 
+        -- no_flap_correct = no_flap_correct +0.001
+   -- else
+        -- no_flap_correct = 0.28
+   -- end
+-- end
+    
     
 
-if flap_ratio < 35 then
-        flap_delta = (35 - flap_ratio) * 0.05
-else
-        flap_delta = 0
-end  
+-- if simDR_spd > 126 and simDR_spd < 227 then        
+  -- spd_delta = 226 - simDR_spd
+-- else
+  -- if simDR_spd > 226 then
+    -- spd_delta = 1
+  -- end
+  -- if simDR_spd < 127 then
+    -- spd_delta = 0
+  -- end
+-- end
 
-if flap_ratio > 28 then
-   local flap_cm_delta = 0.0048 * flap_ratio
-else
-    flap_cm_delta = 0
-end
+-- if simDR_ralt < 40 then
+    -- ralt_delta = (40 - simDR_ralt) * 0.005
+-- else
+    -- ralt_delta = 0
+-- end
+
+-- if simDR_cg < 29 then
+    -- if simDR_cg > 21 then
+        -- cg_delta = (29 - simDR_cg) * 0.125
+    -- else
+        -- cg_delta = 1
+    -- end
+-- else
+    -- cg_delta = 0
+-- end
+    
+
+-- if flap_ratio < 35 then
+        -- flap_delta = (35 - flap_ratio) * 0.05
+-- else
+        -- flap_delta = 0
+-- end  
+
+-- if flap_ratio > 28 then
+   -- local flap_cm_delta = 0.0048 * flap_ratio
+-- else
+    -- flap_cm_delta = 0
+-- end
 
 if simDR_apu_working > 0 then
     apu_tr_n = 0
@@ -605,8 +605,8 @@ end
     
     
     
-simDR_flaps_cd = simDR_flaps_cd + (gear_ratio * 0.014)
-simDR_flaps2_cd = simDR_flaps_cd + 0.01
+-- simDR_flaps_cd = simDR_flaps_cd + (gear_ratio * 0.014)
+-- simDR_flaps2_cd = simDR_flaps_cd + 0.01
     
     
     
@@ -712,17 +712,17 @@ end
 -- end     
 
 
-if simDRgs_flag1 < 1 then
-        gs_fl = 0
-elseif simDRgs_flag2 < 1 then
-        gs_fl = 0
-else
-        gs_fl = 1
-end    
+-- if simDRgs_flag1 < 1 then
+        -- gs_fl = 0
+-- elseif simDRgs_flag2 < 1 then
+        -- gs_fl = 0
+-- else
+        -- gs_fl = 1
+-- end    
 
-if gs_fl > 0 then
-        simDR_gliss_lit = 0
-end
+-- if gs_fl > 0 then
+        -- simDR_gliss_lit = 0
+-- end
 
 end
 

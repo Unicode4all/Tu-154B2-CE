@@ -60,7 +60,9 @@ defineProperty("rho", globalProperty("sim/weather/rho"))
 
 defineProperty("tas", globalProperty("sim/flightmodel2/position/true_airspeed"))
 defineProperty("dmp_1", globalProperty("sim/aircraft/parts/acf_geardmp[0]"))
-
+fluid_1 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_1")
+fluid_2 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_2")
+fluid_3 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_3")
 
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -73,7 +75,8 @@ defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
 
-
+door_left = globalPropertyf("tu154b2/custom/anim/gear_door_left")
+door_right = globalPropertyf("tu154b2/custom/anim/gear_door_right")
 
 local handle_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/geal_lvr_L.wav') --
 local handle_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/geal_lvr_R.wav') --
@@ -81,7 +84,6 @@ local handle_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/geal_lvr_R.
 local panel_x=0.24857304
 local panel_z=-22.834959
 local dist_gain=5
-
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
@@ -235,6 +237,13 @@ local pos1 = get(gear1_deploy)  -- initial positions of gears
 local pos2 = get(gear2_deploy)
 local pos3 = get(gear3_deploy)
 
+local door_can_close_left=1
+local door_can_close_right=1
+
+local cons_1=0 --hydraulic fluid consumption from tanks for gear operation
+local cons_2=0
+local cons_3=0
+
 if pos1 < 0.5 then 
 	pos1 = 0 
 	lock1 = true
@@ -333,10 +342,28 @@ local MASTER = get(ismaster) ~= 1
 		
 		
 		-- calculate dirrection.
-		local gs_in_use = get(gears_ext_3GS)
+		local gs_in_use = power_R * get(gears_ext_3GS)
 		local lever = get(gear_lever) * bool2int(get(actuator_fail) ~= 6)
-		local dirrection = lever * main_hydro * power_L * (1 - gs_in_use) * 2 + lever * aux_hydro * power_R * gs_in_use * 1.3 + get(emerg_gear_ext) * main_hydro_2 * 1.3
-		
+		local emer_ext=get(emerg_gear_ext)
+		local dirrection = lever * main_hydro * power_L * (1 - gs_in_use) * 2 * (1-emer_ext) + aux_hydro * gs_in_use * 1.3 + emer_ext * main_hydro_2 * 1.3 * (1 - gs_in_use)
+		if pos2>0.15 and pos2<0.85 then
+			door_can_close_left=0
+		end
+		if pos3>0.15 and pos3<0.85 then
+			door_can_close_right=0
+		end
+		if lever * bool2int(main_hydro>0.1) * power_L * (1 - gs_in_use) == 1 then
+			if door_can_close_left<1 then
+				door_can_close_left=door_can_close_left+passed/2
+			else
+				door_can_close_left=1
+			end
+			if door_can_close_right<1 then
+				door_can_close_right=door_can_close_right+passed/2
+			else
+				door_can_close_right=1
+			end
+		end
 		
 		-- manipulate sim levers
 		if lever == -1 then
@@ -368,7 +395,7 @@ local MASTER = get(ismaster) ~= 1
 		lever_last = lever
 		
 
-		local gear_move = bool2int(power_L * (1 - gs_in_use) == 1 or power_R * gs_in_use == 1)
+		local gear_move = bool2int(power_L * (1 - gs_in_use) == 1 or gs_in_use == 1 or (dirrection>0 and emer_ext==1))
 		
 		-- calculations for gear 1
 		if not lock1 and retract then
@@ -430,7 +457,10 @@ local MASTER = get(ismaster) ~= 1
 		if pos3 > 1 then pos3 = 1 end
 		if pos3 < 0 then pos3 = 0 end
 	
-	
+		-- fluid consumption
+		cons_1 = cons_1 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * (1 - gs_in_use * power_R) * (1-emer_ext)
+		cons_2 = cons_2 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * (1 - gs_in_use * power_R) * emer_ext
+		cons_3 = cons_3 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * gs_in_use * power_R
 	
 		-- calculate locks
 
@@ -502,6 +532,11 @@ if MASTER then
 		set(gear1_deploy, pos1)
 		set(gear2_deploy, pos2)	
 		set(gear3_deploy, pos3)
+		set(door_left,pos2*0.85+0.15*door_can_close_left)
+		set(door_right,pos3*0.85+0.15*door_can_close_right)
+		set(fluid_1,cons_1)
+		set(fluid_2,cons_2)
+		set(fluid_3,cons_3)
 
 else -- read data if not master for sync
 		pos1 = get(gear1_deploy)
