@@ -224,7 +224,7 @@ local pitch_joy_prev=0
 local joy_pitch2=0
 local elev_coef = get(elev_coeff)
 -- local joy_pitch2_prev=0
-local reduce=1
+local reduce=0
 local yoke_tbl = {
 {-2, -2},
 {-1, -1},
