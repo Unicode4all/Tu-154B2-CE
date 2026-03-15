@@ -273,7 +273,7 @@ function update()
 	if mach<=0.5 then
 		drag_add=0	
 	end
-	local stab_cl=-1*interpolate(stab_tbl,aoa)	-- stab looses lift beyond 20 due to main wing slip stream
+	local stab_cl=-1*interpolate(stab_tbl,aoa)*3/4	-- stab looses lift beyond 20 due to main wing slip stream
 	aoa=math.min(aoa,50)
 	local aoa_drag_add=0.002222*math.pow(aoa-3,2)-0.03667*(aoa-3)+0.15 -- add some drag at high AoA
 	if aoa-3<9 then

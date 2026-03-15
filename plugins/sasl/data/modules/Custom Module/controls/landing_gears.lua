@@ -75,6 +75,9 @@ defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
 
+rpm_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2")
+pump_2_fail = globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_12")
+
 door_left = globalPropertyf("tu154b2/custom/anim/gear_door_left")
 door_right = globalPropertyf("tu154b2/custom/anim/gear_door_right")
 
@@ -339,20 +342,20 @@ local MASTER = get(ismaster) ~= 1
 			retract = false 
 		end
 		
-		
+		local pump2 = math.min(1,get(rpm_2)/80) * (1-get(pump_2_fail)) -- check if second pump for system no.1 is working
 		
 		-- calculate dirrection.
 		local gs_in_use = power_R * get(gears_ext_3GS)
 		local lever = get(gear_lever) * bool2int(get(actuator_fail) ~= 6)
 		local emer_ext=get(emerg_gear_ext)
-		local dirrection = lever * main_hydro * power_L * (1 - gs_in_use) * 2 * (1-emer_ext) + aux_hydro * gs_in_use * 1.3 + emer_ext * main_hydro_2 * 1.3 * (1 - gs_in_use)
+		local dirrection = lever * main_hydro * power_L * (1 - gs_in_use) * (1+pump2) * (1-emer_ext) + aux_hydro * gs_in_use * 1.3 + emer_ext * main_hydro_2 * 1.3 * (1 - gs_in_use)
 		if pos2>0.15 and pos2<0.85 then
 			door_can_close_left=0
 		end
 		if pos3>0.15 and pos3<0.85 then
 			door_can_close_right=0
 		end
-		if lever * bool2int(main_hydro>0.1) * power_L * (1 - gs_in_use) == 1 then
+		if lever * bool2int(main_hydro>0.1) * power_L * (1 - gs_in_use) * (1-emer_ext) == 1 then --read doors only close with hyd no.1
 			if door_can_close_left<1 then
 				door_can_close_left=door_can_close_left+passed/2
 			else
