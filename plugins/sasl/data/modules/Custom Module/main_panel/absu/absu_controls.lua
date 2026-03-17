@@ -800,8 +800,8 @@ function update()
 			-- constants
 			local KZ_gs = 15
 			local KDZ_gs=150
-			local K_thet1_gs=1
-			local K_thet2_gs=2
+			local K_thet1_gs=2
+			local K_thet2_gs=0.75
 			-- P and D parts
 			local k_side_gs=gliss_dev* KZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
 			local k_d_side_gs=gliss_spd * KDZ_gs*(0.5+0.5*bool2int(rv_switch > 2))

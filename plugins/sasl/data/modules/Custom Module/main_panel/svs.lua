@@ -234,7 +234,7 @@ function update()
 		altitude_rel=math.max(altitude_rel,-1000)
 		
 		if tas < 120 then tas = 10 end
-		if mach < 0.29 then mach = 0.05 end
+		if mach < 0.1 then mach = 0.00 end
 		local mach_delta=(mach-mach_act)*passed
 		if mach_delta>1/20*passed*0.8 then -- limit needle speed
 			mach_delta=1/20*passed*0.8
