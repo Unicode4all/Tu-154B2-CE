@@ -6,5 +6,8 @@ plugins/sasl/data/output/SASLLog.txt
 plugins/KLN90B/data/output/SASLLog.txt
 pa3/gen_plans/**
 !pa3/gen_plans/USRR-UWUU.json
-liveries/**
+!liveries/**
+!liveries/85554
+!liveries/Aeroflot СССР-85565
+!liveries/Air_Ukraine_85535
 plugins/sasl/data/modules/3rd-modules/stb_stitch/build/**
