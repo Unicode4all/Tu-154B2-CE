@@ -119,9 +119,9 @@ function update()
 	
 	-- calculate indicated altidude
 	if power27 and power115 and sw_on and get(uvid_fail) == 0 then
-		uvid_alt = left_MSL + (press_set-1013.25 ) * 27  -- calculate barometric altitude in feet
-		uvid_alt=interpolate(err_tbl,uvid_alt)
+		uvid_alt = interpolate(err_tbl,left_MSL) + (press_set-1013.25 ) * 27  -- calculate barometric altitude in feet
 	end
+
 	local vem72_test=get(vem_tst)
 	if power27_r and power115_r and vem_on then
 		vem_alt = right_MSL + (get(vem_press) * 0.0393701 - 29.92) * 1000 * 0.3048 +(vem72_test*150)

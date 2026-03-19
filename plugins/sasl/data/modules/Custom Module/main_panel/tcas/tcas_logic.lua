@@ -65,6 +65,8 @@ defineProperty("pkp_on", globalPropertyi("tu154b2/custom/switchers/ovhd/pkp_righ
 defineProperty("pkp_fail", globalPropertyi("sim/operation/failures/rel_cop_ahz"))
 defineProperty("cas_alt_fail", globalPropertyi("tu154b2/custom/tcas/tcas_alt_fail"))
 defineProperty("msl_true", globalPropertyf("sim/flightmodel/position/elevation"))
+vbe_msl = globalPropertyf("tu154b2/custom/gauges/alt/vbe_msl")
+xpdr_altitude = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
 
 
 -- other aircrafts
@@ -225,7 +227,7 @@ intruders_tbl = {
 function limits()
 	-- this function return limits
 	-- Tau TA, Tau RA, Dist TA, Dist RA, Alt Ta, Alt RA
-	local alt = get(alt_svs) * 3.28083 -- alt in feet
+	local alt = get(vbe_msl) -- alt in feet
 	if alt <= 1000 then
 		return 20, 0, 0.30, 0, 259.08, 0
 	elseif alt <= 2350 then
@@ -567,7 +569,7 @@ local function mark_calc()
 				end			
 				tcas_show_tbl[i][6] = alt_show
 			else
-				alt_show=math.floor((alt+get(alt_svs))* 3.280839895013 / 100)
+				alt_show=math.floor((alt+get(vbe_msl))/ 100)
 				alt_show = string.format("%s%s", "", alt_show )
 				if string.len(alt_show) == 1 then 
 					alt_show = string.format("%s%s", "00", alt_show ) 
@@ -720,7 +722,7 @@ if MASTER then
 		else
 			set(xpdr_mode,so72_mode)
 		end
-	end
+	end	
 end	
 
 end
@@ -1033,8 +1035,11 @@ function update()
 	power = get(bus27_volt_left) > 20 and get(tcas_on) == 1
 	
 	tcas_mode_set()
-	
-	
+	local alt_xmit=get(alt_svs)*3.28084
+	if get(kontur90)==1 and get(tra_transponder)>0 then
+		alt_xmit=get(vbe_msl)
+	end
+	--set(xpdr_altitude,alt_xmit)
 	
 	-- refresh table once per second
 	if refresh_counter >= 1 then

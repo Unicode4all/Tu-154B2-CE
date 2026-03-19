@@ -384,23 +384,20 @@ local MASTER = get(ismaster) ~= 1
 
 	-- Captain's altimeter VM15
 	local cpt_VM15_press = get(vd15_pressure_left) * 0.0393701
-	local cpt_VM15_alt = left_MSL  + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
-	cpt_VM15_alt=interpolate(err_tbl,cpt_VM15_alt)
+	local cpt_VM15_alt = interpolate(err_tbl,left_MSL)  + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	local v_cpt_VM15_set,cpt_VM15_set = needle_pos (cpt_VM15_alt_act,cpt_VM15_alt,passed,v_cpt_VM15,k_spr1,k_dmp1,k_v1,1)
 	cpt_VM15_alt_act=cpt_VM15_set
 	v_cpt_VM15=v_cpt_VM15_set
 	
 	-- Co-Pilot's altimeter VM15
 	local copt_VM15_press = get(vd15_pressure_right) * 0.0393701
-	local copt_VM15_alt = right_MSL  + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
-	copt_VM15_alt=interpolate(err_tbl,copt_VM15_alt)
+	local copt_VM15_alt = interpolate(err_tbl,right_MSL)  + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	local v_copt_VM15_set,copt_VM15_set = needle_pos (copt_VM15_alt_act,copt_VM15_alt,passed,v_copt_VM15,k_spr1,k_dmp1,k_v1,1)
 	copt_VM15_alt_act=copt_VM15_set
 	v_copt_VM15=v_copt_VM15_set
 	-- Engineer's altimeter VM15
 	local eng_VM15_press = get(vd15_pressure_eng) * 0.0393701
-	local eng_VM15_alt = right_MSL  + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
-	eng_VM15_alt=interpolate(err_tbl,eng_VM15_alt)
+	local eng_VM15_alt = interpolate(err_tbl,right_MSL)  + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	local v_eng_VM15_set,eng_VM15_set = needle_pos (eng_VM15_alt_act,eng_VM15_alt,passed,v_eng_VM15,k_spr1,k_dmp1,k_v1,1)
 	eng_VM15_alt_act=eng_VM15_set
 	v_eng_VM15=v_eng_VM15_set

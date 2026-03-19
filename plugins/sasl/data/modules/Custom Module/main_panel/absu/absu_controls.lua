@@ -801,7 +801,7 @@ function update()
 			local KZ_gs = 15
 			local KDZ_gs=150
 			local K_thet1_gs=2
-			local K_thet2_gs=0.75
+			local K_thet2_gs=0.5
 			-- P and D parts
 			local k_side_gs=gliss_dev* KZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
 			local k_d_side_gs=gliss_spd * KDZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
@@ -819,7 +819,7 @@ function update()
 			-- pitch bias
 			local thet_gs=get(bkk_pitch)+2.5*gs_caught-- add pitch on GS capture
 			thet_hp=5/(5+passed)*thet_hp+5/(5+passed)*(thet_gs-thet_gs_last) -- pitch signal after high-pass
-			thet_azp=5/(5+passed)*thet_azp+5/(5+passed)*(thet_gs-thet_gs_last)*K_thet2_gs -- additional pitch signal for auto-approach
+			thet_azp=10/(10+passed)*thet_azp+10/(10+passed)*(thet_gs-thet_gs_last)*K_thet2_gs -- additional pitch signal for auto-approach
 			thet_gs_last=thet_gs
 			-- resulting elevator command
 			local T_lp_gs=1+bool2int(rv_switch ==1)
