@@ -74,6 +74,7 @@ defineProperty("rel_ice_inlet_heat3", globalPropertyi("sim/operation/failures/re
 
 defineProperty("rel_ice_pitot_heat1", globalPropertyi("sim/operation/failures/rel_ice_pitot_heat1"))
 defineProperty("rel_ice_pitot_heat2", globalPropertyi("sim/operation/failures/rel_ice_pitot_heat2"))
+defineProperty("rel_ice_pitot_heat3", globalPropertyi("sim/operation/failures/rel_ice_pitot_heat_stby"))
 
 defineProperty("rel_ice_surf_heat", globalPropertyi("sim/operation/failures/rel_ice_surf_heat"))
 defineProperty("rel_ice_surf_heat2", globalPropertyi("sim/operation/failures/rel_ice_surf_heat2"))
@@ -296,7 +297,7 @@ local function lamps()
 	set(heat_ok_2, heat_ok_2_brt)
 	
 	local heat_ok_3_brt = 0
-	if get(ppd_3_heat_fail) == 0 and get(pitot_heat_3) == -1 then heat_ok_3_brt = lamps_brt end
+	if get(rel_ice_pitot_heat3) < 6 and get(pitot_heat_3) == -1 then heat_ok_3_brt = lamps_brt end
 	set(heat_ok_3, heat_ok_3_brt)
 	
 	

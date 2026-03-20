@@ -65,6 +65,9 @@ defineProperty("R_1", globalProperty("sim/cockpit2/engine/indicators/thrust_n[0]
 defineProperty("R_2", globalProperty("sim/cockpit2/engine/indicators/thrust_n[1]"))
 defineProperty("R_3", globalProperty("sim/cockpit2/engine/indicators/thrust_n[2]"))
 
+knd_1 = globalPropertyf("tu154b2/custom/engines/knd_1")
+knd_3 = globalPropertyf("tu154b2/custom/engines/knd_3")
+
 defineProperty("vr_outside", globalPropertyi("sim/graphics/VR/teleport_on_ground"))
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
@@ -117,6 +120,11 @@ local out_high_R_2 = loadSample(moduleDirectory .. '/Custom Sounds/engines/out_h
 local out_high_L_3 = loadSample(moduleDirectory .. '/Custom Sounds/engines/out_high_left.wav')
 local out_high_R_3 = loadSample(moduleDirectory .. '/Custom Sounds/engines/out_high_right.wav')
 
+local rattle_L_1 = loadSample(moduleDirectory .. '/Custom Sounds/engines/fan_rattle_L.wav')
+local rattle_R_1 = loadSample(moduleDirectory .. '/Custom Sounds/engines/fan_rattle_R.wav')
+local rattle_L_3 = loadSample(moduleDirectory .. '/Custom Sounds/engines/fan_rattle_L.wav')
+local rattle_R_3 = loadSample(moduleDirectory .. '/Custom Sounds/engines/fan_rattle_R.wav')
+
 
 playSample(whine_L_1, true)
 playSample(whine_R_1, true)
@@ -161,6 +169,11 @@ playSample(out_high_L_2, true)
 playSample(out_high_R_2, true)
 playSample(out_high_L_3, true)
 playSample(out_high_R_3, true)
+
+playSample(rattle_L_1, true)
+playSample(rattle_L_3, true)
+playSample(rattle_R_1, true)
+playSample(rattle_R_3, true)
 
 setSampleGain(whine_L_1, 0)
 setSampleGain(whine_R_1, 0)
@@ -211,42 +224,12 @@ setSampleGain(out_high_R_2, 0)
 setSampleGain(out_high_L_3, 0)
 setSampleGain(out_high_R_3, 0)
 
+setSampleGain(rattle_L_1,0)
+setSampleGain(rattle_R_1,0)
+setSampleGain(rattle_L_3,0)
+setSampleGain(rattle_R_3,0)
 
 
-
-local rpmgain_tbl = {
-{0, 0},
-{5, 0.0035},
---{75, 0.2},
-{35, 0.035},
-{50, 0.00},
-{10000, 0}
-}
-
-local rpm2gain_tbl = {
-{0, 0},
-{40, 0.02},
---{75, 0.2},
-{95, 1.1},
-{10000, 1.1}
-}
-
-
-local out_pitch_tbl = 
-{{-1000, 0},
-{0, 0},
---{5, 200},
---{71, 500},
-{95, 1000},
-{10000, 1000}
-}
-
-local starter_pitch_tbl = 
-{{-1000, 0},
-{5, 500},
-{45, 1100},
-{10000, 1100}
-}
 
 local howl_gain_tbl = 
 {{-1000, 0},
@@ -301,7 +284,7 @@ local function out_balance (src_x, src_z, src_hdg, src_cone, fade_deg, fade_dist
 	-- need to calculate the world location of the sound source
 	local hdg_rad = math.rad(acf_hd)
 	local x_s = acf_x + src_x * math.cos(hdg_rad) - src_z * math.sin(hdg_rad)
-	local z_s = acf_z - src_x * math.sin(hdg_rad) + src_z * math.cos(hdg_rad)
+	local z_s = acf_z + src_x * math.sin(hdg_rad) + src_z * math.cos(hdg_rad)
 	
 	
 	local angle2source = cam_hd + math.deg(math.atan2(cam_x - x_s, cam_z - z_s)) -- angle from camera to the source
@@ -408,6 +391,57 @@ function update()
 	{98, 1000},
 	{10000, 1}
 	}
+	
+	local rpmgain_tbl = {
+	{0, 0},
+	{5, 0.0035},
+	--{75, 0.2},
+	{35, 0.035},
+	{50, 0.00},
+	{10000, 0}
+	}
+
+	local rpm2gain_tbl = {
+	{0, 0},
+	{40, 0.02},
+	--{75, 0.2},
+	{95, 1.1},
+	{10000, 1.1}
+	}
+
+
+	local out_pitch_tbl = 
+	{{-1000, 0},
+	{0, 0},
+	--{5, 200},
+	--{71, 500},
+	{95, 1000},
+	{10000, 1000}
+	}
+
+	local starter_pitch_tbl = 
+	{{-1000, 0},
+	{5, 500},
+	{45, 1100},
+	{10000, 1100}
+	}
+	
+	local fan_rattle_gain_tbl = 
+	{{-1000, 0},
+	{0.025, 0},
+	{0.3, 0.2},
+	{1, 0},
+	{1000, 0}
+	}
+	local fan_rattle_pitch_tbl = 
+	{{-1000, 0.75},
+	{0.05, 0.7},
+	--{0.5, 1},
+	{0.8, 1.2},
+	{1000, 1.2}
+	}
+	
+	
 	-- define localtions
 	cam_hd = get(cam_HDG)
 	acf_hd = get(acf_hdg)
@@ -487,12 +521,21 @@ function update()
     local R1=get(R_1)
     local R2=get(R_2)
     local R3=get(R_3)
-	local eng_1_L, eng_1_R = out_balance (-3.24, 9.18, 0, 60, 120, 1000)
-	local eng_2_L, eng_2_R = out_balance (0, 15, 0, 50, 120, 1000)
-	local eng_3_L, eng_3_R = out_balance (3.24, 9.18, 0, 60, 120, 1000)
+	local eng_1_L, eng_1_R = out_balance (-3.34, 5, 0, 60, 120, 1000)
+	local eng_2_L, eng_2_R = out_balance (0, 12, 0, 50, 120, 1000)
+	local eng_3_L, eng_3_R = out_balance (3.34, 5, 0, 60, 120, 1000)
+	local ratl_1_L, ratl_1_R = out_balance (-3.34, 5, 0, 30, 120, 10)
+	local ratl_3_L, ratl_3_R = out_balance (3.34, 5, 0, 30, 120, 10)
 	local out_high_gn_1=interpolate(out_gain_tbl,rpm_1)
 	local out_high_gn_2=interpolate(out_gain_tbl,rpm_2)
 	local out_high_gn_3=interpolate(out_gain_tbl,rpm_3)
+	
+	local n1_1=math.abs(get(knd_1))
+	local rattle_gn_1=1000*0.2*math.exp(-math.pow((n1_1-0.5)/  0.2543, 2))*2*math.min(n1_1/0.05,1)
+	local rattle_pitch_1=1000*(0.9747*n1_1+0.381)
+	local n1_3=math.abs(get(knd_3))
+	local rattle_gn_3=1000*0.2*math.exp(-math.pow((n1_3-0.5)/  0.2543, 2))*2*math.min(n1_3/0.05,1)
+	local rattle_pitch_3=1000*(0.9747*n1_3+0.381)
 
 	local out_high_pitch_1=interpolate(out_pitch_tbl2,rpm_1)+dopp
 	local out_high_pitch_2=interpolate(out_pitch_tbl2,rpm_2)+dopp
@@ -532,7 +575,6 @@ function update()
 		local whine = 0.6*math.max(0.02535*get(pilot_Z)+0.872, 0)
 		local cockpit_dr=math.max(bool2int(get(pilot_Z)+1.42>-19.1),get(cockpit_door))
 		local holes = 400 
-		
 		-- calculate balance
 		
 		local view_head = acf_hd - cam_hd
@@ -605,12 +647,25 @@ function update()
 		setSampleGain(blast_low_3_R,0)
 		setSampleGain(blast_far_3_L,0)
 		setSampleGain(blast_far_3_R,0)
+		-- setSampleGain(rattle_L_1,0)
+		-- setSampleGain(rattle_R_1,0)
+		-- setSampleGain(rattle_L_3,0)
+		-- setSampleGain(rattle_R_3,0)
 		setSampleGain(out_high_L_1, out_high_gn_1*chan_left2)
 		setSampleGain(out_high_R_1, out_high_gn_1*chan_right2)
 		setSampleGain(out_high_L_2, out_high_gn_2*chan_left2)
 		setSampleGain(out_high_R_2, out_high_gn_2*chan_right2)
 		setSampleGain(out_high_L_3, out_high_gn_3*chan_left2)
 		setSampleGain(out_high_R_3, out_high_gn_3*chan_right2)
+				---------- Fan rattle sounds --------------
+		setSampleGain(rattle_L_1, rattle_gn_1*chan_left2*0.025)
+		setSampleGain(rattle_R_1, rattle_gn_1*chan_right2*0.025)
+		setSamplePitch(rattle_L_1,rattle_pitch_1)
+		setSamplePitch(rattle_R_1,rattle_pitch_1)
+		setSampleGain(rattle_L_3, rattle_gn_3*chan_left2*0.025)
+		setSampleGain(rattle_R_3, rattle_gn_3*chan_right2*0.025)
+		setSamplePitch(rattle_L_3,rattle_pitch_3)
+		setSamplePitch(rattle_R_3,rattle_pitch_3)
 	
 	else
 	
@@ -718,8 +773,16 @@ function update()
 		setSampleGain(out_high_R_2, eng_2_R*out_high_gn_2)
 		setSampleGain(out_high_L_3, eng_3_L*out_high_gn_3)
 		setSampleGain(out_high_R_3, eng_3_R*out_high_gn_3)
-		
-		
+		---------- Fan rattle sounds --------------
+		setSampleGain(rattle_L_1, ratl_1_L*rattle_gn_1)
+		setSampleGain(rattle_R_1, ratl_1_R*rattle_gn_1)
+		setSamplePitch(rattle_L_1,rattle_pitch_1)
+		setSamplePitch(rattle_R_1,rattle_pitch_1)
+		setSampleGain(rattle_L_3, ratl_3_L*rattle_gn_3)
+		setSampleGain(rattle_R_3, ratl_3_R*rattle_gn_3)
+		setSamplePitch(rattle_L_3,rattle_pitch_3)
+		setSamplePitch(rattle_R_3,rattle_pitch_3)
+
 		
 		setSampleGain(whine_L_1,0)
 		setSampleGain(whine_R_1,0)
@@ -784,6 +847,10 @@ function update()
 		setSampleGain(out_high_R_2, 0)
 		setSampleGain(out_high_L_3, 0)
 		setSampleGain(out_high_R_3, 0)
+		setSampleGain(rattle_L_1,0)
+		setSampleGain(rattle_R_1,0)
+		setSampleGain(rattle_L_3,0)
+		setSampleGain(rattle_R_3,0)
 	end
 
 end

@@ -68,7 +68,7 @@ defineProperty("deflection_mtr_2", globalProperty("sim/flightmodel2/gear/tire_ve
 --defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]")) -- 
 
 -- failures
-defineProperty("ppd_3_heat_fail", globalPropertyi("tu154b2/custom/antiice/ppd_3_heat_fail"))
+--defineProperty("ppd_3_heat_fail", globalPropertyi("tu154b2/custom/antiice/ppd_3_heat_fail"))
 
 
 defineProperty("rel_ice_inlet_heat1", globalPropertyi("sim/operation/failures/rel_ice_inlet_heat"))
@@ -137,7 +137,7 @@ defineProperty("ctr_ht", globalPropertyi("tu154b2/custom/antiice/right_window_he
 defineProperty("left_rate", globalPropertyf("tu154b2/custom/antiice/left_window_rate"))
 defineProperty("right_rate", globalPropertyf("tu154b2/custom/antiice/ctr_window_rate"))
 defineProperty("ctr_rate", globalPropertyf("tu154b2/custom/antiice/right_window_rate"))
---defineProperty("sim_icing", globalPropertyf("sim/flightmodel/failures/ice_delta"))
+sim_icing = globalPropertyf("sim/flightmodel/failures/ice_delta")
 defineProperty("stab_ice_1", globalPropertyf("sim/flightmodel/failures/tail_ice"))
 defineProperty("stab_ice_2", globalPropertyf("sim/flightmodel/failures/tail_ice2"))
 defineProperty("ice_probe", globalPropertyf("sim/flightmodel/failures/aoa_ice3"))
@@ -156,6 +156,7 @@ defineProperty("ice_add", globalPropertyf("sim/flightmodel/failures/window_ice_a
 defineProperty("ice_now", globalProperty("sim/flightmodel/failures/window_ice_per_window[1]"))
 defineProperty("snow_rat", globalPropertyf("sim/weather/aircraft/snow_on_aircraft_ratio"))
 defineProperty("tas", globalPropertyf("sim/flightmodel2/position/true_airspeed"))
+--defineProperty("nosewheel_turn_sel", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel")) -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
@@ -163,7 +164,7 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 -- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
---defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
 
 local wing_heat_tbl = {{ -100, 0 },    -- bugs walkaround
 				  {  0, 0 }, -- 0.0-
@@ -221,6 +222,9 @@ local power1=0
 local power2=0
 local power3=0
 local init_timer=0
+local ppd_temp_1=temp1
+local ppd_temp_2=temp2
+local ppd_temp_3=temp3
 --[[
 set(window_ice_1, 1)
 set(window_ice_2, 1)
@@ -382,7 +386,7 @@ function update()
 		local temp_cab=get(cockpit_temp)
 		-- Some physics to calculate heat transfer
 		local v=math.abs(get(tas))
-		local Re_out=1.225*v/3.6*L_win/1.85508e-5
+		local Re_out=1.225*v*L_win/1.85508e-5
 		Nu_out=0.037*math.pow(Re_out,0.8)*Pr/(1+2.443*math.pow(Re_out,-0.1)*(math.pow(Pr,(2/3))-1))
 		local h_out=math.max(10,Nu_out/L_win*c_cond_air)
 		-- energy balance
@@ -395,10 +399,6 @@ function update()
 		temp2=Q2/m/c_heat-273
 		temp3=Q3/m/c_heat-273
 		temp4=Q4/m/c_heat-273
-		-- set(db1,temp1)
-		-- set(db2,temp2)
-		-- set(db3,temp3)
-		-- set(db4,temp4)
 		-- sim heat only works when glass is above 0°C
 		local window_left_on=bool2int(temp1>0)
 		local window_right_on=bool2int(temp2>0)
@@ -410,44 +410,62 @@ function update()
 		local rate_ctr=1690/(math.max(0.1,temp3)+0.06897)
 		local rate_rest=1690/(math.max(0.1,temp4)+0.06897)
 			-- heat Pitots and AOA sensor
-		local pitot_sw_1 = math.max(get(pitot_heat_1) * bool2int(get(rel_ice_pitot_heat1) ~= 6), 0)
-		local pitot_sw_2 = math.max(get(pitot_heat_2) * bool2int(get(rel_ice_pitot_heat2) ~= 6), 0)
-		local pitot_sw_3 = math.max(get(pitot_heat_3) * bool2int(get(ppd_3_heat_fail) ~= 1), 0)
+		--local nws=get(nosewheel_turn_sel)==0
+		local pitot_sw_1 = bool2int(get(pitot_heat_1)>0 and get(rel_ice_pitot_heat1) ~= 6 and power27_L)
+		local pitot_sw_2 = bool2int(get(pitot_heat_2)>0 and get(rel_ice_pitot_heat2) ~= 6 and power27_R)
+		local pitot_sw_3 = bool2int(get(pitot_heat_3)>0 and get(rel_ice_pitot_heat3) ~= 6 and power27_L)
+		local c_ice=1+1*math.max(0,get(sim_icing))/0.0007
+
+		ppd_temp_1=ppd_temp_1-((ppd_temp_1-out_term)*(0.1+0.01*math.pow(v*3.6,0.5))*c_ice-pitot_sw_1*13)*passed*0.008
+		ppd_temp_2=ppd_temp_2-((ppd_temp_2-out_term)*(0.1+0.01*math.pow(v*3.6,0.5))*c_ice-pitot_sw_2*13)*passed*0.008
+		ppd_temp_3=ppd_temp_3-((ppd_temp_3-out_term)*(0.1+0.01*math.pow(v*3.6,0.5))*c_ice-pitot_sw_3*13)*passed*0.008
 		if power27_L then 
-			set(sim_pitot_heat_1, pitot_sw_1) 
-			set(sim_pitot_heat_3, pitot_sw_3) 
 			set(AOA_heat_on, pitot_sw_1)
 			-- set(stat_1,1)
 			-- set(stat_3,1)
 			set(tat,1)
 			set(ai_27_L_cc, 5.5 * pitot_sw_1+so_ht + 6 * pitot_sw_3)
 		else
-			set(sim_pitot_heat_1, 0) 
+			--set(sim_pitot_heat_1, 0) 
 			set(AOA_heat_on, 0)
-			set(sim_pitot_heat_3, 0) 
+			--set(sim_pitot_heat_3, 0) 
 			set(ai_27_L_cc, 0)
 			-- set(stat_1,0)
 			-- set(stat_3,0)
 			--set(tat,0)
 		end
-		
 		if power27_R then -- add third Pitot here
-			set(sim_pitot_heat_2, pitot_sw_2) 
 			set(AOA_heat_on_copilot, pitot_sw_2)
 			--set(stat_2,1)
 			--set(tat2,1)
 			set(ai_27_R_cc, 5.6 * pitot_sw_2 )
 		else
-			set(sim_pitot_heat_2, 0) 
+			--set(sim_pitot_heat_2, 0) 
 			set(AOA_heat_on_copilot, 0)
 			set(ai_27_R_cc, 0)
 			--set(stat_2,0)
 			--set(tat2,0)
 		end
-		local static_heat=bool2int(temp_cab>3)
-		set(stat_1,static_heat)
-		set(stat_2,static_heat)
-		set(stat_3,static_heat)
+		-- set(db1,ppd_temp_1)
+		-- set(db2,ppd_temp_2)
+		-- set(db3,ppd_temp_3)
+		set(sim_pitot_heat_1, bool2int(ppd_temp_1>1)) 
+		set(sim_pitot_heat_3, bool2int(ppd_temp_2>1)) 			
+		set(sim_pitot_heat_2, bool2int(ppd_temp_3>1))
+		--overheat
+		if ppd_temp_1>97 then
+			set(rel_ice_pitot_heat1,6)
+		end
+		if ppd_temp_2>98 then
+			set(rel_ice_pitot_heat2,6)
+		end
+		if ppd_temp_3>95 then
+			set(rel_ice_pitot_heat3,6)
+		end
+		local static_heat=bool2int(temp_cab>5)
+		-- set(stat_1,static_heat)
+		-- set(stat_2,static_heat)
+		-- set(stat_3,static_heat)
 		-- if get(db3)==0 then
 			-- start_timer=0
 			-- notLoaded = true
@@ -477,13 +495,13 @@ function update()
 				init_rate2= 0.1
 			end
 			set(ice_add,init_rate2)
-			set(left_ht,1)
-			set(right_ht,1)
-			set(ctr_ht,1)
+			--set(left_ht,1)
+			--set(right_ht,1)
+			--set(ctr_ht,1)
 			set(rest_ht,1)
-			set(left_rate,5)
-			set(right_rate,5)
-			set(ctr_rate,5)
+			--set(left_rate,5)
+			--set(right_rate,5)
+			--set(ctr_rate,5)
 			set(rest_rate,init_rate)
 			set(side_rate,init_rate/4)
 		end
@@ -619,16 +637,22 @@ function update()
 				temp1=get(le_temp)
 				temp2=get(le_temp)
 				temp3=get(le_temp)	
-				temp4=get(le_temp)	
+				temp4=get(le_temp)
+				ppd_temp_1=get(le_temp)
+				ppd_temp_2=get(le_temp)
+				ppd_temp_3=get(le_temp)
 			else
 				Q1=m*c_heat*(20+273)
 				Q2=m*c_heat*(20+273)
 				Q3=m*c_heat*(20+273)
 				Q4=m*c_heat*(20+273)
-				temp1=20
+				temp1=get(le_temp)
 				temp2=20
 				temp3=20
 				temp4=20
+				ppd_temp_1=20
+				ppd_temp_2=20
+				ppd_temp_3=20				
 			end
 			notLoaded = false
 			set(ice_add,0)

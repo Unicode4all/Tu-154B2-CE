@@ -247,6 +247,8 @@ local stab_tbl = {{ -1000, 0 },    -- bugs walkaround
 
 defineProperty("machno", globalProperty("sim/flightmodel/misc/machno"))
 
+local stalled=0
+
 function update()
 	local mach=math.min(get(machno)+0.002,0.84)
 	local aoa=get(angle)+3
@@ -271,7 +273,7 @@ function update()
 	if mach<=0.5 then
 		drag_add=0	
 	end
-	local stab_cl=-1*interpolate(stab_tbl,aoa)	-- stab looses lift beyond 20 due to main wing slip stream
+	local stab_cl=-1*interpolate(stab_tbl,aoa)*3/4	-- stab looses lift beyond 20 due to main wing slip stream
 	aoa=math.min(aoa,50)
 	local aoa_drag_add=0.002222*math.pow(aoa-3,2)-0.03667*(aoa-3)+0.15 -- add some drag at high AoA
 	if aoa-3<9 then
@@ -279,8 +281,16 @@ function update()
 	end
 	drag_add=drag_add*interpolate(lift_corr_tbl,mach)+aoa_drag_add
 	
-	local moment_add_stall=-2*(-0.0007311*math.pow(aoa,2)+0.03024*aoa-0.3157)-- add moment at high aoa for a somewhat realistic stall behavior
-	if aoa<20 then
+	--local moment_add_stall=math.min(-2*(-0.0007311*math.pow(aoa+5,2)+0.03024*(aoa+5)-0.3157),0.5)-- add moment at high aoa for a somewhat realistic stall behavior
+	local moment_add_stall_1=0.5/(1+math.exp(-0.8079*(aoa+5)+19.79))
+	local moment_add_stall_2=0.3*math.exp(-math.pow((aoa-33)/5.45,2))
+	if aoa>30 then
+		stalled=1
+	elseif aoa<15 then
+		stalled=0
+	end
+	local moment_add_stall=moment_add_stall_1*stalled+moment_add_stall_2*(1-stalled)
+	if aoa<14 then
 		moment_add_stall=0
 	end
 	-- this accounts for backward CoL shift in the transsonic region
@@ -291,7 +301,7 @@ function update()
 	local moment_add=moment_add_stall+moment_add_base
 	-- set(db1,lift_add)
 	-- set(db2,drag_add)
-	if mach>=0.5 then
+	if mach>=0.5 then	
 		set(cl_3_L,lift_add)
 		set(cl_4_L,lift_add)
 		set(cl_5_L,lift_add)
@@ -345,61 +355,60 @@ function update()
 		set(cl_26_R,lift_add)
 		set(cl_27_R,lift_add)
 		set(cl_28_R,lift_add)
-		
-		set(cd_3_L,drag_add)
-		set(cd_4_L,drag_add)
-		set(cd_5_L,drag_add)
-		set(cd_6_L,drag_add)
-		set(cd_7_L,drag_add)
-		set(cd_8_L,drag_add)
-		set(cd_9_L,drag_add)
-		set(cd_10_L,drag_add)
-
-		set(cd_3_R,drag_add)
-		set(cd_4_R,drag_add)
-		set(cd_5_R,drag_add)
-		set(cd_6_R,drag_add)
-		set(cd_7_R,drag_add)
-		set(cd_8_R,drag_add)
-		set(cd_9_R,drag_add)
-		set(cd_10_R,drag_add)
-		
-		set(cd_11_L,drag_add)
-		set(cd_12_L,drag_add)
-		set(cd_13_L,drag_add)
-		set(cd_14_L,drag_add)
-		set(cd_15_L,drag_add)
-		set(cd_16_L,drag_add)
-		set(cd_17_L,drag_add)
-		set(cd_18_L,drag_add)
-		
-		set(cd_11_R,drag_add)
-		set(cd_12_R,drag_add)
-		set(cd_13_R,drag_add)
-		set(cd_14_R,drag_add)
-		set(cd_15_R,drag_add)
-		set(cd_16_R,drag_add)
-		set(cd_17_R,drag_add)
-		set(cd_18_R,drag_add)
-		
-		set(cd_21_L,drag_add)
-		set(cd_22_L,drag_add)
-		set(cd_23_L,drag_add)
-		set(cd_24_L,drag_add)
-		set(cd_25_L,drag_add)
-		set(cd_26_L,drag_add)
-		set(cd_27_L,drag_add)
-		set(cd_28_L,drag_add)
-		
-		set(cd_21_R,drag_add)
-		set(cd_22_R,drag_add)
-		set(cd_23_R,drag_add)
-		set(cd_24_R,drag_add)
-		set(cd_25_R,drag_add)
-		set(cd_26_R,drag_add)
-		set(cd_27_R,drag_add)
-		set(cd_28_R,drag_add)
 	end
+	set(cd_3_L,drag_add)
+	set(cd_4_L,drag_add)
+	set(cd_5_L,drag_add)
+	set(cd_6_L,drag_add)
+	set(cd_7_L,drag_add)
+	set(cd_8_L,drag_add)
+	set(cd_9_L,drag_add)
+	set(cd_10_L,drag_add)
+
+	set(cd_3_R,drag_add)
+	set(cd_4_R,drag_add)
+	set(cd_5_R,drag_add)
+	set(cd_6_R,drag_add)
+	set(cd_7_R,drag_add)
+	set(cd_8_R,drag_add)
+	set(cd_9_R,drag_add)
+	set(cd_10_R,drag_add)
+	
+	set(cd_11_L,drag_add)
+	set(cd_12_L,drag_add)
+	set(cd_13_L,drag_add)
+	set(cd_14_L,drag_add)
+	set(cd_15_L,drag_add)
+	set(cd_16_L,drag_add)
+	set(cd_17_L,drag_add)
+	set(cd_18_L,drag_add)
+	
+	set(cd_11_R,drag_add)
+	set(cd_12_R,drag_add)
+	set(cd_13_R,drag_add)
+	set(cd_14_R,drag_add)
+	set(cd_15_R,drag_add)
+	set(cd_16_R,drag_add)
+	set(cd_17_R,drag_add)
+	set(cd_18_R,drag_add)
+	
+	set(cd_21_L,drag_add)
+	set(cd_22_L,drag_add)
+	set(cd_23_L,drag_add)
+	set(cd_24_L,drag_add)
+	set(cd_25_L,drag_add)
+	set(cd_26_L,drag_add)
+	set(cd_27_L,drag_add)
+	set(cd_28_L,drag_add)
+	
+	set(cd_21_R,drag_add)
+	set(cd_22_R,drag_add)
+	set(cd_23_R,drag_add)
+	set(cd_24_R,drag_add)
+	set(cd_25_R,drag_add)
+	set(cd_26_R,drag_add)
+	set(cd_27_R,drag_add)
+	set(cd_28_R,drag_add)
 	set(cl_stab_1_L,stab_cl+1*bool2int(aoa>35 and get(angle)<50))
 	set(cl_stab_2_L,stab_cl)
 	set(cl_stab_3_L,stab_cl)

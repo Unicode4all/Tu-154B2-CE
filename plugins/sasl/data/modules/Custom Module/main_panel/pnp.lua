@@ -482,27 +482,6 @@ function update()
 	--elseif obs_now < 0 then obs_now = obs_now + 360 end
 	
 	if MASTER then 
-		if power then
-			set(pkp_course_plank, v_plank_act)
-			set(pkp_gs_plank, h_plank_act)
-			set(pkp_obs, obs_actual)
-			set(pkp_gs_flag, gs_flag)
-			set(pkp_course_flag, course_flag)
-			set(pkp_slip_angle, slip_ang_act)
-		end		
-		set(pkp_main_flag, ks_flag)
-		set(pkp_obs_flag,obs_flg)
-		set(obs, math.floor(obs_now + 0.4))
-		set(pkp_obs_knob, obs_knob_now) 
-		-- set numbers
-		local obs_1 = obs_now % 10
-		local obs_10 = math.floor((obs_now % 100) * 0.1) + math.max(math.max((obs_1  - 9), 0), 0)
-		local obs_100 = math.floor((obs_now % 1000) * 0.01) + math.max(math.max((obs_10 - 9), 0), 0)
-		
-		set(pkp_obs_hundr, obs_100)
-		set(pkp_obs_ten, obs_10)
-		set(pkp_obs_one, obs_1)	
-		
 		-- limit course ZK
 		local ZK_crs = get(pkp_helper_course)
 		
@@ -513,8 +492,29 @@ function update()
 		while ZK_crs < 0 do 
 			ZK_crs = ZK_crs + 360
 		end
+				
+		if power then
+			set(pkp_course_plank, v_plank_act)
+			set(pkp_gs_plank, h_plank_act)
+			set(pkp_obs, obs_actual)
+			set(pkp_gs_flag, gs_flag)
+			set(pkp_course_flag, course_flag)
+			set(pkp_slip_angle, slip_ang_act)
+			set(pkp_obs_flag,obs_flg)
+			set(pkp_helper_course, ZK_crs)
+		end		
+		set(obs, math.floor(obs_now + 0.4))
+		set(pkp_main_flag, ks_flag)
+		set(pkp_obs_knob, obs_knob_now) 
+		-- set numbers
+		local obs_1 = obs_now % 10
+		local obs_10 = math.floor((obs_now % 100) * 0.1) + math.max(math.max((obs_1  - 9), 0), 0)
+		local obs_100 = math.floor((obs_now % 1000) * 0.01) + math.max(math.max((obs_10 - 9), 0), 0)
 		
-		set(pkp_helper_course, ZK_crs)
+		set(pkp_obs_hundr, obs_100)
+		set(pkp_obs_ten, obs_10)
+		set(pkp_obs_one, obs_1)	
+		
 		
 
 		

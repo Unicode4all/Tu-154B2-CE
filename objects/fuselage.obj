@@ -4,7 +4,7 @@ OBJ
 
 TEXTURE		fuselage.png
 TEXTURE_NORMAL	fuselage_NML.png
-GLOBAL_specular 1.0
+GLOBAL_specular 0.7
 NORMAL_METALNESS
 
 POINT_COUNTS 24004 0 0 81930
@@ -32211,7 +32211,19 @@ TRIS 0 3927
 ANIM_end
 ANIM_begin
 ANIM_hide 1.000000 1.000000 sim/custom/optimize
-TRIS 3927 58194
+# TRIS 3927 58194
+TRIS 3927 3282
+ANIM_begin
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_pa_off
+#TRIS 7209 972
+TRIS 7209 504
+ANIM_end
+ANIM_begin
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+#TRIS 7209 972
+TRIS 7713 468
+ANIM_end
+TRIS 8178 53946
 ANIM_begin
 ANIM_trans -0.561447 -2.968965 11.899462 -0.561447 -2.968965 11.899462 0.000000 0.000000 none
 ANIM_rotate 0.043469 0.164591 0.985404 0.000000 110.000000 0.000000 1.000000 sim/custom/gauges/eng/oil_qty_cap_anim
@@ -32542,7 +32554,7 @@ TRIS 75318 528
 ANIM_end
 ANIM_begin
 ANIM_trans 6.225300 -3.742800 4.740000 6.225300 -3.742800 4.740000 0.000000 0.000000 none
-ANIM_rotate_begin -0.027600 0.000000 0.999619 tu154b2/custom/anim/lg/main_pos_right
+ANIM_rotate_begin -0.027600 0.000000 0.999619 tu154b2/custom/anim/gear_door_right
 ANIM_rotate_key -1.000000 0.000000
 ANIM_rotate_key 0.000000 0.000000
 ANIM_rotate_key 0.100000 75.000000
@@ -32554,7 +32566,7 @@ TRIS 75846 1308
 ANIM_end
 ANIM_begin
 ANIM_trans 5.278700 -3.742800 4.740000 5.278700 -3.742800 4.740000 0.000000 0.000000 none
-ANIM_rotate_begin -0.027600 0.000000 -0.999619 tu154b2/custom/anim/lg/main_pos_right
+ANIM_rotate_begin -0.027600 0.000000 -0.999619 tu154b2/custom/anim/gear_door_right
 ANIM_rotate_key -1.000000 0.000000
 ANIM_rotate_key 0.000000 0.000000
 ANIM_rotate_key 0.100000 75.000000
@@ -32566,7 +32578,7 @@ TRIS 77154 1308
 ANIM_end
 ANIM_begin
 ANIM_trans -5.278700 -3.742800 4.740000 -5.278700 -3.742800 4.740000 0.000000 0.000000 none
-ANIM_rotate_begin -0.027600 0.000000 0.999619 tu154b2/custom/anim/lg/main_pos_left
+ANIM_rotate_begin -0.027600 0.000000 0.999619 tu154b2/custom/anim/gear_door_left
 ANIM_rotate_key -1.000000 0.000000
 ANIM_rotate_key 0.000000 0.000000
 ANIM_rotate_key 0.100000 75.000000
@@ -32578,7 +32590,7 @@ TRIS 78462 1308
 ANIM_end
 ANIM_begin
 ANIM_trans -6.225300 -3.742800 4.740000 -6.225300 -3.742800 4.740000 0.000000 0.000000 none
-ANIM_rotate_begin -0.027600 0.000000 -0.999619 tu154b2/custom/anim/lg/main_pos_left
+ANIM_rotate_begin -0.027600 0.000000 -0.999619 tu154b2/custom/anim/gear_door_left
 ANIM_rotate_key -1.000000 0.000000
 ANIM_rotate_key 0.000000 0.000000
 ANIM_rotate_key 0.100000 75.000000

@@ -160,6 +160,9 @@ defineProperty("hod3_y", globalPropertyf("tu154b2/custom/absu/d_ra3_y"))
 
 defineProperty("nosewheel_power", globalPropertyi("tu154b2/custom/hydro/nosewheel_turn_power"))
 
+fluid_1 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_1")
+fluid_2 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_2")
+fluid_3 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_3")
 --pushback = globalPropertyi("bp/connected")
 
 
@@ -169,6 +172,11 @@ defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = p
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 defineProperty("elev_coeff", globalPropertyf("tu154b2/custom/controlls/elev_coeff"))
 defineProperty("rud_coeff", globalPropertyf("tu154b2/custom/controlls/rudder_coeff"))
+
+
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 
 -- set initial values
@@ -302,7 +310,9 @@ if MASTER then
 		if notLoaded then reset_switchers() end
 	end
 	
-	
+	local gear1_fluid=get(fluid_1)
+	local gear2_fluid=get(fluid_2)
+	local gear3_fluid=get(fluid_3)
 	
 	-- calculate oil amount
 	local sys_qty_1 = get(system_qty_1)
@@ -317,9 +327,9 @@ if MASTER then
 	
 	
 	-- calculate amount in barrels. barrel = whole system - pipes - accums
-	local hs1_qty = sys_qty_1 - 34 - acc_1 - acc_4/2 -- quantity of oil
-	local hs2_qty = sys_qty_2 - 34 - acc_2 - acc_4/2 -- quantity of oil
-	local hs3_qty = sys_qty_3 - 21 - acc_3 -- quantity of oil
+	local hs1_qty = sys_qty_1 - gear1_fluid - 34 - acc_1 - acc_4 -- quantity of oil
+	local hs2_qty = sys_qty_2 - gear2_fluid - 34 - acc_2  -- quantity of oil
+	local hs3_qty = sys_qty_3 - gear3_fluid - 21 - acc_3 -- quantity of oil
 	
 	-- limit zero amount in barrels
 	if hs1_qty < 0 then hs1_qty = 0 end
@@ -361,19 +371,19 @@ if MASTER then
 	local eng_pump_3 = math.max((-3.3/(1+math.exp(-eng_k3*(acc_3-4.2)))+1.64)*c_eng3* (1 - get(hydro_pump_fail_3)),0)
 -- 41 93
 	-- pump oil from storage to accums
-	if hs1_qty > 0 then 
+	if hs1_qty > 0.1 then 
 		local flow = (eng_pump_1_1 + eng_pump_1_2) * passed
 		acc_1 = acc_1 + flow 
 		hs1_qty = hs1_qty - flow
 	end	
 
-	if hs2_qty > 0 then 
+	if hs2_qty > 0.1 then 
 		local flow = eng_pump_2 * passed
 		acc_2 = acc_2 + flow 
 		hs2_qty = hs2_qty - flow
 	end
 
-	if hs3_qty > 0 then 
+	if hs3_qty > 0.1 then 
 		local flow = eng_pump_3 * passed
 		acc_3 = acc_3 + flow
 		hs3_qty = hs3_qty - flow
@@ -384,12 +394,12 @@ if MASTER then
 	local elec_pump_3 = bool2int(power115_3 and power27R and get(pump_3) == 1 and get(hydro_elec_fail_3) == 0)
 	
 	if hs2_qty > 0 then 
-		local flow = elec_pump_2 * interpolate(electric_pumps_t, acc_2) * passed *1 * elec_pump_2_start_timer *(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
+		local flow = elec_pump_2 * interpolate(electric_pumps_t, acc_2) * passed *0.9 * elec_pump_2_start_timer *(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
 		acc_2 = acc_2 + flow
 		hs2_qty = hs2_qty - flow
 	end
 	if hs3_qty > 0 then 
-		local flow = elec_pump_3 * interpolate(electric_pumps_t, acc_3) * passed *0.95 * elec_pump_3_start_timer*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
+		local flow = elec_pump_3 * interpolate(electric_pumps_t, acc_3) * passed *0.85 * elec_pump_3_start_timer*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
 		acc_3 = acc_3 + flow
 		hs3_qty = hs3_qty - flow
 	end
@@ -463,10 +473,10 @@ if MASTER then
 	local high_leak_3 = get(hs_leak_3)
 	local high_leak_4 = get(hs_leak_4)
 	
-	acc_1 = acc_1 - high_leak_1 * acc_1 * passed * 0.05
-	acc_2 = acc_2 - high_leak_2 * acc_2 * passed * 0.05
-	acc_3 = acc_3 - high_leak_3 * acc_3 * passed * 0.05
-	acc_4 = acc_4 - high_leak_4 * acc_4 * passed * 0.05
+	acc_1 = acc_1 - high_leak_1 * math.max(0,acc_1) * passed * 0.05
+	acc_2 = acc_2 - high_leak_2 * math.max(0,acc_2) * passed * 0.05
+	acc_3 = acc_3 - high_leak_3 * math.max(0,acc_3) * passed * 0.05
+	acc_4 = acc_4 - high_leak_4 * math.max(0,acc_4) * passed * 0.05
 	
 
 	-- для каждого потребителя давления нужно прописывать перекачку масла из аккумуляторов обратно в баки
@@ -678,25 +688,21 @@ if MASTER then
 	gear_pos_2_last = get(gear2_deploy)
 	gear_pos_3_last = get(gear3_deploy)
 	
+	local emer_gear=get(emerg_gear_ext)
+	local emer_gear2=get(gears_ext_3GS)*bool2int(power27R)
 	-- normal operation
-	if acc_1 > 0 and get(gears_ext_3GS) == 0 and get(emerg_gear_ext) == 0 then
+	if acc_1 > 0 and emer_gear2 == 0 and emer_gear == 0 then
 		acc_1 = acc_1 - gear_feed_1 - gear_feed_2 - gear_feed_3 -- take oil from HS1
-		hs1_qty = hs1_qty + gear_feed_1 + gear_feed_2 + gear_feed_3 -- return it to barrel	
-	end
-	
+		hs1_qty = hs1_qty + gear_feed_1 + gear_feed_2 + gear_feed_3 -- return it to barrel		
 	-- emerg operation
-	if acc_2 > 0 and get(emerg_gear_ext) == 1 then
+	elseif acc_2 > 0 and emer_gear2 == 0 and emer_gear == 1 then
 		acc_2 = acc_2 - gear_feed_1 - gear_feed_2 - gear_feed_3 -- take oil from HS2
 		hs2_qty = hs2_qty + gear_feed_1 + gear_feed_2 + gear_feed_3 -- return it to barrel	
-	end
-	
 	-- 3'd HS operation
-	if acc_3 > 0 and get(gears_ext_3GS) == 1 and get(emerg_gear_ext) == 0 then
+	elseif acc_3 > 0 and emer_gear2 == 1 then
 		acc_3 = acc_3 - gear_feed_1 - gear_feed_2 - gear_feed_3 -- take oil from HS3
 		hs3_qty = hs3_qty + gear_feed_1 + gear_feed_2 + gear_feed_3 -- return it to barrel	
 	end
-	
-	
 	
 	
 	
@@ -710,10 +716,11 @@ if MASTER then
 	set(bak_qty_2, hs2_qty)
 	set(bak_qty_3, hs3_qty)	
 	
+	
 	-- whole system = barrel + pipes + accums
-	set(system_qty_1, hs1_qty + 34 + acc_1 + acc_4/2)
-	set(system_qty_2, hs2_qty + 34 + acc_2 + acc_4/2)
-	set(system_qty_3, hs3_qty + 21 + acc_3)
+	set(system_qty_1, hs1_qty + gear1_fluid + 34 + acc_1 + acc_4)
+	set(system_qty_2, hs2_qty + gear2_fluid + 34 + acc_2 )
+	set(system_qty_3, hs3_qty + gear3_fluid + 21 + acc_3)
 	
 
 	set(gs_qty_12_show, hs1_qty + hs2_qty)

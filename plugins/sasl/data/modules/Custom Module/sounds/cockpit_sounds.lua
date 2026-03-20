@@ -287,8 +287,8 @@ function update()
 	if z_pos>-19 then
 		chan_right = math.max( math.max(-0.0003571*z_pos+0.003214,0)*cockpit_R, get(cockpit_window_left)*dist_windows* cpt_door*win1_R, get(cockpit_window_right)*dist_windows* cpt_door*win2_R, get(pax_door_1) * dist_door1*door1_R, get(pax_door_2) *dist_door2*door2_R, get(pax_door_3)*dist_door3*door3_R)
 	end
-	local wind_gain=get(wind_speed)/10*1.94384
-	local wind_pitch=math.min(get(wind_speed)*100*1.94384,1500)
+	local wind_gain=get(wind_speed)/30*1.94384
+	local wind_pitch=math.min(get(wind_speed)*80*1.94384,1500)
 	local temp=get(oat)
 	local rain_out_gain=get(precip)*300*bool2int(temp>0)
 	local rain_out_pitch=get(precip)*300+700

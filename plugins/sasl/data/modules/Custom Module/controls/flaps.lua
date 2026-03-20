@@ -70,6 +70,7 @@ defineProperty("revers_R", globalPropertyf("tu154b2/custom/controlls/revers_R"))
 defineProperty("spd_brk_inn_L", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]")) -- inner speedbrake left Degrees
 defineProperty("spd_brk_inn_R", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]")) -- inner speedbrake right Degrees
 defineProperty("kontur_on", globalPropertyf("tu154b2/custom/b2/kontur_on")) -- inner speedbrake right Degrees
+flaps_power = globalPropertyi("sim/custom/b2/flaps_power")
 
 flaps_cmd_up = findCommand("sim/flight_controls/flaps_up")
 flaps_cmd_down = findCommand("sim/flight_controls/flaps_down")
@@ -206,7 +207,8 @@ local flap_pos_R_last = flaps_pos_R_cmd
 
 local slats_pos_cmd = get(slats)
 local slats_dirr = 0
-local spats_spd = 0.035
+local slats_spd = 0.035
+local slats_prev = 0
 
 local stab_pos_now = get(stab_ratio) * 5.5 -- 0 - 5.5 degrees
 local stab_pos_cmd = stab_pos_now
@@ -216,6 +218,9 @@ local flap_lever_sw=0
 
 local lever_moved_dir = -1 -- -1 = moved up, +1 = moved down
 local stab_must_move = false
+
+local flap_desync = 0
+local resync_timer = 0
 
 function update()
 	
@@ -257,9 +262,9 @@ if MASTER then
 	local revers = get(revers_L) > 0.05 and get(revers_R) > 0.05
 	local HS1 = math.min(get(gs_press_1) * 0.15, 1)
 	local HS2 = math.min(get(gs_press_2) * 0.15, 1)
+    local flap_power=get(flaps_power)>0 and (power27_L or power27_R)
         
-        
-    if revers and gears and auto_retract == 0 and power27_L and (get(gs_press_1) > 50 or get(gs_press_2) > 50) and ((flaps_pos_L_cmd+flaps_pos_R_cmd)/2) > 31 and (get(spd_brk_inn_L)+get(spd_brk_inn_R))/2 > 10 and flaps_mode == 0 and get(kontur_on) > 0 then
+    if revers and gears and auto_retract == 0 and flap_power and (get(gs_press_1) > 50 or get(gs_press_2) > 50) and ((flaps_pos_L_cmd+flaps_pos_R_cmd)/2) > 31 and (get(spd_brk_inn_L)+get(spd_brk_inn_R))/2 > 10 and flaps_mode == 0 and get(kontur_on) > 0 then
 	   auto_retract = 1
     end
         
@@ -290,7 +295,7 @@ if MASTER then
 	local flap_pos_now_L = get(flap_inn_L)
 	local flap_pos_now_R = get(flap_inn_R)
 	
-	if flaps_mode == 0 then -- automatic movements
+	if flaps_mode == 0 and flap_power then -- automatic movements
 		
 		if flap_pos_now_L < flaps_pos_L_cmd - 0.1 then flaps_dirr_L = 1
 		elseif flap_pos_now_L > flaps_pos_L_cmd then flaps_dirr_L = -1
@@ -306,7 +311,7 @@ if MASTER then
 		-- can add automatic failures here, controlling dirrection
 		
 		
-	elseif flaps_mode == 1 then -- manual movements
+	elseif flaps_mode == 1 and flap_power then -- manual movements
 		
 		if flap_lever_pos > 40 then	
 			flaps_dirr_L = 1
@@ -323,12 +328,46 @@ if MASTER then
 	end
 	
 	-- add power dependencies
-	flaps_dirr_L = flaps_dirr_L * power36_L * power36_R
-	flaps_dirr_R = flaps_dirr_R * power36_L * power36_R
-	
+	-- flaps_dirr_L = flaps_dirr_L
+	-- flaps_dirr_R = flaps_dirr_R
+	if math.abs(flap_pos_now_L - flap_pos_now_R)>2.91 then
+		flap_desync = 1
+	end
 	-- move the flaps
-	flap_pos_now_L = flap_pos_now_L + flaps_dirr_L * passed *(HS1+ HS2)/2 * flap_SPD * (1 - flap_mech_L_fail) 
-	flap_pos_now_R = flap_pos_now_R + flaps_dirr_R * passed * (HS1+ HS2)/2 * flap_SPD * (1 - flap_mech_R_fail) 
+	if flaps_mode ~= -1 and flap_power  then
+		flap_pos_now_L = flap_pos_now_L + flaps_dirr_L * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_L_fail) * (1 - flap_desync) 
+		flap_pos_now_R = flap_pos_now_R + flaps_dirr_R * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_R_fail) * (1 - flap_desync)
+	elseif flaps_mode == -1 and flap_power then  -- resync mode
+		if resync_timer>5 then 
+			resync_timer = 0
+		elseif resync_timer>0 and resync_timer<0.5 then
+			if flap_mech_L_fail>0 then
+				if flap_pos_now_R < flap_pos_now_L - 0.1 then 
+					flaps_dirr_R = 1
+				elseif flap_pos_now_R > flap_pos_now_L then 
+					flaps_dirr_R = -1
+				else 
+					flaps_dirr_R = 0
+					resync_timer = 0
+				end		
+				flap_pos_now_R = flap_pos_now_R + flaps_dirr_R * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_R_fail)
+			else
+				if flap_pos_now_L < flap_pos_now_R - 0.1 then 
+					flaps_dirr_L = 1
+				elseif flap_pos_now_L > flap_pos_now_R then 
+					flaps_dirr_L = -1
+				else 
+					flaps_dirr_L = 0
+					resync_timer = 0
+				end
+				flap_pos_now_L = flap_pos_now_L + flaps_dirr_L * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_L_fail)
+			
+			end
+			resync_timer = resync_timer + passed
+		else
+			resync_timer = resync_timer + passed
+		end
+	end
 	
 	-- set limits
 	if flap_pos_now_L > 45 then flap_pos_now_L = 45
@@ -346,12 +385,12 @@ if MASTER then
 		stab_dirr=0
 	end		
 
-	-- brake unsynced flaps
-	if math.abs(flap_pos_now_L - flap_pos_now_R) < 3 then 
-		flap_pos_L_last = flap_pos_now_L
-		flap_pos_R_last = flap_pos_now_R
+	if not flap_power then
+		flaps_dirr_L = 0
+		flaps_dirr_R = 0
+		flap_desync = 0
+		resync_timer = 0
 	end
-	
 	
 	-- flap sounds
 	
@@ -375,13 +414,14 @@ if MASTER then
 	
 	flaps_lever_last = flap_lever_pos
 	
-	
+	flap_pos_L_last = flap_pos_now_L
+	flap_pos_R_last = flap_pos_now_R
 	
 	-- set results	
-    if auto_retract then
-        set(flap_inn_L, flap_pos_L_last)
-        set(flap_inn_R, flap_pos_R_last)
-    end
+    --if auto_retract then
+	set(flap_inn_L, flap_pos_L_last)
+	set(flap_inn_R, flap_pos_R_last)
+    --end
 	
 	set(flap_mid_L, interpolate(mid_flap_tbl, flap_pos_L_last))
 	set(flap_mid_R, interpolate(mid_flap_tbl, flap_pos_R_last))	
@@ -411,13 +451,13 @@ if MASTER then
 	slats_dirr = slats_dirr * bool2int(power27_L+power27_R>0)
 	
 	-- set movement
-	slats_pos = slats_pos + slats_dirr * passed * spats_spd * (bool2int(stats_eng > 1) * power115_1 * power27_L + bool2int(stats_eng > 0) * power115_3 * power27_R)
+	slats_pos = slats_pos + slats_dirr * passed * slats_spd * (bool2int(stats_eng > 1) * power115_1 * power27_L + bool2int(stats_eng > 0) * power115_3 * power27_R)
 	
-	if slats_dirr ~= 0 then
-		if stats_eng > 1 then CC_115_1 = 6.5 end
-		if stats_eng > 0 then CC_115_3 = 6.5 end
+	if slats_pos ~= slats_prev then
+		if stats_eng > 1 then CC_115_1 = 6 end
+		if stats_eng > 0 then CC_115_3 = 6 end
 	end
-	
+	slats_prev=slats_pos
 	if slats_pos > 1 then slats_pos = 1
 	elseif slats_pos < 0 then slats_pos = 0 end
 	
@@ -431,44 +471,9 @@ if MASTER then
 	local stab_mechs = 2 - get(stab_eng_fail) -- two engines working normally. can add failures here
 	local stab_move=0
 	local stab_move_act=0
-	-- calculate new stab position and dirrection of movement
+
 	if get(stab_man_cap) == 0 and get(stab_automatic_fail) == 0 then -- automatic controls and no automatic fails
 		local stab_set = get(stab_setting)
-		-- check lever movement
-		-- if flap_lever_pos > flap_pos_L_last + 0.1 and flap_lever_pos > flap_pos_R_last + 0.1 then -- flaps lever moving down
-			-- lever_moved_dir = 1
-			-- stab_must_move = true
-		-- elseif flap_lever_pos < flap_pos_L_last - 0.1 and flap_lever_pos < flap_pos_R_last - 0.1 then -- flaps moving up
-			-- lever_moved_dir = -1
-			-- stab_must_move = true
-		-- else 
-			-- lever_moved_dir = 0
-			-- stab_must_move = false
-		-- end		
-
-		-- -- calculate stab new position
-		-- if lever_moved_dir == 1 and stab_must_move then 
-			-- if flap_lever_pos >= 5 and flap_lever_pos <= 28 then 
-				-- if stab_set == 2 then stab_pos_cmd = 3
-				-- elseif stab_set == 1 then stab_pos_cmd = 1.5
-				-- else stab_pos_cmd = 0 end
-			-- elseif flap_lever_pos >= 36 and flap_pos_L_last >= 31 and flap_pos_R_last >= 31 then
-				-- if stab_set == 2 then stab_pos_cmd = 5.5
-				-- elseif stab_set == 1 then stab_pos_cmd = 3
-				-- else stab_pos_cmd = 0 end			
-			-- end
-		-- elseif lever_moved_dir == -1 and stab_must_move then 
-			-- if --[[flap_lever_pos >= 15 and--]] flap_lever_pos <= 28 and flap_pos_L_last < 45 and flap_pos_R_last < 45 then 
-				-- --print("work 2")
-				-- if stab_set == 2 then stab_pos_cmd = 3
-				-- elseif stab_set == 1 then stab_pos_cmd = 1.5
-				-- else stab_pos_cmd = 0 end			
-			-- end			
-		-- end
-		
-		-- if flap_lever_pos < 1 and flap_pos_L_last < 25 and flap_pos_R_last < 25 then 
-			-- stab_pos_cmd = 0 
-		--end -- flight position
 		if flap_lever_pos>2 or flap_pos_L_last>25 then
 			if stab_dirr ==1 then
 				if flap_pos_L_last<31 then
@@ -498,19 +503,9 @@ if MASTER then
 		else
 			stab_move=-bool2int(stab_pos_now >0)
 		end
-		stab_move_act=stab_move
-		--set(db1,stab_dirr)
-		--stab_must_move = math.abs(stab_pos_cmd - stab_pos_now) > 0.01 and math.abs(flap_pos_L_last - flaps_pos_L_cmd) > 0.1 and math.abs(flap_pos_R_last - flaps_pos_R_cmd) > 0.1
-		
-		
-		-- if stab_pos_cmd > stab_pos_now + 0.01 then stab_dirr = 1
-		-- elseif stab_pos_cmd < stab_pos_now then stab_dirr = -1
-		-- else stab_dirr = 0 end
-		
-		
+		stab_move_act=stab_move	
 	elseif get(stab_man_cap) == 1 then -- manual stab control
 		stab_move_act = get(stab_manual)
-		--stab_pos_cmd = stab_pos_now
 	end
 	
 	

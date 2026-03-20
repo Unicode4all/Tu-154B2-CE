@@ -166,6 +166,7 @@ defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"
 
 cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
 flaps_lever = globalPropertyf("tu154b2/custom/controll/flaps_lever")
+rv_test = globalPropertyi("tu154b2/custom/gauges/alt/radioalt_button_left")
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
@@ -196,6 +197,8 @@ local panel_azs_z=-21.92727
 local yoke_x=-0.6186783
 local yoke_z=-22.8614
 local dist_gain=5
+
+local below_250=true
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
@@ -436,7 +439,13 @@ local function lamps()
 	local gear_L_pos = get(gear2_deploy)
 	local gear_R_pos = get(gear3_deploy)
 	
-	local gear_not_ext =(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(anim_rud1) < 0.77 and get(anim_rud2)  < 0.77 and get(anim_rud3) < 0.77 ) and get(rv5_alt_L)<250 --(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(indicated_airspeed) * 1.852 < 325 and math.min(get(rv5_alt_L), get(rv5_alt_R)) < 250)
+	if get(rv5_alt_L)<250 and get(rv_test)==0 and not below_250 then
+		below_250=true
+	elseif get(rv5_alt_L)>250 and get(rv_test)==0 and below_250 then
+		below_250=false
+	end
+	
+	local gear_not_ext =(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(anim_rud1) < 0.77 and get(anim_rud2)  < 0.77 and get(anim_rud3) < 0.77 ) and below_250 --(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(indicated_airspeed) * 1.852 < 325 and math.min(get(rv5_alt_L), get(rv5_alt_R)) < 250)
 	if get(cockpit_80s)==0 then
 	--gear_not_ext = gear_not_ext and (get(anim_rud1) < 0.77 and get(anim_rud2)  < 0.77 and get(anim_rud3) < 0.77 and get(gear_lever) <= 0) 
 		gear_not_ext =(gear_F_pos < 0.99 or gear_L_pos < 0.99 or gear_R_pos < 0.99) and (get(anim_rud1) < 0.77 and get(anim_rud2)  < 0.77 and get(anim_rud3) < 0.77 ) and (get(indicated_airspeed) * 1.852 < 325 or get(flaps_lever)>2)
@@ -514,10 +523,10 @@ local function lamps()
 	
 	
 	
-	
+	local rud_alarm=(get(anim_rud1) > 0.63 and get(anim_rud2) > 0.63) or (get(anim_rud2) > 0.63 and get(anim_rud3) > 0.63) or (get(anim_rud1) > 0.63 and get(anim_rud3) > 0.63)
 	
 	-- alarm
-	local sound_alarm = gear_not_ext or ((flap_pos_now_L < 14 or flap_pos_now_R < 14 or slats_now < 0.5) and (get(anim_rud1) > 0.63 or get(anim_rud2) > 0.63 or get(anim_rud3) > 0.63) and math.max(get(deflection_mtr_2), get(deflection_mtr_3)) > 0.05)
+	local sound_alarm = gear_not_ext or ((flap_pos_now_L < 14 or flap_pos_now_R < 14 or slats_now < 0.5) and rud_alarm and math.max(get(deflection_mtr_2), get(deflection_mtr_3)) > 0.05)
 	
 	set(main_gear_flaps, bool2int(sound_alarm))
 	

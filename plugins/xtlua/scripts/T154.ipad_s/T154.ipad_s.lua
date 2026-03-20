@@ -1497,16 +1497,16 @@ function efb_key_Z_CMDhandler(phase, duration)
 					icao_arr_4 = 26
 				end
 				if kbd_select == 9 then
-					icao_wx_1 = 1
+					icao_wx_1 = 26
 				end
 				if kbd_select == 10 then
-					icao_wx_2 = 1
+					icao_wx_2 = 26
 				end
 				if kbd_select == 11 then
-					icao_wx_3 = 1
+					icao_wx_3 = 26
 				end
 				if kbd_select == 12 then
-					icao_wx_4 = 1
+					icao_wx_4 = 26
 				end
 			end
 	elseif phase == 2 then

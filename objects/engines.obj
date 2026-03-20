@@ -4,7 +4,7 @@ OBJ
 
 TEXTURE		engines_b2.png
 TEXTURE_NORMAL	engines_b2_NML.png
-GLOBAL_specular 1.0
+GLOBAL_specular 0.6
 NORMAL_METALNESS
 
 POINT_COUNTS 10558 0 0 25326
@@ -13109,30 +13109,30 @@ ANIM_hide 1.000000 1.100000 sim/custom/optimize
 TRIS 0 21270
 ANIM_begin
 ANIM_begin
-ANIM_hide 0.000000 1.000000 tu154b2/custom/gauges/engine/rpm_low_1
-ANIM_hide 5.000000 10000.000000 tu154b2/custom/gauges/engine/rpm_low_1
+ANIM_hide -1.000000 1.000000 tu154b2/custom/engines/knd_1
+ANIM_hide 5.000000 10000.000000 tu154b2/custom/engines/knd_1
 ANIM_trans -3.319610 -1.496950 6.436020 -3.319610 -1.496950 6.436020 0.000000 0.000000 none
 ANIM_rotate 0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 3.000000 tu154b2/custom/engines/nk_rotation_1
 ANIM_trans 3.319610 1.496950 -6.436020 3.319610 1.496950 -6.436020 0.000000 0.000000 none
 TRIS 21270 96
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 5.000000 tu154b2/custom/gauges/engine/rpm_low_1
-ANIM_hide 10.000000 10000.000000 tu154b2/custom/gauges/engine/rpm_low_1
+ANIM_hide -5.000000 5.000000 tu154b2/custom/engines/knd_1
+ANIM_hide 10.000000 10000.000000 tu154b2/custom/engines/knd_1
 ANIM_trans -3.414510 -1.473150 5.079220 -3.414510 -1.473150 5.079220 0.000000 0.000000 none
 ANIM_rotate 0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 10.000000 tu154b2/custom/engines/nk_rotation_1
 ANIM_trans 3.414510 1.473150 -5.079220 3.414510 1.473150 -5.079220 0.000000 0.000000 none
 TRIS 21366 96
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 10.000000 tu154b2/custom/gauges/engine/rpm_low_1
+ANIM_hide -10.000000 10.000000 tu154b2/custom/engines/knd_1
 ANIM_trans -3.523410 -1.445950 3.520520 -3.523410 -1.445950 3.520520 0.000000 0.000000 none
 ANIM_rotate 0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 20.000000 tu154b2/custom/engines/nk_rotation_1
 ANIM_trans 3.523410 1.445950 -3.520520 3.523410 1.445950 -3.520520 0.000000 0.000000 none
 TRIS 21462 96
 ANIM_end
 ANIM_begin
-ANIM_hide 1.000000 10000.000000 tu154b2/custom/gauges/engine/rpm_low_1
+ANIM_hide 1.000000 10000.000000 tu154b2/custom/engines/knd_1
 ANIM_trans -3.096810 -1.552650 9.622120 -3.096810 -1.552650 9.622120 0.000000 0.000000 none
 ANIM_rotate 0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 1.000000 tu154b2/custom/engines/nk_rotation_1
 ANIM_trans 3.096810 1.552650 -9.622120 3.096810 1.552650 -9.622120 0.000000 0.000000 none
@@ -13141,7 +13141,7 @@ ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_begin
-ANIM_hide 1.000000 10000.000000 tu154b2/custom/gauges/engine/rpm_low_3
+ANIM_hide 1.000000 10000.000000 tu154b2/custom/engines/knd_3
 ANIM_trans 3.096820 -1.552650 9.622550 3.096820 -1.552650 9.622550 0.000000 0.000000 none
 ANIM_rotate -0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 1.000000 tu154b2/custom/engines/nk_rotation_3
 ANIM_trans -3.096820 1.552650 -9.622550 -3.096820 1.552650 -9.622550 0.000000 0.000000 none
@@ -13154,23 +13154,23 @@ ANIM_trans -3.054670 1.563200 -10.225600 -3.054670 1.563200 -10.225600 0.000000 
 TRIS 23358 288
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 1.000000 tu154b2/custom/gauges/engine/rpm_low_3
-ANIM_hide 5.000000 10000.000000 tu154b2/custom/gauges/engine/rpm_low_3
+ANIM_hide -1.000000 1.000000 tu154b2/custom/engines/knd_3
+ANIM_hide 5.000000 10000.000000 tu154b2/custom/engines/knd_3
 ANIM_trans 3.319520 -1.496950 6.438150 3.319520 -1.496950 6.438150 0.000000 0.000000 none
 ANIM_rotate -0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 3.000000 tu154b2/custom/engines/nk_rotation_3
 ANIM_trans -3.319520 1.496950 -6.438150 -3.319520 1.496950 -6.438150 0.000000 0.000000 none
 TRIS 23646 96
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 5.000000 tu154b2/custom/gauges/engine/rpm_low_3
-ANIM_hide 10.000000 10000.000000 tu154b2/custom/gauges/engine/rpm_low_3
+ANIM_hide -5.000000 5.000000 tu154b2/custom/engines/knd_3
+ANIM_hide 10.000000 10000.000000 tu154b2/custom/engines/knd_3
 ANIM_trans 3.414520 -1.473150 5.079850 3.414520 -1.473150 5.079850 0.000000 0.000000 none
 ANIM_rotate -0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 10.000000 tu154b2/custom/engines/nk_rotation_3
 ANIM_trans -3.414520 1.473150 -5.079850 -3.414520 1.473150 -5.079850 0.000000 0.000000 none
 TRIS 23742 96
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 10.000000 tu154b2/custom/gauges/engine/rpm_low_3
+ANIM_hide -10.000000 10.000000 tu154b2/custom/engines/knd_3
 ANIM_trans 3.523620 -1.445950 3.520050 3.523620 -1.445950 3.520050 0.000000 0.000000 none
 ANIM_rotate -0.069701 -0.017500 0.997414 0.000000 1.000000 0.000000 20.000000 tu154b2/custom/engines/nk_rotation_3
 ANIM_trans -3.523620 1.445950 -3.520050 -3.523620 1.445950 -3.520050 0.000000 0.000000 none
@@ -13180,21 +13180,21 @@ ANIM_end
 ANIM_begin
 ANIM_hide 220.000000 1000.000000 sim/flightmodel/position/indicated_airspeed
 ANIM_begin
-ANIM_hide 20.000000 200.000000 tu154b2/custom/gauges/engine/rpm_low_3
+ANIM_hide 20.000000 200.000000 tu154b2/custom/engines/knd_3
 TRIS 23934 144
 ANIM_end
 ANIM_begin
-ANIM_hide -200.000000 20.000000 tu154b2/custom/gauges/engine/rpm_low_3
-ANIM_hide 30.000000 200.000000 tu154b2/custom/gauges/engine/rpm_low_3
+ANIM_hide -200.000000 20.000000 tu154b2/custom/engines/knd_3
+ANIM_hide 30.000000 200.000000 tu154b2/custom/engines/knd_3
 TRIS 24078 144
 ANIM_end
 ANIM_begin
-ANIM_hide 20.000000 200.000000 tu154b2/custom/gauges/engine/rpm_low_1
+ANIM_hide 20.000000 200.000000 tu154b2/custom/engines/knd_1
 TRIS 24222 144
 ANIM_end
 ANIM_begin
-ANIM_hide -200.000000 20.000000 tu154b2/custom/gauges/engine/rpm_low_1
-ANIM_hide 30.000000 200.000000 tu154b2/custom/gauges/engine/rpm_low_1
+ANIM_hide -200.000000 20.000000 tu154b2/custom/engines/knd_1
+ANIM_hide 30.000000 200.000000 tu154b2/custom/engines/knd_1
 TRIS 24366 144
 ANIM_end
 ANIM_end

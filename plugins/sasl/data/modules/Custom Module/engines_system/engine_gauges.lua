@@ -41,6 +41,10 @@ defineProperty("oil_temp_1", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp
 defineProperty("oil_temp_2", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp_2")) -- температура масла двиг 2
 defineProperty("oil_temp_3", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp_3")) -- температура масла двиг 3
 
+defineProperty("oil_temp_act_1", globalPropertyf("tu154b2/custom/eng/oil_temp_1")) -- температура масла двиг 1
+defineProperty("oil_temp_act_2", globalPropertyf("tu154b2/custom/eng/oil_temp_2")) -- температура масла двиг 2
+defineProperty("oil_temp_act_3", globalPropertyf("tu154b2/custom/eng/oil_temp_3")) -- температура масла двиг 3
+
 defineProperty("fuel_flow_1", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_1")) -- расход топлива двиг 1
 defineProperty("fuel_flow_2", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_2")) -- расход топлива двиг 2
 defineProperty("fuel_flow_3", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_3")) -- расход топлива двиг 3
@@ -75,9 +79,9 @@ defineProperty("oil_p_1", globalProperty("sim/cockpit2/engine/indicators/oil_pre
 defineProperty("oil_p_2", globalProperty("sim/cockpit2/engine/indicators/oil_pressure_psi[1]"))
 defineProperty("oil_p_3", globalProperty("sim/cockpit2/engine/indicators/oil_pressure_psi[2]"))
 
-defineProperty("oil_t_1", globalProperty("sim/cockpit2/engine/indicators/oil_temperature_deg_C[0]"))
-defineProperty("oil_t_2", globalProperty("sim/cockpit2/engine/indicators/oil_temperature_deg_C[1]"))
-defineProperty("oil_t_3", globalProperty("sim/cockpit2/engine/indicators/oil_temperature_deg_C[2]"))
+defineProperty("oil_t_1", globalProperty("sim/flightmodel/engine/ENGN_oil_temp_c[0]"))
+defineProperty("oil_t_2", globalProperty("sim/flightmodel/engine/ENGN_oil_temp_c[1]"))
+defineProperty("oil_t_3", globalProperty("sim/flightmodel/engine/ENGN_oil_temp_c[2]"))
 
 defineProperty("vibr_needle", globalPropertyf("sim/custom/gauges/eng/needle_eng_vibro"))
 defineProperty("vibr_eng_sel", globalPropertyi("sim/custom/gauges/eng/eng_sel_vibro"))
@@ -163,8 +167,8 @@ defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = p
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
@@ -189,7 +193,7 @@ defineProperty("kpp_dn", globalPropertyf("tu154b2/engine/kpp_dn"))
 defineProperty("rot_1", globalPropertyf("tu154b2/custom/engines/nk_rotation_1"))
 defineProperty("rot_3", globalPropertyf("tu154b2/custom/engines/nk_rotation_3"))
 
-defineProperty("wind_dir", globalPropertyf("sim/cockpit2/gauges/indicators/wind_heading_deg_mag"))
+defineProperty("wind_dir", globalPropertyf("sim/weather/aircraft/wind_now_direction_degt"))
 defineProperty("acft_dir", globalPropertyf("sim/flightmodel/position/mag_psi"))
 
 defineProperty("eng2_case_temp", globalPropertyf("tu154b2/custom/engines/engine2_case_temp"))
@@ -235,6 +239,14 @@ defineProperty("eng1_ice", globalProperty("sim/flightmodel/failures/inlet_ice_pe
 defineProperty("eng2_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]"))
 defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]"))
 defineProperty("override_egt", globalPropertyf("sim/operation/override/override_itt_egt"))
+bearing_1_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_1")
+bearing_2_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_2")
+bearing_3_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_3")
+
+eng_covers = globalPropertyi("tu154b2/custom/anim/engine_caps")
+
+knd_1 = globalPropertyf("tu154b2/custom/engines/knd_1")
+knd_3 = globalPropertyf("tu154b2/custom/engines/knd_3")
 
 local MASTER = get(ismaster) ~= 1	
 
@@ -292,6 +304,30 @@ local rudder_corr_tbl={
 {0, 1},
 {12000, 0.5},
 {20000, 0.5}}
+
+local c_q_corr_table={
+{-10000, 0.3},
+{80, 0.3},
+{360, 1},
+{20000, 1}}
+
+-- engine oil temp model (based on fuel/oil heat exchanger
+function oil_temp(flow,nk8_temp,rpm,rpm_knd,pump_press,oil_tmp_prev,case_prev,brg_prev,therm,fuel_temp,passed)
+		if flow>100 then
+			flow=-4.131e+05*math.pow(flow,-0.8401)+ 2497
+		end
+		local oil_flow_coef=math.min(1,pump_press/2)
+		local case_heat_spd_1= nk8_temp*2.1
+		local case_cool_spd_1=(case_prev-therm)*40*1.003*math.exp(-2.922e-05*math.max(0,rpm_knd)) -0.9027*math.exp(-0.1749*math.max(0,rpm_knd))
+		local oil_heat_spd_1 = nk8_temp*0.5+math.pow(math.max(0,rpm),1.9)*0.36
+		local oil_cool_spd_1 = (oil_tmp_prev-fuel_temp)*flow*bool2int(oil_tmp_prev>90)
+		local case_temp= case_prev+(case_heat_spd_1-case_cool_spd_1)*passed*0.000125
+		local oil_tmp = oil_tmp_prev + (oil_heat_spd_1 - oil_cool_spd_1*0.02) * passed * 0.00015 * oil_flow_coef-(oil_tmp_prev-case_temp)*passed*0.003
+		local brg_heat = math.max(0,rpm)
+		local brg_cool = brg_prev-oil_tmp
+		local brg_temp = brg_prev + (brg_heat-brg_cool*2*math.max(0.1,oil_flow_coef))*passed*0.05
+		return oil_tmp,case_temp,brg_temp
+end
 
 local function vibra_gau()
 
@@ -380,11 +416,14 @@ local oilT_3_actual = 0
 
 local oil_tmp_1= get(thermo)
 local case_temp_1=oil_tmp_1
+local brg_temp_1=oil_tmp_1
 local oil_tmp_2= get(thermo)
 local case_temp_2=oil_tmp_2
+local brg_temp_2=oil_tmp_2
 local case_temp_22=oil_tmp_2
 local oil_tmp_3= get(thermo)
 local case_temp_3=oil_tmp_3
+local brg_temp_3=oil_tmp_3
 
 local fuel_P_table = {{ -100000, 0.0 },    -- bugs walkaround
                   {  0, 00 }, -- zero pressure
@@ -433,51 +472,21 @@ local function emi3()
 		fuelP_2 = interpolate(fuel_P_table, get(fuel_p_2))-- * gau_2_on
 		fuelP_3 = interpolate(fuel_P_table, get(fuel_p_3))-- * gau_3_on
 		
-		oilP_2 = interpolate(oil_P_table, get(eng2_N2)) * 0.1* 1/(get(oil_t_1)*0.27/80+0.85)*(1-get(oil_pump_otk_2)/6)-- * gau_2_on
-		oilP_3 = interpolate(oil_P_table, get(eng3_N2)) * 0.1* 1/(get(oil_t_1)*0.27/80+0.85)*(1-get(oil_pump_otk_3)/6)-- * gau_3_on
+		oilP_2 = interpolate(oil_P_table, get(eng2_N2)) * 0.1* 1/(get(oil_t_2)*0.27/80+0.85)*(1-get(oil_pump_otk_2)/6)-- * gau_2_on
+		oilP_3 = interpolate(oil_P_table, get(eng3_N2)) * 0.1* 1/(get(oil_t_3)*0.27/80+0.85)*(1-get(oil_pump_otk_3)/6)-- * gau_3_on
 	end
 	--Oil and case temperatures
 	local fuel_temp=(get(fuel_temp_1)+get(fuel_temp_2))/2
-	local flow1=get(ENGN_FF_1)
-	if flow1>100 then
-		flow1=-4.131e+05*math.pow(flow1,-0.8401)+ 2497
-	end
 	if rep_mode==0 then
-		--engine1
-		local case_heat_spd_1= get(nk8_temp1)*2.1
-		local case_cool_spd_1=(case_temp_1-get(thermo))*40*1.003*math.exp(-2.922e-05*math.max(0,get(rpm_low_1))) -0.9027*math.exp(-0.1749*math.max(0,get(rpm_low_1)))
-		local oil_heat_spd_1 = get(nk8_temp1)*0.5+math.pow(math.max(0,get(rpm_high_1)),1.9)*0.36
-		local oil_cool_spd_1 = (oil_tmp_1-fuel_temp)*flow1*(1-0.9*get(oil_pump_otk_1)/6)*bool2int(oil_tmp_1>90)
-		case_temp_1= case_temp_1+(case_heat_spd_1-case_cool_spd_1)*passed*0.000125
-		oil_tmp_1 = oil_tmp_1 + (oil_heat_spd_1 - oil_cool_spd_1*0.027) * passed*0.00015-(oil_tmp_1-case_temp_1)*passed*0.003
-		--engine2
-		local flow2=get(ENGN_FF_2)
-		if flow2>100 then
-			flow2=-4.131e+05*math.pow(flow2,-0.8401)+ 2497
-		end
-		local case_heat_spd_2= get(nk8_temp2)*2.1
-		local case_cool_spd_2=(case_temp_2-get(thermo))*40*1.003*math.exp(-2.922e-05*get(rpm_low_2)) -0.9027*math.exp(-0.1749*get(rpm_low_2))
+		-- oil temps
+		oil_tmp_1,case_temp_1,brg_temp_1 = oil_temp(get(ENGN_FF_1),get(nk8_temp1),get(rpm_high_1),get(rpm_low_1),oilP_1,oil_tmp_1,case_temp_1,brg_temp_1,get(thermo),fuel_temp,passed)
+		oil_tmp_2,case_temp_2,brg_temp_2 = oil_temp(get(ENGN_FF_2),get(nk8_temp2),get(rpm_high_2),get(rpm_low_2),oilP_2,oil_tmp_2,case_temp_2,brg_temp_2,get(thermo),fuel_temp,passed)
+		oil_tmp_3,case_temp_3,brg_temp_3 = oil_temp(get(ENGN_FF_3),get(nk8_temp3),get(rpm_high_3),get(rpm_low_3),oilP_3,oil_tmp_3,case_temp_3,brg_temp_3,get(thermo),fuel_temp,passed)
 		-- middle/rear end case temp for APU oil heat
 		local case_heat_spd_22= get(nk8_temp2)*7.5
 		local case_cool_spd_22=(case_temp_22-get(thermo))*40*1.003*math.exp(-2.922e-05*get(rpm_low_2)) -0.9027*math.exp(-0.1749*get(rpm_low_2))
-		
-		local oil_heat_spd_2 = get(nk8_temp2)*0.5+math.pow(get(rpm_high_2),1.9)*0.36
-		local oil_cool_spd_2 = (oil_tmp_2-fuel_temp)*flow2*(1-0.9*get(oil_pump_otk_2)/6)*bool2int(oil_tmp_2>90)
-		case_temp_2= case_temp_2+(case_heat_spd_2-case_cool_spd_2)*passed*0.000125
+
 		case_temp_22= case_temp_22+(case_heat_spd_22-case_cool_spd_22)*passed*0.000125
-		oil_tmp_2 = oil_tmp_2 + (oil_heat_spd_2 - oil_cool_spd_2*0.027) * passed*0.00015-(oil_tmp_2-case_temp_2)*passed*0.003
-		--set(db1,case_temp_2)
-		--engine3
-		local flow3=get(ENGN_FF_3)
-		if flow3>100 then
-			flow3=-4.131e+05*math.pow(flow3,-0.8401)+ 2497
-		end
-		local case_heat_spd_3= get(nk8_temp3)*2.1
-		local case_cool_spd_3=(case_temp_3-get(thermo))*40*1.003*math.exp(-2.922e-05*get(rpm_low_3)) -0.9027*math.exp(-0.1749*get(rpm_low_3))
-		local oil_heat_spd_3 = get(nk8_temp3)*0.5+math.pow(get(rpm_high_3),1.9)*0.36
-		local oil_cool_spd_3 = (oil_tmp_3-fuel_temp)*flow3*(1-0.9*get(oil_pump_otk_3)/6)*bool2int(oil_tmp_3>90)
-		case_temp_3= case_temp_3+(case_heat_spd_3-case_cool_spd_3)*passed*0.000125
-		oil_tmp_3 = oil_tmp_3 + (oil_heat_spd_3 - oil_cool_spd_3*0.027) * passed*0.00015-(oil_tmp_3-case_temp_3)*passed*0.003
 	end
 		if power_27_L then --and gau_1_on == 1 then
 			oilT_1 = oil_tmp_1
@@ -491,6 +500,9 @@ local function emi3()
 			oilT_3 = oil_tmp_3
 		end
 	set(eng2_case_temp,case_temp_22)
+	set(bearing_1_temp,brg_temp_1)
+	set(bearing_2_temp,brg_temp_2)
+	set(bearing_3_temp,brg_temp_3)
 	--oilP_2 = get(oil_p_2) * 0.1
 	-- smooth movements
 	fuelP_1_actual = fuelP_1_actual + (fuelP_1 - fuelP_1_actual) * passed * 3
@@ -522,6 +534,10 @@ local function emi3()
 	set(oil_temp_1, oilT_1_actual)
 	set(oil_temp_2, oilT_2_actual)
 	set(oil_temp_3, oilT_3_actual)
+	
+	set(oil_t_1,oil_tmp_1)
+	set(oil_t_2,oil_tmp_2)
+	set(oil_t_3,oil_tmp_3)
 
 
 end
@@ -804,12 +820,12 @@ local eng1_N1_need=0
 local eng2_N1_need=0
 local eng3_N1_need=0
 
-local M_rot=0.35 -- rotor mass
+local M_rot=0.45 -- rotor mass
 local c_aero=0.0035 -- drag coefficient
 local a_N1=0
 local q=0
-local c_q=0.0001 -- windmilling coefficient
-local c_f=0.003 -- friction coefficient
+local c_q_base=0.0001 -- windmilling coefficient
+local c_f=0.0002 -- friction coefficient
 
 local n2_1_runout=0
 local n2_2_runout=0
@@ -823,11 +839,16 @@ local fan_1=math.random()*360
 local fan_3=math.random()*360
 local rpm_knd=5900/0.97 --rpm @ 100% N1		 
 
+local needle_1_move=0
+local needle_2_move=0
+local needle_3_move=0
+
 local function n1_from_n2 (rpm,d_isa,altitude,tas)
 	--local knd=2.27883656454638781896e-02 + 1.48521461357922052691e-03*d_isa + 2.85578535694455237781e-01*rpm -9.80969385717822827146e-05*d_isa*rpm + 5.06556388550356579553e-03*math.pow(rpm,2) -1.81250059943665734515e-05*d_isa*math.pow(rpm,2) + 2.76277805413032983845e-05*math.pow(rpm,3)
 	local knd=1.35432317320705628561e+01 + 1.05818030992323813821e-01*d_isa -2.41159426273638954896e-01*rpm -2.88293089248683933462e-03*d_isa*rpm + 1.17362636037093952257e-02*math.pow(rpm,2)
 	knd=knd+math.max(-2.69166791400897068343e+02 + 2.22049699099214983278e+01*altitude + 1.46945301863934254527e+01*rpm -9.85089687252083234803e-01*altitude*rpm -2.96261417738032106772e-01*math.pow(rpm,2) + 1.41929325403952685813e-02*altitude*math.pow(rpm,2) + 2.61617340318329736140e-03*math.pow(rpm,3) -6.56641350639726608220e-05*altitude*math.pow(rpm,3) -8.54680990421439715666e-06*math.pow(rpm,4),0)*tas/850
 	--math.max(2.55665280454449340030e-16 -9.80392156862750505444e-04*tas + 6.66666666666667073748e-01*alt,0)-- altitude correction
+	--set(db1,math.max(-2.69166791400897068343e+02 + 2.22049699099214983278e+01*altitude + 1.46945301863934254527e+01*rpm -9.85089687252083234803e-01*altitude*rpm -2.96261417738032106772e-01*math.pow(rpm,2) + 1.41929325403952685813e-02*altitude*math.pow(rpm,2) + 2.61617340318329736140e-03*math.pow(rpm,3) -6.56641350639726608220e-05*altitude*math.pow(rpm,3) -8.54680990421439715666e-06*math.pow(rpm,4),0)*tas/850)
 	return knd
 end
 
@@ -930,8 +951,8 @@ if MASTER then
 	-- if rpm_2<idle_rpm-0.5 then
 		-- eng2_N1_need=math.max(eng2_N1_need*flame2,interpolate(N2_windmill_table,rpm_2))
 	-- end
-	if ((rpm_2-rpm_2_last)>0 and eng2_N1_need<3.5) or eng2_N1_need<0.3 then
-		eng2_1_ang_act =eng2_1_ang_act-eng2_1_ang_act* passed
+	if ((rpm_2-rpm_2_last)>0 and eng2_N1_need<3.5) or eng2_N1_need<0.9 then
+		eng2_1_ang_act =eng2_1_ang_act-eng2_1_ang_act* passed*2
 	elseif (rpm_2-rpm_2_last)>0 and eng2_N1_need>=3.5 and eng2_N1_need<5 then
 		eng2_1_ang_act = eng2_1_ang_act+((10* math.exp(-(eng2_N1_need-3.5)*5)*math.sin(10*(eng2_N1_need-3.5))+eng2_N1_need)- eng2_1_ang_act)* passed * 20
 	else
@@ -979,6 +1000,7 @@ if MASTER then
 	local low_idle1=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna1
 	local low_idle2=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,idle_rpm)
 	local low_idle3=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna3
+	local c_q=c_q_base*interpolate(c_q_corr_table,tas_LP)
 	-- correct turbine power coefficient to match idle N1
 	c_turb1=c_aero*dens*math.pow(low_idle1,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
 	c_turb2=c_aero*dens*math.pow(low_idle2,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
@@ -991,12 +1013,18 @@ if MASTER then
 	-- if tas_LP>60 then
 		-- wind_angle=1
 	-- end
-	q=q*math.cos(wind_angle/180*3.14)
+	local q1=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_L))
+	local q2=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))
+	local q3=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_R))
+	if math.abs(wind_angle)>90 then
+		q1=q1/2*(1-get(revers_flap_L))
+		q3=q3/2*(1-get(revers_flap_R))
+	end
 
 	--N1 as function of N2
 	eng1_N2_need_old=n1_from_n2 (eng1_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna1
 	eng1_N2_need_old=eng1_N2_need_old*interpolate(n1_start_corr_tbl_1,eng1_1_ang_act) -- blend base N1 with start N1
-	set(db1,eng1_N2_need_old)
+	--set(db1,eng1_N2_need_old)
 	--IGV
 	if eng1_N2_need>rna_thres and rna1>0 then
 		rna1=rna1 -rna1*passed*(1-0.8*math.max(math.max(rna1,4)-4,0)/2)/2
@@ -1010,17 +1038,31 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q-c_f*1.1*bool2int(eng1_N2_need>0.01)
-	eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
+	if eng1_N2_need>=0 then
+		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.min(eng1_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+	else
+		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)+c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.max(eng1_N2_need/0.001,-1)
+	end
+	if start_timer>3 then
+		eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
+	end
 	--set(db1,eng1_N2_need)
 	--set(db2,eng1_N2_need_old)
-	eng1_N2_need=math.max(eng1_N2_need_old*flame1,eng1_N2_need)
-	if (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2  then
-		eng1_2_ang_act=0
+	if math.abs(eng1_N2_need)<eng1_N2_need_old*flame1 then
+		eng1_N2_need=eng1_N2_need_old*flame1
+	end
+	if ((eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2) or eng1_N2_need<1  then
+		eng1_2_ang_act=eng1_2_ang_act-eng1_2_ang_act*passed*2
 	elseif (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need>=2 and eng1_N2_need<3 then
 		eng1_2_ang_act= eng1_2_ang_act+((2* math.exp(-(eng1_N2_need-2)*5)*math.sin(10*(eng1_N2_need-2))+eng1_N2_need)- eng1_2_ang_act)* passed * 20
+		needle_1_move=1
 	else
-		eng1_2_ang_act = eng1_2_ang_act + (eng1_N2_need+(-0.04167*math.pow(eng1_N2_need,2)+0.5417*eng1_N2_need-1.5)*0.57*math.sin(20*tme+2)*bool2int(eng1_N2_need>3 and eng1_N2_need<9) - eng1_2_ang_act) * passed * 20
+		eng1_2_ang_act = eng1_2_ang_act + (eng1_N2_need+(-0.04167*math.pow(eng1_N2_need,2)+0.5417*eng1_N2_need-1.5)*0.57*math.sin(20*tme+2)*bool2int(eng1_N2_need>3 and eng1_N2_need<9) - eng1_2_ang_act) * passed * 20  * needle_1_move
+	end
+	if eng1_N2_need>20 then
+		needle_1_move=1
+	elseif eng1_2_ang_act<0.4 then
+		needle_1_move=0
 	end
 	set(rpm_low_1, eng1_2_ang_act)
 	--N1 Engine 2
@@ -1039,15 +1081,21 @@ if MASTER then
 		end
 	end
 	-- Startup N1
-	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q-c_f*1.3*bool2int(eng2_N2_need>0.01)
+	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q2-c_f--*1.3*bool2int(eng2_N2_need>0.01)
 	eng2_N2_need = eng2_N2_need+a_N1/M_rot*passed
 	eng2_N2_need=math.max(eng2_N2_need_old*flame2,eng2_N2_need)
-	if (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2  then
-		eng2_2_ang_act=0
+	if ((eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2) or eng2_N2_need<1  then
+		eng2_2_ang_act=eng2_2_ang_act-eng2_2_ang_act*passed*2
 	elseif (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need>=2 and eng2_N2_need<3 then
 		eng2_2_ang_act= eng2_2_ang_act+((2* math.exp(-(eng2_N2_need-2)*5)*math.sin(10*(eng2_N2_need-2))+eng2_N2_need)- eng2_2_ang_act)* passed * 20
+		needle_2_move=1
 	else
-		eng2_2_ang_act = eng2_2_ang_act + (eng2_N2_need+(-0.04167*math.pow(eng2_N2_need,2)+0.5417*eng2_N2_need-1.5)*0.66*math.sin(20*tme+3)*bool2int(eng2_N2_need>3 and eng2_N2_need<9) - eng2_2_ang_act) * passed * 20
+		eng2_2_ang_act = eng2_2_ang_act + (eng2_N2_need+(-0.04167*math.pow(eng2_N2_need,2)+0.5417*eng2_N2_need-1.5)*0.66*math.sin(20*tme+3)*bool2int(eng2_N2_need>3 and eng2_N2_need<9) - eng2_2_ang_act) * passed * 20 * needle_2_move
+	end
+	if eng2_N2_need>20 then
+		needle_2_move=1
+	elseif eng2_2_ang_act<0.4 then
+		needle_2_move=0
 	end
 	set(rpm_low_2, eng2_2_ang_act)
 	--N1 Engine 3
@@ -1067,28 +1115,50 @@ if MASTER then
 	end
 	--N1 for low and high N2
 	-- Startup N1
-	a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*get(rho)*math.pow(eng3_N2_need,2)+c_q*q-c_f*bool2int(eng3_N2_need>0.01)
-	eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
-	eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
-	if (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2  then
-		eng3_2_ang_act=0
+	if eng3_N2_need>=0 then
+		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.min(eng3_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+	else
+		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)+c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.max(eng3_N2_need/0.001,-1)
+	end
+	if start_timer>3 then
+		eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
+	end
+	--eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
+	if math.abs(eng3_N2_need)<eng3_N2_need_old*flame3 then
+		eng3_N2_need=eng3_N2_need_old*flame3
+	end
+	if ((eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2) or eng3_N2_need<1.1 then
+		eng3_2_ang_act=eng3_2_ang_act-eng3_2_ang_act*passed
 	elseif (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need>=2 and eng3_N2_need<3 then
 		eng3_2_ang_act= eng3_2_ang_act+((2* math.exp(-(eng3_N2_need-2)*5)*math.sin(10*(eng3_N2_need-2))+eng3_N2_need)- eng3_2_ang_act)* passed * 20
+		needle_3_move=1
 	else
-		eng3_2_ang_act = eng3_2_ang_act + (eng3_N2_need+(-0.04167*math.pow(eng3_N2_need,2)+0.5417*eng3_N2_need-1.5)*0.45*math.sin(20*tme+1)*bool2int(eng3_N2_need>3 and eng3_N2_need<9) - eng3_2_ang_act) * passed * 20
+		eng3_2_ang_act = eng3_2_ang_act + (eng3_N2_need+(-0.04167*math.pow(eng3_N2_need,2)+0.5417*eng3_N2_need-1.5)*0.45*math.sin(20*tme+1)*bool2int(eng3_N2_need>3 and eng3_N2_need<9) - eng3_2_ang_act) * passed * 20 * needle_3_move
 	end
-	if eng1_N2_need<20 then
+	if eng3_N2_need>20 then
+		needle_3_move=1
+	elseif eng3_2_ang_act<0.4 then
+		needle_3_move=0
+	end
+	--if eng1_N2_need<80 then
+	if eng1_N2_need<2 then
 		fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
-		if fan_1>=360 then
-			fan_1=fan_1-360
-		end
 	end
-	if eng3_N2_need<20 then	
+	if fan_1>=360 then
+		fan_1=fan_1-360
+	end
+	--end
+	--if eng3_N2_need<40 then	
+	if eng3_N2_need<2 then
 		fan_3=fan_3+eng3_N2_need/100*rpm_knd/60*360*passed
-		if fan_3>=360 then
-			fan_3=fan_3-360
-		end
 	end
+	if fan_3>=360 then
+		fan_3=fan_3-360
+	end
+	--end
+	-- set(db1,eng3_N2_need)
+	-- set(db2,q)
+	-- set(db3,wind_angle)
 	eng1_N2_need_prev=eng1_N2_need
 	eng2_N2_need_prev=eng2_N2_need
 	eng3_N2_need_prev=eng3_N2_need
@@ -1099,6 +1169,8 @@ if MASTER then
 	set(igv3,bool2int(rna3>5))
 	set(rot_1,fan_1)
 	set(rot_3,fan_3)
+	set(knd_1,eng1_N2_need)
+	set(knd_3,eng3_N2_need)
 
 end
 

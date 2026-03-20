@@ -58,7 +58,10 @@ defineProperty("vd15_pressure_right", globalPropertyf("tu154b2/custom/gauges/alt
 defineProperty("vd15_alt_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_eng")) -- высота на ВД15 БИ
 --defineProperty("vd15_tri_needle_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_eng")) -- стрелка коррекции на ВД15 БИ
 defineProperty("vd15_pressure_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_eng")) -- давление на ВД15 БИ
-defineProperty("p_stat", globalPropertyf("tu154b2/custom/svs/p_s_smoothed"))
+p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
+true_mach = globalPropertyf("sim/flightmodel/misc/machno")
+p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
+p_q_smoothed = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
 -- defineProperty("true_mach", globalPropertyf("sim/flightmodel/misc/machno"))
 --defineProperty("temp", globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c"))
 
@@ -66,7 +69,9 @@ defineProperty("p_stat", globalPropertyf("tu154b2/custom/svs/p_s_smoothed"))
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
-
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 
 local alt_kus_tbl = {{ -50000000, 0.5},    -- bugs workaround
@@ -186,29 +191,86 @@ local var30_cabin_act = 0
 local left_MSL = 0
 local right_MSL = 0
 
+local p_s_L=get(p_stat)
+local p_s_R=get(p_stat)
+
+local cpt_VM15_alt_act=0
+local v_cpt_VM15 = 0
+
+local copt_VM15_alt_act=0
+local v_copt_VM15 = 0
+
+local eng_VM15_alt_act=0
+local v_eng_VM15 = 0
+
+local k_spr1=2500*5
+local k_dmp1=0.085*3
+local k_v1=0.01*10
+
+local static_pressure=get(p_stat)
+local dynamic_pressure=static_pressure
+local T_m=3 -- low pass constants
+local T_stat=2
+
+
+local function needle_pos (ang_actual_prev,ang_need,dt,v_prev,k_spr,k_dmp,k_v,c_v)
+	local v_needle_max=5000*c_v
+	local e_c=(ang_need-ang_actual_prev)*k_spr
+    local v=v_prev+e_c*k_v*dt-v_prev*k_dmp
+	if v>v_needle_max then
+		v=v_needle_max
+	elseif v<-v_needle_max then
+		v=-v_needle_max
+	end
+    local ang_actual=ang_actual_prev+v*dt
+	-- if ang_actual<-100 then
+		-- ang_actual=-100
+		-- v=0
+	-- end
+	return v,ang_actual
+end
+
+
 function update()
 
 local MASTER = get(ismaster) ~= 1
-	
 	local passed = get(frame_time)
-	--local alt_QNE = get(msl_alt)   
+	-- these are the true total and static pressure values, smoothed with a low-pass
+	static_pressure = passed/(T_stat+passed)*get(p_stat)+static_pressure*T_stat/(T_stat+passed)
+	local p_dyn = get(p_stat)*math.pow(1+(1.4-1)/2*math.pow(get(true_mach),2),1.4/(1.4-1))
+	dynamic_pressure = passed/(T_m+passed)*p_dyn + dynamic_pressure*T_m/(T_m+passed)-- total pressure actually
+	set(p_stat_smoothed,static_pressure)
+	set(p_q_smoothed,dynamic_pressure)
+	local staticFail_left = get(static_fail_L) == 6
+	local staticFail_right = get(static_fail_R) == 6	
+	if not staticFail_left then
+		p_s_L=static_pressure
+	end	
+	if not staticFail_right then
+		p_s_R=static_pressure
+	end	
 	-- Barometric altitude formula
-	local p_s=get(p_stat)
-	local alt_QNE=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
-	local temp=288-alt_QNE*6.5/1000
-	if p_s< 22250 then
-		alt_QNE=11000+28.96*216.6500*math.log(22250/p_s)
-		temp=216.65
+	left_MSL=288/0.0065*(1-math.pow(p_s_L/101325,0.0065*28.96))
+	right_MSL=288/0.0065*(1-math.pow(p_s_R/101325,0.0065*28.96))
+	local temp_L=288-left_MSL*6.5/1000
+	local temp_R=288-right_MSL*6.5/1000
+	if p_s_L< 22250 then
+		left_MSL=11000+28.96*216.6500*math.log(22250/p_s_L)
+		temp_L=216.65
 	end
-	local alt_tas_coef = interpolate(alt_kus_tbl, alt_QNE)
+	if p_s_R< 22250 then
+		right_MSL=11000+28.96*216.6500*math.log(22250/p_s_R)
+		temp_R=216.65
+	end
+	--local alt_tas_coef = interpolate(alt_kus_tbl, alt_QNE)
 	local airspeed_L = get(ias_L) * 1.852
 	local airspeed_R = get(ias_R) * 1.852
 	airspeed_L=interpolate(err_tbl_kus,airspeed_L)
 	airspeed_R=interpolate(err_tbl_us,airspeed_R)
 	local p_q_L=math.pow(airspeed_L/3.6,2)*1.225/2
 	local p_q_R=math.pow(airspeed_R/3.6,2)*1.225/2
-	local tas_L=math.sqrt(9.81*29.27*temp*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_L)/p_s+1,(1.4-1)/1.4)-1))*3.6
-	local tas_R=math.sqrt(9.81*29.27*temp*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_R)/p_s+1,(1.4-1)/1.4)-1))*3.6
+	local tas_L=math.sqrt(9.81*29.27*temp_L*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_L)/p_s_L+1,(1.4-1)/1.4)-1))*3.6
+	local tas_R=math.sqrt(9.81*29.27*temp_R*2*1.4/(1.4-1) * (math.pow(math.max(0,p_q_R)/p_s_R+1,(1.4-1)/1.4)-1))*3.6
 	--local blocked = get(sensors_caps) == 1
 	
 	-- KUS 750/1100 Captain
@@ -270,7 +332,7 @@ local MASTER = get(ismaster) ~= 1
 	local copil_tas_ang = 0
 	if tas_R >= 400 and tas_R < 1100 then
 		copil_tas_ang = (tas_R - 400) * 330 / 700 + 15
-	elseif tas_L > 1100 then
+	elseif tas_R > 1100 then
 		copil_tas_ang = 345
 	end
 	
@@ -287,11 +349,11 @@ local MASTER = get(ismaster) ~= 1
 		eng_speed_ang = 339
 	end
 	-- TAS
-	local tas_ENG = airspeed_R * alt_tas_coef
+	--local tas_ENG = airspeed_R * alt_tas_coef
 	local eng_tas_ang = 0
-	if tas_ENG >= 400 and tas_ENG < 1100 then
-		eng_tas_ang = (tas_ENG - 400) * 330 / 700 + 15
-	elseif tas_ENG > 1100 then
+	if tas_R >= 400 and tas_R < 1100 then
+		eng_tas_ang = (tas_R - 400) * 330 / 700 + 15
+	elseif tas_R > 1100 then
 		eng_tas_ang = 345
 	end
 	
@@ -299,8 +361,7 @@ local MASTER = get(ismaster) ~= 1
 	kus_ias_act_ENG = kus_ias_act_ENG + (eng_speed_ang - kus_ias_act_ENG) * passed * 10
 	kus_tas_act_ENG = kus_tas_act_ENG + (eng_tas_ang - kus_tas_act_ENG) * passed * 10	
 
-	local staticFail_left = get(static_fail_L) == 6
-	local staticFail_right = get(static_fail_R) == 6
+	
 	--local msl =alt_QNE  -- real alt MSL in feet
 
 	-- variometers
@@ -321,27 +382,27 @@ local MASTER = get(ismaster) ~= 1
 	
 	-- altimeters
 
-	if not staticFail_left then
-		left_MSL = alt_QNE -- update altitudes for left altimeters
-	end
-	
-	if not staticFail_right then
-		right_MSL = alt_QNE -- update altitudes for left altimeters
-	end	
-	
 	-- Captain's altimeter VM15
 	local cpt_VM15_press = get(vd15_pressure_left) * 0.0393701
-	local cpt_VM15_alt = left_MSL  + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
-	cpt_VM15_alt=interpolate(err_tbl,cpt_VM15_alt)
+	local cpt_VM15_alt = interpolate(err_tbl,left_MSL)  + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local v_cpt_VM15_set,cpt_VM15_set = needle_pos (cpt_VM15_alt_act,cpt_VM15_alt,passed,v_cpt_VM15,k_spr1,k_dmp1,k_v1,1)
+	cpt_VM15_alt_act=cpt_VM15_set
+	v_cpt_VM15=v_cpt_VM15_set
 	
 	-- Co-Pilot's altimeter VM15
 	local copt_VM15_press = get(vd15_pressure_right) * 0.0393701
-	local copt_VM15_alt = right_MSL  + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
-	copt_VM15_alt=interpolate(err_tbl,copt_VM15_alt)
+	local copt_VM15_alt = interpolate(err_tbl,right_MSL)  + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local v_copt_VM15_set,copt_VM15_set = needle_pos (copt_VM15_alt_act,copt_VM15_alt,passed,v_copt_VM15,k_spr1,k_dmp1,k_v1,1)
+	copt_VM15_alt_act=copt_VM15_set
+	v_copt_VM15=v_copt_VM15_set
 	-- Engineer's altimeter VM15
 	local eng_VM15_press = get(vd15_pressure_eng) * 0.0393701
-	local eng_VM15_alt = right_MSL  + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
-	eng_VM15_alt=interpolate(err_tbl,eng_VM15_alt)
+	local eng_VM15_alt = interpolate(err_tbl,right_MSL)  + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local v_eng_VM15_set,eng_VM15_set = needle_pos (eng_VM15_alt_act,eng_VM15_alt,passed,v_eng_VM15,k_spr1,k_dmp1,k_v1,1)
+	eng_VM15_alt_act=eng_VM15_set
+	v_eng_VM15=v_eng_VM15_set
+	
+	
 	-- cabin altitude
 	local cab_alt = get(actual_cabin_alt) * 0.3048 * 0.001 -- kilometers
 	if cab_alt < -0.45 then cab_alt = -0.45
@@ -367,9 +428,9 @@ if MASTER then
 	set(var75, var75_act)
 	set(var30_L, var30_L_act)
 	set(var30_R, var30_R_act)
-	set(vd15_alt_left, cpt_VM15_alt)
-	set(vd15_alt_right, copt_VM15_alt)
-	set(vd15_alt_eng, eng_VM15_alt)
+	set(vd15_alt_left, cpt_VM15_alt_act)
+	set(vd15_alt_right, copt_VM15_alt_act)
+	set(vd15_alt_eng, eng_VM15_alt_act)
 	set(cabin_alt, cab_alt)
 	
 	set(cabin_diff, press_diff)

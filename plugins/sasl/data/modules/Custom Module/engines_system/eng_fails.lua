@@ -104,6 +104,14 @@ defineProperty("kpp1_fail", globalPropertyf("tu154b2/custom/failures/kpp_1_fail"
 defineProperty("kpp2_fail", globalPropertyf("tu154b2/custom/failures/kpp_2_fail"))
 defineProperty("kpp3_fail", globalPropertyf("tu154b2/custom/failures/kpp_3_fail"))
 
+bearing_1_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_1")
+bearing_2_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_2")
+bearing_3_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_3")
+
+stp_1_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_1")
+stp_2_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_2")
+stp_3_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_3")
+
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 
@@ -235,17 +243,17 @@ if get(ismaster) ~= 1 then
 			if get(eng_fail_3) ~= 6 then set(eng_fail_3, bool2int(math.random() < 0.00001 * FAIL * 0.3 + bool2int(engToCounter3 > 300) * 0.0001) * 6) end
 			
 			if get(eng_work_1) == 1 then
-				if get(eng_fire_1) ~= 6 then set(eng_fire_1, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6) end
+				if get(eng_fire_1) ~= 6 then set(eng_fire_1,math.max( bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6, bool2int(math.random(270,350)<get(bearing_1_temp))* 6)) end
 				if get(eng_fire_1) ~= 6 and get(sim_egt_1) > 600 then set(eng_fire_1, bool2int(math.random() < 0.001 * FAIL * 0.3) * 6) end
 			end
 			
 			if get(eng_work_2) == 1 then
-				if get(eng_fire_2) ~= 6 then set(eng_fire_2, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6) end
+				if get(eng_fire_2) ~= 6 then set(eng_fire_2, math.max(bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6, bool2int(math.random(270,350)<get(bearing_2_temp))* 6)) end
 				if get(eng_fire_2) ~= 6 and get(sim_egt_2) > 600 then set(eng_fire_2, bool2int(math.random() < 0.001 * FAIL * 0.3) * 6) end
 			end
 			
 			if get(eng_work_3) == 1 then
-				if get(eng_fire_3) ~= 6 then set(eng_fire_3, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6) end
+				if get(eng_fire_3) ~= 6 then set(eng_fire_3, math.max(bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6, bool2int(math.random(270,350)<get(bearing_3_temp))* 6)) end
 				if get(eng_fire_3) ~= 6 and get(sim_egt_3) > 600 then set(eng_fire_3, bool2int(math.random() < 0.001 * FAIL * 0.3) * 6) end
 			end
 			
@@ -273,6 +281,10 @@ if get(ismaster) ~= 1 then
 			if get(kpp1_fail) ~= 1 then set(kpp1_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(kpp2_fail) ~= 1 then set(kpp2_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(kpp3_fail) ~= 1 then set(kpp3_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			
+			if get(stp_1_fail) ~= 1 then set(stp_1_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(stp_2_fail) ~= 1 then set(stp_2_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(stp_3_fail) ~= 1 then set(stp_3_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			
 		
 		end
@@ -389,6 +401,9 @@ if get(ismaster) ~= 1 then
 		set(kpp2_fail, 0)
 		set(kpp3_fail, 0)
 		
+		set(stp_1_fail,0)
+		set(stp_2_fail,0)
+		set(stp_3_fail,0)
 		
 		-- engine can ALWAYS stall
 		stall_counter = stall_counter + passed

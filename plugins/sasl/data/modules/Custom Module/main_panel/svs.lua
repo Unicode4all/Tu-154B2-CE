@@ -44,9 +44,14 @@ defineProperty("svs_alt_rel", globalPropertyf("tu154b2/custom/svs/svs_alt_rel"))
 -- caps
 defineProperty("sensors_caps", globalPropertyi("tu154b2/custom/anim/sensors_caps"))  -- чехлы и крышки
 defineProperty("rpm_high_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1"))
-defineProperty("temp_t", globalPropertyf("sim/cockpit2/temperature/outside_air_LE_temp_degc"))
+defineProperty("temp_t", globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c"))
 defineProperty("true_mach", globalPropertyf("sim/flightmodel/misc/machno"))
-defineProperty("p_smoothed", globalPropertyf("tu154b2/custom/svs/p_s_smoothed"))
+p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
+p_q_smoothed = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
+real_alt = globalPropertyi("sim/custom/t154cfg/ppd_icing")
+kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th") -- 
+sim_alt = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
+qnh_set = globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
@@ -147,8 +152,8 @@ function update()
 	T_le=passed/(T_term+passed)*get(temp_t)+T_le*T_term/(T_term+passed)
 	-- smooth pressure with low-pass
 	--T_stat=get(db1)
-	static_pressure_LP=passed/(T_stat+passed)*get(p_stat)+static_pressure_LP*T_stat/(T_stat+passed)
-	set(p_smoothed,static_pressure_LP)
+	-- static_pressure_LP=passed/(T_stat+passed)*get(p_stat)+static_pressure_LP*T_stat/(T_stat+passed)
+	-- set(p_smoothed,static_pressure_LP)
 	-- power
 	local power = get(svs_on) == 1 and get(bus27_volt) > 13 and get(bus36_volt) > 30 and get(bus115_volt) > 100 
 	t_sens=t_sens+(-(t_sens-T_amb)*0.005+2.8*heat)*0.035*passed -- sensors temp
@@ -191,22 +196,23 @@ function update()
 	
 	-- altitude
 	--local alt_QNE = get(msl_alt) * 3.28083 + (29.92 - get(msl_press)) * 1000  -- calculate altitude in feet above standart pressure
-	local alt_QNE = get(press_alt)
+	-- local alt_QNE = get(press_alt)
 	--local static_pressure=get(p_smoothed
 	if not static_fail and get(sensors_caps) < 1 then 
-		p_static=static_pressure_LP-interpolate(p_err_tbl,static_pressure_LP)*(-0.02727*math.min(t_sens,30)+ 1.682)
+		p_static=get(p_stat_smoothed)-interpolate(p_err_tbl,static_pressure_LP)*(-0.02727*math.min(t_sens,30)+ 1.682)
 		--p_static=p_static-- -interpolate(p_err_tbl,p_static)*(-0.02727*math.min(t_sens,25)+ 1.682)
 		-- if pwr then
 			-- altitude = alt_QNE * 0.3048
 		-- end
 	end
 	if get(sensors_caps) < 1 and not pitot_fail then
-		p_q=(static_pressure_LP*math.pow(1+(1.4-1)/2*math.pow(get(true_mach),2),1.4/(1.4-1))-static_pressure_LP)*(1-math.pow(get(ppd_ice),2))
+		p_q=get(p_q_smoothed)--(static_pressure_LP*math.pow(1+(1.4-1)/2*math.pow(get(true_mach),2),1.4/(1.4-1))-static_pressure_LP)*(1-math.pow(get(ppd_ice),2))
+		p_d=math.max(0,p_q-p_static)*(1-get(ppd_ice))
 		--p_q=get(q)
 	end
 	-- low pass for Q
-	p_q_ind=passed/(T_m+passed)*p_q + p_q_ind*T_m/(T_m+passed)
-	p_d=math.max(0,p_q_ind)
+	--p_q_ind=passed/(T_m+passed)*p_q + p_q_ind*T_m/(T_m+passed)
+	
 	if test then -- svs check
 		p_static=21000
 		p_d=11100
@@ -217,11 +223,20 @@ function update()
 	-- compute values
 	if power then
 		if pwr and get(svs_fail) == 0 then
+			local p_set=get(uvo_press)
 			mach=math.sqrt(2/(1.4-1)*(math.pow(p_d/p_static+1,(1.4-1)/1.4)-1))
 			local T_stat=(273+T_le*(1-bool2int(test)))/(1 + math.pow(mach,2) * (1.4-1)/2)
 			local t_avg=(288.15-T_stat)/2*11000/math.max(11000,altitude)+T_stat
-			altitude=28.96*t_avg*math.log(101325/p_static)
-			altitude_rel=28.96*t_avg*math.log(get(uvo_press)*133.322/p_static)
+			if get(real_alt)==1 then	
+				altitude=28.96*t_avg*math.log(101325/p_static)
+				altitude_rel=28.96*t_avg*math.log(p_set*133.322/p_static)
+			else
+				if get(kontur_90th)==0 then
+					set(qnh_set,p_set*0.0393701)
+				end
+				altitude=get(press_alt) * 0.3048	
+				altitude_rel=get(sim_alt) * 0.3048	
+			end
 			--tas=23.9624*math.sqrt(p_d/p_static*(273.15+T_amb))* 3.6
 			--mach=tas/3.6/math.sqrt(1.4*287.1*(273.15+T_amb))
 			
@@ -231,7 +246,8 @@ function update()
 		altitude=math.max(altitude,-1000)
 		altitude_rel=math.max(altitude_rel,-1000)
 		
-		if tas < 120 then tas = 0 end
+		if tas < 120 then tas = 10 end
+		if mach < 0.1 then mach = 0.00 end
 		local mach_delta=(mach-mach_act)*passed
 		if mach_delta>1/20*passed*0.8 then -- limit needle speed
 			mach_delta=1/20*passed*0.8

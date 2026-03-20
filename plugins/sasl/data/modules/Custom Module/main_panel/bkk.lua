@@ -15,8 +15,8 @@ defineProperty("pitch_b", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R")
 defineProperty("pitch_c", globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch")) -- тангаж на АГР + вверх
 
 -- fail
-defineProperty("bkk_fail", globalPropertyi("tu154b2/custom/failures/bkk_fail")) -- fail
-
+defineProperty("bkk_fail_1", globalPropertyi("tu154b2/custom/failures/bkk_fail")) -- fail
+defineProperty("bkk_fail_2", globalPropertyi("tu154b2/custom/failures/bkk_fail_2")) -- fail
 
 
 
@@ -69,14 +69,22 @@ local flag_ab = false
 local flag_ac = false
 local flag_bc = false
 
+local fail_a2 = false
+local fail_b2 = false
+local fail_c2 = false
+
+local flag_ab2 = false
+local flag_ac2 = false
+local flag_bc2 = false
+
 local roll_res = 0
-local pitch_res = 0
+--local pitch_res = 0
 
 local flight_mode = true -- true - flight mode, false - landing mode
 local bkk_light_timer=0
 function update()
 	local passed=get(frame_time)
-	local power = get(bkk_on) == 1 and get(bus36_volt) > 30 and get(bkk_fail) == 0
+	local power = get(bkk_on) == 1 and get(bus36_volt) > 30 
 	
 	local a = get(roll_a)
 	local b = get(roll_b)
@@ -85,14 +93,25 @@ function update()
 
 	-- calculate fail flags
 	if power then
-		-- cross check all AHZs
-		if math.abs (a - b) > 7 then flag_ab = true end
-		if math.abs (a - c) > 7 then flag_ac = true end
-		if math.abs (b - c) > 7 then flag_bc = true end
+		if get(bkk_fail_1) == 0 then
+			-- cross check all AHZs
+			if math.abs (a - b) > 7 then flag_ab = true end
+			if math.abs (a - c) > 7 then flag_ac = true end
+			if math.abs (b - c) > 7 then flag_bc = true end
 
-		if not fail_a then fail_a = flag_ab and flag_ac end
-		if not fail_b then fail_b = flag_ab and flag_bc end
-		if not fail_c then fail_c = flag_ac and flag_bc end
+			if not fail_a then fail_a = flag_ab and flag_ac end
+			if not fail_b then fail_b = flag_ab and flag_bc end
+			if not fail_c then fail_c = flag_ac and flag_bc end
+		end
+		if get(bkk_fail_2) == 0 then
+			if math.abs (a - b) > 7 then flag_ab2 = true end
+			if math.abs (a - c) > 7 then flag_ac2 = true end
+			if math.abs (b - c) > 7 then flag_bc2 = true end
+
+			if not fail_a2 then fail_a2 = flag_ab2 and flag_ac2 end
+			if not fail_b2 then fail_b2 = flag_ab2 and flag_bc2 end
+			if not fail_c2 then fail_c2 = flag_ac2 and flag_bc2 end
+		end
 	else
 		-- reset flags
 		fail_a = false
@@ -102,6 +121,14 @@ function update()
 		flag_ab = false
 		flag_ac = false
 		flag_bc = false
+		
+		fail_a2 = false
+		fail_b2 = false
+		fail_c2 = false	
+		
+		flag_ab2 = false
+		flag_ac2 = false
+		flag_bc2 = false
 
 	end
 	
@@ -114,7 +141,8 @@ function update()
 	local bkk_fail = 0
 	local bkk_test_ok = 0
 	
-	local test = get(bkk_contr) ~= 0
+	local test = get(bkk_contr) == 1
+	local test2 = get(bkk_contr) == -1
 	
 	local spd = get(ias) * 1.852 -- km/hr
 	local alt = get(radio_alt) -- meters
@@ -146,12 +174,13 @@ function update()
 			
 			--print(ap, "  ", bp, "  ", cp, "  ", pitch_res)
 		end
-		roll_left = bool2int(test or (roll_res < -33 and flight_mode) or (roll_res < -15 and not flight_mode))
-		roll_right = bool2int(test or (roll_res > 33 and flight_mode) or (roll_res > 15 and not flight_mode))
-		pkp_fail_l = bool2int(fail_a or test)
-		pkp_fail_r = bool2int(fail_b or test)
-		mgv_fail = bool2int(fail_c or get(mgv_flag) == 1 or test)
-		bkk_test_ok = bool2int(test)
+		roll_left = bool2int(bkk_light_timer>0.3 or (roll_res < -33 and flight_mode) or (roll_res < -15 and not flight_mode))
+		roll_right = bool2int(bkk_light_timer>0.3 or (roll_res > 33 and flight_mode) or (roll_res > 15 and not flight_mode))
+		pkp_fail_l = bool2int(fail_a or fail_a2 or bkk_light_timer>0.35)
+		pkp_fail_r = bool2int(fail_b or fail_b2 or bkk_light_timer>0.37)
+		mgv_fail = bool2int(fail_c or fail_c2 or get(mgv_flag) == 1 or bkk_light_timer>0.32)
+		bkk_test_ok = bool2int(test and get(bkk_fail_1)==0)
+		bkk_test_ok2 = bool2int(test2 and get(bkk_fail_2)==0)
 		--bkk_fail = bool2int(fail_a) + bool2int(fail_b) + bool2int(fail_c) > 1
 		
 		if test then
@@ -167,6 +196,14 @@ function update()
 				-- flag_ac = false
 				-- flag_bc = false
 			-- end
+		elseif test2 then
+			-- if get(bkk_contr)==-1 then
+				fail_a2 = false
+				fail_b2 = false
+				fail_c2 = false
+				flag_ab2 = false
+				flag_ac2 = false
+				flag_bc2 = false
 		end
 		
 	else
@@ -177,7 +214,7 @@ function update()
 		mgv_fail = bool2int(get(mgv_flag)==1)
 	
 	end
-	if bkk_test_ok==1 then
+	if bkk_test_ok==1 or bkk_test_ok2==1 then
 		if bkk_light_timer<1 then
 			bkk_light_timer=bkk_light_timer+passed*2
 		end

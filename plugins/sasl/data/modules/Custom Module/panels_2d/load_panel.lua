@@ -1916,7 +1916,7 @@ components = {
 		position = {242, 161, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_4_pr) - 25
+			local a = get(tank_4_pr) - 100
 			if a < 0 then a = 0 end
 			set(tank_4_pr, a)
 			
@@ -1928,7 +1928,7 @@ components = {
 		position = {310, 161, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_4_pr) + 25
+			local a = get(tank_4_pr) + 100
 			if a > 6595 then a = 6595 end
 			set(tank_4_pr, a)
 			
@@ -1941,7 +1941,7 @@ components = {
 		position = {242, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_1_pr) - 25
+			local a = get(tank_1_pr) - 100
 			if a < 0 then a = 0 end
 			set(tank_1_pr, a)
 			
@@ -1953,7 +1953,7 @@ components = {
 		position = {310, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_1_pr) + 25
+			local a = get(tank_1_pr) + 100
 			if a > 3300 then a = 3300 end
 			set(tank_1_pr, a)
 			
@@ -1967,7 +1967,7 @@ components = {
 		position = {29, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_3L_pr) - 25
+			local a = get(tank_3L_pr) - 100
 			if a < 0 then a = 0 end
 			set(tank_3L_pr, a)
 			
@@ -1979,7 +1979,7 @@ components = {
 		position = {102, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_3L_pr) + 25
+			local a = get(tank_3L_pr) + 100
 			if a > 5405 then a = 5405 end
 			set(tank_3L_pr, a)
 			
@@ -1992,7 +1992,7 @@ components = {
 		position = {137, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_2L_pr) - 25
+			local a = get(tank_2L_pr) - 100
 			if a < 0 then a = 0 end
 			set(tank_2L_pr, a)
 			
@@ -2004,7 +2004,7 @@ components = {
 		position = {211, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_2L_pr) + 25
+			local a = get(tank_2L_pr) + 100
 			if a > 9500 then a = 9500 end
 			set(tank_2L_pr, a)
 			
@@ -2017,7 +2017,7 @@ components = {
 		position = {341, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_2R_pr) - 25
+			local a = get(tank_2R_pr) - 100
 			if a < 0 then a = 0 end
 			set(tank_2R_pr, a)
 			
@@ -2029,7 +2029,7 @@ components = {
 		position = {416, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_2R_pr) + 25
+			local a = get(tank_2R_pr) + 100
 			if a > 9500 then a = 9500 end
 			set(tank_2R_pr, a)
 			
@@ -2043,7 +2043,7 @@ components = {
 		position = {448, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_3R_pr) - 25
+			local a = get(tank_3R_pr) - 100
 			if a < 0 then a = 0 end
 			set(tank_3R_pr, a)
 			
@@ -2055,7 +2055,7 @@ components = {
 		position = {523, 93, 30, 30 },
       
 		onMouseDown = function() 
-			local a = get(tank_3R_pr) + 25
+			local a = get(tank_3R_pr) + 100
 			if a > 5405 then a = 5405 end
 			set(tank_3R_pr, a)
 			

@@ -349,6 +349,10 @@ simDR_gears_not_ext =  find_dataref("tu154b2/custom/lights/gears_not_ext")
 simDR_alpha_high =  find_dataref("tu154b2/custom/lights/alpha_high")
 simDR_g_force_high =  find_dataref("tu154b2/custom/lights/g_force_high")
 
+simDR_stp_1 =  find_dataref("tu154b2/custom/lights/engines/eng1_stp")
+simDR_stp_2 =  find_dataref("tu154b2/custom/lights/engines/eng2_stp")
+simDR_stp_3 =  find_dataref("tu154b2/custom/lights/engines/eng3_stp")
+
 
 simDR_lamp_test_eng = find_dataref("tu154b2/custom/buttons/lamp_test_engines")
 simDR_lamp_test_fire = find_dataref("tu154b2/custom/buttons/lamp_test_fire_panel")
@@ -667,6 +671,10 @@ light_fuel_pump_right_7 = deferred_dataref("sim/custom/lights/small/fuel_pump_ri
 light_fuel_pump_right_8 = deferred_dataref("sim/custom/lights/small/fuel_pump_right_8_new", "number")
 light_fuel_pump_right_9 = deferred_dataref("sim/custom/lights/small/fuel_pump_right_9_new", "number")
 
+stp_eng1_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng1_temp_podsh", "number")
+stp_eng2_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng2_temp_podsh", "number")
+stp_eng3_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng3_temp_podsh", "number")
+
 
 
 turn_off_bat_4 = deferred_dataref("sim/custom/lights/small/turn_off_bat_4_new", "number")
@@ -691,11 +699,6 @@ eng_hydr_fail_1 = deferred_dataref("sim/custom/lights/small/eng_hydr_fail_1_new"
 eng_hydr_fail_2 = deferred_dataref("sim/custom/lights/small/eng_hydr_fail_2_new", "number")
 eng_hydr_fail_3 = deferred_dataref("sim/custom/lights/small/eng_hydr_fail_3_new", "number")
 eng_hydr_fail_4 = deferred_dataref("sim/custom/lights/small/eng_hydr_fail_4_new", "number")
-
-
-
-
-
 
 
 
@@ -1343,6 +1346,9 @@ function new_lights()
     light_fuel_pump_right_7 = smooth_light(simDR_light_fuel_pump_right_7,light_fuel_pump_right_7)
     light_fuel_pump_right_8 = smooth_light(simDR_light_fuel_pump_right_8,light_fuel_pump_right_8)
     light_fuel_pump_right_9 = smooth_light(simDR_light_fuel_pump_right_9,light_fuel_pump_right_9) 
+	stp_eng1_temp_podsh = smooth_light(simDR_stp_1,stp_eng1_temp_podsh)
+	stp_eng2_temp_podsh = smooth_light(simDR_stp_2,stp_eng2_temp_podsh)
+	stp_eng3_temp_podsh = smooth_light(simDR_stp_3,stp_eng3_temp_podsh)
 end
 
 function new_lights2()

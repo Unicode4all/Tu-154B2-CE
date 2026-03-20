@@ -85,6 +85,7 @@ defineProperty("ctr_36R_cc", globalPropertyf("tu154b2/custom/control/ctr_36R_cc"
 
 defineProperty("svs36_cc", globalPropertyf("tu154b2/custom/svs/power_36cc")) -- потребление тока
 defineProperty("absu_power_cc", globalPropertyf("tu154b2/custom/absu_power_cc")) -- потребление тока АБСУ
+absu_power_27 = globalPropertyi("tu154b2/custom/absu_power_27")
 
 defineProperty("pkp_left_power_cc", globalPropertyf("tu154b2/custom/bkk/pkp_left_power_cc")) -- отребление тока ПКП
 defineProperty("pkp_right_power_cc", globalPropertyf("tu154b2/custom/bkk/pkp_right_power_cc")) -- отребление тока ПКП
@@ -192,6 +193,22 @@ defineProperty("tvg1", globalPropertyi("sim/custom/gauges/eng/eng1_temp_ctrl"))
 defineProperty("tvg2", globalPropertyi("sim/custom/gauges/eng/eng2_temp_ctrl"))
 defineProperty("tvg3", globalPropertyi("sim/custom/gauges/eng/eng3_temp_ctrl"))
 
+com_64_pwr = globalPropertyi("sim/custom/co63_pwr")
+com_64_mode = globalPropertyi("sim/custom/co63_mode")
+co_70_pwr = globalPropertyi("sim/custom/co70_pwr")
+co_70_mode = globalPropertyi("sim/custom/co70_mode")
+uvid_pwr = globalPropertyi("tu154b2/custom/switchers/ovhd/uvid_on")
+panel_80 = globalPropertyi("sim/custom/b2/kontur_70th")
+vbe_1 = globalPropertyi("tu154b2/custom/switchers/ovhd/vbe_1_on")
+vbe_2 = globalPropertyi("tu154b2/custom/switchers/ovhd/vbe_2_on")
+source_36_left = globalPropertyi("tu154b2/custom/elec/bus36_source_left")
+source_36_right = globalPropertyi("tu154b2/custom/elec/bus36_source_right")
+wxr_mode = globalProperty("sim/cockpit2/EFIS/EFIS_weather_mode")
+
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+
 defineProperty("heat", globalPropertyf("tu154b2/custom/engines/heater_current"))
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -202,6 +219,7 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 local po_start=0
 local po_prev=0
 local po=0
+local slat_prev=0
 
 function update()
 
@@ -209,7 +227,8 @@ local MASTER = get(ismaster) ~= 1
 
 if MASTER then	
 	local passed = get(frame_time)
-	local rad_cc=bool2int(get(radar_cc)>0 or get(wx_pow)>0)
+	local rad_cc=bool2int(get(radar_cc)>0)
+
 	po=get(emerg_inv115)*bool2int(get(bus27_volt_left)>16)*(1-get(inv115_fail))
 	if po>po_prev then
 		po_start=100
@@ -225,40 +244,44 @@ if MASTER then
 	-- bus 27v
 	local bus27_L = get(bat_amp_cc_1) + get(bat_amp_cc_3) + get(cockpit_light_cc_left) + get(ext_light_cc_left) + get(fuel_pumps_27_cc) * 140/27/15*(2-bool2int(get(bus27_volt_right)>18)) + get(ai_27_L_cc)  + get(ctr_27_L_cc)*1 + get(msrp_27_L_cc)*50/27
 	bus27_L = bus27_L + get(svs27_cc)*1 + get(rv_сс_1) * 10/27 + get(taws_cc) * 25/27/1.5 + get(vhf1_cc) * 1 + get(km5_1_cc) * 15/27  + get(bgmk_1_cc) *5/27 + get(agr_cc) * 10/27
-	bus27_L = bus27_L + get(nvu_cc) * 400/27 + get(ark15_L_cc)*54/27 + get(diss_cc)*30/27 + get(rsbn_cc) * 75/27 + get(absu_at_power_cc) *80/27/2*get(absu_speed_prepare)+get(absu_power_cc)*680/27
-	bus27_L = bus27_L + get(sd75_1_on)*100/27*bool2int(get(bus27_volt_left)>22) + get(tcas)*60/27*bool2int(get(bus27_volt_left)>22)+ get(tcas_xpdr)*65/27*bool2int(get(bus27_volt_left)>22)+ get(spu_on)*50/27*bool2int(get(bus27_volt_left)>22)+get(micron_1_on)*100/27*bool2int(get(bus27_volt_left)>22)+get(ovhd_mode)*100/27*bool2int(get(bus27_volt_left)>22)+230/27*bool2int(get(bus27_volt_left)>22)
-	bus27_L = bus27_L + get(mfi_1)*30/27*bool2int(get(bus27_volt_left)>22)+get(ubs_1)*30/27*bool2int(get(bus27_volt_left)>22)+po_load+po_start
+	bus27_L = bus27_L + get(nvu_cc) * 400/27 + get(ark15_L_cc)*54/27 + get(diss_cc)*30/27 + get(rsbn_cc) * 75/27 + get(absu_at_power_cc) *1.5*get(absu_speed_prepare)+get(absu_power_27)*680/27
+	bus27_L = bus27_L + get(sd75_1_on)*100/27*bool2int(get(bus27_volt_left)>22) + get(tcas)*60/27*bool2int(get(bus27_volt_left)>22)+ get(tcas_xpdr)*65/27*bool2int(get(bus27_volt_left)>22)+ get(spu_on)*50/27*bool2int(get(bus27_volt_left)>22)+get(micron_1_on)*100/27*bool2int(get(bus27_volt_left)>22)+bool2int(get(ovhd_mode)>1 or get(co_70_pwr)>1)*100/27*bool2int(get(bus27_volt_left)>22)+230/27*bool2int(get(bus27_volt_left)>22)
+	bus27_L = bus27_L + get(mfi_1)*30/27*bool2int(get(bus27_volt_left)>22)+get(ubs_1)*30/27*bool2int(get(bus27_volt_left)>22)+po_load+po_start+get(com_64_pwr)*50/27*bool2int(get(bus27_volt_left)>22) + rad_cc * 120/27
 	--bus27_L = bus27_L + get(uns_1)60/27*bool2int(get(bus27_volt_left)>22)+ get(mfi_1)30/27*bool2int(get(bus27_volt_left)>22)+get(ubs_1)30/27*bool2int(get(bus27_volt_left)>22)
 	--
 	local bus27_R = get(bat_amp_cc_2) + get(bat_amp_cc_4) + get(cockpit_light_cc_right) + get(ext_light_cc_right) + get(fuel_pumps_27_cc) * 140/27/15*(2-bool2int(get(bus27_volt_left)>18))  + get(ctr_27_R_cc)*1 + get(msrp_27_R_cc)*50/27 + get(ai_27_R_cc)
-	bus27_R = bus27_R + get(auasp_pow27_cc) + get(rv_сс_2) * 10/27 + get(fire_sys_cc) + get(vhf2_cc) * 1 + get(km5_2_cc) * 15/27 + get(bgmk_2_cc) *5/27 + get(ush_cc) + get(ark15_R_cc) *54/27 + rad_cc * 27/27
+	bus27_R = bus27_R + get(auasp_pow27_cc) + get(rv_сс_2) * 10/27 + get(fire_sys_cc) + get(vhf2_cc) * 1 + get(km5_2_cc) * 15/27 + get(bgmk_2_cc) *5/27 + get(ush_cc) + get(ark15_R_cc) *54/27 
 	bus27_R = bus27_R + get(sd75_2_on)*100/27*bool2int(get(bus27_volt_right)>22)+get(micron_2_on)*100/27*bool2int(get(bus27_volt_right)>22)+230/27*bool2int(get(bus27_volt_right)>22) + get(ga_heat_cc) +get(tks_cc)
 	bus27_R = bus27_R + get(mfi_2)*30/27*bool2int(get(bus27_volt_right)>22)+get(ubs_2)*30/27*bool2int(get(bus27_volt_right)>22) + get(gps_power)*1*bool2int(get(bus27_volt_right)>22)	
 	-- cabin lights
 	bus27_R=bus27_R+7*2*bool2int(get(svet_dezh_1)>0)*0.18+10*2*bool2int(get(svet_dezh_2)>0)*0.18
 	-- Starter heat
 	bus27_R=bus27_R+get(heat)
-	set(bus27_amp_left, bus27_L)
-	set(bus27_amp_right, bus27_R)
 	
 	
 	-- bus 36v
-
-	local bus36_L = get(mgv_ctr_power_cc) *29/36 + get(ctr_36L_cc) + get(svs36_cc)*1 + get(absu_power_cc) * 830/36 + get(absu_at_power_cc) *72/36/2*get(absu_speed_prepare) + get(nvu_cc) * 300/36 + get(ark15_R_cc) * 1 + get(nav1_pow_cc) * 25/36
-	
-	local bus36_R = get(ctr_36R_cc) + get(pkp_right_power_cc)*29/36 + get(km5_2_cc) * 25/36 + get(ga_2_cc) + get(bgmk_2_cc) * 20/36 + get(nav2_pow_cc) * 25/36
-	
-	local bus36_pts_1 =  get(agr_cc) * 16/36 + rad_cc * 4/36 + get(pkp_left_power_cc)*29/36+ get(ark15_L_cc) * 1
+	local bus36_pts_1 =  get(agr_cc) * 16/36 + rad_cc * 36/36 + get(mgv_ctr_power_cc) *29/36 + get(ark15_L_cc) * 1
 	
 	local bus36_pts_2 = get(km5_1_cc) * 25/36 + get(ga_1_cc) + get(bgmk_1_cc) * 20/36 
+
+	local bus36_L = get(pkp_left_power_cc)*29/36  + get(ctr_36L_cc) + get(svs36_cc)*1 + get(absu_power_cc) * 800/36 + get(absu_at_power_cc)*get(absu_speed_prepare) + get(nvu_cc) * 300/36 + get(ark15_R_cc) * 1 + get(nav1_pow_cc) * 25/36
 	
-	bus27_L = bus27_L + get(pts1)*bool2int(get(bus36_volt_left)<33)*bus36_pts_1*2.9
-	bus27_R = bus27_R + get(pts2)*bool2int(get(bus36_volt_right)<33)*bus36_pts_2*2.9	
+	local bus36_R = get(ctr_36R_cc) + get(pkp_right_power_cc)*29/36 + get(km5_2_cc) * 25/36 + get(ga_2_cc) + get(bgmk_2_cc) * 20/36 + get(nav2_pow_cc) * 25/36 + bus36_pts_2*(1-get(pts2))
+	
+	
+	local load_36_L = bus36_L  * (1 - get(source_36_left)) + bus36_R * get(source_36_right)
+	local load_36_R = bus36_L  * get(source_36_left) + bus36_R  * (1 - get(source_36_right))
+	
+	bus27_L = bus27_L + get(pts1)*bus36_pts_1*2.9
+	bus27_R = bus27_R + get(pts2)*bus36_pts_2*2.9	
+	
+	set(bus27_amp_left, bus27_L)
+	set(bus27_amp_right, bus27_R)
 	
 	set(bus36_amp_left, bus36_L)
 	set(bus36_amp_right, bus36_R)
 	set(bus36_amp_pts250_1, bus36_pts_1)
-	set(bus36_amp_pts250_2, bus36_pts_2)
+	set(bus36_amp_pts250_2, bus36_pts_2*get(pts2))
 	
 	
 
@@ -266,8 +289,9 @@ if MASTER then
 	-- local avt_L=get(vu1_amp) *27/200/1.7/0.8 +get(avtoL_load)
 	-- local avt_R=get(vu1_amp) *27/200/1.7/0.8 +get(avtoL_load)
 	local bus115_1 =  get(vu3_amp) *27/200/1.7/0.8*bool2int(get(bus115_1_volt)>105)*get(vu_res_to_L)/(1+get(vu_res_to_R)) + get(fuel_pumps_115_1_cc) + get(gs_pump_2_cc)*0.78 + get(ai_115_1_cc) + get(ctr_115_1_cc)
-	bus115_1 = bus115_1 + get(svs115_cc)*1 + get(rv_сс_1)*95/115 + get(taws_cc) * 0.2 + get(absu_at_power_cc)*400/200/2*get(absu_speed_prepare) + get(diss_cc) * 260/115 + get(nav1_pow_cc) * 180/115 + get(rsbn_cc) * 750/115
-	bus115_1 = bus115_1+ get(sd75_1_on)*90/115*bool2int(get(bus115_1_volt)>100)+get(micron_1_on)*250/200*bool2int(get(bus115_1_volt)>100)+get(ovhd_mode)*50/115*bool2int(get(bus115_1_volt)>100) + get(gear_fan)*0.9*12/math.sqrt(3)/0.8*bool2int(get(bus115_1_volt)>100)
+	bus115_1 = bus115_1 + get(svs115_cc)*1 + get(rv_сс_1)*95/115 + get(taws_cc) * 0.2 + get(absu_power_cc)*123/115 + get(absu_power_cc)*400/200 + get(absu_at_power_cc)*get(absu_speed_prepare) + get(diss_cc) * 260/115 + get(nav1_pow_cc) * 180/115 + get(rsbn_cc) * 750/115
+	bus115_1 = bus115_1+ get(sd75_1_on)*90/115*bool2int(get(bus115_1_volt)>100)+get(micron_1_on)*250/200*bool2int(get(bus115_1_volt)>100)+bool2int(get(ovhd_mode)>1 or get(co_70_pwr)>1)*50/115*bool2int(get(bus115_1_volt)>100) 
+	bus115_1 = bus115_1+get(uvid_pwr)*30/115*bool2int(get(bus115_1_volt)>100)+ get(gear_fan)*0.9*12/math.sqrt(3)/0.8*bool2int(get(bus115_1_volt)>100)/2+get(com_64_pwr)*150/115*bool2int(get(bus115_1_volt)>100) + load_36_L*36/115
 	--cabin lights
 	bus115_1 = bus115_1+23*0.3/3*get(svet_zent_1)+32*0.3/3*get(svet_zent_2)+35*0.3/3*get(svet_bort_1)+29*0.3/3*get(svet_bort_2)+1*0.3/3*get(svet_vest_1)+1*0.3/3*get(svet_vest_2)+2*0.3/3*get(svet_kuch_1)+2*0.3/3*get(svet_kuch_2)
 	--
@@ -275,10 +299,10 @@ if MASTER then
 	
 	--
 	local bus115_3 = get(vu2_amp) *27/200/1.7/0.8 + get(vu3_amp) *27/200/1.7/0.8*bool2int(get(bus115_3_volt)>105)*get(vu_res_to_R)/(1+get(vu_res_to_L)) + get(fuel_pumps_115_3_cc) + get(gs_pump_3_cc)*0.78 + get(ai_115_3_cc) + get(ctr_115_3_cc)
-	bus115_3 = bus115_3 + get(auasp_pow115_cc) + get(rv_сс_2)*95/115 + get(absu_power_cc)*123/115+get(absu_power_cc)*400/200 + get(nav2_pow_cc) * 180/115 + rad_cc * 230/115
-	bus115_3 = bus115_3 + get(sim_beacon)*266/200+ get(sd75_2_on)*90/115*bool2int(get(bus115_3_volt)>100)+get(micron_2_on)*250/200*bool2int(get(bus115_3_volt)>100)
+	bus115_3 = bus115_3 + get(auasp_pow115_cc) + get(rv_сс_2)*95/115 + get(nav2_pow_cc) * 180/115 + load_36_R*36/115 + rad_cc * 230/115 * (0.5 + 0.5*math.min(get(wxr_mode),1))
+	bus115_3 = bus115_3 + get(sim_beacon)*266/200+ get(sd75_2_on)*90/115*bool2int(get(bus115_3_volt)>100)+get(micron_2_on)*250/200*bool2int(get(bus115_3_volt)>100) + get(gear_fan)*0.9*12/math.sqrt(3)/0.8*bool2int(get(bus115_3_volt)>100)/2 + get(vbe_1)*(1-get(panel_80))*30/115*bool2int(get(bus115_3_volt)>100)
 	-- kitchen
-	bus115_3 = bus115_3+1/math.sqrt(2)*18/2*get(kip_0) +1/math.sqrt(2)*18/2*get(kip_1)+1/math.sqrt(2)*18/2*get(kip_2)+1/math.sqrt(2)*18/2*get(kip_3)+1/math.sqrt(2)*18/2*get(kip_4)+1/math.sqrt(2)*18/2*get(kip_5)
+	bus115_3 = bus115_3+(get(kip_0)+get(kip_1)+get(kip_2)+get(kip_3)+get(kip_4)+get(kip_5))*2
 	set(bus115_1_amp, bus115_1)
 	set(bus115_2_amp, bus115_2)
 	set(bus115_3_amp, bus115_3)

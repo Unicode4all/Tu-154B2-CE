@@ -47,6 +47,8 @@ defineProperty("vhf_2_right", globalProperty("sim/custom/vhf2_right_rot"))
 defineProperty("vhf_3_left", globalProperty("sim/custom/vhf3_left_rot"))
 defineProperty("vhf_3_right", globalProperty("sim/custom/vhf3_right_rot"))
 defineProperty("kont", globalProperty("tu154b2/custom/b2/kontur_on"))
+sd_1_vol = globalPropertyf("tu154b2/custom/switchers/SD67_1_vol")
+sd_2_vol = globalPropertyf("tu154b2/custom/switchers/SD67_2_vol")
 
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -105,6 +107,10 @@ local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_swi
 local switcher_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_R.wav')
 local button_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_btn_L.wav')
 local button_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/plastic_btn_R.wav')
+local sd67_on_L = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_on_L.wav')
+local sd67_on_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_on_R.wav')
+local sd67_L = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_L.wav')
+local sd67_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_R.wav')
 --setSampleGain(rot_small_sound, 500)
 
 local text_font = loadFont(moduleDirectory .. '/Custom Module/digital7.ttf')
@@ -119,6 +125,8 @@ local summ_dme_last=0
 local summ_but_last=0
 local summ_sw_last=0
 local summ_back_last=0
+local sd_vol_1_last=0
+local sd_vol_2_last=0
 local function rotary()
     local cursmp2_1_sw = get(cursmp2_1)
     local cursmp2_2_sw = get(cursmp2_2)
@@ -135,6 +143,8 @@ local function rotary()
 	local summ_dme=get(dme_1)+get(dme_2)
 	local summ_but=get(dme_test_1)+get(dme_test_2)
 	local summ_sw=get(dme_res_1)+get(dme_res_2)+get(squel_1)+get(squel_2)
+	local sd_vol_1=get(sd_1_vol)
+	local sd_vol_2=get(sd_2_vol)
 	
 	if summ_back_last ~= summ_back and get(kont)==1 then
 		local z_pos=get(pilot_Z)
@@ -255,10 +265,10 @@ local function rotary()
 		if z_pos-panel_z~=0 then
 			dist=math.min(1,1/math.sqrt(math.pow(z_pos-panel_z,2)+math.pow(x_pos-panel_x,2))/dist_gain)
 		end
-		setSampleGain(rotary_click_sound_L,gain_L*dist)
-		setSampleGain(rotary_click_sound_R,gain_R*dist)
-		playSample(rotary_click_sound_L, false)
-		playSample(rotary_click_sound_R, false)
+		setSampleGain(sd67_L,gain_L*dist)
+		setSampleGain(sd67_R,gain_R*dist)
+		playSample(sd67_L, false)
+		playSample(sd67_R, false)
 	end
 	
 	if summ_but_last~=summ_but then 		
@@ -296,6 +306,25 @@ local function rotary()
 		playSample(switcher_sound_R, false)
 	end
 	
+	if (sd_vol_1==0 and sd_vol_1_last>0) or (sd_vol_1>0 and sd_vol_1_last==0) or (sd_vol_2==0 and sd_vol_2_last>0) or (sd_vol_2>0 and sd_vol_2_last==0)then 		
+		local z_pos=get(pilot_Z)
+		local z_pos=get(pilot_Z)
+		local x_pos=get(pilot_X)
+		local plt_hdg=get(pilot_head)
+		local gain_L, gain_R = inn_balance (panel_x, panel_z, x_pos, z_pos , plt_hdg)
+		gain_L=gain_L*700
+		gain_R=gain_R*700
+		local dist=1
+		if z_pos-panel_z~=0 then
+			dist=math.min(1,1/math.sqrt(math.pow(z_pos-panel_z,2)+math.pow(x_pos-panel_x,2))/dist_gain)
+		end
+		setSampleGain(sd67_on_L,gain_L*dist)
+		setSampleGain(sd67_on_R,gain_R*dist)
+		playSample(sd67_on_L, false)
+		playSample(sd67_on_R, false)
+	end
+	
+	
 	summ_last = summ
 	summ_L_last = summ_L
 	summ_R_last = summ_R
@@ -305,6 +334,10 @@ local function rotary()
 	summ_but_last=summ_but
 	summ_sw_last=summ_sw
 	summ_back_last=summ_back
+	sd_vol_1_last=sd_vol_1
+	sd_vol_2_last=sd_vol_2
+	
+	
 
 end
 

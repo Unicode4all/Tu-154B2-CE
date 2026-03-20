@@ -99,14 +99,7 @@ defineProperty("vkv2_fail", globalPropertyi("tu154b2/custom/failures/absu_speed_
 
 local AT_mode = 0 -- 0 = off, 1 = sync spd, 2 = prepare, 3 = work, 4 = TOGA
 
--- sim/engines/throttle_down
--- sim/engines/throttle_up
 
-local PD_gain_tbl = {{ 0, 0.33},  -- bugs workaround
-				  { 300, 0.33 },  --
-				  { 330, 0.5 },  --				  
-				  { 400, 1 },  -- 
-          		  { 1000, 1 }}   -- bugs workaround
 
 if get(ismaster)~=1 then
 	local THR_dn = findCommand("sim/engines/throttle_down")
@@ -396,7 +389,7 @@ function update()
 		local rud_current = (get(anim_rud1) + get(anim_rud2) + get(anim_rud3)) / 3
 		
 		if rud_current > 0.95 and main_rud_spd > 0 then main_rud_spd = 0 end -- limit upper edge of throttle usage
-		if ((get(anim_rud1)<0.15 and rud_work_1) or (get(anim_rud2)<0.15 and rud_work_2) or (get(anim_rud3)<0.15 and rud_work_3)) and main_rud_spd<0  then
+		if ((get(anim_rud1)<0.15 and rud_work_1==1) or (get(anim_rud2)<0.15 and rud_work_2==1) or (get(anim_rud3)<0.15 and rud_work_3==1)) and main_rud_spd<0  then
 			main_rud_spd=0
 		end
 		local rud_spd_1 = main_rud_spd * math.random(95, 105) * 0.01

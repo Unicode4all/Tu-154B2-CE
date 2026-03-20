@@ -149,7 +149,7 @@ defineProperty("at_mode", globalPropertyi("tu154b2/custom/absu/stu_mode"))
 defineProperty("land_mode", globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on"))
 defineProperty("nav_mode", globalPropertyi("tu154b2/custom/switchers/console/absu_nav_on"))
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
-defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man"))
+defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/absu/kolc"))
 
 defineProperty("mgv_thet_2", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L"))
 defineProperty("mgv_thet_3", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R"))
@@ -168,6 +168,7 @@ defineProperty("bkk_pitch", globalPropertyf("tu154b2/custom/bkk/bkk_pitch")) -- 
 defineProperty("bkk_roll", globalPropertyf("tu154b2/custom/bkk/bkk_roll")) -- результирующий тангаж от БКК
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("search_run", globalPropertyf("tu154b2/custom/absu/ppn_search_delay"))
+search_started = globalPropertyi("tu154b2/custom/absu/ppn_search_started")
 defineProperty("absu_bap_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_pitch_fail"))
 defineProperty("absu_bap_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_roll_fail"))
 defineProperty("absu_bns_pitch_fail", globalPropertyi("tu154b2/custom/failures/bns_tet_fail"))
@@ -1057,7 +1058,7 @@ function update()
 				set(otk_3,0)
 				set(otk_4,0)
 				s_run=0
-				s_reg=0
+				s_reg=-2
 			end
 			if s_run==1 then
 				s_reg=s_reg+passed*3
@@ -1459,9 +1460,12 @@ function update()
 			set(otk_4,0)
 			set(absu_bns_pitch_fail,1)
 			set(absu_bns_roll_fail,1)
+			set(absu_damp_pitch_fail,0)
+			set(absu_damp_roll_fail,0)
+			set(absu_damp_yaw_fail,0)
 			set(work_state,0)
 			s_run=0
-			s_reg=0
+			s_reg=-2
 		end
 	end
 end

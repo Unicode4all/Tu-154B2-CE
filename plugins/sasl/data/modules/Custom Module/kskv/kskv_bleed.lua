@@ -77,6 +77,7 @@ defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) 
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 defineProperty("real_psvp", globalPropertyi("sim/custom/t154cfg/apu_heat_start"))
+true_AS = globalPropertyf("sim/flightmodel2/position/true_airspeed")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
@@ -143,11 +144,14 @@ local function reset_vars()
 	notLoaded = false
 end
 
-function engine_airflow(altitude,cab_altitude,kvd,temperature,density)
+function engine_airflow(altitude,cab_altitude,kvd,temperature,density,tas)
 	local scale=-2.727*altitude/1000 +330-- flow meter scale
-	local flow=0.4897*math.pow(kvd,2)+21.97*kvd--base flow at SL
-	local temp_correction=0.0002778*math.pow(temperature,2)-0.0225*temperature+1.275-- temperature correction
-	flow=flow/scale/3*density/1.225*(1+cab_altitude*0.0001)*temp_correction
+	local flow_low=3.8*math.pow(kvd,1.388)--flow over rpm at SL
+	local flow_high=0.01289*math.pow(kvd,2.656)--flow over rpm at 11km
+	local flow=flow_low*(1-math.min(altitude,11000)/11000)+flow_high*(math.min(altitude,11000)/11000) -- blend flow curves
+	local temp_correction=-0.02*temperature+ 1.3 -- this accounts for increasing compressor pressure ratio at lower temps
+	local q_add=density/2*math.pow(tas,2)*0.0003
+	flow=flow/scale*density/1.225*(1+cab_altitude*0.00015)*temp_correction+q_add/3
 	if flow<0 then
 		flow=0
 	end
@@ -157,11 +161,12 @@ function engine_airflow(altitude,cab_altitude,kvd,temperature,density)
 	return flow
 end
 
-function apu_airflow(altitude,cab_altitude,kvd,temperature,density)
+function apu_airflow(altitude,cab_altitude,kvd,temperature,density,tas)
 	local scale=-2.727*altitude/1000 +330
 	local flow=4400*kvd/100--base flow at SL
-	local temp_correction=0.0002778*math.pow(temperature,2)-0.0225*temperature+1.275
-	flow=flow/scale*density/1.225*(1+cab_altitude*0.000125)*temp_correction
+	local temp_correction=-0.02*temperature+ 1.3
+	local q_add=density/2*math.pow(tas,2)*0.0003
+	flow=flow/scale*density/1.225*(1+cab_altitude*0.00015)*temp_correction+q_add/3
 	if flow<0 then
 		flow=0
 	end
@@ -225,10 +230,11 @@ if MASTER then
 	local cab_alt=get(cabin_altitude_ft) * 0.3048
 	local temp_le=get(temp)
 	local dens=get(rho)
-	local eng_airflow_1 = valve_1 * engine_airflow(acf_alt,cab_alt,get(rpm_high_1),temp_le,dens)*100--( 24.46 * math.exp(get(rpm_high_1)*0.03974)- 24.46) * alt_coef * temp_coef
-	local eng_airflow_2 = valve_2 * engine_airflow(acf_alt,cab_alt,get(rpm_high_2),temp_le,dens)*100--( 24.46 * math.exp(get(rpm_high_2)*0.03974)- 24.46) * alt_coef * temp_coef
-	local eng_airflow_3 = valve_3 * engine_airflow(acf_alt,cab_alt,get(rpm_high_3),temp_le,dens)*100--( 24.46 * math.exp(get(rpm_high_3)*0.03974)- 24.46) * alt_coef * temp_coef
-	local eng_airflow_4 = get(apu_air_doors) * apu_airflow(acf_alt,cab_alt,get(apu_n1),temp_le,dens)*100-- * alt_coef * temp_coef
+	local tas=get(true_AS)
+	local eng_airflow_1 = valve_1 * engine_airflow(acf_alt,cab_alt,get(rpm_high_1),temp_le,dens,tas)*100--( 24.46 * math.exp(get(rpm_high_1)*0.03974)- 24.46) * alt_coef * temp_coef
+	local eng_airflow_2 = valve_2 * engine_airflow(acf_alt,cab_alt,get(rpm_high_2),temp_le,dens,tas)*100--( 24.46 * math.exp(get(rpm_high_2)*0.03974)- 24.46) * alt_coef * temp_coef
+	local eng_airflow_3 = valve_3 * engine_airflow(acf_alt,cab_alt,get(rpm_high_3),temp_le,dens,tas)*100--( 24.46 * math.exp(get(rpm_high_3)*0.03974)- 24.46) * alt_coef * temp_coef
+	local eng_airflow_4 = get(apu_air_doors) * apu_airflow(acf_alt,cab_alt,get(apu_n1),temp_le,dens,tas)*100-- * alt_coef * temp_coef
 	local bleed_air_available=bool2int(eng_airflow_1+eng_airflow_2+eng_airflow_3+eng_airflow_4>50)
 	
 	-- calculate main tubes valves

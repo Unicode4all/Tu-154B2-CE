@@ -56,7 +56,14 @@ defineProperty("alpha_critical", globalPropertyi("tu154b2/custom/auasp/alpha_cri
 defineProperty("gforce_critical", globalPropertyi("tu154b2/custom/auasp/gforce_critical")) -- сигнал от АУАСП по критическом УА
 
 defineProperty("speaker_auasp", globalPropertyi("tu154b2/custom/alarm/speaker_auasp")) -- предельный угол атаки или перегрузки
+p_s = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
+p_q = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
+ppd_ice = globalPropertyf("sim/flightmodel/failures/pitot_ice_stby")
+stat_ice = globalPropertyf("sim/flightmodel/failures/stat_ice_stby") 
 
+rel_stat = globalPropertyi("sim/operation/failures/rel_static_stby") -- static- Blockage
+rel_pitot2 = globalPropertyi("sim/operation/failures/rel_pitot_stby") -- Pitot 2 - Blockage
+defineProperty("sensors_caps", globalPropertyi("tu154b2/custom/anim/sensors_caps"))  -- чехлы и крышки
 --defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 
 -- Smart Copilot
@@ -80,10 +87,14 @@ local aoa_ang_need = 0
 local lamp_lit = false
 local lamp_counter = 0
 local mach_act = 0
+local mach_ind = 0
 
 local gf_act = 1
 local gf_max = 0
 local gf_min = 0
+
+local p_stat=get(p_s)
+local p_d=get(p_q)
 
 function update()
 	
@@ -93,8 +104,8 @@ function update()
 	local passed = get(frame_time)
 	local mode_sw = get(auasp_contr)
 	
-	set(auasp_pow27_cc, power * 10)
-	set(auasp_pow115_cc, power * 3)
+	set(auasp_pow27_cc, power * (15+20*bool2int(mode_sw==1))/27)
+	set(auasp_pow115_cc, power * 30/115)
 	
 	-- critical AOA sector logic
 	
@@ -103,6 +114,16 @@ function update()
 	local flaps = get(flap_inn_L)
 	local slat = get(slats)
 	mach_act = get(mach)
+	local caps = get(sensors_caps) >0
+	if get(rel_pitot2) < 6 and not caps then
+		p_d=get(p_q)*(1-get(ppd_ice))
+	end
+	if get(stat_ice)<0.5 and get(rel_stat)~=6 and not caps then
+		p_stat=get(p_s)
+	end
+	if p_stat>1000 and p_d>p_stat  then
+		mach_ind=(-0.1367*(p_d-p_stat)/p_stat+1.179)*math.sqrt((p_d-p_stat)/p_stat)
+	end
 	
 	if mode_sw == 1 then 
 		sector_ang_need = 10
@@ -112,10 +133,10 @@ function update()
 		sector_ang_need = 12 
 	else
 		--sector_ang_need = interpolate(m_tbl, mach_act)
-		if mach_act <= 0.6 then 
+		if mach_ind <= 0.6 then 
 			sector_ang_need = 12
 		else 
-			sector_ang_need = -1.46855719910012794571e+02*math.pow(mach_act,3) + 3.81861007292695319393e+02*math.pow(mach_act,2) -3.36622029397769836123e+02*mach_act + 1.08214588360798586564e+02
+			sector_ang_need = -1.46855719910012794571e+02*math.pow(mach_ind,3) + 3.81861007292695319393e+02*math.pow(mach_ind,2) -3.36622029397769836123e+02*mach_ind + 1.08214588360798586564e+02
 		end
 		sector_ang_need=math.floor(sector_ang_need*10)/10
 	end

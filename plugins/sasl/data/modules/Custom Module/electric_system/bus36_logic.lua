@@ -55,6 +55,11 @@ defineProperty("tr2_fail", globalPropertyi("tu154b2/custom/failures/tr2_fail")) 
 defineProperty("pts250_1_fail", globalPropertyi("tu154b2/custom/failures/pts250_1_fail")) -- отказ ПТС250
 defineProperty("pts250_2_fail", globalPropertyi("tu154b2/custom/failures/pts250_2_fail")) -- отказ ПТС250
 
+tr1_switch_fail = globalPropertyi("tu154b2/custom/failures/tr1_switch_fail")
+tr2_switch_fail = globalPropertyi("tu154b2/custom/failures/tr2_switch_fail")
+source_left = globalPropertyi("tu154b2/custom/elec/bus36_source_left")
+source_right = globalPropertyi("tu154b2/custom/elec/bus36_source_right")
+
 -- time
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
 
@@ -86,7 +91,7 @@ function update()
 			--set(bus115_1_amp, get(bus115_1_amp) + get(bus36_amp_left) / 3.25)
 		else
 			bus_source_L = 1
-			bus_L_volt = tr2_volt
+			bus_L_volt = tr2_volt * (1-get(tr1_switch_fail))
 			--set(bus115_3_amp, get(bus115_3_amp) + get(bus36_amp_left) / 3.25)
 		end
 
@@ -98,7 +103,7 @@ function update()
 			--set(bus115_3_amp, get(bus115_3_amp) + get(bus36_amp_right) / 3.25)
 		else
 			bus_source_R = 1
-			bus_R_volt = tr1_volt
+			bus_R_volt = tr1_volt * (1-get(tr2_switch_fail))
 			--set(bus115_1_amp, get(bus115_1_amp) + get(bus36_amp_right) / 3.25)
 		end
 		
@@ -156,10 +161,10 @@ function update()
 		
 		if pts_1_volt > 0 then
 			bus_1_volt = 36
-			set(bus27_amp_right, get(bus27_amp_right) + get(bus36_amp_pts250_1) * 1.4) -- add current to bus 27
+			--set(bus27_amp_right, get(bus27_amp_right) + get(bus36_amp_pts250_1) * 1.4) -- add current to bus 27
 		elseif pts_1_fail then
 			bus_1_volt = get(bus36_volt_right)
-			set(bus36_amp_right, get(bus36_amp_right) + get(bus36_amp_pts250_1) * 1.05) -- add current to bus 36R
+			--set(bus36_amp_right, get(bus36_amp_right) + get(bus36_amp_pts250_1) * 1.05) -- add current to bus 36R
 		end
 		
 		-- bus 2
@@ -177,9 +182,10 @@ function update()
 		-- set results
 		set(bus36_volt_pts250_1, bus_1_volt)
 		set(bus36_volt_pts250_2, bus_2_volt)
-		
-		set(bus115_1_amp, get(bus115_1_amp) + (get(bus36_amp_left) / 3.25) * (1 - bus_source_L) + (get(bus36_amp_right) / 3.25) * bus_source_R)
-		set(bus115_3_amp, get(bus115_3_amp) + (get(bus36_amp_left) / 3.25) * (bus_source_L) + (get(bus36_amp_right) / 3.25) * (1 - bus_source_R))
+		set(source_left,bus_source_L)
+		set(source_right,bus_source_R)
+		--set(bus115_1_amp, get(bus115_1_amp) + (get(bus36_amp_left) / 3.25) * (1 - bus_source_L) + (get(bus36_amp_right) / 3.25) * bus_source_R)
+		--set(bus115_3_amp, get(bus115_3_amp) + (get(bus36_amp_left) / 3.25) * (bus_source_L) + (get(bus36_amp_right) / 3.25) * (1 - bus_source_R))
 		
 		
 		--print(get(bus115_1_amp), get(bus115_3_amp))

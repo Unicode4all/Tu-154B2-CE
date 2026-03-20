@@ -78170,12 +78170,16 @@ ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT
 TRIS 18786 483
 ANIM_end
 ANIM_end
+# ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+# TRIS 19974 279
+# ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+# TRIS 19269 96
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
-ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
-TRIS 19269 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
-TRIS 19365 888
+# ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+# TRIS 19269 96
+# ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+TRIS 19365 606
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/start_apu_new 
 TRIS 20253 18
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_1_new 
@@ -78280,10 +78284,15 @@ ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/b2/kontur_on
+ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+TRIS 19974 279
+ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+TRIS 19269 96
 ANIM_begin
 ANIM_trans 0.739181 -1.756060 -21.573997 0.739181 -1.756060 -21.573997 0.000000 0.000000 none
 ANIM_rotate 0.000000 -0.139173 -0.990268 0.000000 300.000000 0.000000 1.000000 sim/custom/b2/rv5_2_lit_lim
 ANIM_trans -0.739181 1.756060 21.573997 -0.739181 1.756060 21.573997 0.000000 0.000000 none
+ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/rv5_right_dh
 TRIS 31623 96
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
 TRIS 31719 312
@@ -78314,8 +78323,10 @@ TRIS 33927 18
 ANIM_end
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
 TRIS 33945 996
-ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
-TRIS 34941 96
+# ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+# TRIS 34941 96
+ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/start_apu_new 
+TRIS 20253 18
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/stuard_call_new 
 TRIS 35037 18
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_fail_new 
@@ -78367,7 +78378,11 @@ TRIS 35451 18
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_1_new 
 TRIS 35469 18
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
-TRIS 35487 8472
+# TRIS 35487 8472
+TRIS 35487 1512
+TRIS 37029 3762
+TRIS 41073 2886
+# TRIS 41493 2466
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
@@ -79326,7 +79341,7 @@ TRIS 82290 70053
 ANIM_begin
 ANIM_begin
 ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_70th
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
+##ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
 TRIS 152343 36
 ATTR_light_level_reset
 ATTR_no_hard
@@ -79347,4 +79362,9 @@ ANIM_begin
 ANIM_trans -0.053633 -0.016086 0.003361 0.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/b2/kontur_70th
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/no_ag_controll_new 
 TRIS 153237 18
+ANIM_end
+ANIM_begin
+ANIM_trans 1.1519 0.088 -0.0126 1.1519 0.088 -0.0126
+TRIS 111792 219
+TRIS 76722 132
 ANIM_end

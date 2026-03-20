@@ -295,7 +295,7 @@ function update()
 	
 	local mode = get(tks_mode)
 	
-	local corr_turn = get(tks_course_set)
+	local corr_turn = get(tks_course_set)*3
 	
 	local lat_set = get(tks_lat_set)
 	local lat_now = get(latitude)
@@ -317,7 +317,7 @@ function update()
 	
 	--------------------- Gyro 1--------------------------
 	--rpm and temp
-	local temp_out=get(cockpit_temp)/2+get(oat)/2 -- temperature in avionics bay approximated as mean between cockpit and outside air temp
+	local temp_out=get(cockpit_temp)*3/4+get(oat)/4 -- temperature in avionics bay approximated as mean between cockpit and outside air temp
 	local rpm_1,angle_1,block_1,fail_arm_1,temp_1,heat_1,amp_1 = ga3 (power_1,rpm_1_prev,angle_1_prev,0,block_1_prev,fail_arm_1_prev,heat_work,temp_out,temp_1_prev,heat_1_prev,passed)
 	local angle_speed_1=0
 	if passed~=0 then

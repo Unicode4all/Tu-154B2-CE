@@ -181,8 +181,8 @@ local kpp_table={{-1, 0 },
 					{  55.5,0.0}, 
 					{  74.5,-0.1 },
 					{  200,-0.1 }} 	
-local kpp_idle_corr_table={{-1000, 1.5 }, 
-					{  0, 1.5}, 
+local kpp_idle_corr_table={{-1000, 1.2 }, 
+					{  0, 1.2}, 
 					{  4, 0.0}, 
 					{  100,0.0 }} 	
 					
@@ -282,8 +282,9 @@ function rev_comm_hnd(phase)
 	return 0
 end
 -- target N2 from throttle position
-local function n2_from_uprt (virtual_rud_1_act,corr_temp)
-	local n2=5.55591102513438954702e+01 + 7.99028629407774815263e+01*virtual_rud_1_act + 2.09369633330851222588e-03*(corr_temp+5) -6.63522155383856784283e+01*math.pow(virtual_rud_1_act,2) + 3.53168063572906976155e-01*virtual_rud_1_act*(corr_temp+5) -1.97333333333351659843e-05*math.pow((corr_temp+5),2) + 2.52813221631643436638e+01*math.pow(virtual_rud_1_act,3) -2.39783522205208154965e-01*math.pow(virtual_rud_1_act,2)*(corr_temp+5) -2.96799999999976260329e-04*virtual_rud_1_act*math.pow((corr_temp+5),2)
+local function n2_from_uprt (virtual_rud_1_act,corr_temp,delta_idle)
+	local delta=delta_idle*(1-math.min(0.3,virtual_rud_1_act)/0.3)
+	local n2=5.55591102513438954702e+01 + delta + 7.99028629407774815263e+01*virtual_rud_1_act + 2.09369633330851222588e-03*(corr_temp+5) -6.63522155383856784283e+01*math.pow(virtual_rud_1_act,2) + 3.53168063572906976155e-01*virtual_rud_1_act*(corr_temp+5) -1.97333333333351659843e-05*math.pow((corr_temp+5),2) + 2.52813221631643436638e+01*math.pow(virtual_rud_1_act,3) -2.39783522205208154965e-01*math.pow(virtual_rud_1_act,2)*(corr_temp+5) -2.96799999999976260329e-04*virtual_rud_1_act*math.pow((corr_temp+5),2)
 	return n2	
 end
 --N2 from N1
@@ -437,8 +438,8 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 
 	--min_idle=math.max(55.5,-1.6402629234e-01*math.pow(alt_baro/1000,2) + 4.6498254605e+00*alt_baro/1000 + 4.4995506536e+01) --- This is the old model
 	local mid_idle_isa_corr=0.12*d_isa
-	min_idle=math.max(55.5,-2.2412587413e-01*math.pow(alt_baro/1000,2) + 5.3544289044e+00*alt_baro/1000 + 4.4647086247e+01+mid_idle_isa_corr)
-	local kpp_idle_corr=interpolate(kpp_idle_corr_table,71-min_idle)
+	min_idle=math.max(53.5,-2.2412587413e-01*math.pow(alt_baro/1000,2) + 5.3544289044e+00*alt_baro/1000 + 4.4647086247e+01+mid_idle_isa_corr)
+	local kpp_idle_corr=interpolate(kpp_idle_corr_table,73-min_idle)
 	--math.max(55.5,1.945*alt_baro/1000+53.61)+get(db1)
 	-- max N2
 	local thr_max=math.min(97.5,97.5-bool2int(alt_baro<4000)*(30-temp-4.5)*0.1411)
@@ -456,7 +457,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		if kpp_1<0 then
 			kpp_1=0
 		end
-	elseif kvd1<71 and kpp_1<1 then
+	elseif kvd1<73 and kpp_1<1 then
 		kpp_1=kpp_1+passed
 		if kpp_1>1 then
 			kpp_1=1
@@ -467,7 +468,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		if kpp_2<0 then
 			kpp_2=0
 		end
-	elseif kvd2<71.1 and kpp_2<1 then
+	elseif kvd2<73.5 and kpp_2<1 then
 		kpp_2=kpp_2+passed
 		if kpp_2>1 then
 			kpp_2=1
@@ -478,7 +479,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		if kpp_3<0 then
 			kpp_3=0
 		end
-	elseif kvd3<71.05 and kpp_3<1 then
+	elseif kvd3<73.8 and kpp_3<1 then
 		kpp_3=kpp_3+passed
 		if kpp_3>1 then
 			kpp_3=1
@@ -506,7 +507,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	local k_d=10*0.03
 	local k_i=0.01*0.001
 	-- N2 target value as function of throttle position and OAT/pressure
-	local nom_rpm=n2_from_uprt (0.89,corr_temp)
+	local nom_rpm=n2_from_uprt (0.89,corr_temp,0)
 	-- Throttle spread
 	local shift_2=-2.06867257022685768764e-01*math.pow(virtual_rud_2_act,3) + 3.94331203513414607631e-01*math.pow(virtual_rud_2_act,2) -1.87463946490728866623e-01*virtual_rud_2_act + 1.57562652318455550893e-16
 	local shift_3=-2.06867257022685768764e-01*math.pow(virtual_rud_3_act,3) + 3.94331203513414607631e-01*math.pow(virtual_rud_3_act,2) -1.87463946490728866623e-01*virtual_rud_3_act + 1.57562652318455550893e-16
@@ -520,19 +521,19 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	shift_2=shift_2*spread_coeff
 	shift_3=shift_3*spread_coeff/2
 	if virtual_rud_1_act<=0.89 then
-		n2_tgt1=n2_from_uprt (virtual_rud_1_act,corr_temp)
+		n2_tgt1=n2_from_uprt (virtual_rud_1_act,corr_temp,-spread_coeff/2)
 		n2_1=n2_tgt1
 	else
 		n2_1=nom_rpm+(thr_max-nom_rpm)*(virtual_rud_1_act-0.89)/0.11-- seperate logic between nominal and max power
 	end
 	if virtual_rud_2_act+shift_2<=0.89 then
-		n2_tgt2=n2_from_uprt (virtual_rud_2_act+shift_2,corr_temp)
+		n2_tgt2=n2_from_uprt (virtual_rud_2_act+shift_2,corr_temp,-spread_coeff/3)
 		n2_2=n2_tgt2
 	else
 		n2_2=nom_rpm+(thr_max-nom_rpm)*(virtual_rud_2_act+shift_2-0.89)/0.11
 	end
 	if virtual_rud_3_act+shift_3<=0.89 then
-		n2_tgt3=n2_from_uprt (virtual_rud_3_act+shift_3,corr_temp)
+		n2_tgt3=n2_from_uprt (virtual_rud_3_act+shift_3,corr_temp,-spread_coeff)
 		n2_3=n2_tgt3
 	else
 		n2_3=nom_rpm+(thr_max-nom_rpm)*(virtual_rud_3_act+shift_3-0.89)/0.11
@@ -592,16 +593,16 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	-- rud_lim_3=interpolate(rud_lim_tbl,kvd3)*get(db1)
 	-- set(db2,rud_lim_2)
 	rud_lim=0.25
-	local idle_lim_1=2*bool2int(kvd1>55.5-1.3)
-	if kvd1<55.5-idle_lim_1 then
+	local idle_lim_1=2*bool2int(kvd1>55.5-spread_coeff/2-1.3)
+	if kvd1<55.5-spread_coeff/2-idle_lim_1 then
 		contr_1_spd=-rud_lim
 	end
-	local idle_lim_2=2*bool2int(kvd2>55.5-1.3)
-	if kvd2<55.5-idle_lim_2 then
+	local idle_lim_2=2*bool2int(kvd2>55.5-spread_coeff/3-1.3)
+	if kvd2<55.5-spread_coeff/3-idle_lim_2 then
 		contr_2_spd=-rud_lim
 	end
-	local idle_lim_3=2*bool2int(kvd3>55.5-1.3)
-	if kvd3<55.5-idle_lim_3 then
+	local idle_lim_3=2*bool2int(kvd3>55.5-spread_coeff-1.3)
+	if kvd3<55.5-spread_coeff-idle_lim_3 then
 		contr_3_spd=-rud_lim
 	end
 	
@@ -664,7 +665,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 
 	if virtual_rud_1_act < joy_rud_pos_1 then -- spool-up, throt delay*altitude corrector (4-7km)
 			-- no delay below flight idle
-		if n2_from_uprt (joy_rud_pos_1,corr_temp)<min_idle-0.05 then
+		if n2_from_uprt (joy_rud_pos_1,corr_temp,0)<min_idle-0.05 then
 			virtual_rud_1_act =joy_rud_pos_1
 		else
 			virtual_rud_1_act = virtual_rud_1_act - math.max((virtual_rud_1_act - joy_rud_pos_1*(1-0.25*bool2int(rev_L))),-0.14*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3+0.2*bool2int(rev_L)))  * passed
@@ -674,18 +675,18 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	end
 	
 	if virtual_rud_2_act < joy_rud_pos_2 then -- spool-up
-		if n2_from_uprt (joy_rud_pos_2,corr_temp)<min_idle-0.05 then
+		if n2_from_uprt (joy_rud_pos_2,corr_temp,0)<min_idle-0.05 then
 			virtual_rud_2_act =joy_rud_pos_2
 		else
-			virtual_rud_2_act = virtual_rud_2_act - math.max((virtual_rud_2_act - joy_rud_pos_2),-0.14*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed--*(1-bool2int(rev_L))
+			virtual_rud_2_act = virtual_rud_2_act - math.max((virtual_rud_2_act - joy_rud_pos_2),-0.1,-0.14*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed--*(1-bool2int(rev_L))
 		end
 	else -- spool-down
-		virtual_rud_2_act = virtual_rud_2_act - math.min((virtual_rud_2_act - joy_rud_pos_2),0.16*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed * 1.5--*(1-bool2int(rev_L))
+		virtual_rud_2_act = virtual_rud_2_act - math.min((virtual_rud_2_act - joy_rud_pos_2),0.12,0.16*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3))  * passed * 1.5--*(1-bool2int(rev_L))
 	end
 	
 	if virtual_rud_3_act < joy_rud_pos_3 then -- spool-up, throt delay*altitude corrector (4-7km) 
 			--no delay below flight idle
-		if n2_from_uprt (joy_rud_pos_3,corr_temp)<min_idle-0.05 then
+		if n2_from_uprt (joy_rud_pos_3,corr_temp,0)<min_idle-0.05 then
 			virtual_rud_3_act =joy_rud_pos_3
 		else
 			virtual_rud_3_act = virtual_rud_3_act - math.max((virtual_rud_3_act - joy_rud_pos_3*(1-0.25*bool2int(rev_R))),-0.14*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3+0.2*bool2int(rev_R)))  * passed

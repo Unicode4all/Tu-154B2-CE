@@ -4,7 +4,7 @@
 
 -- SVS
 defineProperty("mach_svs", globalPropertyf("tu154b2/custom/svs/machno")) -- Mach number
-defineProperty("alt_svs", globalPropertyf("sim/flightmodel2/position/pressure_altitude")) -- Altitude by 1013 hpa
+--defineProperty("alt_svs", globalPropertyf("sim/flightmodel2/position/pressure_altitude")) -- Altitude by 1013 hpa
 defineProperty("tas_svs", globalPropertyf("tu154b2/custom/svs/true_airspeed")) -- TAS
 
 defineProperty("ias", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")) -- indicated airspeed in KTS
@@ -15,6 +15,8 @@ defineProperty("h_integral", globalPropertyf("tu154b2/custom/absu/d_H_integral")
 defineProperty("v_integral", globalPropertyf("tu154b2/custom/absu/d_V_integral")) 
 defineProperty("m_integral", globalPropertyf("tu154b2/custom/absu/d_M_integral")) 
 
+--temp = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
+p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 
 
 local H_stab=0
@@ -53,8 +55,15 @@ function update()
 	local passed = get(frame_time)
 	local airspeed = get(ias) * 1.852
 	local mach = get(mach_svs)
-	local alt = get(alt_svs)*0.3048
-	
+	-- local T_stat=get(temp)+273.15
+	-- local t_avg=(288.15-T_stat)/2*11000/math.max(11000,alt)+T_stat
+	-- alt=28.96*t_avg*math.log(101325/get(p_stat_smoothed))
+	-- Barometric altitude
+	local p_s=get(p_stat_smoothed)
+	local alt=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
+	if p_s< 22250 then
+		alt=11000+28.96*216.6500*math.log(22250/p_s)
+	end
 	if pitch_submode==2 then
 			
 			

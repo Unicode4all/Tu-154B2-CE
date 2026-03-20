@@ -334,7 +334,7 @@ function update()
 		local doors=get(door_cargo)==0 or eng_select~=3 --block eng3 start with rear cargo door open
 		
 		
-		if not eng1_starting and not eng2_starting and not eng3_starting and start_button and doors and starter_press > 2.5 and get(fuel_flow_mode)>0 and fuel_system then
+		if not eng1_starting and not eng2_starting and not eng3_starting and start_button and doors and starter_press > 1.5 and get(fuel_flow_mode)>0 and fuel_system then
 			if eng_select == 1 and power27L and rpm1 < RPM_APD_OFF then
 				failstart_1=math.random(0,0.999)
 				if failstart_1>1+math.max(-20,out_temp)/20 then

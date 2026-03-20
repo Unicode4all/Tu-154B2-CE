@@ -40,6 +40,9 @@ defineProperty("vu1_amp", globalPropertyf("tu154b2/custom/elec/vu1_amp")) -- р�
 defineProperty("vu2_amp", globalPropertyf("tu154b2/custom/elec/vu2_amp")) -- работа ВУ
 defineProperty("vu3_amp", globalPropertyf("tu154b2/custom/elec/vu_res_amp")) -- работа ВУ
 
+tr1_switch_fail = globalPropertyi("tu154b2/custom/failures/tr1_switch_fail")
+tr2_switch_fail = globalPropertyi("tu154b2/custom/failures/tr2_switch_fail")
+
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
@@ -107,6 +110,8 @@ if MASTER then
 			if get(gen_4_reg_fail) ~= 1 then set(gen_4_reg_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(gpu_reg_fail) ~= 1 then set(gpu_reg_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			
+			if get(tr1_switch_fail) ~= 1 then set(tr1_switch_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(tr2_switch_fail) ~= 1 then set(tr2_switch_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			
 		
 		end
@@ -173,6 +178,8 @@ if MASTER then
 		set(gen_4_reg_fail,0)
 		set(gpu_reg_fail,0)
 		
+		set(tr1_switch_fail, 0)
+		set(tr2_switch_fail, 0)
 	
 	end
 	

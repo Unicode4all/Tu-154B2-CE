@@ -3724,7 +3724,7 @@ IDX10 3134 3135 3136 3137 3134 3136 3138 3139 3140 3141
 IDX 3139
 IDX 3138
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_pa_off
 ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_gns
 ATTR_no_blend
 TRIS 0 132

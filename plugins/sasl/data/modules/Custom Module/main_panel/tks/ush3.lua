@@ -30,6 +30,7 @@ defineProperty("ush_cc", globalPropertyf("tu154b2/custom/tks/ush_cc")) -- пот
 defineProperty("nvu_power_on", globalPropertyi("tu154b2/custom/switchers/console/nvu_power_on")) -- питание НВУ
 defineProperty("mag_psi", globalPropertyf("sim/flightmodel/position/mag_psi")) -- mag course
 defineProperty("potr", globalPropertyf("tu154b2/custom/switchers/ovhd/tks_mode_left"))
+defineProperty("diss_on", globalPropertyi("tu154b2/custom/switchers/ovhd/diss_on"))
 
 local notLoaded = true
 local start_timer=0
@@ -79,7 +80,7 @@ function update()
 		end
 		
 		 
-		if get(nvu_power_on) == 1 and get(bus27_volt_right) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100 then
+		if get(diss_on) == 1 and get(bus27_volt_right) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100 then
 			local delta_pu = course_pu - course_main - slip
 			if get(potr)==0 then
 				delta_pu = course_pu - course_aux - slip

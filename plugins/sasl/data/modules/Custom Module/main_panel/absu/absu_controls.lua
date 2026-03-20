@@ -83,7 +83,7 @@ defineProperty("slip", globalPropertyf("sim/cockpit2/gauges/indicators/sideslip_
 
 -- SVS
 defineProperty("mach_svs", globalPropertyf("tu154b2/custom/svs/machno")) -- Mach number
---defineProperty("alt_svs", globalPropertyf("tu154b2/custom/svs/altitude")) --
+defineProperty("h", globalPropertyf("tu154b2/custom/svs/altitude")) --
 --defineProperty("tas_svs", globalPropertyf("tu154b2/custom/svs/true_airspeed")) -- TAS
 
 defineProperty("ias", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_stby")) -- indicated airspeed in KTS
@@ -156,6 +156,7 @@ defineProperty("GNS430_dev", globalPropertyf("tu154b2/custom/SC/GNS430_dev")) --
 
 -- RV
 defineProperty("rv5_alt", globalPropertyf("tu154b2/custom/misc/rv5_alt_left"))  -- высота на левом высотомере
+defineProperty("rv5_alt2", globalPropertyf("tu154b2/custom/misc/rv5_alt_right"))
 
 defineProperty("dh_set", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_left"))  -- DH angle
 defineProperty("rv_angle", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_left"))  -- RV needle
@@ -256,9 +257,14 @@ defineProperty("sta_type_right", globalPropertyi("tu154b2/custom/radio/ils_right
 defineProperty("absu_power", globalPropertyi("tu154b2/custom/absu_power_cc"))
 defineProperty("v_left", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_stby"))
 defineProperty("v_right", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
-defineProperty("h", globalPropertyf("tu154b2/custom/svs/altitude"))
+--defineProperty("h", globalPropertyf("tu154b2/custom/svs/altitude"))
 defineProperty("absu_gs", globalPropertyi("tu154b2/custom/buttons/console/absu_gs")) -- кнопка глиссада на панели АБСУ
 cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
+--temp = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
+--p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
+p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
+rv_test = globalPropertyi("tu154b2/custom/gauges/alt/radioalt_button_left")
+--press_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")
 --defineProperty("h_right", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot"))
 
 --local pitch_act = 0
@@ -278,7 +284,6 @@ local flaps_prev=0
 local flap_timer=0
 --local flap_timer2=0
 
-local passed = get(frame_time)
 
 -- manual pitch
 --local pitch_coef = 0.3
@@ -439,6 +444,9 @@ local loc_dev2=0
 local thet_gs_last=0
 local thet_hp = 0
 local elev_cmd_gs=0
+local p_s=101325
+local airspeed=0
+local rv_switch=1
 -- local d_contr_roll=0
 -- local d_contr_pitch=0
 -- local d_contr_yaw=0
@@ -468,7 +476,7 @@ end
 
 function update()
 	
-	passed = get(frame_time)
+	local passed = get(frame_time)
 	
 	MASTER = get(ismaster) ~= 1	
 	
@@ -514,13 +522,41 @@ function update()
 	local pitch_cmd = get(joy_pitch)
 	local roll_cmd = get(joy_roll)
 	local yaw_cmd = get(joy_yaw)
-	
+	-- speeds
+	local T_kzs=2
+	local v_kzs  = (get(v_left)+get(v_right))/2 * 1.852-- mean of two channels
+	airspeed=passed/(T_kzs+passed)*v_kzs + airspeed*T_kzs/(T_kzs+passed) -- delay
 	local mach = get(mach_svs)
-	local airspeed = (get(v_left)/2+get(v_right)/2) * 1.852 -- mean of two channels
 	local gnd_spd = get(diss_groundspeed)
-	local alt = get(h)
-	local RV_alt = get(rv5_alt)
 	
+	-- Barometric altitude
+	local T_stat=1
+	p_s = passed/(T_stat+passed)*get(p_stat)+p_s*T_stat/(T_stat+passed)
+	--local p_s=get(p_stat_smoothed)
+	local alt=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
+	if p_s< 22250 then
+		alt=11000+28.96*216.6500*math.log(22250/p_s)
+	end
+	-- if get(db2)==2 then
+		-- alt=get(press_alt)*0.3048
+	-- end
+	-- set(db1,alt)
+	local RV_alt = get(rv5_alt)
+	if get(rv_flag)==1 then
+		RV_alt = get(rv5_alt2)
+	end
+	if get(rv_test)==0 then
+		if RV_alt>700 and rv_switch~=4 then
+			rv_switch=4
+		elseif RV_alt>=250 and RV_alt<700 and rv_switch~=3 then
+			rv_switch=3
+		elseif RV_alt>=100 and RV_alt<250 and rv_switch~=2 then
+			rv_switch=2
+		elseif RV_alt<100 and rv_switch~=1 then
+			rv_switch=1
+		end
+	end
+
 	gear_down = get(gear1_deploy) + get(gear2_deploy) + get(gear3_deploy) > 0.05
 	flaps = (get(flap_inn_L) + get(flap_inn_R)) / 2
 	
@@ -737,7 +773,7 @@ function update()
 			-- local K_DH=0.4*(1 - absu_smooth)/2
 			-- local K_IH=0.002/2
 
-			local PID_part = P_H * 0.1*(1+bool2int(gear_down or get(rv5_alt)<700)) + D_H * 0.4*(1 - absu_smooth) + get(h_integral)*0.002
+			local PID_part = P_H * 0.1*(1+bool2int(gear_down or rv_switch==1)) + D_H * 0.4*(1 - absu_smooth) + get(h_integral)*0.002
 
 			
 			pitch_need = -math.min(math.max(PID_part,-10),10) + (PU_pitch-pitch_now+pitch_base)*2
@@ -763,30 +799,30 @@ function update()
 		elseif pitch_submode == 5 then -- GS mode
 			-- constants
 			local KZ_gs = 15
-			local KDZ_gs=200
-			local K_thet1_gs=1
-			local K_thet2_gs=2
+			local KDZ_gs=150
+			local K_thet1_gs=2
+			local K_thet2_gs=0.5
 			-- P and D parts
-			local k_side_gs=gliss_dev* KZ_gs*(0.5+0.5*bool2int(RV_alt > 250))
-			local k_d_side_gs=gliss_spd * KDZ_gs*(0.5+0.5*bool2int(RV_alt > 250))
+			local k_side_gs=gliss_dev* KZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
+			local k_d_side_gs=gliss_spd * KDZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
 			if secondNav then
-				k_side_gs=gliss_dev2* KZ_gs*(0.5+0.5*bool2int(RV_alt > 250))
-				k_d_side_gs=gliss_spd2 * KDZ_gs*(0.5+0.5*bool2int(RV_alt > 250))
-				if RV_alt <= 100 and math.abs(gliss_dev2) > 0.25 and get(absu_bns_pitch_fail)==0 then
+				k_side_gs=gliss_dev2* KZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
+				k_d_side_gs=gliss_spd2 * KDZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
+				if rv_switch ==1 and math.abs(gliss_dev2) > 0.25 and get(absu_bns_pitch_fail)==0 then
 					set(absu_gs_out, 1)
 				end
 			else
-				if RV_alt <= 100 and math.abs(gliss_dev) > 0.25 and get(absu_bns_pitch_fail)==0 then
+				if rv_switch ==1 and math.abs(gliss_dev) > 0.25 and get(absu_bns_pitch_fail)==0 then
 					set(absu_gs_out, 1)
 				end
 			end
 			-- pitch bias
 			local thet_gs=get(bkk_pitch)+2.5*gs_caught-- add pitch on GS capture
 			thet_hp=5/(5+passed)*thet_hp+5/(5+passed)*(thet_gs-thet_gs_last) -- pitch signal after high-pass
-			thet_azp=5/(5+passed)*thet_azp+5/(5+passed)*(thet_gs-thet_gs_last)*K_thet2_gs -- additional pitch signal for auto-approach
+			thet_azp=10/(10+passed)*thet_azp+10/(10+passed)*(thet_gs-thet_gs_last)*K_thet2_gs -- additional pitch signal for auto-approach
 			thet_gs_last=thet_gs
 			-- resulting elevator command
-			local T_lp_gs=1+bool2int(RV_alt < 100)
+			local T_lp_gs=1+bool2int(rv_switch ==1)
 			elev_cmd_gs=T_lp_gs/(T_lp_gs+passed)*elev_cmd_gs+passed/(T_lp_gs+passed)*(-k_side_gs -k_d_side_gs-thet_hp*K_thet1_gs)
 			pitch_need = elev_cmd_gs-thet_azp*bool2int(pitch_mode==2)
 			-- if passed~=0 then
@@ -1247,9 +1283,9 @@ function update()
 				delta_ZK_speed=(delta_ZK-nvu_z_last)/passed
 			end
 			nvu_z_last=delta_ZK -- we hijack this variable to remain below upvalue limits
-			local rv_alt = get(rv5_alt)
+			--local rv_alt = get(rv5_alt)
 			
-			local above250 = bool2int(rv_alt > 250)
+			local above250 = bool2int(rv_switch >2)
 			
 		
 			local terminal_phase=bool2int(pitch_submode == 5 or above250==1)
@@ -1267,11 +1303,11 @@ function update()
 			if secondNav then
 				k_side=loc_dev2*KZ-delta_ZK*KZK2
 				k_d_side=dev_spd2 * KDZ
-				if RV_alt <= 100 and math.abs(loc_dev2) > 0.25 and get(absu_bns_roll_fail)==0 then
+				if rv_switch ==1 and math.abs(loc_dev2) > 0.25 and get(absu_bns_roll_fail)==0 then
 					set(absu_course_out, 1)
 				end
 			else
-				if RV_alt <= 100 and math.abs(loc_dev) > 0.25 and get(absu_bns_roll_fail)==0 then
+				if rv_switch ==1 and math.abs(loc_dev) > 0.25 and get(absu_bns_roll_fail)==0 then
 					set(absu_course_out, 1)
 				end
 			end
@@ -1475,7 +1511,7 @@ function update()
 		if flag_pitch >0 then
 			pitch_show = 10
 		elseif pitch_submode == 5 and flag_pitch==0 then 
-			pitch_show = pitch_show - pitch_now
+			pitch_show = pitch_need
 		else
 			pitch_show = 0					
 		end			
@@ -1527,10 +1563,10 @@ function update()
 	
 	
 	-- lamps
-	if get(rv_angle) <= get(dh_set)+0.5 or RV_alt > 100 or get(absu_bns_roll_fail)==1 then
+	if get(rv_angle) <= get(dh_set)+0.5 or rv_switch >1 or get(absu_bns_roll_fail)==1 then
 		set(absu_course_out, 0)
 	end
-	if get(rv_angle) <= get(dh_set)+0.5 or RV_alt > 100 or get(absu_bns_pitch_fail)==1 then
+	if get(rv_angle) <= get(dh_set)+0.5 or rv_switch >1 or get(absu_bns_pitch_fail)==1 then
 
 		set(absu_gs_out, 0)
 	end
@@ -1609,17 +1645,16 @@ end
 
 function pitch_holder(elev_cmd) -- manipulates the elevator and trimmer by given elevator angle
 	local pitch_submode = get(pitch_sub_mode)
-	local RV_alt = get(rv5_alt)
 	--set(db1,theta_dop)
 	--set(db3,theta_add)
 	local delta = (elev_cmd-theta_dop*bool2int(gear_down or get(cockpit_80s)==1)*bool2int(pitch_submode<5))/29
-	local roll_part = math.abs(get(bkk_roll))*(0.00137+0.0031*bool2int(gear_down or RV_alt<700))
+	local roll_part = math.abs(get(bkk_roll))*(0.00137+0.0031*bool2int(gear_down or rv_switch<4))
 	if pitch_submode==5 then
-		delta = (elev_cmd-get(bkk_pitch))*4/29
-		if delta > 7/29-bool2int(RV_alt <= 250)*3.5/29 then 
-			delta = 7/29-bool2int(RV_alt <= 250)*3.5/29
-		elseif delta < -7/29+bool2int(RV_alt <= 250)*3.5/29 then 
-			delta = -7/29+bool2int(RV_alt <= 250)*3.5/29 
+		delta = (elev_cmd)*4/29
+		if delta > 7/29-bool2int(rv_switch<3)*3.5/29 then 
+			delta = 7/29-bool2int(rv_switch<3)*3.5/29
+		elseif delta < -7/29+bool2int(rv_switch<3)*3.5/29 then 
+			delta = -7/29+bool2int(rv_switch<3)*3.5/29 
 		end
 		roll_part =0
 	elseif pitch_submode==6 then
@@ -1728,25 +1763,7 @@ end
 function yaw_holder()
 	
 	-- -- PID components
-	-- local P = get(slip) * (1 - get(absu_damp_yaw_fail))
-	-- local KP = 0.01
-	
-	-- local K_I = 0--0.001
-	-- yaw_I = yaw_I + P * passed * K_I
-	
-	-- yaw_I = yaw_I - sign(yaw_I) * passed * 0.1 -- 0.01
-	
-	-- if yaw_I > 0.1 then yaw_I = 0.1
-	-- elseif yaw_I < -0.1 then yaw_I = -0.1 end
-	
-	-- local D = 0
-	
-	-- if passed ~= 0 then
-		-- D = (P - yaw_P_last) / passed
-	-- end
-	-- yaw_P_last = P
-	
-	-- local K_D = 0.01
+	local passed = get(frame_time)
 	local yaw_W = get(yaw_rate)* (1 - get(absu_damp_yaw_fail))
 	absu_yaw_damp=2.5/(2.5+passed)*absu_yaw_damp+2.5/(2.5+passed)*(yaw_W-yaw_W_prev)
 	yaw_W_prev=yaw_W

@@ -2548,14 +2548,14 @@ ANIM_begin
 ANIM_trans 0.323937 -1.812650 -21.570200 0.323937 -1.812650 -21.570200 0.000000 0.000000 none
 ANIM_rotate 0.000000 -0.139148 -0.990272 0.000000 280.000000 0.000000 1.000000 tu154b2/custom/kontur/srpbz_lit_set
 ANIM_trans -0.323937 1.812650 21.570200 -0.323937 1.812650 21.570200 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 1000.000000
+ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT
 TRIS 0 240
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_pa_off
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_gns
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/gns430_lit 1000.000000
+ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/gns430_lit
 TRIS 240 2127
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000080 -0.000567 0.000000 1.000000 CMND=sim/GPS/g430n1_msg

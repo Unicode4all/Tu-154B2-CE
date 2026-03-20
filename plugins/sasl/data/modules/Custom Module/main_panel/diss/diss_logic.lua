@@ -11,33 +11,16 @@ defineProperty("diss_on", globalPropertyi("tu154b2/custom/switchers/ovhd/diss_on
 defineProperty("diss_mode_sw", globalPropertyi("tu154b2/custom/switchers/ovhd/diss_mode")) -- режим дисс. 0 - море, 1 - суша
 defineProperty("nvu_calc_set", globalPropertyi("tu154b2/custom/switchers/ovhd/nvu_calc_set")) -- счисление. -1 - контроль ДИСС в полете, 0 - НВУ по СВС, 1 - НВУ по ДИСС
 
-defineProperty("wind_set", globalPropertyf("tu154b2/custom/rotary/console/wind_set")) -- установка ветра
 
-defineProperty("wind_course_left", globalPropertyi("tu154b2/custom/button/console/wind_course_left")) -- кнопка установки курса ветра 
-defineProperty("wind_course_ctr", globalPropertyi("tu154b2/custom/button/console/wind_course_ctr")) -- кнопка установки курса ветра 
-defineProperty("wind_course_right", globalPropertyi("tu154b2/custom/button/console/wind_course_right")) -- кнопка установки курса ветра 
+vel_x = globalPropertyf("sim/flightmodel/position/local_vx")
+vel_y = globalPropertyf("sim/flightmodel/position/local_vy")
+vel_z = globalPropertyf("sim/flightmodel/position/local_vz")
+ac_x = globalPropertyf("sim/flightmodel/position/local_x")
+ac_y = globalPropertyf("sim/flightmodel/position/local_y")
+ac_z = globalPropertyf("sim/flightmodel/position/local_z")
+agl = globalPropertyf("sim/flightmodel2/position/y_agl")
 
-defineProperty("wind_spd_left", globalPropertyi("tu154b2/custom/button/console/wind_spd_left")) -- кнопка установки скорости ветра 
-defineProperty("wind_spd_ctr", globalPropertyi("tu154b2/custom/button/console/wind_spd_ctr")) -- кнопка установки скорости ветра 
-defineProperty("wind_spd_right", globalPropertyi("tu154b2/custom/button/console/wind_spd_right")) -- кнопка установки скорости ветра 
-
--- sources
-defineProperty("deg1", globalPropertyf("sim/flightmodel/position/psi")) -- acf mag heading
-defineProperty("deg2", globalPropertyf("sim/flightmodel/position/hpath")) -- real mag heading 
--- slip_angle = get(deg2) - get(deg1)
-defineProperty("groundspeed", globalPropertyf("sim/flightmodel/position/groundspeed")) -- groundspeed
-
-defineProperty("tas_svs", globalPropertyf("tu154b2/custom/svs/true_airspeed")) -- TAS
-defineProperty("course_gpk", globalPropertyf("tu154b2/custom/tks/course_gpk")) -- результирующий курс ТКС - ГПК
-
-defineProperty("acf_roll", globalPropertyf("sim/flightmodel/position/true_phi")) -- крен
-defineProperty("acf_pitch", globalPropertyf("sim/flightmodel/position/true_theta")) -- крен
-
-defineProperty("pos_x", globalPropertyf("sim/flightmodel/position/local_x")) -- longtitude. positive from W to E
-defineProperty("pos_y", globalPropertyf("sim/flightmodel/position/local_y")) -- altitude. positive UP
-defineProperty("pos_z", globalPropertyf("sim/flightmodel/position/local_z")) -- latitude. positive from N to S
-
-defineProperty("wave_amplitude", globalPropertyf("sim/weather/wave_amplitude")) -- meters	Amplitude of waves in the water (height of waves)
+defineProperty("wave_amplitude", globalPropertyf("sim/weather/aircraft/wave_amplitude")) -- meters	Amplitude of waves in the water (height of waves)
 
 -- power
 defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
@@ -45,9 +28,6 @@ defineProperty("bus36_volt_left", globalPropertyf("tu154b2/custom/elec/bus36_vol
 defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
 
 
--- results
-defineProperty("diss_wind_course", globalPropertyf("tu154b2/custom/nvu/diss_wind_course")) -- курс ветра по ДИСС
-defineProperty("diss_wind_spd", globalPropertyf("tu154b2/custom/nvu/diss_wind_spd")) -- скорость ветра по ДИСС
 defineProperty("diss_groundspeed", globalPropertyf("tu154b2/custom/nvu/diss_groundspeed")) -- путевая скорость по ДИСС
 defineProperty("diss_slip_angle", globalPropertyf("tu154b2/custom/nvu/diss_slip_angle")) -- угол сноса по ДИСС
 
@@ -64,11 +44,19 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 defineProperty("diss_fail", globalPropertyi("tu154b2/custom/failures/diss_fail")) --
 defineProperty("nvu_power_on", globalPropertyi("tu154b2/custom/switchers/console/nvu_power_on"))
 defineProperty("nvu_fail", globalPropertyi("tu154b2/custom/failures/nvu_fail"))
-defineProperty("v_path", globalPropertyf("sim/flightmodel/position/vpath"))
+
+ac_pitch = globalPropertyf("sim/flightmodel2/position/true_theta")
+ac_roll = globalPropertyf("sim/flightmodel2/position/true_phi")
+psi_true = globalPropertyf("sim/flightmodel2/position/true_psi")
 
 
-local diss_wind_dir = get(diss_wind_course)
-local diss_wind_speed = get(diss_wind_spd)
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
+
 
 local g_spd = 0
 local slip_angle = 0
@@ -78,121 +66,210 @@ local g_spd_prev=0
 local wind_speed_prev=0
 local wind_dir_prev=0
 local slip_angle_prev=0
-function update()
+local B=90-64 -- Vertical doppler beam angle
+local gamma=35 -- horizontal beam angle
+local check_timer=0
+local beam1_fail = false
+local beam2_fail = false
+local beam3_fail = false
+local angle_1 = 0
+local angle_2 = 0
+local angle_3 = 0
+local water1 = 0
+local water2 = 0
+local water3 = 0
+-- local L1=0
+-- local L2=0
+-- local L3=0
 
+-- local angle1=0
+-- local angle2=0
+-- local angle3=0
+-- local v_1=0
+-- local v_2=0
+-- local v_3=0
+-- local freq=8800000000
+
+
+
+function beam_intersect(x,y,z,u,v,w)
+		local d_max=math.abs(y/v)-- the maximum possible projected slant factor range for the current beam angle
+		local x_new=x+u*d_max -- scale components to match maximum slant range
+		--local y_new=y+v*d_max
+		local z_new=z+w*d_max
+		local L=math.sqrt(math.pow(u*d_max,2)+math.pow(w*d_max,2)) -- projected slant range
+		local tgt_angle=0
+		local L_gnd=0
+		local delta_y=0
+		local angle_gnd=0
+		local d_add=d_max/30 -- slant range step
+		local d_scan=d_max/3
+		local water=0
+		if L~=0 then
+			tgt_angle=math.atan(y/L)*180/math.pi -- calculate beam-path projected angle (this is the angle that we are trying to match with terrain)
+		end
+		local prob, x_gnd, y_gnd, z_gnd, normalX, normalY, normalZ, velocityX, velocityY, velocityZ, Wet = sasl.probeTerrain(x_new, y, z_new) -- probe terraint at maximum slant range
+		if x_gnd then
+			water=Wet
+			L_gnd=math.sqrt(math.pow(x_gnd-x,2)+math.pow(z_gnd-z,2))
+			delta_y=y-y_gnd
+			if L_gnd~=0 then
+				angle_gnd=math.atan(delta_y/L_gnd)*180/math.pi
+			end
+		end
+		-- if terrain-based angle is below the true angle due to elevation, move closer to the aircraft along the horizontally projected beam
+		while angle_gnd<tgt_angle and L_gnd>0 and d_scan<d_max do
+			d_scan=d_scan+d_add
+			x_new=x+u*d_scan
+			z_new=z+w*d_scan
+			prob, x_gnd, y_gnd, z_gnd, normalX, normalY, normalZ, velocityX, velocityY, velocityZ, Wet = sasl.probeTerrain(x_new, y, z_new)
+			if x_gnd then
+				water=Wet
+				L_gnd=math.sqrt(math.pow(x_gnd-x,2)+math.pow(z_gnd-z,2))
+				if L_gnd~=0 then
+					angle_gnd=math.atan(delta_y/L_gnd)*180/math.pi
+				end
+			end
+		end
+		local angle_gnd=0
+		if normalX then
+			angle_gnd=math.acos((-u*normalX+-v*normalY+-w*normalZ))*180/math.pi -- angle between beam and surface normal
+		end
+		return angle_gnd,water
+
+end
+
+-- function norm1000()
+   -- local x 
+   -- repeat
+      -- x = math.ceil(math.log(1/math.random())^.5*math.cos(math.pi*math.random())*150+500)
+   -- until x >= 1 and x <= 1000
+   -- return x
+-- end
+
+function matrix_multiply(u,v,w,m11,m12,m13,m21,m22,m23,m31,m32,m33)
+	local u_mat=u*m11+v*m12+w*m13
+	local v_mat=u*m21+v*m22+w*m23
+	local w_mat=u*m31+v*m32+w*m33
+	return u_mat,v_mat,w_mat
+end
+
+function rotate_vector(u,v,w,phi,theta,psi)
+	local u_rot1,v_rot1,w_rot1=matrix_multiply(u,v,w,math.cos(math.rad(phi)),-math.sin(math.rad(phi)),0,math.sin(math.rad(phi)),math.cos(math.rad(phi)),0,0,0,1)	
+	local u_rot2,v_rot2,w_rot2=matrix_multiply(u_rot1,v_rot1,w_rot1,1,0,0,0,math.cos(math.rad(theta)),-math.sin(math.rad(theta)),0,math.sin(math.rad(theta)),math.cos(math.rad(theta)))
+	local u_rot3,v_rot3,w_rot3=matrix_multiply(u_rot2,v_rot2,w_rot2,math.cos(math.rad(psi)),0,math.sin(math.rad(psi)),0,1,0,-math.sin(math.rad(psi)),0,math.cos(math.rad(psi)))
+	return u_rot3,v_rot3,w_rot3
+end
+-- these are the three base radar beam direction vectors with zero pitch/roll/yaw
+local beam1_1,beam1_2,beam1_3 = rotate_vector(0,0,-1,0,-(90-B),-gamma)
+local beam2_1,beam2_2,beam2_3 = rotate_vector(0,0,-1,0,-(90-B),-(180-gamma))
+local beam3_1,beam3_2,beam3_3 = rotate_vector(0,0,-1,0,-(90-B),-(180+gamma))
+
+local beam1_1_rot,beam1_2_rot,beam1_3_rot = rotate_vector( beam1_1,beam1_2,beam1_2,0,0,0)
+local beam2_1_rot,beam2_2_rot,beam2_3_rot = rotate_vector( beam2_1,beam2_2,beam2_2,0,0,0)
+local beam3_1_rot,beam3_2_rot,beam3_3_rot = rotate_vector( beam3_1,beam3_2,beam3_2,0,0,0)
+
+
+function update()
+	local passed = get(frame_time)
+	-- AC position
+	local aircraft_x=get(ac_x)
+	local aircraft_y=get(ac_y)
+	local aircraft_z=get(ac_z)
+	--AC attitude
+	local pitch=get(ac_pitch)
+	local roll=get(ac_roll)
+	local yaw=get(psi_true)
+	local elev=get(agl)
+	-- Speeds
+	local velx=get(vel_x)
+	local vely=get(vel_y)
+	local velz=get(vel_z)
+	
+	-- Beam angles rotated by AC roll/pitch/yaw
+	beam1_1_rot,beam1_2_rot,beam1_3_rot = rotate_vector( beam1_1,beam1_2,beam1_3,-roll,pitch,-yaw)
+	beam2_1_rot,beam2_2_rot,beam2_3_rot = rotate_vector( beam2_1,beam2_2,beam2_3,-roll,pitch,-yaw)
+	beam3_1_rot,beam3_2_rot,beam3_3_rot = rotate_vector( beam3_1,beam3_2,beam3_3,-roll,pitch,-yaw)
+	local water_sw=1-get(diss_mode_sw)
+	-- Doppler shifts (expressed as velocities, no need to overcomplicate)
+	local dopp_1=(beam1_1_rot*velx+beam1_2_rot*vely+beam1_3_rot*velz)*(1-0.05*water1+0.05*water_sw)
+	local dopp_2=(beam2_1_rot*velx+beam2_2_rot*vely+beam2_3_rot*velz)*(1-0.05*water2+0.05*water_sw)
+	local dopp_3=(beam3_1_rot*velx+beam3_2_rot*vely+beam3_3_rot*velz)*(1-0.05*water3+0.05*water_sw)
+	check_timer=check_timer+passed
+	if check_timer>0.3 then
+		-- Check surface type and beam angle
+		angle_1, water1= beam_intersect(aircraft_x,aircraft_y,aircraft_z,beam1_1_rot,beam1_2_rot,beam1_3_rot)
+		angle_2, water2= beam_intersect(aircraft_x,aircraft_y,aircraft_z,beam2_1_rot,beam2_2_rot,beam2_3_rot)
+		angle_3, water3= beam_intersect(aircraft_x,aircraft_y,aircraft_z,beam3_1_rot,beam3_2_rot,beam3_3_rot)
+		-- Return signal fades at high angles or over calm water
+		local speed = math.sqrt(math.pow(1/2*(dopp_2-dopp_1)/math.cos((90-B)*math.pi/180)/math.cos((gamma)*math.pi/180),2)+math.pow(1/2*(dopp_3-dopp_2)/math.cos((90-B)*math.pi/180)/math.sin((gamma)*math.pi/180),2))
+		local wave=get(wave_amplitude)
+		beam1_fail=angle_1>45.5-math.random(0,2*(1-wave)*water1) or (water1==1 and wave < 0.1 ) or math.abs(dopp_1)<10 or speed<180/3.6
+		beam2_fail=angle_2>45  -math.random(0,2*(1-wave)*water2) or (water2==1 and wave < 0.1 ) or math.abs(dopp_2)<10 or speed<180/3.6
+		beam3_fail=angle_3>44.5-math.random(0,2*(1-wave)*water3) or (water3==1 and wave < 0.1 ) or math.abs(dopp_3)<10 or speed<180/3.6
+		check_timer=0
+	end
+	-- set(db1,angle_1)
+	-- set(db2,angle_2)
+	-- set(db3,angle_3)
+	-- set(db4,dopp_1)
+	-- set(db5,dopp_2)
+	-- set(db6,dopp_3)
+	-- calculate DISS mode
 	local power = get(diss_on) == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100
 	set(diss_cc, bool2int(power))
-	
-	local passed = get(frame_time)
 	local fail = get(diss_fail) == 1
-    local warmup = warmup_timer > 140
-	-- calculate DISS mode
+    local warmup = warmup_timer > 180
     if power then
-      if not warmup then
-        warmup_timer = warmup_timer + passed +math.random(0.01,0.1)
-      end
+		if warmup_timer<300 then
+			warmup_timer = warmup_timer + passed +math.random(0.01,0.1)
+		end
     else
-        warmup_timer = 0
+		if warmup_timer>0 then
+			warmup_timer = warmup_timer - passed /5
+		end
     end
 	
-	
-	local plane_x = get(pos_x)
-	local plane_y = get(pos_y)
-	local plane_z = get(pos_z)
-	local prob, locationX, locationY, locationZ, normalX, normalY, normalZ, velocityX, velocityY, vlocityZ, isWet = sasl.probeTerrain(plane_x, plane_y, plane_z)
-	local nvu_mode = get(nvu_calc_set)
-	isWet=isWet==1
+
 	local mode = 0
+	local nvu_mode = get(nvu_calc_set)
 	
 	if power and warmup and fail then
 		mode = 2
-	elseif power and warmup and nvu_mode == 1 and not (math.abs(get(acf_roll)) > math.random(20,25) or (isWet and get(diss_mode_sw) == 1) or (get(wave_amplitude) < 0.1 and isWet) or get(groundspeed) * 3.6 < 180) then
+	elseif power and warmup and nvu_mode == 1 and not (beam1_fail or beam2_fail or beam3_fail) then
 		mode = 1
 	elseif power and warmup and nvu_mode ~= -1 then 
 		mode = 2
 	elseif power and warmup and nvu_mode == -1 then
 		mode = 3	
 	elseif not power then
-		g_spd = 0
-		slip_angle = 0
+		g_spd_prev=0
+		slip_angle_prev=0
 	end
 	
-	-- wind and speed calculations
-	
-	
-	local TAS = get(tas_svs) / 3.6 -- m/s
-	local acf_course = get(course_gpk)
 	
 	if mode == 1 then -- normal work
-		g_spd = math.abs(get(groundspeed))*math.cos(math.rad(get(v_path))) -- m/s
-		
-		slip_angle = get(deg2) - get(deg1)
-		
-		if slip_angle > 180 then slip_angle = slip_angle - 360
-		elseif slip_angle < -180 then slip_angle = slip_angle + 360 end
-		
-		if slip_angle > 30 then slip_angle = 30
-		elseif slip_angle < -30 then slip_angle = -30 end
-		
-		diss_wind_speed = math.sqrt((g_spd * math.sin(math.rad(slip_angle)))^2 + (g_spd * math.cos(math.rad(slip_angle)) - TAS)^2 )
-		
-		diss_wind_dir = math.deg(math.atan2(g_spd * math.sin(math.rad(slip_angle)), g_spd * math.cos(math.rad(slip_angle)) - TAS))
-		
-		if diss_wind_dir > 360 then diss_wind_dir = diss_wind_dir - 360
-		elseif diss_wind_dir < 0 then diss_wind_dir = diss_wind_dir + 360 end
+		-- GS and slip from doppler shifts 
+		local Wz= 1/2*(dopp_2-dopp_1)/math.cos((90-B)*math.pi/180)/math.cos((gamma)*math.pi/180)
+		local Wx= 1/2*(dopp_3-dopp_2)/math.cos((90-B)*math.pi/180)/math.sin((gamma)*math.pi/180)
+		slip_angle=math.atan(Wx/Wz)*180/math.pi
+		g_spd=math.sqrt(math.pow(Wz,2)+math.pow(Wx,2))
 		g_spd_prev=g_spd
-		wind_speed_prev=diss_wind_speed
-		wind_dir_prev=diss_wind_dir
-		slip_angle_prev=slip_angle
-	
+
+		slip_angle_prev=slip_angle	
 	elseif mode == 2 then -- memory mode or fail
-		--if mode_prev==3 then
-			g_spd=g_spd_prev
-			diss_wind_speed=wind_speed_prev
-			diss_wind_dir=wind_dir_prev
-			slip_angle=slip_angle_prev
-		--end
-		-- diss_wind_speed = get(diss_wind_spd) / 3.6
-		
-		-- diss_wind_dir = get(diss_wind_course) - acf_course
-		
-		--g_spd = math.sqrt((diss_wind_speed * math.sin(math.rad(diss_wind_dir)))^2 + (TAS + diss_wind_speed * math.cos(math.rad(diss_wind_dir)))^2)
-	
-		--slip_angle = math.deg(math.atan2(diss_wind_speed * math.sin(math.rad(diss_wind_dir)), diss_wind_speed * math.cos(math.rad(diss_wind_dir)) + TAS))
-	
-		
-		
-		-- -- wind manual setting
-		-- local but_C_L = get(wind_course_left)
-		-- local but_C_C = get(wind_course_ctr)
-		-- local but_C_R = get(wind_course_right)
-		
-		
-		-- diss_wind_dir = diss_wind_dir + (but_C_R - but_C_L) * (1 + 9 * but_C_C) * passed * 3
-		
-		-- -------------
-		
-		-- local but_S_L = get(wind_spd_left)
-		-- local but_S_C = get(wind_spd_ctr)
-		-- local but_S_R = get(wind_spd_right)
-		
-		-- diss_wind_speed = diss_wind_speed + (but_S_R - but_S_L) * (1 + 9 * but_S_C) * passed * 0.7
-		
-		-- if diss_wind_speed > 300 then diss_wind_speed = 300
-		-- elseif diss_wind_speed < 0 then diss_wind_speed = 0 end
-		
+		g_spd=g_spd_prev
+		slip_angle=slip_angle_prev
 	elseif mode == 3 then -- test mode
-		g_spd = 197.222 -- m/s
-		
-		slip_angle = 0
-		
-		--if slip_angle > 180 then slip_angle = slip_angle - 360
-		--elseif slip_angle < -180 then slip_angle = slip_angle + 360 end
-		
-		--diss_wind_speed = math.sqrt((g_spd * math.sin(math.rad(slip_angle)))^2 + (g_spd * math.cos(math.rad(slip_angle)) - TAS)^2 )
-		
-		--diss_wind_dir = math.deg(math.atan2(g_spd * math.sin(math.rad(slip_angle)), g_spd * math.cos(math.rad(slip_angle)) - TAS))
-	
+		dopp_1=70
+		dopp_2=-70.2
+		dopp_3=-69.8
+		local Wz= 1/2*(dopp_2-dopp_1)/math.cos((90-B)*math.pi/180)/math.cos((gamma)*math.pi/180)
+		local Wx= 1/2*(dopp_3-dopp_2)/math.cos((90-B)*math.pi/180)/math.sin((gamma)*math.pi/180)
+		slip_angle=math.atan(Wx/Wz)*180/math.pi
+		g_spd=math.sqrt(math.pow(Wz,2)+math.pow(Wx,2))
+		g_spd_prev=g_spd
+		slip_angle_prev=slip_angle
 	elseif mode == 10 then -- fail
 		g_spd = 0
 		slip_angle = 0
@@ -202,53 +279,22 @@ function update()
 	
 	end
 	mode_prev=mode
-	if slip_angle > 30 then slip_angle = 30
-	elseif slip_angle < -30 then slip_angle = -30 end
 	
-	
-	-- smooth movements
-	
-	local wind_dir_act = get(diss_wind_course) - acf_course
-	
-	local delta_dir = diss_wind_dir - wind_dir_act
-		
-	if delta_dir > 180 then delta_dir = delta_dir - 360
-	elseif delta_dir < -180 then delta_dir = delta_dir + 360 end
-		
-	if delta_dir > 1 then wind_dir_act = wind_dir_act + passed * 30
-	elseif delta_dir < -1 then wind_dir_act = wind_dir_act - passed * 30
-	else wind_dir_act = wind_dir_act + delta_dir * passed * 30
-	end
-	
-	if wind_dir_act > 360 then wind_dir_act = wind_dir_act - 360
-	elseif wind_dir_act < 0 then wind_dir_act = wind_dir_act + 360 end	
-	
-	
-	
-	
-	local wind_spd_act = get(diss_wind_spd) / 3.6
-	
-	local delta_spd = diss_wind_speed - wind_spd_act 
-		
-	if delta_spd > 1 then wind_spd_act = wind_spd_act + passed * 20
-	elseif delta_spd < -1 then wind_spd_act = wind_spd_act - passed * 20
-	else wind_spd_act = wind_spd_act + delta_spd * passed * 20
-	end
 	
 	
 local MASTER = get(ismaster) ~= 1
 
 if MASTER then
-	if get(nvu_calc_set)~=0 then
-		set(diss_slip_angle, slip_angle)
-	end
+	--if get(nvu_calc_set)~=0 then
+	set(diss_slip_angle, slip_angle)
+	--end
 	set(diss_groundspeed, g_spd * 3.6)
-	local nvu_power = get(nvu_power_on) == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100 and get(nvu_fail)==0
-	-- set results
-	if nvu_power then
-		set(diss_wind_course, wind_dir_act + acf_course)
-		set(diss_wind_spd, wind_spd_act * 3.6)
-	end
+	-- local nvu_power = get(nvu_power_on) == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100 and get(nvu_fail)==0
+	-- -- set results
+	-- if nvu_power then
+		-- set(diss_wind_course, wind_dir_act + acf_course)
+		-- set(diss_wind_spd, wind_spd_act * 3.6)
+	-- end
 	
 	set(diss_mode, mode)
 	

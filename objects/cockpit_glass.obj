@@ -5384,7 +5384,7 @@ ATTR_light_level_reset
 ATTR_manip_none
 TRIS 11106 132
 ANIM_begin
-ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_70th
+ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_pa_off
 ATTR_no_cull
 TRIS 11238 6
 ANIM_end

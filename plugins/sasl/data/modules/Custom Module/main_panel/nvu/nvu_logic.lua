@@ -285,8 +285,9 @@ end
 	local gpk_course = get(course_gpk) -- deg
 	local correct_course = get(compas_knob)
 	local slip_angle = get(diss_slip_angle) -- deg
+	local TAS=get(tas_svs)
 	if power then
-		if get(nvu_calc_set)==0 then	
+		if get(nvu_calc_set)~=1 then	
 			--local diss_wind_speed = get(diss_wind_spd) / 3.6
 			
 			--local diss_wind_dir = get(diss_wind_course) - gpk_course
@@ -301,7 +302,7 @@ end
 			diss_wind_speed = diss_wind_speed + (but_S_R - but_S_L) * (1 + 9 * but_S_C) * passed * 0.7
 			if diss_wind_speed > 300 then diss_wind_speed = 300
 			elseif diss_wind_speed < 0 then diss_wind_speed = 0 end
-			groundspeed=math.sqrt((diss_wind_speed * math.sin(math.rad(diss_wind_dir)))^2 + (get(tas_svs) / 3.6 + diss_wind_speed * math.cos(math.rad(diss_wind_dir)))^2)* 3.6
+			groundspeed=math.sqrt((diss_wind_speed * math.sin(math.rad(diss_wind_dir)))^2 + (TAS / 3.6 + diss_wind_speed * math.cos(math.rad(diss_wind_dir)))^2)* 3.6
 			groundspeed = groundspeed / 3600
 			
 			local wind_dir_act = get(diss_wind_course) - gpk_course
@@ -341,15 +342,19 @@ end
 			elseif delta_spd < -1 then wind_spd_act = wind_spd_act - passed * 20
 			else wind_spd_act = wind_spd_act + delta_spd * passed * 20
 			end
-			slip_angle = math.deg(math.atan2(diss_wind_speed * math.sin(math.rad(diss_wind_dir)), diss_wind_speed * math.cos(math.rad(diss_wind_dir)) + get(tas_svs)))
+			slip_angle = math.deg(math.atan2(diss_wind_speed * math.sin(math.rad(diss_wind_dir)), diss_wind_speed * math.cos(math.rad(diss_wind_dir)) + TAS))
 			set(diss_wind_spd, diss_wind_speed * 3.6)
 		else
 			groundspeed = get(diss_groundspeed) / 3600 -- km/sec	
-			diss_wind_speed = get(diss_wind_spd) / 3.6
-			diss_wind_dir = get(diss_wind_course) - gpk_course
+			slip_angle = get(diss_slip_angle) -- deg
+			diss_wind_speed = math.sqrt((groundspeed * 3600 * math.sin(math.rad(slip_angle)))^2 + (groundspeed * 3600 * math.cos(math.rad(slip_angle)) - TAS)^2 )/3.6
+		
+			diss_wind_dir = math.deg(math.atan2(groundspeed * 3600 * math.sin(math.rad(slip_angle)), groundspeed * 3600 * math.cos(math.rad(slip_angle)) - TAS))
+			set(diss_wind_spd, diss_wind_speed * 3.6 )
+			set(diss_wind_course, diss_wind_dir+ gpk_course)
 		end
 	end
-	if groundspeed * 3600 < 180 then groundspeed = 0 end
+	--if groundspeed * 3600 < 180 then groundspeed = 0 end
 	
 	
 	if mode == 2 then -- normal mode
@@ -463,10 +468,10 @@ if MASTER then
 		set(nvu_res_course, zpu_2 + correct_course)
 		set(nvu_res_z, cur_Z2)
 	end
-	if get(nvu_calc_set)==0 then
+	--if get(nvu_calc_set)==0 then
 		--set(diss_groundspeed,groundspeed*3600)
-		set(diss_slip_angle,slip_angle)
-	end
+		--set(diss_slip_angle,slip_angle)
+	--end
 	set(nvu_fail_signal, bool2int(power and fail))
 	
 	

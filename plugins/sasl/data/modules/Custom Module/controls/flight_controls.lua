@@ -133,8 +133,8 @@ defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_ve
 defineProperty("revers_L", globalPropertyf("tu154b2/custom/controlls/revers_L")) -- рычаг реверса лев
 defineProperty("revers_R", globalPropertyf("tu154b2/custom/controlls/revers_R")) -- рычаг реверса прав
 
-defineProperty("ias_L", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")) -- indicated airspeed in KTS
-defineProperty("ias_R", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
+defineProperty("ias_L", globalPropertyf("sim/flightmodel/position/indicated_airspeed")) -- indicated airspeed in KTS
+--defineProperty("ias_R", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
 -- get(ias) * 1.852 -- km/hr
 
 -- currents
@@ -251,9 +251,9 @@ local elev_stall_tbl = {
 
 local stab_stall_tbl = {
 {-400, 1},
-{17, 1},
-{25, 0.3},
-{30, 0.2},
+{20, 1},
+--{25, 0.3},
+{40, 0.2},
 {400, 0.2}}
 
 
@@ -292,10 +292,10 @@ function update()
 	local HS1 = math.min(get(gs_press_1) / 63, 1) -- should start to slow down at 63 atm
 	local HS2 = math.min(get(gs_press_2) / 63, 1)
 	local HS3 = math.min(get(gs_press_3) / 63, 1)
-
-
-
 	
+	HS1 = HS1 * bool2int(HS1>0.1)
+	HS2 = HS2 * bool2int(HS2>0.1)
+	HS3 = HS3 * bool2int(HS3>0.1)
 	--------------------------
 	-- ailerons and roll-spoilers --
 	local cockpit_yoke_roll = get(joy_roll) + get(int_roll_trim) --*(0.7+0.3*get(nosewheel_turn_sel))
@@ -310,9 +310,9 @@ function update()
 	if roll_cmd > 1 then roll_cmd = 1
 	elseif roll_cmd < -1 then roll_cmd = -1 end
 	
-	if HS1 > 0.01 or HS2 > 0.01 or HS3 > 0.01 then
-		roll_pos_act = roll_pos_act + (roll_cmd - roll_pos_act) * math.max(HS1 * buster_1_ON, HS2 * buster_2_ON, HS3 * buster_3_ON) * passed * 7
-	end
+	--if HS1 > 0.1 or HS2 > 0.1 or HS3 > 0.1 then
+	roll_pos_act = roll_pos_act + (roll_cmd - roll_pos_act) * math.max(HS1 * buster_1_ON, HS2 * buster_2_ON, HS3 * buster_3_ON) * passed * 7
+	--end
 	local ail_corr=1.811854198223174 -0.002079941808742*math.max(ias,220) + -0.398752865107136*mach--  correct aileron effectivness to match RW data
 	local left_ail_pos = roll_pos_act * 20*ail_corr-- * line(mach, 0, 1, 0.8, 0.5) -- can add failures here
 	local right_ail_pos = -roll_pos_act * 20*ail_corr-- * line(mach, 0, 1, 0.8, 0.5) -- can add failures here
@@ -406,7 +406,7 @@ end
 	
 	local spd_brk_L = spd_brk_cmd * 45 * bool2int(power_27_L)
 	local spd_brk_R = spd_brk_cmd * 45 * bool2int(power_27_L)
-	if HS1 > 0.01 then
+	if HS1 > 0.15 then
 		if (spd_brk_L - left_mid_sp_act)<=0 then
 			if math.abs(spd_brk_L - left_mid_sp_act)>1 then
 				left_mid_sp_act = left_mid_sp_act - 31.5 * HS1 * passed 
@@ -446,41 +446,41 @@ end
 	
 	local spoil_L = spoilers_cmd * 50 * bool2int(power_27_L)
 	local spoil_R = spoilers_cmd * 50 * bool2int(power_27_L)
-	if HS1 > 0.01 then
-		-- if spoilers_cmd == 1 then 
-			-- left_inn_sp_act = left_inn_sp_act + (spoil_L - left_inn_sp_act) * HS1 * passed * 1
-			-- right_inn_sp_act = right_inn_sp_act + (spoil_R - right_inn_sp_act) * HS1 * passed * 1
-		-- else
-			-- left_inn_sp_act = left_inn_sp_act + (spoil_L - left_inn_sp_act) * HS1 * passed * 0.7
-			-- right_inn_sp_act = right_inn_sp_act + (spoil_R - right_inn_sp_act) * HS1 * passed * 0.7
-		-- end
-		if (spoil_L - left_inn_sp_act)<=0 then
-			if math.abs(spoil_L - left_inn_sp_act)>1 then
-				left_inn_sp_act = left_inn_sp_act - 30 * HS1 * passed 
-			else
-				left_inn_sp_act = left_inn_sp_act +(spoil_L - left_inn_sp_act) * HS1 * passed * 30
-			end
-		elseif (spoil_L - left_inn_sp_act)>0 then
-			if math.abs(spoil_L - left_inn_sp_act)>1 then
-				left_inn_sp_act = left_inn_sp_act + 30 * HS1 * passed*math.max(1-get(ias_L)/500*math.min(left_inn_sp_act/20,1),0.1)*1.5
-			else
-				left_inn_sp_act = left_inn_sp_act + (spoil_L - left_inn_sp_act) * HS1 * passed * 30*math.max(1-get(ias_L)/500*math.min(left_inn_sp_act/20,1),0.1)*1.5
-			end
+	--if HS1 > 0.1 then
+	-- if spoilers_cmd == 1 then 
+		-- left_inn_sp_act = left_inn_sp_act + (spoil_L - left_inn_sp_act) * HS1 * passed * 1
+		-- right_inn_sp_act = right_inn_sp_act + (spoil_R - right_inn_sp_act) * HS1 * passed * 1
+	-- else
+		-- left_inn_sp_act = left_inn_sp_act + (spoil_L - left_inn_sp_act) * HS1 * passed * 0.7
+		-- right_inn_sp_act = right_inn_sp_act + (spoil_R - right_inn_sp_act) * HS1 * passed * 0.7
+	-- end
+	if (spoil_L - left_inn_sp_act)<=0 then
+		if math.abs(spoil_L - left_inn_sp_act)>1 then
+			left_inn_sp_act = left_inn_sp_act - 30 * HS1 * passed 
+		else
+			left_inn_sp_act = left_inn_sp_act +(spoil_L - left_inn_sp_act) * HS1 * passed * 30
 		end
-		if (spoil_R - right_inn_sp_act)<=0 then
-			if math.abs(spoil_R - right_inn_sp_act)>1 then
-				right_inn_sp_act = right_inn_sp_act - 30* HS1 * passed
-			else
-				right_inn_sp_act = right_inn_sp_act +(spoil_R - right_inn_sp_act) * HS1 * passed * 30
-			end
-		elseif (spoil_R - right_inn_sp_act)>0 then
-			if math.abs(spoil_R - right_inn_sp_act)>1 then
-				right_inn_sp_act = right_inn_sp_act + 30 * HS1 * passed*math.max(1-get(ias_L)/500*math.max(right_inn_sp_act/20,1),0.1)*1.5
-			else
-				right_inn_sp_act = right_inn_sp_act + (spoil_R - right_inn_sp_act) * HS1 * passed * 30*math.max(1-get(ias_L)/500*math.min(right_inn_sp_act/20,1),0.1)*1.5
-			end
+	elseif (spoil_L - left_inn_sp_act)>0 then
+		if math.abs(spoil_L - left_inn_sp_act)>1 then
+			left_inn_sp_act = left_inn_sp_act + 30 * HS1 * passed*math.max(1-get(ias_L)/500*math.min(left_inn_sp_act/20,1),0.1)*1.5
+		else
+			left_inn_sp_act = left_inn_sp_act + (spoil_L - left_inn_sp_act) * HS1 * passed * 30*math.max(1-get(ias_L)/500*math.min(left_inn_sp_act/20,1),0.1)*1.5
 		end
 	end
+	if (spoil_R - right_inn_sp_act)<=0 then
+		if math.abs(spoil_R - right_inn_sp_act)>1 then
+			right_inn_sp_act = right_inn_sp_act - 30* HS1 * passed
+		else
+			right_inn_sp_act = right_inn_sp_act +(spoil_R - right_inn_sp_act) * HS1 * passed * 30
+		end
+	elseif (spoil_R - right_inn_sp_act)>0 then
+		if math.abs(spoil_R - right_inn_sp_act)>1 then
+			right_inn_sp_act = right_inn_sp_act + 30 * HS1 * passed*math.max(1-get(ias_L)/500*math.max(right_inn_sp_act/20,1),0.1)*1.5
+		else
+			right_inn_sp_act = right_inn_sp_act + (spoil_R - right_inn_sp_act) * HS1 * passed * 30*math.max(1-get(ias_L)/500*math.min(right_inn_sp_act/20,1),0.1)*1.5
+		end
+	end
+	--end
 
 if MASTER then	
 	set(spd_brk_inn_L, left_inn_sp_act * (1 - get(fail_spoil_inn_left)))
@@ -618,9 +618,9 @@ end
 	if pitch_cmd > 1 then pitch_cmd = 1
 	elseif pitch_cmd < -1 then pitch_cmd = -1 end
 	
-	if HS1 > 0.01 or HS2 > 0.01 or HS3 > 0.01 then
-		pitch_pos_act = pitch_pos_act + (pitch_cmd - pitch_pos_act) * math.max(HS1 * buster_1_ON, HS2 * buster_2_ON, HS3 * buster_3_ON) * passed * (7-((get(ias_L)+get(ias_R))/2)*0.002)
-	end
+	--if HS1 > 0.01 or HS2 > 0.01 or HS3 > 0.01 then
+	pitch_pos_act = pitch_pos_act + (pitch_cmd - pitch_pos_act) * math.max(HS1 * buster_1_ON, HS2 * buster_2_ON, HS3 * buster_3_ON) * passed * (7-get(ias_L)*0.002)
+	--end
 	local stab_pos = get(stab_ratio)
 	-- elevator effectiveness as a function of stab AoA (XP apparently doesn't model this correctly)
 	
@@ -706,9 +706,9 @@ end
 	elseif rud_cmd < -1 then rud_cmd = -1 end
 
 	
-	if HS1 > 0.01 or HS2 > 0.01 or HS3 > 0.01 then
-		yaw_pos_act = yaw_pos_act + (rud_cmd - yaw_pos_act) * math.max(HS1 * buster_1_ON, HS2 * buster_2_ON, HS3 * buster_3_ON) * passed * 10
-	end
+	--if HS1 > 0.01 or HS2 > 0.01 or HS3 > 0.01 then
+	yaw_pos_act = yaw_pos_act + (rud_cmd - yaw_pos_act) * math.max(HS1 * buster_1_ON, HS2 * buster_2_ON, HS3 * buster_3_ON) * passed * 10
+	--end
 	
 	local rudder_pos = yaw_pos_act * 25-- * line(mach, 0, 1, 0.8, 0.5) -- can add failures here
 

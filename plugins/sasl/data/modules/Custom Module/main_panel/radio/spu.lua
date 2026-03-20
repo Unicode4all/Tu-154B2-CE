@@ -58,12 +58,25 @@ defineProperty("spu_volume1", globalPropertyf("sim/custom/radio/spu_volume1_n"))
 defineProperty("spu_volume2", globalPropertyf("sim/custom/radio/spu_volume2_n"))
 defineProperty("vor1_signal", globalPropertyf("sim/cockpit2/radios/indicators/nav1_flag_from_to_pilot"))
 defineProperty("vor2_signal", globalPropertyf("sim/cockpit2/radios/indicators/nav2_flag_from_to_pilot"))
+rsbn_rec = globalPropertyi("tu154b2/custom/failures/rsbn_rec")
+rsbn_dist = globalPropertyf("tu154b2/custom/rsbn/distance")
+psh_1=globalPropertyi("sim/custom/radios/vhf1_ps")
+psh_2=globalPropertyi("sim/custom/radios/vhf2_ps")
+psh_3=globalPropertyi("sim/custom/radios/vhf3new_ps")
+nav_1_type=globalPropertyi("sim/cockpit2/radios/indicators/nav1_type")
+nav_2_type=globalPropertyi("sim/cockpit2/radios/indicators/nav2_type")
+
+nav_1_pow=globalPropertyi("sim/cockpit2/radios/actuators/nav1_power")
+nav_2_pow=globalPropertyi("sim/cockpit2/radios/actuators/nav2_power")
 
 defineProperty("n_id1", globalPropertys("sim/cockpit2/radios/indicators/adf1_nav_id"))
 defineProperty("n_id2", globalPropertys("sim/cockpit2/radios/indicators/adf2_nav_id"))
 defineProperty("v_id1", globalPropertys("sim/cockpit2/radios/indicators/nav1_nav_id"))
 defineProperty("v_id2", globalPropertys("sim/cockpit2/radios/indicators/nav2_nav_id"))
---defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+
+rsbn_dot = globalPropertyi("tu154b2/custom/rsbn/morse_dot")
+rsbn_dash = globalPropertyi("tu154b2/custom/rsbn/morse_dash")
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 
 
 local switch_sound = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch.wav')
@@ -75,7 +88,8 @@ local morse_dot = loadSample(moduleDirectory .. '/Custom Sounds/dot_MORSE.wav')
 local morse_dash = loadSample(moduleDirectory .. '/Custom Sounds/dash_MORSE.wav')
 local noise=loadSample(moduleDirectory .. '/Custom Sounds/noise.wav')
 
-
+playSample(noise,true)
+setSampleGain(noise,0)
 
 local mode_last = get(spu_source)
 function update()
@@ -86,10 +100,10 @@ function update()
 	--if mode ~= mode_last then playSample(switch_sound, false) end
 	mode_last = mode
 	-- check if signal is received
-	local ndb_left=bool2int(string.len(get(n_id1))>0)
-	local ndb_right=bool2int(string.len(get(n_id2))>0)
-	local vor_left=bool2int(string.len(get(v_id1))>0)
-	local vor_right=bool2int(string.len(get(v_id2))>0)
+	local ndb_left=bool2int(string.byte(string.sub(get(n_id1),1,1))~=0)
+	local ndb_right=bool2int(string.byte(string.sub(get(n_id2),1,1))~=0)
+	-- local vor_left=bool2int(string.len(get(v_id1))>0)
+	-- local vor_right=bool2int(string.len(get(v_id2))>0)
 	-- ark noise gains
 	local ark_left=get(ark_1_signal)
 	if ark_left>0.9 and ndb_left==1 then
@@ -109,6 +123,11 @@ function update()
 	local spu_volume=math.min(spu1,spu2)
 	local sdvol_1=get(sd67_vol_1)
 	local sdvol_2=get(sd67_vol_2)
+	local rsbn=get(rsbn_rec)
+	
+	local nav_1_rec=bool2int(get(nav_1_type)~=0)
+	local nav_2_rec=bool2int(get(nav_2_type)~=0)
+	
 	if get(panel_80)==0 then
 		set(sd75_1_on,bool2int(sdvol_1>0))
 		set(sd75_2_on,bool2int(sdvol_2>0))
@@ -123,6 +142,7 @@ function update()
 		set(audio_selection_adf2, 0)
         set(audio_selection_dme1, 0)
         set(audio_selection_dme2, 0)
+		setSampleGain(noise,400*(1-get(psh_1))*get(vhf_1_on)*spu_volume)
 	elseif mode == 1 and power then -- COM 2
 		set(audio_selection_com1, 0)
 		set(audio_selection_com2, bool2int(get(bus27_R) > 20 and get(vhf_2_on) == 1))
@@ -133,6 +153,23 @@ function update()
 		set(audio_selection_adf2, 0)
         set(audio_selection_dme1, 0)
         set(audio_selection_dme2, 0)
+		setSampleGain(noise,450*(1-get(psh_2))*get(vhf_2_on)*spu_volume)
+	elseif mode == 3 and power then -- RSBN
+		local rsbn_distance=100/math.max(100,get(rsbn_dist))
+		set(audio_selection_com1, 0)
+		set(audio_selection_com2, 0)
+		set(audio_selection_nav1, 0)
+		set(audio_selection_nav2, 0)
+		set(audio_selection_adf1, 0)
+		set(audio_selection_adf2, 0)
+		set(audio_selection_dme1, 0)
+		set(audio_selection_dme2, 0)
+		-- if not isSamplePlaying(noise) then
+			-- playSample(noise,true)
+		-- end
+		setSampleGain(noise,(500-400*rsbn)*spu_volume*bool2int(rsbn~=-1))
+		setSampleGain(morse_dash,1000*spu_volume*rsbn_distance*rsbn)
+		setSampleGain(morse_dot,1000*spu_volume*rsbn_distance*rsbn)
 	elseif mode == 4 and power then -- NAV 1 or ADF 1
 		
         if get(ushdb_mode_1) == 0 then
@@ -145,10 +182,7 @@ function update()
                 set(audio_selection_adf2, 0)
                 set(audio_selection_dme1, 0)
                 set(audio_selection_dme2, 0)
-				if not isSamplePlaying(noise) then
-					playSample(noise,true)
-				end
-				setSampleGain(noise,(1-ark_left)*1000*spu_volume)
+				setSampleGain(noise,(1-0.9*ark_left*ndb_left)*1000*spu_volume)
 				setSampleGain(morse_dash,ark_left*1000*spu_volume)
 				setSampleGain(morse_dot,ark_left*1000*spu_volume)
             else
@@ -160,9 +194,7 @@ function update()
                 set(audio_selection_adf2, 0)
                 set(audio_selection_dme1, 0)
                 set(audio_selection_dme2, 0)
-				if isSamplePlaying(noise) then
-					stopSample(noise,1)
-				end
+				setSampleGain(noise,0)				
 				setSampleGain(morse_dash,1000*spu_volume)
 				setSampleGain(morse_dot,1000*spu_volume)
             end
@@ -175,14 +207,15 @@ function update()
 			set(audio_selection_adf2, 0)
             set(audio_selection_dme1, bool2int(get(bus27_L) > 20 and get(sd75_1_on) == 1 and get(sd67_1_dme_res) == 0))
             set(audio_selection_dme2, 0)
-			if not isSamplePlaying(noise) and vor_left==0 then
-				playSample(noise,true)
-			elseif isSamplePlaying(noise) and vor_left==1  then
-				stopSample(noise)
-			end
-			setSampleGain(noise,(1-vor_left)*1000*spu_volume*sdvol_1)
-			setSampleGain(morse_dash,vor_left*1000*spu_volume*sdvol_1)
-			setSampleGain(morse_dot,vor_left*1000*spu_volume*sdvol_1)
+			-- if not isSamplePlaying(noise) and vor_left==0 then
+				-- playSample(noise,true)
+			-- elseif isSamplePlaying(noise) and vor_left==1  then
+				-- stopSample(noise)
+			-- end
+			local nav_1_pwr=get(nav_1_pow)
+			setSampleGain(noise,(1-0.9*nav_1_rec)*600*spu_volume*sdvol_1*nav_1_pwr)
+			setSampleGain(morse_dash,nav_1_rec*1000*spu_volume*sdvol_1*nav_1_pwr)
+			setSampleGain(morse_dot,nav_1_rec*1000*spu_volume*sdvol_1*nav_1_pwr)
 		end
 	elseif mode == 5 and power then -- NAV 2 or ADF 2
         if get(ushdb_mode_2) == 0 then
@@ -195,10 +228,7 @@ function update()
                 set(audio_selection_adf2, 1)
                 set(audio_selection_dme1, 0)
                 set(audio_selection_dme2, 0)
-				if not isSamplePlaying(noise) then
-					playSample(noise,true)
-				end
-				setSampleGain(noise,(1-ark_right)*1000*spu_volume)
+				setSampleGain(noise,(1-0.9*ark_right*ndb_right)*1000*spu_volume)
 				setSampleGain(morse_dash,ark_right*1000*spu_volume)
 				setSampleGain(morse_dot,ark_right*1000*spu_volume)
             else
@@ -210,9 +240,7 @@ function update()
                 set(audio_selection_adf2, 0)
                 set(audio_selection_dme1, 0)
                 set(audio_selection_dme2, 0)
-				if isSamplePlaying(noise) then
-					stopSample(noise,1)
-				end
+				setSampleGain(noise,0)
 				setSampleGain(morse_dash,1000*spu_volume)
 				setSampleGain(morse_dot,1000*spu_volume)
             end
@@ -225,14 +253,15 @@ function update()
 			set(audio_selection_adf2, 0)
             set(audio_selection_dme1, 0)
             set(audio_selection_dme2, bool2int(get(bus27_R) > 20 and get(sd75_2_on) == 1 and get(sd67_2_dme_res) == 0))
-			if not isSamplePlaying(noise) and vor_right==0 then
-				playSample(noise,true)
-			elseif isSamplePlaying(noise) and vor_right==1  then
-				stopSample(noise)
-			end
-			setSampleGain(noise,(1-vor_right)*1000*spu_volume*sdvol_2)
-			setSampleGain(morse_dash,vor_right*1000*spu_volume*sdvol_2)
-			setSampleGain(morse_dot,vor_right*1000*spu_volume*sdvol_2)
+			-- if not isSamplePlaying(noise) and vor_right==0 then
+				-- playSample(noise,true)
+			-- elseif isSamplePlaying(noise) and vor_right==1  then
+				-- stopSample(noise)
+			-- end
+			local nav_2_pwr=get(nav_2_pow)
+			setSampleGain(noise,(1-0.9*nav_2_rec)*700*spu_volume*sdvol_2*nav_2_pwr)
+			setSampleGain(morse_dash,nav_2_rec*1000*spu_volume*sdvol_2*nav_2_pwr)
+			setSampleGain(morse_dot,nav_2_rec*1000*spu_volume*sdvol_2*nav_2_pwr)
 		end
 	else -- none
 		set(audio_selection_com1, 0)
@@ -243,16 +272,14 @@ function update()
 		set(audio_selection_adf2, 0)
         set(audio_selection_dme1, 0)
         set(audio_selection_dme2, 0)
-		if isSamplePlaying(noise) then
-			stopSample(noise,1)
-		end
-		setSampleGain(morse_dash,1000*spu_volume)
-		setSampleGain(morse_dot,1000*spu_volume)
+		setSampleGain(noise,0)
+		setSampleGain(morse_dash,0)
+		setSampleGain(morse_dot,0)
 	end
 
 	-- Morse Codes
-	local morse_dsh=get(nav1_morse)==2 or get(nav2_morse)==2 or get(adf1_morse)==2 or get(adf2_morse)==2 or get(dme1_morse)==2 or get(dme2_morse)==2
-	local morse_dt=get(nav1_morse)==1 or get(nav2_morse)==1 or get(adf1_morse)==1 or get(adf2_morse)==1 or get(dme1_morse)==1 or get(dme2_morse)==1
+	local morse_dsh=get(nav1_morse)==2 or get(nav2_morse)==2 or get(adf1_morse)==2 or get(adf2_morse)==2 or get(dme1_morse)==2 or get(dme2_morse)==2 or (get(rsbn_dash)==1 and mode == 3)
+	local morse_dt=get(nav1_morse)==1 or get(nav2_morse)==1 or get(adf1_morse)==1 or get(adf2_morse)==1 or get(dme1_morse)==1 or get(dme2_morse)==1 or (get(rsbn_dot)==1 and mode == 3)
 	if morse_dsh and not isSamplePlaying(morse_dash) then
 		playSample(morse_dash,false)
 	end

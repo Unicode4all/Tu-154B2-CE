@@ -138,6 +138,7 @@ createGlobalPropertyi("tu154b2/custom/failures/tks_bgmk1_fail", 0) -- отказ
 createGlobalPropertyi("tu154b2/custom/failures/tks_bgmk2_fail", 0) -- отказ ТКС
 createGlobalPropertyi("tu154b2/custom/failures/agr_fail", 0) -- отказ АГР
 createGlobalPropertyi("tu154b2/custom/failures/bkk_fail", 0) -- отказ БКК
+createGlobalPropertyi("tu154b2/custom/failures/bkk_fail_2", 0)
 createGlobalPropertyi("tu154b2/custom/failures/mgv_fail", 0) -- отказ МГВ
 createGlobalPropertyi("tu154b2/custom/failures/rv1_fail", 0) -- отказ РВ5
 createGlobalPropertyi("tu154b2/custom/failures/rv2_fail", 0) -- отказ РВ5
@@ -216,6 +217,9 @@ createGlobalPropertyf("tu154b2/custom/tks/tks_cc",0)
 createGlobalPropertyf("tu154b2/custom/tks/efb_mag",0)
 createGlobalPropertyf("tu154b2/custom/switchers/SD67_1_vol",0.5)
 createGlobalPropertyf("tu154b2/custom/switchers/SD67_2_vol",0.5)
+createGlobalPropertyi("tu154b2/custom/failures/tr1_switch_fail", 0)
+createGlobalPropertyi("tu154b2/custom/failures/tr2_switch_fail", 0)
+createGlobalPropertyi("tu154b2/custom/failures/so72_fail", 0)
 -- createGlobalPropertyf("sim/custom/switchers/tcas_select",0)
 -- createGlobalPropertyi("tu154b2/custom/engines/airstart_2",0)
 -- createGlobalPropertyi("tu154b2/custom/engines/airstart_3",0)
