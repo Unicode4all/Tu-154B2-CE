@@ -1141,13 +1141,17 @@ if MASTER then
 		needle_3_move=0
 	end
 	--if eng1_N2_need<80 then
-	fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
+	if eng1_N2_need<2 then
+		fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
+	end
 	if fan_1>=360 then
 		fan_1=fan_1-360
 	end
 	--end
 	--if eng3_N2_need<40 then	
-	fan_3=fan_3+eng3_N2_need/100*rpm_knd/60*360*passed
+	if eng3_N2_need<2 then
+		fan_3=fan_3+eng3_N2_need/100*rpm_knd/60*360*passed
+	end
 	if fan_3>=360 then
 		fan_3=fan_3-360
 	end
