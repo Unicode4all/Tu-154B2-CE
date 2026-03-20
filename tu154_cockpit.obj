@@ -17832,7 +17832,7 @@ ATTR_manip_toggle hand 1.000000 0.000000 sim/cockpit2/switches/custom_slider_on[
 TRIS 5526 6
 ANIM_begin
 ANIM_hide 0.000000 1.000000 tu154b2/custom/anim/cockpit_window_left
-ANIM_show 0.250000 0.250000 tu154b2/custom/anim/cockpit_window_left
+ANIM_show 0.20000 0.30000 tu154b2/custom/anim/cockpit_window_left
 ATTR_manip_toggle left_right 1.000000 0.000000 sim/custom/anim/cockpit_window_left_slide
 TRIS 5532 6
 ANIM_end
@@ -17874,7 +17874,7 @@ ATTR_manip_toggle hand 1.000000 0.000000 tu154b2/custom/switchers/eng/emerg_gen_
 TRIS 5544 6
 ANIM_begin
 ANIM_hide 0.000000 1.000000 tu154b2/custom/anim/cockpit_window_right
-ANIM_show 0.250000 0.250000 tu154b2/custom/anim/cockpit_window_right
+ANIM_show 0.20000 0.30000 tu154b2/custom/anim/cockpit_window_right
 ATTR_manip_toggle left_right 1.000000 0.000000 sim/custom/anim/cockpit_window_right_slide
 TRIS 5550 6
 ANIM_end
