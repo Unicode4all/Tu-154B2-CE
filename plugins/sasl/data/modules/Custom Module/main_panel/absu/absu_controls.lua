@@ -802,12 +802,13 @@ function update()
 			local KDZ_gs=150
 			local K_thet1_gs=2
 			local K_thet2_gs=0.5
+			
 			-- P and D parts
-			local k_side_gs=gliss_dev* KZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
-			local k_d_side_gs=gliss_spd * KDZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
+			local k_side_gs=gliss_dev* KZ_gs*(0.2+0.8*bool2int(rv_switch > 2))
+			local k_d_side_gs=gliss_spd * KDZ_gs*(0.2+0.8*bool2int(rv_switch > 2))
 			if secondNav then
-				k_side_gs=gliss_dev2* KZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
-				k_d_side_gs=gliss_spd2 * KDZ_gs*(0.5+0.5*bool2int(rv_switch > 2))
+				k_side_gs=gliss_dev2* KZ_gs*(0.2+0.8*bool2int(rv_switch > 2))
+				k_d_side_gs=gliss_spd2 * KDZ_gs*(0.2+0.8*bool2int(rv_switch > 2))
 				if rv_switch ==1 and math.abs(gliss_dev2) > 0.25 and get(absu_bns_pitch_fail)==0 then
 					set(absu_gs_out, 1)
 				end
