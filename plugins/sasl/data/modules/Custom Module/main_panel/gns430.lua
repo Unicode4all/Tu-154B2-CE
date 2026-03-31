@@ -53,6 +53,7 @@ defineProperty("magv", globalPropertyf("sim/flightmodel/position/magnetic_variat
 defineProperty("sync", globalPropertyi("tu154b2/custom/radio/kontur_sync"))
 defineProperty("but_up", globalPropertyi("tu154b2/custom/taws/taws_button")) 
 defineProperty("tss_rot", globalPropertyi("tu154b2/custom/rotary/GNS430/tss_rot"))
+hsi_source = globalPropertyi("sim/cockpit/switches/HSI_selector2")
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
@@ -403,7 +404,7 @@ end
 
 
 
-local overrideSet = false
+local overr = 0
 local side_filt=0
 local appr=0
 function update()
@@ -423,6 +424,10 @@ function update()
 	local app_lon=get(gps_dest_app_lon)
 	local app_lat2=get(gps_dest_app_lat2)
 	local app_lon2=get(gps_dest_app_lon2)
+	-- force right HSI to radnav mode
+	if get(hsi_source)~=1 then
+		set(hsi_source,1)
+	end
 	-- calculate next leg course
 	if wp_lat~=0 and wp_lon~=0 then
 		d=distance(wp_lat,wp_lon,get(curr_lat),get(curr_lon))
@@ -447,12 +452,12 @@ function update()
 	set(gps_power, get(kln_on) * bool2int(get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13))
 	set(gps1_power, get(kln_on) * bool2int(get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13))
 	set(gns_lit, get(gps_power) * 0.7)
-	if get(show_gns) == 1 and not overrideSet then
-		set(overrideGPS, 0)
-		overrideSet = true
-	elseif get(show_gns) == 0 then
-		overrideSet = false
-	end
+	-- if get(overrideGPS)==0 then
+		-- set(overrideGPS, 1)
+		-- overr = 1
+	-- -- elseif get(show_gns) == 0 then
+		-- -- overrideSet = false
+	-- end
 	--set(gps_dot,1)
 	--print(get(gps_hdef_dot))
 	if get(ismaster) ~= 1 then
@@ -541,6 +546,7 @@ end
 function onAvionicsDone()
 	
 	set(gps_power, 1)
+	set(overrideGPS,0)
 	print("GPS reset")
 
 end

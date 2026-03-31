@@ -807,7 +807,7 @@ local function lamps()
 	local absu_az1_lamp_brt = math.max(bool2int(power115 and (roll_submode == 4 or (get(absu_az1_arm)==1 and pnp_mode==2))) * lamps_brt * day_night, 0)
 	set(absu_az1_lamp, absu_az1_lamp_brt)
 	
-	local absu_az2_lamp_brt = math.max(bool2int(power115 and (roll_submode == 5 or get(absu_az2_arm)==1)) * lamps_brt * day_night, 0)
+	local absu_az2_lamp_brt = math.max(bool2int(power115 and (roll_submode == 5 or (get(absu_az2_arm)==1 and pnp_mode==3))) * lamps_brt * day_night, 0)
 	set(absu_az2_lamp, absu_az2_lamp_brt)
 	
 	local absu_app_lamp_brt = math.max(bool2int(power115 and (roll_submode == 6 or roll_submode == 10 or get(absu_app_arm)==2)) * lamps_brt * day_night, 0) 

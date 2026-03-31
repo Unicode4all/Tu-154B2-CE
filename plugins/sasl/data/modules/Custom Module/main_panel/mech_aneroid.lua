@@ -216,6 +216,7 @@ local T_stat=2
 local function needle_pos (ang_actual_prev,ang_need,dt,v_prev,k_spr,k_dmp,k_v,c_v)
 	local v_needle_max=5000*c_v
 	local e_c=(ang_need-ang_actual_prev)*k_spr
+	dt=math.min(1/30,dt)
     local v=v_prev+e_c*k_v*dt-v_prev*k_dmp
 	if v>v_needle_max then
 		v=v_needle_max

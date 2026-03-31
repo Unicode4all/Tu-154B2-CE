@@ -153,12 +153,14 @@ defineProperty("wiper_angle_left", globalPropertyf("tu154b2/custom/anim/wiper_an
 defineProperty("wiper_angle_right", globalPropertyf("tu154b2/custom/anim/wiper_angle_right"))
 tire_steer_command_deg = globalProperty("sim/flightmodel2/gear/tire_steer_command_deg[0]")
 defineProperty("rud_coeff", globalPropertyf("tu154b2/custom/controlls/rudder_coeff"))
+win_slide_L=globalPropertyf("sim/custom/anim/cockpit_window_left_slide")
+win_slide_R=globalPropertyf("sim/custom/anim/cockpit_window_right_slide")
 
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
 
 
@@ -394,17 +396,28 @@ function update()
 	-- left window
 	local window_but_L = get(slider_1)
 	local window_L = get(cockpit_window_left)
-	
+	local slide_L=get(win_slide_L)
+	local slide_R=get(win_slide_R)
 	if window_L == 0 and window_may_open or window_L > 0 then
-		if window_but_L == 1 then window_L = window_L + (window_but_L * 2 - 1) * passed / 4.5 -- open
-		else window_L = window_L + (window_but_L * 2 - 1) * passed / 2.5 end -- close
+		if window_but_L == 1 then 
+			if window_L<0.25 then
+				window_L = window_L + (window_but_L * 2 - 1) * passed / 4.5 -- open
+			elseif slide_L>0 and window_L<1 then
+				window_L = window_L + (window_but_L * 2 - 1) * passed / 2 -- slide open
+			end
+		else window_L = window_L + (window_but_L * 2 - 1) * passed / 2 end -- close
 	end
 	
 	if window_L <= 0.01 and not window_may_open and window_but_L == 1 then set(slider_1, 0) end -- reset slider, if not able to open
 	
 	-- limits
-	if window_L > 1 then window_L = 1
-	elseif window_L < 0 then window_L = 0 end
+		if window_L > 1 then
+			window_L = 1
+			set(win_slide_L,0)
+		elseif window_L < 0 then 
+			window_L = 0 
+		end
+	
 	
 	set(cockpit_window_left, window_L)
 		
@@ -413,15 +426,24 @@ function update()
 	local window_R = get(cockpit_window_right)
 	
 	if window_R == 0 and window_may_open or window_R > 0 then
-		if window_but_R == 1 then window_R = window_R + (window_but_R * 2 - 1) * passed / 4.5 -- open
+		if window_but_R == 1 then 
+			if window_R<0.25 then
+				window_R = window_R + (window_but_R * 2 - 1) * passed / 4.5 -- open
+			elseif slide_R>0 and window_R<1 then
+				window_R = window_R + (window_but_R * 2 - 1) * passed / 2 -- slide open
+			end
 		else window_R = window_R + (window_but_R * 2 - 1) * passed / 2.5 end -- close
 	end
 	
 	if window_R <= 0.01 and not window_may_open and window_but_R == 1 then set(slider_2, 0) end-- reset slider, if not able to open
 	
 	-- limits
-	if window_R > 1 then window_R = 1
-	elseif window_R < 0 then window_R = 0 end
+	if window_R >1 then 
+		window_R = 1
+		set(win_slide_R,0)
+	elseif window_R < 0 then 
+		window_R = 0 
+	end
 	
 	set(cockpit_window_right, window_R)
 	

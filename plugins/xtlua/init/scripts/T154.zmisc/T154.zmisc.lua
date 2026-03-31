@@ -1753,39 +1753,39 @@ if emerg_trim_azs < 1 and sw_sound < 1 then
 end   
     
     
-if simDR_window_l > 0.25 and simDR_window_l < 0.27 then
-    if window_slide_l < 1 then
-        simDR_window_l = 0.25
-    end
-end
+-- if simDR_window_l > 0.25 and simDR_window_l < 0.27 then
+    -- if window_slide_l < 1 then
+        -- simDR_window_l = 0.25
+    -- end
+-- end
 
-if simDR_window_l > 0.24 and window_slide_l > 0 then
-    if simDR_window_l < 1 then
-    simDR_window_l = simDR_window_l + 0.0085
-    end
-end
-
-    
-if simDR_window_l == 1 then
- window_slide_l = 0
-end
-    
-if simDR_window_r > 0.25 and simDR_window_r < 0.27 then
-    if window_slide_r < 1 then
-        simDR_window_r = 0.25
-    end
-end
-
-if simDR_window_r > 0.24 and window_slide_r > 0 then
-    if simDR_window_r < 1 then
-    simDR_window_r = simDR_window_r + 0.0085
-    end
-end
+-- if simDR_window_l > 0.24 and window_slide_l > 0 then
+    -- if simDR_window_l < 1 then
+    -- simDR_window_l = simDR_window_l + 0.0085
+    -- end
+-- end
 
     
-if simDR_window_r == 1 then
- window_slide_r = 0
-end
+-- if simDR_window_l == 1 then
+ -- window_slide_l = 0
+-- end
+    
+-- if simDR_window_r > 0.25 and simDR_window_r < 0.27 then
+    -- if window_slide_r < 1 then
+        -- simDR_window_r = 0.25
+    -- end
+-- end
+
+-- if simDR_window_r > 0.24 and window_slide_r > 0 then
+    -- if simDR_window_r < 1 then
+    -- simDR_window_r = simDR_window_r + 0.0085
+    -- end
+-- end
+
+    
+-- if simDR_window_r == 1 then
+ -- window_slide_r = 0
+-- end
 
 if emerg_trim_azs < 1 then
     if simDR_emerg_trim == 0 then

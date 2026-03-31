@@ -625,49 +625,53 @@ local MASTER = get(ismaster) ~= 1
 			set(absu_pnp_mode_1, 0)
 		elseif get(absu_app)==1 then
 			--if not kurs_flag or pnp_mode==0 then
-				zach_arm=1
-				Land_mode_arm=1
-				NVU_mode_arm=0
-				AZ1_mode_arm=0
-				AZ2_mode_arm=0
-				roll_submode=1
-				gs_captured=0
+			set(absu_pnp_mode_1, 0)
+			zach_arm=1
+			Land_mode_arm=1
+			NVU_mode_arm=0
+			AZ1_mode_arm=0
+			AZ2_mode_arm=0
+			roll_submode=1
+			gs_captured=0
 			--end
 		elseif get(absu_gs) == 1 and land_prep then
 			GS_arm=1
 			gliss_arm=1
 		elseif get(absu_nvu) == 1 and gs_block ==0 then
+			set(absu_pnp_mode_1, 0)
 			--if nvu_flag==0 or pnp_mode==0 then
-				Land_mode_arm=0
-				zach_arm=0
-				gliss_arm=0
-				NVU_mode_arm=1
-				AZ1_mode_arm=0
-				AZ2_mode_arm=0
-				GS_arm=0
-				roll_submode=1
+			Land_mode_arm=0
+			zach_arm=0
+			gliss_arm=0
+			NVU_mode_arm=1
+			AZ1_mode_arm=0
+			AZ2_mode_arm=0
+			GS_arm=0
+			roll_submode=1
 			--end
 		elseif get(absu_az1) == 1 and mp1_flag==0 and gs_block ==0 then
 			--if not az1_flag or pnp_mode==0 then
-				Land_mode_arm=0
-				zach_arm=0
-				gliss_arm=0
-				NVU_mode_arm=0
-				AZ1_mode_arm=1
-				AZ2_mode_arm=0
-				GS_arm=0
-				roll_submode=1
+			set(absu_pnp_mode_1, 0)
+			Land_mode_arm=0
+			zach_arm=0
+			gliss_arm=0
+			NVU_mode_arm=0
+			AZ1_mode_arm=1
+			AZ2_mode_arm=0
+			GS_arm=0
+			roll_submode=1
 			--end
 		elseif get(absu_az2) == 1 and mp2_flag==0 and gs_block ==0 then
 			--if not az2_flag or pnp_mode==0 then
-				Land_mode_arm=0
-				zach_arm=0
-				gliss_arm=0
-				NVU_mode_arm=0
-				AZ1_mode_arm=0
-				AZ2_mode_arm=1
-				GS_arm=0
-				roll_submode=1
+			set(absu_pnp_mode_1, 0)
+			Land_mode_arm=0
+			zach_arm=0
+			gliss_arm=0
+			NVU_mode_arm=0
+			AZ1_mode_arm=0
+			AZ2_mode_arm=1
+			GS_arm=0
+			roll_submode=1
 			--end
 		end
 		--- PNP Modes------

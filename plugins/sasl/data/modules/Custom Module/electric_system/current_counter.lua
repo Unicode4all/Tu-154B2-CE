@@ -245,13 +245,13 @@ if MASTER then
 	local bus27_L = get(bat_amp_cc_1) + get(bat_amp_cc_3) + get(cockpit_light_cc_left) + get(ext_light_cc_left) + get(fuel_pumps_27_cc) * 140/27/15*(2-bool2int(get(bus27_volt_right)>18)) + get(ai_27_L_cc)  + get(ctr_27_L_cc)*1 + get(msrp_27_L_cc)*50/27
 	bus27_L = bus27_L + get(svs27_cc)*1 + get(rv_сс_1) * 10/27 + get(taws_cc) * 25/27/1.5 + get(vhf1_cc) * 1 + get(km5_1_cc) * 15/27  + get(bgmk_1_cc) *5/27 + get(agr_cc) * 10/27
 	bus27_L = bus27_L + get(nvu_cc) * 400/27 + get(ark15_L_cc)*54/27 + get(diss_cc)*30/27 + get(rsbn_cc) * 75/27 + get(absu_at_power_cc) *1.5*get(absu_speed_prepare)+get(absu_power_27)*680/27
-	bus27_L = bus27_L + get(sd75_1_on)*100/27*bool2int(get(bus27_volt_left)>22) + get(tcas)*60/27*bool2int(get(bus27_volt_left)>22)+ get(tcas_xpdr)*65/27*bool2int(get(bus27_volt_left)>22)+ get(spu_on)*50/27*bool2int(get(bus27_volt_left)>22)+get(micron_1_on)*100/27*bool2int(get(bus27_volt_left)>22)+bool2int(get(ovhd_mode)>1 or get(co_70_pwr)>1)*100/27*bool2int(get(bus27_volt_left)>22)+230/27*bool2int(get(bus27_volt_left)>22)
+	bus27_L = bus27_L + get(sd75_1_on)*100/27*bool2int(get(bus27_volt_left)>22) + get(tcas)*60/27*bool2int(get(bus27_volt_left)>22)+ get(tcas_xpdr)*65/27*bool2int(get(bus27_volt_left)>22)+ get(spu_on)*50/27*bool2int(get(bus27_volt_left)>22)+get(micron_1_on)*100/27*bool2int(get(bus27_volt_left)>22)+bool2int(get(ovhd_mode)>1 or get(co_70_pwr)>1)*100/27*bool2int(get(bus27_volt_left)>22)+150/27*bool2int(get(bus27_volt_left)>22)
 	bus27_L = bus27_L + get(mfi_1)*30/27*bool2int(get(bus27_volt_left)>22)+get(ubs_1)*30/27*bool2int(get(bus27_volt_left)>22)+po_load+po_start+get(com_64_pwr)*50/27*bool2int(get(bus27_volt_left)>22) + rad_cc * 120/27
 	--bus27_L = bus27_L + get(uns_1)60/27*bool2int(get(bus27_volt_left)>22)+ get(mfi_1)30/27*bool2int(get(bus27_volt_left)>22)+get(ubs_1)30/27*bool2int(get(bus27_volt_left)>22)
 	--
 	local bus27_R = get(bat_amp_cc_2) + get(bat_amp_cc_4) + get(cockpit_light_cc_right) + get(ext_light_cc_right) + get(fuel_pumps_27_cc) * 140/27/15*(2-bool2int(get(bus27_volt_left)>18))  + get(ctr_27_R_cc)*1 + get(msrp_27_R_cc)*50/27 + get(ai_27_R_cc)
 	bus27_R = bus27_R + get(auasp_pow27_cc) + get(rv_сс_2) * 10/27 + get(fire_sys_cc) + get(vhf2_cc) * 1 + get(km5_2_cc) * 15/27 + get(bgmk_2_cc) *5/27 + get(ush_cc) + get(ark15_R_cc) *54/27 
-	bus27_R = bus27_R + get(sd75_2_on)*100/27*bool2int(get(bus27_volt_right)>22)+get(micron_2_on)*100/27*bool2int(get(bus27_volt_right)>22)+230/27*bool2int(get(bus27_volt_right)>22) + get(ga_heat_cc) +get(tks_cc)
+	bus27_R = bus27_R + get(sd75_2_on)*100/27*bool2int(get(bus27_volt_right)>22)+get(micron_2_on)*100/27*bool2int(get(bus27_volt_right)>22)+150/27*bool2int(get(bus27_volt_right)>22) + get(ga_heat_cc) +get(tks_cc)
 	bus27_R = bus27_R + get(mfi_2)*30/27*bool2int(get(bus27_volt_right)>22)+get(ubs_2)*30/27*bool2int(get(bus27_volt_right)>22) + get(gps_power)*1*bool2int(get(bus27_volt_right)>22)	
 	-- cabin lights
 	bus27_R=bus27_R+7*2*bool2int(get(svet_dezh_1)>0)*0.18+10*2*bool2int(get(svet_dezh_2)>0)*0.18
