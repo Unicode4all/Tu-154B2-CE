@@ -204,6 +204,8 @@ local function sw_reset()
 		set(mgv_contr_cap, 1)
 		--set(emerg_light_cap, 1)
 		set(arm406, 0)
+		set(sd67_vol_1,0)
+		set(sd67_vol_2,0)
 	end	
 	notLoaded = false
 end

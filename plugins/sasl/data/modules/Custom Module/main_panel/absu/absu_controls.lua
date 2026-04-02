@@ -259,7 +259,7 @@ defineProperty("v_left", globalPropertyf("sim/cockpit2/gauges/indicators/airspee
 defineProperty("v_right", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
 --defineProperty("h", globalPropertyf("tu154b2/custom/svs/altitude"))
 defineProperty("absu_gs", globalPropertyi("tu154b2/custom/buttons/console/absu_gs")) -- кнопка глиссада на панели АБСУ
-cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
+cockpit_80s = globalPropertyi("sim/custom/b2/kontur_pa_off")
 --temp = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
 --p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")

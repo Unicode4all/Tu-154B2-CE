@@ -508,8 +508,8 @@ defineProperty("stab_set", globalPropertyi("tu154b2/custom/controll/stab_setting
 defineProperty("nav_select", globalPropertyi("tu154b2/custom/switchers/nav_select"))
 defineProperty("obs_L", globalPropertyf("tu154b2/custom/gauges/compas/pkp_obs_L"))
 defineProperty("obs_R", globalPropertyf("tu154b2/custom/gauges/compas/pkp_obs_R"))
-defineProperty("sd67_vol_1", globalPropertyf("tu154b2/custom/switchers/SD67_1_vol"))
-defineProperty("sd67_vol_2", globalPropertyf("tu154b2/custom/switchers/SD67_2_vol"))
+-- defineProperty("sd67_vol_1", globalPropertyf("tu154b2/custom/switchers/SD67_1_vol"))
+-- defineProperty("sd67_vol_2", globalPropertyf("tu154b2/custom/switchers/SD67_2_vol"))
 
 defineProperty("cargo1", globalProperty("sim/flightmodel/weight/m_stations[0]")) 
 defineProperty("cargo2", globalProperty("sim/flightmodel/weight/m_stations[1]"))
@@ -519,7 +519,11 @@ defineProperty("pax2", globalProperty("sim/flightmodel/weight/m_stations[5]"))
 defineProperty("pax3", globalProperty("sim/flightmodel/weight/m_stations[6]")) 
 defineProperty("pax4", globalProperty("sim/flightmodel/weight/m_stations[7]")) 
 defineProperty("pax5", globalProperty("sim/flightmodel/weight/m_stations[8]")) 
-defineProperty("eng_rpm1", globalProperty("sim/flightmodel/engine/ENGN_N2_[0]"))   
+defineProperty("eng_rpm1", globalProperty("sim/flightmodel/engine/ENGN_N2_[0]"))
+
+oil_qty_1 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_1")
+oil_qty_2 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_2")
+oil_qty_3 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_3")   
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -1030,8 +1034,11 @@ local var_table = {}
 	var_table["navsel"] = get(nav_select)
 	var_table["obsl"] = get(obs_L)
 	var_table["obsr"] = get(obs_R)
-	var_table["sdvol1"] = get(sd67_vol_1)*10
-	var_table["sdvol2"] = get(sd67_vol_2)*10
+	-- var_table["sdvol1"] = get(sd67_vol_1)*10
+	-- var_table["sdvol2"] = get(sd67_vol_2)*10
+	var_table["oilqty1"] = get(oil_qty_1)
+	var_table["oilqty2"] = get(oil_qty_1)
+	var_table["oilqty3"] = get(oil_qty_1)
 
 local function write_file()
 
@@ -1514,8 +1521,13 @@ local function write_file()
 		savefile:write("navsel="..get(nav_select).."\n")	
 		savefile:write("obsl="..get(obs_L).."\n")	
 		savefile:write("obsr="..get(obs_R).."\n")
-		savefile:write("sdvol1="..get(sd67_vol_1)*10 .."\n")
-		savefile:write("sdvol2="..get(sd67_vol_2)*10 .."\n")
+		-- savefile:write("sdvol1="..get(sd67_vol_1)*10 .."\n")
+		-- savefile:write("sdvol2="..get(sd67_vol_2)*10 .."\n")
+		savefile:write("oilqty1="..get(oil_qty_1) .."\n")
+		savefile:write("oilqty2="..get(oil_qty_2) .."\n")
+		savefile:write("oilqty3="..get(oil_qty_3) .."\n")
+		
+		
 		savefile:write("fltnum1="..get(flt_1).."\n")
 		savefile:write("fltnum2="..get(flt_2).."\n")
 		savefile:write("fltnum3="..get(flt_3).."\n")
@@ -2042,8 +2054,11 @@ local function read_file()
 		if var_table["navsel"] then set(nav_select,var_table["navsel"]) end
 		if var_table["obsl"] then set(obs_L,var_table["obsl"]) end
 		if var_table["obsr"] then set(obs_R,var_table["obsr"]) end
-		if var_table["sdvol1"] then set(sd67_vol_1,var_table["sdvol1"]/10) end
-		if var_table["sdvol2"] then set(sd67_vol_2,var_table["sdvol2"]/10) end
+		-- if var_table["sdvol1"] then set(sd67_vol_1,var_table["sdvol1"]/10) end
+		-- if var_table["sdvol2"] then set(sd67_vol_2,var_table["sdvol2"]/10) end
+		if var_table["oilqty1"] then set(oil_qty_1,var_table["oilqty1"]) end
+		if var_table["oilqty2"] then set(oil_qty_2,var_table["oilqty2"]) end
+		if var_table["oilqty3"] then set(oil_qty_3,var_table["oilqty3"]) end
 		savefile:close()
 		print("reading last state: OK")
 	else
@@ -2075,7 +2090,7 @@ function update()
 	
 
 	-- read the file once after open ACF
-	if start_counter >2 and not fileReaded then
+	if start_counter >6 and not fileReaded then
 		liv=get(livpath)
 		if string.len(liv)>0 then
 			ind=string.find(liv,"liveries")

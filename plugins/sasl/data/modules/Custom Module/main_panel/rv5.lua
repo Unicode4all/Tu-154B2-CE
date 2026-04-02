@@ -34,6 +34,7 @@ defineProperty("rv_lamp", globalPropertyf("tu154b2/custom/lights/small/rv5_left_
 defineProperty("rv_сс", globalPropertyf("tu154b2/custom/elec/rv5_left_cc"))  -- Current consumption
 defineProperty("kontur_90th", globalPropertyi("sim/custom/b2/kontur_90th"))
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
+bank = globalPropertyf("sim/flightmodel2/position/true_phi")
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -86,7 +87,8 @@ function update()
 	
 	local power = get(bus27_volt) > 13 and get(bus115_volt) > 100 and get(rv_on) == 1 and get(rv_fail) == 0
 	local test = power and get(test_btn) == 1 and (get(roll_sub_mode)~=6 or get(roll_main_mode)~=2)
-	
+	local roll=math.cos(math.rad(get(bank)))
+	local rad_alt=get(altitude) * 0.3048 / math.max(0.1,math.abs(roll))
 	
 	if power then
 		start_timer = start_timer + passed
@@ -100,14 +102,14 @@ function update()
 			end
 		elseif start_timer <= 30 then 
 			alt_angle = 340 - (start_timer - 20) * 34
-			alt = get(altitude) * 0.3048
+			alt = rad_alt
 			if alt_angle < interpolate(alt2angle, alt) then alt_angle = interpolate(alt2angle, alt) end
 			if test then 
 				alt = 15 
 				alt_angle = interpolate(alt2angle, alt)
 			end
 		else 
-			alt = get(altitude) * 0.3048
+			alt = rad_alt
 			if alt > 800 then alt = 800
 			elseif alt < 0 then alt = 0 end
 			
@@ -139,7 +141,7 @@ function update()
 	alt_angle_act = alt_angle_act + (alt_angle - alt_angle_act) * passed * 4
 	
 	-- flag logic
-	local flag_show = bool2int(not power or (start_timer <= 30 and not test) or get(altitude)>4900+100000*get(kontur_90th)) -- tcas equipped versions block rv1 flag from alt
+	local flag_show = bool2int(not power or (start_timer <= 30 and not test) or rad_alt>1500+100000*get(kontur_90th)) -- tcas equipped versions block rv1 flag from alt
 	
 	set(rv_flag, flag_show)
 	

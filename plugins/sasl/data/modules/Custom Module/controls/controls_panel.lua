@@ -164,7 +164,7 @@ defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
 
-cockpit_80s = globalPropertyi("sim/custom/b2/kontur_70th")
+cockpit_80s = globalPropertyi("sim/custom/b2/kontur_pa_off")
 flaps_lever = globalPropertyf("tu154b2/custom/controll/flaps_lever")
 rv_test = globalPropertyi("tu154b2/custom/gauges/alt/radioalt_button_left")
 
