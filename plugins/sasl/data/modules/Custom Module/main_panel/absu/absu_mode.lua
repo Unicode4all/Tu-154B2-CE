@@ -295,6 +295,11 @@ local gs_captured=0
 local kolc_timer=0
 local power_36_prev=0
 local power27_prev=false
+local fail_roll=0
+local fail_pitch=0
+local fail_yaw=0
+local pitch_sw_last=false
+local roll_sw_last=false
 if get(ismaster)~=1 then
 	function TOGA_comm_hnd(phase)
 		if 1 == phase then
@@ -502,17 +507,20 @@ local MASTER = get(ismaster) ~= 1
 		--reactivate roll
 		if sau_sw and roll_mode_main == 0 and get(absu_damp_roll_fail)==0 then 
 			roll_mode_main = 1
-			set(absu_fail_signal, 0)
+			fail_roll=0
+			--set(absu_fail_signal, 0)
 		end
 		
 		-- reactivate pitch
 		if sau_sw and pitch_mode_main == 0 and get(absu_damp_pitch_fail)==0 then 
 			pitch_mode_main = 1 
-			set(absu_fail_signal, 0)
+			fail_pitch=0
+			--set(absu_fail_signal, 0)
 		end
 		if sau_sw and yaw_damp_failed==1 and get(absu_damp_yaw_fail)==0 then 
 			yaw_damp_failed=0
-			set(absu_fail_signal, 0)
+			fail_yaw=0
+			--set(absu_fail_signal, 0)
 		end
 
 		sau_sw_last = sau_sw
@@ -625,7 +633,9 @@ local MASTER = get(ismaster) ~= 1
 			set(absu_pnp_mode_1, 0)
 		elseif get(absu_app)==1 then
 			--if not kurs_flag or pnp_mode==0 then
-			set(absu_pnp_mode_1, 0)
+			if Land_mode_arm==0 then
+				set(absu_pnp_mode_1, 0)
+			end
 			zach_arm=1
 			Land_mode_arm=1
 			NVU_mode_arm=0
@@ -638,7 +648,9 @@ local MASTER = get(ismaster) ~= 1
 			GS_arm=1
 			gliss_arm=1
 		elseif get(absu_nvu) == 1 and gs_block ==0 then
-			set(absu_pnp_mode_1, 0)
+			if NVU_mode_arm==0 then
+				set(absu_pnp_mode_1, 0)
+			end
 			--if nvu_flag==0 or pnp_mode==0 then
 			Land_mode_arm=0
 			zach_arm=0
@@ -651,7 +663,9 @@ local MASTER = get(ismaster) ~= 1
 			--end
 		elseif get(absu_az1) == 1 and mp1_flag==0 and gs_block ==0 then
 			--if not az1_flag or pnp_mode==0 then
-			set(absu_pnp_mode_1, 0)
+			if AZ1_mode_arm==0 then
+				set(absu_pnp_mode_1, 0)
+			end
 			Land_mode_arm=0
 			zach_arm=0
 			gliss_arm=0
@@ -663,7 +677,9 @@ local MASTER = get(ismaster) ~= 1
 			--end
 		elseif get(absu_az2) == 1 and mp2_flag==0 and gs_block ==0 then
 			--if not az2_flag or pnp_mode==0 then
-			set(absu_pnp_mode_1, 0)
+			if AZ2_mode_arm==0 then
+				set(absu_pnp_mode_1, 0)
+			end
 			Land_mode_arm=0
 			zach_arm=0
 			gliss_arm=0
@@ -930,7 +946,8 @@ local MASTER = get(ismaster) ~= 1
 			
 			if get(nav_gs_flag_1) == 1 or not isILS(get(freq_1)) then
 				set(man_pitch_lamp, 1)
-				set(absu_fail_signal, 1)
+				fail_pitch=1
+				--set(absu_fail_signal, 1)
 			end
 			
 		end
@@ -956,13 +973,15 @@ local MASTER = get(ismaster) ~= 1
 				roll_mode_main = 1
 				--roll_submode = 1
 				set(man_roll_lamp, 1)
-				set(absu_fail_signal, 1)
+				fail_roll=1
+				--set(absu_fail_signal, 1)
 			end
 			
 			if  get(absu_calc_roll_fail) == 1 and roll_submode > 2 and roll_submode < 6 then
 				roll_submode = 1
 				set(man_roll_lamp, 1)
-				set(absu_fail_signal, 1)
+				fail_roll=1
+				--set(absu_fail_signal, 1)
 			end
 			
 		end
@@ -972,7 +991,8 @@ local MASTER = get(ismaster) ~= 1
 			roll_submode = 1
 			zach_arm = 0
 			set(man_roll_lamp, 1)
-			set(absu_fail_signal, 1)
+			fail_roll=1
+			--set(absu_fail_signal, 1)
 		end
 		   -- ZK fail from TKS
 		if roll_mode_main == 2 and roll_submode~=3 and get(tks_fail_left) + get(tks_fail_right) == 2 then
@@ -986,7 +1006,8 @@ local MASTER = get(ismaster) ~= 1
 				pitch_mode_main = 1			
 				--pitch_submode = 1			
 				set(man_pitch_lamp, 1)
-				set(absu_fail_signal, 1)
+				fail_pitch=1
+				--set(absu_fail_signal, 1)
 			end	
 		end
 		-- Speed/alt modes fail
@@ -995,7 +1016,8 @@ local MASTER = get(ismaster) ~= 1
 				pitch_submode = 1
 				pitch_mode_main = 1
 				set(man_pitch_lamp, 1)
-				set(absu_fail_signal, 1)
+				fail_pitch=1
+				--set(absu_fail_signal, 1)
 			end
 		end
 		
@@ -1006,13 +1028,15 @@ local MASTER = get(ismaster) ~= 1
 				pitch_submode = 1
 				gliss_arm = 0
 				set(man_pitch_lamp, 1)
-				set(absu_fail_signal, 1)
+				fail_pitch=1
+				--set(absu_fail_signal, 1)
 			end
 			if get(absu_calc_toga_fail) == 1 and pitch_submode == 6 then
 				pitch_mode_main = 1
 				pitch_submode = 1
 				set(man_pitch_lamp, 1)
-				set(absu_fail_signal, 1)
+				fail_pitch=1
+				--set(absu_fail_signal, 1)
 			end
 		
 		end
@@ -1049,7 +1073,8 @@ local MASTER = get(ismaster) ~= 1
 		end
 		-- damper fails (full channel shutdown)
 		if power27 and get(absu_damp_pitch_fail) == 1 and pitch_mode_main>0 then
-			set(absu_fail_signal, 1)
+			--set(absu_fail_signal, 1)
+			fail_pitch=1
 			if pitch_mode_main==2 then
 				set(man_pitch_lamp, 1)
 			end
@@ -1057,7 +1082,8 @@ local MASTER = get(ismaster) ~= 1
 		end
 		
 		if power27 and get(absu_damp_roll_fail) == 1 and roll_mode_main>0 then
-			set(absu_fail_signal, 1)
+			--set(absu_fail_signal, 1)
+			fail_roll=1
 			if roll_mode_main==2 then
 				set(man_roll_lamp, 1)
 			end
@@ -1065,7 +1091,8 @@ local MASTER = get(ismaster) ~= 1
 		end
 		
 		if power27 and get(absu_damp_yaw_fail) == 1 and yaw_damp_failed==0 then
-			set(absu_fail_signal, 1)
+			--set(absu_fail_signal, 1)
+			fail_yaw=1
 			yaw_damp_failed=1
 		end	
 		
@@ -1074,7 +1101,8 @@ local MASTER = get(ismaster) ~= 1
 		if roll_submode==6 and get(absu_bns_roll_fail)==1 then
 			roll_submode = 1
 			set(man_roll_lamp, 1)
-			set(absu_fail_signal, 1)
+			fail_roll=1
+			--set(absu_fail_signal, 1)
 		end
 		local nvu_vor=0
 		if get(absu_az1_lamp)>0 and nav_prep and (get(absu_bns_roll_fail)==1 or get(tks_fail_left) + get(tks_fail_right) == 2 or get(diss_power)*(1-get(diss_fail))==0 or mp1_flag>0 or get(absu_calc_roll_fail)==1 or get(absu_contr_roll_fail)==1 or az1_flag) then
@@ -1093,7 +1121,10 @@ local MASTER = get(ismaster) ~= 1
 		
 		-- end alarm
 		if (get(absu_fail_signal) == 1 and signal_timer > 8) then
-			set(absu_fail_signal, 0)
+			fail_pitch=0
+			fail_roll=0
+			fail_yaw=0
+			--set(absu_fail_signal, 0)
 			signal_timer = 0
 		end
 		
@@ -1116,7 +1147,10 @@ local MASTER = get(ismaster) ~= 1
 		-- end
 		-- reset lamps and alarm
 		if not power27  or AP_button then
-			set(absu_fail_signal, 0)
+			fail_pitch=0
+			fail_roll=0
+			fail_yaw=0
+			--set(absu_fail_signal, 0)
 			set(man_roll_lamp, 0)
 			set(man_pitch_lamp, 0)
 			--set(man_toga_lamp, 0)
@@ -1145,18 +1179,21 @@ local MASTER = get(ismaster) ~= 1
 			at_block_timer = 0
 		end
 		-- reset alarm with wheel/handle input
-		if get(absu_fail_signal) == 1 and pitch_submode==1 and pitch_mode_main==2 and pitch_wheel_last~=putch_wheel then
-			set(absu_fail_signal,0)
+		if fail_pitch == 1 and not pitch_sw and pitch_sw_last then
+			fail_pitch=0
+			--set(absu_fail_signal,0)
 			set(man_pitch_lamp, 0)
 		end
-		if get(absu_fail_signal) == 1 and roll_submode==1 and roll_mode_main==2 and roll_handle~=roll_handle_last then
-			set(absu_fail_signal,0)
+		if fail_roll == 1 and not roll_sw and roll_sw_last then
+			fail_roll=0
+			--set(absu_fail_signal,0)
 			set(man_roll_lamp, 0)
 		end
-		
+		roll_sw_last=roll_sw
+		pitch_sw_last=pitch_sw
 		pitch_wheel_last = putch_wheel
 		roll_handle_last=roll_handle
-		
+		set(absu_fail_signal,math.max(fail_pitch,fail_roll,fail_yaw))
 		
 		-- reset modes on failures or turned off sources
 		-- if get(absu_damp_roll_fail) == 1 then roll_mode_main = 0 end -- roll damper fail

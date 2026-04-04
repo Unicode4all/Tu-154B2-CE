@@ -13,4 +13,5 @@ components = {
 	FE_top_sounds {},
 	right_panel_sounds {},
 	left_panel_sounds {},
+	door_sounds {},
 }

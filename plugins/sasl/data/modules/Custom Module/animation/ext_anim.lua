@@ -206,11 +206,23 @@ local win_R_x=0.7180854
 local win_R_z=-22.717438
 local dist_gain=5
 
+local door_1=0
+local door_2=0
+local door_3=0
+
 local main_gear_ext_corr_tbl= {
 {-1, 1.12},
 {0.227, 1.12},
 {0.42, 1.05},
 {1, 1.05}
+}
+
+local door_tbl= {
+{-1, -1},
+{0.0, 0},
+{0.05, 0.2},
+{0.2, 0.2},
+{1, 1}
 }
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
@@ -577,7 +589,7 @@ end
 
 
 	-- Door 1 
-	local door_1 = get(pax_door_1)
+	--local door_1 = get(pax_door_1)
 	local door_1_cmd = get(slider_5)
 	
 	if door_1 == 0 and door_may_open or door_1 > 0 then
@@ -589,12 +601,12 @@ end
 	-- limits
 	if door_1 > 1 then door_1 = 1
 	elseif door_1 < 0 then door_1 = 0 end
-	
-	set(pax_door_1, door_1)
+	local door_1_act=interpolate(door_tbl,door_1)
+	set(pax_door_1, door_1_act)
 
 
 	-- Door 2
-	local door_2 = get(pax_door_2)
+	--local door_2 = get(pax_door_2)
 	local door_2_cmd = get(slider_6)
 	
 	if door_2 == 0 and door_may_open or door_2 > 0 then
@@ -606,11 +618,11 @@ end
 	-- limits
 	if door_2 > 1 then door_2 = 1
 	elseif door_2 < 0 then door_2 = 0 end
-	
-	set(pax_door_2, door_2)	
+	local door_2_act=interpolate(door_tbl,door_2)
+	set(pax_door_2, door_2_act)	
 
 	-- Door 3
-	local door_3 = get(pax_door_3)
+	--local door_3 = get(pax_door_3)
 	local door_3_cmd = get(slider_7)
 	
 	if door_3 == 0 and door_may_open or door_3 > 0 then
@@ -622,8 +634,8 @@ end
 	-- limits
 	if door_3 > 1 then door_3 = 1
 	elseif door_3 < 0 then door_3 = 0 end
-	
-	set(pax_door_3, door_3)		
+	local door_3_act=interpolate(door_tbl,door_3)
+	set(pax_door_3, door_3_act)		
 	
 	
 	-- cockpit door
