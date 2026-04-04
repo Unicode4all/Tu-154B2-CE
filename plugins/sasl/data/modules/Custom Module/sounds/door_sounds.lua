@@ -76,9 +76,9 @@ end
 
 function update()
 
-	local passed = get(frame_time)
+	-- local passed = get(frame_time)
 	
-	local run = bool2int(passed ~= 0)
+	-- local run = bool2int(passed ~= 0)
 	
 	local external = 0
 	
@@ -181,7 +181,7 @@ function update()
 		playSample(door_3_move_L,false)
 		playSample(door_3_move_R,false)
 	end
-	local door_gain=800
+	local door_gain=800*(1-external)
 	setSampleGain(door_1_unlock_L,door1_L*door_gain)
 	setSampleGain(door_1_unlock_R,door1_R*door_gain)
 	setSampleGain(door_1_lock_L,door1_L*door_gain)
