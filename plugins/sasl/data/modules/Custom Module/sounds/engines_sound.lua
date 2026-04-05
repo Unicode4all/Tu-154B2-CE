@@ -604,15 +604,21 @@ function update()
 		local door1_L, door1_R=inn_balance2 (-1.87, -17.62, x_pos, z_pos , plt_hdg)
 		local door2_L, door2_R=inn_balance2 (-1.98, -6.57, x_pos, z_pos , plt_hdg)
 		local door3_L, door3_R=inn_balance2 (1.95, -8.12, x_pos, z_pos , plt_hdg)
+		local door_1=math.max(0,get(pax_door_1)*2-0.4)
+		door_1=math.min(1,door_1)
+		local door_2=math.max(0,get(pax_door_2)*2-0.4)
+		door_2=math.min(1,door_2)
+		local door_3=math.max(0,get(pax_door_3)*2-0.4)
+		door_3=math.min(1,door_3)
 		local cpt_door = get(cockpit_door)
 		local cpt_door = math.min(cpt_door,0.94)+0.06
-		local chan_left2 = math.max(get(cockpit_window_left)*0.7*dist_windows*win1_L, get(cockpit_window_right)*dist_windows*0.7*win2_L, get(pax_door_1) * cpt_door*0.8*dist_door1*door1_L, get(pax_door_2) * cpt_door*1.1*dist_door2*door2_L, get(pax_door_3) * cpt_door*1*dist_door3*door3_L)
+		local chan_left2 = math.max(get(cockpit_window_left)*0.7*dist_windows*win1_L, get(cockpit_window_right)*dist_windows*0.7*win2_L, door_1 * cpt_door*0.8*dist_door1*door1_L, door_2 * cpt_door*1.1*dist_door2*door2_L, door_3 * cpt_door*1*dist_door3*door3_L)
 		if z_pos>-19 then
-			chan_left2 = math.max( math.max(-0.0003571*z_pos+0.003214,0)*cockpit_L, get(cockpit_window_left)*0.7*dist_windows* cpt_door*win1_L, get(cockpit_window_right)*dist_windows* cpt_door*0.7*win2_L, get(pax_door_1) * 0.8*dist_door1*door1_L, get(pax_door_2) * 1.1*dist_door2*door2_L, get(pax_door_3) * 1*dist_door3*door3_L)
+			chan_left2 = math.max( math.max(-0.0003571*z_pos+0.003214,0)*cockpit_L, get(cockpit_window_left)*0.7*dist_windows* cpt_door*win1_L, get(cockpit_window_right)*dist_windows* cpt_door*0.7*win2_L, door_1 * 0.8*dist_door1*door1_L, door_2 * 1.1*dist_door2*door2_L, door_3 * 1*dist_door3*door3_L)
 		end
-		local chan_right2 = math.max(get(cockpit_window_left)*0.7*dist_windows*win1_R, get(cockpit_window_right)*dist_windows*0.7*win2_R, get(pax_door_1) * cpt_door*0.8*dist_door1*door1_R, get(pax_door_2) * cpt_door*1.1*dist_door2*door2_R, get(pax_door_3) * cpt_door*1*dist_door3*door3_R)
+		local chan_right2 = math.max(get(cockpit_window_left)*0.7*dist_windows*win1_R, get(cockpit_window_right)*dist_windows*0.7*win2_R, door_1 * cpt_door*0.8*dist_door1*door1_R, door_2 * cpt_door*1.1*dist_door2*door2_R, door_3 * cpt_door*1*dist_door3*door3_R)
 		if z_pos>-19 then
-			chan_right2 = math.max( math.max(-0.0003571*z_pos+0.003214,0)*cockpit_R, get(cockpit_window_left)*0.7*dist_windows* cpt_door*win1_R, get(cockpit_window_right)*dist_windows* cpt_door*0.7*win2_R, get(pax_door_1) * 0.8*dist_door1*door1_R, get(pax_door_2) * 1.1*dist_door2*door2_R, get(pax_door_3) * 1*dist_door3*door3_R)
+			chan_right2 = math.max( math.max(-0.0003571*z_pos+0.003214,0)*cockpit_R, get(cockpit_window_left)*0.7*dist_windows* cpt_door*win1_R, get(cockpit_window_right)*dist_windows* cpt_door*0.7*win2_R, door_1 * 0.8*dist_door1*door1_R, door_2 * 1.1*dist_door2*door2_R, door_3 * 1*dist_door3*door3_R)
 		end
 		local dist = -get(pilot_Z)-1.42 + 9 
 		local cockpit_dr=math.max(bool2int(get(pilot_Z)+1.42>-19.1),cpt_door2)
