@@ -52,6 +52,26 @@ simDR_absu_turn = find_dataref("tu154b2/custom/switchers/console/absu_turn_handl
 simDR_absu_zk = find_dataref("tu154b2/custom/buttons/console/absu_zk") 
 simDR_absu_reset = find_dataref("tu154b2/custom/buttons/console/absu_reset") 
 simDR_absu_nvu = find_dataref("tu154b2/custom/buttons/console/absu_nvu") 
+simDR_absu_az1 = find_dataref("tu154b2/custom/buttons/console/absu_az1") 
+simDR_absu_az2 = find_dataref("tu154b2/custom/buttons/console/absu_az2") 
+simDR_absu_app = find_dataref("tu154b2/custom/buttons/console/absu_app")
+simDR_absu_m = find_dataref("tu154b2/custom/buttons/console/absu_stab_m") 
+simDR_absu_v = find_dataref("tu154b2/custom/buttons/console/absu_stab_v") 
+simDR_absu_h = find_dataref("tu154b2/custom/buttons/console/absu_stab_h") 
+simDR_absu_kren = find_dataref("tu154b2/custom/switchers/console/absu_roll_ch_on") 
+simDR_absu_tang = find_dataref("tu154b2/custom/switchers/console/absu_pitch_ch_on") 
+simDR_absu_ldg = find_dataref("tu154b2/custom/switchers/console/absu_landing_on") 
+simDR_absu_nav = find_dataref("tu154b2/custom/switchers/console/absu_nav_on") 
+simDR_absu_dir = find_dataref("tu154b2/custom/switchers/console/absu_needles_on") 
+simDR_absu_gs = find_dataref("tu154b2/custom/buttons/console/absu_gs")
+simDR_absu_at = find_dataref("tu154b2/custom/buttons/console/absu_stab_speed")
+simDR_bleed_left = find_dataref("tu154b2/custom/switchers/airbleed/air_valve_left")
+simDR_bleed_right = find_dataref("tu154b2/custom/switchers/airbleed/air_valve_right")
+simDR_buster_1 = find_dataref("tu154b2/custom/switchers/console/buster_on_1")
+simDR_buster_2 = find_dataref("tu154b2/custom/switchers/console/buster_on_2")
+simDR_buster_3 = find_dataref("tu154b2/custom/switchers/console/buster_on_3")
+simDR_nws = find_dataref("tu154b2/custom/switchers/nosewheel_turn_enable")
+simDR_nws_mode = find_dataref("tu154b2/custom/switchers/nosewheel_turn_sel")
 simDR_light_l = find_dataref("tu154b2/custom/lights/landing_mode_set_L") 
 simDR_light_r = find_dataref("tu154b2/custom/lights/landing_mode_set_R") 
 simDR_light_l_ext = find_dataref("tu154b2/custom/lights/landing_ext_set_L") 
@@ -244,8 +264,141 @@ function land_lights_down_CMDhandler(phase, duration)
     end
 end
 
+function land_lights_down_L_CMDhandler(phase, duration) 
+    if phase == 0 then
+        if simDR_light_l > -1 then
+            simDR_light_l = simDR_light_l -1
+        end
+    end
+end
 
+function land_lights_down_R_CMDhandler(phase, duration) 
+    if phase == 0 then
+        if simDR_light_r > -1 then
+            simDR_light_r = simDR_light_r -1
+        end
+    end
+end
 
+function land_lights_up_L_CMDhandler(phase, duration) 
+    if phase == 0 then
+        if simDR_light_l < 1 then
+            simDR_light_l = simDR_light_l +1
+        end
+    end
+end
+
+function land_lights_up_R_CMDhandler(phase, duration) 
+    if phase == 0 then
+        if simDR_light_r < 1 then
+            simDR_light_r = simDR_light_r +1
+        end
+    end
+end
+
+function land_lights_ext_L_CMDhandler(phase, duration) 
+    if phase == 0 then
+        if simDR_light_l_ext ~= 1 then
+            simDR_light_l_ext = 1
+        end
+    end
+end
+
+function land_lights_ext_R_CMDhandler(phase, duration) 
+    if phase == 0 then
+		if simDR_light_r_ext ~= 1 then
+            simDR_light_r_ext = 1
+        end
+    end
+end
+
+function land_lights_ret_L_CMDhandler(phase, duration) 
+    if phase == 0 then
+        if simDR_light_l_ext ~= 0 then
+            simDR_light_l_ext = 0
+        end
+    end
+end
+
+function land_lights_ret_R_CMDhandler(phase, duration) 
+    if phase == 0 then
+		if simDR_light_r_ext ~= 0 then
+            simDR_light_r_ext = 0
+        end
+    end
+end
+
+function bleed_L_up_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_bleed_left=1
+	elseif phase == 2 then
+		simDR_bleed_left=0
+    end
+end
+
+function bleed_R_up_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_bleed_right=1
+	elseif phase == 2 then
+		simDR_bleed_right=0
+    end
+end
+
+function bleed_L_dn_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_bleed_left=-1
+	elseif phase == 2 then
+		simDR_bleed_left=0
+    end
+end
+
+function bleed_R_dn_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_bleed_right=-1
+	elseif phase == 2 then
+		simDR_bleed_right=0
+    end
+end
+
+function absu_bust_1_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_buster_1 = 1
+    elseif phase == 2 then
+		simDR_buster_1 = 0
+    end
+end
+
+function absu_bust_2_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_buster_2 = 1
+    elseif phase == 2 then
+		simDR_buster_2 = 0
+    end
+end
+
+function absu_bust_3_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_buster_3 = 1
+    elseif phase == 2 then
+		simDR_buster_3 = 0
+    end
+end
+
+function absu_nws_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_nws = 1
+    elseif phase == 2 then
+		simDR_nws = 0
+    end
+end
+
+function absu_nws_mode_CMDhandler(phase, duration) 
+    if phase == 0 then
+		simDR_nws_mode = 1
+    elseif phase == 2 then
+		simDR_nws_mode = 0
+    end
+end
 
 function absu_turn_left_CMDhandler(phase, duration) 
     if phase == 0 then
@@ -309,6 +462,110 @@ function absu_nvu_CMDhandler(phase, duration)
     end
 end
 
+function absu_az1_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_az1 = 1
+    elseif phase == 2 then
+            simDR_absu_az1 = 0
+    end
+end
+
+function absu_az2_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_az2 = 1
+    elseif phase == 2 then
+            simDR_absu_az2 = 0
+    end
+end
+
+function absu_app_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_app = 1
+    elseif phase == 2 then
+            simDR_absu_app = 0
+    end
+end
+
+function absu_gs_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_gs = 1
+    elseif phase == 2 then
+            simDR_absu_gs = 0
+    end
+end
+
+function absu_v_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_v = 1
+    elseif phase == 2 then
+            simDR_absu_v = 0
+    end
+end
+
+function absu_m_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_m = 1
+    elseif phase == 2 then
+            simDR_absu_m = 0
+    end
+end
+
+function absu_h_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_h = 1
+    elseif phase == 2 then
+            simDR_absu_h = 0
+    end
+end
+
+function absu_at_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_at = 1
+    elseif phase == 2 then
+            simDR_absu_at = 0
+    end
+end
+
+function absu_kren_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_kren = 1
+    elseif phase == 2 then
+            simDR_absu_kren = 0
+    end
+end
+
+function absu_tang_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_tang = 1
+    elseif phase == 2 then
+            simDR_absu_tang = 0
+    end
+end
+
+function absu_pos_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_ldg = 1
+    elseif phase == 2 then
+            simDR_absu_ldg = 0
+    end
+end
+
+function absu_nav_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_nav = 1
+    elseif phase == 2 then
+            simDR_absu_nav = 0
+    end
+end
+
+function absu_dir_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_dir = 1
+    elseif phase == 2 then
+            simDR_absu_dir = 0
+    end
+end
+
 function absu_zk_CMDhandler(phase, duration) 
     if phase == 0 then
             simDR_absu_zk = 1
@@ -345,9 +602,42 @@ absu_roll_center_cmnd	= create_command("t154/absu_roll_center", "T154 ABSU Roll 
 absu_reset_cmnd	= create_command("t154/absu_reset", "T154 ABSU SBROS", absu_reset_CMDhandler)
 absu_zk_cmnd	= create_command("t154/absu_zk", "T154 ABSU ZK", absu_zk_CMDhandler)
 absu_nvu_cmnd	= create_command("t154/absu_nvu", "T154 ABSU NVU", absu_nvu_CMDhandler)
+absu_az1_cmnd	= create_command("t154/absu_az1", "T154 ABSU AZ-I", absu_az1_CMDhandler)
+absu_az2_cmnd	= create_command("t154/absu_az2", "T154 ABSU AZ-II", absu_az2_CMDhandler)
+absu_gs_cmnd	= create_command("t154/absu_gs", "T154 ABSU GS", absu_gs_CMDhandler)
+absu_app_cmnd	= create_command("t154/absu_app", "T154 ABSU LOC", absu_app_CMDhandler)
+absu_v_cmnd	= create_command("t154/absu_v", "T154 ABSU V", absu_v_CMDhandler)
+absu_m_cmnd	= create_command("t154/absu_m", "T154 ABSU M", absu_m_CMDhandler)
+absu_h_cmnd	= create_command("t154/absu_at", "T154 ABSU AT", absu_at_CMDhandler)
+absu_at_cmnd	= create_command("t154/absu_h", "T154 ABSU H", absu_h_CMDhandler)
+absu_kren_cmnd	= create_command("t154/absu_kren", "T154 ABSU Bank Switch", absu_kren_CMDhandler)
+absu_tang_cmnd	= create_command("t154/absu_tang", "T154 ABSU Pitch Switch", absu_tang_CMDhandler)
+absu_pos_cmnd	= create_command("t154/absu_pos", "T154 ABSU LDG Switch", absu_pos_CMDhandler)
+absu_nav_cmnd	= create_command("t154/absu_nav", "T154 ABSU NAV Switch", absu_nav_CMDhandler)
+absu_dir_cmnd	= create_command("t154/absu_dir", "T154 ABSU FD Switch", absu_dir_CMDhandler)
 lights_up_cmnd	= create_command("t154/lights_up", "T154 Lights up", land_lights_up_CMDhandler)
 lights_down_cmnd	= create_command("t154/lights_down", "T154 Lights down", land_lights_down_CMDhandler)
 
+lights_up_L_cmnd	= create_command("t154/lights_up_L", "T154 Lights mode left up", land_lights_up_L_CMDhandler)
+lights_down_L_cmnd	= create_command("t154/lights_down_L", "T154 Lights mode left down", land_lights_down_L_CMDhandler)
+lights_up_R_cmnd	= create_command("t154/lights_up_R", "T154 Lights mode right up", land_lights_up_R_CMDhandler)
+lights_down_R_cmnd	= create_command("t154/lights_down_R", "T154 Lights mode right down", land_lights_down_R_CMDhandler)
+lights_ext_L_cmnd	= create_command("t154/lights_ext_L", "T154 Lights wing extend", land_lights_ext_L_CMDhandler)
+lights_ret_L_cmnd	= create_command("t154/lights_ret_L", "T154 Lights wing retract", land_lights_ret_L_CMDhandler)
+lights_ext_R_cmnd	= create_command("t154/lights_ext_R", "T154 Lights fuselage extend", land_lights_ext_R_CMDhandler)
+lights_ret_R_cmnd	= create_command("t154/lights_ret_R", "T154 Lights fuselage retract", land_lights_ret_R_CMDhandler)
+
+bleed_L_up_cmnd	= create_command("t154/bleed_L_up", "Air Valve left up", bleed_L_up_CMDhandler)
+bleed_L_dn_cmnd	= create_command("t154/bleed_L_dn", "Air Valve left down", bleed_L_dn_CMDhandler)
+bleed_R_up_cmnd	= create_command("t154/bleed_R_up", "Air Valve right up", bleed_R_up_CMDhandler)
+bleed_R_dn_cmnd	= create_command("t154/bleed_R_dn", "Air Valve right down", bleed_R_dn_CMDhandler)
+
+buster_1_cmnd	= create_command("t154/absu_buster_1", "T154 Booster 1 Switch", absu_bust_1_CMDhandler)
+buster_2_cmnd	= create_command("t154/absu_buster_2", "T154 Booster 2 Switch", absu_bust_2_CMDhandler)
+buster_3_cmnd	= create_command("t154/absu_buster_3", "T154 Booster 3 Switch", absu_bust_3_CMDhandler)
+
+nws_cmnd	= create_command("t154/absu_nws", "T154 NWS Switch", absu_nws_CMDhandler)
+nws_mode_cmnd	= create_command("t154/absu_nws_mode", "T154 NWS Mode Switch", absu_nws_mode_CMDhandler)
 
 function systems()
 
@@ -441,14 +731,14 @@ end
     
  
 simDR_gpss = 2 
-if simDRgeartestup > 0 then
-    --simDR_but_sound = 1
-    pressed = 1
-end
-if simDRgeartestup < 1 and pressed > 0 then
-    --simDR_but_sound = 0
-    pressed = 0
-end
+-- if simDRgeartestup > 0 then
+    -- --simDR_but_sound = 1
+    -- pressed = 1
+-- end
+-- if simDRgeartestup < 1 and pressed > 0 then
+    -- --simDR_but_sound = 0
+    -- pressed = 0
+-- end
 
     
 if wait > 0 then 
@@ -543,10 +833,10 @@ end
     -- flap_cm_delta = 0
 -- end
 
-if simDR_apu_working > 0 then
-    apu_tr_n = 0
-    apu_was_run = 1
-end
+-- if simDR_apu_working > 0 then
+    -- apu_tr_n = 0
+    -- apu_was_run = 1
+-- end
  
 
 -- if simDR_apu_oilt > 112 and simDR_apu_cc < 123 then
@@ -554,49 +844,49 @@ end
 -- end
     
 
-if T154_apu_heat_start > 0 then           
-    if simDR_start_seq > 0 then
-        if simDR_oat > 25 then
-            oat_delta = (simDR_oat - 25)
-            if apu_tr_n_set < 1 then
-                apu_tr_n = apu_tr_n + 1
-                apu_tr_n_set = 1
-            end
-        else
-            oat_delta = 0
-        end
-        if oat_delta > 0 and apu_pause_1 < math.random(-1,4) and apu_tr_n < 4 and simDR_apu_start_mode > 0 then  
-            if simDR_apu_n1 > math.random(17,20) then
-                apu_pause_1 = apu_pause_1 + simDR_passed
-                simDR_apu_n1 = simDR_apu_n1 - 0.22
-            end 
-        end
-        if oat_delta > math.random(6,15) and apu_pause_2 < math.random(-1,4) and apu_tr_n < 3 and simDR_apu_start_mode > 0 then  
-            if simDR_apu_n1 > math.random(21,27) then
-                apu_pause_2 = apu_pause_2 + simDR_passed
-                simDR_apu_n1 = simDR_apu_n1 - 0.22
-            end 
-        end
-        if oat_delta > math.random(16,20) and apu_pause_3 < math.random(-1,4) and apu_tr_n < 2 and simDR_apu_start_mode > 0 then  
-            if simDR_apu_n1 > math.random(28,41) then
-                apu_pause_3 = apu_pause_3 + simDR_passed
-                simDR_apu_n1 = simDR_apu_n1 - 0.22
-            end 
-        end
-    else
-        apu_pause_1 = 0
-        apu_pause_2 = 0
-        apu_pause_3 = 0
-        apu_tr_n_set = 0
-    end
-else
-    apu_tr_n = 0
-    apu_was_run = 0
-    apu_pause_1 = 0
-    apu_pause_2 = 0
-    apu_pause_3 = 0
-    apu_tr_n_set = 0 
-end
+-- if T154_apu_heat_start > 0 then           
+    -- if simDR_start_seq > 0 then
+        -- if simDR_oat > 25 then
+            -- oat_delta = (simDR_oat - 25)
+            -- if apu_tr_n_set < 1 then
+                -- apu_tr_n = apu_tr_n + 1
+                -- apu_tr_n_set = 1
+            -- end
+        -- else
+            -- oat_delta = 0
+        -- end
+        -- if oat_delta > 0 and apu_pause_1 < math.random(-1,4) and apu_tr_n < 4 and simDR_apu_start_mode > 0 then  
+            -- if simDR_apu_n1 > math.random(17,20) then
+                -- apu_pause_1 = apu_pause_1 + simDR_passed
+                -- simDR_apu_n1 = simDR_apu_n1 - 0.22
+            -- end 
+        -- end
+        -- if oat_delta > math.random(6,15) and apu_pause_2 < math.random(-1,4) and apu_tr_n < 3 and simDR_apu_start_mode > 0 then  
+            -- if simDR_apu_n1 > math.random(21,27) then
+                -- apu_pause_2 = apu_pause_2 + simDR_passed
+                -- simDR_apu_n1 = simDR_apu_n1 - 0.22
+            -- end 
+        -- end
+        -- if oat_delta > math.random(16,20) and apu_pause_3 < math.random(-1,4) and apu_tr_n < 2 and simDR_apu_start_mode > 0 then  
+            -- if simDR_apu_n1 > math.random(28,41) then
+                -- apu_pause_3 = apu_pause_3 + simDR_passed
+                -- simDR_apu_n1 = simDR_apu_n1 - 0.22
+            -- end 
+        -- end
+    -- else
+        -- apu_pause_1 = 0
+        -- apu_pause_2 = 0
+        -- apu_pause_3 = 0
+        -- apu_tr_n_set = 0
+    -- end
+-- else
+    -- apu_tr_n = 0
+    -- apu_was_run = 0
+    -- apu_pause_1 = 0
+    -- apu_pause_2 = 0
+    -- apu_pause_3 = 0
+    -- apu_tr_n_set = 0 
+-- end
     
 
 if simDR_checklist_select > 0 then
