@@ -48493,7 +48493,7 @@ P acf/_vect_min_nace 0.000000000
 P acf/_vect_power_aft 1.000000000
 P acf/_vect_power_for 1.000000000
 P acf/_vect_rate 15.000000000
-P acf/_version 1.41
+P acf/_version 1.42
 P acf/_vnav_descend_auto_arm 0
 P acf/_vor_mode_has_dead_reckon 0
 P acf/_vvi_but_adjusts_pitch 0
@@ -49173,7 +49173,6 @@ GROUP ITV
 END_GROUP
 GROUP EFB_ru
   SHOW_EQUAL 0.000000 tu154b2/custom/lang/hide_rus_objects
-  GROUP_OPEN
   GROUP battery_prc
     SHOW_EQUAL 1.000000 sim/custom/t154_efb/power
     GROUP_OPEN
@@ -49209,6 +49208,7 @@ GROUP EFB_ru
     GROUP_OPEN
     GROUP page0
       SHOW_EQUAL 0.000000 sim/custom/t154_efb/page
+      GROUP_OPEN
       gen_rotary bg_pg
         POS 2580.500000 116.000000
         IMAGE EFB/ru/bg_pg0
@@ -54969,6 +54969,7 @@ GROUP EFB_ru
     END_GROUP
     GROUP page51
       SHOW_EQUAL 51.000000 sim/custom/t154_efb/page
+      GROUP_OPEN
       gen_rotary bg_pg
         POS 2580.500000 116.000000
         IMAGE EFB/ru/bg_pg51
@@ -55019,7 +55020,7 @@ GROUP EFB_ru
         OFFSET 0.000000
 
       gen_pointer cfg
-        POS 2707.000000 305.000000
+        POS 2707.000000 304.000000
         IMAGE EFB/ru/config/civ
         DATAREF 
         SHOW_EQUAL 1.000000 sim/custom/t154_efb/ground_veh_type
@@ -58407,6 +58408,7 @@ GROUP EFB_ru
     END_GROUP
     GROUP popup2
       SHOW_EQUAL 1.000000 sim/custom/t154_efb/popup_2
+      GROUP_OPEN
       gen_pointer battery_bg
         POS 2813.500000 -52.000000
         IMAGE EFB/ru/popups/pu2_battery_bg
@@ -58548,6 +58550,7 @@ GROUP EFB_ru
     END_GROUP
     GROUP popup4
       SHOW_EQUAL 1.000000 sim/custom/t154_efb/popup_4
+      GROUP_OPEN
       gen_pointer popup2_bg
         POS 2955.500000 -41.500000
         IMAGE EFB/ru/popups/popup3_1
@@ -58625,7 +58628,6 @@ GROUP EFB_ru
     END_GROUP
     GROUP popup9
       SHOW_EQUAL 1.000000 sim/custom/t154_efb/popup_9
-      GROUP_OPEN
       gen_pointer popup2_0_bg
         POS 2889.000000 -144.500000
         IMAGE EFB/ru/popups/popup9_1
@@ -65313,6 +65315,7 @@ GROUP EFB_en
     END_GROUP
     GROUP page51
       SHOW_EQUAL 51.000000 sim/custom/t154_efb/page
+      GROUP_OPEN
       gen_rotary bg_pg
         POS 2580.500000 116.000000
         IMAGE EFB/en/bg_pg51
@@ -65478,7 +65481,7 @@ GROUP EFB_en
         POS 2708.000000 84.000000
         IMAGE EFB/en/config/kontur80
         DATAREF 
-        SHOW_EQUAL 0.000000 sim/custom/b2/kontur_70th
+        SHOW_EQUAL 0.000000 sim/custom/b2/kontur_pa_off
         LIGHT_MODE GLASS_AUTO
         LIGHT_RHEOSTAT 19
         CORNERS -5.000000 0.250000  -5.000000 -0.500000  0.750000 -0.500000  0.750000 0.250000
