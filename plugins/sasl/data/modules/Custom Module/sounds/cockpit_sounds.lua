@@ -48,6 +48,7 @@ defineProperty("control_force_pos", globalPropertyf("tu154b2/custom/controls/con
 defineProperty("control_force_pos_rud", globalPropertyf("tu154b2/custom/controls/control_force_pos_rud")) -- положение загружателя РН. 0 - выклчюен, 1 - подключен
 
 defineProperty("precip", globalPropertyf("sim/weather/aircraft/precipitation_on_aircraft_ratio"))
+hail_rat = globalPropertyf("sim/weather/aircraft/hail_on_aircraft_ratio")
 defineProperty("cam_agl", globalPropertyf("sim/graphics/view/view_elevation_agl_mtrs"))
 defineProperty("oat", globalPropertyf("sim/cockpit2/temperature/outside_air_temp_degc"))
 defineProperty("true_airspeed", globalPropertyf("sim/flightmodel/position/true_airspeed"))
@@ -296,8 +297,14 @@ function update()
 	local wind_gain=get(wind_speed)/30*1.94384
 	local wind_pitch=math.min(get(wind_speed)*80*1.94384,1500)
 	local temp=get(oat)
-	local rain_out_gain=get(precip)*300*bool2int(temp>0)
-	local rain_out_pitch=get(precip)*300+700
+	local prec=get(precip)
+	local prec_hl=get(hail_rat)
+	local rain_out_gain=prec*300
+	local rain_out_pitch=prec*300+700
+	if prec_hl>prec then
+		rain_out_gain=prec_hl*500
+		rain_out_pitch=prec_hl*300+700
+	end
 	setSamplePitch(wind_L,wind_pitch)
 	setSamplePitch(wind_R,wind_pitch)
 	setSamplePitch(wind_L_inn,wind_pitch)

@@ -72,7 +72,7 @@ defineProperty("gear3_deflect", globalProperty("sim/flightmodel2/gear/tire_verti
 defineProperty("tank1_w", globalProperty("sim/flightmodel/weight/m_fuel[0]")) -- fuel weight
 
 -- speed
-defineProperty("ias_L", globalPropertyf("tu154b2/custom/gauges/speed/ias_left")) -- indicated airspeed in KTS
+defineProperty("ias_L", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")) -- indicated airspeed in KTS
 --defineProperty("ias_R", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
 
 defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- pressure altitude in feet
@@ -224,7 +224,7 @@ function update()
 	-- overspeed
 	local alt_std_mtr = get(msl_alt) / 3.28083  -- calculate pressure altitude in meters
 	
-	local ias = get(ias_L) * 2.5 + 125 -- km/h
+	local ias = get(ias_L) * 1.852 -- km/h
 	--if get(rel_pitot) == 6 then ias = get(ias_R) * 1.852 end -- temp automatic switch
 	
 	local mach = get(mach_sim)

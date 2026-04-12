@@ -311,7 +311,7 @@ function update()
 	end
 	
 	--IAS_smth = IAS_smth + (IAS - IAS_smth) * passed * 2
-	local T_filt=1.6
+	local T_filt=0.1
 	IAS_smth = IAS * passed/(T_filt+passed)+IAS_smth*T_filt/(T_filt+passed)--low pass 
 
 	
@@ -319,8 +319,8 @@ function update()
 	-- throttles and speed calculations
 	if AT_mode == 1 or AT_mode == 2 then -- sync markers
 		
-		marker_act_L = marker_act_L + (IAS_smth - marker_act_L) * passed * 2
-		marker_act_R = marker_act_R + (IAS_smth - marker_act_R) * passed * 2
+		marker_act_L = marker_act_L + math.max(math.min((IAS_smth - marker_act_L)*4,20),-20) * passed
+		marker_act_R = marker_act_R + math.max(math.min((IAS_smth - marker_act_R)*4,20),-20) * passed
 		if MASTER then
 			set(rud_1_spd, 0)
 			set(rud_2_spd, 0)
