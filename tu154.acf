@@ -47818,7 +47818,7 @@ P acf/_jato_dur 0.000000000
 P acf/_jato_sfc 5.000000000
 P acf/_jato_theta 0.000000000
 P acf/_jato_thrust 0.000000000
-P acf/_jet_Mach_climb 0.620000005
+P acf/_jet_Mach_climb 0.639999986
 P acf/_jet_Mach_hicrz 0.850000024
 P acf/_jet_Mach_locrz 0.800000012
 P acf/_jet_Mach_takeoff 0.000000000
@@ -47826,7 +47826,7 @@ P acf/_jet_N1_climb 92.000000000
 P acf/_jet_N1_hicrz 88.000000000
 P acf/_jet_N1_locrz 87.000000000
 P acf/_jet_N1_takeoff 95.000000000
-P acf/_jet_SFC_climb 0.779999971
+P acf/_jet_SFC_climb 0.897000015
 P acf/_jet_SFC_hicrz 0.879999995
 P acf/_jet_SFC_locrz 0.893000007
 P acf/_jet_SFC_takeoff 0.601999998

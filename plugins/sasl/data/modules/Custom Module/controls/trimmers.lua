@@ -146,18 +146,20 @@ function update()
 	end
 	
 	-- pitch trimmer --
-	local pitch_trim_eng = 2-get(elev_trimm_1_pk)-get(elev_trimm_2_pk)-- working engines for trim. can add failures here
+	local trim_1_pow=(1-get(elev_trimm_1_pk))*power36_L * power_27_L
+	local trim_2_pow=(1-get(elev_trimm_2_pk))*power36_R * power_27_R
+	local pitch_trim_eng = trim_1_pow+trim_2_pow-- working engines for trim. can add failures here
 	local pitch_trim_pos = get(int_pitch_trim)
 	local pitch_trimm_work = bool2int(get(rel_trim_elv) ~= 6 )
-	if pitch_trim_pos >= 0 then 
-		pitch_trim_pos = pitch_trim_pos + elev_tr_sw * passed * power_27_L * power_27_R * (power36_L + power36_R) * pitch_trim_eng * 0.011 * pitch_trimm_work
-		pitch_trim_pos = pitch_trim_pos + absu_tr_pt * passed * power_27_L * power_27_R * (power36_L + power36_R) * bool2int(get(elev_trimm_1_pk)+get(elev_trimm_2_pk) < 2) * 0.005 * pitch_trimm_work
-		pitch_trim_pos = pitch_trim_pos + emer_tr_sw * passed * power_27_L * power36_L * 0.03 * (1 - get(trim_emerg_elv_fail))
-	else 
-		pitch_trim_pos = pitch_trim_pos + elev_tr_sw * passed * power_27_L * power_27_R * (power36_L + power36_R) * pitch_trim_eng * 0.011 * pitch_trimm_work
-		pitch_trim_pos = pitch_trim_pos + absu_tr_pt * passed * power_27_L * power_27_R * (power36_L + power36_R) * bool2int(get(elev_trimm_1_pk)+get(elev_trimm_2_pk) < 2) * 0.005 * pitch_trimm_work
-		pitch_trim_pos = pitch_trim_pos + emer_tr_sw * passed * power_27_L * power36_L * 0.03 * (1 - get(trim_emerg_elv_fail))
-	end
+	--if pitch_trim_pos >= 0 then 
+		pitch_trim_pos = pitch_trim_pos + elev_tr_sw * passed * pitch_trim_eng * 0.021525 * power_27_L
+		pitch_trim_pos = pitch_trim_pos + absu_tr_pt * passed * math.max(trim_1_pow,trim_2_pow) * 0.021525
+		pitch_trim_pos = pitch_trim_pos + emer_tr_sw * passed * trim_1_pow * 0.021525 * (1 - get(trim_emerg_elv_fail)) * power_27_L
+	-- else 
+		-- pitch_trim_pos = pitch_trim_pos + elev_tr_sw * passed * power_27_L * power_27_R * (power36_L + power36_R) * pitch_trim_eng * 0.011 * pitch_trimm_work
+		-- pitch_trim_pos = pitch_trim_pos + absu_tr_pt * passed * power_27_L * power_27_R * (power36_L + power36_R) * bool2int(get(elev_trimm_1_pk)+get(elev_trimm_2_pk) < 2) * 0.005 * pitch_trimm_work
+		-- pitch_trim_pos = pitch_trim_pos + emer_tr_sw * passed * power_27_L * power36_L * 0.022 * (1 - get(trim_emerg_elv_fail))
+	-- end
 	
 	if pitch_trim_pos > 0.517 then pitch_trim_pos = 0.517
 	elseif pitch_trim_pos < -0.344 then pitch_trim_pos = -0.344 end

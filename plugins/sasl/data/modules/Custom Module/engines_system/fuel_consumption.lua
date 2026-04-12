@@ -287,7 +287,7 @@ function update()
 	end
 	local SFC_high_corr=-3.5654285714e-07*math.pow(alt_baro/1000-0.4,2) + 6.3865600000e-06*(alt_baro/1000-0.4) -2.8599554857e-05
 	local SFC_low_corr=4.01217052476160817406e-09*math.pow(alt_baro/1000,4) -1.06437700349348019075e-07*math.pow(alt_baro/1000,3) + 8.35986580814638958231e-07*math.pow(alt_baro/1000,2) -1.72616341620276840832e-06*alt_baro/1000 + 6.15940530316897536774e-07
-	SFC_low_corr=SFC_low_corr+4.37511e-07
+	SFC_low_corr=(SFC_low_corr+4.37511e-07)*1.25
 	if alt_baro-400<9000 then
 		SFC_high_corr=0
 	end
