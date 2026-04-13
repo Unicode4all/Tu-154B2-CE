@@ -257,8 +257,8 @@ function update()
 	local cargo_2_lit = get(cargo_2) * coef_27_R
 	
 	-- currents
-	local current_L = (lan_light_WL + lan_light_FL) * 1000/27 + taxi_lit_L * 230/27 + flight_lit * coef_27_L * 16 + wing_L_lit * 217/27 + cargo_1_lit * 2
-	local current_R = (lan_light_WR + lan_light_FR) * 1000/27 + taxi_lit_R * 230/27 + flight_lit * coef_27_R * 16 + nav_lit * 164/27 + logo_lit * 140/27 + wing_R_lit * 177/27 + cargo_2_lit * 2
+	local current_L = (lan_light_WL + lan_light_FL) * 1000/27 + taxi_lit_L * 450/27 + flight_lit * coef_27_L * 16 + wing_L_lit * 217/27 + cargo_1_lit * 2
+	local current_R = (lan_light_WR + lan_light_FR) * 1000/27 + taxi_lit_R * 450/27 + flight_lit * coef_27_R * 16 + nav_lit * 164/27 + logo_lit * 140/27 + wing_R_lit * 177/27 + cargo_2_lit * 2
 	
 	
 	-- disable front gear lamps to lit throught its doors
