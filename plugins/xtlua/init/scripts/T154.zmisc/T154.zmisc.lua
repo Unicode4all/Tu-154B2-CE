@@ -77,8 +77,8 @@ simDR_qnh = find_dataref("sim/weather/barometer_sealevel_inhg")
 simDR_elevation = find_dataref("sim/flightmodel/position/elevation") 
 simDR_radioalt = find_dataref("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot") 
 
-simDR_pitch_trim  = find_dataref("tu154b2/custom/trimmers/int_pitch_trim")
-simDR_emerg_trim  = find_dataref("tu154b2/custom/switchers/console/emerg_elev_trimm")
+--simDR_pitch_trim  = find_dataref("tu154b2/custom/trimmers/int_pitch_trim")
+--simDR_emerg_trim  = find_dataref("tu154b2/custom/switchers/console/emerg_elev_trimm")
 simDR_msrp_pwr  = find_dataref("tu154b2/custom/msrp/msrp_power")
 simDR_time  = find_dataref("sim/time/total_running_time_sec")
 simDR_27v_cc = find_dataref("tu154b2/custom/fire/fire_sys_cc")
@@ -452,7 +452,7 @@ local window_c_ice_delta  = 0
 local window_r_ice_delta  = 0
 local emerg_trim_actv = 0
 local cabin_temp_delta = 0
-emerg_trim_azs = 1
+--emerg_trim_azs = 1
 local g_init_1=math.random()/5
 local g_init_2=math.random()/7
 local gforce_maxn_loc =  g_init_1
@@ -1733,24 +1733,24 @@ itv_4 = itv_min - (itv_3*10)
     
     
  
-if emerg_trim_azs > 0 and sw_sound > 0 then
-    if simDR_sw_sound > -2 then
-        simDR_sw_sound = -2
-        sw_sound = 0
-    else
-        simDR_sw_sound = -1
-        sw_sound = 0
-    end
-end
-if emerg_trim_azs < 1 and sw_sound < 1 then
-    if simDR_sw_sound > -2 then
-        simDR_sw_sound = -2
-        sw_sound = 1
-    else
-        simDR_sw_sound = -1
-        sw_sound = 1
-    end
-end   
+-- if emerg_trim_azs > 0 and sw_sound > 0 then
+    -- if simDR_sw_sound > -2 then
+        -- simDR_sw_sound = -2
+        -- sw_sound = 0
+    -- else
+        -- simDR_sw_sound = -1
+        -- sw_sound = 0
+    -- end
+-- end
+-- if emerg_trim_azs < 1 and sw_sound < 1 then
+    -- if simDR_sw_sound > -2 then
+        -- simDR_sw_sound = -2
+        -- sw_sound = 1
+    -- else
+        -- simDR_sw_sound = -1
+        -- sw_sound = 1
+    -- end
+-- end   
     
     
 -- if simDR_window_l > 0.25 and simDR_window_l < 0.27 then
@@ -1787,39 +1787,39 @@ end
  -- window_slide_r = 0
 -- end
 
-if emerg_trim_azs < 1 then
-    if simDR_emerg_trim == 0 then
-        current_pitch_trim = simDR_pitch_trim
-    end
-    if simDR_emerg_trim > 0 then
-        simDR_pitch_trim = current_pitch_trim
-    end
-    if simDR_emerg_trim < 0 then
-        simDR_pitch_trim = current_pitch_trim
-    end
-    if emerg_trim_actv > 0 then
-        emerg_trim_actv = 0
-    end
-else
-    if emerg_trim_actv < 1 then
-        current_pitch_trim = simDR_pitch_trim
-    end
-    if simDR_emerg_trim > 0 then
-        if emerg_trim_actv < 1 then
-            emerg_trim_actv = 1
-        end
-        current_pitch_trim = simDR_pitch_trim    
-    end
-    if simDR_emerg_trim < 0 then
-        if emerg_trim_actv < 1 then
-            emerg_trim_actv = 1
-        end
-        current_pitch_trim = simDR_pitch_trim    
-    end
-    if emerg_trim_actv > 0 and simDR_emerg_trim == 0 then
-        simDR_pitch_trim = current_pitch_trim
-    end    
-end  
+-- if emerg_trim_azs < 1 then
+    -- if simDR_emerg_trim == 0 then
+        -- current_pitch_trim = simDR_pitch_trim
+    -- end
+    -- if simDR_emerg_trim > 0 then
+        -- simDR_pitch_trim = current_pitch_trim
+    -- end
+    -- if simDR_emerg_trim < 0 then
+        -- simDR_pitch_trim = current_pitch_trim
+    -- end
+    -- if emerg_trim_actv > 0 then
+        -- emerg_trim_actv = 0
+    -- end
+-- else
+    -- if emerg_trim_actv < 1 then
+        -- current_pitch_trim = simDR_pitch_trim
+    -- end
+    -- if simDR_emerg_trim > 0 then
+        -- if emerg_trim_actv < 1 then
+            -- emerg_trim_actv = 1
+        -- end
+        -- current_pitch_trim = simDR_pitch_trim    
+    -- end
+    -- if simDR_emerg_trim < 0 then
+        -- if emerg_trim_actv < 1 then
+            -- emerg_trim_actv = 1
+        -- end
+        -- current_pitch_trim = simDR_pitch_trim    
+    -- end
+    -- if emerg_trim_actv > 0 and simDR_emerg_trim == 0 then
+        -- simDR_pitch_trim = current_pitch_trim
+    -- end    
+-- end  
    
     
 if aircraft_loaded > 0 then    

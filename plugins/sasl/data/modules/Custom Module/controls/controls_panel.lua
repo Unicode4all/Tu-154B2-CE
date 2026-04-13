@@ -242,7 +242,7 @@ local function reset_switchers()
 		set(nosewheel_turn_cap, 1)
 		
 	end
-	
+	set(trimm_azs,1)
 	notLoaded = false
 end
 

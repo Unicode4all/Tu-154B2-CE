@@ -64,6 +64,7 @@ defineProperty("trim_emerg_elv_fail", globalPropertyi("tu154b2/custom/failures/t
 defineProperty("elev_trimm_1_pk", globalPropertyi("sim/custom/b2/elev_trimm_1_pk")) -- 
 defineProperty("elev_trimm_2_pk", globalPropertyi("sim/custom/b2/elev_trimm_2_pk")) -- 
 
+emer_trim_cb = globalPropertyi("sim/custom/switchers/emerg_trimm_azs")
 
 defineProperty("pedal_left_sw", globalPropertyi("sim/custom/other/pedal_left_sw")) -- 
 defineProperty("pedal_right_sw", globalPropertyi("sim/custom/other/pedal_right_sw")) -- 
@@ -97,7 +98,7 @@ local trimm_roll_last = 0
 local trimm_yaw_last = 0
 local external = get(external_view)
 local warn_vl = get(warning_volume_ratio)
-
+local trim_block=0
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
 	local hdg_rad = math.rad(cam_hdg)
@@ -148,13 +149,19 @@ function update()
 	-- pitch trimmer --
 	local trim_1_pow=(1-get(elev_trimm_1_pk))*power36_L * power_27_L
 	local trim_2_pow=(1-get(elev_trimm_2_pk))*power36_R * power_27_R
-	local pitch_trim_eng = trim_1_pow+trim_2_pow-- working engines for trim. can add failures here
+	local pitch_trim_eng = trim_1_pow+trim_2_pow
 	local pitch_trim_pos = get(int_pitch_trim)
-	local pitch_trimm_work = bool2int(get(rel_trim_elv) ~= 6 )
+	-- block main trimmer with emergency switch
+	local emer_cb=get(emer_trim_cb)
+	if emer_tr_sw~=0 and emer_cb==1 then
+		trim_block=1
+	elseif emer_cb==0 and trim_block==1 then
+		trim_block=0
+	end
 	--if pitch_trim_pos >= 0 then 
-		pitch_trim_pos = pitch_trim_pos + elev_tr_sw * passed * pitch_trim_eng * 0.021525 * power_27_L
+		pitch_trim_pos = pitch_trim_pos + elev_tr_sw * passed * pitch_trim_eng * 0.021525 * power_27_L  * bool2int(get(rel_trim_elv) ~= 6 ) * (1-trim_block)
 		pitch_trim_pos = pitch_trim_pos + absu_tr_pt * passed * math.max(trim_1_pow,trim_2_pow) * 0.021525
-		pitch_trim_pos = pitch_trim_pos + emer_tr_sw * passed * trim_1_pow * 0.021525 * (1 - get(trim_emerg_elv_fail)) * power_27_L
+		pitch_trim_pos = pitch_trim_pos + emer_tr_sw * passed * trim_1_pow * 0.021525 * (1 - get(trim_emerg_elv_fail)) * power_27_L * emer_cb
 	-- else 
 		-- pitch_trim_pos = pitch_trim_pos + elev_tr_sw * passed * power_27_L * power_27_R * (power36_L + power36_R) * pitch_trim_eng * 0.011 * pitch_trimm_work
 		-- pitch_trim_pos = pitch_trim_pos + absu_tr_pt * passed * power_27_L * power_27_R * (power36_L + power36_R) * bool2int(get(elev_trimm_1_pk)+get(elev_trimm_2_pk) < 2) * 0.005 * pitch_trimm_work
