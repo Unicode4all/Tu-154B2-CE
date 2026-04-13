@@ -16571,7 +16571,7 @@ IDX10 12395 12396 12393 12395 12397 12394 12393 12398 12394 12397
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/gear_blocks
 ANIM_trans 0 -5.470000 2.125 0 -5.47 2.125 0 0 none
-ANIM_rotate 1 0 0 0.000000 -10.000000 0 10 sim/flightmodel/position/theta
+ANIM_rotate 1 0 0 0.000000 -10.000000 0 -10 sim/flightmodel2/gear/eagle_claw_angle_deg[2]
 ANIM_trans 0 5.470000 -2.125 0 5.47 -2.125 0 0 none
 ANIM_trans 0.000000 -0.0159 0.000000 0.000000 -0.4353 -0.255500 -5.000000 -1.000000 tu154b2/custom/anim/lg/main_pos_right
 TRIS 0 2088
@@ -16585,7 +16585,7 @@ ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/gear_blocks
 ANIM_trans 0 -5.470000 2.125 0 -5.47 2.125 0 0 none
-ANIM_rotate 1 0 0 0.000000 -10.000000 0 10 sim/flightmodel/position/theta
+ANIM_rotate 1 0 0 0.000000 -10.000000 0 -10 sim/flightmodel2/gear/eagle_claw_angle_deg[1]
 ANIM_trans 0 5.470000 -2.125 0 5.47 -2.125 0 0 none
 ANIM_trans 0.000000 -0.0159 0.000000 0.000000 -0.4353 -0.255500 -5.000000 -1.000000 tu154b2/custom/anim/lg/main_pos_left
 ATTR_cull
