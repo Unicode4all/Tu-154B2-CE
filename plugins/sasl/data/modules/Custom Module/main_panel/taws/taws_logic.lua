@@ -71,6 +71,7 @@ defineProperty("sp_fail", globalPropertyi("tu154b2/custom/taws/sppz_fail"))
 defineProperty("rp_fail", globalPropertyi("tu154b2/custom/taws/rppz_fail"))
 defineProperty("rv_fail", globalPropertyi("tu154b2/custom/failures/rv2_fail"))
 defineProperty("vbe_fail", globalPropertyi("sim/operation/failures/rel_cop_alt"))
+show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
 
 local but_view_last = 0
 local but_empt_last = 0
@@ -89,7 +90,7 @@ local MASTER = get(ismaster) ~= 1
 
 if MASTER then	
 	local passed=get(frame_time)
-	local power = get(bus27_volt) > 13 and get(srpbz) == 1 
+	local power = get(bus27_volt) > 13 and get(srpbz) == 1 and get(show_taws)==1
 	--local sns_power=get(sns)>0 and (get(show_gns)==1 or kln_flag==0)
 	if not power then
 		set(mode_set, 0)

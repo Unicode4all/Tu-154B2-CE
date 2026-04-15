@@ -86,7 +86,7 @@ defineProperty("dis_rppz", globalPropertyi("tu154b2/custom/egpws/dis_rppz"))
 defineProperty("dis_gs", globalPropertyi("tu154b2/custom/egpws/dis_gs")) 
 defineProperty("sp_fail", globalPropertyi("tu154b2/custom/taws/sppz_fail"))
 defineProperty("rp_fail", globalPropertyi("tu154b2/custom/taws/rppz_fail"))
-
+show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
 
 local rv_last = get(rv5_alt)
 local sm_rv_vvi = 0 -- smoothed
@@ -131,7 +131,7 @@ function update()
 	local MASTER = true --get(ismaster) ~= 1	
 
 	
-	if mode > 0 and mode < 4 then
+	if mode > 0 and mode < 4 and get(show_taws)==1 then
 		local passed = get(frame_time)
 		-- define sources
 		local baro_alt = get(alt_svs)*0.3048
