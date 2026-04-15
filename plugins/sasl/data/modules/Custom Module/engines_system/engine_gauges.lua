@@ -41,9 +41,9 @@ defineProperty("oil_temp_1", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp
 defineProperty("oil_temp_2", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp_2")) -- температура масла двиг 2
 defineProperty("oil_temp_3", globalPropertyf("tu154b2/custom/gauges/eng/oil_temp_3")) -- температура масла двиг 3
 
-defineProperty("oil_temp_act_1", globalPropertyf("tu154b2/custom/eng/oil_temp_1")) -- температура масла двиг 1
-defineProperty("oil_temp_act_2", globalPropertyf("tu154b2/custom/eng/oil_temp_2")) -- температура масла двиг 2
-defineProperty("oil_temp_act_3", globalPropertyf("tu154b2/custom/eng/oil_temp_3")) -- температура масла двиг 3
+-- defineProperty("oil_temp_act_1", globalPropertyf("tu154b2/custom/eng/oil_temp_1")) -- температура масла двиг 1
+-- defineProperty("oil_temp_act_2", globalPropertyf("tu154b2/custom/eng/oil_temp_2")) -- температура масла двиг 2
+-- defineProperty("oil_temp_act_3", globalPropertyf("tu154b2/custom/eng/oil_temp_3")) -- температура масла двиг 3
 
 defineProperty("fuel_flow_1", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_1")) -- расход топлива двиг 1
 defineProperty("fuel_flow_2", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_2")) -- расход топлива двиг 2

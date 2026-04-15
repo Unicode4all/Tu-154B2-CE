@@ -344,6 +344,7 @@ toilet_busy = find_dataref("tu154b2/custom/lights/toilet_busy_lamp")
 gear_nacells = find_dataref("tu154b2/custom/lights/gear_nacelle_light_set")
 cargo1_light_cockpit_set = find_dataref("tu154b2/custom/lights/cargo_light_1_set")
 cargo2_light_cockpit_set = find_dataref("tu154b2/custom/lights/cargo_light_2_set")
+show_taws = find_dataref("tu154b2/custom/anim/show_taws")
 
 
 
@@ -2007,7 +2008,7 @@ function ssos()
         ssos_timeout = math.random(70,140)
     end
 
-    if ssos_timeout < 5 and T154_kontur_90th < 1 then
+    if ssos_timeout < 5 and (T154_kontur_90th < 1 or show_taws==0) then
         test_ssos_lit = 1
         if (test_btn1+test_btn2+test_btn3) > 0 then
             if ssos_test_alarm < 1.1 then

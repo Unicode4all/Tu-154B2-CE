@@ -3644,6 +3644,7 @@ IDX 2822
 IDX 2864
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_90th
+ANIM_trans 0.0845 0.000000 0.000000 0 0 0 0.000000 1.000000 tu154b2/custom/anim/show_taws
 ATTR_light_level 0.000000 1.000000 sim/custom/tcas2000/tcas_pwr
 TRIS 0 657
 ANIM_begin
@@ -3681,6 +3682,9 @@ ANIM_rotate 0.000000 0.139173 0.990268 -0.000000 1.000000 0.000000 1.000000 sim/
 ANIM_trans -0.168657 1.823940 21.573099 -0.168657 1.823940 21.573099 0.000000 0.000000 none
 TRIS 3261 936
 ANIM_end
+
+ANIM_begin
+ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000139 -0.000990 0.000000 1.000000 tu154b2/custom/buttons/ovhd/egpws_control
 ATTR_light_level 0.000000 1.000000 sim/custom/kontur/srpbz_test_lit
@@ -3743,12 +3747,16 @@ ANIM_hide 0.000000 0.000000 tu154b2/custom/egpws/dis_sound
 TRIS 5556 9
 ANIM_end
 ANIM_end
+ANIM_end
+
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000139 -0.000990 0.000000 1.000000 CMND=tcas2000/12btn
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT
 ATTR_no_hard
 TRIS 5565 336
 ANIM_end
+ANIM_begin
+ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
 ATTR_light_level 0.000000 1.000000 sim/custom/kontur/srpbz_rppz_lit
 ATTR_hard 
 TRIS 5901 9
@@ -3757,4 +3765,5 @@ TRIS 5910 9
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT
 ATTR_no_hard
 TRIS 5919 1773
+ANIM_end
 ANIM_end

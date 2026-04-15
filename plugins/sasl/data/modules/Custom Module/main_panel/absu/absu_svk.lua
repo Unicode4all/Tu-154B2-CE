@@ -168,7 +168,7 @@ defineProperty("bkk_pitch", globalPropertyf("tu154b2/custom/bkk/bkk_pitch")) -- 
 defineProperty("bkk_roll", globalPropertyf("tu154b2/custom/bkk/bkk_roll")) -- результирующий тангаж от БКК
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("search_run", globalPropertyf("tu154b2/custom/absu/ppn_search_delay"))
-search_started = globalPropertyi("tu154b2/custom/absu/ppn_search_started")
+-- search_started = globalPropertyi("tu154b2/custom/absu/ppn_search_started")
 defineProperty("absu_bap_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_pitch_fail"))
 defineProperty("absu_bap_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_roll_fail"))
 defineProperty("absu_bns_pitch_fail", globalPropertyi("tu154b2/custom/failures/bns_tet_fail"))

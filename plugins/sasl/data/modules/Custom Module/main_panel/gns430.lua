@@ -54,6 +54,10 @@ defineProperty("sync", globalPropertyi("tu154b2/custom/radio/kontur_sync"))
 defineProperty("but_up", globalPropertyi("tu154b2/custom/taws/taws_button")) 
 defineProperty("tss_rot", globalPropertyi("tu154b2/custom/rotary/GNS430/tss_rot"))
 hsi_source = globalPropertyi("sim/cockpit/switches/HSI_selector2")
+show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
+kontur_on = globalPropertyi("tu154b2/custom/b2/kontur_on") 
+-- kontur_off = globalPropertyi("sim/custom/b2/kontur_off")
+kontur70 = globalPropertyi("sim/custom/b2/kontur_70th")
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
@@ -538,6 +542,12 @@ function update()
 		--set(db3,z_add)
 		set(GNS430_dev, side) 
 		set(GNS430_dtk, gps_course)	
+		-- set variable to hide TAWS
+		local taws_show=0
+		if get(kontur70)==1 and get(show_gns)==1 then
+			taws_show=1
+		end
+		set(show_taws,taws_show)
 	end
 	set(but_up,but_sound)
 	set(tss_rot,rot_sound)

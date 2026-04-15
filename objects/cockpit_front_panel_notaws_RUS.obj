@@ -2,7 +2,7 @@ I
 800
 OBJ
 
-TEXTURE cockpit_front_panel_RUS.png
+TEXTURE cockpit_front_panel_notaws_RUS.png
 TEXTURE_LIT cockpit_front_panel_RUS_LIT.png
 
 POINT_COUNTS 8715 0 0 21894
@@ -10916,8 +10916,7 @@ IDX 8705
 IDX 8707
 ATTR_layer_group Cockpit 0
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_90th
-ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
+ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
 TRIS 0 9201
 ATTR_solid_camera
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT

@@ -21649,7 +21649,7 @@ ATTR_reset
 TRIS 39411 876
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
+ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
 ATTR_shiny_rat 0.200000
 TRIS 40287 174
 ATTR_shiny_rat 0.100000
@@ -21673,7 +21673,7 @@ ATTR_shiny_rat 0.100000
 TRIS 41112 30
 ANIM_end
 ANIM_begin
-ANIM_hide 1.000000 1.000000 tu154b2/custom/b2/kontur_on
+ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_taws
 # ANIM_begin
 ANIM_begin
 ANIM_trans 0.000000 0 -0.0012 0.000000 0 -0.0012 0.000000 0.000000 none

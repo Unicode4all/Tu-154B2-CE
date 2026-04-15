@@ -5273,7 +5273,11 @@ TRIS 8850 84
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_90th
-TRIS 8934 228
+TRIS 8934 222
+ANIM_begin
+ANIM_trans 0.0845 0.000000 0.000000 0 0 0 0.000000 1.000000 tu154b2/custom/anim/show_taws
+TRIS 9156 6
+ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_90th
