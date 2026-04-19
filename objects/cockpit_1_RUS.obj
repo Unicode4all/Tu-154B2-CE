@@ -227459,6 +227459,10 @@ TRIS 114144 72
 ANIM_end
 ANIM_end
 ANIM_begin
+ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
+TRIS 116451 528
+ANIM_end
+ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/right_panel_int
 TRIS 114216 120
@@ -227471,7 +227475,8 @@ TRIS 114732 297
 ATTR_cull
 TRIS 115029 222
 ATTR_light_level_reset
-TRIS 115251 1728
+#TRIS 115251 1728
+TRIS 115251 1200
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/left_panel_int
 TRIS 116979 126
 ATTR_no_cull

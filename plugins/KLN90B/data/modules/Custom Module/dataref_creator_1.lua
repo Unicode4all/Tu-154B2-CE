@@ -27,3 +27,4 @@ createGlobalPropertyi("tu154b2/custom/kln90/kln_flag", 0) -- флаг курса
 createGlobalPropertyi("tu154b2/custom/kln90/kln_fail_flag", 0)
 createGlobalPropertyi("tu154b2/custom/kln90/kln_n_sats",0)
 createGlobalPropertyf("tu154b2/custom/kln90/kln_time",0)
+createGlobalPropertyf("tu154b2/custom/tks/kln_psi",0)

@@ -136,9 +136,9 @@ defineProperty("manip_roll", globalPropertyf("sim/cockpit2/controls/yoke_roll_ra
 
 
 
-defineProperty("pkp_fail_left", globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_L")) -- 
-defineProperty("pkp_fail_right", globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_R")) -- 
-defineProperty("mgv_contr_fail", globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag")) -- 
+-- defineProperty("pkp_fail_left", globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_L")) -- 
+-- defineProperty("pkp_fail_right", globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_R")) -- 
+-- defineProperty("mgv_contr_fail", globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag")) -- 
 
 defineProperty("pressure_ind_1", globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_1")) -- индикатор давления гидросистемы 1
 defineProperty("pressure_ind_2", globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_2")) -- индикатор давления гидросистемы 2
@@ -298,6 +298,8 @@ local power27_prev=false
 local fail_roll=0
 local fail_pitch=0
 local fail_yaw=0
+local fail_loc=0
+local fail_gs=0
 local pitch_sw_last=false
 local roll_sw_last=false
 if get(ismaster)~=1 then
@@ -597,7 +599,7 @@ local MASTER = get(ismaster) ~= 1
 		local mp2_flag=0
 		if get(nav_select)==1 then
 			if get(show_gns) == 0 then
-				if get(kln_flag2)>0 or get(kln_flag)==0 then
+				if get(kln_flag2)>0 or get(kln_flag)==0 or get(tks_fail_left)>0 then
 					nvu_flag=1
 				end
 			elseif get(show_gns) == 1 then -- GNS
@@ -1068,8 +1070,13 @@ local MASTER = get(ismaster) ~= 1
 		
 		
 		-- triangle lamp
-		if get(rv5_alt) < 60 and power and ((roll_submode == 6 and roll_mode_main==2) or (pitch_submode == 5 and pitch_mode_main==2)) and (get(man_pitch_lamp) == 1 or get(man_roll_lamp) == 1 or get(absu_course_out) == 1 or get(absu_gs_out) == 1) then
+		if get(rv5_alt) < 60 and power and roll_submode == 6 and roll_mode_main==2 and (get(man_roll_lamp) == 1 or get(absu_course_out) == 1) then
+			set(triangle_lamp_signal, 1)		
+			fail_loc=1
+		end
+		if get(rv5_alt) < 60 and power and pitch_submode == 5 and pitch_mode_main==2 and (get(man_pitch_lamp) == 1 or get(absu_gs_out) == 1) then
 			set(triangle_lamp_signal, 1)
+			fail_gs=1
 		end
 		-- damper fails (full channel shutdown)
 		if power27 and get(absu_damp_pitch_fail) == 1 and pitch_mode_main>0 then
@@ -1124,6 +1131,8 @@ local MASTER = get(ismaster) ~= 1
 			fail_pitch=0
 			fail_roll=0
 			fail_yaw=0
+			fail_loc=0
+			fail_gs=0
 			--set(absu_fail_signal, 0)
 			signal_timer = 0
 		end
@@ -1150,6 +1159,8 @@ local MASTER = get(ismaster) ~= 1
 			fail_pitch=0
 			fail_roll=0
 			fail_yaw=0
+			fail_loc=0
+			fail_gs=0
 			--set(absu_fail_signal, 0)
 			set(man_roll_lamp, 0)
 			set(man_pitch_lamp, 0)
@@ -1178,14 +1189,16 @@ local MASTER = get(ismaster) ~= 1
 		else 
 			at_block_timer = 0
 		end
-		-- reset alarm with wheel/handle input
-		if fail_pitch == 1 and not pitch_sw and pitch_sw_last then
+		-- reset alarm with switches
+		if fail_pitch + fail_gs >0 and not pitch_sw and pitch_sw_last then
 			fail_pitch=0
+			fail_gs=0
 			--set(absu_fail_signal,0)
 			set(man_pitch_lamp, 0)
 		end
-		if fail_roll == 1 and not roll_sw and roll_sw_last then
+		if fail_roll + fail_loc >0 and not roll_sw and roll_sw_last then
 			fail_roll=0
+			fail_loc=0
 			--set(absu_fail_signal,0)
 			set(man_roll_lamp, 0)
 		end
@@ -1193,7 +1206,7 @@ local MASTER = get(ismaster) ~= 1
 		pitch_sw_last=pitch_sw
 		pitch_wheel_last = putch_wheel
 		roll_handle_last=roll_handle
-		set(absu_fail_signal,math.max(fail_pitch,fail_roll,fail_yaw))
+		set(absu_fail_signal,math.max(fail_pitch,fail_roll,fail_yaw,fail_gs,fail_loc))
 		
 		-- reset modes on failures or turned off sources
 		-- if get(absu_damp_roll_fail) == 1 then roll_mode_main = 0 end -- roll damper fail

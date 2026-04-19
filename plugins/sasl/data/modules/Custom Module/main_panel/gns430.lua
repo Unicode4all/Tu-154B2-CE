@@ -452,9 +452,9 @@ function update()
 			-- course_app=crs(app_lat,app_lon,app_lat2,app_lon2,magvar)
 		-- end
 	-- end
-	set(kln_power, get(kln_on) * bool2int(get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13))
-	set(gps_power, get(kln_on) * bool2int(get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13))
-	set(gps1_power, get(kln_on) * bool2int(get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13))
+	set(kln_power, get(kln_on) * bool2int(get(bus27_volt_right) > 13))
+	set(gps_power, get(kln_on) * bool2int(get(bus27_volt_right) > 13))
+	set(gps1_power, get(kln_on) * bool2int(get(bus27_volt_right) > 13))
 	set(gns_lit, get(gps_power) * 0.7)
 	-- if get(overrideGPS)==0 then
 		-- set(overrideGPS, 1)

@@ -263,7 +263,7 @@ defineProperty("LONin", globalPropertyf("sim/flightmodel/position/longitude"))
 defineProperty("SPEEDin", globalPropertyf("sim/flightmodel/position/groundspeed"))
 --defineProperty("COURSEin", globalPropertyf("sim/flightmodel/position/true_psi"))
 --defineProperty("BETAin", globalPropertyf("sim/flightmodel/position/beta"))
-defineProperty("PSIin", globalPropertyf("sim/flightmodel2/position/mag_psi"))
+defineProperty("PSIin", globalPropertyf("tu154b2/custom/tks/kln_psi"))
 HPATHin = globalProperty("sim/flightmodel2/position/hpath")
 
 defineProperty("MAGVARin", globalPropertyf("sim/flightmodel/position/magnetic_variation"))

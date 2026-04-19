@@ -78317,8 +78317,8 @@ ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT
 #TRIS 32475 1416
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
-TRIS 33363 264
-TRIS 32919 444
+TRIS 33363 132
+TRIS 33141 222
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/warning_terrain_new 
 TRIS 32457 18
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/gs_low_new 
@@ -78331,10 +78331,16 @@ ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_taws
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
 TRIS 74094 18
 ANIM_end
-TRIS 32475 444
-TRIS 33627 264
+TRIS 32475 666
+TRIS 33495 396
 ATTR_light_level 0.000000 1.000000 sim/custom/lights/msg_lamp_new 
 TRIS 33927 18
+ANIM_begin
+ANIM_trans 0.783584 -0.107040 0.015200 0.783584 -0.107040 0.015200 0.000000 0.000000 none
+#ANIM_trans 0 0 0.1 0 0 0.1 0.000000 0.000000 none
+ATTR_light_level 0.000000 1.000000 sim/custom/lights/sns_lamp_new 
+TRIS 153183 18
+ANIM_end
 ANIM_end
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
 TRIS 33945 996

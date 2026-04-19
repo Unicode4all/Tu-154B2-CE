@@ -250,9 +250,9 @@ local s_run=0
 --local start_timer=0
 local skipped=0
 local init_timer=10
-local test1=-0.5
-local test2=-0.55
-local test3=-0.45
+local test1=-0.2
+local test2=-0.25
+local test3=-0.25
 local demp1_timer=0
 local demp2_timer=0
 local demp3_timer=0
@@ -264,17 +264,17 @@ function update()
 		if get(t1)>0 then
 			test1=test1+passed
 		else
-			test1=-0.5
+			test1=-0.25
 		end
 		if get(t2)>0 then
 			test2=test2+passed
 		else
-			test2=-0.55
+			test2=-0.25
 		end
 		if get(t3)>0 then
 			test3=test3+passed
 		else
-			test3=-0.45
+			test3=-0.25
 		end
 		local plr=get(pol)
 		local eras=get(snp)
@@ -562,6 +562,7 @@ function update()
 				set(otk_1,bdg_tet1_mem*math.max(get(search),get(test_svk)))
 				set(otk_2,bdg_tet2_mem*math.max(get(search),get(test_svk)))
 				set(otk_3,bdg_tet3_mem*math.max(get(search),get(test_svk)))
+				set(otk_4,bool2int(test1>0 or test2>0 or test3>0))
 				if test1>0 and get(test_svk)>0 then
 					bdg_tet1_mem=1
 				end
@@ -585,6 +586,7 @@ function update()
 				set(otk_1,bdg_gam1_mem*math.max(get(search),get(test_svk)))
 				set(otk_2,bdg_gam2_mem*math.max(get(search),get(test_svk)))
 				set(otk_3,bdg_gam3_mem*math.max(get(search),get(test_svk)))
+				set(otk_4,bool2int(test1>0 or test2>0 or test3>0))
 				if test1>0 and get(test_svk)>0 then
 					bdg_gam1_mem=1
 				end
@@ -608,6 +610,7 @@ function update()
 				set(otk_1,bdg_psi1_mem*math.max(get(search),get(test_svk)))
 				set(otk_2,bdg_psi2_mem*math.max(get(search),get(test_svk)))
 				set(otk_3,bdg_psi3_mem*math.max(get(search),get(test_svk)))
+				set(otk_4,bool2int(test1>0 or test2>0 or test3>0))
 				if test1>0 and get(test_svk)>0 then
 					bdg_psi1_mem=1
 				end
@@ -631,6 +634,7 @@ function update()
 				set(otk_1,get(bshu_tet1_mem)*math.max(get(search),get(test_svk)))
 				set(otk_2,get(bshu_tet2_mem)*math.max(get(search),get(test_svk)))
 				set(otk_3,get(bshu_tet3_mem)*math.max(get(search),get(test_svk)))
+				set(otk_4,0)
 				if test1>0 and get(test_svk)>0 then
 					set(bshu_tet1_mem,1)
 				end

@@ -354,15 +354,15 @@ function update ()
 		
 		local bal_L, bal_R = inn_balance (view_head, dist)
 		local cockpit_dr=math.max(bool2int(get(pilot_Z)+1.42>-19.1),get(cockpit_door))
-		bal_L=bal_L*(0.75+0.75*cockpit_dr)
-		bal_R=bal_R*(0.75+0.75*cockpit_dr)
-		setSampleGain(inn_starter_cut_left_1, 100 * bal_L * main_vol)
-		setSampleGain(inn_starter_cut_left_2, 100 * bal_L * main_vol)
-		setSampleGain(inn_starter_cut_left_3, 100 * bal_L * main_vol)
+		bal_L=bal_L*(0.5+0.75*cockpit_dr)
+		bal_R=bal_R*(0.5+0.75*cockpit_dr)
+		setSampleGain(inn_starter_cut_left_1, 70 * bal_L * main_vol)
+		setSampleGain(inn_starter_cut_left_2, 70 * bal_L * main_vol)
+		setSampleGain(inn_starter_cut_left_3, 70 * bal_L * main_vol)
 		
-		setSampleGain(inn_starter_cut_right_1, 100 * bal_R * main_vol)
-		setSampleGain(inn_starter_cut_right_2, 100 * bal_R * main_vol)
-		setSampleGain(inn_starter_cut_right_3, 100 * bal_R * main_vol)
+		setSampleGain(inn_starter_cut_right_1, 70 * bal_R * main_vol)
+		setSampleGain(inn_starter_cut_right_2, 70 * bal_R * main_vol)
+		setSampleGain(inn_starter_cut_right_3, 70 * bal_R * main_vol)
 		
 		if rpm_1<49 and starter_1+get(burn1)>0 then
 			setSampleGain(out_starter_left_1, 100 * bal_L * main_vol*interpolate(rpmgain_tbl,rpm_1)*70)
