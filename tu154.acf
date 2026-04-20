@@ -47398,7 +47398,7 @@ P acf/_feathered_pitch 0.000000000
 P acf/_ff_rat_idle_JET 0.150000006
 P acf/_ff_rat_idle_PRP 0.100000001
 P acf/_ff_rat_idle_turbo 0.100000001
-P acf/_file_writer_version 124104
+P acf/_file_writer_version 124200
 P acf/_fixed_max/0 1.41037E4
 P acf/_fixed_max/1 1.12437E4
 P acf/_fixed_max/2 440.000000000
@@ -48507,7 +48507,7 @@ P acf/_vect_min_nace 0.000000000
 P acf/_vect_power_aft 1.000000000
 P acf/_vect_power_for 1.000000000
 P acf/_vect_rate 15.000000000
-P acf/_version 1.42
+P acf/_version 1.43
 P acf/_vnav_descend_auto_arm 0
 P acf/_vor_mode_has_dead_reckon 0
 P acf/_vvi_but_adjusts_pitch 0
