@@ -274,6 +274,11 @@ if MASTER then
 else
 	altitude_mtr=get(alt_mtr)
 	altitude_ft=altitude_mtr*3.28084
+	if mode == 0 then
+		flight_level_show = flight_level
+	else
+		flight_level_show = math.floor(flight_level *3.28084/100 + 0.5)*100
+	end
 end	
 
 	
