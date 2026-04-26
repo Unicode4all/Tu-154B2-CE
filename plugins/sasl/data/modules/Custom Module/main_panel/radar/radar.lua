@@ -393,9 +393,9 @@ function update()
         -- power couner
         if power_switch == 1 and mode == 0 and power_el and power_counter <190 then -- turn ON phase
             power_counter = power_counter + passed * (0.005*get(oat)+1.3)
-        elseif power_switch == 0 and power_counter > 180 and power_el then -- turn OFF phase
-            power_counter = 160 
-        elseif (power_switch == 0 or not power_el) and power_counter <= 160 and power_counter > 0 then -- cool down timer
+        elseif (power_switch == 0 or not power_el) and power_counter > 180  then -- turn OFF phase
+            power_counter = 180 
+        elseif (power_switch == 0 or not power_el) and power_counter > 0 then -- cool down timer
             power_counter = power_counter - passed
 
 
@@ -412,6 +412,8 @@ function update()
 			mode_timer=mode_timer+passed		
 		end
 		sweep=get(sweep_angle)
+		-- set(db1,power_counter)
+		-- set(db2,bool2int(power))
 		------------ Radar Modes Logic---------------
 		local xmt_work=bool2int(get(radar_fail) == 0 or get(backup_xmt)>0) 
 		local contr=0.1+0.9*get(grz_kontr)
