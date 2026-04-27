@@ -154,6 +154,19 @@ end
 
 
 
+tks_align_cmd = createCommand("t154/tks_align", "TKS_align")
+
+function tks_align_hnd(phase)
+	if phase == SASL_COMMAND_BEGIN then
+        set(tks_corrr_button, 1)
+	elseif phase == SASL_COMMAND_END then
+        set(tks_corrr_button, 0)
+    end
+	return 0
+end
+
+registerCommandHandler(tks_align_cmd, 0, tks_align_hnd)
+
 
 
 function update()
