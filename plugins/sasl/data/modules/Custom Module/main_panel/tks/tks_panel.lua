@@ -154,7 +154,7 @@ end
 
 
 
-tks_align_cmd = createCommand("t154/tks_align", "TKS_align")
+local tks_align_cmd = createCommand("t154/tks_align", "TKS_align")
 
 function tks_align_hnd(phase)
 	if phase == SASL_COMMAND_BEGIN then
