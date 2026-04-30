@@ -72,6 +72,13 @@ simDR_buster_2 = find_dataref("tu154b2/custom/switchers/console/buster_on_2")
 simDR_buster_3 = find_dataref("tu154b2/custom/switchers/console/buster_on_3")
 simDR_nws = find_dataref("tu154b2/custom/switchers/nosewheel_turn_enable")
 simDR_nws_mode = find_dataref("tu154b2/custom/switchers/nosewheel_turn_sel")
+simDR_tks_sw = find_dataref("tu154b2/custom/switchers/ovhd/tks_course_set")
+simDR_tks_corr = find_dataref("tu154b2/custom/switchers/ovhd/tks_mode_right")
+simDR_tks_align = find_dataref("tu154b2/custom/buttons/ovhd/tks_corrr_button")
+simDR_absu_stab = find_dataref("tu154b2/custom/buttons/console/absu_stab")
+simDR_absu_toga = find_dataref("tu154b2/custom/absu/toga_comm")
+simDR_absu_at_speed = find_dataref("tu154b2/custom/switchers/console/absu_speed_change")
+simDR_absu_pitch_wheel = find_dataref("tu154b2/custom/switchers/console/absu_pitch_wheel_dir")
 simDR_light_l = find_dataref("tu154b2/custom/lights/landing_mode_set_L") 
 simDR_light_r = find_dataref("tu154b2/custom/lights/landing_mode_set_R") 
 simDR_light_l_ext = find_dataref("tu154b2/custom/lights/landing_ext_set_L") 
@@ -582,6 +589,59 @@ function absu_reset_CMDhandler(phase, duration)
     end
 end
 
+function absu_toga_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_toga = 1
+    elseif phase == 2 then
+            simDR_absu_toga = 0
+    end
+end
+
+function absu_stab_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_stab = 1
+    elseif phase == 2 then
+            simDR_absu_stab = 0
+    end
+end
+
+function absu_speed_up_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_at_speed = 1
+    elseif phase == 2 then
+            simDR_absu_at_speed = 0
+    end
+end
+
+function absu_speed_dn_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_at_speed = -1
+    elseif phase == 2 then
+            simDR_absu_at_speed = 0
+    end
+end
+
+
+
+function absu_pitch_up_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_pitch_wheel = 1
+    elseif phase == 2 then
+            simDR_absu_pitch_wheel = 0
+    end
+end
+
+function absu_pitch_dn_CMDhandler(phase, duration) 
+    if phase == 0 then
+            simDR_absu_pitch_wheel = -1
+    elseif phase == 2 then
+            simDR_absu_pitch_wheel = 0
+    end
+end
+
+
+
+
 function checklist_next_CMDhandler(phase, duration) 
     if phase == 0 then
         if checklist_num < 9 then
@@ -595,49 +655,98 @@ function checklist_next_CMDhandler(phase, duration)
 end
 
 
-checklist_next_cmnd	= create_command("t154/checklist_next", "T154 Checklist next", checklist_next_CMDhandler)
-absu_roll_left_cmnd	= create_command("t154/absu_roll_left", "T154 ABSU Roll left", absu_turn_left_CMDhandler)
-absu_roll_right_cmnd	= create_command("t154/absu_roll_right", "T154 ABSU Roll right", absu_turn_right_CMDhandler)
-absu_roll_center_cmnd	= create_command("t154/absu_roll_center", "T154 ABSU Roll center", absu_turn_center_CMDhandler)
-absu_reset_cmnd	= create_command("t154/absu_reset", "T154 ABSU SBROS", absu_reset_CMDhandler)
-absu_zk_cmnd	= create_command("t154/absu_zk", "T154 ABSU ZK", absu_zk_CMDhandler)
-absu_nvu_cmnd	= create_command("t154/absu_nvu", "T154 ABSU NVU", absu_nvu_CMDhandler)
-absu_az1_cmnd	= create_command("t154/absu_az1", "T154 ABSU AZ-I", absu_az1_CMDhandler)
-absu_az2_cmnd	= create_command("t154/absu_az2", "T154 ABSU AZ-II", absu_az2_CMDhandler)
-absu_gs_cmnd	= create_command("t154/absu_gs", "T154 ABSU GS", absu_gs_CMDhandler)
-absu_app_cmnd	= create_command("t154/absu_app", "T154 ABSU LOC", absu_app_CMDhandler)
-absu_v_cmnd	= create_command("t154/absu_v", "T154 ABSU V", absu_v_CMDhandler)
-absu_m_cmnd	= create_command("t154/absu_m", "T154 ABSU M", absu_m_CMDhandler)
-absu_h_cmnd	= create_command("t154/absu_at", "T154 ABSU AT", absu_at_CMDhandler)
-absu_at_cmnd	= create_command("t154/absu_h", "T154 ABSU H", absu_h_CMDhandler)
-absu_kren_cmnd	= create_command("t154/absu_kren", "T154 ABSU Bank Switch", absu_kren_CMDhandler)
-absu_tang_cmnd	= create_command("t154/absu_tang", "T154 ABSU Pitch Switch", absu_tang_CMDhandler)
-absu_pos_cmnd	= create_command("t154/absu_pos", "T154 ABSU LDG Switch", absu_pos_CMDhandler)
-absu_nav_cmnd	= create_command("t154/absu_nav", "T154 ABSU NAV Switch", absu_nav_CMDhandler)
-absu_dir_cmnd	= create_command("t154/absu_dir", "T154 ABSU FD Switch", absu_dir_CMDhandler)
-lights_up_cmnd	= create_command("t154/lights_up", "T154 Lights up", land_lights_up_CMDhandler)
-lights_down_cmnd	= create_command("t154/lights_down", "T154 Lights down", land_lights_down_CMDhandler)
+function tks_left_CMDhandler(phase, duration) 
+    if phase == 1 then
+        simDR_tks_sw=-1
+	elseif phase==2 then
+		simDR_tks_sw=0
+    end
+end
+function tks_right_CMDhandler(phase, duration) 
+    if phase == 1 then
+        simDR_tks_sw=1
+	elseif phase==2 then
+		simDR_tks_sw=0
+    end
+end
 
-lights_up_L_cmnd	= create_command("t154/lights_up_L", "T154 Lights mode left up", land_lights_up_L_CMDhandler)
-lights_down_L_cmnd	= create_command("t154/lights_down_L", "T154 Lights mode left down", land_lights_down_L_CMDhandler)
-lights_up_R_cmnd	= create_command("t154/lights_up_R", "T154 Lights mode right up", land_lights_up_R_CMDhandler)
-lights_down_R_cmnd	= create_command("t154/lights_down_R", "T154 Lights mode right down", land_lights_down_R_CMDhandler)
-lights_ext_L_cmnd	= create_command("t154/lights_ext_L", "T154 Lights wing extend", land_lights_ext_L_CMDhandler)
-lights_ret_L_cmnd	= create_command("t154/lights_ret_L", "T154 Lights wing retract", land_lights_ret_L_CMDhandler)
-lights_ext_R_cmnd	= create_command("t154/lights_ext_R", "T154 Lights fuselage extend", land_lights_ext_R_CMDhandler)
-lights_ret_R_cmnd	= create_command("t154/lights_ret_R", "T154 Lights fuselage retract", land_lights_ret_R_CMDhandler)
+function tks_corr_main_CMDhandler(phase, duration) 
+    if phase == 1 then
+        simDR_tks_corr=1
+    end
+end
+function tks_corr_backup_CMDhandler(phase, duration) 
+    if phase == 1 then
+        simDR_tks_corr=0
+    end
+end
 
-bleed_L_up_cmnd	= create_command("t154/bleed_L_up", "Air Valve left up", bleed_L_up_CMDhandler)
-bleed_L_dn_cmnd	= create_command("t154/bleed_L_dn", "Air Valve left down", bleed_L_dn_CMDhandler)
-bleed_R_up_cmnd	= create_command("t154/bleed_R_up", "Air Valve right up", bleed_R_up_CMDhandler)
-bleed_R_dn_cmnd	= create_command("t154/bleed_R_dn", "Air Valve right down", bleed_R_dn_CMDhandler)
+function tks_align_CMDhandler(phase, duration) 
+    if phase == 1 then
+        simDR_tks_align=1
+	elseif phase==2 then
+		simDR_tks_align=0
+    end
+end
 
-buster_1_cmnd	= create_command("t154/absu_buster_1", "T154 Booster 1 Switch", absu_bust_1_CMDhandler)
-buster_2_cmnd	= create_command("t154/absu_buster_2", "T154 Booster 2 Switch", absu_bust_2_CMDhandler)
-buster_3_cmnd	= create_command("t154/absu_buster_3", "T154 Booster 3 Switch", absu_bust_3_CMDhandler)
 
-nws_cmnd	= create_command("t154/absu_nws", "T154 NWS Switch", absu_nws_CMDhandler)
-nws_mode_cmnd	= create_command("t154/absu_nws_mode", "T154 NWS Mode Switch", absu_nws_mode_CMDhandler)
+
+checklist_next_cmnd	= create_command("t154/checklist_next", " Checklist next", checklist_next_CMDhandler)
+absu_roll_left_cmnd	= create_command("t154/absu/roll_left", "ABSU Roll left", absu_turn_left_CMDhandler)
+absu_roll_right_cmnd	= create_command("t154/absu/roll_right", "ABSU Roll right", absu_turn_right_CMDhandler)
+absu_roll_center_cmnd	= create_command("t154/absu/roll_center", "ABSU Roll center", absu_turn_center_CMDhandler)
+absu_reset_cmnd	= create_command("t154/absu/reset", "ABSU SBROS", absu_reset_CMDhandler)
+absu_zk_cmnd	= create_command("t154/absu/zk", "ABSU ZK", absu_zk_CMDhandler)
+absu_nvu_cmnd	= create_command("t154/absu/nvu", "ABSU NVU", absu_nvu_CMDhandler)
+absu_az1_cmnd	= create_command("t154/absu/az1", "ABSU AZ-I", absu_az1_CMDhandler)
+absu_az2_cmnd	= create_command("t154/absu/az2", "ABSU AZ-II", absu_az2_CMDhandler)
+absu_gs_cmnd	= create_command("t154/absu/gs", "ABSU GS", absu_gs_CMDhandler)
+absu_app_cmnd	= create_command("t154/absu/app", "ABSU LOC", absu_app_CMDhandler)
+absu_v_cmnd	= create_command("t154/absu/v", "ABSU V", absu_v_CMDhandler)
+absu_m_cmnd	= create_command("t154/absu/m", "ABSU M", absu_m_CMDhandler)
+absu_at_cmnd	= create_command("t154/absu/at", "ABSU AT", absu_at_CMDhandler)
+absu_h_cmnd	= create_command("t154/absu/h", "ABSU H", absu_h_CMDhandler)
+absu_kren_cmnd	= create_command("t154/absu/kren", "ABSU Bank Switch", absu_kren_CMDhandler)
+absu_tang_cmnd	= create_command("t154/absu/tang", "ABSU Pitch Switch", absu_tang_CMDhandler)
+absu_pos_cmnd	= create_command("t154/absu/pos", "ABSU LDG Switch", absu_pos_CMDhandler)
+absu_nav_cmnd	= create_command("t154/absu/nav", "ABSU NAV Switch", absu_nav_CMDhandler)
+absu_dir_cmnd	= create_command("t154/absu/dir", "ABSU FD Switch", absu_dir_CMDhandler)
+absu_stab_cmnd	= create_command("t154/absu/stab", "ABSU STAB", absu_stab_CMDhandler)
+absu_toga_cmnd	= create_command("t154/absu/toga", "ABSU Go Around", absu_toga_CMDhandler)
+absu_speedup_cmnd	= create_command("t154/absu/at_up", "ABSU AT Speed INC", absu_speed_up_CMDhandler)
+absu_speeddn_cmnd	= create_command("t154/absu/at_dn", "ABSU AT Speed DEC", absu_speed_dn_CMDhandler)
+absu_pitchup_cmnd	= create_command("t154/absu/pitch_up", "ABSU Pitch Up", absu_pitch_up_CMDhandler)
+absu_pitchdn_cmnd	= create_command("t154/absu/pitch_dn", "ABSU Pitch Down", absu_pitch_dn_CMDhandler)
+
+lights_up_cmnd	= create_command("t154/lights/lights_up", "Lights up", land_lights_up_CMDhandler)
+lights_down_cmnd	= create_command("t154/lights/lights_down", "Lights down", land_lights_down_CMDhandler)
+
+lights_up_L_cmnd	= create_command("t154/lights/lights_up_L", "Lights mode left up", land_lights_up_L_CMDhandler)
+lights_down_L_cmnd	= create_command("t154/lights/lights_down_L", "Lights mode left down", land_lights_down_L_CMDhandler)
+lights_up_R_cmnd	= create_command("t154/lights/lights_up_R", "Lights mode right up", land_lights_up_R_CMDhandler)
+lights_down_R_cmnd	= create_command("t154/lights/lights_down_R", "Lights mode right down", land_lights_down_R_CMDhandler)
+lights_ext_L_cmnd	= create_command("t154/lights/lights_ext_L", "Lights wing extend", land_lights_ext_L_CMDhandler)
+lights_ret_L_cmnd	= create_command("t154/lights/lights_ret_L", "Lights wing retract", land_lights_ret_L_CMDhandler)
+lights_ext_R_cmnd	= create_command("t154/lights/lights_ext_R", "Lights fuselage extend", land_lights_ext_R_CMDhandler)
+lights_ret_R_cmnd	= create_command("t154/lights/lights_ret_R", "Lights fuselage retract", land_lights_ret_R_CMDhandler)
+
+bleed_L_up_cmnd	= create_command("t154/bleed/bleed_L_up", "Air Valve left up", bleed_L_up_CMDhandler)
+bleed_L_dn_cmnd	= create_command("t154/bleed/bleed_L_dn", "Air Valve left down", bleed_L_dn_CMDhandler)
+bleed_R_up_cmnd	= create_command("t154/bleed/bleed_R_up", "Air Valve right up", bleed_R_up_CMDhandler)
+bleed_R_dn_cmnd	= create_command("t154/bleed/bleed_R_dn", "Air Valve right down", bleed_R_dn_CMDhandler)
+
+buster_1_cmnd	= create_command("t154/controlls/buster_1", "Booster 1 Switch", absu_bust_1_CMDhandler)
+buster_2_cmnd	= create_command("t154/controlls/buster_2", "Booster 2 Switch", absu_bust_2_CMDhandler)
+buster_3_cmnd	= create_command("t154/controlls/buster_3", "Booster 3 Switch", absu_bust_3_CMDhandler)
+
+nws_cmnd	= create_command("t154/controlls/nws", "NWS Switch", absu_nws_CMDhandler)
+nws_mode_cmnd	= create_command("t154/controlls/nws_mode", "NWS Mode Switch", absu_nws_mode_CMDhandler)
+
+TKS_left_CMD	= create_command("t154/tks/TKS_set_left", "TKS_set_left", tks_left_CMDhandler)
+TKS_right_CMD	= create_command("t154/tks/TKS_set_right", "TKS_set_right", tks_right_CMDhandler)
+TKS_corr_main_CMD	= create_command("t154/tks/TKS_correct_main", "TKS_correct_main", tks_corr_main_CMDhandler)
+TKS_corr_backup_CMD	= create_command("t154/tks/TKS_correct_control", "TKS_correct_control", tks_corr_backup_CMDhandler)
+TKS_align_CMD	= create_command("t154/tks/TKS_sync", "TKS_sync button", tks_align_CMDhandler)
 
 function systems()
 

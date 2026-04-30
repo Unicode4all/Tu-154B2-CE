@@ -118,8 +118,6 @@ simDR_gears = find_dataref("tu154b2/custom/anim/sensors_caps")
 simDR_on_ground = find_dataref("sim/flightmodel/failures/onground_all")
 simDR_gear_deploy = find_dataref("sim/cockpit2/tcas/targets/position/gear_deploy[0]")
 simDR_ping_pong = find_dataref("sim/graphics/animation/ping_pong_2")
-simDR_tks_sw = find_dataref("tu154b2/custom/switchers/ovhd/tks_course_set")
-simDR_tks_corr = find_dataref("tu154b2/custom/switchers/ovhd/tks_mode_right")
 simDR_svs_rel = find_dataref("tu154b2/custom/svs/svs_alt_rel")
 
 local ssos_test_alarm = 0
@@ -471,40 +469,13 @@ function cabin_light_stby_CMDhandler(phase, duration)
     end
 end
 
-function tks_left_CMDhandler(phase, duration) 
-    if phase == 1 then
-        simDR_tks_sw=-1
-	elseif phase==2 then
-		simDR_tks_sw=0
-    end
-end
-function tks_right_CMDhandler(phase, duration) 
-    if phase == 1 then
-        simDR_tks_sw=1
-	elseif phase==2 then
-		simDR_tks_sw=0
-    end
-end
-
-function tks_corr_main_CMDhandler(phase, duration) 
-    if phase == 1 then
-        simDR_tks_corr=1
-    end
-end
-function tks_corr_backup_CMDhandler(phase, duration) 
-    if phase == 1 then
-        simDR_tks_corr=0
-    end
-end
 
 
-cabin_light_main_CMD	= create_command("t154/cabin_light_main", "T154 cabin_light main ON/OFF", cabin_light_main_CMDhandler)
-cabin_light_side_CMD	= create_command("t154/cabin_light_side", "T154 cabin_light side ON/OFF", cabin_light_side_CMDhandler)
-cabin_light_stndby_CMD	= create_command("t154/cabin_light_stndby", "T154 cabin_light stand-by ON/OFF", cabin_light_stby_CMDhandler)
-TKS_left_CMD	= create_command("t154/TKS_set_left", "TKS_set_left", tks_left_CMDhandler)
-TKS_right_CMD	= create_command("t154/TKS_set_right", "TKS_set_right", tks_right_CMDhandler)
-TKS_corr_main_CMD	= create_command("t154/TKS_correct_main", "TKS_correct_main", tks_corr_main_CMDhandler)
-TKS_corr_backup_CMD	= create_command("t154/TKS_correct_control", "TKS_correct_control", tks_corr_backup_CMDhandler)
+
+cabin_light_main_CMD	= create_command("t154/lights/cabin_light_main", "T154 cabin_light main ON/OFF", cabin_light_main_CMDhandler)
+cabin_light_side_CMD	= create_command("t154/lights/cabin_light_side", "T154 cabin_light side ON/OFF", cabin_light_side_CMDhandler)
+cabin_light_stndby_CMD	= create_command("t154/lights/cabin_light_stndby", "T154 cabin_light stand-by ON/OFF", cabin_light_stby_CMDhandler)
+
 
 
 
@@ -1310,20 +1281,20 @@ end
 
 
 
-bus115_sel1_up	= create_command("t154/bus115_sel1_up", "T154 ELEC bus115 sel1 up", bus115_sel1_up_CMDhandler)
-bus115_sel1_dn	= create_command("t154/bus115_sel1_dn", "T154 ELEC bus115 sel1 dn", bus115_sel1_dn_CMDhandler)
-bus115_sel2_up	= create_command("t154/bus115_sel2_up", "T154 ELEC bus115 sel2 up", bus115_sel2_up_CMDhandler)
-bus115_sel2_dn	= create_command("t154/bus115_sel2_dn", "T154 ELEC bus115 sel2 dn", bus115_sel2_dn_CMDhandler)
-bus115_sel3_up	= create_command("t154/bus115_sel3_up", "T154 ELEC bus115 sel3 up", bus115_sel3_up_CMDhandler)
-bus115_sel3_dn	= create_command("t154/bus115_sel3_dn", "T154 ELEC bus115 sel3 dn", bus115_sel3_dn_CMDhandler)
-bus115_sel4_up	= create_command("t154/bus115_sel4_up", "T154 ELEC bus115 sel4 up", bus115_sel4_up_CMDhandler)
-bus115_sel4_dn	= create_command("t154/bus115_sel4_dn", "T154 ELEC bus115 sel4 dn", bus115_sel4_dn_CMDhandler)
-bus36_sel_up	= create_command("t154/bus36_sel_up", "T154 ELEC bus36 sel up", bus36_sel_up_CMDhandler)
-bus36_sel_dn	= create_command("t154/bus36_sel_dn", "T154 ELEC bus36 sel dn", bus36_sel_dn_CMDhandler)
-bus27_sel1_up	= create_command("t154/bus27_sel1_up", "T154 ELEC bus27 sel1 up", bus27_sel1_up_CMDhandler)
-bus27_sel1_dn	= create_command("t154/bus27_sel1_dn", "T154 ELEC bus27 sel1 dn", bus27_sel1_dn_CMDhandler)
-bus27_sel2_up	= create_command("t154/bus27_sel2_up", "T154 ELEC bus27 sel2 up", bus27_sel2_up_CMDhandler)
-bus27_sel2_dn	= create_command("t154/bus27_sel2_dn", "T154 ELEC bus27 sel2 dn", bus27_sel2_dn_CMDhandler)
+bus115_sel1_up	= create_command("t154/elec/bus115_sel1_up", "T154 ELEC bus115 sel1 up", bus115_sel1_up_CMDhandler)
+bus115_sel1_dn	= create_command("t154/elec/bus115_sel1_dn", "T154 ELEC bus115 sel1 dn", bus115_sel1_dn_CMDhandler)
+bus115_sel2_up	= create_command("t154/elec/bus115_sel2_up", "T154 ELEC bus115 sel2 up", bus115_sel2_up_CMDhandler)
+bus115_sel2_dn	= create_command("t154/elec/bus115_sel2_dn", "T154 ELEC bus115 sel2 dn", bus115_sel2_dn_CMDhandler)
+bus115_sel3_up	= create_command("t154/elec/bus115_sel3_up", "T154 ELEC bus115 sel3 up", bus115_sel3_up_CMDhandler)
+bus115_sel3_dn	= create_command("t154/elec/bus115_sel3_dn", "T154 ELEC bus115 sel3 dn", bus115_sel3_dn_CMDhandler)
+bus115_sel4_up	= create_command("t154/elec/bus115_sel4_up", "T154 ELEC bus115 sel4 up", bus115_sel4_up_CMDhandler)
+bus115_sel4_dn	= create_command("t154/elec/bus115_sel4_dn", "T154 ELEC bus115 sel4 dn", bus115_sel4_dn_CMDhandler)
+bus36_sel_up	= create_command("t154/elec/bus36_sel_up", "T154 ELEC bus36 sel up", bus36_sel_up_CMDhandler)
+bus36_sel_dn	= create_command("t154/elec/bus36_sel_dn", "T154 ELEC bus36 sel dn", bus36_sel_dn_CMDhandler)
+bus27_sel1_up	= create_command("t154/elec/bus27_sel1_up", "T154 ELEC bus27 sel1 up", bus27_sel1_up_CMDhandler)
+bus27_sel1_dn	= create_command("t154/elec/bus27_sel1_dn", "T154 ELEC bus27 sel1 dn", bus27_sel1_dn_CMDhandler)
+bus27_sel2_up	= create_command("t154/elec/bus27_sel2_up", "T154 ELEC bus27 sel2 up", bus27_sel2_up_CMDhandler)
+bus27_sel2_dn	= create_command("t154/elec/bus27_sel2_dn", "T154 ELEC bus27 sel2 dn", bus27_sel2_dn_CMDhandler)
 
 -----
 
