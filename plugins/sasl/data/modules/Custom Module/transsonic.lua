@@ -262,8 +262,8 @@ function update()
 	--set(db1,lift_add)
 	--local drag_corr_max=7.99999999999999496236e-03 -1.99999999999999934774e-02*mach + 1.93999218051333917640e-19*aoa
 	--local drag_corr=1.91396770275400918138e-01 -6.93952932880196438070e-01*mach -3.52161817258651449469e-02*aoa + 7.63551164678726079771e-01*math.pow(mach,2) + 8.60250222130951869293e-02*mach*aoa + 2.22497953711458867562e-03*math.pow(aoa,2) -3.50831073635585855008e-01*math.pow(mach,3) -3.00736430977366596407e-02*math.pow(mach,2)*aoa -3.71871748576133726027e-03*mach*math.pow(aoa,2) -3.08132218250604543236e-05*math.pow(aoa,3)
-	mach=get(machno)+0.002
-	local drag_add=8.85265158274907149050e-02 -5.06316101389889250406e-01*mach -2.10521697309319216762e-01*lift_add + 9.48528641652999771061e-01*math.pow(mach,2) + 4.15976287357348595286e-01*mach*lift_add + 1.47028219916975566584e+00*math.pow(lift_add,2) -5.79939695222643214478e-01*math.pow(mach,3) + 1.48564522326020270748e-02*math.pow(mach,2)*lift_add -2.95473353008539874054e+00*mach*math.pow(lift_add,2)
+	mach=get(machno)
+	local drag_add=5.47212550017215984544e-02 -3.44363186814498456467e-01*mach -1.43446492855396401378e-01*lift_add + 6.93743923587869626424e-01*math.pow(mach,2) + 2.51510808342560288065e-01*mach*lift_add + 1.03860686564355364503e+00*math.pow(lift_add,2) -4.47847259300506894686e-01*math.pow(mach,3) + 7.53047449666846835381e-02*math.pow(mach,2)*lift_add -2.09098203854151432068e+00*mach*math.pow(lift_add,2)
 	--set(db3,drag_add)
 	--drag_add=drag_add
 	--1.00068214446934769524e-01 -4.39346790537114617603e-01*mach -1.02962759159825378852e+00*lift_add + 6.43250434410157723164e-01*math.pow(mach,2) + 3.03309740756838985831e+00*mach*lift_add + 1.66687089822351852675e+00*math.pow(lift_add,2) -3.29157435619849059183e-01*math.pow(mach,3) -1.91849352370861270245e+00*math.pow(mach,2)*lift_add -3.47329333415103080895e+00*mach*math.pow(lift_add,2)
@@ -280,7 +280,6 @@ function update()
 		aoa_drag_add=0
 	end
 	drag_add=drag_add*interpolate(lift_corr_tbl,mach)+aoa_drag_add
-	
 	--local moment_add_stall=math.min(-2*(-0.0007311*math.pow(aoa+5,2)+0.03024*(aoa+5)-0.3157),0.5)-- add moment at high aoa for a somewhat realistic stall behavior
 	local moment_add_stall_1=0.5/(1+math.exp(-0.8079*(aoa+5)+19.79))
 	local moment_add_stall_2=0.3*math.exp(-math.pow((aoa-33)/5.45,2))
