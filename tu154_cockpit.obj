@@ -18514,31 +18514,31 @@ ATTR_manip_push button 1.000000 0.000000 tu154b2/custom/gauges/acs3/right_knob_p
 TRIS 17499 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large t154/bus115_sel1_up t154/bus115_sel1_dn
+ATTR_manip_command_knob rotate_large t154/elec/bus115_sel1_up t154/elec/bus115_sel1_dn
 TRIS 17505 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large t154/bus115_sel2_up t154/bus115_sel2_dn
+ATTR_manip_command_knob rotate_large t154/elec/bus115_sel2_up t154/elec/bus115_sel2_dn
 TRIS 17511 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large t154/bus115_sel3_up t154/bus115_sel3_dn
+ATTR_manip_command_knob rotate_large t154/elec/bus115_sel3_up t154/elec/bus115_sel3_dn
 TRIS 17517 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large t154/bus115_sel4_up t154/bus115_sel4_dn
+ATTR_manip_command_knob rotate_large t154/elec/bus115_sel4_up t154/elec/bus115_sel4_dn
 TRIS 17523 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large t154/bus36_sel_up t154/bus36_sel_dn
+ATTR_manip_command_knob rotate_large t154/elec/bus36_sel_up t154/elec/bus36_sel_dn
 TRIS 17529 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large t154/bus27_sel1_up t154/bus27_sel1_dn
+ATTR_manip_command_knob rotate_large t154/elec/bus27_sel1_up t154/elec/bus27_sel1_dn
 TRIS 17535 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large t154/bus27_sel2_up t154/bus27_sel2_dn
+ATTR_manip_command_knob rotate_large t154/elec/bus27_sel2_up t154/elec/bus27_sel2_dn
 TRIS 17541 6
 ANIM_end
 ANIM_begin

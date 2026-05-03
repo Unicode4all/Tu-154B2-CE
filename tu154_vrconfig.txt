@@ -49,31 +49,31 @@ BEGIN_TELEPORT_HOTSPOT SITTING Engineer's Seat
 	PRESET_PHI 0.0
 END_TELEPORT_HOTSPOT
 
-BEGIN_MANIP command_knob t154/bus27_sel1_up t154/bus27_sel1_dn 
+BEGIN_MANIP command_knob t154/elec/bus27_sel1_up t154/elec/bus27_sel1_dn 
 	DEG_PER_ACTION 30
 END_MANIP
 
-BEGIN_MANIP command_knob t154/bus27_sel2_up t154/bus27_sel2_dn 
+BEGIN_MANIP command_knob t154/elec/bus27_sel2_up t154/elec/bus27_sel2_dn 
 	DEG_PER_ACTION 30
 END_MANIP
 
-BEGIN_MANIP command_knob t154/bus36_sel_up t154/bus36_sel_dn
+BEGIN_MANIP command_knob t154/elec/bus36_sel_up t154/elec/bus36_sel_dn
 	DEG_PER_ACTION 30
 END_MANIP
 
-BEGIN_MANIP command_knob t154/bus115_sel4_up t154/bus115_sel4_dn 
+BEGIN_MANIP command_knob t154/elec/bus115_sel4_up t154/elec/bus115_sel4_dn 
 	DEG_PER_ACTION 25
 END_MANIP
 
-BEGIN_MANIP command_knob t154/bus115_sel3_up t154/bus115_sel3_dn 
+BEGIN_MANIP command_knob t154/elec/bus115_sel3_up t154/elec/bus115_sel3_dn 
 	DEG_PER_ACTION 25
 END_MANIP
 
-BEGIN_MANIP command_knob t154/bus115_sel2_up t154/bus115_sel2_dn 
+BEGIN_MANIP command_knob t154/elec/bus115_sel2_up t154/elec/bus115_sel2_dn 
 	DEG_PER_ACTION 25
 END_MANIP
 
-BEGIN_MANIP command_knob t154/bus115_sel1_up t154/bus115_sel1_dn 
+BEGIN_MANIP command_knob t154/elec/bus115_sel1_up t154/elec/bus115_sel1_dn 
 	DEG_PER_ACTION 25
 END_MANIP
 

@@ -472,9 +472,9 @@ end
 
 
 
-cabin_light_main_CMD	= create_command("t154/lights/cabin_light_main", "T154 cabin_light main ON/OFF", cabin_light_main_CMDhandler)
-cabin_light_side_CMD	= create_command("t154/lights/cabin_light_side", "T154 cabin_light side ON/OFF", cabin_light_side_CMDhandler)
-cabin_light_stndby_CMD	= create_command("t154/lights/cabin_light_stndby", "T154 cabin_light stand-by ON/OFF", cabin_light_stby_CMDhandler)
+cabin_light_main_CMD	= create_command("t154/cabin_light_main", "T154 cabin_light main ON/OFF", cabin_light_main_CMDhandler)
+cabin_light_side_CMD	= create_command("t154/cabin_light_side", "T154 cabin_light side ON/OFF", cabin_light_side_CMDhandler)
+cabin_light_stndby_CMD	= create_command("t154/cabin_light_stndby", "T154 cabin_light stand-by ON/OFF", cabin_light_stby_CMDhandler)
 
 
 
