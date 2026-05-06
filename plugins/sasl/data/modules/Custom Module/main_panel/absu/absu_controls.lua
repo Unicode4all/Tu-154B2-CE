@@ -530,12 +530,12 @@ function update()
 	local gnd_spd = get(diss_groundspeed)
 	
 	-- Barometric altitude
-	local T_stat=1
+	local T_stat=0.5
 	p_s = passed/(T_stat+passed)*get(p_stat)+p_s*T_stat/(T_stat+passed)
 	--local p_s=get(p_stat_smoothed)
-	local alt=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
-	if p_s< 22250 then
-		alt=11000+28.96*216.6500*math.log(22250/p_s)
+	local alt=288.15/0.0065*(1-math.pow(p_s/101325,0.0065*29.27))
+	if p_s< 22630 then
+		alt=11000+29.27*216.6500*math.log(22630/p_s)
 	end
 	-- if get(db2)==2 then
 		-- alt=get(press_alt)*0.3048

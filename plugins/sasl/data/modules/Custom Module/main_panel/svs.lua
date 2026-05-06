@@ -225,11 +225,11 @@ function update()
 		if pwr and get(svs_fail) == 0 then
 			local p_set=get(uvo_press)
 			mach=math.sqrt(2/(1.4-1)*(math.pow(p_d/p_static+1,(1.4-1)/1.4)-1))
-			local T_stat=(273+T_le*(1-bool2int(test)))/(1 + math.pow(mach,2) * (1.4-1)/2)
+			local T_stat=(273.15+T_le*(1-bool2int(test)))/(1 + math.pow(mach,2) * (1.4-1)/2)
 			local t_avg=(288.15-T_stat)/2*11000/math.max(11000,altitude)+T_stat
 			if get(real_alt)==1 then	
-				altitude=28.96*t_avg*math.log(101325/p_static)
-				altitude_rel=28.96*t_avg*math.log(p_set*133.322/p_static)
+				altitude=29.27*t_avg*math.log(101325/p_static)
+				altitude_rel=29.27*t_avg*math.log(p_set*133.322/p_static)
 			else
 				if get(kontur_90th)==0 then
 					set(qnh_set,p_set*0.0393701)
@@ -240,7 +240,7 @@ function update()
 			--tas=23.9624*math.sqrt(p_d/p_static*(273.15+T_amb))* 3.6
 			--mach=tas/3.6/math.sqrt(1.4*287.1*(273.15+T_amb))
 			
-			tas=math.sqrt(9.81*1.4*28.96)*mach/math.sqrt(1+math.pow(mach,2)/5)*math.sqrt(273.15+T_le*(1-bool2int(test)))*3.6
+			tas=math.sqrt(9.81*1.4*29.27)*mach/math.sqrt(1+math.pow(mach,2)/5)*math.sqrt(273.15+T_le*(1-bool2int(test)))*3.6
 
 		end
 		altitude=math.max(altitude,-1000)

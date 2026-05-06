@@ -62,9 +62,9 @@ defineProperty("main_sound_on", globalPropertyi("sim/operation/sound/sound_on"))
 
 defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
 defineProperty("revers_flap_R", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]")) -- reverse on right engine
-defineProperty("thrust_L", globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[0]"))
-defineProperty("thrust_M", globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[1]"))
-defineProperty("thrust_R", globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[2]"))
+thrust_L = globalPropertyf("tu154b2/custom/SC/thrust_1")
+thrust_M = globalPropertyf("tu154b2/custom/SC/thrust_2")
+thrust_R = globalPropertyf("tu154b2/custom/SC/thrust_3")
 -- deice
 
 
@@ -552,13 +552,13 @@ function update()
 	-- reverse sounds
 	local rev_L = get(revers_flap_L)
 	local rev_R = get(revers_flap_R)
-	local R_1=(get(thrust_L)-3000)/60000
-	local R_1_in=math.max(0,(get(thrust_L)-15000)/45000)*0.7
+	local R_1=(get(thrust_L)-3000)/60000*-2
+	local R_1_in=math.max(0,(get(thrust_L)*-2-15000)/45000)*0.7
 	-- if R_1<0.05 then
 		-- R_1=0
 	-- end
-	local R_3=(get(thrust_R)-3000)/60000
-	local R_3_in=math.max(0,(get(thrust_R)-15000)/45000)*0.7
+	local R_3=(get(thrust_R)-3000)/60000*-2
+	local R_3_in=math.max(0,(get(thrust_R)*-2-15000)/45000)*0.7
 	-- if R_3<0.05 then
 		-- R_3=0
 	-- end

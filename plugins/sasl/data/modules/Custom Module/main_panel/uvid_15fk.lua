@@ -88,9 +88,9 @@ function update()
     -- if msl_counter > 1 then
        -- msl_counter = 0
 	local p_s=get(p_stat)
-	msl=288/0.0065*(1-math.pow(p_s/101325,0.0065*28.96))
-	if p_s< 22250 then
-		msl=11000+28.96*216.6500*math.log(22250/p_s)
+	msl=288.15/0.0065*(1-math.pow(p_s/101325,0.0065*29.27))
+	if p_s< 22630 then
+		msl=11000+29.27*216.6500*math.log(22630/p_s)
 	end
     --end
 	if not staticFail_left then

@@ -220,7 +220,7 @@ if MASTER then
 		end
 	end
 	
-	if flight_level > 13000 then flight_level = 13000
+	if flight_level > 12100 then flight_level = 12100
 	elseif flight_level < 0 then flight_level = 0 end
 
 	-- set(db1,flight_level)
@@ -259,8 +259,8 @@ if MASTER then
 			altitude_msl=altitude_mtr / 0.3048 - (press*0.02952998 - 29.92) * 1000			
 		else	
 			local t_avg=(288.15-temperature-273.15)/2*11000/math.max(11000,altitude_mtr)+temperature+273.15
-			altitude_mtr=28.96*t_avg*math.log(press*100/p_s)
-			altitude_msl=28.96*t_avg*math.log(101325/p_s)*3.28084			
+			altitude_mtr=29.27*t_avg*math.log(press*100/p_s)
+			altitude_msl=29.27*t_avg*math.log(101325/p_s)*3.28084			
 		end
 		--altitude_ft =get(msl_alt)  + (press_inHg - 29.92) * 1000  -- calculate barometric altitude in feet
 	end

@@ -141,6 +141,12 @@ defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_pe
 defineProperty("rpm_low_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1")) -- обороты турбины низкого давления №1
 defineProperty("rpm_low_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2")) -- обороты турбины низкого давления №2
 defineProperty("rpm_low_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3")) -- обороты турбины низкого давления №3
+R_1 =  globalProperty("sim/flightmodel/engine/POINT_thrust[0]")
+R_2 =  globalProperty("sim/flightmodel/engine/POINT_thrust[1]")
+R_3 =  globalProperty("sim/flightmodel/engine/POINT_thrust[2]")
+R_SC_1 = globalPropertyf("tu154b2/custom/SC/thrust_1")
+R_SC_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
+R_SC_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
 
 local t1_corr=0
 local t2_corr=0
@@ -805,6 +811,9 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		set(acf_tmax_2, 102779*alt_corr*kpp2_corr*(climb_corr+eng_2_bleed_loss)*isa_corr*low_corr_2*push*ice2)
 		set(acf_tmax_3, 102779*alt_corr*kpp3_corr*(climb_corr+eng_3_bleed_loss)*isa_corr*low_corr_3*push*rev_R_corr*ice3)
 		set(isa_temp_d,d_isa)
+		set(R_SC_1,get(R_1))
+		set(R_SC_2,get(R_2))
+		set(R_SC_3,get(R_3))
 	--print(height_coef,"   ", alt_baro)
 	end
 	

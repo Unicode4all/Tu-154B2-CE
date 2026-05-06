@@ -61,9 +61,9 @@ defineProperty("burn2", globalProperty("sim/flightmodel2/engines/engine_is_burni
 defineProperty("burn3", globalProperty("sim/flightmodel2/engines/engine_is_burning_fuel[2]"))
 defineProperty("vr_outside", globalPropertyi("sim/graphics/VR/teleport_on_ground"))
 
-defineProperty("R_1", globalProperty("sim/cockpit2/engine/indicators/thrust_n[0]"))
-defineProperty("R_2", globalProperty("sim/cockpit2/engine/indicators/thrust_n[1]"))
-defineProperty("R_3", globalProperty("sim/cockpit2/engine/indicators/thrust_n[2]"))
+R_1 = globalPropertyf("tu154b2/custom/SC/thrust_1")
+R_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
+R_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
 
 knd_1 = globalPropertyf("tu154b2/custom/engines/knd_1")
 knd_3 = globalPropertyf("tu154b2/custom/engines/knd_3")

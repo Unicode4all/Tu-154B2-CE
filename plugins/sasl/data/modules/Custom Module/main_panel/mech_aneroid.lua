@@ -122,15 +122,17 @@ local var75_tbl = {
 
 local err_tbl={{ -1000, -1000},
 		      {2700, 2700},
+			  {3000, 3010},
 		      {3600, 3620},
 		      {4500, 4520},
 		      {5400, 5420},
 		      {6300, 6310},
 		      {7200, 7210},
 		      {8100, 8110},
-		      {9200, 9200},
+		      {9100, 9120},
+			  {9600, 9630},
 		      {10100, 10120},
-		       {11200, 11150},
+		       {11100, 11150},
 		       {11600, 11670},
 		       {12100, 12160},
 			   {20100, 20160}}
@@ -251,16 +253,16 @@ local MASTER = get(ismaster) ~= 1
 		p_s_R=static_pressure
 	end	
 	-- Barometric altitude formula
-	left_MSL=288/0.0065*(1-math.pow(p_s_L/101325,0.0065*28.96))
-	right_MSL=288/0.0065*(1-math.pow(p_s_R/101325,0.0065*28.96))
-	local temp_L=288-left_MSL*6.5/1000
-	local temp_R=288-right_MSL*6.5/1000
-	if p_s_L< 22250 then
-		left_MSL=11000+28.96*216.6500*math.log(22250/p_s_L)
+	left_MSL=288.15/0.0065*(1-math.pow(p_s_L/101325,0.0065*29.27))
+	right_MSL=288.15/0.0065*(1-math.pow(p_s_R/101325,0.0065*29.27))
+	local temp_L=288.15-left_MSL*6.5/1000
+	local temp_R=288.15-right_MSL*6.5/1000
+	if p_s_L< 22630 then
+		left_MSL=11000+29.27*216.6500*math.log(22630/p_s_L)
 		temp_L=216.65
 	end
-	if p_s_R< 22250 then
-		right_MSL=11000+28.96*216.6500*math.log(22250/p_s_R)
+	if p_s_R< 22630 then
+		right_MSL=11000+29.27*216.6500*math.log(22630/p_s_R)
 		temp_R=216.65
 	end
 	--local alt_tas_coef = interpolate(alt_kus_tbl, alt_QNE)

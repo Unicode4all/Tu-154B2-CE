@@ -35,8 +35,8 @@ defineProperty("flap_inn_R", globalPropertyf("sim/flightmodel/controls/wing1r_fl
 defineProperty("flap_mid_L", globalPropertyf("sim/flightmodel/controls/wing2l_fla2def")) -- middle flaps left
 defineProperty("flap_mid_R", globalPropertyf("sim/flightmodel/controls/wing2r_fla2def")) -- middle flaps right
 
-defineProperty("thrust_L", globalProperty("sim/cockpit2/engine/indicators/thrust_n[0]")) 
-defineProperty("thrust_R", globalProperty("sim/cockpit2/engine/indicators/thrust_n[2]"))
+defineProperty("thrust_L", globalPropertyf("tu154b2/custom/SC/thrust_1")) 
+defineProperty("thrust_R", globalPropertyf("tu154b2/custom/SC/thrust_3"))
 defineProperty("true_airspeed", globalPropertyf("sim/flightmodel/position/true_airspeed"))
 
 defineProperty("cl_GE1", globalProperty("sim/flightmodel/parts/CL_grndeffect[8]"))
