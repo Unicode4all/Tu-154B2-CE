@@ -1,1 +1,1 @@
-{"SIM":{"sync_lights":"CPT","ear_effect":"NO","slow_vario":"NO","brake_heat":"YES","ppd_icing":"NO","door_icing":"NO","apu_heat_start":"NO","walk_icons":"NO","kontur_on_off":"NO","ground":1,"has_autoladder":"NO","has_antenna":"NO","sync_baro":"CPT"}}
+{"SIM":{"ground":2,"has_autoladder":"NO","has_antenna":"NO","sync_baro":"CPT","sync_lights":"CPT","ear_effect":"NO","slow_vario":"NO","brake_heat":"NO","ppd_icing":"NO","door_icing":"NO","apu_heat_start":"NO","walk_icons":"NO","kontur_on_off":"NO"}}
