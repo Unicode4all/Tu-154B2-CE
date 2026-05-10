@@ -2,6 +2,11 @@ print("This is the Tu154B-2 for XP12")
 size = { 4096, 4096 }
 print("Lua version is", _VERSION)
 
+if jit and jit.os ~= "Windows" then
+	jit.off()
+	jit.flush()
+	print("LuaJIT disabled")
+end
 
 sasl.options.set3DRendering(true)
 sasl.options.setAircraftPanelRendering(true)
