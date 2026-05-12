@@ -10,9 +10,17 @@ defineProperty("bus36_amp_right", globalPropertyf("tu154b2/custom/elec/bus36_amp
 defineProperty("bus36_amp_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_amp_pts250_1")) -- ток ПТС250 сети 36 1
 defineProperty("bus36_amp_pts250_2", globalPropertyf("tu154b2/custom/elec/bus36_amp_pts250_2")) -- ток ПТС250 сети 36 2
 
-defineProperty("bus115_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_1_amp"))
-defineProperty("bus115_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_2_amp"))
-defineProperty("bus115_3_amp", globalPropertyf("tu154b2/custom/elec/bus115_3_amp"))
+defineProperty("bus115_1_amp_A", globalPropertyf("tu154b2/custom/elec/bus115_1_amp_A"))
+defineProperty("bus115_2_amp_A", globalPropertyf("tu154b2/custom/elec/bus115_2_amp_A"))
+defineProperty("bus115_3_amp_A", globalPropertyf("tu154b2/custom/elec/bus115_3_amp_A"))
+
+defineProperty("bus115_1_amp_B", globalPropertyf("tu154b2/custom/elec/bus115_1_amp_B"))
+defineProperty("bus115_2_amp_B", globalPropertyf("tu154b2/custom/elec/bus115_2_amp_B"))
+defineProperty("bus115_3_amp_B", globalPropertyf("tu154b2/custom/elec/bus115_3_amp_B"))
+
+defineProperty("bus115_1_amp_C", globalPropertyf("tu154b2/custom/elec/bus115_1_amp_C"))
+defineProperty("bus115_2_amp_C", globalPropertyf("tu154b2/custom/elec/bus115_2_amp_C"))
+defineProperty("bus115_3_amp_C", globalPropertyf("tu154b2/custom/elec/bus115_3_amp_C"))
 
 --defineProperty("bus115_em_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp"))
 --defineProperty("bus115_em_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp"))
@@ -109,7 +117,9 @@ defineProperty("gs_pump_2_cc", globalPropertyf("tu154b2/custom/hydro/gs_pump_2_c
 defineProperty("gs_pump_3_cc", globalPropertyf("tu154b2/custom/hydro/gs_pump_3_cc")) -- ток насосной станции
 
 defineProperty("ai_115_1_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_1_cc")) -- нагрузка на сеть
-defineProperty("ai_115_2_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc")) -- нагрузка на сеть
+defineProperty("ai_115_2_cc_A", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_A")) -- нагрузка на сеть
+defineProperty("ai_115_2_cc_B", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_B")) -- нагрузка на сеть
+defineProperty("ai_115_2_cc_C", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_C")) -- нагрузка на сеть
 defineProperty("ai_115_3_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_3_cc")) -- нагрузка на сеть
 
 defineProperty("ctr_115_1_cc", globalPropertyf("tu154b2/custom/control/ctr_115_1_cc")) -- нагрузка на сеть
@@ -183,8 +193,12 @@ defineProperty("kip_4", globalPropertyi("sim/custom/cabin/lamp11"))
 defineProperty("kip_5", globalPropertyi("sim/custom/cabin/lamp12"))
 defineProperty("kruzh", globalPropertyi("sim/custom/cabin/lamp13"))
 
-defineProperty("avtoL_load", globalPropertyf("tu154b2/custom/elec/avto_L_amp"))
-defineProperty("avtoR_load", globalPropertyf("tu154b2/custom/elec/avto_R_amp"))
+-- defineProperty("avtoL_load_A", globalPropertyf("tu154b2/custom/elec/avto_L_amp_A"))
+-- defineProperty("avtoL_load_B", globalPropertyf("tu154b2/custom/elec/avto_L_amp_B"))
+-- defineProperty("avtoL_load_C", globalPropertyf("tu154b2/custom/elec/avto_L_amp_C"))
+-- defineProperty("avtoR_load_A", globalPropertyf("tu154b2/custom/elec/avto_R_amp_A"))
+-- defineProperty("avtoR_load_B", globalPropertyf("tu154b2/custom/elec/avto_R_amp_B"))
+-- defineProperty("avtoR_load_C", globalPropertyf("tu154b2/custom/elec/avto_R_amp_C"))
 
 defineProperty("emerg_inv115", globalPropertyi("tu154b2/custom/switchers/eng/emerg_inv115"))
 defineProperty("inv115_fail", globalPropertyf("tu154b2/custom/failures/inv115_fail"))
@@ -295,7 +309,9 @@ if MASTER then
 	--cabin lights
 	bus115_1 = bus115_1+23*0.3/3*get(svet_zent_1)+32*0.3/3*get(svet_zent_2)+35*0.3/3*get(svet_bort_1)+29*0.3/3*get(svet_bort_2)+1*0.3/3*get(svet_vest_1)+1*0.3/3*get(svet_vest_2)+2*0.3/3*get(svet_kuch_1)+2*0.3/3*get(svet_kuch_2)
 	--
-	local bus115_2 = get(ai_115_2_cc)
+	local bus115_2_A = get(ai_115_2_cc_A)
+	local bus115_2_B = get(ai_115_2_cc_B)
+	local bus115_2_C = get(ai_115_2_cc_C)
 	
 	--
 	local bus115_3 = get(vu2_amp) *27/200/1.7/0.8 + get(vu3_amp) *27/200/1.7/0.8*bool2int(get(bus115_3_volt)>105)*get(vu_res_to_R)/(1+get(vu_res_to_L)) + get(fuel_pumps_115_3_cc) + get(gs_pump_3_cc)*0.78 + get(ai_115_3_cc) + get(ctr_115_3_cc)
@@ -303,9 +319,17 @@ if MASTER then
 	bus115_3 = bus115_3 + get(sim_beacon)*266/200+ get(sd75_2_on)*90/115*bool2int(get(bus115_3_volt)>100)+get(micron_2_on)*250/200*bool2int(get(bus115_3_volt)>100) + get(gear_fan)*0.9*12/math.sqrt(3)/0.8*bool2int(get(bus115_3_volt)>100)/2 + get(vbe_1)*(1-get(panel_80))*30/115*bool2int(get(bus115_3_volt)>100)
 	-- kitchen
 	bus115_3 = bus115_3+(get(kip_0)+get(kip_1)+get(kip_2)+get(kip_3)+get(kip_4)+get(kip_5))*2
-	set(bus115_1_amp, bus115_1)
-	set(bus115_2_amp, bus115_2)
-	set(bus115_3_amp, bus115_3)
+	set(bus115_1_amp_A, bus115_1)
+	set(bus115_2_amp_A, bus115_2_A)
+	set(bus115_3_amp_A, bus115_3)
+	
+	set(bus115_1_amp_B, bus115_1)
+	set(bus115_2_amp_B, bus115_2_B)
+	set(bus115_3_amp_B, bus115_3)
+	
+	set(bus115_1_amp_C, bus115_1)
+	set(bus115_2_amp_C, bus115_2_C)
+	set(bus115_3_amp_C, bus115_3)
 	
 end
 	

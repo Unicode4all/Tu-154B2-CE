@@ -71,11 +71,21 @@ createGlobalPropertyf("tu154b2/custom/elec/bus115_2_volt", 115																) 
 createGlobalPropertyf("tu154b2/custom/elec/bus115_3_volt", 115																) -- напряжение на сети 115в
 createGlobalPropertyf("tu154b2/custom/elec/bus115_em_1_volt", 115																) -- напряжение на аварийной сети 115в
 createGlobalPropertyf("tu154b2/custom/elec/bus115_em_2_volt", 115																) -- напряжение на аварийной сети 115в
-createGlobalPropertyf("tu154b2/custom/elec/bus115_1_amp", 0																) -- ток в сети 115в
-createGlobalPropertyf("tu154b2/custom/elec/bus115_2_amp", 0																) -- ток в сети 115в
-createGlobalPropertyf("tu154b2/custom/elec/bus115_3_amp", 0																) -- ток в сети 115в
-createGlobalPropertyf("tu154b2/custom/elec/bus115_em_1_amp", 0																) -- ток в сети 115в
-createGlobalPropertyf("tu154b2/custom/elec/bus115_em_2_amp", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_1_amp_A", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_2_amp_A", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_3_amp_A", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_1_amp_B", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_2_amp_B", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_3_amp_B", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_1_amp_C", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_2_amp_C", 0																) -- ток в сети 115в
+createGlobalPropertyf("tu154b2/custom/elec/bus115_3_amp_C", 0																) -- ток в сети 115в
+-- createGlobalPropertyf("tu154b2/custom/elec/bus115_em_1_amp_A", 0																) -- ток в сети 115в
+-- createGlobalPropertyf("tu154b2/custom/elec/bus115_em_1_amp_B", 0																) -- ток в сети 115в
+-- createGlobalPropertyf("tu154b2/custom/elec/bus115_em_1_amp_C", 0																) -- ток в сети 115в
+-- createGlobalPropertyf("tu154b2/custom/elec/bus115_em_2_amp_A", 0																) -- ток в сети 115в
+-- createGlobalPropertyf("tu154b2/custom/elec/bus115_em_2_amp_B", 0																) -- ток в сети 115в
+-- createGlobalPropertyf("tu154b2/custom/elec/bus115_em_2_amp_C", 0																) -- ток в сети 115в
 createGlobalPropertyf("tu154b2/custom/elec/bus115_freq", 0																)
 createGlobalPropertyf("tu154b2/custom/elec/bus115_1_freq", 0																)
 createGlobalPropertyf("tu154b2/custom/elec/bus115_2_freq", 0																)
@@ -90,11 +100,21 @@ createGlobalPropertyf("tu154b2/custom/elec/gpu_freq", 0																)
 createGlobalPropertyf("tu154b2/custom/elec/gen1_run", 0																) 
 createGlobalPropertyf("tu154b2/custom/elec/gen2_run", 0																) 
 createGlobalPropertyf("tu154b2/custom/elec/gen3_run", 0																) 
-createGlobalPropertyf("tu154b2/custom/elec/gen1_amp", 0																) -- нагрузка на генератор
-createGlobalPropertyf("tu154b2/custom/elec/gen2_amp", 0																) -- нагрузка на генератор
-createGlobalPropertyf("tu154b2/custom/elec/gen3_amp", 0																) -- нагрузка на генератор
-createGlobalPropertyf("tu154b2/custom/elec/gen4_amp", 0																) -- нагрузка на генератор
-createGlobalPropertyf("tu154b2/custom/elec/gpu_amp", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen1_amp_C", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen2_amp_C", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen3_amp_C", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen4_amp_C", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gpu_amp_C", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen1_amp_A", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen2_amp_A", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen3_amp_A", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen4_amp_A", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gpu_amp_A", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen1_amp_B", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen2_amp_B", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen3_amp_B", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gen4_amp_B", 0																) -- нагрузка на генератор
+createGlobalPropertyf("tu154b2/custom/elec/gpu_amp_B", 0																) -- нагрузка на генератор
 createGlobalPropertyf("tu154b2/custom/thermo/cockpit_temp", 20																) -- температура в кабине
 createGlobalPropertyf("tu154b2/custom/thermo/cabin1_temp", 20																) -- температура в салоне 1
 createGlobalPropertyf("tu154b2/custom/thermo/cabin2_temp", 20																) -- температура в салоне 2
@@ -218,7 +238,9 @@ createGlobalPropertyi("tu154b2/custom/antiice/slat_heating", 1																) 
 createGlobalPropertyf("tu154b2/custom/antiice/ai_27_L_cc", 0																) -- нагрузка на сеть
 createGlobalPropertyf("tu154b2/custom/antiice/ai_27_R_cc", 0																) -- нагрузка на сеть
 createGlobalPropertyf("tu154b2/custom/antiice/ai_115_1_cc", 0																) -- нагрузка на сеть
-createGlobalPropertyf("tu154b2/custom/antiice/ai_115_2_cc", 0																) -- нагрузка на сеть
+createGlobalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_A", 0																) -- нагрузка на сеть
+createGlobalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_B", 0																) -- нагрузка на сеть
+createGlobalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_C", 0																) -- нагрузка на сеть
 createGlobalPropertyf("tu154b2/custom/antiice/ai_115_3_cc", 0) -- нагрузка на сеть
 createGlobalPropertyi("tu154b2/custom/antiice/eng_heat_open_1", 0) -- открыта заслонка обогрева двигателя
 createGlobalPropertyi("tu154b2/custom/antiice/eng_heat_open_2", 0) -- открыта заслонка обогрева двигателя
@@ -539,8 +561,12 @@ createGlobalPropertyi("tu154b2/custom/fire/eng3_ext_used",0)
 createGlobalPropertyi("tu154b2/custom/fire/apu_ext_used",0)
 createGlobalPropertyf("tu154b2/custom/elec/avto_L_volt",0)
 createGlobalPropertyf("tu154b2/custom/elec/avto_R_volt",0)
-createGlobalPropertyf("tu154b2/custom/elec/avto_L_amp",0)
-createGlobalPropertyf("tu154b2/custom/elec/avto_R_amp",0)
+createGlobalPropertyf("tu154b2/custom/elec/avto_L_amp_A",0)
+createGlobalPropertyf("tu154b2/custom/elec/avto_L_amp_B",0)
+createGlobalPropertyf("tu154b2/custom/elec/avto_L_amp_C",0)
+createGlobalPropertyf("tu154b2/custom/elec/avto_R_amp_A",0)
+createGlobalPropertyf("tu154b2/custom/elec/avto_R_amp_B",0)
+createGlobalPropertyf("tu154b2/custom/elec/avto_R_amp_C",0)
 createGlobalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aL_cc",0) 
 createGlobalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aR_cc",0)
 createGlobalPropertyi("tu154b2/custom/SC/engine/rt_stop1",0)

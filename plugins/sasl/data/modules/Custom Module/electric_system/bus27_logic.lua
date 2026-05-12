@@ -102,7 +102,7 @@ defineProperty("gen5_work", globalPropertyi("tu154b2/custom/elec/gpu_work")) --
 --defineProperty("freq_115", globalPropertyi("tu154b2/custom/elec/bus115_freq")) --
 
 defineProperty("avtoL_volt", globalPropertyf("tu154b2/custom/elec/avto_L_volt"))
-defineProperty("avtoL_amp", globalPropertyf("tu154b2/custom/elec/avto_L_amp"))
+-- defineProperty("avtoL_amp", globalPropertyf("tu154b2/custom/elec/avto_L_amp"))
 
 defineProperty("cockpit_door", globalPropertyf("tu154b2/custom/anim/cockpit_door"))
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))

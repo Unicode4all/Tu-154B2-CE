@@ -9,11 +9,23 @@ defineProperty("gen4_volt_bus", globalPropertyf("tu154b2/custom/elec/gen4_volt")
 defineProperty("gpu_volt_bus", globalPropertyf("tu154b2/custom/elec/gpu_volt"))
 
 
-defineProperty("gen1_amp_bus", globalPropertyf("tu154b2/custom/elec/gen1_amp")) -- generator current load from bus, initial 0A
-defineProperty("gen2_amp_bus", globalPropertyf("tu154b2/custom/elec/gen2_amp")) 
-defineProperty("gen3_amp_bus", globalPropertyf("tu154b2/custom/elec/gen3_amp"))
-defineProperty("gen4_amp_bus", globalPropertyf("tu154b2/custom/elec/gen4_amp"))
-defineProperty("gpu_amp", globalPropertyf("tu154b2/custom/elec/gpu_amp"))
+gen1_amp_bus_A = globalPropertyf("tu154b2/custom/elec/gen1_amp_A") -- generator current load from bus, initial 0A
+gen2_amp_bus_A = globalPropertyf("tu154b2/custom/elec/gen2_amp_A") 
+gen3_amp_bus_A = globalPropertyf("tu154b2/custom/elec/gen3_amp_A")
+gen4_amp_bus_A = globalPropertyf("tu154b2/custom/elec/gen4_amp_A")
+gpu_amp_A = globalPropertyf("tu154b2/custom/elec/gpu_amp_A")
+
+gen1_amp_bus_B = globalPropertyf("tu154b2/custom/elec/gen1_amp_B")
+gen2_amp_bus_B = globalPropertyf("tu154b2/custom/elec/gen2_amp_B") 
+gen3_amp_bus_B = globalPropertyf("tu154b2/custom/elec/gen3_amp_B")
+gen4_amp_bus_B = globalPropertyf("tu154b2/custom/elec/gen4_amp_B")
+gpu_amp_B = globalPropertyf("tu154b2/custom/elec/gpu_amp_B")
+
+gen1_amp_bus_C = globalPropertyf("tu154b2/custom/elec/gen1_amp_C")
+gen2_amp_bus_C = globalPropertyf("tu154b2/custom/elec/gen2_amp_C") 
+gen3_amp_bus_C = globalPropertyf("tu154b2/custom/elec/gen3_amp_C")
+gen4_amp_bus_C = globalPropertyf("tu154b2/custom/elec/gen4_amp_C")
+gpu_amp_C = globalPropertyf("tu154b2/custom/elec/gpu_amp_C")
 
 
 defineProperty("gen1_overload", globalPropertyf("tu154b2/custom/elec/gen1_overload")) -- 140A maximum
@@ -298,10 +310,10 @@ function update() -- every frame calculations are here
 		local eng3_work = 0
 		local eng4_work = 0
 		
-		local gen1_amp = get(gen1_amp_bus)
-		local gen2_amp = get(gen2_amp_bus)
-		local gen3_amp = get(gen3_amp_bus)
-		local gen4_amp = get(gen4_amp_bus)
+		local gen1_amp = (get(gen1_amp_bus_A)+get(gen1_amp_bus_B)+get(gen1_amp_bus_C))/3
+		local gen2_amp = (get(gen2_amp_bus_A)+get(gen2_amp_bus_B)+get(gen2_amp_bus_C))/3
+		local gen3_amp = (get(gen3_amp_bus_A)+get(gen3_amp_bus_B)+get(gen3_amp_bus_C))/3
+		local gen4_amp = (get(gen4_amp_bus_A)+get(gen4_amp_bus_B)+get(gen4_amp_bus_C))/3
 		
 		local avt_1=get(avto_1)
 		local avt_2=get(avto_2)

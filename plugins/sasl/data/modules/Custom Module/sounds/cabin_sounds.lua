@@ -63,8 +63,8 @@ defineProperty("bus27_volt_R", globalPropertyf("tu154b2/custom/elec/bus27_volt_r
 defineProperty("bus36_volt_L", globalPropertyf("tu154b2/custom/elec/bus36_volt_left"))
 defineProperty("bus36_volt_R", globalPropertyf("tu154b2/custom/elec/bus36_volt_right"))
 
-defineProperty("bus27_source_left", globalPropertyf("tu154b2/custom/elec/bus27_source_left")) -- источник сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 6 - соседняя сеть
-defineProperty("bus27_source_right", globalPropertyf("tu154b2/custom/elec/bus27_source_right")) -- источник сети. 0 - ничего. 1 - ВУ2, 2 - ВУрезерв, 3 - батареи 2 и 4, 6 - соседняя сеть
+-- defineProperty("bus27_source_left", globalPropertyf("tu154b2/custom/elec/bus27_source_left")) -- источник сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 6 - соседняя сеть
+-- defineProperty("bus27_source_right", globalPropertyf("tu154b2/custom/elec/bus27_source_right")) -- источник сети. 0 - ничего. 1 - ВУ2, 2 - ВУрезерв, 3 - батареи 2 и 4, 6 - соседняя сеть
 
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX")) -- Position of pilot's head relative to CG
 defineProperty("pilot_Y", globalPropertyf("sim/aircraft/view/acf_peY")) -- Position of pilot's head relative to CG
@@ -156,35 +156,35 @@ defineProperty("rp_4t_mode", globalPropertyi("sim/custom/t154gnd/rp_4t_mode")) -
 defineProperty("ssos_alarm", globalPropertyi("sim/custom/ssos_alarm")) --
 defineProperty("lavatory_horn", globalPropertyi("sim/custom/cabin/lavatory_horn")) --
 
----groza
+--groza
 
 -- defineProperty("groza1", globalPropertyi("sim/custom/switchers/ovhd/groza_1")) --
 -- defineProperty("groza2", globalPropertyi("sim/custom/switchers/ovhd/groza_2")) --
 
----krs-mp2
+--krs-mp2
 
 
-defineProperty("nav1_obs", globalPropertyi("sim/cockpit/radios/nav1_obs_degm")) --
-defineProperty("nav2_obs", globalPropertyi("sim/cockpit/radios/nav2_obs_degm")) --
+-- defineProperty("nav1_obs", globalPropertyi("sim/cockpit/radios/nav1_obs_degm")) --
+-- defineProperty("nav2_obs", globalPropertyi("sim/cockpit/radios/nav2_obs_degm")) --
 
 -- gens
 
-defineProperty("gen1_work", globalPropertyi("tu154b2/custom/elec/gen1_work")) --
-defineProperty("gen2_work", globalPropertyi("tu154b2/custom/elec/gen2_work")) --
-defineProperty("gen3_work", globalPropertyi("tu154b2/custom/elec/gen3_work")) --
-defineProperty("gen4_work", globalPropertyi("tu154b2/custom/elec/gen4_work")) --
-defineProperty("gen5_work", globalPropertyi("tu154b2/custom/elec/gpu_work")) --
+-- defineProperty("gen1_work", globalPropertyi("tu154b2/custom/elec/gen1_work")) --
+-- defineProperty("gen2_work", globalPropertyi("tu154b2/custom/elec/gen2_work")) --
+-- defineProperty("gen3_work", globalPropertyi("tu154b2/custom/elec/gen3_work")) --
+-- defineProperty("gen4_work", globalPropertyi("tu154b2/custom/elec/gen4_work")) --
+-- defineProperty("gen5_work", globalPropertyi("tu154b2/custom/elec/gpu_work")) --
 
 
-defineProperty("vu1_amp", globalPropertyf("tu154b2/custom/elec/vu1_amp")) --
-defineProperty("vu2_amp", globalPropertyf("tu154b2/custom/elec/vu2_amp")) --
+-- defineProperty("vu1_amp", globalPropertyf("tu154b2/custom/elec/vu1_amp")) --
+-- defineProperty("vu2_amp", globalPropertyf("tu154b2/custom/elec/vu2_amp")) --
 --defineProperty("disable_def_veh", globalPropertyi("tu154b2/custom/t154cfg/hide_def")) --
 
-defineProperty("bus115_amp_1", globalPropertyf("tu154b2/custom/elec/bus115_1_amp")) --
-defineProperty("bus115_amp_2", globalPropertyf("tu154b2/custom/elec/bus115_2_amp")) --
-defineProperty("bus115_amp_3", globalPropertyf("tu154b2/custom/elec/bus115_3_amp")) --
-defineProperty("bus115_amp_4", globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp")) --
-defineProperty("bus115_amp_5", globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp")) --
+-- defineProperty("bus115_amp_1", globalPropertyf("tu154b2/custom/elec/bus115_1_amp")) --
+-- defineProperty("bus115_amp_2", globalPropertyf("tu154b2/custom/elec/bus115_2_amp")) --
+-- defineProperty("bus115_amp_3", globalPropertyf("tu154b2/custom/elec/bus115_3_amp")) --
+-- defineProperty("bus115_amp_4", globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp")) --
+-- defineProperty("bus115_amp_5", globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp")) --
 
 
 
@@ -204,8 +204,8 @@ defineProperty("cabin_rt2", globalPropertyi("sim/custom/cabin/rt_2")) --
 defineProperty("push_8", globalPropertyi("sim/custom/gauges/eng/apu_oil_test")) --
 
 defineProperty("true_airspeed", globalPropertyf("sim/flightmodel/position/true_airspeed"))
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
 
 defineProperty("walk_spd", globalPropertyi("sim/custom/t154_camera/walk_spd")) --
@@ -292,7 +292,7 @@ local absu_last = get(roll_main_mode) + get(pitch_main_mode)
 local stu_last = get(stu_mode)
 
 
-local invert_counter = 0
+-- local invert_counter = 0
 playSample(inverters, true)
 setSampleGain(inverters, 0)
 
@@ -325,7 +325,7 @@ local arm_last = 0
 local buttons_last = 0
 local door_was_open = 0
 local invert_count_last = 0
-local invert_count = get(gen1_work) + get(gen2_work)+ get(gen3_work)+ get(gen4_work)+ get(gen5_work)
+-- local invert_count = get(gen1_work) + get(gen2_work)+ get(gen3_work)+ get(gen4_work)+ get(gen5_work)
 local invert_changed = 0
 local invert_load = 0
 

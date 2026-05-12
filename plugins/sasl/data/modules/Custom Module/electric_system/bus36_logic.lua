@@ -28,8 +28,8 @@ defineProperty("bus36_src_R", globalPropertyi("tu154b2/custom/elec/bus36_src_R")
 defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt")) -- напряжение на сети 115в
 defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt")) -- напряжение на сети 115в
 
-defineProperty("bus115_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_1_amp"))
-defineProperty("bus115_3_amp", globalPropertyf("tu154b2/custom/elec/bus115_3_amp"))
+-- defineProperty("bus115_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_1_amp"))
+-- defineProperty("bus115_3_amp", globalPropertyf("tu154b2/custom/elec/bus115_3_amp"))
 
 defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
 defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27

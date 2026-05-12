@@ -25,7 +25,9 @@ defineProperty("apu_egt", globalPropertyf("tu154b2/custom/eng/apu_egt")) -- те
 
 defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
 defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
-defineProperty("gen4_amp_bus", globalPropertyf("tu154b2/custom/elec/gen4_amp"))
+defineProperty("gen4_amp_bus_A", globalPropertyf("tu154b2/custom/elec/gen4_amp_A"))
+defineProperty("gen4_amp_bus_B", globalPropertyf("tu154b2/custom/elec/gen4_amp_B"))
+defineProperty("gen4_amp_bus_C", globalPropertyf("tu154b2/custom/elec/gen4_amp_C"))
 
 defineProperty("apu_system_on", globalPropertyi("tu154b2/custom/eng/apu_system_on"))
 
@@ -509,7 +511,7 @@ function update()
 		local egt_coeff=0.002556*out_temp+0.915
 		local starter_load=1.1*math.min(get(apd_working_1)+get(apd_working_2)+get(apd_working_3),1)
 		local bleed_load=(0.001111*(get(air_usage_L)+get(air_usage_R))/2)*bleed_doors_pos
-		local gen4_load=get(gen4_amp_bus)
+		local gen4_load=(get(gen4_amp_bus_A)+get(gen4_amp_bus_B)+get(gen4_amp_bus_C))/3
 		local egt_heat_spd = apu_burning_fuel * (1+(bleed_doors_pos*(bleed_load*2+starter_load*1.3)  + gen4_load/600)*0.155)*67*egt_coeff * (3 - apu_fail_last_fuel * 2)
 
 		local egt_cool_spd = egt_current* (0.5 + (math.pow(RPM * 0.01,0.6)) * 1.5) * 0.08

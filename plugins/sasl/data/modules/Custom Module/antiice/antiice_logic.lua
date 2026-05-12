@@ -44,7 +44,8 @@ defineProperty("rpm_high_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_h
 --defineProperty("eng_airvalve_3", globalPropertyf("tu154b2/custom/bleed/eng_airvalve_3")) -- открытие отбора воздуха от двигателя
 
 defineProperty("termo", globalPropertyf("sim/weather/temperature_ambient_c")) -- тепература воздуха
-defineProperty("termo_in", globalPropertyi("tu154b2/custom/gauges/airbleed/cockpit_temp")) -- тепература воздуха
+--termo_in = globalProperty("tu154b2/custom/gauges/airbleed/cockpit_temp") -- тепература воздуха
+termo_tube = globalProperty("tu154b2/custom/bleed/cockpit_tube_t")
 defineProperty("ai_fuid_to", globalPropertyi("sim/custom/t154gnd/ai_fluid_timeout_set")) -- тепература воздуха
 
 defineProperty("snow_on_fuse", globalPropertyf("sim/custom/t154gnd/snow_fuse"))
@@ -123,7 +124,9 @@ defineProperty("ai_27_L_cc", globalPropertyf("tu154b2/custom/antiice/ai_27_L_cc"
 defineProperty("ai_27_R_cc", globalPropertyf("tu154b2/custom/antiice/ai_27_R_cc")) -- нагрузка на сеть
 
 defineProperty("ai_115_1_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_1_cc")) -- нагрузка на сеть
-defineProperty("ai_115_2_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc")) -- нагрузка на сеть
+defineProperty("ai_115_2_cc_A", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_A")) -- нагрузка на сеть
+defineProperty("ai_115_2_cc_B", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_B")) -- нагрузка на сеть
+defineProperty("ai_115_2_cc_C", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_C")) -- нагрузка на сеть
 defineProperty("ai_115_3_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_3_cc")) -- нагрузка на сеть
 
 defineProperty("eng_heat_open_1", globalPropertyi("tu154b2/custom/antiice/eng_heat_open_1")) -- открыта заслонка обогрева двигателя
@@ -156,6 +159,7 @@ defineProperty("ice_add", globalPropertyf("sim/flightmodel/failures/window_ice_a
 defineProperty("ice_now", globalProperty("sim/flightmodel/failures/window_ice_per_window[1]"))
 defineProperty("snow_rat", globalPropertyf("sim/weather/aircraft/snow_on_aircraft_ratio"))
 defineProperty("tas", globalPropertyf("sim/flightmodel2/position/true_airspeed"))
+mod_pos = globalPropertyi("sim/custom/b2/kontur_70th")
 --defineProperty("nosewheel_turn_sel", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel")) -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -225,6 +229,7 @@ local init_timer=0
 local ppd_temp_1=temp1
 local ppd_temp_2=temp2
 local ppd_temp_3=temp3
+local cycle_time=38.5
 --[[
 set(window_ice_1, 1)
 set(window_ice_2, 1)
@@ -384,15 +389,16 @@ function update()
 			power3=0
 		end
 		local temp_cab=get(cockpit_temp)
+		local tube_t=(get(termo_tube)+temp_cab)/2
 		-- Some physics to calculate heat transfer
 		local v=math.abs(get(tas))
 		local Re_out=1.225*v*L_win/1.85508e-5
 		Nu_out=0.037*math.pow(Re_out,0.8)*Pr/(1+2.443*math.pow(Re_out,-0.1)*(math.pow(Pr,(2/3))-1))
 		local h_out=math.max(10,Nu_out/L_win*c_cond_air)
 		-- energy balance
-		Q1=Q1+(-h_out*A*(temp1-out_term)+p_elec_1*power1-c_trans_air*A*(temp1-temp_cab))*passed
-		Q2=Q2+(-h_out*A*(temp2-out_term)+p_elec_2*power2-c_trans_air*A*(temp2-temp_cab))*passed
-		Q3=Q3+(-h_out*A*(temp3-out_term)+p_elec_3*power3-c_trans_air*A*(temp3-temp_cab))*passed
+		Q1=Q1+(-h_out*A*(temp1-out_term)+p_elec_1*power1-c_trans_air*A*(temp1-tube_t))*passed
+		Q2=Q2+(-h_out*A*(temp2-out_term)+p_elec_2*power2-c_trans_air*A*(temp2-tube_t))*passed
+		Q3=Q3+(-h_out*A*(temp3-out_term)+p_elec_3*power3-c_trans_air*A*(temp3-tube_t))*passed
 		Q4=Q4+(-h_out*A*(temp4-out_term)-c_trans_air*A*(temp4-temp_cab))*passed
 		-- temperatures
 		temp1=Q1/m/c_heat-273
@@ -570,24 +576,39 @@ function update()
 		-- wings and slat heat
 		set(stab_heat_open, bool2int((power27_L or power27_R)) * pos_stab)
 		local wing_heat = bool2int((power27_L or power27_R) and get(rel_ice_surf_heat) < 6) * pos_stab
-		local slat_heat = bool2int(get(bus115_2_volt) > 110 and (power27_L or power27_R) and get(rel_ice_surf_heat2) < 6 and grnd and get(pos_blok) == 0) * get(antiice_slats)
+		local slat_heat = bool2int(get(bus115_2_volt) > 110 and power27_R and get(rel_ice_surf_heat2) < 6 and grnd and get(pos_blok) == 0) * get(antiice_slats)
 		-- slat heat timer
+		local new_pos=get(mod_pos)
 		local slat_lamp=0
-		if slat_heat>0 and tme<154 then
+		if slat_heat>0 and tme<cycle_time*8 then
 			tme=tme+passed
 		else
 			tme=0
 		end
-		local slat_amp=15
-		if tme<38.5 then
-			slat_amp=slat_amp+43*2
+		local slat_amp_A=19*(1-new_pos)
+		local slat_amp_B=10
+		local slat_amp_C=11
+		if tme<cycle_time then
+			slat_amp_A=slat_amp_A+39*2
+			slat_amp_B=slat_amp_B+40*2
+			slat_amp_C=slat_amp_C+48*2
 			slat_lamp=slat_heat
-		elseif tme<38.5*2 then
-			slat_amp=slat_amp+41*2
-		elseif tme<38.5*3 then
-			slat_amp=slat_amp+34*2
-		elseif tme<38.5*4 then
-			slat_amp=slat_amp+36*2
+		elseif tme<cycle_time*2 then
+			slat_amp_A=slat_amp_A+39.5*2
+			slat_amp_B=slat_amp_B+41*2
+			slat_amp_C=slat_amp_C+37*2
+		elseif tme<cycle_time*6 then
+			slat_amp_A=slat_amp_A
+			slat_amp_B=slat_amp_B
+			slat_amp_C=slat_amp_C
+		elseif tme<cycle_time*7 then
+			slat_amp_A=slat_amp_A+42*2*(1-new_pos)
+			slat_amp_B=slat_amp_B+30*2*(1-new_pos)
+			slat_amp_C=slat_amp_C+32*2*(1-new_pos)
+		elseif tme<cycle_time*8 then
+			slat_amp_A=slat_amp_A+21*2*(1-new_pos)
+			slat_amp_B=slat_amp_B+22*2*(1-new_pos)
+			slat_amp_C=slat_amp_C+31*2*(1-new_pos)
 		end
 		
 
@@ -598,8 +619,8 @@ function update()
 		local wing_t_1=interpolate(wing_heat_tbl,get(rpm_high_1))*bool2int(rpm_1)
 		local wing_t_2=interpolate(wing_heat_tbl,get(rpm_high_2))*bool2int(rpm_2)
 		local wing_t_3=interpolate(wing_heat_tbl,get(rpm_high_3))*bool2int(rpm_3)
-		wing_tube = wing_tube + (out_term - wing_tube) * passed * 0.1 * (1 + get(IAS) / 200)
-		wing_tube = wing_tube + (wing_heat * math.max(wing_t_1,wing_t_2,wing_t_3) - wing_tube) * passed * 0.1
+		wing_tube = wing_tube + (out_term - wing_tube) * passed * 0.08 * (1 + get(IAS) / 200)
+		wing_tube = wing_tube + (wing_heat * math.max(wing_t_1,wing_t_2,wing_t_3) - wing_tube) * passed * 0.08
 		
 		
 		
@@ -607,7 +628,7 @@ function update()
 		
 		stab_tube = stab_tube + (out_term - stab_tube) * passed * 0.1 * (1 + get(IAS) / 300)
 		stab_tube = stab_tube + (wing_heat * math.max(wing_t_1,wing_t_2,wing_t_3) - stab_tube) * passed * 0.1
-		local stab_ht=bool2int(stab_tube>60)
+		local stab_ht=bool2int(stab_tube>50)
 		
 		
 		
@@ -675,7 +696,9 @@ function update()
 		set(wings_heat_on, slat_heat)
 		set(wing_heating, wing_heat)
 		set(slat_heating, slat_lamp)
-		set(ai_115_2_cc, slat_heat * slat_amp)
+		set(ai_115_2_cc_A, slat_heat * slat_amp_A)
+		set(ai_115_2_cc_B, slat_heat * slat_amp_B)
+		set(ai_115_2_cc_C, slat_heat * slat_amp_C)
 		set(wing_heat_t, wing_tube)
 		set(stab_heat_t, stab_tube)	
 		set(stab_heat_on,stab_ht)

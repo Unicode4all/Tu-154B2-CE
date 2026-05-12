@@ -76,8 +76,12 @@ defineProperty("fuel_pumps_115_avtR_cc", globalPropertyf("tu154b2/custom/elec/fu
 defineProperty("avtoL_volt", globalPropertyf("tu154b2/custom/elec/avto_L_volt"))
 defineProperty("avtoR_volt", globalPropertyf("tu154b2/custom/elec/avto_R_volt"))
 
-defineProperty("avtoL_load", globalPropertyf("tu154b2/custom/elec/avto_L_amp"))
-defineProperty("avtoR_load", globalPropertyf("tu154b2/custom/elec/avto_R_amp"))
+avtoL_load_A = globalPropertyf("tu154b2/custom/elec/avto_L_amp_A")
+avtoL_load_B = globalPropertyf("tu154b2/custom/elec/avto_L_amp_B")
+avtoL_load_C = globalPropertyf("tu154b2/custom/elec/avto_L_amp_C")
+avtoR_load_A = globalPropertyf("tu154b2/custom/elec/avto_R_amp_A")
+avtoR_load_B = globalPropertyf("tu154b2/custom/elec/avto_R_amp_B")
+avtoR_load_C = globalPropertyf("tu154b2/custom/elec/avto_R_amp_C")
 -- time
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
 
@@ -708,8 +712,12 @@ function update()
 	
 	set(fuel_pumps_115_1_cc, bus_1_load)
 	set(fuel_pumps_115_3_cc, bus_3_load)
-	set(avtoL_load,avtL_load)
-	set(avtoR_load,avtR_load)
+	set(avtoL_load_A,avtL_load)
+	set(avtoL_load_B,avtL_load)
+	set(avtoL_load_C,avtL_load)
+	set(avtoR_load_A,avtR_load)
+	set(avtoR_load_B,avtR_load)
+	set(avtoR_load_C,avtR_load)
 	
 	
 end

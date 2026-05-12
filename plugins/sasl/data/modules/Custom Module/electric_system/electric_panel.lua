@@ -95,11 +95,23 @@ defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_vo
 defineProperty("bus115_em_1_volt", globalPropertyf("tu154b2/custom/elec/avto_L_volt"))
 defineProperty("bus115_em_2_volt", globalPropertyf("tu154b2/custom/elec/avto_R_volt"))
 
-defineProperty("gen1_amp", globalPropertyf("tu154b2/custom/elec/gen1_amp"))
-defineProperty("gen2_amp", globalPropertyf("tu154b2/custom/elec/gen2_amp"))
-defineProperty("gen3_amp", globalPropertyf("tu154b2/custom/elec/gen3_amp"))
-defineProperty("gen4_amp", globalPropertyf("tu154b2/custom/elec/gen4_amp"))
-defineProperty("gpu_amp", globalPropertyf("tu154b2/custom/elec/gpu_amp"))
+gen1_amp_A = globalPropertyf("tu154b2/custom/elec/gen1_amp_A")
+gen2_amp_A = globalPropertyf("tu154b2/custom/elec/gen2_amp_A")
+gen3_amp_A = globalPropertyf("tu154b2/custom/elec/gen3_amp_A")
+gen4_amp_A = globalPropertyf("tu154b2/custom/elec/gen4_amp_A")
+gpu_amp_A = globalPropertyf("tu154b2/custom/elec/gpu_amp_A")
+
+gen1_amp_B = globalPropertyf("tu154b2/custom/elec/gen1_amp_B")
+gen2_amp_B = globalPropertyf("tu154b2/custom/elec/gen2_amp_B")
+gen3_amp_B = globalPropertyf("tu154b2/custom/elec/gen3_amp_B")
+gen4_amp_B = globalPropertyf("tu154b2/custom/elec/gen4_amp_B")
+gpu_amp_B = globalPropertyf("tu154b2/custom/elec/gpu_amp_B")
+
+gen1_amp_C = globalPropertyf("tu154b2/custom/elec/gen1_amp_C")
+gen2_amp_C = globalPropertyf("tu154b2/custom/elec/gen2_amp_C")
+gen3_amp_C = globalPropertyf("tu154b2/custom/elec/gen3_amp_C")
+gen4_amp_C = globalPropertyf("tu154b2/custom/elec/gen4_amp_C")
+gpu_amp_C = globalPropertyf("tu154b2/custom/elec/gpu_amp_C")
 
 -- lamps
 defineProperty("lamp_apu_gen_on", globalPropertyf("tu154b2/custom/lights/small/apu_gen_on")) -- РАП подключен
@@ -161,13 +173,12 @@ defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) 
 defineProperty("sim_avionics", globalPropertyi("sim/cockpit2/switches/avionics_power_on")) -- default sim avionics switcher
 
 
---- freq 115/200 move
 
 
 
-defineProperty("bus115_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_1_amp"))
-defineProperty("bus115_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_2_amp"))
-defineProperty("bus115_3_amp", globalPropertyf("tu154b2/custom/elec/bus115_3_amp"))
+-- defineProperty("bus115_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_1_amp"))
+-- defineProperty("bus115_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_2_amp"))
+-- defineProperty("bus115_3_amp", globalPropertyf("tu154b2/custom/elec/bus115_3_amp"))
 
 --defineProperty("bus115_em_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp"))
 --defineProperty("bus115_em_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp"))
@@ -500,16 +511,50 @@ local function ampermeter115(gain_L, gain_R,dist)
 	end	
 	ampSel_115_last = ampSel_115
 	ampPhaseSel_115_last = ampPhaseSel_115
-	
 	-- set angles
 	amp115_timer = amp115_timer + passed
 	local amp115_angle = -120
 	if amp115_timer < 0.05 then amp115_angle = -120
-	elseif ampSel_115 == 0 then amp115_angle = interpolate(amp115_table, get(gpu_amp)-ampphase_corr)
-	elseif ampSel_115 == 1 then amp115_angle = interpolate(amp115_table, get(gen1_amp)-ampphase_corr)
-	elseif ampSel_115 == 2 then amp115_angle = interpolate(amp115_table, get(gen2_amp)-ampphase_corr)
-	elseif ampSel_115 == 3 then amp115_angle = interpolate(amp115_table, get(gen3_amp)-ampphase_corr)
-	elseif ampSel_115 == 4 then amp115_angle = interpolate(amp115_table, get(gen4_amp)-ampphase_corr)
+	elseif ampSel_115 == 0 then 
+		if ampPhaseSel_115 == 0 then
+			amp115_angle = interpolate(amp115_table, get(gpu_amp_A)-ampphase_corr)
+		elseif ampPhaseSel_115 == 1 then 
+			amp115_angle = interpolate(amp115_table, get(gpu_amp_B)-ampphase_corr)
+		else
+			amp115_angle = interpolate(amp115_table, get(gpu_amp_C)-ampphase_corr)
+		end
+	elseif ampSel_115 == 1 then 
+		if ampPhaseSel_115 == 0 then
+			amp115_angle = interpolate(amp115_table, get(gen1_amp_A)-ampphase_corr)
+		elseif ampPhaseSel_115 == 1 then 
+			amp115_angle = interpolate(amp115_table, get(gen1_amp_B)-ampphase_corr)
+		else
+			amp115_angle = interpolate(amp115_table, get(gen1_amp_C)-ampphase_corr)
+		end
+	elseif ampSel_115 == 2 then 
+		if ampPhaseSel_115 == 0 then
+			amp115_angle = interpolate(amp115_table, get(gen2_amp_A)-ampphase_corr)
+		elseif ampPhaseSel_115 == 1 then 
+			amp115_angle = interpolate(amp115_table, get(gen2_amp_B)-ampphase_corr)
+		else
+			amp115_angle = interpolate(amp115_table, get(gen2_amp_C)-ampphase_corr)
+		end
+	elseif ampSel_115 == 3 then 
+		if ampPhaseSel_115 == 0 then
+			amp115_angle = interpolate(amp115_table, get(gen3_amp_A)-ampphase_corr)
+		elseif ampPhaseSel_115 == 1 then 
+			amp115_angle = interpolate(amp115_table, get(gen3_amp_B)-ampphase_corr)
+		else
+			amp115_angle = interpolate(amp115_table, get(gen3_amp_C)-ampphase_corr)
+		end
+	elseif ampSel_115 == 4 then 
+		if ampPhaseSel_115 == 0 then
+			amp115_angle = interpolate(amp115_table, get(gen4_amp_A)-ampphase_corr)
+		elseif ampPhaseSel_115 == 1 then 
+			amp115_angle = interpolate(amp115_table, get(gen4_amp_B)-ampphase_corr)
+		else
+			amp115_angle = interpolate(amp115_table, get(gen4_amp_C)-ampphase_corr)
+		end
 	end
 	
     

@@ -5,7 +5,9 @@
 defineProperty("gpu_present", globalPropertyi("tu154b2/custom/anim/gpu_present")) -- 
 defineProperty("gpu_work_anim", globalPropertyf("tu154b2/custom/anim/gpu_work")) -- 
 defineProperty("gpu_volt", globalPropertyf("tu154b2/custom/elec/gpu_volt"))
-defineProperty("gpu_load", globalPropertyf("tu154b2/custom/elec/gpu_amp"))
+defineProperty("gpu_load_A", globalPropertyf("tu154b2/custom/elec/gpu_amp_A"))
+defineProperty("gpu_load_B", globalPropertyf("tu154b2/custom/elec/gpu_amp_B"))
+defineProperty("gpu_load_C", globalPropertyf("tu154b2/custom/elec/gpu_amp_C"))
 defineProperty("gpu_overload", globalPropertyi("tu154b2/custom/elec/gpu_overload"))
 defineProperty("gpu_on", globalPropertyi("tu154b2/custom/switchers/eng/gpu_on")) -- выключатель РАП
 
@@ -279,7 +281,7 @@ function update()
 		gpu_eject_timer = 0
 	end
 	local new_tech=get(tech)==0
-	local gpu_amp=get(gpu_load)
+	local gpu_amp=(get(gpu_load_A)+get(gpu_load_B)+get(gpu_load_C))/3
 	local gpu_pitch_tgt=1000+gpu_amp*0.5
 	--local T=get(db2)
 	--gpu_pitch=gpu_pitch-(gpu_pitch-gpu_pitch_tgt)*passed*get(db2)
