@@ -1294,8 +1294,8 @@ function update()
 		emi3()	
 		fuel_flow()
 		vibra_gau()
-	end
-	oil_qty_gau()
+		oil_qty_gau()
+	end	
 	--fuel_temp_gau()
 
 end
