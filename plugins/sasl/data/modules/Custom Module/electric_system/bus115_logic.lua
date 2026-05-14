@@ -1022,7 +1022,7 @@ function update()
 		gpu_load_prev=(gpu_load_A+gpu_load_B+gpu_load_C)/3
 		-- set results
 		local MASTER = get(ismaster) ~= 1	
-		if MASTER then
+		--if MASTER then
 			set(bus115_1_volt, bus1_volt)
 			set(bus115_2_volt, bus2_volt)
 			set(bus115_3_volt, bus3_volt)
@@ -1057,7 +1057,7 @@ function update()
 			set(freq_115_3,bus3_freq)
 			set(freq_avt_1,bus_avt1_freq)
 			set(freq_avt_2,bus_avt2_freq)
-		end
+		--end
 		
 		
 		

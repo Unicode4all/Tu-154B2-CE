@@ -93,9 +93,9 @@ defineProperty("rpm3", globalProperty("sim/flightmodel2/engines/N2_percent[2]"))
 defineProperty("machno", globalPropertyf("sim/cockpit2/gauges/indicators/mach_pilot"))
 defineProperty("idle_rat", globalPropertyf("sim/aircraft2/engine/high_idle_ratio"))
 
-defineProperty("tgt_1", globalPropertyf("tu154b2/custom/controlls/target_n2_1"))
-defineProperty("tgt_2", globalPropertyf("tu154b2/custom/controlls/target_n2_2"))
-defineProperty("tgt_3", globalPropertyf("tu154b2/custom/controlls/target_n2_3"))
+-- defineProperty("tgt_1", globalPropertyf("tu154b2/custom/controlls/target_n2_1"))
+-- defineProperty("tgt_2", globalPropertyf("tu154b2/custom/controlls/target_n2_2"))
+-- defineProperty("tgt_3", globalPropertyf("tu154b2/custom/controlls/target_n2_3"))
 
 defineProperty("temp_SL", globalPropertyf("sim/weather/temperature_sealevel_c"))
 defineProperty("press_SL", globalPropertyf("sim/weather/barometer_sealevel_inhg"))
@@ -147,6 +147,8 @@ R_3 =  globalProperty("sim/flightmodel/engine/POINT_thrust[2]")
 R_SC_1 = globalPropertyf("tu154b2/custom/SC/thrust_1")
 R_SC_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
 R_SC_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
+defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+defineProperty("control_thro_other", globalPropertyf("tu154b2/custom/SC/control_thro_other")) -- другой человек упраляет РУД-ами
 
 local t1_corr=0
 local t2_corr=0
@@ -814,7 +816,25 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		set(R_SC_1,get(R_1))
 		set(R_SC_2,get(R_2))
 		set(R_SC_3,get(R_3))
-	--print(height_coef,"   ", alt_baro)
+	else
+		if get(hascontrol_1) == 1 and get(control_thro_other) == 0 then
+			if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
+				set(sim_rud_1,0)
+			else
+				set(sim_rud_1,contr_1)
+			end
+			
+			if kvd2<54.2-idle_lim_2 then
+				set(sim_rud_2,0)
+			else
+				set(sim_rud_2,contr_2)
+			end
+			if kvd3<54.2-idle_lim_3 then
+				set(sim_rud_3,0)
+			else
+				set(sim_rud_3,contr_3)
+			end
+		end
 	end
 	
 end

@@ -283,7 +283,7 @@ function update() -- every frame calculations are here
 	
 	local passed = get(frame_time)
 	local MASTER = get(ismaster) ~= 1	
-	if passed > 0 and MASTER then
+	if passed > 0 then
 		
 		if switch_timer_1>0 then
 			switch_timer_1=switch_timer_1-passed
