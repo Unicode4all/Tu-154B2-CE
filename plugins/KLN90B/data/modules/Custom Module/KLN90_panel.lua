@@ -76,7 +76,6 @@ defineProperty("kln_fail", globalPropertyi("tu154b2/custom/kln90/kln_fail_flag")
 --defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
 defineProperty("kln_pow", globalPropertyi("tu154b2/custom/KLN_power"))
 defineProperty("gps_time", globalPropertyf("tu154b2/custom/kln90/kln_time"))
-conn_module = globalPropertyi("sim/custom/b2/kontur_90th")
 defineProperty("frame_time", globalPropertyf("sim/operation/misc/frame_rate_period")) -- time of frame
 -- Text strings for SmartCopilot sync
 defineProperty("sc_gline_1", globalPropertys("tu154b2/custom/KLN90/gline_1"))
@@ -275,7 +274,7 @@ defineProperty("LONin", globalPropertyf("sim/flightmodel/position/longitude"))
 defineProperty("SPEEDin", globalPropertyf("sim/flightmodel/position/groundspeed"))
 --defineProperty("COURSEin", globalPropertyf("sim/flightmodel/position/true_psi"))
 --defineProperty("BETAin", globalPropertyf("sim/flightmodel/position/beta"))
-defineProperty("PSIin", globalPropertyf("tu154b2/custom/tks/kln_psi"))
+PSIin = globalPropertyf("tu154b2/custom/tks/kln_psi")
 HPATHin = globalProperty("sim/flightmodel2/position/hpath")
 
 defineProperty("MAGVARin", globalPropertyf("sim/flightmodel/position/magnetic_variation"))
@@ -11603,7 +11602,7 @@ controls["lknobl"] = 0
 elseif controls["lknobs"] == -1 then
 if controls["lselect"] == 0 then
 values["NAV5ORIS"] = values["NAV5ORIS"] - 1
-if values["NAV5ORIS"] < 0 then values["NAV5ORIS"] = 2 + get(conn_module) end
+if values["NAV5ORIS"] < 0 then values["NAV5ORIS"] = 3 end
 elseif controls["lselect"] == 1 then
 values["NAV5RNG2"] = values["NAV5RNG2"] - 1
 if values["NAV5RNG2"] < 1 then values["NAV5RNG2"] = 22 end
@@ -11612,7 +11611,7 @@ controls["lknobs"] = 0
 elseif controls["lknobs"] == 1 then
 if controls["lselect"] == 0 then
 values["NAV5ORIS"] = values["NAV5ORIS"] + 1
-if values["NAV5ORIS"] > 2 + get(conn_module) then values["NAV5ORIS"] = 0 end
+if values["NAV5ORIS"] > 3 then values["NAV5ORIS"] = 0 end
 elseif controls["lselect"] == 1 then
 values["NAV5RNG2"] = values["NAV5RNG2"] + 1
 if values["NAV5RNG2"] > 22 then values["NAV5RNG2"] = 1 end

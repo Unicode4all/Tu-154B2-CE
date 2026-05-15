@@ -264,6 +264,7 @@ cockpit_80s = globalPropertyi("sim/custom/b2/kontur_pa_off")
 --p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
 rv_test = globalPropertyi("tu154b2/custom/gauges/alt/radioalt_button_left")
+gps_psi = globalPropertyf("tu154b2/custom/tks/kln_psi")
 --press_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")
 --defineProperty("h_right", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot"))
 
@@ -1182,8 +1183,31 @@ function update()
 			
 			
 			course_now = get(pkp_gyro_course_L)
-
-			roll_need = roll_need*3/(3+passed) + (-side * KZ - side_spd * KPZ)*passed/(3+passed) -- low pass
+			if get(GNS430_dev)>=1.85 and get(show_gns) == 1 and kln_mode then -- special mode for >90° SID/STAR turns with GNS			
+				local course_diff = nvu_course + 30 - get(gps_psi)
+				if course_diff > 180 then 
+					course_diff = course_diff - 360
+				elseif course_diff < -180 then 
+					course_diff = course_diff + 360 
+				end
+				if math.abs(course_diff)>90 then
+					course_diff=-25
+				end
+				roll_need = roll_need*3/(3+passed) + course_diff*passed/(3+passed) 
+			elseif get(GNS430_dev)<=-1.85 and get(show_gns) == 1 and kln_mode then -- special mode for >90° SID/STAR turns with GNS			
+				local course_diff = nvu_course - 30 - get(gps_psi)
+				if course_diff > 180 then 
+					course_diff = course_diff - 360
+				elseif course_diff < -180 then 
+					course_diff = course_diff + 360 
+				end
+				if math.abs(course_diff)>90 then
+					course_diff=25
+				end
+				roll_need = roll_need*3/(3+passed) + course_diff*passed/(3+passed) 
+			else
+				roll_need = roll_need*3/(3+passed) + (-side * KZ - side_spd * KPZ)*passed/(3+passed) -- low pass
+			end
 			--end
 			
 			
