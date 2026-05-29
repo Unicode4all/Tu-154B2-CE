@@ -41,16 +41,13 @@ defineProperty("taws_message", globalPropertyi("tu154b2/custom/taws/taws_message
 defineProperty("taws_alt_left", globalPropertyi("tu154b2/custom/taws/taws_alt_left")) -- сравни высоту на левом высотомере
 defineProperty("taws_alt_right", globalPropertyi("tu154b2/custom/taws/taws_alt_right")) -- сравни высоту на правом высотомере
 
-defineProperty("mode_set", globalPropertyi("tu154b2/custom/taws/mode_set")) -- режим работы экрана. 0 - выкл, 1 - карта высот, 2 - вид сбоку, 3 - часы, 4 - процесс включения, 5 - тест, 6 - игра, 10 - отказ
-
-
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
-defineProperty("ssos_alarmmsg", globalPropertyi("sim/custom/ssos_alarm")) --
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
+ssos_alarmmsg = globalPropertyi("sim/custom/ssos_alarm") --
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+mode_set = globalPropertyi("tu154b2/custom/taws/mode_set")
 
 
 local button_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/TCAS_click_L.wav')
@@ -259,7 +256,7 @@ local function lamps()
 	
 	
 	-- terrain
-	local terrain = taws_msg == 4 or taws_msg == 5 or taws_msg == 6
+	local terrain = taws_msg == 4 or taws_msg == 5 or taws_msg == 6 or get(mode_set) == 5
 	
 	terrain_counter = terrain_counter + passed
 	

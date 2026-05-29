@@ -39,9 +39,9 @@ defineProperty("lamp_test_eng", globalPropertyi("tu154b2/custom/buttons/lamp_tes
 defineProperty("flaps_lever", globalPropertyf("tu154b2/custom/controll/flaps_lever")) -- sim flaps ratio control. use for axis and commands
 defineProperty("gear_lever", globalPropertyi("tu154b2/custom/controll/gear_lever")) -- ручка выпуска шасси. -1 - уборка, 0 - нейтр, +1 - выпуск
 
-defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
-defineProperty("anim_rud2", globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
-defineProperty("anim_rud3", globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
+anim_rud1 = globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
+anim_rud2 = globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
+anim_rud3 = globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
 
 -- gauges
 defineProperty("stab_ind", globalPropertyf("tu154b2/custom/gauges/misc/stab_ind")) -- индикатор положения стаб
@@ -116,9 +116,9 @@ defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_ve
 defineProperty("indicated_airspeed", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot")) -- приборная скорость
 defineProperty("machno", globalPropertyf("sim/flightmodel/misc/machno")) -- скорость Маха
 
-defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
-defineProperty("anim_rud2", globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
-defineProperty("anim_rud3", globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
+-- defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
+-- defineProperty("anim_rud2", globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
+-- defineProperty("anim_rud3", globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
 
 -- power
 defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27

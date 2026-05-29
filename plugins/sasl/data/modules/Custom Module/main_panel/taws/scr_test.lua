@@ -1,26 +1,27 @@
 -- this is the clock screen of TAWS
 size = {1000, 770}
 
-defineProperty("mode_set", globalPropertyi("tu154b2/custom/taws/mode_set")) -- режим работы экрана. 0 - выкл, 1 - карта высот, 2 - вид сбоку, 3 - часы, 4 - процесс включения
-defineProperty("brt_handle", globalPropertyf("tu154b2/custom/rotary/srpbz/brightness")) -- ручка яркости
+mode_set = globalPropertyi("tu154b2/custom/taws/mode_set") -- режим работы экрана. 0 - выкл, 1 - карта высот, 2 - вид сбоку, 3 - часы, 4 - процесс включения
+brt_handle = globalPropertyf("tu154b2/custom/rotary/srpbz/brightness") -- ручка яркости
 
-defineProperty("taws_english", globalPropertyi("tu154b2/custom/taws/taws_english")) -- язык системы. 0 - русский, 1 - английский	0
-defineProperty("taws_message", globalPropertyi("tu154b2/custom/taws/taws_message")) -- 
+taws_english = globalPropertyi("tu154b2/custom/taws/taws_english") -- язык системы. 0 - русский, 1 - английский	0
+taws_message = globalPropertyi("tu154b2/custom/taws/taws_message") -- 
 -- 0 - none, 1 - Pull UP, 2 - alt callout, 3 - Pull Up, 4 - Terrain, 5 - Terrain Ahead, 6 - Too low, Terrain, 
 -- 7 - Alt collout, 8 - Too low, Gear, 9 - Too low, Flaps, 10 - Check altitude, 11 - Sink Rate, 12 - Don't sink, 13 - Glideslope
 
-defineProperty("taws_eng_phrase", globalPropertyi("tu154b2/custom/sounds/taws_eng_phrase")) -- номер фразы СРПБЗ на английском
-defineProperty("taws_rus_phrase", globalPropertyi("tu154b2/custom/sounds/taws_rus_phrase")) -- номер фразы СРПБЗ на русском
+taws_eng_phrase = globalPropertyi("tu154b2/custom/sounds/taws_eng_phrase") -- номер фразы СРПБЗ на английском
+taws_rus_phrase = globalPropertyi("tu154b2/custom/sounds/taws_rus_phrase") -- номер фразы СРПБЗ на русском
 
-defineProperty("gs_msg_vol", globalPropertyf("tu154b2/custom/taws/gs_msg_vol")) -- громкость сигнала ГЛИССАДА
+gs_msg_vol = globalPropertyf("tu154b2/custom/taws/gs_msg_vol") -- громкость сигнала ГЛИССАДА
 
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
+test_btn = globalPropertyi("tu154b2/custom/buttons/ovhd/egpws_control")
 
 -- images
-defineProperty("screen_img_img", loadImage(moduleDirectory .. "/Custom Module/main_panel/taws/taws_clock.png", 0, 0, 1000, 770))
-local text_font = loadBitmapFont(moduleDirectory .. '/Custom Module/main_panel/taws/taws_scr.fnt')
+-- defineProperty("screen_img_img", loadImage(moduleDirectory .. "/Custom Module/main_panel/taws/taws_clock.png", 0, 0, 1000, 770))
+-- local text_font = loadBitmapFont(moduleDirectory .. '/Custom Module/main_panel/taws/taws_scr.fnt')
 
 
 
@@ -63,16 +64,21 @@ function update()
 	
 	else
 		brightness = get(brt_handle)
-		
-		if time_counter >= 0 and time_counter < 4 then 
+		if get(test_btn) == 0 then
 			set(taws_message, 0)
 			set(taws_rus_phrase, 0)
 			set(taws_eng_phrase, 0)
-		elseif time_counter < 17 then 
-			set(taws_message, 12)
+			set(mode_set, 1)
+			time_counter = 0
+		elseif time_counter >= 0 and time_counter < 4 then 
+			set(taws_message, 0)
+			set(taws_rus_phrase, 0)
+			set(taws_eng_phrase, 0)
+		elseif time_counter < 10 then 
+			set(taws_message, 1)
 			if gs_msg_counter < 0 then
-				set(taws_rus_phrase, 12 * (1 - eng))
-				set(taws_eng_phrase, 12 * eng)
+				set(taws_rus_phrase, 14 * (1 - eng))
+				set(taws_eng_phrase, 14 * eng)
 				gs_msg_counter = 2
 			else
 				set(taws_rus_phrase, 0)
@@ -80,23 +86,23 @@ function update()
 			end
 			sound_counter = 0.2
 
-		elseif time_counter < 20 then 
-			set(taws_message, 0)
-			set(taws_rus_phrase, 0)
-			set(taws_eng_phrase, 0)
-		elseif time_counter < 32 then 
-			set(taws_message, 13)
-			if sound_counter <= 0 then
-				if gs_msg_counter < 0 then
-					set(taws_rus_phrase, 13 * (1 - eng))
-					set(taws_eng_phrase, 13 * eng)
-					gs_msg_counter = 1.5
-				else
-					set(taws_rus_phrase, 0)
-					set(taws_eng_phrase, 0)
-				end
-				sound_counter = 0.2
-			end
+		-- elseif time_counter < 20 then 
+			-- set(taws_message, 0)
+			-- set(taws_rus_phrase, 0)
+			-- set(taws_eng_phrase, 0)
+		-- elseif time_counter < 32 then 
+			-- set(taws_message, 13)
+			-- if sound_counter <= 0 then
+				-- if gs_msg_counter < 0 then
+					-- set(taws_rus_phrase, 13 * (1 - eng))
+					-- set(taws_eng_phrase, 13 * eng)
+					-- gs_msg_counter = 1.5
+				-- else
+					-- set(taws_rus_phrase, 0)
+					-- set(taws_eng_phrase, 0)
+				-- end
+				-- sound_counter = 0.2
+			-- end
 		else 
 			set(taws_message, 0)
 			set(taws_rus_phrase, 0)
@@ -126,89 +132,89 @@ components = {
 	-- background --
 	---------------------
 	
-	rectangle {
-		position = {0, 0, 125, size[2]},
-		color = {0.1, 0.1, 0.1, 1},
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- rectangle {
+		-- position = {0, 0, 125, size[2]},
+		-- color = {0.1, 0.1, 0.1, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 	
-	rectangle {
-		position = {125, 0, 125, size[2]},
-		color = {0.3, 1, 0.3, 1},
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- rectangle {
+		-- position = {125, 0, 125, size[2]},
+		-- color = {0.3, 1, 0.3, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 	
-	rectangle {
-		position = {250, 0, 125, size[2]},
-		color = {1, 1, 0.3, 1},
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- rectangle {
+		-- position = {250, 0, 125, size[2]},
+		-- color = {1, 1, 0.3, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 	
-	rectangle {
-		position = {375, 0, 125, size[2]},
-		color = {1, 0.6, 0.2, 1},
-		visible = function()
-			return screen_work
-		end,
-	},		
+	-- rectangle {
+		-- position = {375, 0, 125, size[2]},
+		-- color = {1, 0.6, 0.2, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },		
 	
-	rectangle {
-		position = {500, 0, 125, size[2]},
-		color = {1, 0.3, 0.3, 1},
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- rectangle {
+		-- position = {500, 0, 125, size[2]},
+		-- color = {1, 0.3, 0.3, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 	
-	rectangle {
-		position = {625, 0, 125, size[2]},
-		color = {1, 1, 0.3, 1},
-		visible = function()
-			return screen_work
-		end,
-	},		
+	-- rectangle {
+		-- position = {625, 0, 125, size[2]},
+		-- color = {1, 1, 0.3, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },		
 	
-	rectangle {
-		position = {750, 0, 125, size[2]},
-		color = {1, 0.3, 0.3, 1},
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- rectangle {
+		-- position = {750, 0, 125, size[2]},
+		-- color = {1, 0.3, 0.3, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 	
-	rectangle {
-		position = {875, 0, 125, size[2]},
-		color = {1, 0.3, 1, 1},
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- rectangle {
+		-- position = {875, 0, 125, size[2]},
+		-- color = {1, 0.3, 1, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 	
-	rectangle {
-		position = {150, 335, 700, 80},
-		color = {0.1, 0.1, 0.1, 1},
-		visible = function()
-			return screen_work 
-		end,
-	},	
+	-- rectangle {
+		-- position = {150, 335, 700, 80},
+		-- color = {0.1, 0.1, 0.1, 1},
+		-- visible = function()
+			-- return screen_work 
+		-- end,
+	-- },	
 	
-	text_draw2 {
-		position = {170, 350, 185, 160},
-		text = function()
-			return test_msg
-		end,
-		font = text_font,
-		color = {1,1,1,1},
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- text_draw2 {
+		-- position = {170, 350, 185, 160},
+		-- text = function()
+			-- return test_msg
+		-- end,
+		-- font = text_font,
+		-- color = {1,1,1,1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 --[[	
 	-- brightness controll
 	rectangle_ctr {

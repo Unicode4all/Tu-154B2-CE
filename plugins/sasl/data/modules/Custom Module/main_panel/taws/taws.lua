@@ -18,22 +18,34 @@ components = {
 	},
 	
 	-- top map screen
-	scr_map_top {
-		position = {0, 0, size[1], size[2]},
+	-- scr_map_top {
+		-- position = {0, 0, size[1], size[2]},
 		
-	},
+	-- },
+	
+	-- scr_map_top {
+		-- position = {0, size[2], size[1], size[2]},
+		
+	-- },
 	
 	-- side map
 	scr_map_side {
+		position = {0, size[2], size[1], size[2]},
+		capt = 0,
+	},
+	
+		-- side map
+	scr_map_side {
 		position = {0, 0, size[1], size[2]},
+		capt = 1,
 	
 	},
 	
 	-- clock
-	scr_clock {
-		position = {0, 0, size[1], size[2]},
+	-- scr_clock {
+		-- position = {0, 0, size[1], size[2]},
 	
-	},	
+	-- },	
 
 	-- test
 	scr_test {
@@ -42,9 +54,9 @@ components = {
 	},
 	
 	--game
-	scr_game {
-		position = {0, 0, size[1], size[2]},
-	},
+	-- scr_game {
+		-- position = {0, 0, size[1], size[2]},
+	-- },
 	
 	-- on screen and voice messages
 	taws_msg{

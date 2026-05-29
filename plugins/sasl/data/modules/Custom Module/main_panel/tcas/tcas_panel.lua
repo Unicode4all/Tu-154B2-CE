@@ -48,7 +48,7 @@ defineProperty("xpdr_fail", globalPropertyi("sim/operation/failures/rel_xpndr"))
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
 
 -- TCAS
-defineProperty("ra_scale_set", globalPropertyi("tu154b2/custom/tcas/ra_scale_set"))  -- RA mode scale set. 0 = none.
+defineProperty("ra_scale_set", globalPropertyi("sim/cockpit2/tcas/indicators/tcas_message"))  -- RA mode scale set. 0 = none.
 defineProperty("traffic_det", globalPropertyi("tu154b2/custom/tcas/traffic_det"))  -- появление желтых или красных меток
 defineProperty("vvi", globalPropertyf("sim/flightmodel/position/vh_ind"))  -- vertical velocity of our acf
 
@@ -151,11 +151,14 @@ local ajust_v_speed = loadSample(moduleDirectory .. '/Custom Sounds/tcas/ajust_v
 local clear_conflict = loadSample(moduleDirectory .. '/Custom Sounds/tcas/clear_conflict.wav')
 local climb = loadSample(moduleDirectory .. '/Custom Sounds/tcas/climb.wav')
 local climb_now = loadSample(moduleDirectory .. '/Custom Sounds/tcas/climb_now.wav')
+local climb_cross = loadSample(moduleDirectory .. '/Custom Sounds/tcas/climb_crossing.wav')
 local descend = loadSample(moduleDirectory .. '/Custom Sounds/tcas/descend.wav')
+local descend_cross = loadSample(moduleDirectory .. '/Custom Sounds/tcas/descend_crossing.wav')
 local descend_now = loadSample(moduleDirectory .. '/Custom Sounds/tcas/descend_now.wav')
 local increase_climb = loadSample(moduleDirectory .. '/Custom Sounds/tcas/increase_climb.wav')
 local increase_descend = loadSample(moduleDirectory .. '/Custom Sounds/tcas/increase_descend.wav')
 local maintain_v_speed = loadSample(moduleDirectory .. '/Custom Sounds/tcas/maintain_v_speed.wav')
+local maintain_v_speed_cross = loadSample(moduleDirectory .. '/Custom Sounds/tcas/maintain_crossing.wav')
 local monitor_v_speed = loadSample(moduleDirectory .. '/Custom Sounds/tcas/monitor_v_speed.wav')
 local tcas_test_passed = loadSample(moduleDirectory .. '/Custom Sounds/tcas/tcas_test_passed.wav')
 local tcas_test_fail = loadSample(moduleDirectory .. '/Custom Sounds/tcas/tcas_test_fail.wav')
@@ -199,7 +202,7 @@ local scr_code = get(xpdr_code)
 local text_last = get(screen_mode)
 
 local scale_last = 0
-local traffic_last = false
+--local traffic_last = false
 
 function update()
 	passed = get(frame_time)
@@ -494,65 +497,140 @@ function update()
 	local our_vvi = get(vvi)
 	
 	-- traffic sound
-	if mode >= 3 and scale == 0 and traffic and traffic ~= traffic_last then
+	-- if mode >= 3 and scale == 0 and traffic and traffic ~= traffic_last then
+		-- playSample(traffic_snd, false)
+	-- end
+	
+	-- -- clear of conflict
+	-- if mode == 4 and scale == 0 and scale ~= scale_last then
+		-- playSample(clear_conflict, false)
+		
+		-- stopSample(traffic_snd)
+		-- stopSample(ajust_v_speed)
+		-- stopSample(climb)
+		-- stopSample(climb_now)
+		-- stopSample(descend)
+		-- stopSample(descend_now)
+		-- stopSample(increase_climb)
+		-- stopSample(increase_descend)
+		-- stopSample(maintain_v_speed)
+		-- stopSample(monitor_v_speed)
+	-- end
+	
+	-- -- climb
+	-- if mode == 4 and scale == 1 and scale_last == 0 and scale ~= scale_last then
+		-- playSample(climb, false)
+	-- end
+	
+	-- -- climb now
+	-- if mode == 4 and scale == 1 and scale_last == 3 and scale ~= scale_last then
+		-- playSample(climb_now, false)
+	-- end
+	
+	-- -- descend
+	-- if mode == 4 and scale == 3 and scale_last == 0 and scale ~= scale_last then
+		-- playSample(descend, false)
+	-- end	
+	
+	-- -- descend now
+	-- if mode == 4 and scale == 3 and scale_last == 1 and scale ~= scale_last then
+		-- playSample(descend_now, false)
+	-- end
+	
+	-- -- increase climb
+	-- if mode == 4 and scale == 2 and our_vvi < 12 and scale ~= scale_last then
+		-- playSample(increase_climb, false)
+	-- end	
+	
+	-- -- increase descend
+	-- if mode == 4 and scale == 4 and our_vvi > -12 and scale ~= scale_last then
+		-- playSample(increase_descend, false)
+	-- end		
+	
+	-- -- adjust VS
+	-- if mode == 4 and ((scale == 1 and our_vvi > 12) or (scale == 3 and our_vvi < -12) or (scale == 7 and our_vvi > 0) or (scale == 9 and our_vvi < 0) or (scale == 6 and our_vvi > 10) or (scale == 8 and our_vvi < -10)) and scale ~= scale_last then
+		-- playSample(ajust_v_speed, false)
+	-- end		
+	
+	-- -- maintain VS
+	-- if mode == 4 and ((scale == 2 and our_vvi > 12) or (scale == 4 and our_vvi < -12)) and scale ~= scale_last then
+		-- playSample(maintain_v_speed, false)
+	-- end	
+	
+	if mode >= 3 and scale == 14 and scale ~= scale_last then
 		playSample(traffic_snd, false)
 	end
-	
 	-- clear of conflict
-	if mode == 4 and scale == 0 and scale ~= scale_last then
+	if mode == 4 and scale == 5 and scale ~= scale_last then
 		playSample(clear_conflict, false)
 		
 		stopSample(traffic_snd)
 		stopSample(ajust_v_speed)
 		stopSample(climb)
+		stopSample(climb_cross)
 		stopSample(climb_now)
 		stopSample(descend)
+		stopSample(descend_cross)
 		stopSample(descend_now)
 		stopSample(increase_climb)
 		stopSample(increase_descend)
 		stopSample(maintain_v_speed)
+		stopSample(maintain_v_speed_cross)
 		stopSample(monitor_v_speed)
 	end
 	
 	-- climb
-	if mode == 4 and scale == 1 and scale_last == 0 and scale ~= scale_last then
+	if mode == 4 and scale == 1 and scale ~= scale_last then
 		playSample(climb, false)
 	end
 	
+	if mode == 4 and scale == 2 and scale ~= scale_last then
+		playSample(climb_cross, false)
+	end
+	
 	-- climb now
-	if mode == 4 and scale == 1 and scale_last == 3 and scale ~= scale_last then
+	if mode == 4 and scale == 4 and scale ~= scale_last then
 		playSample(climb_now, false)
 	end
 	
 	-- descend
-	if mode == 4 and scale == 3 and scale_last == 0 and scale ~= scale_last then
+	if mode == 4 and scale == 6 and scale ~= scale_last then
 		playSample(descend, false)
 	end	
 	
+	if mode == 4 and scale == 7 and scale ~= scale_last then
+		playSample(descend_cross, false)
+	end	
+	
 	-- descend now
-	if mode == 4 and scale == 3 and scale_last == 1 and scale ~= scale_last then
+	if mode == 4 and scale == 9 and scale ~= scale_last then
 		playSample(descend_now, false)
 	end
 	
 	-- increase climb
-	if mode == 4 and scale == 2 and our_vvi < 12 and scale ~= scale_last then
+	if mode == 4 and scale == 3 and scale ~= scale_last then
 		playSample(increase_climb, false)
 	end	
 	
 	-- increase descend
-	if mode == 4 and scale == 4 and our_vvi > -12 and scale ~= scale_last then
+	if mode == 4 and scale == 8 and scale ~= scale_last then
 		playSample(increase_descend, false)
-	end		
-	
-	-- adjust VS
-	if mode == 4 and ((scale == 1 and our_vvi > 12) or (scale == 3 and our_vvi < -12) or (scale == 7 and our_vvi > 0) or (scale == 9 and our_vvi < 0) or (scale == 6 and our_vvi > 10) or (scale == 8 and our_vvi < -10)) and scale ~= scale_last then
-		playSample(ajust_v_speed, false)
-	end		
-	
-	-- maintain VS
-	if mode == 4 and ((scale == 2 and our_vvi > 12) or (scale == 4 and our_vvi < -12)) and scale ~= scale_last then
-		playSample(maintain_v_speed, false)
 	end	
+	
+	-- monitor v/s
+	if mode == 4 and scale == 10 and scale ~= scale_last then
+		playSample(monitor_v_speed, false)
+	end	
+	
+	-- maintain v/s
+	if mode == 4 and scale == 11 and scale ~= scale_last then
+		playSample(maintain_v_speed, false)
+	end
+	
+	-- maintain v/s cross
+	if mode == 4 and scale == 12 and scale ~= scale_last then
+		playSample(maintain_v_speed_cross, false)
+	end
 	
 	-- test
 	if mode == 0 and text == 0 and text_last == 5 and text_last ~= text then
@@ -567,12 +645,12 @@ function update()
 	
 	
 	
-	
+	set(traffic_det, bool2int(scale~=5 and scale~=0 and scale<15))
 	
 	
 	text_last = text
 	scale_last = scale
-	traffic_last = traffic
+	--traffic_last = traffic
 	
 	
 	-- tcas_rot_big_last = tcas_rot_big_now

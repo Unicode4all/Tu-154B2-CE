@@ -2,6 +2,11 @@
 
 simDR_tcas_lat                = find_dataref("sim/cockpit2/tcas/targets/position/lat")
 simDR_tcas_lon                = find_dataref("sim/cockpit2/tcas/targets/position/lon")
+simDR_tcas_type			  = find_dataref("sim/cockpit2/tcas/targets/threat")
+simDR_tcas_elev			  = find_dataref("sim/cockpit2/tcas/targets/position/ele")
+simDR_tcas_vs 			  = find_dataref("sim/cockpit2/tcas/targets/position/vertical_speed")
+simDR_tcas_level 	      = find_dataref("tu154b2/custom/tcas/level_mode")
+simDR_fl_mode 			  = find_dataref("tu154b2/custom/tcas/fl_mode")
 simDR_radarAlt1 = find_dataref("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot")
 simDR_tcas_vs                = find_dataref("sim/cockpit2/tcas/targets/position/vertical_speed")
 simDR_radio_nav03_ID                = find_dataref("sim/cockpit2/radios/indicators/nav3_nav_id")
@@ -15,6 +20,8 @@ konturDR_nd_mode_fo_sel_dial_pos                  = find_dataref("sim/cockpit2/E
 konturDR_text_fo_show 				= find_dataref("sim/custom/kontur/fo/text/show")
 konturDR_text_fo_heading			= find_dataref("sim/custom/kontur/fo/text/heading")
 konturDR_text_fo_distance			= find_dataref("sim/custom/kontur/fo/text/distance")
+konturDR_capt_nav			= find_dataref("sim/custom/kontur/left_nav")
+konturDR_fo_nav			= find_dataref("sim/custom/kontur/right_nav")
 
 kontur_on = find_dataref("tu154b2/custom/b2/kontur_on")
 
@@ -27,6 +34,8 @@ for n=0,59,1 do
   iconTextDataCapt[n].bluetext=find_dataref("sim/custom/kontur/capt/text/bluetext"..n)
   iconTextDataCapt[n].redtext=find_dataref("sim/custom/kontur/capt/text/redtext"..n)
   iconTextDataCapt[n].greentext=find_dataref("sim/custom/kontur/capt/text/greentext"..n)
+  iconTextDataCapt[n].ambertext=find_dataref("sim/custom/kontur/capt/text/ambertext"..n)
+  iconTextDataCapt[n].magentatext=find_dataref("sim/custom/kontur/capt/text/magentatext"..n)
 end
 
 iconTextDataFO={}
@@ -37,6 +46,8 @@ for n=0,59,1 do
   iconTextDataFO[n].bluetext=find_dataref("sim/custom/kontur/fo/text/bluetext"..n)
   iconTextDataFO[n].redtext=find_dataref("sim/custom/kontur/fo/text/redtext"..n)
   iconTextDataFO[n].greentext=find_dataref("sim/custom/kontur/fo/text/greentext"..n)
+  iconTextDataFO[n].ambertext=find_dataref("sim/custom/kontur/fo/text/ambertext"..n)
+  iconTextDataFO[n].magentatext=find_dataref("sim/custom/kontur/fo/text/magentatext"..n)
 end
 
 navAidsJSON   = find_dataref("xtlua/navaids")
@@ -52,10 +63,10 @@ simDR_map_mode				= find_dataref("sim/cockpit2/EFIS/map_mode")
 simDR_map_range_copilot				= find_dataref("sim/cockpit2/EFIS/map_range_copilot")
 simDR_map_mode_copilot				= find_dataref("sim/cockpit2/EFIS/map_mode_copilot")
 simDR_range_dial_capt			= find_dataref("sim/cockpit/switches/EFIS_map_range_selector")
-simDR_range_dial_fo			= find_dataref("sim/cockpit/switches/EFIS_map_range_selector")
+simDR_range_dial_fo			= find_dataref("sim/cockpit2/EFIS/map_range_copilot")
 
+kontur_nd_map_center_fo                   = find_dataref("sim/custom/kontur/map_center/fo")
 kontur_nd_map_center_capt                 = find_dataref("sim/custom/kontur/map_center/capt")
-kontur_nd_map_center_fo                   = find_dataref("sim/custom/kontur/map_center/capt")
 konturDR_nd_capt_vor_ndb                  = find_dataref("sim/cockpit2/EFIS/EFIS_vor_on")
 konturDR_nd_fo_vor_ndb                    = find_dataref("sim/cockpit2/EFIS/EFIS_vor_on")
 konturDR_nd_capt_wpt                  = find_dataref("sim/cockpit2/EFIS/EFIS_fix_on")
@@ -63,13 +74,14 @@ konturDR_nd_fo_wpt                    = find_dataref("sim/cockpit2/EFIS/EFIS_fix
 konturDR_nd_capt_apt	                = find_dataref("sim/cockpit2/EFIS/EFIS_airport_on")
 konturDR_nd_fo_apt	                = find_dataref("sim/cockpit2/EFIS/EFIS_airport_on")
 konturDR_nd_capt_tfc	                        = find_dataref("sim/cockpit2/EFIS/EFIS_tcas_on")
-konturDR_nd_fo_tfc	                        = find_dataref("sim/cockpit2/EFIS/EFIS_tcas_on")
+konturDR_nd_fo_tfc	                        = find_dataref("sim/cockpit2/EFIS/EFIS_tcas_on_copilot")
 simDR_fms_line					= find_dataref("sim/graphics/misc/kill_map_fms_line")
+simDR_vbe_msl = find_dataref("tu154b2/custom/gauges/alt/vbe_msl")
 konturDR_nav_left = find_dataref("sim/cockpit2/radios/actuators/gps_power")
 
 local captIRS=1
 local foIRS=1
-local ranges = {5, 10, 20, 40, 80, 160, 320}
+local ranges = {5, 10, 20, 50, 100, 200, 320}
 local usedNaviadsTableFO={}
 local usedNaviadsTableCapt={}
 local currentNaviadsTable={}
@@ -156,7 +168,7 @@ function makeIcon(iconTextData,navtype,text,latitude,longitude,distance)
     displayDistance=distance*(455/ranges[simDR_range_dial_capt])
     if (heading_diff < -135 or heading_diff > 135) and displayDistance> 160 and kontur_nd_map_center_capt<1 then return end
     if (heading_diff < -60 or heading_diff > 60) and displayDistance> 270 and kontur_nd_map_center_capt<1 then return end
-    if displayDistance> 250 and kontur_nd_map_center_capt>0 then return end
+    if displayDistance> 270 and kontur_nd_map_center_capt>0 then return end
     if (heading_diff < -45 or heading_diff > 45) and displayDistance> 480 and kontur_nd_map_center_capt<1 then return end
     if (heading_diff < -55 or heading_diff > 55) and displayDistance> 400 and kontur_nd_map_center_capt<1 then return end
     lastNavaid=lastCaptNavaid
@@ -168,7 +180,7 @@ function makeIcon(iconTextData,navtype,text,latitude,longitude,distance)
     range=ranges[simDR_range_dial_fo]
     displayDistance=distance*(455/ranges[simDR_range_dial_fo])
     if (heading_diff < -135 or heading_diff > 135) and displayDistance> 160 and kontur_nd_map_center_fo<1 then return end 
-     if displayDistance> 250 and kontur_nd_map_center_fo>0 then return end
+     if displayDistance> 270 and kontur_nd_map_center_fo>0 then return end
      if (heading_diff < -45 or heading_diff > 45) and displayDistance> 480 and kontur_nd_map_center_fo<1 then return end
      if (heading_diff < -55 or heading_diff > 55) and displayDistance> 400 and kontur_nd_map_center_fo<1 then return end
     lastNavaid=lastFONavaid
@@ -180,30 +192,110 @@ function makeIcon(iconTextData,navtype,text,latitude,longitude,distance)
   
   if lastNavaid > 59 then return end
   
-  if navtype==1 and apt>0 then --airport
+  if navtype==0 then --blank
+    iconTextData.icons[lastNavaid]=3
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].whitetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" "
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" " 
+  elseif navtype==1 and apt>0 then --airport
     iconTextData.icons[lastNavaid]=2
     iconTextData[lastNavaid].bluetext=text
     iconTextData[lastNavaid].whitetext=" "
     iconTextData[lastNavaid].redtext=" "
     iconTextData[lastNavaid].greentext=" "
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
   elseif navtype==3003 and nav>0 then --current FMS waypoint
     iconTextData.icons[lastNavaid]=4
     iconTextData[lastNavaid].whitetext=" "
     iconTextData[lastNavaid].bluetext=" "
     iconTextData[lastNavaid].redtext=text
     iconTextData[lastNavaid].greentext=" "
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
   elseif navtype==3005 and nav>0 then --non current FMS waypoint
     iconTextData.icons[lastNavaid]=5
     iconTextData[lastNavaid].whitetext=text
     iconTextData[lastNavaid].bluetext=" "
     iconTextData[lastNavaid].redtext=" "
     iconTextData[lastNavaid].greentext=" "
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
   elseif navtype==3006 then --white tcas no vspeed
     iconTextData.icons[lastNavaid]=22
+    iconTextData[lastNavaid].whitetext=text
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
+  elseif navtype==3016 then --white tcas dn
+    iconTextData.icons[lastNavaid]=21
+    iconTextData[lastNavaid].whitetext=text
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
+   elseif navtype==3026 then --white tcas up
+    iconTextData.icons[lastNavaid]=20
+    iconTextData[lastNavaid].whitetext=text
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
+  elseif navtype==3036 then --yellow tcas no vspeed
+    iconTextData.icons[lastNavaid]=19
     iconTextData[lastNavaid].whitetext=" "
     iconTextData[lastNavaid].bluetext=" "
     iconTextData[lastNavaid].redtext=" "
     iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=text
+	iconTextData[lastNavaid].magentatext=" "
+  elseif navtype==3046 then --yellow tcas dn
+    iconTextData.icons[lastNavaid]=18
+    iconTextData[lastNavaid].whitetext=" "
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=text
+	iconTextData[lastNavaid].magentatext=" "
+  elseif navtype==3056 then --yellow tcas up
+    iconTextData.icons[lastNavaid]=17
+    iconTextData[lastNavaid].whitetext=" "
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=text
+	iconTextData[lastNavaid].magentatext=" "
+  elseif navtype==3066 then --red tcas no vspeed
+    iconTextData.icons[lastNavaid]=16
+    iconTextData[lastNavaid].whitetext=" "
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=text
+  elseif navtype==3076 then --red tcas dn
+    iconTextData.icons[lastNavaid]=15
+    iconTextData[lastNavaid].whitetext=" "
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=text
+  elseif navtype==3086 then --red tcas up
+    iconTextData.icons[lastNavaid]=14
+    iconTextData[lastNavaid].whitetext=" "
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=text
   elseif (navtype==3007) then --FIX
     if range>40 or wpt==0 then return end
     iconTextData.icons[lastNavaid]=13
@@ -211,12 +303,32 @@ function makeIcon(iconTextData,navtype,text,latitude,longitude,distance)
     iconTextData[lastNavaid].whitetext=" "
     iconTextData[lastNavaid].redtext=" "
     iconTextData[lastNavaid].greentext=" " 
-  elseif (navtype==3008) then --TOD
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
+  elseif (navtype==3096) then --TCAS white solid
     iconTextData.icons[lastNavaid]=8
     iconTextData[lastNavaid].bluetext=" "
-    iconTextData[lastNavaid].whitetext=" " 
+    iconTextData[lastNavaid].whitetext=text
     iconTextData[lastNavaid].redtext=" "
-    iconTextData[lastNavaid].greentext=text 
+    iconTextData[lastNavaid].greentext=" "
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
+  elseif (navtype==3097) then --TCAS white solid up
+    iconTextData.icons[lastNavaid]=9
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].whitetext=text 
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
+  elseif (navtype==3098) then --TCAS white solid dn
+    iconTextData.icons[lastNavaid]=12
+    iconTextData[lastNavaid].bluetext=" "
+    iconTextData[lastNavaid].whitetext=text 
+    iconTextData[lastNavaid].redtext=" "
+    iconTextData[lastNavaid].greentext=" " 
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
   elseif bit_and(navtype,4)>0 and vor_ndb>0 then
     iconTextData.icons[lastNavaid]=11
     if text==simDR_radio_nav03_ID or text==simDR_radio_nav04_ID then
@@ -237,7 +349,9 @@ function makeIcon(iconTextData,navtype,text,latitude,longitude,distance)
     iconTextData[lastNavaid].bluetext=text
     iconTextData[lastNavaid].whitetext=" "
     iconTextData[lastNavaid].redtext=" "
-    iconTextData[lastNavaid].greentext=" " 
+    iconTextData[lastNavaid].greentext=" "
+	iconTextData[lastNavaid].ambertext=" "
+	iconTextData[lastNavaid].magentatext=" "
   else
     return
   end
@@ -313,53 +427,119 @@ function newIcons()
     --Captain flightplan
     if distance < ranges[simDR_range_dial_capt] then 
       if fmsTable[n][10]==true then
-	      makeIcon(iconTextDataCapt,3003,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
+	      makeIcon(iconTextDataCapt,3003*konturDR_capt_nav,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
       else
-	      makeIcon(iconTextDataCapt,3005,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
+	      makeIcon(iconTextDataCapt,3005*konturDR_capt_nav,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
       end
     end
     --FO flightplan
     if distance < ranges[simDR_range_dial_fo] then 
 
       if fmsTable[n][10]==true then
-	      makeIcon(iconTextDataFO,3003,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
+	      makeIcon(iconTextDataFO,3003*konturDR_fo_nav,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
       else
-	      makeIcon(iconTextDataFO,3005,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
+	      makeIcon(iconTextDataFO,3005*konturDR_fo_nav,fmsTable[n][8],fmsTable[n][5],fmsTable[n][6],distance)
       end
     end
-  end
+  end 
+  --NAVAIDS
+  -- for n=table.getn(currentNaviadsTable),1,-1 do
+    -- local distance = getDistance(simDR_latitude,simDR_longitude,currentNaviadsTable[n][5],currentNaviadsTable[n][6])
+    -- if distance < ranges[simDR_range_dial_capt] then 
+      -- makeIcon(iconTextDataCapt,currentNaviadsTable[n][2]*konturDR_capt_nav,currentNaviadsTable[n][8],currentNaviadsTable[n][5],currentNaviadsTable[n][6],distance)
+    -- end
+    -- if distance < ranges[simDR_range_dial_fo] then 
+      -- makeIcon(iconTextDataFO,currentNaviadsTable[n][2]*konturDR_fo_nav,currentNaviadsTable[n][8],currentNaviadsTable[n][5],currentNaviadsTable[n][6],distance)
+    -- end
+  -- end
+  -- --FIXES
+  -- for n=1,numFixes do
+    -- local distance = getDistance(simDR_latitude,simDR_longitude,localFixes[n]["lat"],localFixes[n]["long"])
+    -- if distance < ranges[simDR_range_dial_capt] then 
+      -- makeIcon(iconTextDataCapt,3007*konturDR_capt_nav,localFixes[n]["name"],localFixes[n]["lat"],localFixes[n]["long"],distance)
+    -- end
+    -- if distance < ranges[simDR_range_dial_fo] then 
+      -- makeIcon(iconTextDataFO,3007*konturDR_fo_nav,localFixes[n]["name"],localFixes[n]["lat"],localFixes[n]["long"],distance)
+    -- end
+  -- end
+
   --TCAS
   for n=1,64,1 do
     local distance = getDistance(simDR_latitude,simDR_longitude,simDR_tcas_lat[n],simDR_tcas_lon[n])
-    if konturDR_nd_capt_tfc>0 and distance < ranges[simDR_range_dial_capt] then 
-      makeIcon(iconTextDataCapt,3006,nil,simDR_tcas_lat[n],simDR_tcas_lon[n],distance)
+	local threat = simDR_tcas_type[n]
+	local vert_spd = simDR_tcas_vs[n]
+	local tcas_type = 3006
+	local alt_lim_dn=-27
+	local alt_lim_up=27
+	if simDR_tcas_level==1 then
+		alt_lim_up=90
+	elseif simDR_tcas_level==1 then
+		alt_lim_dn=-90
+	end
+	
+	-- TCAS target elevation
+	local alt_show = math.floor((simDR_tcas_elev[n] * 3.280839895013-simDR_vbe_msl) / 100)
+	local sign_mark = "+"
+	if alt_show < 0 then sign_mark = "-" end
+	if simDR_fl_mode==0 then
+		if alt_show <= alt_lim_up and alt_show >= alt_lim_dn then
+			alt_show = string.format("%s%s", "", math.abs(alt_show) )
+			if string.len(alt_show) == 1 then alt_show = string.format("%s%s", "0", alt_show ) end
+			alt_show = sign_mark..alt_show
+		else
+			alt_show = ""
+		end			
+	else
+		alt_show=math.floor((simDR_tcas_elev[n]) * 3.280839895013 / 100)
+		alt_show = string.format("%s%s", "", alt_show )
+		if string.len(alt_show) == 1 then 
+			alt_show = string.format("%s%s", "00", alt_show ) 
+		elseif string.len(alt_show) == 2 then
+			alt_show = string.format("%s%s", "0", alt_show ) 
+		end
+	end
+	local alt_tgt = math.floor((simDR_tcas_elev[n] * 3.280839895013-simDR_vbe_msl) / 100)
+	if threat==-1 then
+		tcas_type=0
+	else
+		if vert_spd<=-500 then
+			if threat==0 and alt_tgt <= alt_lim_up and alt_tgt >= alt_lim_dn then
+				tcas_type = 3016
+			elseif threat==1 then
+				tcas_type = 3098
+			elseif threat==2 then
+				tcas_type = 3046
+			elseif threat>2 then
+				tcas_type = 3076
+			end
+		elseif vert_spd>=500 then
+			if threat==0 and alt_tgt <= alt_lim_up and alt_tgt >= alt_lim_dn then
+				tcas_type = 3026
+			elseif threat==1 then
+				tcas_type = 3097
+			elseif threat==2 then
+				tcas_type = 3056
+			elseif threat>2 then
+				tcas_type = 3086
+			end
+		else
+			if threat==1 then
+				tcas_type = 3096
+			elseif threat==2 then
+				tcas_type = 3036
+			elseif threat>2 then
+				tcas_type = 3066
+			end
+		end
+	end
+	
+    if konturDR_nd_capt_tfc>0 and distance < ranges[simDR_range_dial_capt]*1.2 then 
+      makeIcon(iconTextDataCapt,tcas_type,alt_show,simDR_tcas_lat[n],simDR_tcas_lon[n],distance)
     end
-    if konturDR_nd_fo_tfc>0 and distance < ranges[simDR_range_dial_fo] then 
-      makeIcon(iconTextDataFO,3006,nil,simDR_tcas_lat[n],simDR_tcas_lon[n],distance)
+    if konturDR_nd_fo_tfc>0 and distance < ranges[simDR_range_dial_fo]*1.2 then 
+      makeIcon(iconTextDataFO,tcas_type,alt_show,simDR_tcas_lat[n],simDR_tcas_lon[n],distance)
     end
-  end  
-
-  --NAVAIDS
-  for n=table.getn(currentNaviadsTable),1,-1 do
-    local distance = getDistance(simDR_latitude,simDR_longitude,currentNaviadsTable[n][5],currentNaviadsTable[n][6])
-    if distance < ranges[simDR_range_dial_capt] then 
-      makeIcon(iconTextDataCapt,currentNaviadsTable[n][2],currentNaviadsTable[n][8],currentNaviadsTable[n][5],currentNaviadsTable[n][6],distance)
-    end
-    if distance < ranges[simDR_range_dial_fo] then 
-      makeIcon(iconTextDataFO,currentNaviadsTable[n][2],currentNaviadsTable[n][8],currentNaviadsTable[n][5],currentNaviadsTable[n][6],distance)
-    end
-  end
-  --FIXES
-  for n=1,numFixes do
-    local distance = getDistance(simDR_latitude,simDR_longitude,localFixes[n]["lat"],localFixes[n]["long"])
-    if distance < ranges[simDR_range_dial_capt] then 
-      makeIcon(iconTextDataCapt,3007,localFixes[n]["name"],localFixes[n]["lat"],localFixes[n]["long"],distance)
-    end
-    if distance < ranges[simDR_range_dial_fo] then 
-      makeIcon(iconTextDataFO,3007,localFixes[n]["name"],localFixes[n]["lat"],localFixes[n]["long"],distance)
-    end
-  end
-
+  end 
   for n=lastCaptNavaid,59,1 do
     konturDR_text_capt_show[n]=0
   end
@@ -448,13 +628,16 @@ function after_physics()
 
 
         if simDR_map_mode == 5 then
-            kontur_nd_map_center_capt                 = 1
+            kontur_nd_map_center_capt                   = 1
+        else
+            kontur_nd_map_center_capt                   = 0
+        end
+		 if simDR_map_mode_copilot == 5 then
             kontur_nd_map_center_fo                   = 1
         else
-            kontur_nd_map_center_capt                 = 0
             kontur_nd_map_center_fo                   = 0
         end
-
+	
       local diff=simDRTime-lastUpdate
 
       --force new icons if range dial changes (stop bleed into other displays)

@@ -9,7 +9,7 @@ defineProperty("hide_eng_objects", globalPropertyi("tu154b2/custom/lang/hide_eng
 defineProperty("taws_english", globalPropertyi("tu154b2/custom/taws/taws_english")) -- язык системы. 0 - русский, 1 - английский	0
 defineProperty("brt_handle", globalPropertyf("tu154b2/custom/rotary/srpbz/brightness")) -- ручка яркости
 
-defineProperty("mode_set", globalPropertyi("tu154b2/custom/taws/mode_set")) -- режим работы экрана. 0 - выкл, 1 - карта высот, 2 - вид сбоку, 3 - часы, 4 - процесс включения
+mode_set = globalPropertyi("tu154b2/custom/taws/mode_set") -- режим работы экрана. 0 - выкл, 1 - карта высот, 2 - вид сбоку, 3 - часы, 4 - процесс включения
 
 local text_font = loadBitmapFont(moduleDirectory.."/Custom Module/main_panel/taws/taws_scr.fnt")
 local font2 = loadFont(moduleDirectory.."/Custom Module/main_panel/taws/taws.ttf")
@@ -319,18 +319,18 @@ components = {
 
 
 	-- brightness controll
-	rectangle_ctr {
-		R = 0,
-		G = 0,
-		B = 0,
-		A = function()
-			return 1 - brightness
-		end, -- controll via alpha
-		position_x = 0,
-		position_y = 0,
-		width = size[1],
-		height = size[2],
-	},
+	-- rectangle_ctr {
+		-- R = 0,
+		-- G = 0,
+		-- B = 0,
+		-- A = function()
+			-- return 1 - brightness
+		-- end, -- controll via alpha
+		-- position_x = 0,
+		-- position_y = 0,
+		-- width = size[1],
+		-- height = size[2],
+	-- },
 
 
 

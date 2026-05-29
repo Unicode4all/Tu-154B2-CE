@@ -250,26 +250,26 @@ end
 
 components = {
 	
-	draw_map {
-		position = {0, 0, size[1], size[2]},
-		size_x = cols,
-		size_y = rows,
+	-- draw_map {
+		-- position = {0, 0, size[1], size[2]},
+		-- size_x = cols,
+		-- size_y = rows,
 		
-		image_table = function()
-			return heightTable
-		end,
+		-- image_table = function()
+			-- return heightTable
+		-- end,
 		
-		colors = function()
-			return colorTable
-		end,
+		-- colors = function()
+			-- return colorTable
+		-- end,
 		
-		visible = function()
-			return screen_work
-		end,
+		-- visible = function()
+			-- return screen_work
+		-- end,
 		
 		
 		
-	},
+	-- },
 	
 	-- scale for top view
 	texture {

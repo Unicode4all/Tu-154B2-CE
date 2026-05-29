@@ -180,124 +180,124 @@ end
 
 components = {
 	
-	rectangle {
-		position = {0, 0, size[1], size[2]},
-		color = {0.1, 0.1, 0.1, 1},
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- rectangle {
+		-- position = {0, 0, size[1], size[2]},
+		-- color = {0.1, 0.1, 0.1, 1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 	
 	
-	-- course text
-	text_draw {
-		position = {420, 680, 180, 150},
-		text = function()
-			return course_text
-		end,
-		font = text_font,
-		color = {1,1,1,1},
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- -- course text
+	-- text_draw {
+		-- position = {420, 680, 180, 150},
+		-- text = function()
+			-- return course_text
+		-- end,
+		-- font = text_font,
+		-- color = {1,1,1,1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 	
-	-- latitude text
-	text_draw {
-		position = {240, 130, 190, 140},
-		text = function()
-			return latitude_show
-		end,
-		font = text_font,
-		color = {1,1,1,1},
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- -- latitude text
+	-- text_draw {
+		-- position = {240, 130, 190, 140},
+		-- text = function()
+			-- return latitude_show
+		-- end,
+		-- font = text_font,
+		-- color = {1,1,1,1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 
-	-- longtitude text
-	text_draw {
-		position = {240, 70, 190, 140},
-		text = function()
-			return longtitude_show
-		end,
-		font = text_font,
-		color = {1,1,1,1},
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- -- longtitude text
+	-- text_draw {
+		-- position = {240, 70, 190, 140},
+		-- text = function()
+			-- return longtitude_show
+		-- end,
+		-- font = text_font,
+		-- color = {1,1,1,1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 	
-	-- time text
-	text_draw {
-		position = {525, 342, 190, 140},
-		text = function()
-			return time_show
-		end,
-		font = text_font,
-		color = {1,1,1,1},
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- -- time text
+	-- text_draw {
+		-- position = {525, 342, 190, 140},
+		-- text = function()
+			-- return time_show
+		-- end,
+		-- font = text_font,
+		-- color = {1,1,1,1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 
-	-- speed text
-	text_draw {
-		position = {250, 342, 190, 140},
-		text = function()
-			return speed_text
-		end,
-		font = text_font,
-		color = {1,1,1,1},
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- -- speed text
+	-- text_draw {
+		-- position = {250, 342, 190, 140},
+		-- text = function()
+			-- return speed_text
+		-- end,
+		-- font = text_font,
+		-- color = {1,1,1,1},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 
 
 	
 	
-	scr_clock_spd {
-		position = {46, 222, 180, 287},
-		speed = function()
-			return speed_scale
-		end,
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- scr_clock_spd {
+		-- position = {46, 222, 180, 287},
+		-- speed = function()
+			-- return speed_scale
+		-- end,
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 	
 	
 	
-	scr_clock_sec {
-		position = {742, 222, 180, 287},
-		seconds = function()
-			return seconds
-		end,
-		visible = function()
-			return screen_work
-		end,
-	},		
+	-- scr_clock_sec {
+		-- position = {742, 222, 180, 287},
+		-- seconds = function()
+			-- return seconds
+		-- end,
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },		
 	
 	
-	scr_clock_crs {
-		position = {245, 580, 480, 94},
-		course = function()
-			return course
-		end,
-		visible = function()
-			return screen_work
-		end,
-	},	
+	-- scr_clock_crs {
+		-- position = {245, 580, 480, 94},
+		-- course = function()
+			-- return course
+		-- end,
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },	
 	
-	-- screen background (mask)
-	textureLit {
-		position = {0, 0, size[1], size[2]},
-		image = get(screen_img_img),
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- -- screen background (mask)
+	-- textureLit {
+		-- position = {0, 0, size[1], size[2]},
+		-- image = get(screen_img_img),
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 
 
 	

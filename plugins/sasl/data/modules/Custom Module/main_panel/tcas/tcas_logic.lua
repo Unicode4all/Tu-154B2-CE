@@ -67,84 +67,88 @@ defineProperty("cas_alt_fail", globalPropertyi("tu154b2/custom/tcas/tcas_alt_fai
 defineProperty("msl_true", globalPropertyf("sim/flightmodel/position/elevation"))
 vbe_msl = globalPropertyf("tu154b2/custom/gauges/alt/vbe_msl")
 xpdr_altitude = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
+tcas_filter =globalPropertyi("sim/cockpit2/radios/actuators/tcas_filter")
 
 
 -- other aircrafts
-defineProperty("acf_1_x", globalPropertyf("sim/multiplayer/position/plane1_x"))  -- x
-defineProperty("acf_1_y", globalPropertyf("sim/multiplayer/position/plane1_y"))  -- x
-defineProperty("acf_1_z", globalPropertyf("sim/multiplayer/position/plane1_z"))  -- x
+acf_1_x = globalPropertyfa("sim/cockpit2/tcas/targets/position/x")
+acf_1_y = globalPropertyfa("sim/cockpit2/tcas/targets/position/y")
+acf_1_z = globalPropertyfa("sim/cockpit2/tcas/targets/position/z")
+acf_1_m = globalPropertyfa("sim/cockpit2/tcas/targets/threat")
+acf_1_vs = globalPropertyfa("sim/cockpit2/tcas/targets/position/vertical_speed")
+acf_1_el = globalPropertyfa("sim/cockpit2/tcas/targets/position/ele")
 
-defineProperty("acf_2_x", globalPropertyf("sim/multiplayer/position/plane2_x"))  -- x
-defineProperty("acf_2_y", globalPropertyf("sim/multiplayer/position/plane2_y"))  -- x
-defineProperty("acf_2_z", globalPropertyf("sim/multiplayer/position/plane2_z"))  -- x
+-- defineProperty("acf_2_x", globalPropertyf("sim/multiplayer/position/plane2_x"))  -- x
+-- defineProperty("acf_2_y", globalPropertyf("sim/multiplayer/position/plane2_y"))  -- x
+-- defineProperty("acf_2_z", globalPropertyf("sim/multiplayer/position/plane2_z"))  -- x
 
-defineProperty("acf_3_x", globalPropertyf("sim/multiplayer/position/plane3_x"))  -- x
-defineProperty("acf_3_y", globalPropertyf("sim/multiplayer/position/plane3_y"))  -- x
-defineProperty("acf_3_z", globalPropertyf("sim/multiplayer/position/plane3_z"))  -- x
+-- defineProperty("acf_3_x", globalPropertyf("sim/multiplayer/position/plane3_x"))  -- x
+-- defineProperty("acf_3_y", globalPropertyf("sim/multiplayer/position/plane3_y"))  -- x
+-- defineProperty("acf_3_z", globalPropertyf("sim/multiplayer/position/plane3_z"))  -- x
 
-defineProperty("acf_4_x", globalPropertyf("sim/multiplayer/position/plane4_x"))  -- x
-defineProperty("acf_4_y", globalPropertyf("sim/multiplayer/position/plane4_y"))  -- x
-defineProperty("acf_4_z", globalPropertyf("sim/multiplayer/position/plane4_z"))  -- x
+-- defineProperty("acf_4_x", globalPropertyf("sim/multiplayer/position/plane4_x"))  -- x
+-- defineProperty("acf_4_y", globalPropertyf("sim/multiplayer/position/plane4_y"))  -- x
+-- defineProperty("acf_4_z", globalPropertyf("sim/multiplayer/position/plane4_z"))  -- x
 
-defineProperty("acf_5_x", globalPropertyf("sim/multiplayer/position/plane5_x"))  -- x
-defineProperty("acf_5_y", globalPropertyf("sim/multiplayer/position/plane5_y"))  -- x
-defineProperty("acf_5_z", globalPropertyf("sim/multiplayer/position/plane5_z"))  -- x
+-- defineProperty("acf_5_x", globalPropertyf("sim/multiplayer/position/plane5_x"))  -- x
+-- defineProperty("acf_5_y", globalPropertyf("sim/multiplayer/position/plane5_y"))  -- x
+-- defineProperty("acf_5_z", globalPropertyf("sim/multiplayer/position/plane5_z"))  -- x
 
-defineProperty("acf_6_x", globalPropertyf("sim/multiplayer/position/plane6_x"))  -- x
-defineProperty("acf_6_y", globalPropertyf("sim/multiplayer/position/plane6_y"))  -- x
-defineProperty("acf_6_z", globalPropertyf("sim/multiplayer/position/plane6_z"))  -- x
+-- defineProperty("acf_6_x", globalPropertyf("sim/multiplayer/position/plane6_x"))  -- x
+-- defineProperty("acf_6_y", globalPropertyf("sim/multiplayer/position/plane6_y"))  -- x
+-- defineProperty("acf_6_z", globalPropertyf("sim/multiplayer/position/plane6_z"))  -- x
 
-defineProperty("acf_7_x", globalPropertyf("sim/multiplayer/position/plane7_x"))  -- x
-defineProperty("acf_7_y", globalPropertyf("sim/multiplayer/position/plane7_y"))  -- x
-defineProperty("acf_7_z", globalPropertyf("sim/multiplayer/position/plane7_z"))  -- x
+-- defineProperty("acf_7_x", globalPropertyf("sim/multiplayer/position/plane7_x"))  -- x
+-- defineProperty("acf_7_y", globalPropertyf("sim/multiplayer/position/plane7_y"))  -- x
+-- defineProperty("acf_7_z", globalPropertyf("sim/multiplayer/position/plane7_z"))  -- x
 
-defineProperty("acf_8_x", globalPropertyf("sim/multiplayer/position/plane8_x"))  -- x
-defineProperty("acf_8_y", globalPropertyf("sim/multiplayer/position/plane8_y"))  -- x
-defineProperty("acf_8_z", globalPropertyf("sim/multiplayer/position/plane8_z"))  -- x
+-- defineProperty("acf_8_x", globalPropertyf("sim/multiplayer/position/plane8_x"))  -- x
+-- defineProperty("acf_8_y", globalPropertyf("sim/multiplayer/position/plane8_y"))  -- x
+-- defineProperty("acf_8_z", globalPropertyf("sim/multiplayer/position/plane8_z"))  -- x
 
-defineProperty("acf_9_x", globalPropertyf("sim/multiplayer/position/plane9_x"))  -- x
-defineProperty("acf_9_y", globalPropertyf("sim/multiplayer/position/plane9_y"))  -- x
-defineProperty("acf_9_z", globalPropertyf("sim/multiplayer/position/plane9_z"))  -- x
+-- defineProperty("acf_9_x", globalPropertyf("sim/multiplayer/position/plane9_x"))  -- x
+-- defineProperty("acf_9_y", globalPropertyf("sim/multiplayer/position/plane9_y"))  -- x
+-- defineProperty("acf_9_z", globalPropertyf("sim/multiplayer/position/plane9_z"))  -- x
 
-defineProperty("acf_10_x", globalPropertyf("sim/multiplayer/position/plane10_x"))  -- x
-defineProperty("acf_10_y", globalPropertyf("sim/multiplayer/position/plane10_y"))  -- x
-defineProperty("acf_10_z", globalPropertyf("sim/multiplayer/position/plane10_z"))  -- x
+-- defineProperty("acf_10_x", globalPropertyf("sim/multiplayer/position/plane10_x"))  -- x
+-- defineProperty("acf_10_y", globalPropertyf("sim/multiplayer/position/plane10_y"))  -- x
+-- defineProperty("acf_10_z", globalPropertyf("sim/multiplayer/position/plane10_z"))  -- x
 
-defineProperty("acf_11_x", globalPropertyf("sim/multiplayer/position/plane11_x"))  -- x
-defineProperty("acf_11_y", globalPropertyf("sim/multiplayer/position/plane11_y"))  -- x
-defineProperty("acf_11_z", globalPropertyf("sim/multiplayer/position/plane11_z"))  -- x
+-- defineProperty("acf_11_x", globalPropertyf("sim/multiplayer/position/plane11_x"))  -- x
+-- defineProperty("acf_11_y", globalPropertyf("sim/multiplayer/position/plane11_y"))  -- x
+-- defineProperty("acf_11_z", globalPropertyf("sim/multiplayer/position/plane11_z"))  -- x
 
-defineProperty("acf_12_x", globalPropertyf("sim/multiplayer/position/plane12_x"))  -- x
-defineProperty("acf_12_y", globalPropertyf("sim/multiplayer/position/plane12_y"))  -- x
-defineProperty("acf_12_z", globalPropertyf("sim/multiplayer/position/plane12_z"))  -- x
+-- defineProperty("acf_12_x", globalPropertyf("sim/multiplayer/position/plane12_x"))  -- x
+-- defineProperty("acf_12_y", globalPropertyf("sim/multiplayer/position/plane12_y"))  -- x
+-- defineProperty("acf_12_z", globalPropertyf("sim/multiplayer/position/plane12_z"))  -- x
 
-defineProperty("acf_13_x", globalPropertyf("sim/multiplayer/position/plane13_x"))  -- x
-defineProperty("acf_13_y", globalPropertyf("sim/multiplayer/position/plane13_y"))  -- x
-defineProperty("acf_13_z", globalPropertyf("sim/multiplayer/position/plane13_z"))  -- x
+-- defineProperty("acf_13_x", globalPropertyf("sim/multiplayer/position/plane13_x"))  -- x
+-- defineProperty("acf_13_y", globalPropertyf("sim/multiplayer/position/plane13_y"))  -- x
+-- defineProperty("acf_13_z", globalPropertyf("sim/multiplayer/position/plane13_z"))  -- x
 
-defineProperty("acf_14_x", globalPropertyf("sim/multiplayer/position/plane14_x"))  -- x
-defineProperty("acf_14_y", globalPropertyf("sim/multiplayer/position/plane14_y"))  -- x
-defineProperty("acf_14_z", globalPropertyf("sim/multiplayer/position/plane14_z"))  -- x
+-- defineProperty("acf_14_x", globalPropertyf("sim/multiplayer/position/plane14_x"))  -- x
+-- defineProperty("acf_14_y", globalPropertyf("sim/multiplayer/position/plane14_y"))  -- x
+-- defineProperty("acf_14_z", globalPropertyf("sim/multiplayer/position/plane14_z"))  -- x
 
-defineProperty("acf_15_x", globalPropertyf("sim/multiplayer/position/plane15_x"))  -- x
-defineProperty("acf_15_y", globalPropertyf("sim/multiplayer/position/plane15_y"))  -- x
-defineProperty("acf_15_z", globalPropertyf("sim/multiplayer/position/plane15_z"))  -- x
+-- defineProperty("acf_15_x", globalPropertyf("sim/multiplayer/position/plane15_x"))  -- x
+-- defineProperty("acf_15_y", globalPropertyf("sim/multiplayer/position/plane15_y"))  -- x
+-- defineProperty("acf_15_z", globalPropertyf("sim/multiplayer/position/plane15_z"))  -- x
 
-defineProperty("acf_16_x", globalPropertyf("sim/multiplayer/position/plane16_x"))  -- x
-defineProperty("acf_16_y", globalPropertyf("sim/multiplayer/position/plane16_y"))  -- x
-defineProperty("acf_16_z", globalPropertyf("sim/multiplayer/position/plane16_z"))  -- x
+-- defineProperty("acf_16_x", globalPropertyf("sim/multiplayer/position/plane16_x"))  -- x
+-- defineProperty("acf_16_y", globalPropertyf("sim/multiplayer/position/plane16_y"))  -- x
+-- defineProperty("acf_16_z", globalPropertyf("sim/multiplayer/position/plane16_z"))  -- x
 
-defineProperty("acf_17_x", globalPropertyf("sim/multiplayer/position/plane17_x"))  -- x
-defineProperty("acf_17_y", globalPropertyf("sim/multiplayer/position/plane17_y"))  -- x
-defineProperty("acf_17_z", globalPropertyf("sim/multiplayer/position/plane17_z"))  -- x
+-- defineProperty("acf_17_x", globalPropertyf("sim/multiplayer/position/plane17_x"))  -- x
+-- defineProperty("acf_17_y", globalPropertyf("sim/multiplayer/position/plane17_y"))  -- x
+-- defineProperty("acf_17_z", globalPropertyf("sim/multiplayer/position/plane17_z"))  -- x
 
-defineProperty("acf_18_x", globalPropertyf("sim/multiplayer/position/plane18_x"))  -- x
-defineProperty("acf_18_y", globalPropertyf("sim/multiplayer/position/plane18_y"))  -- x
-defineProperty("acf_18_z", globalPropertyf("sim/multiplayer/position/plane18_z"))  -- x
+-- defineProperty("acf_18_x", globalPropertyf("sim/multiplayer/position/plane18_x"))  -- x
+-- defineProperty("acf_18_y", globalPropertyf("sim/multiplayer/position/plane18_y"))  -- x
+-- defineProperty("acf_18_z", globalPropertyf("sim/multiplayer/position/plane18_z"))  -- x
 
-defineProperty("acf_19_x", globalPropertyf("sim/multiplayer/position/plane19_x"))  -- x
-defineProperty("acf_19_y", globalPropertyf("sim/multiplayer/position/plane19_y"))  -- x
-defineProperty("acf_19_z", globalPropertyf("sim/multiplayer/position/plane19_z"))  -- x
+-- defineProperty("acf_19_x", globalPropertyf("sim/multiplayer/position/plane19_x"))  -- x
+-- defineProperty("acf_19_y", globalPropertyf("sim/multiplayer/position/plane19_y"))  -- x
+-- defineProperty("acf_19_z", globalPropertyf("sim/multiplayer/position/plane19_z"))  -- x
 
 -- defineProperty("acf_20_x", globalPropertyf("sim/multiplayer/position/plane20_x"))  -- x
 -- defineProperty("acf_20_y", globalPropertyf("sim/multiplayer/position/plane20_y"))  -- x
@@ -186,11 +190,11 @@ for i = 1, 20, 1 do
 end
 
 
-local acf_local_last_tbl = {} -- source table in decarts coordinates
+-- local acf_local_last_tbl = {} -- source table in decarts coordinates
 
-for i = 1, 20, 1 do
-	table.insert(acf_local_last_tbl, {[1] = 0, [2] = 0, [3] = 0})
-end
+-- for i = 1, 20, 1 do
+	-- table.insert(acf_local_last_tbl, {[1] = 0, [2] = 0, [3] = 0})
+-- end
 
 
 -----
@@ -208,19 +212,19 @@ for i = 1, 20, 1 do
 end
 
 -----
-local tcas_prev_tbl = {} -- previous state for calculations
+-- local tcas_prev_tbl = {} -- previous state for calculations
 
-for i = 1, 20, 1 do
-	table.insert(tcas_prev_tbl, {[1] = 0, [2] = 0, [3] = 0}) -- 1 - forward, 2 - right, 3 - alt
-end
+-- for i = 1, 20, 1 do
+	-- table.insert(tcas_prev_tbl, {[1] = 0, [2] = 0, [3] = 0}) -- 1 - forward, 2 - right, 3 - alt
+-- end
 
 local refresh_counter = 0
 
-local intruders_tbl = {} -- a table for collecting intruders
-intruders_tbl = {
-{["Tau"] = 0, ["alt"] = 0, ["cl_alt"] = 0, ["rate"] = 0}, -- 1 = Tau, 2 = current distance, 3 = close distance, 4 = current alt, 5 = close alt, 6 = current rate
+-- local intruders_tbl = {} -- a table for collecting intruders
+-- intruders_tbl = {
+-- {["Tau"] = 0, ["alt"] = 0, ["cl_alt"] = 0, ["rate"] = 0}, -- 1 = Tau, 2 = current distance, 3 = close distance, 4 = current alt, 5 = close alt, 6 = current rate
 
-}
+-- }
 
 
 
@@ -254,81 +258,84 @@ local power = false
 local function refresh_data()
 			
 			-- fill local coordinates table
-			acf_local_tbl[1][1] = get(acf_1_x)
-			acf_local_tbl[1][2] = get(acf_1_y)
-			acf_local_tbl[1][3] = get(acf_1_z)
+			acf_local_tbl_x = get(acf_1_x)
+			acf_local_tbl_y = get(acf_1_y)
+			acf_local_tbl_z = get(acf_1_z)
+			acf_local_tbl_m = get(acf_1_m)
+			acf_local_tbl_vs = get(acf_1_vs)
+			acf_local_tbl_el = get(acf_1_el)
 			
-			acf_local_tbl[2][1] = get(acf_2_x)
-			acf_local_tbl[2][2] = get(acf_2_y)
-			acf_local_tbl[2][3] = get(acf_2_z)
+			-- acf_local_tbl[2][1] = get(acf_2_x)
+			-- acf_local_tbl[2][2] = get(acf_2_y)
+			-- acf_local_tbl[2][3] = get(acf_2_z)
 
-			acf_local_tbl[3][1] = get(acf_3_x)
-			acf_local_tbl[3][2] = get(acf_3_y)
-			acf_local_tbl[3][3] = get(acf_3_z)
+			-- acf_local_tbl[3][1] = get(acf_3_x)
+			-- acf_local_tbl[3][2] = get(acf_3_y)
+			-- acf_local_tbl[3][3] = get(acf_3_z)
 			
-			acf_local_tbl[4][1] = get(acf_4_x)
-			acf_local_tbl[4][2] = get(acf_4_y)
-			acf_local_tbl[4][3] = get(acf_4_z)
+			-- acf_local_tbl[4][1] = get(acf_4_x)
+			-- acf_local_tbl[4][2] = get(acf_4_y)
+			-- acf_local_tbl[4][3] = get(acf_4_z)
 			
-			acf_local_tbl[5][1] = get(acf_5_x)
-			acf_local_tbl[5][2] = get(acf_5_y)
-			acf_local_tbl[5][3] = get(acf_5_z)
+			-- acf_local_tbl[5][1] = get(acf_5_x)
+			-- acf_local_tbl[5][2] = get(acf_5_y)
+			-- acf_local_tbl[5][3] = get(acf_5_z)
 			
-			acf_local_tbl[6][1] = get(acf_6_x)
-			acf_local_tbl[6][2] = get(acf_6_y)
-			acf_local_tbl[6][3] = get(acf_6_z)
+			-- acf_local_tbl[6][1] = get(acf_6_x)
+			-- acf_local_tbl[6][2] = get(acf_6_y)
+			-- acf_local_tbl[6][3] = get(acf_6_z)
 			
-			acf_local_tbl[7][1] = get(acf_7_x)
-			acf_local_tbl[7][2] = get(acf_7_y)
-			acf_local_tbl[7][3] = get(acf_7_z)
+			-- acf_local_tbl[7][1] = get(acf_7_x)
+			-- acf_local_tbl[7][2] = get(acf_7_y)
+			-- acf_local_tbl[7][3] = get(acf_7_z)
 			
-			acf_local_tbl[8][1] = get(acf_8_x)
-			acf_local_tbl[8][2] = get(acf_8_y)
-			acf_local_tbl[8][3] = get(acf_8_z)
+			-- acf_local_tbl[8][1] = get(acf_8_x)
+			-- acf_local_tbl[8][2] = get(acf_8_y)
+			-- acf_local_tbl[8][3] = get(acf_8_z)
 			
-			acf_local_tbl[9][1] = get(acf_9_x)
-			acf_local_tbl[9][2] = get(acf_9_y)
-			acf_local_tbl[9][3] = get(acf_9_z)
+			-- acf_local_tbl[9][1] = get(acf_9_x)
+			-- acf_local_tbl[9][2] = get(acf_9_y)
+			-- acf_local_tbl[9][3] = get(acf_9_z)
 			
-			acf_local_tbl[10][1] = get(acf_10_x)
-			acf_local_tbl[10][2] = get(acf_10_y)
-			acf_local_tbl[10][3] = get(acf_10_z)
+			-- acf_local_tbl[10][1] = get(acf_10_x)
+			-- acf_local_tbl[10][2] = get(acf_10_y)
+			-- acf_local_tbl[10][3] = get(acf_10_z)
 			
-			acf_local_tbl[11][1] = get(acf_11_x)
-			acf_local_tbl[11][2] = get(acf_11_y)
-			acf_local_tbl[11][3] = get(acf_11_z)
+			-- acf_local_tbl[11][1] = get(acf_11_x)
+			-- acf_local_tbl[11][2] = get(acf_11_y)
+			-- acf_local_tbl[11][3] = get(acf_11_z)
 			
-			acf_local_tbl[12][1] = get(acf_12_x)
-			acf_local_tbl[12][2] = get(acf_12_y)
-			acf_local_tbl[12][3] = get(acf_12_z)
+			-- acf_local_tbl[12][1] = get(acf_12_x)
+			-- acf_local_tbl[12][2] = get(acf_12_y)
+			-- acf_local_tbl[12][3] = get(acf_12_z)
 			
-			acf_local_tbl[13][1] = get(acf_13_x)
-			acf_local_tbl[13][2] = get(acf_13_y)
-			acf_local_tbl[13][3] = get(acf_13_z)
+			-- acf_local_tbl[13][1] = get(acf_13_x)
+			-- acf_local_tbl[13][2] = get(acf_13_y)
+			-- acf_local_tbl[13][3] = get(acf_13_z)
 			
-			acf_local_tbl[14][1] = get(acf_14_x)
-			acf_local_tbl[14][2] = get(acf_14_y)
-			acf_local_tbl[14][3] = get(acf_14_z)
+			-- acf_local_tbl[14][1] = get(acf_14_x)
+			-- acf_local_tbl[14][2] = get(acf_14_y)
+			-- acf_local_tbl[14][3] = get(acf_14_z)
 			
-			acf_local_tbl[15][1] = get(acf_15_x)
-			acf_local_tbl[15][2] = get(acf_15_y)
-			acf_local_tbl[15][3] = get(acf_15_z)
+			-- acf_local_tbl[15][1] = get(acf_15_x)
+			-- acf_local_tbl[15][2] = get(acf_15_y)
+			-- acf_local_tbl[15][3] = get(acf_15_z)
 			
-			acf_local_tbl[16][1] = get(acf_16_x)
-			acf_local_tbl[16][2] = get(acf_16_y)
-			acf_local_tbl[16][3] = get(acf_16_z)
+			-- acf_local_tbl[16][1] = get(acf_16_x)
+			-- acf_local_tbl[16][2] = get(acf_16_y)
+			-- acf_local_tbl[16][3] = get(acf_16_z)
 			
-			acf_local_tbl[17][1] = get(acf_17_x)
-			acf_local_tbl[17][2] = get(acf_17_y)
-			acf_local_tbl[17][3] = get(acf_17_z)
+			-- acf_local_tbl[17][1] = get(acf_17_x)
+			-- acf_local_tbl[17][2] = get(acf_17_y)
+			-- acf_local_tbl[17][3] = get(acf_17_z)
 			
-			acf_local_tbl[18][1] = get(acf_18_x)
-			acf_local_tbl[18][2] = get(acf_18_y)
-			acf_local_tbl[18][3] = get(acf_18_z)
+			-- acf_local_tbl[18][1] = get(acf_18_x)
+			-- acf_local_tbl[18][2] = get(acf_18_y)
+			-- acf_local_tbl[18][3] = get(acf_18_z)
 			
-			acf_local_tbl[19][1] = get(acf_19_x)
-			acf_local_tbl[19][2] = get(acf_19_y)
-			acf_local_tbl[19][3] = get(acf_19_z)
+			-- acf_local_tbl[19][1] = get(acf_19_x)
+			-- acf_local_tbl[19][2] = get(acf_19_y)
+			-- acf_local_tbl[19][3] = get(acf_19_z)
 			
 			-- acf_local_tbl[20][1] = get(acf_20_x)
 			-- acf_local_tbl[20][2] = get(acf_20_y)
@@ -345,14 +352,14 @@ local function refresh_data()
 			
 			for i = 1, 20, 1 do
 				-- bearing				
-				acf_circ_tbl[i][1] = math.deg(math.atan2(acf_local_tbl[i][1] - local_x, -acf_local_tbl[i][3] + local_z)) - cur
+				acf_circ_tbl[i][1] = math.deg(math.atan2(acf_local_tbl_x[i] - local_x, -acf_local_tbl_z[i] + local_z)) - cur
 				while acf_circ_tbl[i][1] > 180 do acf_circ_tbl[i][1] = acf_circ_tbl[i][1] - 360 end
 				while acf_circ_tbl[i][1] < -180 do acf_circ_tbl[i][1] = acf_circ_tbl[i][1] + 360 end
 				--dist
-				acf_circ_tbl[i][2] = math.sqrt( (acf_local_tbl[i][1] - local_x)^2 + (acf_local_tbl[i][3] - local_z)^2 )
+				acf_circ_tbl[i][2] = math.sqrt( (acf_local_tbl_x[i] - local_x)^2 + (acf_local_tbl_z[i] - local_z)^2 )
 				-- altitude
-				local lat, lon, alt = localToWorld(acf_local_tbl[i][1], acf_local_tbl[i][2], acf_local_tbl[i][3])
-				acf_circ_tbl[i][3] = alt - local_alt
+				-- local lat, lon, alt = localToWorld(acf_local_tbl_x[i], acf_local_tbl_y[i], acf_local_tbl_z[i])
+				-- acf_circ_tbl[i][3] = acf_local_tbl_el[i]
 
 			end
 			
@@ -367,25 +374,75 @@ local function coor_calc() -- recalculate coordinates
 	for i = 1, 20, 1 do
 		local bearing = acf_circ_tbl[i][1]
 		local dist = acf_circ_tbl[i][2]
-		local alt = acf_circ_tbl[i][3]
+		local alt = acf_local_tbl_el[i]
 		
 		local y = dist * math.cos(math.rad(bearing))
 		local x = dist * math.sin(math.rad(bearing))
 		local z = alt
-		local show = bool2int(acf_local_tbl[i][1] ~= 0 and acf_local_tbl[i][2] ~= 0 and acf_local_tbl[i][3] ~= 0)
+		local show = bool2int(acf_local_tbl_x[i] ~= 0 and acf_local_tbl_y[i] ~= 0 and acf_local_tbl_z[i] ~= 0)
 		
-		if (alt > 0 and level < 0) or (alt < 0 and level > 0) then show = 0 end
+		--if (alt > 0 and level < 0) or (alt < 0 and level > 0) then show = 0 end
 		
 		--print("coor calc", x, y, z, show)
 		
 		tcas_show_tbl[i][1] = x
 		tcas_show_tbl[i][2] = y
 		tcas_show_tbl[i][3] = z
-		tcas_show_tbl[i][4] = show
+		-- if i==1 then
+			-- tcas_show_tbl[i][4] = -2
+		-- else
+		tcas_show_tbl[i][4] = acf_local_tbl_m[i]
+		--end
 		tcas_show_tbl[i][5] = 0
-		tcas_show_tbl[i][6] = ""
+		if acf_local_tbl_vs[i]<=-500 then
+			tcas_show_tbl[i][5] = -1
+		elseif acf_local_tbl_vs[i]>=500 then
+			tcas_show_tbl[i][5] = 1
+		end
+		local alt_own=get(vbe_msl)
+		local alt_show = math.floor((alt * 3.280839895013-alt_own) / 100)
+		local sign_mark = "+"
+		if alt_show < 0 then sign_mark = "-" end
+		if get(fl_mode)==0 then
+			if level==0 and math.abs(alt_show) <= 27 then
+				alt_show = string.format("%s%s", "", math.abs(alt_show) )
+				if string.len(alt_show) == 1 then alt_show = string.format("%s%s", "0", alt_show ) end
+				
+				alt_show = sign_mark..alt_show
+			elseif level==-1 and alt_show >= -90  and alt_show <= 27 then
+				alt_show = string.format("%s%s", "", math.abs(alt_show) )
+				if string.len(alt_show) == 1 then alt_show = string.format("%s%s", "0", alt_show ) end
+				
+				alt_show = sign_mark..alt_show
+			elseif level==1 and alt_show <= 90  and alt_show >= -27 then
+				alt_show = string.format("%s%s", "", math.abs(alt_show) )
+				if string.len(alt_show) == 1 then alt_show = string.format("%s%s", "0", alt_show ) end
+				
+				alt_show = sign_mark..alt_show
+			else
+				alt_show = ""
+				tcas_show_tbl[i][5] = 0
+			end			
+			tcas_show_tbl[i][6] = alt_show
+		else
+			alt_show=math.floor((alt) * 3.280839895013 / 100)
+			alt_show = string.format("%s%s", "", alt_show )
+			if string.len(alt_show) == 1 then 
+				alt_show = string.format("%s%s", "00", alt_show ) 
+			elseif string.len(alt_show) == 2 then
+				alt_show = string.format("%s%s", "0", alt_show ) 
+			end
+			--alt_show = sign_mark..alt_show
+			tcas_show_tbl[i][6] = alt_show
+		end
 		if show == 0 then tcas_show_tbl[i][7] = false end
-		
+		local filt=0
+		if level==1 then
+			filt=2
+		elseif level==-1 then
+			filt=3
+		end
+		set(tcas_filter,filt)
 		
 		
 	end
@@ -714,10 +771,14 @@ if MASTER then
 	set(mode_set, tcas_mode) -- режим TCAS. -1 = test, 0 - stby, 1 = alt off, 2 = alt on, 3 = TA, 4 = TARA	4
 	if get(kontur90~=0) then
 		if get(tra_transponder)>0 then
-			if get(xpdr_fail)==0 then
-				set(xpdr_mode,math.min(3+5*(1-tcas_fail),tcas_int_mode))
+			if tcas_mode==-1 then
+				set(xpdr_mode,4)
 			else
-				set(xpdr_mode,0)
+				if get(xpdr_fail)==0 then
+					set(xpdr_mode,math.min(3+5*(1-tcas_fail),tcas_int_mode))
+				else
+					set(xpdr_mode,0)
+				end
 			end
 		else
 			set(xpdr_mode,so72_mode)
@@ -1042,12 +1103,12 @@ function update()
 	--set(xpdr_altitude,alt_xmit)
 	
 	-- refresh table once per second
-	if refresh_counter >= 1 then
+	if refresh_counter >= 1 and get(xpdr_mode)>5 or get(xpdr_mode)==4 then
 		
 		refresh_data()
 		coor_calc()
-		mark_calc()
-		tcas_ra_calc()
+		--mark_calc()
+		--tcas_ra_calc()
 
 		refresh_counter = 0
 	end

@@ -72,7 +72,12 @@ defineProperty("rp_fail", globalPropertyi("tu154b2/custom/taws/rppz_fail"))
 defineProperty("rv_fail", globalPropertyi("tu154b2/custom/failures/rv2_fail"))
 defineProperty("vbe_fail", globalPropertyi("sim/operation/failures/rel_cop_alt"))
 show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
-
+terrain_cpt = globalPropertyi("sim/cockpit2/EFIS/EFIS_terrain_on")
+terrain_fo = globalPropertyi("sim/cockpit2/EFIS/EFIS_terrain_on_copilot")
+kont_left = globalPropertyi("sim/custom/kontur/left_taws")
+kont_right = globalPropertyi("sim/custom/kontur/right_taws")
+rdy = globalPropertyi("tu154b2/custom/taws/disp_rdy")
+bgmk_fail = globalPropertyi("tu154b2/custom/tks/fail_left")
 local but_view_last = 0
 local but_empt_last = 0
 
@@ -83,6 +88,7 @@ local up_counter = 0
 local sns_timer=0
 local sppz_fail=0
 local rppz_fail=0
+local taws_rdy=0
 function update()
 
 local MASTER = get(ismaster) ~= 1	
@@ -97,7 +103,7 @@ if MASTER then
 		set(distance_set, 1)
 		set(taws_cc, 0)
 		if sns_timer>0 then
-			sns_timer=sns_timer-passed/10
+			sns_timer=sns_timer-passed
 		end
 		but_view_last = 0
 		but_empt_last = 0
@@ -107,9 +113,13 @@ if MASTER then
 		
 		sppz_fail=1
 		rppz_fail=1
+		taws_rdy=0
+		set(terrain_cpt,0)
+		set(terrain_fo,0)
 	else
-		sns_timer=sns_timer+passed
-		
+		if sns_timer<20 then
+			sns_timer=sns_timer+passed
+		end
 		local current_mode = get(mode_set)
 		
 		if current_mode == 0 then set(mode_set, 4) end -- system just started
@@ -121,44 +131,44 @@ if MASTER then
 		local svs_power = get(svs_on) == 1 and get(bus27_volt) > 13 and get(bus36_volt) > 30 and get(bus115_1_volt) > 100 and get(svs_fail) == 0
 		local vbe_power=get(bus27_volt) > 13 and get(vbe_2_on) == 1 and get(vbe_fail) < 6
 		local rv_power=get(bus27_volt_r) > 13 and get(bus115_volt) > 100 and get(rv_on) == 1 and get(rv_fail) == 0
-		sppz_fail=1-bool2int(rv_power and vbe_power and svs_power)
-		rppz_fail=bool2int(sns_timer<16 or get(diss_mode)==0)
+		sppz_fail=1-bool2int((rv_power and vbe_power and svs_power) or current_mode == 5 )
+		rppz_fail=bool2int(sns_timer<9 or get(diss_mode) == 0 or current_mode == 5 or get(bgmk_fail) == 1)
 		if (current_mode > 0 and current_mode < 4) or current_mode == 10 then
-			if sns_timer<16 then
+			if sns_timer<9 then
 				set(mode_set, 3)
 			end
             -- if not sources_taws then              
 				-- sppz_fail=1
-            if sns_timer>16 and get(mode_set) == 3 then
+            if sns_timer>9 and get(mode_set) == 3 then
                 set(mode_set,1)				
             end
                 
-			if get(egpws_control) == 1 and get(on_ground) == 1 then -- test mode
+			if get(egpws_control) == 1 and get(on_ground) == 1 and current_mode~=5 then -- test mode
 				set(mode_set, 5) 
-				sppz_fail=1
-				rppz_fail=1
+				-- sppz_fail=1
+				-- rppz_fail=1
 			end 
 			
 			
 
-			if but_view_now == 1 and but_view_now ~= but_view_last then
-				if current_mode ~= 1 then set(mode_set, 1)
-				else set(mode_set, 2) end
-				up_counter = 0
-			end
+			-- if but_view_now == 1 and but_view_now ~= but_view_last then
+				-- if current_mode ~= 1 then set(mode_set, 1)
+				-- else set(mode_set, 2) end
+				-- up_counter = 0
+			-- end
 			
 			
-			if but_up_now == 1 and but_up_now ~= but_rng_up_last then
-				local a = math.min(4, get(distance_set) + 1)
-				set(distance_set, a)
-				up_counter = 0
-			end
+			-- if but_up_now == 1 and but_up_now ~= but_rng_up_last then
+				-- local a = math.min(4, get(distance_set) + 1)
+				-- set(distance_set, a)
+				-- up_counter = 0
+			-- end
 			
-			if but_down_now == 1 and but_down_now ~= but_rng_dn_last then
-				local a = math.max(0, get(distance_set) - 1)
-				set(distance_set, a)
-				up_counter = 0
-			end
+			-- if but_down_now == 1 and but_down_now ~= but_rng_dn_last then
+				-- local a = math.max(0, get(distance_set) - 1)
+				-- set(distance_set, a)
+				-- up_counter = 0
+			-- end
 			
 			if get(taws_fail) == 1 or (not svs_power and not rv_power and not vbe_power and get(diss_mode)==0) then 
 				set(mode_set, 10)
@@ -179,9 +189,20 @@ if MASTER then
 
 		but_rng_up_last = but_up_now
 		but_rng_dn_last = but_down_now
-	
+		if get(kont_left)==1 and taws_rdy==1 then
+			set(terrain_cpt,1)
+		else
+			set(terrain_cpt,0)
+		end
+		if get(kont_right)==1 and taws_rdy==1 then
+			set(terrain_fo,1)
+		else
+			set(terrain_fo,0)
+		end
 		set(taws_cc, 1.5)
-	end
+		taws_rdy=bool2int((current_mode == 1 or current_mode == 5) and sns_timer>9)
+	end	
+	set(rdy,taws_rdy)
 	set(sp_fail,sppz_fail)
 	set(rp_fail,rppz_fail)
 end	
