@@ -39,9 +39,9 @@ defineProperty("lamp_test_eng", globalPropertyi("tu154b2/custom/buttons/lamp_tes
 defineProperty("flaps_lever", globalPropertyf("tu154b2/custom/controll/flaps_lever")) -- sim flaps ratio control. use for axis and commands
 defineProperty("gear_lever", globalPropertyi("tu154b2/custom/controll/gear_lever")) -- ручка выпуска шасси. -1 - уборка, 0 - нейтр, +1 - выпуск
 
-anim_rud1 = globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
-anim_rud2 = globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
-anim_rud3 = globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
+anim_rud1 = globalPropertyf("tu154b2/custom/controlls/throttle_1") -- РУД 1
+anim_rud2 = globalPropertyf("tu154b2/custom/controlls/throttle_2") -- РУД 2
+anim_rud3 = globalPropertyf("tu154b2/custom/controlls/throttle_3") -- РУД 3
 
 -- gauges
 defineProperty("stab_ind", globalPropertyf("tu154b2/custom/gauges/misc/stab_ind")) -- индикатор положения стаб
