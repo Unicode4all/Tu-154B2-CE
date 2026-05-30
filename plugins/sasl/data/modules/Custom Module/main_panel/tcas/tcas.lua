@@ -18,6 +18,7 @@ components = {
 	
 	tcas_gau {
 		position = {11, 11, 482, 530},
+		side = 1,
 	},
 
 	tcas_gau {
@@ -31,6 +32,7 @@ components = {
 		vvi_fail = globalPropertyi("sim/operation/failures/rel_cop_vvi"), -- fail
 		vvi = globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_copilot"),
 		static_fail = globalPropertyi("sim/operation/failures/rel_static"),
+		side = 2,
 	},
 	
 	

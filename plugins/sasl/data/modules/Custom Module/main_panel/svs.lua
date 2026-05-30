@@ -48,9 +48,9 @@ defineProperty("temp_t", globalPropertyf("sim/weather/aircraft/temperature_leadi
 defineProperty("true_mach", globalPropertyf("sim/flightmodel/misc/machno"))
 p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 p_q_smoothed = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
-real_alt = globalPropertyi("sim/custom/t154cfg/ppd_icing")
+--real_alt = globalPropertyi("sim/custom/t154cfg/ppd_icing")
 kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th") -- 
-sim_alt = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
+--sim_alt = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
 qnh_set = globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -214,8 +214,8 @@ function update()
 	--p_q_ind=passed/(T_m+passed)*p_q + p_q_ind*T_m/(T_m+passed)
 	
 	if test then -- svs check
-		p_static=21000
-		p_d=11100
+		p_static=19550
+		p_d=10300
 		--altitude=12000
 	end 
 	
@@ -224,19 +224,27 @@ function update()
 	if power then
 		if pwr and get(svs_fail) == 0 then
 			local p_set=get(uvo_press)
-			mach=math.sqrt(2/(1.4-1)*(math.pow(p_d/p_static+1,(1.4-1)/1.4)-1))
+			mach=math.sqrt(2/(1.4-1)*(math.pow(p_d/p_static+1,(1.4-1)/1.4)-1))			
 			local T_stat=(273.15+T_le*(1-bool2int(test)))/(1 + math.pow(mach,2) * (1.4-1)/2)
-			local t_avg=(288.15-T_stat)/2*11000/math.max(11000,altitude)+T_stat
-			if get(real_alt)==1 then	
-				altitude=29.27*t_avg*math.log(101325/p_static)
-				altitude_rel=29.27*t_avg*math.log(p_set*133.322/p_static)
-			else
-				if get(kontur_90th)==0 then
-					set(qnh_set,p_set*0.0393701)
-				end
-				altitude=get(press_alt) * 0.3048	
-				altitude_rel=get(sim_alt) * 0.3048	
+			local t_avg = (288.15+(288.15-0.0065*altitude))/2
+			if p_static< 22630 then
+				t_avg = (288.15-6.5*11)+(288.15-(288.15-6.5*11))/2*11000/altitude
 			end
+			altitude = 29.27*t_avg*math.log(101325/p_static)
+			altitude_rel = 29.27*t_avg*math.log(p_set*133.322/p_static)
+			if get(kontur_90th)==0 then
+				set(qnh_set,p_set*0.0393701)
+			end
+			-- if get(real_alt)==1 then	
+				-- altitude=29.27*t_avg*math.log(101325/p_static)
+				-- altitude_rel=29.27*t_avg*math.log(p_set*133.322/p_static)
+			-- else
+				-- if get(kontur_90th)==0 then
+					-- set(qnh_set,p_set*0.0393701)
+				-- end
+				-- altitude=get(press_alt) * 0.3048	
+				-- altitude_rel=get(sim_alt) * 0.3048	
+			-- end
 			--tas=23.9624*math.sqrt(p_d/p_static*(273.15+T_amb))* 3.6
 			--mach=tas/3.6/math.sqrt(1.4*287.1*(273.15+T_amb))
 			

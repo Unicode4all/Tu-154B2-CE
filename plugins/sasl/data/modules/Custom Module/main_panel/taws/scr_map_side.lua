@@ -11,9 +11,9 @@ brt_handle_fo = globalPropertyf("sim/custom/kontur/kntr_2_brt_sw")
 
 
 -- map parameters
-defineProperty("pos_x", globalPropertyf("sim/flightmodel/position/local_x")) -- longtitude. positive from W to E
-defineProperty("pos_y", globalPropertyf("sim/flightmodel/position/local_y")) -- altitude. positive UP
-defineProperty("pos_z", globalPropertyf("sim/flightmodel/position/local_z")) -- latitude. positive from N to S
+pos_x = globalPropertyf("sim/flightmodel/position/local_x") -- longtitude. positive from W to E
+pos_y = globalPropertyf("sim/flightmodel/position/local_y") -- altitude. positive UP
+pos_z = globalPropertyf("sim/flightmodel/position/local_z") -- latitude. positive from N to S
 
 defineProperty("speed", globalPropertyf("tu154b2/custom/nvu/diss_groundspeed"))
 defineProperty("course", globalPropertyf("tu154b2/custom/tks/kln_psi")) -- angle between -Z axis and airplane's nose
@@ -22,9 +22,9 @@ defineProperty("elevation", globalPropertyf("sim/flightmodel/position/elevation"
 
 
 
-gear1_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[0]")  -- deploy of front gear
-gear2_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[1]")  -- deploy of right gear
-gear3_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[2]")  -- deploy of left gear
+-- gear1_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[0]")  -- deploy of front gear
+-- gear2_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[1]")  -- deploy of right gear
+-- gear3_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[2]")  -- deploy of left gear
 
 -- time
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
@@ -32,6 +32,7 @@ defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
 -- defineProperty("arc_array", globalPropertyfa("tu154b2/custom/rls/arc"))
 
 -- images
@@ -46,23 +47,23 @@ kont_left = globalPropertyi("sim/custom/kontur/left_taws")
 kont_right = globalPropertyi("sim/custom/kontur/right_taws")
 rng_left = globalPropertyi("sim/cockpit2/EFIS/map_range")
 rng_right = globalPropertyi("sim/cockpit2/EFIS/map_range_copilot")
-rv5_alt = globalPropertyf("tu154b2/custom/misc/rv5_alt_right")
-deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]") 
-deflection_mtr_3 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]") 
-anim_rud1 = globalPropertyf("tu154b2/custom/controlls/throttle_1") -- РУД 1
-anim_rud2 = globalPropertyf("tu154b2/custom/controlls/throttle_2") -- РУД 2
-anim_rud3 = globalPropertyf("tu154b2/custom/controlls/throttle_3") -- РУД 3
-flap_inn_L = globalPropertyf("sim/flightmodel/controls/wing1l_fla1def") -- inner flaps left
-flap_inn_R = globalPropertyf("sim/flightmodel/controls/wing1r_fla1def") -- inner flaps right
 slip = globalPropertyf("tu154b2/custom/nvu/diss_slip_angle")
 rp_fail = globalPropertyi("tu154b2/custom/taws/rppz_fail")
 rdy = globalPropertyi("tu154b2/custom/taws/disp_rdy")
+phase = globalPropertyi("tu154b2/custom/taws/phase")
+defineProperty("max_m", globalPropertyf("tu154b2/custom/taws/max_l"))
+defineProperty("min_m", globalPropertyf("tu154b2/custom/taws/min_l"))
+defineProperty("max_m_1000",globalPropertyf("tu154b2/custom/taws/max_l_1000"))
+defineProperty("min_m_1000", globalPropertyf("tu154b2/custom/taws/min_l_1000"))
+defineProperty("kont_dist_mode", globalPropertyi("sim/custom/kontur/dist_mode_l"))
 local rows = 60
 local rows_zone = 20 -- number of points for envelope lines
 local flight_phase = 0
 local last_flight_phase = 0
 local low_qlty = false
 local gnd_alt_zne = 0
+local prof_max = 0
+local prof_min = 0
 
 if low_qlty then
 	rows = 30
@@ -207,13 +208,14 @@ function update()
 		plane_x = get(pos_x)
 		plane_y = get(pos_y)
 		plane_z = get(pos_z)
-		LG = get(gear1_deploy) > 0.99 and get(gear2_deploy) > 0.99 and get(gear2_deploy) > 0.99
+		--LG = get(gear1_deploy) > 0.99 and get(gear2_deploy) > 0.99 and get(gear2_deploy) > 0.99
 		
 		local acf_lat, acf_lon, acf_alt = localToWorld(plane_x, plane_y, plane_z)
 		
 		height = distance * 1000
 		
-		
+		prof_max = 0
+		prof_min = 9999
 		
 		for row = 1, rows, 1 do
 			local p_x = plane_x + dir_x * height * row/rows
@@ -227,8 +229,15 @@ function update()
 			
 			--heightTable[row] = locationY + correct - plane_y
 			local lat, lon, alt = localToWorld(locationX, locationY, locationZ)
-			
-			
+			if alt < prof_min then
+				prof_min = alt
+			end
+			if alt > prof_max then
+				prof_max = alt
+			end
+			if row == rows and prof_min == 9999 then
+				prof_min = prof_max
+			end
 			heightTable[row] = alt - acf_alt
 		end	
 		::error::	
@@ -236,26 +245,14 @@ function update()
 		vvi = (elev_now - elev_last2)
 		elev_last2 = elev_now
 		--Warning envelope
-		local flaps = (get(flap_inn_L) > 35 and get(flap_inn_R) > 35)
-		
-		local rv_alt = get(rv5_alt)
-		local gear_touch = get(deflection_mtr_2) > 0.05 or get(deflection_mtr_3) > 0.05
-		local eng_TO = (bool2int(get(anim_rud1) > 0.77) + bool2int(get(anim_rud2)  > 0.77) + bool2int(get(anim_rud3) > 0.77)) >1
-		if gear_touch then 
-			flight_phase = 0  -- on ground
-		elseif LG and eng_TO and not gear_touch and rv_alt < 500 and last_flight_phase == 0 then 
-			flight_phase = 1 -- take off
-		elseif not LG and rv_alt >= 500 then 
-			flight_phase = 2  -- cruise flight
-		elseif (LG or flaps) and rv_alt > 500 then 
-			flight_phase = 3  -- flight near airport
-		elseif LG and flaps and rv_alt <= 500 then 
-			flight_phase = 4  -- approach
-		elseif last_flight_phase == 4 and eng_TO then 
-			flight_phase = 5 -- go around
-		end
-		last_flight_phase = flight_phase
-		
+		local flight_phase = get(phase)
+		-- if capt_side==1 then
+			-- set(db1,prof_min)
+			-- set(db2,prof_max)
+		-- elseif capt_side==0 then
+			-- set(db3,prof_min)
+			-- set(db4,prof_max)
+		-- end
 		dir = math.rad(get(course)+get(slip))
 		local GS_env=math.max(GS,50)
 		-- GS=get(db1)
@@ -367,6 +364,19 @@ function update()
 		end	
 		--set(arc_array,zoneTable2)
 		time_counter = 0
+		-- TAWS display altitudes
+		local elev_max=prof_max*(1+2.28084*bool2int(get(kont_dist_mode) == 1))
+		local elev_min=prof_min*(1+2.28084*bool2int(get(kont_dist_mode) == 1))
+		local altitude_l_max_1000 = math.floor(elev_max * 0.001)
+		local altitude_l_max_100 = math.floor((elev_max - altitude_l_max_1000 * 1000) * 0.2) * 5	
+		
+		local altitude_l_min_1000 = math.floor(elev_min * 0.001)
+		local altitude_l_min_100 = math.floor((elev_min - altitude_l_min_1000 * 1000) * 0.2) * 5		
+		
+		set(max_m_1000,altitude_l_max_1000)
+		set(max_m,altitude_l_max_100)
+		set(min_m_1000,altitude_l_min_1000)
+		set(min_m,altitude_l_min_100)
 	end
 	time_counter = time_counter + passed
 end

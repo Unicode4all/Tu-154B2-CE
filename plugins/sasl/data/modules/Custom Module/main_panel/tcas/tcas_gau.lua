@@ -1,6 +1,7 @@
 -- this is TCAS gauge
 
 size = {482, 530}
+defineProperty("side")
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
 
 -- power and controls
@@ -74,10 +75,10 @@ defineProperty("ra_scale_set", globalPropertyi("sim/cockpit2/tcas/indicators/tca
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 -- fail
 
-defineProperty("vvi_fail", globalPropertyi("sim/operation/failures/rel_ss_vvi")) -- fail
-defineProperty("cas_fail", globalPropertyi("tu154b2/custom/tcas/tcas_fail"))
-defineProperty("cas_alt_fail", globalPropertyi("tu154b2/custom/tcas/tcas_alt_fail"))
-
+vvi_fail = globalPropertyi("sim/operation/failures/rel_ss_vvi") -- fail
+cas_fail = globalPropertyi("tu154b2/custom/tcas/tcas_fail")
+cas_alt_fail = globalPropertyi("tu154b2/custom/tcas/tcas_alt_fail")
+defineProperty("vvi_show", globalPropertyf("tu154b2/custom/tcas/vvi_left"))
 
 
 -- Smart Copilot
@@ -184,7 +185,9 @@ if get(ismaster) ~= 1 then set(vvi_int2, get(vvi_int)) end
 	elseif vvi_ms <= -30 then vvi_ang_act = -170
 	else vvi_ang_act = interpolate(vvi_tbl, vvi_ms)
 	end
-	
+	if get(side) == 1 then
+		set(vvi_show,vvi_ms)
+	end
 	level = get(level_mode) 
 	
 	ra_mode = get(ra_scale_set)

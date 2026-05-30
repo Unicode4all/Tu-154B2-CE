@@ -52,7 +52,6 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th") -- 
 vbe_side = globalPropertyi("tu154b2/custom/switchers/vbe_select")
 vbe_msl = globalPropertyf("tu154b2/custom/gauges/alt/vbe_msl")
-real_alt = globalPropertyi("sim/custom/t154cfg/ppd_icing")
 sim_alt = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
 sim_alt_2 = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot")
 qnh_set = globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot")
@@ -248,20 +247,20 @@ if MASTER then
 	if power and not staticFail then
 		local temperature=get(temp)
 		local p_s=get(p_stat)
-		if get(real_alt)==0 and get(kontur_90th)~=0 then --use default altimeters if realistic altimeter option is off
-			if num==0 then
-				set(qnh_set,press*0.02953)
-				altitude_mtr=get(sim_alt) * 0.3048			
-			else
-				set(qnh_set_2,press*0.02953)
-				altitude_mtr=get(sim_alt_2)* 0.3048
-			end
-			altitude_msl=altitude_mtr / 0.3048 - (press*0.02952998 - 29.92) * 1000			
-		else	
-			local t_avg=(288.15-temperature-273.15)/2*11000/math.max(11000,altitude_mtr)+temperature+273.15
-			altitude_mtr=29.27*t_avg*math.log(press*100/p_s)
-			altitude_msl=29.27*t_avg*math.log(101325/p_s)*3.28084			
+		--if get(real_alt)==0 and get(kontur_90th)~=0 then --use default altimeters if realistic altimeter option is off
+		if num==0 then
+			set(qnh_set,press*0.02953)
+			altitude_mtr=get(sim_alt) * 0.3048			
+		else
+			set(qnh_set_2,press*0.02953)
+			altitude_mtr=get(sim_alt_2)* 0.3048
 		end
+		altitude_msl=altitude_mtr / 0.3048 - (press*0.02952998 - 29.92) * 1000			
+		-- else	
+			-- local t_avg=(288.15-temperature-273.15)/2*11000/math.max(11000,altitude_mtr)+temperature+273.15
+			-- altitude_mtr=29.27*t_avg*math.log(press*100/p_s)
+			-- altitude_msl=29.27*t_avg*math.log(101325/p_s)*3.28084			
+		-- end
 		--altitude_ft =get(msl_alt)  + (press_inHg - 29.92) * 1000  -- calculate barometric altitude in feet
 	end
 	

@@ -88014,11 +88014,28 @@ GROUP KNTR
             CLICK_DX 0
             CLICK_DY 0
 
+          gen_LED ALT_10000
+            POS 2068.000000 1685.000000
+            IMAGE TYPE/dig_type_2
+            DATAREF tu154b2/custom/taws/elev_1000_l
+            SHOW_GREATER 10.000000 tu154b2/custom/taws/elev_1000_l
+            LIGHT_MODE GLASS_TRANS_AUOTO
+            LIGHT_RHEOSTAT 14
+            BUS_SRC 1
+            CORNERS 21.249996 -3.500000  21.249996 20.809507  34.619080 20.559507  34.619080 -3.750000
+            KEY_FRAME 0.000000 0.000000 1.000000
+            KEY_FRAME 20.000000 20.000000
+            DIGITS 2
+            DECIMALS 0
+            PERIOD_WIDTH 0
+            LED_ROWS 0
+            ROUNDING ROUND_ROUND
+
           gen_LED ALT_1000
             POS 2068.000000 1685.000000
             IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_1000_m
-            SHOW_EQUAL 0.000000 sim/custom/kontur/dist_mode_l
+            DATAREF tu154b2/custom/taws/elev_1000_l
+            SHOW_LESS 9.000000 tu154b2/custom/taws/elev_1000_l
             LIGHT_MODE GLASS_TRANS_AUOTO
             LIGHT_RHEOSTAT 14
             BUS_SRC 1
@@ -88032,44 +88049,9 @@ GROUP KNTR
             ROUNDING ROUND_ROUND
 
           gen_LED ALT_100
-            POS 2095.000000 1678.000000
-            IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_100_m
-            SHOW_EQUAL 0.000000 sim/custom/kontur/dist_mode_l
-            LIGHT_MODE GLASS_TRANS_AUOTO
-            LIGHT_RHEOSTAT 14
-            BUS_SRC 1
-            CORNERS 37.500046 21.666670  37.500046 20.809507  22.202396 20.809507  22.202396 21.666670
-            KEY_FRAME 0.000000 0.000000 1.000000
-            KEY_FRAME 999.000000 999.000000
-            DIGITS 3
-            DECIMALS 0
-            PERIOD_WIDTH 0
-            LED_ROWS 0
-            ROUNDING ROUND_ROUND
-
-          gen_LED ALT_1000ft
-            POS 2068.000000 1685.000000
-            IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_1000_ft
-            SHOW_EQUAL 1.000000 sim/custom/kontur/dist_mode_l
-            LIGHT_MODE GLASS_TRANS_AUOTO
-            LIGHT_RHEOSTAT 14
-            BUS_SRC 1
-            CORNERS 30.916662 -3.250000  30.916662 21.059507  30.119057 20.809507  30.119057 -3.500000
-            KEY_FRAME 0.000000 0.000000 1.000000
-            KEY_FRAME 20.000000 20.000000
-            DIGITS 2
-            DECIMALS 0
-            PERIOD_WIDTH 0
-            LED_ROWS 0
-            ROUNDING ROUND_ROUND
-
-          gen_LED ALT_100ft
             POS 2099.000000 1678.000000
             IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_100_ft
-            SHOW_EQUAL 1.000000 sim/custom/kontur/dist_mode_l
+            DATAREF tu154b2/custom/taws/elev_100_l
             LIGHT_MODE GLASS_TRANS_AUOTO
             LIGHT_RHEOSTAT 14
             BUS_SRC 1
@@ -89011,7 +88993,6 @@ GROUP KNTR
       END_GROUP
       GROUP mode_TAWS
         SHOW_GREATER 1.000000 tu154b2/custom/taws/mode_set
-        GROUP_OPEN
         gen_rotary mode_plan
           POS 2516.000000 1426.500000
           IMAGE KONTUR/mode_plan
@@ -89818,6 +89799,7 @@ GROUP KNTR
         SHOW_LESS 4.000000 sim/cockpit/switches/EFIS_map_submode
         SHOW_EQUAL 0.000000 sim/custom/kontur/left_nav
         GROUP HDG_no_nav
+          SHOW_LESS 0.000000 tu154b2/custom/tks/fail_left
           SHOW_EQUAL 1.000000 sim/custom/ubs/left_power
           GROUP_OPEN
           GROUP HD
@@ -91688,8 +91670,8 @@ GROUP KNTR
             gen_LED Ralt
               POS 2255.000000 1719.000000
               IMAGE TYPE/dig_type
-              DATAREF tu154b2/custom/gauges/alt/vbe_alt_left
-              SHOW_LESS -0.010000 tu154b2/custom/gauges/alt/vbe_alt_left
+              DATAREF tu154b2/custom/gauges/alt/vbe_msl
+              SHOW_LESS -0.010000 tu154b2/custom/gauges/alt/vbe_msl
               LIGHT_MODE GLASS_TRANS_AUOTO
               LIGHT_RHEOSTAT 14
               BUS_SRC 1
@@ -91705,8 +91687,8 @@ GROUP KNTR
             gen_LED Ralt
               POS 2255.000000 1719.000000
               IMAGE TYPE/dig_type_5
-              DATAREF tu154b2/custom/gauges/alt/vbe_alt_left
-              SHOW_GREATER 0.000000 tu154b2/custom/gauges/alt/vbe_alt_left
+              DATAREF tu154b2/custom/gauges/alt/vbe_msl
+              SHOW_GREATER 0.000000 tu154b2/custom/gauges/alt/vbe_msl
               LIGHT_MODE GLASS_TRANS_AUOTO
               LIGHT_RHEOSTAT 14
               BUS_SRC 1
@@ -91747,13 +91729,13 @@ GROUP KNTR
             gen_LED VVI
               POS 2258.000000 1696.000000
               IMAGE TYPE/info_type_1
-              DATAREF sim/custom/gauges/vvi_left_new
+              DATAREF tu154b2/custom/tcas/vvi_left
               LIGHT_MODE GLASS_TRANS_AUOTO
               LIGHT_RHEOSTAT 14
               BUS_SRC 1
               CORNERS 0.000000 2.000000  0.000000 1.333333  -14.500000 1.333333  -14.500000 2.000000
               KEY_FRAME 0.000000 0.000000 1.000000
-              KEY_FRAME 10000.000000 50.799999
+              KEY_FRAME 100.000000 100.000000
               DIGITS 4
               DECIMALS 2
               PERIOD_WIDTH 4
@@ -91763,7 +91745,6 @@ GROUP KNTR
           END_GROUP
           GROUP VVI_OFF
             SHOW_EQUAL 0.000000 tu154b2/custom/switchers/ovhd/var_left
-            GROUP_OPEN
             gen_rotary ground 2 2
               POS 2302.000000 1697.000000
               IMAGE KONTUR/INFO/mps_blue
@@ -91804,7 +91785,6 @@ GROUP KNTR
           END_GROUP
           GROUP SVSON
             SHOW_EQUAL 1.000000 tu154b2/custom/switchers/ovhd/svs_on
-            GROUP_OPEN
             gen_rotary ground 2 2 2
               POS 2293.000000 1652.000000
               IMAGE KONTUR/INFO/c_white
@@ -91851,7 +91831,7 @@ GROUP KNTR
             gen_LED M
               POS 2264.000000 1674.000000
               IMAGE TYPE/info_type_1
-              DATAREF sim/cockpit2/gauges/indicators/mach_pilot
+              DATAREF tu154b2/custom/svs/machno
               LIGHT_MODE GLASS_TRANS_AUOTO
               LIGHT_RHEOSTAT 14
               BUS_SRC 1
@@ -91939,9 +91919,9 @@ GROUP KNTR
           END_GROUP
           GROUP VVI_RV_ON
             SHOW_EQUAL 1.000000 tu154b2/custom/switchers/ovhd/var_left
-            GROUP_OPEN
             GROUP blw780
               SHOW_LESS 779.989990 sim/custom/kontur/radioalt
+              GROUP_OPEN
               gen_rotary ground 2 2
                 POS 2302.000000 1631.000000
                 IMAGE KONTUR/INFO/mps_white
@@ -91982,6 +91962,7 @@ GROUP KNTR
             END_GROUP
             GROUP abv780
               SHOW_GREATER 780.000000 sim/custom/kontur/radioalt
+              GROUP_OPEN
               gen_rotary ground 2 2
                 POS 2302.000000 1631.000000
                 IMAGE KONTUR/INFO/mps_blue
@@ -92090,6 +92071,7 @@ GROUP KNTR
               POS 2270.000000 1608.500000
               IMAGE KONTUR/INFO/mode_gr
               DATAREF 
+              SHOW_EQUAL 1.000000 tu154b2/custom/taws/phase
               LIGHT_MODE GLASS_AUTO
               LIGHT_RHEOSTAT 14
               BUS_SRC 1
@@ -92106,56 +92088,91 @@ GROUP KNTR
               CLICK_DX 0
               CLICK_DY 0
 
-            GROUP Flying
-              SHOW_EQUAL 0.000000 sim/flightmodel/failures/onground_any
-              GROUP_OPEN
-              gen_rotary flying
-                POS 2271.000000 1608.500000
-                IMAGE KONTUR/INFO/mode_fl
-                DATAREF 
-                SHOW_LESS 0.740000 sim/flightmodel2/controls/flap_handle_deploy_ratio
-                LIGHT_MODE GLASS_AUTO
-                LIGHT_RHEOSTAT 14
-                BUS_SRC 1
-                KEY_FRAME 0.000000 0.000000 1.000000
-                KEY_FRAME 1.000000 1.000000
-                DIGITS 1
-                ROTARY_TYPE NO_CLICK
-                CLICK_RADIUS 0.000000
-                CLICK_RADIUS_DY 0.000000
-                OFFSET 0.000000
-                STEP1 1.000000
-                STEP2 1.000000
-                CURSOR DEFAULT
-                CLICK_DX 0
-                CLICK_DY 0
+            gen_rotary landing
+              POS 2272.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_ld
+              DATAREF 
+              SHOW_LESS 4.000000 tu154b2/custom/taws/phase
+              SHOW_GREATER 3.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 14
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
 
-            END_GROUP
-            GROUP Landing
-              SHOW_EQUAL 0.000000 sim/flightmodel/failures/onground_any
-              GROUP_OPEN
-              gen_rotary landing
-                POS 2272.000000 1608.500000
-                IMAGE KONTUR/INFO/mode_ld
-                DATAREF 
-                SHOW_GREATER 0.750000 sim/flightmodel2/controls/flap_handle_deploy_ratio
-                LIGHT_MODE GLASS_AUTO
-                LIGHT_RHEOSTAT 14
-                BUS_SRC 1
-                KEY_FRAME 0.000000 0.000000 1.000000
-                KEY_FRAME 1.000000 1.000000
-                DIGITS 1
-                ROTARY_TYPE NO_CLICK
-                CLICK_RADIUS 0.000000
-                CLICK_RADIUS_DY 0.000000
-                OFFSET 0.000000
-                STEP1 1.000000
-                STEP2 1.000000
-                CURSOR DEFAULT
-                CLICK_DX 0
-                CLICK_DY 0
+            gen_rotary GA
+              POS 2271.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_ga
+              DATAREF 
+              SHOW_EQUAL 5.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 14
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
 
-            END_GROUP
+            gen_rotary gnd
+              POS 2271.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_gnd
+              DATAREF 
+              SHOW_EQUAL 0.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 14
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
+
+            gen_rotary flying
+              POS 2271.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_fl
+              DATAREF 
+              SHOW_EQUAL 2.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 14
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
+
           END_GROUP
           gen_rotary TAWS_OFF
             POS 2273.000000 1607.000000
@@ -94224,15 +94241,15 @@ GROUP KNTR
             CLICK_DX 0
             CLICK_DY 0
 
-          gen_LED ALT_1000ft
-            POS 2577.000000 1685.000000
+          gen_LED ALT_10000
+            POS 2568.000000 1685.000000
             IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_1000_ft
-            SHOW_EQUAL 1.000000 sim/custom/kontur/dist_mode_r
+            DATAREF tu154b2/custom/taws/elev_1000_r
+            SHOW_GREATER 10.000000 tu154b2/custom/taws/elev_1000_r
             LIGHT_MODE GLASS_TRANS_AUOTO
             LIGHT_RHEOSTAT 15
             BUS_SRC 1
-            CORNERS 19.916662 -3.500000  19.916662 20.809507  20.119057 20.809507  20.119057 -3.500000
+            CORNERS 17.416666 -3.666666  17.416666 20.642841  35.285698 20.642838  35.285698 -3.666666
             KEY_FRAME 0.000000 0.000000 1.000000
             KEY_FRAME 99.000000 99.000000
             DIGITS 2
@@ -94244,8 +94261,8 @@ GROUP KNTR
           gen_LED ALT_1000
             POS 2568.000000 1685.000000
             IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_1000_m
-            SHOW_EQUAL 0.000000 sim/custom/kontur/dist_mode_r
+            DATAREF tu154b2/custom/taws/elev_1000_r
+            SHOW_LESS 9.000000 tu154b2/custom/taws/elev_1000_r
             LIGHT_MODE GLASS_TRANS_AUOTO
             LIGHT_RHEOSTAT 15
             BUS_SRC 1
@@ -94258,29 +94275,10 @@ GROUP KNTR
             LED_ROWS 0
             ROUNDING ROUND_ROUND
 
-          gen_LED ALT_100ft
-            POS 2598.000000 1678.000000
-            IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_100_ft
-            SHOW_EQUAL 1.000000 sim/custom/kontur/dist_mode_r
-            LIGHT_MODE GLASS_TRANS_AUOTO
-            LIGHT_RHEOSTAT 15
-            BUS_SRC 1
-            CORNERS 37.500046 21.666670  37.500046 20.809507  22.202396 20.809507  22.202396 21.666670
-            KEY_FRAME 0.000000 0.000000 1.000000
-            KEY_FRAME 999.000000 999.000000 1.000000
-            KEY_FRAME 100000.000000 999.000000
-            DIGITS 3
-            DECIMALS 0
-            PERIOD_WIDTH 0
-            LED_ROWS 0
-            ROUNDING ROUND_ROUND
-
           gen_LED ALT_100
-            POS 2595.000000 1678.000000
+            POS 2599.000000 1678.000000
             IMAGE TYPE/dig_type_2
-            DATAREF tu154b2/custom/taws/elev_100_m
-            SHOW_EQUAL 0.000000 sim/custom/kontur/dist_mode_r
+            DATAREF tu154b2/custom/taws/elev_100_r
             LIGHT_MODE GLASS_TRANS_AUOTO
             LIGHT_RHEOSTAT 15
             BUS_SRC 1
@@ -94911,7 +94909,6 @@ GROUP KNTR
       END_GROUP
       GROUP TCAS
         SHOW_EQUAL 1.000000 sim/custom/kontur/right_tcas
-        GROUP_OPEN
         gen_rotary mode_tcas
           POS 2998.500000 1426.500000
           IMAGE KONTUR/mode_wx_aux
@@ -96009,7 +96006,6 @@ GROUP KNTR
       END_GROUP
       GROUP mode_TAWS
         SHOW_GREATER 1.000000 tu154b2/custom/taws/mode_set
-        GROUP_OPEN
         gen_rotary mode_plan
           POS 3016.000000 1426.500000
           IMAGE KONTUR/mode_plan
@@ -97003,7 +96999,6 @@ GROUP KNTR
       END_GROUP
       GROUP MSG
         SHOW_EQUAL 1.000000 sim/custom/kontur/right_on
-        GROUP_OPEN
         gen_rotary check_alt
           POS 2815.000000 1458.500000
           IMAGE KONTUR/TAWS/check-alt
@@ -97968,13 +97963,13 @@ GROUP KNTR
             gen_LED VVI
               POS 2757.000000 1696.000000
               IMAGE TYPE/info_type_1
-              DATAREF sim/custom/gauges/vvi_right_new
+              DATAREF tu154b2/custom/tcas/vvi_left
               LIGHT_MODE GLASS_TRANS_AUOTO
               LIGHT_RHEOSTAT 15
               BUS_SRC 1
               CORNERS 0.000000 2.000000  0.000000 1.333333  -14.500000 1.333333  -14.500000 2.000000
               KEY_FRAME 0.000000 0.000000 1.000000
-              KEY_FRAME 10000.000000 50.799999
+              KEY_FRAME 100.000000 100.000000
               DIGITS 4
               DECIMALS 2
               PERIOD_WIDTH 4
@@ -98009,7 +98004,7 @@ GROUP KNTR
             gen_LED VVI
               POS 2757.000000 1696.000000
               IMAGE TYPE/info_type_3
-              DATAREF tu154b2/custom/switchers/ovhd/var_right
+              DATAREF tu154b2/custom/switchers/ovhd/var_left
               LIGHT_MODE GLASS_TRANS_AUOTO
               LIGHT_RHEOSTAT 15
               BUS_SRC 1
@@ -98072,7 +98067,7 @@ GROUP KNTR
             gen_LED M
               POS 2763.000000 1674.000000
               IMAGE TYPE/info_type_1
-              DATAREF sim/cockpit2/gauges/indicators/mach_pilot
+              DATAREF tu154b2/custom/svs/machno
               LIGHT_MODE GLASS_TRANS_AUOTO
               LIGHT_RHEOSTAT 15
               BUS_SRC 1
@@ -98294,6 +98289,7 @@ GROUP KNTR
               POS 2769.000000 1608.500000
               IMAGE KONTUR/INFO/mode_gr
               DATAREF 
+              SHOW_EQUAL 1.000000 tu154b2/custom/taws/phase
               LIGHT_MODE GLASS_AUTO
               LIGHT_RHEOSTAT 15
               BUS_SRC 1
@@ -98310,56 +98306,91 @@ GROUP KNTR
               CLICK_DX 0
               CLICK_DY 0
 
-            GROUP Flying
-              SHOW_EQUAL 0.000000 sim/flightmodel/failures/onground_any
-              GROUP_OPEN
-              gen_rotary flying
-                POS 2770.000000 1608.500000
-                IMAGE KONTUR/INFO/mode_fl
-                DATAREF 
-                SHOW_LESS 0.740000 sim/flightmodel2/controls/flap_handle_deploy_ratio
-                LIGHT_MODE GLASS_AUTO
-                LIGHT_RHEOSTAT 15
-                BUS_SRC 1
-                KEY_FRAME 0.000000 0.000000 1.000000
-                KEY_FRAME 1.000000 1.000000
-                DIGITS 1
-                ROTARY_TYPE NO_CLICK
-                CLICK_RADIUS 0.000000
-                CLICK_RADIUS_DY 0.000000
-                OFFSET 0.000000
-                STEP1 1.000000
-                STEP2 1.000000
-                CURSOR DEFAULT
-                CLICK_DX 0
-                CLICK_DY 0
+            gen_rotary landing
+              POS 2771.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_ld
+              DATAREF 
+              SHOW_LESS 4.000000 tu154b2/custom/taws/phase
+              SHOW_GREATER 3.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 15
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
 
-            END_GROUP
-            GROUP Landing
-              SHOW_EQUAL 0.000000 sim/flightmodel/failures/onground_any
-              GROUP_OPEN
-              gen_rotary landing
-                POS 2771.000000 1608.500000
-                IMAGE KONTUR/INFO/mode_ld
-                DATAREF 
-                SHOW_GREATER 0.750000 sim/flightmodel2/controls/flap_handle_deploy_ratio
-                LIGHT_MODE GLASS_AUTO
-                LIGHT_RHEOSTAT 15
-                BUS_SRC 1
-                KEY_FRAME 0.000000 0.000000 1.000000
-                KEY_FRAME 1.000000 1.000000
-                DIGITS 1
-                ROTARY_TYPE NO_CLICK
-                CLICK_RADIUS 0.000000
-                CLICK_RADIUS_DY 0.000000
-                OFFSET 0.000000
-                STEP1 1.000000
-                STEP2 1.000000
-                CURSOR DEFAULT
-                CLICK_DX 0
-                CLICK_DY 0
+            gen_rotary GA
+              POS 2770.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_ga
+              DATAREF 
+              SHOW_EQUAL 5.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 15
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
 
-            END_GROUP
+            gen_rotary gnd
+              POS 2770.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_gnd
+              DATAREF 
+              SHOW_EQUAL 0.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 15
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
+
+            gen_rotary flying
+              POS 2770.000000 1608.500000
+              IMAGE KONTUR/INFO/mode_fl
+              DATAREF 
+              SHOW_EQUAL 2.000000 tu154b2/custom/taws/phase
+              LIGHT_MODE GLASS_AUTO
+              LIGHT_RHEOSTAT 15
+              BUS_SRC 1
+              KEY_FRAME 0.000000 0.000000 1.000000
+              KEY_FRAME 1.000000 1.000000
+              DIGITS 1
+              ROTARY_TYPE NO_CLICK
+              CLICK_RADIUS 0.000000
+              CLICK_RADIUS_DY 0.000000
+              OFFSET 0.000000
+              STEP1 1.000000
+              STEP2 1.000000
+              CURSOR DEFAULT
+              CLICK_DX 0
+              CLICK_DY 0
+
           END_GROUP
           gen_rotary TAWS_OFF
             POS 2772.000000 1607.000000

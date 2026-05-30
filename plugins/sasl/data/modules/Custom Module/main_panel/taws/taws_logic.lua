@@ -89,6 +89,7 @@ local sns_timer=0
 local sppz_fail=0
 local rppz_fail=0
 local taws_rdy=0
+local egpws_control_last=0
 function update()
 
 local MASTER = get(ismaster) ~= 1	
@@ -142,13 +143,13 @@ if MASTER then
             if sns_timer>9 and get(mode_set) == 3 then
                 set(mode_set,1)				
             end
-                
-			if get(egpws_control) == 1 and get(on_ground) == 1 and current_mode~=5 then -- test mode
+			local egpws_test = get(egpws_control)
+			if egpws_test == 1 and egpws_control_last == 0 and get(on_ground) == 1 and current_mode~=5 then -- test mode
 				set(mode_set, 5) 
 				-- sppz_fail=1
 				-- rppz_fail=1
 			end 
-			
+			egpws_control_last = egpws_test
 			
 
 			-- if but_view_now == 1 and but_view_now ~= but_view_last then

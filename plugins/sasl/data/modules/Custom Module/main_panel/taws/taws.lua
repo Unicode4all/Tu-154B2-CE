@@ -32,13 +32,17 @@ components = {
 	scr_map_side {
 		position = {0, size[2], size[1], size[2]},
 		capt = 0,
+		max_m = globalPropertyf("tu154b2/custom/taws/max_r"),
+		min_m = globalPropertyf("tu154b2/custom/taws/min_r"),
+		max_m_1000 = globalPropertyf("tu154b2/custom/taws/max_r_1000"),
+		min_m_1000 = globalPropertyf("tu154b2/custom/taws/min_r_1000"),
+		kont_dist_mode = globalPropertyi("sim/custom/kontur/dist_mode_r"),
 	},
 	
 		-- side map
 	scr_map_side {
 		position = {0, 0, size[1], size[2]},
 		capt = 1,
-	
 	},
 	
 	-- clock
@@ -50,7 +54,7 @@ components = {
 	-- test
 	scr_test {
 		position = {0, 0, size[1], size[2]},
-	
+		
 	},
 	
 	--game

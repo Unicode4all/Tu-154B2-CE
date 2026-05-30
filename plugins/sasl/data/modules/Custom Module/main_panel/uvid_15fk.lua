@@ -38,11 +38,13 @@ defineProperty("uvid_on", globalPropertyi("tu154b2/custom/switchers/ovhd/uvid_on
 defineProperty("sim_barometer_setting", globalPropertyf("sim/cockpit/misc/barometer_setting"))  -- лампочка УВИД15
 defineProperty("vd15_lamp", globalPropertyf("tu154b2/custom/lights/small/vd15_lamp"))  -- лампочка УВИД15
 --VEM-72
-defineProperty("vem_press", globalPropertyf("sim/custom/vem72_press_knob"))
-defineProperty("vem_tst", globalPropertyi("sim/custom/vem72_btn"))
-defineProperty("vem_light", globalPropertyi("sim/custom/vem72_lit"))
-defineProperty("vem_altitude", globalPropertyf("sim/custom/vem72_needle"))
-defineProperty("vem_sw", globalPropertyi("tu154b2/custom/switchers/ovhd/vbe_1_on"))
+vem_press = globalPropertyf("sim/custom/vem72_press_knob")
+vem_tst = globalPropertyi("sim/custom/vem72_btn")
+vem_light = globalPropertyi("sim/custom/vem72_lit")
+vem_altitude = globalPropertyf("sim/custom/vem72_needle")
+vem_sw = globalPropertyi("tu154b2/custom/switchers/ovhd/vbe_1_on")
+
+real_alt = globalPropertyi("sim/custom/t154cfg/ppd_icing")
 
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 
@@ -76,6 +78,23 @@ local err_tbl={{ -1000, -1000},
          {40000, 40270},
 		 {40000, 40270},
 		 {80000, 80870}}
+		 
+local err_tbl_vem={{ -1000, -1000},
+		      {2700, 2700},
+			  {3000, 3010},
+		      {3600, 3610},
+		      {4500, 4510},
+		      {5400, 5410},
+		      {6300, 6310},
+		      {7200, 7210},
+		      {8100, 8110},
+		      {9100, 9110},
+			  {9600, 9615},
+		      {10100, 10110},
+		       {11100, 11120},
+		       {11600, 11620},
+		       {12100, 12125},
+			   {20100, 20130}}
 
 local switcher_last = get(uvid_on)
 function update()
@@ -118,13 +137,14 @@ function update()
 	-- switcher_last = sw_on
 	
 	-- calculate indicated altidude
+	local alt_err=get(real_alt)
 	if power27 and power115 and sw_on and get(uvid_fail) == 0 then
-		uvid_alt = interpolate(err_tbl,left_MSL) + (press_set-1013.25 ) * 27  -- calculate barometric altitude in feet
+		uvid_alt = interpolate(err_tbl,left_MSL) * alt_err + (1 - alt_err) * left_MSL + (press_set-1013.25 ) * 27  -- calculate barometric altitude in feet
 	end
 
 	local vem72_test=get(vem_tst)
 	if power27_r and power115_r and vem_on then
-		vem_alt = right_MSL + (get(vem_press) * 0.0393701 - 29.92) * 1000 * 0.3048 +(vem72_test*150)
+		vem_alt = interpolate(err_tbl_vem,right_MSL) * alt_err + (1 - alt_err) * right_MSL + (get(vem_press) * 0.0393701 - 29.92) * 1000 * 0.3048 +(vem72_test*150)
 		set(vem_light,vem72_test)
 	else
 		set(vem_light,0)

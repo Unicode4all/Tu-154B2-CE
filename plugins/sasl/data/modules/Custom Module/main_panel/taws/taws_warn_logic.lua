@@ -88,10 +88,10 @@ sp_fail = globalPropertyi("tu154b2/custom/taws/sppz_fail")
 rp_fail = globalPropertyi("tu154b2/custom/taws/rppz_fail")
 show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
 slip = globalPropertyf("tu154b2/custom/nvu/diss_slip_angle")
-elev_mtr = globalPropertyf("tu154b2/custom/taws/elev_1000_m")
-elev_ft = globalPropertyf("tu154b2/custom/taws/elev_1000_ft")
-elev_mtr2 = globalPropertyf("tu154b2/custom/taws/elev_100_m")
-elev_ft2 = globalPropertyf("tu154b2/custom/taws/elev_100_ft")
+elev_l_1000 = globalPropertyf("tu154b2/custom/taws/elev_1000_l")
+elev_l = globalPropertyf("tu154b2/custom/taws/elev_100_l")
+elev_r_1000 = globalPropertyf("tu154b2/custom/taws/elev_1000_r")
+elev_r = globalPropertyf("tu154b2/custom/taws/elev_100_r")
 taws_alt1_l = globalProperty("sim/cockpit2/EFIS/EFIS_terrain_altitudes[1]")
 taws_alt2_l = globalProperty("sim/cockpit2/EFIS/EFIS_terrain_altitudes[0]")
 taws_alt1_r = globalProperty("sim/cockpit2/EFIS/EFIS_terrain_altitudes[3]")
@@ -108,7 +108,9 @@ max_r_m_1000 = globalPropertyf("tu154b2/custom/taws/max_r_1000")
 min_r_m_1000 = globalPropertyf("tu154b2/custom/taws/min_r_1000")
 kont_dist_mode_l = globalPropertyi("sim/custom/kontur/dist_mode_l")
 kont_dist_mode_r = globalPropertyi("sim/custom/kontur/dist_mode_r")
-
+kont_left = globalPropertyi("sim/custom/kontur/left_taws")
+kont_right = globalPropertyi("sim/custom/kontur/right_taws")
+phase = globalPropertyi("tu154b2/custom/taws/phase")
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -159,47 +161,45 @@ function update()
 	local MASTER = true --get(ismaster) ~= 1	
 	if mode>0 then
 		-- TAWS display altitudes
-		local altitude_1000 = math.floor(get(elev_now) * 0.001)
-		local altitude_100 = math.floor((get(elev_now) - altitude_1000 * 1000) * 0.2) * 5	
+		local elev_taws=get(elevation)*(1+2.28084*bool2int(get(kont_dist_mode_l) == 1))
+		local elev_max=get(taws_alt1_l)*(1-0.6952*bool2int(get(kont_dist_mode_l) == 0))
+		local elev_min=get(taws_alt2_l)*(1-0.6952*bool2int(get(kont_dist_mode_l) == 0))
+		local altitude_1000 = math.floor(elev_taws * 0.001)
+		local altitude_100 = math.floor((elev_taws - altitude_1000 * 1000) * 0.2) * 5	
 		
-		local altitude_l_max_1000 = math.floor(get(taws_alt1_l) * 0.001)
-		local altitude_l_max_100 = math.floor((get(taws_alt1_l) - altitude_l_max_1000 * 1000) * 0.2) * 5	
+		local altitude_l_max_1000 = math.floor(elev_max * 0.001)
+		local altitude_l_max_100 = math.floor((elev_max - altitude_l_max_1000 * 1000) * 0.2) * 5	
 		
-		local altitude_r_max_1000 = math.floor(get(taws_alt1_r) * 0.001)
-		local altitude_r_max_100 = math.floor((get(taws_alt1_r) - altitude_r_max_1000 * 1000) * 0.2) * 5	
+		local altitude_l_min_1000 = math.floor(elev_min * 0.001)
+		local altitude_l_min_100 = math.floor((elev_min - altitude_l_min_1000 * 1000) * 0.2) * 5	
+		set(elev_l_1000,altitude_1000)
+		set(elev_l,altitude_100)
+		if get(kont_left) == 1 then			
+			set(max_l_m_1000,altitude_l_max_1000)
+			set(max_l_m,altitude_l_max_100)
+			set(min_l_m_1000,altitude_l_min_1000)
+			set(min_l_m,altitude_l_min_100)	
+		end	
 		
-		local altitude_l_min_1000 = math.floor(get(taws_alt2_l) * 0.001)
-		local altitude_l_min_100 = math.floor((get(taws_alt2_l) - altitude_l_min_1000 * 1000) * 0.2) * 5	
+		elev_taws=get(elevation)*(1+2.28084*bool2int(get(kont_dist_mode_r) == 1))
+		elev_max=get(taws_alt1_r)*(1-0.6952*bool2int(get(kont_dist_mode_r) == 0))
+		elev_min=get(taws_alt2_r)*(1-0.6952*bool2int(get(kont_dist_mode_r) == 0))
 		
-		local altitude_r_min_1000 = math.floor(get(taws_alt2_r) * 0.001)
-		local altitude_r_min_100 = math.floor((get(taws_alt2_r) - altitude_r_min_1000 * 1000) * 0.2) * 5	
-		if MASTER then
-			set(elev_ft,altitude_1000*3.28084)
-			set(elev_mtr,altitude_1000)
-			set(elev_ft2,altitude_100*3.28084)
-			set(elev_mtr2,altitude_100)
-			if get(kont_dist_mode_l) == 0 then
-				set(max_l_m_1000,altitude_l_max_1000/3.28084)
-				set(max_l_m,altitude_l_max_100/3.28084)
-				set(min_l_m_1000,altitude_l_min_1000/3.28084)
-				set(min_l_m,altitude_l_min_100/3.28084)
-			else
-				set(max_l_m_1000,altitude_l_max_1000)
-				set(max_l_m,altitude_l_max_100)
-				set(min_l_m_1000,altitude_l_min_1000)
-				set(min_l_m,altitude_l_min_100)
-			end
-			if get(kont_dist_mode_r) == 0 then			
-				set(max_r_m_1000,altitude_r_max_1000/3.28084)
-				set(max_r_m,altitude_r_max_100/3.28084)
-				set(min_r_m_1000,altitude_r_min_1000/3.28084)
-				set(min_r_m,altitude_r_min_100/3.28084)
-			else
-				set(max_r_m_1000,altitude_r_max_1000)
-				set(max_r_m,altitude_r_max_100)
-				set(min_r_m_1000,altitude_r_min_1000)
-				set(min_r_m,altitude_r_min_100)
-			end		
+		altitude_1000 = math.floor(elev_taws * 0.001)
+		altitude_100 = math.floor((elev_taws - altitude_1000 * 1000) * 0.2) * 5
+					
+		altitude_l_max_1000 = math.floor(elev_max * 0.001)
+		altitude_l_max_100 = math.floor((elev_max - altitude_l_max_1000 * 1000) * 0.2) * 5	
+		
+		altitude_l_min_1000 = math.floor(elev_min * 0.001)
+		altitude_l_min_100 = math.floor((elev_min - altitude_l_min_1000 * 1000) * 0.2) * 5	
+		set(elev_r_1000,altitude_1000)
+		set(elev_r,altitude_100)
+		if get(kont_right) == 1 then	
+			set(max_r_m_1000,altitude_l_max_1000)
+			set(max_r_m,altitude_l_max_100)
+			set(min_r_m_1000,altitude_l_min_1000)
+			set(min_r_m,altitude_l_min_100)	
 		end
 	end
 	
@@ -258,7 +258,7 @@ function update()
 		elseif last_flight_phase == 4 and eng_TO then 
 			flight_phase = 5 -- go around
 		end
-		
+		set(phase,flight_phase)
 		last_flight_phase = flight_phase
 		
 		
@@ -406,15 +406,15 @@ function update()
 		local gs_interval = 7
 		local gs_vol = 1
 		
-		if rv_alt <= 300 and rv_alt > 150 and GSlope < -120/250 and gears and mode_5_active and sppz_fail==0 then 
+		if rv_alt <= 300 and rv_alt > 150 and GSlope < -120/250 and gears and mode_5_active and sppz_fail==0 and flight_phase ~= 5 then 
 			mode_5_res = 1 
 			gs_vol = 0.5 
 			gs_interval = 1.875 * rv_alt / (GSlope * 250)
-		elseif rv_alt <= 150 and rv_alt >= 60 and GSlope < -120/250 and gears and mode_5_active and sppz_fail==0 then 
+		elseif rv_alt <= 150 and rv_alt >= 60 and GSlope < -120/250 and gears and mode_5_active and sppz_fail==0 and flight_phase ~= 5 then 
 			mode_5_res = 1 
 			gs_vol = 1
 			gs_interval = 1.875 * rv_alt / (GSlope * 250)
-		elseif rv_alt >= 30 and rv_alt < 60 and GSlope < line(rv_alt, 30, -200/250, 60, -120/250) and gears and mode_5_active and sppz_fail==0 then 
+		elseif rv_alt >= 30 and rv_alt < 60 and GSlope < line(rv_alt, 30, -200/250, 60, -120/250) and gears and mode_5_active and sppz_fail==0 and flight_phase ~= 5 then 
 			mode_5_res = 1 
 			gs_vol = 1
 			gs_interval = 112.5 / (GSlope * 250)

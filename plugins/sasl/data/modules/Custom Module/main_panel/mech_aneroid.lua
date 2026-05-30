@@ -62,6 +62,7 @@ p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
 true_mach = globalPropertyf("sim/flightmodel/misc/machno")
 p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 p_q_smoothed = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
+real_alt = globalPropertyi("sim/custom/t154cfg/ppd_icing")
 -- defineProperty("true_mach", globalPropertyf("sim/flightmodel/misc/machno"))
 --defineProperty("temp", globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c"))
 
@@ -69,9 +70,9 @@ p_q_smoothed = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 
 local alt_kus_tbl = {{ -50000000, 0.5},    -- bugs workaround
@@ -384,23 +385,23 @@ local MASTER = get(ismaster) ~= 1
 	
 	
 	-- altimeters
-
+	local alt_err=get(real_alt)
 	-- Captain's altimeter VM15
 	local cpt_VM15_press = get(vd15_pressure_left) * 0.0393701
-	local cpt_VM15_alt = interpolate(err_tbl,left_MSL)  + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local cpt_VM15_alt = interpolate(err_tbl,left_MSL) * alt_err + (1 - alt_err) * left_MSL + (cpt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	local v_cpt_VM15_set,cpt_VM15_set = needle_pos (cpt_VM15_alt_act,cpt_VM15_alt,passed,v_cpt_VM15,k_spr1,k_dmp1,k_v1,1)
 	cpt_VM15_alt_act=cpt_VM15_set
 	v_cpt_VM15=v_cpt_VM15_set
 	
 	-- Co-Pilot's altimeter VM15
 	local copt_VM15_press = get(vd15_pressure_right) * 0.0393701
-	local copt_VM15_alt = interpolate(err_tbl,right_MSL)  + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local copt_VM15_alt = interpolate(err_tbl,right_MSL) * alt_err + (1 - alt_err) * right_MSL  + (copt_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	local v_copt_VM15_set,copt_VM15_set = needle_pos (copt_VM15_alt_act,copt_VM15_alt,passed,v_copt_VM15,k_spr1,k_dmp1,k_v1,1)
 	copt_VM15_alt_act=copt_VM15_set
 	v_copt_VM15=v_copt_VM15_set
 	-- Engineer's altimeter VM15
 	local eng_VM15_press = get(vd15_pressure_eng) * 0.0393701
-	local eng_VM15_alt = interpolate(err_tbl,right_MSL)  + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
+	local eng_VM15_alt = interpolate(err_tbl,right_MSL) * alt_err + (1 - alt_err) * right_MSL  + (eng_VM15_press - 29.92) * 1000 * 0.3048  -- calculate barometric altitude in meters
 	local v_eng_VM15_set,eng_VM15_set = needle_pos (eng_VM15_alt_act,eng_VM15_alt,passed,v_eng_VM15,k_spr1,k_dmp1,k_v1,1)
 	eng_VM15_alt_act=eng_VM15_set
 	v_eng_VM15=v_eng_VM15_set
