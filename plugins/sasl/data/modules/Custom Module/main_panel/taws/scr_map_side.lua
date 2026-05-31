@@ -366,7 +366,7 @@ function update()
 		time_counter = 0
 		-- TAWS display altitudes
 		local elev_max=prof_max*(1+2.28084*bool2int(get(kont_dist_mode) == 1))
-		local elev_min=prof_min*(1+2.28084*bool2int(get(kont_dist_mode) == 1))
+		local elev_min=math.max(0,prof_min*(1+2.28084*bool2int(get(kont_dist_mode) == 1)))
 		local altitude_l_max_1000 = math.floor(elev_max * 0.001)
 		local altitude_l_max_100 = math.floor((elev_max - altitude_l_max_1000 * 1000) * 0.2) * 5	
 		

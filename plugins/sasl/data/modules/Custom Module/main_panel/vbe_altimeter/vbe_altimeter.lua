@@ -52,6 +52,7 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th") -- 
 vbe_side = globalPropertyi("tu154b2/custom/switchers/vbe_select")
 vbe_msl = globalPropertyf("tu154b2/custom/gauges/alt/vbe_msl")
+vbe_msl_m = globalPropertyf("tu154b2/custom/gauges/alt/vbe_msl_m")
 sim_alt = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
 sim_alt_2 = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot")
 qnh_set = globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot")
@@ -269,6 +270,7 @@ if MASTER then
 	set(alt_mtr, altitude_mtr)
 	if num==get(vbe_side) then
 		set(vbe_msl,altitude_msl)
+		set(vbe_msl_m,altitude_msl*0.3048)
 	end
 else
 	altitude_mtr=get(alt_mtr)
