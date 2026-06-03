@@ -216,4 +216,8 @@ components = {
 	
 	misc_fails {},
 	
+	nav_draw {
+		position = {2067, 1660, 500, 400},
+	},
+	
 }

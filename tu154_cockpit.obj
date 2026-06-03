@@ -20518,59 +20518,59 @@ ATTR_manip_wheel 0.080000
 TRIS 21633 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_cursor
+ATTR_manip_command button sim/GPS/g430n1_cursor
 TRIS 21639 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_small sim/GPS/g430n2_page_up sim/GPS/g430n2_page_dn none
+ATTR_manip_command_knob rotate_small sim/GPS/g430n1_page_up sim/GPS/g430n1_page_dn none
 TRIS 21645 48
 ANIM_end
 ANIM_begin
-ATTR_manip_command_knob rotate_large sim/GPS/g430n2_chapter_up sim/GPS/g430n2_chapter_dn none
+ATTR_manip_command_knob rotate_large sim/GPS/g430n1_chapter_up sim/GPS/g430n1_chapter_dn none
 TRIS 21693 48
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_cdi
+ATTR_manip_command button sim/GPS/g430n1_cdi
 TRIS 21741 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_obs
+ATTR_manip_command button sim/GPS/g430n1_obs
 TRIS 21747 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_msg
+ATTR_manip_command button sim/GPS/g430n1_msg
 TRIS 21753 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_fpl
+ATTR_manip_command button sim/GPS/g430n1_fpl
 TRIS 21759 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_proc
+ATTR_manip_command button sim/GPS/g430n1_proc
 TRIS 21765 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_clr
+ATTR_manip_command button sim/GPS/g430n1_clr
 TRIS 21771 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_ent
+ATTR_manip_command button sim/GPS/g430n1_ent
 TRIS 21777 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_menu
+ATTR_manip_command button sim/GPS/g430n1_menu
 TRIS 21783 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_direct
+ATTR_manip_command button sim/GPS/g430n1_direct
 TRIS 21789 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_zoom_in
+ATTR_manip_command button sim/GPS/g430n1_zoom_in
 TRIS 21795 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command button sim/GPS/g430n2_zoom_out
+ATTR_manip_command button sim/GPS/g430n1_zoom_out
 TRIS 21801 6
 ANIM_end
 ANIM_end

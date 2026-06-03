@@ -10,6 +10,7 @@ defineProperty("columns") -- table of colors
 defineProperty("range", 10)
 defineProperty("v_spd", 0)
 defineProperty("g_spd", 0)
+defineProperty("bright")
 
 function draw()
 	
@@ -17,7 +18,7 @@ function draw()
 	local drawTable = get(image_table)
 	local x_size = get(columns)
 	local x_coef = size[1] / x_size
-	
+	local brt = get(bright)
 	for x = 1, x_size, 1 do
 			
 		local height = drawTable[x]		
@@ -26,29 +27,29 @@ function draw()
 		
 		if height > 300 then
 			local y = math.min((height - 300) * 120/200, 120)
-			drawRectangle((x-1) * x_coef, 480, x_coef, y, 1, 0.3, 0.3, 1) -- red
-			drawRectangle((x-1) * x_coef, 390, x_coef, 90, 0.87, 0.91, 0.35,   1) -- orange
-			drawRectangle((x-1) * x_coef, 300, x_coef, 90, 0.58, 0.65, 0.30, 1) -- dark yellow
-			drawRectangle((x-1) * x_coef, 210, x_coef, 90, 0.25, 0.36, 0.19, 1) -- yellow
-			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  1) -- green
+			drawRectangle((x-1) * x_coef, 480, x_coef, y, 1, 0.3, 0.3, brt) -- red
+			drawRectangle((x-1) * x_coef, 390, x_coef, 90, 0.87, 0.91, 0.35,   brt) -- orange
+			drawRectangle((x-1) * x_coef, 300, x_coef, 90, 0.58, 0.65, 0.30, brt) -- dark yellow
+			drawRectangle((x-1) * x_coef, 210, x_coef, 90, 0.25, 0.36, 0.19, brt) -- yellow
+			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  brt) -- green
 		elseif height > 150 then
 			local y = math.min((height - 150) * 90/150, 90)
-			drawRectangle((x-1) * x_coef, 390, x_coef, y, 0.87, 0.91, 0.35,  1) -- orange
-			drawRectangle((x-1) * x_coef, 300, x_coef, 90, 0.58, 0.65, 0.30, 1) -- dark yellow
-			drawRectangle((x-1) * x_coef, 210, x_coef, 90, 0.25, 0.36, 0.19,  1) -- yellow
-			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  1) -- green
+			drawRectangle((x-1) * x_coef, 390, x_coef, y, 0.87, 0.91, 0.35,  brt) -- orange
+			drawRectangle((x-1) * x_coef, 300, x_coef, 90, 0.58, 0.65, 0.30, brt) -- dark yellow
+			drawRectangle((x-1) * x_coef, 210, x_coef, 90, 0.25, 0.36, 0.19,  brt) -- yellow
+			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  brt) -- green
 		elseif height > 0 then
 			local y = height * 90/150
-			drawRectangle((x-1) * x_coef, 300, x_coef, y, 0.58, 0.65, 0.30, 1) -- dark yellow
-			drawRectangle((x-1) * x_coef, 210, x_coef, 90,0.25, 0.36, 0.19,  1) -- yellow
-			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  1) -- green
+			drawRectangle((x-1) * x_coef, 300, x_coef, y, 0.58, 0.65, 0.30, brt) -- dark yellow
+			drawRectangle((x-1) * x_coef, 210, x_coef, 90,0.25, 0.36, 0.19,  brt) -- yellow
+			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  brt) -- green
 		elseif height > -150 then
 			local y = -(-150 - height) * 90/150
-			drawRectangle((x-1) * x_coef, 210, x_coef, y, 0.25, 0.36, 0.19,  1)	-- yellow
-			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  1) -- green
+			drawRectangle((x-1) * x_coef, 210, x_coef, y, 0.25, 0.36, 0.19,  brt)	-- yellow
+			drawRectangle((x-1) * x_coef, 0, x_coef, 210, 0.20, 0.60, 0.34,  brt) -- green
 		elseif height > -500 then
 			local y = - (-500 - height) * 210/350
-			drawRectangle((x-1) * x_coef, 0, x_coef, y, 0.20, 0.60, 0.34,  1) -- green
+			drawRectangle((x-1) * x_coef, 0, x_coef, y, 0.20, 0.60, 0.34,  brt) -- green
 		end
 			
 			

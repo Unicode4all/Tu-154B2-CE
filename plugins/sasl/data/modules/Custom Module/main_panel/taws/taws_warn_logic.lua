@@ -275,7 +275,9 @@ function update()
 		
 		
 		if rv_alt > 130 then mode_7_active = true end
-		if (gears and flaps and rv_alt < 130) or get(egpws_relief) == 0 or gear_touch or (math.abs(GSlope) < 0.7 and GSflag == 0) then mode_7_active = false end
+		if (gears and flaps and rv_alt < 130) or get(egpws_relief) == 0 or gear_touch or (math.abs(GSlope) < 0.7 and GSflag == 0) then 
+			mode_7_active = false 
+		end
 		
 		
 		

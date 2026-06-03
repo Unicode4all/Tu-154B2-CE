@@ -40,9 +40,9 @@ defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_fr
 defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 defineProperty("spu_volume2", globalPropertyf("sim/custom/radio/spu_volume2_n"))
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 local bell = loadSample(moduleDirectory .. '/Custom Sounds/mrp_bell.wav') --
 local bell2 = loadSample(moduleDirectory .. '/Custom Sounds/mrp_bell2.wav') --
 

@@ -344,9 +344,9 @@ local function refresh_data()
 			-- recalculate relative table	
 			local local_x = get(pos_x) -- longtitude. positive from W to E
 			local local_z = get(pos_z) -- latitude. positive from N to S
-			local local_y = get(pos_y) -- altitude. positive UP
+			-- local local_y = get(pos_y) -- altitude. positive UP
 			
-			local lat, lon, local_alt = localToWorld(local_x, local_y, local_z)
+			-- local lat, lon, local_alt = localToWorld(local_x, local_y, local_z)
 			
 			local cur = get(course)
 			
@@ -1115,7 +1115,7 @@ function update()
 	
 	set_range()
 	text_mode()
-	
+	tcas_data_tbl.targets = tcas_show_tbl
 	
 end
 
@@ -1125,12 +1125,12 @@ components = {
 	
 	tcas_draw {
 		position = {11, 11, 482, 530},
-		table_draw = tcas_show_tbl
+		--table_draw = tcas_show_tbl
 	},
 	
 	tcas_draw {
 		position = {518, 11, 482, 530},
-		table_draw = tcas_show_tbl
+		--table_draw = tcas_show_tbl
 	},	
 
 

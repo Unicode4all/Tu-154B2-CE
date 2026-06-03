@@ -10,10 +10,10 @@ defineProperty("kln_power", globalPropertyi("tu154b2/custom/KLN_power"))
 defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
 defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
 
-defineProperty("gps_course_degtm", globalPropertyf("sim/cockpit/radios/gps2_course_degtm2")) -- DTK magnetic
-defineProperty("gps_hdef_dot", globalPropertyf("sim/cockpit/radios/gps2_hdef_dot2")) -- Course dev in dots
-defineProperty("gps_fromto", globalPropertyi("sim/cockpit/radios/gps2_fromto2"))
-defineProperty("gps_dot", globalPropertyf("sim/cockpit/radios/gps2_hdef_nm_per_dot"))
+defineProperty("gps_course_degtm", globalPropertyf("sim/cockpit/radios/gps_course_degtm2")) -- DTK magnetic
+defineProperty("gps_hdef_dot", globalPropertyf("sim/cockpit/radios/gps_hdef_dot2")) -- Course dev in dots
+defineProperty("gps_fromto", globalPropertyi("sim/cockpit/radios/gps_fromto2"))
+defineProperty("gps_dot", globalPropertyf("sim/cockpit/radios/gps_hdef_nm_per_dot"))
 defineProperty("ground_trk", globalPropertyf("sim/cockpit2/gauges/indicators/ground_track_mag_pilot"))
 
 -- results
@@ -58,20 +58,21 @@ show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
 kontur_on = globalPropertyi("tu154b2/custom/b2/kontur_on") 
 -- kontur_off = globalPropertyi("sim/custom/b2/kontur_off")
 kontur70 = globalPropertyi("sim/custom/b2/kontur_70th")
+-- gps_z = globalPropertyf("sim/cockpit2/radios/indicators/gps_xtk")
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
-
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("dbstr", globalPropertys("tu154b2/custom/controlls/debugstr"))
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 local dir_arm=0
 local gps_course_prev=0
 local gps_switchover_timer=0
 local gps_dest_prev=0
 local gps_dest_app_prev=0
-local LB_left = findCommand("sim/GPS/g430n2_coarse_down")
+local LB_left = findCommand("sim/GPS/g430n1_coarse_down")
 local but_sound=0
 local rot_sound=0
 
@@ -84,7 +85,7 @@ end
 
 registerCommandHandler(LB_left, 0, LB_left_hnd)
 
-local LB_right = findCommand("sim/GPS/g430n2_coarse_up")
+local LB_right = findCommand("sim/GPS/g430n1_coarse_up")
 
 function LB_right_hnd(phase)
 	if 1 == phase then
@@ -96,7 +97,7 @@ end
 registerCommandHandler(LB_right, 0, LB_right_hnd)
 
 
-local LS_left = findCommand("sim/GPS/g430n2_fine_down")
+local LS_left = findCommand("sim/GPS/g430n1_fine_down")
 
 function LS_left_hnd(phase)
 	if 1 == phase then
@@ -107,7 +108,7 @@ end
 
 registerCommandHandler(LS_left, 0, LS_left_hnd)
 
-local LS_right = findCommand("sim/GPS/g430n2_fine_up")
+local LS_right = findCommand("sim/GPS/g430n1_fine_up")
 
 function LS_right_hnd(phase)
 	if 1 == phase then
@@ -121,7 +122,7 @@ registerCommandHandler(LS_right, 0, LS_right_hnd)
 
 
 
-local RB_left = findCommand("sim/GPS/g430n2_chapter_dn")
+local RB_left = findCommand("sim/GPS/g430n1_chapter_dn")
 
 function RB_left_hnd(phase)
 	if 1 == phase then
@@ -133,7 +134,7 @@ end
 
 registerCommandHandler(RB_left, 0, RB_left_hnd)
 
-local RB_right = findCommand("sim/GPS/g430n2_chapter_up")
+local RB_right = findCommand("sim/GPS/g430n1_chapter_up")
 
 function RB_right_hnd(phase)
 	if 1 == phase then
@@ -146,7 +147,7 @@ end
 registerCommandHandler(RB_right, 0, RB_right_hnd)
 
 
-local RS_left = findCommand("sim/GPS/g430n2_page_dn")
+local RS_left = findCommand("sim/GPS/g430n1_page_dn")
 
 function RS_left_hnd(phase)
 	if 1 == phase then
@@ -158,7 +159,7 @@ end
 
 registerCommandHandler(RS_left, 0, RS_left_hnd)
 
-local RS_right = findCommand("sim/GPS/g430n2_page_up")
+local RS_right = findCommand("sim/GPS/g430n1_page_up")
 
 function RS_right_hnd(phase)
 	if 1 == phase then
@@ -171,7 +172,7 @@ end
 registerCommandHandler(RS_right, 0, RS_right_hnd)
 
 
-local dirct = findCommand("sim/GPS/g430n2_direct")
+local dirct = findCommand("sim/GPS/g430n1_direct")
 
 function dirct_hnd(phase)
 	if 0 == phase then
@@ -190,7 +191,7 @@ end
 
 registerCommandHandler(dirct, 0, dirct_hnd)
 
-local fpl = findCommand("sim/GPS/g430n2_fpl")
+local fpl = findCommand("sim/GPS/g430n1_fpl")
 
 function fpl_hnd(phase)
 	if 0 == phase then	
@@ -205,7 +206,7 @@ end
 registerCommandHandler(fpl, 0, fpl_hnd)
 
 
-local proc = findCommand("sim/GPS/g430n2_proc")
+local proc = findCommand("sim/GPS/g430n1_proc")
 
 function proc_hnd(phase)
 	if 0 == phase then
@@ -220,7 +221,7 @@ end
 registerCommandHandler(proc, 0, proc_hnd)
 
 
-local clr=findCommand("sim/GPS/g430n2_clr")
+local clr=findCommand("sim/GPS/g430n1_clr")
 
 function clr_hnd(phase)
 	if 0 == phase then
@@ -234,7 +235,7 @@ end
 
 registerCommandHandler(clr, 0, clr_hnd)
 
-local ent=findCommand("sim/GPS/g430n2_ent")
+local ent=findCommand("sim/GPS/g430n1_ent")
 
 function ent_hnd(phase)
 	if 1 == phase then
@@ -254,7 +255,7 @@ end
 
 registerCommandHandler(ent, 0, ent_hnd)
 
-local menu=findCommand("sim/GPS/g430n2_menu")
+local menu=findCommand("sim/GPS/g430n1_menu")
 function menu_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
@@ -266,7 +267,7 @@ end
 
 registerCommandHandler(menu, 0, menu_hnd)
 
-local obs=findCommand("sim/GPS/g430n2_obs")
+local obs=findCommand("sim/GPS/g430n1_obs")
 function obs_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
@@ -278,7 +279,7 @@ end
 
 registerCommandHandler(obs, 0, obs_hnd)
 
-local cdi=findCommand("sim/GPS/g430n2_cdi")
+local cdi=findCommand("sim/GPS/g430n1_cdi")
 function cdi_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
@@ -290,7 +291,7 @@ end
 
 registerCommandHandler(cdi, 0, cdi_hnd)
 
-local zoom_out=findCommand("sim/GPS/g430n2_zoom_out")
+local zoom_out=findCommand("sim/GPS/g430n1_zoom_out")
 function zoom_out_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
@@ -302,7 +303,7 @@ end
 
 registerCommandHandler(zoom_out, 0, zoom_out_hnd)
 
-local zoom_in=findCommand("sim/GPS/g430n2_zoom_in")
+local zoom_in=findCommand("sim/GPS/g430n1_zoom_in")
 function zoom_in_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
@@ -314,7 +315,7 @@ end
 
 registerCommandHandler(zoom_in, 0, zoom_in_hnd)
 
-local msg=findCommand("sim/GPS/g430n2_msg")
+local msg=findCommand("sim/GPS/g430n1_msg")
 function msg_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
@@ -327,7 +328,7 @@ end
 registerCommandHandler(msg, 0, msg_hnd)
 
 
-local cursor=findCommand("sim/GPS/g430n2_cursor")
+local cursor=findCommand("sim/GPS/g430n1_cursor")
 function cursor_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
@@ -551,6 +552,18 @@ function update()
 	end
 	set(but_up,but_sound)
 	set(tss_rot,rot_sound)
+	-- local pos = get(db1)
+	-- local count = sasl.countFMSEntries ()
+	-- if count>=pos then
+		-- local tpe , nme , id , altitude , latitude , longitude = sasl.getFMSEntryInfo (pos)
+		-- set(db2,latitude)
+		-- set(db3,longitude)
+		-- set(dbstr,nme)
+		-- -- tpe , nme , id , altitude , latitude , longitude = sasl.getFMSEntryInfo (1)
+		-- -- set(db2,altitude)
+		-- -- tpe , nme , id , altitude , latitude , longitude = sasl.getFMSEntryInfo (2)
+		-- -- set(db3,altitude)
+	-- end
 end
 
 function onAvionicsDone()

@@ -203,8 +203,8 @@ function update()
 		
 		if GS < 1 then GS = 0 end
 		
-		dir_x = math.sin(dir); -- direct vector
-		dir_z = -math.cos(dir);
+		dir_x = math.sin(dir) -- direct vector
+		dir_z = -math.cos(dir)
 		plane_x = get(pos_x)
 		plane_y = get(pos_y)
 		plane_z = get(pos_z)
@@ -412,6 +412,9 @@ components = {
 		range = function()
 			return distance
 		end,
+		bright = function()
+			return brightness
+		end,
 		v_spd = function()
 			return vvi
 		end,
@@ -429,6 +432,9 @@ components = {
 		points_line2 = function ()
 			return zoneTable2
 		end,
+		bright = function()
+			return brightness
+		end,
 		visible = function()
 			return env_work
 		end,
@@ -436,77 +442,78 @@ components = {
 		
 	
 	-- scales for side view
-	textureLit {
+	textureLit_alpha {
 		position = {0, 0, size[1], size[2]},
 		image = get(scale_side_img_1),
 		visible = function()
 			return screen_work and distance == 8
 		end,
+		alpha = function()
+			return brightness
+		end,
 	},
-	textureLit {
+	textureLit_alpha {
 		position = {0, 0, size[1], size[2]},
 		image = get(scale_side_img_2),
 		visible = function()
 			return screen_work and distance == 20
 		end,
+		alpha = function()
+			return brightness
+		end,
 	},
-	textureLit {
+	textureLit_alpha {
 		position = {0, 0, size[1], size[2]},
 		image = get(scale_side_img_3),
 		visible = function()
 			return screen_work and distance == 40
 		end,
+		alpha = function()
+			return brightness
+		end,
 	},
-	textureLit {
+	textureLit_alpha {
 		position = {0, 0, size[1], size[2]},
 		image = get(scale_side_img_4),
 		visible = function()
 			return screen_work and distance == 100
 		end,
+		alpha = function()
+			return brightness
+		end,
 	},
-	textureLit {
+	textureLit_alpha {
 		position = {0, 0, size[1], size[2]},
 		image = get(scale_side_img_5),
 		visible = function()
 			return screen_work and distance == 200
 		end,
+		alpha = function()
+			return brightness
+		end,
 	},
-	textureLit {
+	textureLit_alpha {
 		position = {0, 0, size[1], size[2]},
 		image = get(scale_side_img_6),
 		visible = function()
 			return screen_work and distance == 320
 		end,
-	},
-	-- distance text
-	text_draw2 {
-		position = {800, 100, 160, 160},
-		text = function()
-			return range_text
-		end,
-		font = text_font,
-		color = {1,1,1,1},
-		visible = function()
-			return screen_work
+		alpha = function()
+			return brightness
 		end,
 	},
-
-	-- brightness controll
-	rectangle_ctr {
-		R = 0,
-		G = 0,
-		B = 0,
-		A = function()
-			return 1 - brightness
-		end, -- controll via alpha
-		position_x = 0,
-		position_y = 0,
-		width = size[1],
-		height = size[2],
-		visible = function()
-			return screen_work
-		end,
-	},
+	-- -- distance text
+	-- text_draw2 {
+		-- position = {800, 100, 160, 160},
+		-- text = function()
+			-- return range_text
+		-- end,
+		-- font = text_font,
+		-- color = {1,1,1,brightness},
+		-- visible = function()
+			-- return screen_work
+		-- end,
+	-- },
 
 }
 

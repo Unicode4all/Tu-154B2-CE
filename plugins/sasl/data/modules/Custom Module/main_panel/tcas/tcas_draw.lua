@@ -15,7 +15,7 @@ defineProperty("blu_up_img", loadImage("tcas_marks.png", 470, 493, 9, 18))
 defineProperty("yel_up_img", loadImage("tcas_marks.png", 482, 493, 9, 18))
 defineProperty("red_up_img", loadImage("tcas_marks.png", 494, 493, 9, 18))
 
-defineProperty("table_draw")
+--defineProperty("table_draw")
 
 tcas_range_set = globalPropertyi("tu154b2/custom/tcas/range_set")  -- дистанция на дисплее. 0 = 3, 1 = 5, 2 = 10, 3 = 18 nm
 xpdr_mode = globalPropertyf("sim/cockpit/radios/transponder_mode")
@@ -24,7 +24,7 @@ local font = loadFont(moduleDirectory.."/Custom Module/Verdana.ttf")
 
 function draw()
 	
-	local targets = get(table_draw)
+	local targets = tcas_data_tbl.targets
 	
 	local non_intr = get(non_intr_img)
 	local proxim = get(prox_trf_img)

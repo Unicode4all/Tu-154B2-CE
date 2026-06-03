@@ -114,6 +114,7 @@ test_panel.visible = true
 -- engines_data={}
 -- failures_data={}
 -- kskv_data={}
+tcas_data_tbl={}
 components = {
 
 -- internal logic

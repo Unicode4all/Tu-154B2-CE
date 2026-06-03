@@ -268,6 +268,11 @@ function kontur_onoff_button_l_CMDhandler(phase, duration)
         else
             kontur_onoff_l = 0
             kontur_nav_l = 0
+			kontur_tcas_l = 0
+			kontur_tcas_l_aux = 0
+			kontur_taws_l = 0
+			kontur_wx_l = 0
+			kontur_wx_l_aux = 0
             kontur_test_start_l = 1
             kontur_test_timer_l = 0
             kontur_test_l = 0
@@ -752,6 +757,11 @@ function kontur_onoff_button_r_CMDhandler(phase, duration)
             kontur_onoff_r = 0
             kontur_test_r = 0
             kontur_nav_r = 0
+			kontur_tcas_r = 0
+			kontur_tcas_r_aux = 0
+			kontur_taws_r = 0
+			kontur_wx_r = 0
+			kontur_wx_r_aux = 0
             kontur_test_start_r = 1
             kontur_test_timer_r = 0
 			rng_wx_r = 3
@@ -1200,6 +1210,11 @@ function kontur_ovhd_onoff_l_CMDhandler(phase, duration)
                 kontur_pow_l = 0
                 kontur_onoff_l = 0
                 kontur_nav_l = 0
+				kontur_tcas_l = 0
+				kontur_tcas_l_aux = 0
+				kontur_taws_l = 0
+				kontur_wx_l = 0
+				kontur_wx_l_aux = 0
                 kontur_test_timer_l = 0
                 kontur_test_start_l = 0
                 kontur_test_l = 0
@@ -1225,6 +1240,11 @@ function kontur_ovhd_onoff_r_CMDhandler(phase, duration)
                 kontur_pow_r = 0
                 kontur_onoff_r = 0
                 kontur_nav_r = 0
+				kontur_tcas_r = 0
+				kontur_tcas_r_aux = 0
+				kontur_taws_r = 0
+				kontur_wx_r = 0
+				kontur_wx_r_aux = 0
                 kontur_test_timer_r = 0
                 kontur_test_start_r = 0
                 kontur_test_r = 0
@@ -1314,6 +1334,11 @@ function kontur_left()
         kontur_onoff_l = 1
         kontur_on_l = 0
         kontur_nav_l = 0
+		kontur_tcas_l = 0
+		kontur_tcas_l_aux = 0
+		kontur_taws_l = 0
+		kontur_wx_l = 0
+		kontur_wx_l_aux = 0
         kontur_test_start_l = 0
         kontur_test_timer_l = 0
         kontur_test_l = 0
@@ -1390,7 +1415,7 @@ end
     end
 
     if kontur_pow_l > 0 and simDR_bus27left > 0 and kontur_onoff_l < 1 and kontur_test_start_l > 0 then
-         kontur_test_timer_l =  kontur_test_timer_l + simDR_passed
+         kontur_test_timer_l =  kontur_test_timer_l + simDR_passed*10
         if kontur_test_timer_l < 23 then
             if kontur_test_timer_l < 3 then
                 simDR_kontur_1_brt = 0
@@ -1565,6 +1590,11 @@ function kontur_right()
     kontur_onoff_r = 1
     kontur_on_r = 0
     kontur_nav_r = 0
+	kontur_tcas_r = 0
+	kontur_tcas_r_aux = 0
+	kontur_taws_r = 0
+	kontur_wx_r = 0
+	kontur_wx_r_aux = 0
     kontur_test_start_r = 0
     kontur_test_timer_r = 0
     kontur_test_r = 0
@@ -1641,7 +1671,7 @@ end
     end
 
     if kontur_pow_r > 0 and simDR_bus27right > 0 and kontur_onoff_r < 1 and kontur_test_start_r > 0 then 
-         kontur_test_timer_r =  kontur_test_timer_r + simDR_passed
+         kontur_test_timer_r =  kontur_test_timer_r + simDR_passed*10
         if kontur_test_timer_r < 21 then
             if kontur_test_timer_r < 3 then
             simDR_kontur_2_brt = 0
