@@ -27,6 +27,8 @@ kont_dist_mode = globalPropertyi("sim/custom/kontur/dist_mode_l")
 kont_dist_mode2 = globalPropertyi("sim/custom/kontur/dist_mode_r")
 menu_l = globalPropertyi("sim/custom/kontur/left_nav_menu")
 menu_r = globalPropertyi("sim/custom/kontur/right_nav_menu")
+ap_alt = globalPropertyi("sim/cockpit2/autopilot/altitude_dial_ft")
+vvi = globalPropertyf("sim/flightmodel/position/vh_ind")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
@@ -124,10 +126,12 @@ function update()
 			nd_name_tbl[n_FMS+i] = '(INTC)'
 		end	
 	end
-	-- off1=get(db2)
-	-- off2=get(db3)
-	-- set(db2,heading_diff)
-	-- set(db3,distance)
+	-- dirty trick to remove AP altitude intercept line from nd_name_tbl
+	if get(vvi)>0 then
+		set(ap_alt,0)
+	else
+		set(ap_alt,99999)
+	end
 end
 
 components = {
