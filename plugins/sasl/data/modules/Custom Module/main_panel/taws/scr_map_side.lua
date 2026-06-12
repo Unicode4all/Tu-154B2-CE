@@ -36,12 +36,15 @@ defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) 
 -- defineProperty("arc_array", globalPropertyfa("tu154b2/custom/rls/arc"))
 
 -- images
-scale_side_img_1 = loadImage("taws_scale_2_1.png", 0, 255, 1000, 770)
-scale_side_img_2 = loadImage("taws_scale_2_2.png", 0, 255, 1000, 770)
-scale_side_img_3 = loadImage("taws_scale_2_3.png", 0, 255, 1000, 770)
-scale_side_img_4 = loadImage("taws_scale_2_4.png", 0, 255, 1000, 770)
-scale_side_img_5 = loadImage("taws_scale_2_5.png", 0, 255, 1000, 770)
-scale_side_img_6 = loadImage("taws_scale_2_6.png", 0, 255, 1000, 770)
+-- scale_side_img_0 = loadImage("taws_scale_2_0.png", 0, 255, 1000, 770)
+-- scale_side_img_1 = loadImage("taws_scale_2_1.png", 0, 255, 1000, 770)
+-- scale_side_img_2 = loadImage("taws_scale_2_2.png", 0, 255, 1000, 770)
+-- scale_side_img_3 = loadImage("taws_scale_2_3.png", 0, 255, 1000, 770)
+-- scale_side_img_4 = loadImage("taws_scale_2_4.png", 0, 255, 1000, 770)
+-- scale_side_img_5 = loadImage("taws_scale_2_5.png", 0, 255, 1000, 770)
+-- scale_side_img_6 = loadImage("taws_scale_2_6.png", 0, 255, 1000, 770)
+-- scale_side_img_7 = loadImage("taws_scale_2_7.png", 0, 255, 1000, 770)
+scale_side_img = loadImage("taws_scale.png", 0, 255, 1000, 770)
 kont = globalPropertyi("tu154b2/custom/b2/kontur_on")
 kont_left = globalPropertyi("sim/custom/kontur/left_taws")
 kont_right = globalPropertyi("sim/custom/kontur/right_taws")
@@ -53,9 +56,9 @@ rdy = globalPropertyi("tu154b2/custom/taws/disp_rdy")
 phase = globalPropertyi("tu154b2/custom/taws/phase")
 defineProperty("max_m", globalPropertyf("tu154b2/custom/taws/max_l"))
 defineProperty("min_m", globalPropertyf("tu154b2/custom/taws/min_l"))
-defineProperty("max_m_1000",globalPropertyf("tu154b2/custom/taws/max_l_1000"))
+defineProperty("max_m_1000", globalPropertyf("tu154b2/custom/taws/max_l_1000"))
 defineProperty("min_m_1000", globalPropertyf("tu154b2/custom/taws/min_l_1000"))
-defineProperty("kont_dist_mode", globalPropertyi("sim/custom/kontur/dist_mode_l"))
+kont_dist_mode = globalPropertyi("sim/custom/kontur/dist_mode_l")
 local rows = 60
 local rows_zone = 20 -- number of points for envelope lines
 local flight_phase = 0
@@ -167,16 +170,27 @@ function update()
 	end
 
 	
-	range_text = "20км"
+	--range_text = "20км"
 	
-	if dist == 1 then distance = 8 range_text = "8км"
-	elseif dist == 2 then distance = 20 range_text = "20км"
-	elseif dist == 3 then distance = 40 range_text = "40км"
-	elseif dist == 4 then distance = 100 range_text = "80км"
-	elseif dist == 5 then distance = 200 range_text = "160км"
-	elseif dist == 6 then distance = 320 range_text = "320км"
+	if dist == 1 then distance = 8 range_text = "4"
+	elseif dist == 2 then distance = 20 range_text = "10"
+	elseif dist == 3 then distance = 40 range_text = "20"
+	elseif dist == 4 then distance = 100 range_text = "50"
+	elseif dist == 5 then distance = 200 range_text = "100"
+	elseif dist == 6 then distance = 320 range_text = "160"
+	elseif dist == 7 then distance = 640 range_text = "320"
 	end
-	
+	if get(kont_dist_mode) == 1 then
+		distance = distance * (1-0.073)
+		if dist == 1 then range_text = "2"
+		elseif dist == 2 then range_text = "5"
+		elseif dist == 3 then range_text = "10"
+		elseif dist == 4 then range_text = "25"
+		elseif dist == 5 then range_text = "50"
+		elseif dist == 6 then range_text = "80"
+		elseif dist == 7 then range_text = "160"
+		end
+	end
 		--[[
 		-- copy temp table to draw table and reset temp one
 		for i = 1, rows, 1 do
@@ -421,6 +435,9 @@ components = {
 		g_spd = function()
 			return GS
 		end,
+		range_txt = function()
+			return range_text
+		end,
 	},
 	
 	-- warning zone envelopes
@@ -444,76 +461,14 @@ components = {
 	-- scales for side view
 	textureLit_alpha {
 		position = {0, 0, size[1], size[2]},
-		image = get(scale_side_img_1),
+		image = get(scale_side_img),
 		visible = function()
-			return screen_work and distance == 8
+			return screen_work
 		end,
 		alpha = function()
 			return brightness
 		end,
 	},
-	textureLit_alpha {
-		position = {0, 0, size[1], size[2]},
-		image = get(scale_side_img_2),
-		visible = function()
-			return screen_work and distance == 20
-		end,
-		alpha = function()
-			return brightness
-		end,
-	},
-	textureLit_alpha {
-		position = {0, 0, size[1], size[2]},
-		image = get(scale_side_img_3),
-		visible = function()
-			return screen_work and distance == 40
-		end,
-		alpha = function()
-			return brightness
-		end,
-	},
-	textureLit_alpha {
-		position = {0, 0, size[1], size[2]},
-		image = get(scale_side_img_4),
-		visible = function()
-			return screen_work and distance == 100
-		end,
-		alpha = function()
-			return brightness
-		end,
-	},
-	textureLit_alpha {
-		position = {0, 0, size[1], size[2]},
-		image = get(scale_side_img_5),
-		visible = function()
-			return screen_work and distance == 200
-		end,
-		alpha = function()
-			return brightness
-		end,
-	},
-	textureLit_alpha {
-		position = {0, 0, size[1], size[2]},
-		image = get(scale_side_img_6),
-		visible = function()
-			return screen_work and distance == 320
-		end,
-		alpha = function()
-			return brightness
-		end,
-	},
-	-- -- distance text
-	-- text_draw2 {
-		-- position = {800, 100, 160, 160},
-		-- text = function()
-			-- return range_text
-		-- end,
-		-- font = text_font,
-		-- color = {1,1,1,brightness},
-		-- visible = function()
-			-- return screen_work
-		-- end,
-	-- },
 
 }
 

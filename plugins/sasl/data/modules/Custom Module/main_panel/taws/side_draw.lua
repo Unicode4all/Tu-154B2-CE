@@ -11,6 +11,11 @@ defineProperty("range", 10)
 defineProperty("v_spd", 0)
 defineProperty("g_spd", 0)
 defineProperty("bright")
+defineProperty("range_txt")
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+local font = loadFont(moduleDirectory.."/Custom Module/Verdana.ttf")
 
 function draw()
 	
@@ -54,7 +59,7 @@ function draw()
 			
 			
 	end
-
+	drawText(font, 400, -40 , get(range_txt), 30, false, false, TEXT_ALIGN_CENTER, {0.1607, 0.647, 0.647, brt})
 	-- track line
 	-- local vvi = get(v_spd)
 	-- local speed = get(g_spd) -- m/s

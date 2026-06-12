@@ -19,7 +19,7 @@ addSearchPath(moduleDirectory .. "/Custom Module/gui")
 addSearchPath(moduleDirectory .. "/Custom Module")
 addSearchPath(moduleDirectory .. "/Custom Module/main_panel")
 addSearchPath(moduleDirectory .. "/Custom Module/main_panel/taws")
-
+nd_display = sasl.gl.createRenderTarget ( 500 , 400 )
 --include("dataref_creator_4.lua")
 
 sasl.gl.setRenderTextPixelAligned(true )

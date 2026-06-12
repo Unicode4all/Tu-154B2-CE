@@ -19,6 +19,7 @@ defineProperty("offst3")
 defineProperty("brightness")
 defineProperty("navon")
 defineProperty("mode")
+defineProperty("dist_mode")
 xpdr_mode = globalPropertyf("sim/cockpit/radios/transponder_mode")
 local font = loadFont(moduleDirectory.."/Custom Module/Verdana.ttf")
 
@@ -63,6 +64,7 @@ function draw()
 			elseif range_set == 4 then range_coef = 100
 			elseif range_set == 5 then range_coef = 200
 			end
+			range_coef = range_coef * (1-0.073*get(dist_mode))
 			
 			local x = targets[i][1] / 1852 / range_coef * 678 + 235
 			local y = targets[i][2] / 1852 / range_coef * 678 -4 + 130 * bool2int(get(mode)==5)

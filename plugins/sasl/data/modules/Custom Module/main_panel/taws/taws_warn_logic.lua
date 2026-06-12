@@ -47,7 +47,7 @@ defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) 
 
 
 -- controls
-defineProperty("taws_english", globalPropertyi("tu154b2/custom/taws/taws_english")) -- язык системы. 0 - русский, 1 - английский	0
+defineProperty("taws_english", globalPropertyi("sim/custom/kontur/dist_mode_l")) -- язык системы. 0 - русский, 1 - английский	0
 defineProperty("mode_set", globalPropertyi("tu154b2/custom/taws/mode_set")) -- режим работы экрана. 0 - выкл, 1 - карта высот, 2 - вид сбоку, 3 - часы, 4 - процесс включения, 5 - тест
 
 defineProperty("egpws_alarm_1", globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_1")) -- сигнализация СРПБЗ общ

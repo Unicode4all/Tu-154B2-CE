@@ -23,12 +23,16 @@ tcas_left = globalPropertyi("sim/custom/kontur/left_tcas")
 tcas_aux_left = globalPropertyi("sim/custom/kontur/left_tcas_aux")
 tcas_right = globalPropertyi("sim/custom/kontur/right_tcas")
 tcas_aux_right = globalPropertyi("sim/custom/kontur/right_tcas_aux")
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
-debugstr = globalPropertys("tu154b2/custom/controlls/debugstr")
-defineProperty("arc_array", globalPropertyfa("tu154b2/custom/rls/arc"))
+kont_dist_mode = globalPropertyi("sim/custom/kontur/dist_mode_l")
+kont_dist_mode2 = globalPropertyi("sim/custom/kontur/dist_mode_r")
+menu_l = globalPropertyi("sim/custom/kontur/left_nav_menu")
+menu_r = globalPropertyi("sim/custom/kontur/right_nav_menu")
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- debugstr = globalPropertys("tu154b2/custom/controlls/debugstr")
+-- defineProperty("arc_array", globalPropertyfa("tu154b2/custom/rls/arc"))
 
 function getHeading(lat1,lon1,lat2,lon2)
   local b10=math.rad(lat1)
@@ -138,15 +142,6 @@ components = {
 		range = function()
 			return get(range_capt)
 		end,
-		offst = function()
-			return get(db1)
-		end,
-		offst2 = function()
-			return get(db2)
-		end,
-		offst3 = function()
-			return get(db3)
-		end,
 		brightness  = function()
 			return get(brt_left)
 		end,
@@ -155,6 +150,12 @@ components = {
 		end,
 		mode  = function()
 			return get(mode_left)
+		end,
+		dist_mode  = function()
+			return get(kont_dist_mode)
+		end,
+		menu  = function()
+			return get(menu_l)
 		end,
 	},
 	
@@ -168,15 +169,6 @@ components = {
 		range = function()
 			return get(range_fo)
 		end,
-		offst = function()
-			return get(db1)
-		end,
-		offst2 = function()
-			return get(db2)
-		end,
-		offst3 = function()
-			return get(db3)
-		end,
 		brightness  = function()
 			return get(brt_right)
 		end,
@@ -186,20 +178,17 @@ components = {
 		mode  = function()
 			return get(mode_right)
 		end,
+		dist_mode  = function()
+			return get(kont_dist_mode2)
+		end,
+		menu  = function()
+			return get(menu_r)
+		end,
 	},
 	tcas_nd_draw {
 		position = {0, 0, 500, 400},
 		range = function()
 			return get(range_capt)
-		end,
-		offst = function()
-			return get(db1)
-		end,
-		offst2 = function()
-			return get(db2)
-		end,
-		offst3 = function()
-			return get(db3)
 		end,
 		brightness  = function()
 			return get(brt_left)
@@ -210,21 +199,15 @@ components = {
 		mode  = function()
 			return get(mode_left)
 		end,
+		dist_mode  = function()
+			return get(kont_dist_mode)
+		end,
 	},
 	
 		tcas_nd_draw {
 		position = {500, 0, 500, 400},
 		range = function()
 			return get(range_fo)
-		end,
-		offst = function()
-			return get(db1)
-		end,
-		offst2 = function()
-			return get(db2)
-		end,
-		offst3 = function()
-			return get(db3)
 		end,
 		brightness  = function()
 			return get(brt_right)
@@ -234,6 +217,9 @@ components = {
 		end,
 		mode  = function()
 			return get(mode_right)
+		end,
+		dist_mode  = function()
+			return get(kont_dist_mode2)
 		end,
 	},
 

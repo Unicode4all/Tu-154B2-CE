@@ -178,6 +178,7 @@ defineProperty("kontur90", globalPropertyi("sim/custom/b2/kontur_70th"))
 defineProperty("tra_transponder", globalPropertyi("tu154b2/custom/switchers/ovhd/tra_67_on"))
 defineProperty("cas_pwr", globalPropertyi("sim/custom/tcas2000/tcas_pwr"))
 so_mode = globalPropertyi("tu154b2/custom/tcas/co72_mode")
+alt_src = globalPropertyi("sim/cockpit2/radios/actuators/tcas_sys_select")
 
 
 local MASTER = get(ismaster) ~= 1
@@ -718,9 +719,11 @@ local function tcas_mode_set()
 if MASTER then
 	local tcas_fail=0
 	local alt_fail=0
-	if (get(vbe_1)==0 and get(vbe_se1)==0) or (get(vbe_2)==0 and get(vbe_se1)==1) then
+	local vbe_side = get(vbe_se1)
+	if (get(vbe_1)==0 and vbe_side==0) or (get(vbe_2)==0 and vbe_side==1) then
 		alt_fail=1
 	end
+	set(alt_src,vbe_side)
 	if get(pkp_fail)>0 or get(pkp_on)==0 or get(rv_flag)>0 or get(tks_on_2)==0 or get(tks_bgmk1_fail)>0 or alt_fail>0 or get(cas_pwr)==0 or get(xpdr_fail)>0 or get(tra_transponder)==0 or get(tcas_proc_on)==0 or get(var_on_1)==0 then
 		tcas_fail=1
 	end

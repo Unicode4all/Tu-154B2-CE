@@ -91,6 +91,7 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 
 -- failures
 defineProperty("nvu_fail", globalPropertyi("tu154b2/custom/failures/nvu_fail")) --
+diss_mode = globalPropertyi("tu154b2/custom/nvu/diss_mode")
 
 
 
@@ -287,7 +288,7 @@ end
 	local slip_angle = get(diss_slip_angle) -- deg
 	local TAS=get(tas_svs)
 	if power then
-		if get(nvu_calc_set)~=1 then	
+		if get(nvu_calc_set)~=1 or get(diss_mode)~=1 then	
 			--local diss_wind_speed = get(diss_wind_spd) / 3.6
 			
 			--local diss_wind_dir = get(diss_wind_course) - gpk_course

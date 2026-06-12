@@ -61,6 +61,7 @@ defineProperty("show_RXP",globalPropertyi("tu154b2/custom/anim/RXP"))
 defineProperty("GNS430_dtk", globalPropertyf("tu154b2/custom/SC/GNS430_dtk")) -- курс на ГНС
 defineProperty("GNS430_dev", globalPropertyf("tu154b2/custom/SC/GNS430_dev")) -- отклонение от курса на ГНС
 defineProperty("GNS430_flag", globalPropertyi("tu154b2/custom/SC/GNS430_flag")) -- отклонение от курса на ГНС
+defineProperty("gps_hdef_dot", globalPropertyf("sim/cockpit/radios/gps_hdef_dot")) -- Course dev in dots
 --defineProperty("gps_power", globalPropertyi("sim/cockpit2/radios/actuators/gps_power")) -- GPS power
 
 -- RXP
@@ -348,7 +349,7 @@ function update()
 				obs_course = get(GNS430_dtk)
 			--end
 			
-			course_pl = get(GNS430_dev) * 0.1852 * 2.1*(1-bns_fail)
+			course_pl = get(gps_hdef_dot) / 2.5 * (1-bns_fail)
 			glidesl_pl = 0
 			
 			

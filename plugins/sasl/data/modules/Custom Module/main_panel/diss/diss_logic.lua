@@ -204,9 +204,10 @@ function update()
 		-- Return signal fades at high angles or over calm water
 		local speed = math.sqrt(math.pow(1/2*(dopp_2-dopp_1)/math.cos((90-B)*math.pi/180)/math.cos((gamma)*math.pi/180),2)+math.pow(1/2*(dopp_3-dopp_2)/math.cos((90-B)*math.pi/180)/math.sin((gamma)*math.pi/180),2))
 		local wave=get(wave_amplitude)
-		beam1_fail=angle_1>45.5-math.random(0,2*(1-wave)*water1) or (water1==1 and wave < 0.1 ) or math.abs(dopp_1)<10 or speed<180/3.6
-		beam2_fail=angle_2>45  -math.random(0,2*(1-wave)*water2) or (water2==1 and wave < 0.1 ) or math.abs(dopp_2)<10 or speed<180/3.6
-		beam3_fail=angle_3>44.5-math.random(0,2*(1-wave)*water3) or (water3==1 and wave < 0.1 ) or math.abs(dopp_3)<10 or speed<180/3.6
+		local wve_coef = 0.01
+		beam1_fail=angle_1>45.5-math.random(0,3*(1-wave)*water1) or math.abs(dopp_1)<10 or math.random(0,1+wve_coef*(1-wave)*water1) > 1 or speed<180/3.6  -- or (water1==1 and wave < 0.1 )
+		beam2_fail=angle_2>45  -math.random(0,3*(1-wave)*water2) or math.abs(dopp_2)<10 or math.random(0,1+wve_coef*(1-wave)*water2) > 1 or speed<180/3.6  -- or (water2==1 and wave < 0.1 )
+		beam3_fail=angle_3>44.5-math.random(0,3*(1-wave)*water3) or math.abs(dopp_3)<10 or math.random(0,1+wve_coef*(1-wave)*water3) > 1 or speed<180/3.6  -- or (water3==1 and wave < 0.1 )
 		check_timer=0
 	end
 	-- set(db1,angle_1)
@@ -219,6 +220,7 @@ function update()
 	local power = get(diss_on) == 1 and get(bus27_volt_left) > 13 and get(bus36_volt_left) > 30 and get(bus115_1_volt) > 100
 	set(diss_cc, bool2int(power))
 	local fail = get(diss_fail) == 1
+	local beam_fail = beam1_fail or beam2_fail or beam3_fail
     local warmup = warmup_timer > 180
     if power then
 		if warmup_timer<300 then
@@ -233,16 +235,15 @@ function update()
 
 	local mode = 0
 	local nvu_mode = get(nvu_calc_set)
-	
-	if power and warmup and fail then
-		mode = 2
-	elseif power and warmup and nvu_mode == 1 and not (beam1_fail or beam2_fail or beam3_fail) then
+	if power and warmup and nvu_mode == -1 then
+		mode = 3
+	elseif power and warmup and beam_fail then
+		mode = 2	
+	elseif power and warmup then
 		mode = 1
-	elseif power and warmup and nvu_mode ~= -1 then 
-		mode = 2
-	elseif power and warmup and nvu_mode == -1 then
-		mode = 3	
-	elseif not power then
+	-- elseif power and warmup and not fail and nvu_mode ~= -1 then 
+		-- mode = 2
+	elseif not power or fail then
 		g_spd_prev=0
 		slip_angle_prev=0
 	end
@@ -270,13 +271,11 @@ function update()
 		g_spd=math.sqrt(math.pow(Wz,2)+math.pow(Wx,2))
 		g_spd_prev=g_spd
 		slip_angle_prev=slip_angle
-	elseif mode == 10 then -- fail
-		g_spd = 0
-		slip_angle = 0
-		--diss_wind_speed = 0
-		--diss_wind_dir = 0
-	
-	
+	-- elseif mode == 10 then -- fail
+		-- g_spd = 0
+		-- slip_angle = 0
+		-- --diss_wind_speed = 0
+		-- --diss_wind_dir = 0	
 	end
 	mode_prev=mode
 	

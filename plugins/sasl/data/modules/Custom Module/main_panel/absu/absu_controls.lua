@@ -150,8 +150,9 @@ defineProperty("show_RXP",globalPropertyi("tu154b2/custom/anim/RXP"))
 -- defineProperty("RXP_dev", globalPropertyf("RXP/radios/indicators/gps_cross_track_nm")) -- отклонение от ЛЗП, мили
 
 -- GNS
-defineProperty("GNS430_dtk", globalPropertyf("tu154b2/custom/SC/GNS430_dtk")) -- курс на ГНС
-defineProperty("GNS430_dev", globalPropertyf("tu154b2/custom/SC/GNS430_dev")) -- отклонение от курса на ГНС
+GNS430_dtk = globalPropertyf("tu154b2/custom/SC/GNS430_dtk") -- курс на ГНС
+GNS430_dev = globalPropertyf("tu154b2/custom/SC/GNS430_dev") -- отклонение от курса на ГНС
+gps_hdef_dot = globalPropertyf("sim/cockpit/radios/gps_hdef_dot")
 
 
 -- RV
@@ -265,6 +266,7 @@ cockpit_80s = globalPropertyi("sim/custom/b2/kontur_pa_off")
 p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
 rv_test = globalPropertyi("tu154b2/custom/gauges/alt/radioalt_button_left")
 gps_psi = globalPropertyf("tu154b2/custom/tks/kln_psi")
+gps_trk = globalPropertyf("sim/cockpit2/gauges/indicators/ground_track_mag_pilot")
 --press_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")
 --defineProperty("h_right", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot"))
 
@@ -1114,15 +1116,6 @@ function update()
 				nvu_z = Z
 				
 			end
-
-			-- -- RXP source
-			-- if get(show_gns) == 1 and get(show_RXP) == 1 and kln_mode then
-				-- nvu_course = get(RXP_course)
-				-- local Z = -get(RXP_dev) * 1.852 -- km
-				-- --gps_Z_smooth = gps_Z_smooth - (gps_Z_smooth - Z) * passed
-				-- nvu_z = Z
-				
-			-- end
 			
 			local side_lim = 2000 -- m
 			local side_spd_lim = 160 -- m/s
@@ -1165,47 +1158,40 @@ function update()
 			if side_spd > side_spd_lim then side_spd = side_spd_lim
 			elseif side_spd < -side_spd_lim then side_spd = -side_spd_lim end
 			
-			
-			-- fix turns
-			--if math.abs(nvu_course - nvu_course_last) > 0.5 then course_change_timer = 0 end
-			--nvu_course_last = nvu_course
-			
-			-- if course_change_timer < 3 then -- course changing. hold previous parameters to prevent wrong roll command
-				-- side = 0 --nvu_side_last
-				-- side_spd = 0 -- nvu_spd_last
-			-- --else -- course stabilised. fly bu new parameters
-				-- --nvu_side_last = side
-				-- --nvu_spd_last = side_spd
-			-- end
-						
-			--course_change_timer = course_change_timer + passed
-			
-			
-			
-			course_now = get(pkp_gyro_course_L)
-			if get(GNS430_dev)>=1.85 and get(show_gns) == 1 and kln_mode then -- special mode for >90° SID/STAR turns with GNS			
-				local course_diff = nvu_course + 30 - get(gps_psi)
-				if course_diff > 180 then 
-					course_diff = course_diff - 360
-				elseif course_diff < -180 then 
-					course_diff = course_diff + 360 
+			--Bank control for GNS (uses heading and side-dev)			
+			if get(show_gns) == 1 and kln_mode then
+				local course_diff = nvu_course - get(gps_trk)
+				if get(gps_hdef_dot)>=2.499 then -- special mode for >90° SID/STAR turns with GNS, flies desired track +30° to intercept route line			
+					course_diff = course_diff + 30
+					if course_diff > 180 then 
+						course_diff = course_diff - 360
+					elseif course_diff < -180 then 
+						course_diff = course_diff + 360 
+					end
+					if math.abs(course_diff)>90 then
+						course_diff=-25
+					end
+					roll_need = roll_need*3/(3+passed) + course_diff*passed/(3+passed) 
+				elseif get(gps_hdef_dot)<=-2.499 then -- special mode for <-90° SID/STAR turns with GNS			
+					local course_diff = course_diff - 30
+					if course_diff > 180 then 
+						course_diff = course_diff - 360
+					elseif course_diff < -180 then 
+						course_diff = course_diff + 360 
+					end
+					if math.abs(course_diff)>90 then
+						course_diff=25
+					end
+					roll_need = roll_need*3/(3+passed) + course_diff*passed/(3+passed) 
+				else
+					if course_diff > 180 then 
+						course_diff = course_diff - 360
+					elseif course_diff < -180 then 
+						course_diff = course_diff + 360 
+					end
+					roll_need = roll_need*3/(3+passed) + (course_diff -side * KZ - side_spd * KPZ)*passed/(3+passed) 
 				end
-				if math.abs(course_diff)>90 then
-					course_diff=-25
-				end
-				roll_need = roll_need*3/(3+passed) + course_diff*passed/(3+passed) 
-			elseif get(GNS430_dev)<=-1.85 and get(show_gns) == 1 and kln_mode then -- special mode for >90° SID/STAR turns with GNS			
-				local course_diff = nvu_course - 30 - get(gps_psi)
-				if course_diff > 180 then 
-					course_diff = course_diff - 360
-				elseif course_diff < -180 then 
-					course_diff = course_diff + 360 
-				end
-				if math.abs(course_diff)>90 then
-					course_diff=25
-				end
-				roll_need = roll_need*3/(3+passed) + course_diff*passed/(3+passed) 
-			else
+			else -- Bank control for NVU/KLN (uses only side-dev)
 				roll_need = roll_need*3/(3+passed) + (-side * KZ - side_spd * KPZ)*passed/(3+passed) -- low pass
 			end
 			--end
@@ -1214,17 +1200,6 @@ function update()
 			
 			if roll_need > 25+get(show_gns) then roll_need = 25+get(show_gns)
 			elseif roll_need < -25-get(show_gns) then roll_need = -25-get(show_gns) end
-			
-			-- -- fix rapid course changing
-			-- local course_delta = nvu_course - course_now
-			-- while course_delta > 180 do course_delta = course_delta - 360 end
-			-- while course_delta < -180 do course_delta = course_delta + 360 end
-			
-			-- if math.abs(course_delta) > 90 then
-				-- roll_need = sign(course_delta) * 25
-			-- end
-			
-			
 			
 			roll_show = roll_need
 			

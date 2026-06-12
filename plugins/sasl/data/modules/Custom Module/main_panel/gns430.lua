@@ -10,9 +10,9 @@ defineProperty("kln_power", globalPropertyi("tu154b2/custom/KLN_power"))
 defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
 defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
 
-defineProperty("gps_course_degtm", globalPropertyf("sim/cockpit/radios/gps_course_degtm2")) -- DTK magnetic
-defineProperty("gps_hdef_dot", globalPropertyf("sim/cockpit/radios/gps_hdef_dot2")) -- Course dev in dots
-defineProperty("gps_fromto", globalPropertyi("sim/cockpit/radios/gps_fromto2"))
+defineProperty("gps_course_degtm", globalPropertyf("sim/cockpit/radios/gps_course_degtm")) -- DTK magnetic
+defineProperty("gps_hdef_dot", globalPropertyf("sim/cockpit/radios/gps_hdef_dot")) -- Course dev in dots
+defineProperty("gps_fromto", globalPropertyi("sim/cockpit/radios/gps_fromto"))
 defineProperty("gps_dot", globalPropertyf("sim/cockpit/radios/gps_hdef_nm_per_dot"))
 defineProperty("ground_trk", globalPropertyf("sim/cockpit2/gauges/indicators/ground_track_mag_pilot"))
 
@@ -50,7 +50,6 @@ defineProperty("gps_dest_lon2", globalPropertyf("tu154b2/custom/radio/dest_lon2"
 defineProperty("gps_dest_app_lat2", globalPropertyf("tu154b2/custom/radio/dest_app_lat2"))
 defineProperty("gps_dest_app_lon2", globalPropertyf("tu154b2/custom/radio/dest_app_lon2"))
 defineProperty("magv", globalPropertyf("sim/flightmodel/position/magnetic_variation"))
-defineProperty("sync", globalPropertyi("tu154b2/custom/radio/kontur_sync"))
 defineProperty("but_up", globalPropertyi("tu154b2/custom/taws/taws_button")) 
 defineProperty("tss_rot", globalPropertyi("tu154b2/custom/rotary/GNS430/tss_rot"))
 hsi_source = globalPropertyi("sim/cockpit/switches/HSI_selector2")
@@ -58,23 +57,28 @@ show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
 kontur_on = globalPropertyi("tu154b2/custom/b2/kontur_on") 
 -- kontur_off = globalPropertyi("sim/custom/b2/kontur_off")
 kontur70 = globalPropertyi("sim/custom/b2/kontur_70th")
--- gps_z = globalPropertyf("sim/cockpit2/radios/indicators/gps_xtk")
+z_bok = globalPropertyf("sim/custom/kontur/zbok")
+z_bok_nm = globalPropertyf("sim/custom/kontur/zbok_nm")
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
-defineProperty("dbstr", globalPropertys("tu154b2/custom/controlls/debugstr"))
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("dbstr", globalPropertys("tu154b2/custom/controlls/debugstr"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
 
 local dir_arm=0
 local gps_course_prev=0
-local gps_switchover_timer=0
+--local gps_switchover_timer=0
 local gps_dest_prev=0
 local gps_dest_app_prev=0
 local LB_left = findCommand("sim/GPS/g430n1_coarse_down")
 local but_sound=0
 local rot_sound=0
+local dir_lat = get(curr_lat)
+local dir_lon = get(curr_lon)
+local dir_to = 0
 
 function LB_left_hnd(phase)
 	if 1 == phase then
@@ -180,8 +184,10 @@ function dirct_hnd(phase)
 		if dir_arm==0 then
 			dir_arm=1
 		else
-			set(GNS_direct,1)
+			dir_to = 1
 			dir_arm=0
+			dir_lat = get(curr_lat)
+			dir_lon = get(curr_lon)
 		end
 	elseif phase == 2 then
         but_sound = 0
@@ -240,9 +246,11 @@ local ent=findCommand("sim/GPS/g430n1_ent")
 function ent_hnd(phase)
 	if 1 == phase then
 		but_sound = 1
-		set(sync,1)
+		--set(sync,1)
 		if dir_arm==1 then
-			set(GNS_direct,1)
+			dir_to = 1
+			dir_lat = get(curr_lat)
+			dir_lon = get(curr_lon)
 			dir_arm=0
 		else
 			dir_arm=0
@@ -471,76 +479,73 @@ function update()
 		-- Approach phase flag
 		if (d<3 and d>0 and get(gps_phase)==0 and curr_dest==get(gps_n_wp)-1) or (curr_dest_app~=gps_dest_app_prev and appr==0) then
 			appr=1
-			set(gps_phase,1)
+			--set(gps_phase,1)
 		elseif (get(gps_phase)==1 and curr_dest<get(gps_n_wp)-1) or curr_dest~=gps_dest_prev then
 			appr=0
-			set(gps_phase,0)
+			--set(gps_phase,0)
 		end
 		
-		-- Turn anticipation, force ABSU to next leg course before the GPS switches by itself
-		--local turn_dist=4
 		local gps_course=get(gps_course_degtm)
 		local z=get(gps_hdef_dot)* 1.852* get(gps_dot)
-		local cross=0
+		-- local cross=0
 		-- calculate cross track error for either enroute or approach legs
-		if curr_dest<get(gps_n_wp)-1 and appr==0 then
-			cross=x_trk(get(curr_lat),get(curr_lon),wp_lat,wp_lon,wp_lat2,wp_lon2)
-		elseif curr_dest==get(gps_n_wp)-1 and math.abs(app_lat)>0.1 and math.abs(app_lon)>0.1 and appr==0 then
-			cross=x_trk(get(curr_lat),get(curr_lon),wp_lat,wp_lon,app_lat,app_lon)
-		elseif appr==1 then
-			cross=x_trk(get(curr_lat),get(curr_lon),app_lat,app_lon,app_lat2,app_lon2)
-		end
-				-- switch to cross-track from next leg for ABSU
-		if math.abs(gps_course-gps_course_prev)>2 then 
-			gps_switchover_timer=30
-		end
-		gps_course_prev=gps_course
+		-- if dir_to == 1 then
+			-- wp_lat = dir_lat
+			-- wp_lon = dir_lon
+			-- app_lat = dir_lat
+			-- app_lon = dir_lon
+		-- end
+		-- set(db2,dir_lat)
+		-- set(db3,dir_lon)
+		-- if appr==0 then			
+			-- if get(gps_n_wp)>0 then
+				-- cross=x_trk(get(curr_lat),get(curr_lon),wp_lat,wp_lon,wp_lat2,wp_lon2)
+			-- else
+				-- cross_x = 0
+			-- end
+		-- elseif curr_dest==get(gps_n_wp)-1 and math.abs(app_lat)>0.1 and math.abs(app_lon)>0.1 and appr==0 then
+			-- cross=x_trk(get(curr_lat),get(curr_lon),wp_lat,wp_lon,app_lat,app_lon)
+		-- else
+			-- if get(gps_n_wp)>0 then
+				-- cross=x_trk(get(curr_lat),get(curr_lon),app_lat,app_lon,app_lat2,app_lon2)
+			-- else
+				-- cross_x = 0
+			-- end
+		-- end
+				-- -- switch to cross-track from next leg for ABSU
+		-- if math.abs(gps_course-gps_course_prev)>2 then 
+			-- gps_switchover_timer=30
+		-- end
+		-- gps_course_prev=gps_course
+		-- if ((distance(get(curr_lat),get(curr_lon),wp_lat2,wp_lon2,0)<5 and appr == 0) or (distance(get(curr_lat),get(curr_lon),app_lat2,app_lon2,0)<5 and appr == 1)) and dir_to == 1 then
+			-- --dir_to = 0
+		-- end
 		-- set(db1,cross)
-		-- set(db2,course)
-		-- set(db3,appr)
 		-- switch back to GPS provided cross-track after WP switch
-		if (curr_dest~=gps_dest_prev and appr==0) or (curr_dest_app~=gps_dest_app_prev and appr==1) or get(GNS_direct)>0 then
-			gps_switchover_timer=0
-		end
-		-- fail safe timer for X-track switch
-		if gps_switchover_timer>0 then
-			gps_switchover_timer=gps_switchover_timer-passed
-			if gps_switchover_timer<1 then
-				gps_switchover_timer=0
-			end
-		end
+		-- if (curr_dest~=gps_dest_prev and appr==0) or (curr_dest_app~=gps_dest_app_prev and appr==1) or get(GNS_direct)>0 then
+			-- gps_switchover_timer=0
+		-- end
+		-- -- fail safe timer for X-track switch
+		-- if gps_switchover_timer>0 then
+			-- gps_switchover_timer=gps_switchover_timer-passed
+			-- if gps_switchover_timer<1 then
+				-- gps_switchover_timer=0
+			-- end
+		-- end
 		gps_dest_app_prev=curr_dest_app
 		gps_dest_prev=curr_dest
-		-- local z_add = 0
-		-- if gps_switchover_timer>0 then
-			-- local gps_diff = course -get(ground_trk)
-			-- --set(db2,gps_diff)
-			-- if gps_diff > 180 then gps_diff = gps_diff - 360
-			-- elseif gps_diff < -180 then gps_diff = gps_diff + 360 end
-			
-			-- --roll_need = roll_need*5/(5+passed) + course_diff*passed/(5+passed) -- low pass
-			-- if gps_diff>10 then
-				-- gps_diff=10
-			-- elseif gps_diff<-10 then
-				-- gps_diff=-10
-			-- end
-			-- z_add = gps_diff*0.13
-			-- -- if z_add*0.02>20 then
-				-- -- z_add=20/0.02
-			-- -- elseif z_add*0.02<-20 then
-				-- -- z_add=-20/0.02
-			-- -- end
-		-- end
-		
-		
-			
-		local side = z*(1-math.min(gps_switchover_timer,1))-cross*math.min(gps_switchover_timer,1) -- meters
+		local side = z--*(1-math.min(gps_switchover_timer,1))-cross*math.min(gps_switchover_timer,1) -- meters
 		if get(GNS430_flag) == 1 then 
 			side=0
 		end
-		--side_filt = side_filt*2/(2+passed) + side*passed/(2+passed) -- low pass
-		--set(db1,gps_switchover_timer)
-		--set(db3,z_add)
+		-- if math.abs(get(gps_hdef_dot))>=2.5 then
+			-- set(z_bok,cross)
+			-- set(z_bok_nm,cross/1.852)
+			-- side = cross
+		-- else
+			-- set(z_bok,z)
+			-- set(z_bok_nm,z/1.852)
+		-- end
 		set(GNS430_dev, side) 
 		set(GNS430_dtk, gps_course)	
 		-- set variable to hide TAWS
@@ -552,18 +557,7 @@ function update()
 	end
 	set(but_up,but_sound)
 	set(tss_rot,rot_sound)
-	-- local pos = get(db1)
-	-- local count = sasl.countFMSEntries ()
-	-- if count>=pos then
-		-- local tpe , nme , id , altitude , latitude , longitude = sasl.getFMSEntryInfo (pos)
-		-- set(db2,latitude)
-		-- set(db3,longitude)
-		-- set(dbstr,nme)
-		-- -- tpe , nme , id , altitude , latitude , longitude = sasl.getFMSEntryInfo (1)
-		-- -- set(db2,altitude)
-		-- -- tpe , nme , id , altitude , latitude , longitude = sasl.getFMSEntryInfo (2)
-		-- -- set(db3,altitude)
-	-- end
+	set(GNS_direct,dir_to)
 end
 
 function onAvionicsDone()
