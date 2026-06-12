@@ -776,6 +776,8 @@ function update()
 
 
         set(radar_cc, bool2int(power_el)*power_switch )
+	else
+		blanking_timer = 10
 	end
 
 	
