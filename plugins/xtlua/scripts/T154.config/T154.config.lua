@@ -92,7 +92,7 @@ end
 
 function kontur_set()
     if T154_kontur_on == 0 then
-        simDR_kill_fms = 1
+        --simDR_kill_fms = 1
         simDR_gear_fan = 0
         simDR_tail_temp_sw = 0
     end

@@ -2038,8 +2038,10 @@ end
         -- simDR_taws_dist = 0
     -- end
     
-    if simDR_fms_line ==1 then
+    if T154_kontur_on == 1 then
 		simDR_fms_line = 0
+	else
+		simDR_fms_line = 1
 	end
 	
 	if kontur_wx_l>0 then
