@@ -185,10 +185,11 @@ sasl.getClipboardText = getClipboardText;
 
 --- Returns data about directories and files located in the specified path.
 --- @param path string
+--- @param includeAllEntries boolean
 --- @return FileEntry[]
 --- @see reference
 --- : https://1-sim.com/files/SASL3Manual.pdf#listFiles
-function listFiles(path) end;
+function listFiles(path, includeAllEntries) end;
 sasl.listFiles = listFiles;
 
 -------------------------------------------------------------------------------
@@ -2517,6 +2518,42 @@ gl.drawFontTexture = drawFontTexture;
 --- : https://1-sim.com/files/SASL3Manual.pdf#getFontInfo
 function getFontInfo(id) end;
 gl.getFontInfo = getFontInfo;
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+--- @class CursorID
+
+CURSOR_XP_ROTATE_SMALL = nil
+CURSOR_XP_ROTATE_SMALL_LEFT = nil
+CURSOR_XP_ROTATE_SMALL_RIGHT = nil
+CURSOR_XP_ROTATE_MEDIUM = nil
+CURSOR_XP_ROTATE_MEDIUM_LEFT = nil
+CURSOR_XP_ROTATE_MEDIUM_RIGHT = nil
+CURSOR_XP_ROTATE_LARGE = nil
+CURSOR_XP_ROTATE_LARGE_LEFT = nil
+CURSOR_XP_ROTATE_LARGE_RIGHT = nil
+CURSOR_XP_UP_DOWN = nil
+CURSOR_XP_DOWN = nil
+CURSOR_XP_UP = nil
+CURSOR_XP_LEFT_RIGHT = nil
+CURSOR_XP_LEFT = nil
+CURSOR_XP_RIGHT = nil
+CURSOR_XP_BUTTON = nil
+CURSOR_XP_HANDLE = nil
+CURSOR_XP_FOUR_ARROWS = nil
+CURSOR_XP_SPLITTER_H = nil
+CURSOR_XP_SPLITTER_V = nil
+CURSOR_XP_TEXT = nil
+CURSOR_CUSTOM = nil
+
+--- Loads native cursor from specified CursorID
+--- @param id CursorID
+--- @return Cursor
+--- @see reference
+--- : https://1-sim.com/files/SASL3Manual.pdf#loadCursor
+function loadCursor(id) end;
+gl.loadCursor = loadCursor
 
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------

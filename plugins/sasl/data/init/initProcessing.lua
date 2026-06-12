@@ -246,7 +246,7 @@ end
 --- Called whenever user plane is crashed.
 function onPlaneCrash()
     local planeCrashHandler = rawget(panel, 'onPlaneCrash')
-    needReload = 1
+    local needReload = 1
     if planeCrashHandler then
         needReload = planeCrashHandler()
     end
