@@ -204,10 +204,10 @@ function update()
 		-- Return signal fades at high angles or over calm water
 		local speed = math.sqrt(math.pow(1/2*(dopp_2-dopp_1)/math.cos((90-B)*math.pi/180)/math.cos((gamma)*math.pi/180),2)+math.pow(1/2*(dopp_3-dopp_2)/math.cos((90-B)*math.pi/180)/math.sin((gamma)*math.pi/180),2))
 		local wave=get(wave_amplitude)
-		local wve_coef = 0.01
-		beam1_fail=angle_1>45.5-math.random(0,3*(1-wave)*water1) or math.abs(dopp_1)<10 or math.random(0,1+wve_coef*(1-wave)*water1) > 1 or speed<180/3.6  -- or (water1==1 and wave < 0.1 )
-		beam2_fail=angle_2>45  -math.random(0,3*(1-wave)*water2) or math.abs(dopp_2)<10 or math.random(0,1+wve_coef*(1-wave)*water2) > 1 or speed<180/3.6  -- or (water2==1 and wave < 0.1 )
-		beam3_fail=angle_3>44.5-math.random(0,3*(1-wave)*water3) or math.abs(dopp_3)<10 or math.random(0,1+wve_coef*(1-wave)*water3) > 1 or speed<180/3.6  -- or (water3==1 and wave < 0.1 )
+		local wve_coef = 0.01*(5-4*water_sw)
+		beam1_fail=angle_1>45.5-math.random(0,3*(1-wave)*water1) or math.abs(dopp_1)<15 or math.random(0,1+wve_coef*(1-wave)*water1) > 1 or speed<180/3.6  -- or (water1==1 and wave < 0.1 )
+		beam2_fail=angle_2>45  -math.random(0,3*(1-wave)*water2) or math.abs(dopp_2)<15 or math.random(0,1+wve_coef*(1-wave)*water2) > 1 or speed<180/3.6  -- or (water2==1 and wave < 0.1 )
+		beam3_fail=angle_3>44.5-math.random(0,3*(1-wave)*water3) or math.abs(dopp_3)<15 or math.random(0,1+wve_coef*(1-wave)*water3) > 1 or speed<180/3.6  -- or (water3==1 and wave < 0.1 )
 		check_timer=0
 	end
 	-- set(db1,angle_1)
