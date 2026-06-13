@@ -1,6 +1,6 @@
 -- taws sound logic
 
-defineProperty("taws_english", globalPropertyi("tu154b2/custom/taws/taws_english")) -- язык системы. 0 - русский, 1 - английский	0
+defineProperty("taws_english", globalPropertyi("sim/custom/kontur/dist_mode_l")) -- язык системы. 0 - русский, 1 - английский	0
 
 defineProperty("taws_eng_phrase", globalPropertyi("tu154b2/custom/sounds/taws_eng_phrase")) -- номер фразы СРПБЗ на английском
 defineProperty("taws_rus_phrase", globalPropertyi("tu154b2/custom/sounds/taws_rus_phrase")) -- номер фразы СРПБЗ на русском

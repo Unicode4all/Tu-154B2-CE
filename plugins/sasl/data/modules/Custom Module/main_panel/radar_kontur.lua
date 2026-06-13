@@ -229,6 +229,11 @@ function update()
 			else
 				set(stab,0)
 			end
+		else
+			set(elev_fo,get(elev))
+			set(gain_fo,get(gain))
+			set(wxr_mode_fo,get(wxr_mode))
+			set(auto_tilt_fo,get(auto_tilt))
 		end
 	else
 		set(az_lim,104)

@@ -4,7 +4,7 @@ size = {1000, 770}
 mode_set = globalPropertyi("tu154b2/custom/taws/mode_set") -- режим работы экрана. 0 - выкл, 1 - карта высот, 2 - вид сбоку, 3 - часы, 4 - процесс включения
 brt_handle = globalPropertyf("tu154b2/custom/rotary/srpbz/brightness") -- ручка яркости
 
-taws_english = globalPropertyi("tu154b2/custom/taws/taws_english") -- язык системы. 0 - русский, 1 - английский	0
+taws_english = globalPropertyi("sim/custom/kontur/dist_mode_l") -- язык системы. 0 - русский, 1 - английский	0
 taws_message = globalPropertyi("tu154b2/custom/taws/taws_message") -- 
 -- 0 - none, 1 - Pull UP, 2 - alt callout, 3 - Pull Up, 4 - Terrain, 5 - Terrain Ahead, 6 - Too low, Terrain, 
 -- 7 - Alt collout, 8 - Too low, Gear, 9 - Too low, Flaps, 10 - Check altitude, 11 - Sink Rate, 12 - Don't sink, 13 - Glideslope
