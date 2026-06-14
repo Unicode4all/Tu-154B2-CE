@@ -86,6 +86,7 @@ components = {
 		nav_to_lit = globalPropertyf("tu154b2/custom/lights/small/nav_2_to"),
 		nav_from_lit = globalPropertyf("tu154b2/custom/lights/small/nav_2_from"),
 		sta_type = globalPropertyi("tu154b2/custom/radio/ils_right"),
+		dir = globalPropertyi("sim/custom/b2/kurs_mp_2_dir"),
 	},
 	
 	ark15 {},

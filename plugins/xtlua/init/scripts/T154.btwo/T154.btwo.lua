@@ -2098,6 +2098,6 @@ function after_physics()
     fire_system()
     sd67()
     elec()
-    kursmp()
+    --kursmp()
     stp_test()
 end

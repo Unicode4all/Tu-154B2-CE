@@ -817,7 +817,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		set(R_SC_2,get(R_2))
 		set(R_SC_3,get(R_3))
 	else
-		if get(hascontrol_1) == 1 and get(control_thro_other) == 0 then
+		if get(hascontrol_1) == 2 then
 			if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
 				set(sim_rud_1,0)
 			else

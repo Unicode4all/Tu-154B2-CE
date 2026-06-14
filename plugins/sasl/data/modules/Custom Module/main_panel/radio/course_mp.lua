@@ -37,7 +37,7 @@ defineProperty("nav_but_2", globalPropertyi("tu154b2/custom/buttons/ovhd/nav_1_b
 defineProperty("nav_but_3", globalPropertyi("tu154b2/custom/buttons/ovhd/nav_1_but_3")) -- кнопка 3
 
 defineProperty("nav_course", globalPropertyi("tu154b2/custom/rotary/console/nav_1_course")) -- ручка установки курса
-defineProperty("nav_course2", globalPropertyi("tu154b2/custom/rotary/console/nav_2_course")) -- ручка установки курса
+--defineProperty("nav_course2", globalPropertyi("tu154b2/custom/rotary/console/nav_2_course")) -- ручка установки курса
 
 defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп 
 
@@ -72,9 +72,12 @@ defineProperty("nav_from_lit", globalPropertyf("tu154b2/custom/lights/small/nav_
 
 defineProperty("kursmp_pow", globalPropertyi("sim/cockpit2/radios/actuators/nav1_power"))
 defineProperty("sta_type", globalPropertyi("tu154b2/custom/radio/ils_left"))
+defineProperty("dir", globalPropertyi("sim/custom/b2/kurs_mp_1_dir"))
+
+
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyi("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyi("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
@@ -189,14 +192,17 @@ local glidesl = 0 --get(h_plank)
 local obs_actual = 0
 local obs_knob_last = 0
 local obs_now = get(obs)
+local dir_last = 0
+local obs_last = get(obs)
+
 
 function update()
 	
 	set(sim_fail, 0)
 	
-	rotary()
-	buttons()
-	switchers()
+	-- rotary()
+	-- buttons()
+	-- switchers()
 	
 	local MASTER = get(ismaster) ~= 1	
 	
@@ -383,22 +389,35 @@ end
 		obs_knob_now = obs_knob_now + 360
 	end
 	
-	if MASTER then set(nav_course, obs_knob_now) end
+	--if MASTER then set(nav_course, obs_knob_now) end
 	
 	
-	local knob_diff = obs_knob_now - obs_knob_last
+	--local knob_diff = obs_knob_now - obs_knob_last
 	
 	obs_knob_last = obs_knob_now
 	
 	obs_now = get(obs)
+	local knob_diff = obs_now - obs_last
+	obs_last = obs_now
 	local obs_1 = math.floor(obs_now % 10)
 	local obs_10 = math.floor((obs_now % 100) * 0.1)
 	local obs_100 = math.floor((obs_now % 1000) * 0.01)
-if MASTER then	
 	
 	if math.abs(knob_diff) < 50 then
-		obs_now = obs_now + knob_diff
+		-- obs_now = obs_now + knob_diff
+		obs_knob_now = obs_knob_now + knob_diff
 	end
+
+	local mp_dir = get(dir) 
+	if MASTER then
+		if mp_dir > dir_last then
+			obs_now = obs_now + 180
+		elseif mp_dir < dir_last then
+			obs_now = obs_now - 180
+		end
+	end
+	
+	dir_last = mp_dir
 	
 	while obs_now > 360 do
 		obs_now = obs_now - 360
@@ -414,12 +433,11 @@ if MASTER then
 	--elseif obs_now < 0 then obs_now = obs_now + 360 end
 	
 	set(obs, obs_now)
-	
+	set(nav_course, obs_knob_now)
 	
 	set(nav_course_100, obs_100)
 	set(nav_course_10, obs_10)
 	set(nav_course_1, obs_1)	
-end
 	
 	-- set numbers
 	--local obs_1 = obs_now % 10

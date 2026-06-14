@@ -30,35 +30,37 @@ defineProperty("vhf_cc", globalPropertyf("tu154b2/custom/radio/vhf1_cc"))
 
 --cursmp2
 
-defineProperty("cursmp2_1", globalProperty("sim/cockpit2/radios/actuators/nav_frequency_Mhz[0]"))
-defineProperty("cursmp2_2", globalProperty("sim/cockpit2/radios/actuators/nav_frequency_khz[0]"))
-defineProperty("cursmp2_3", globalProperty("sim/cockpit2/radios/actuators/nav_frequency_Mhz[1]"))
-defineProperty("cursmp2_4", globalProperty("sim/cockpit2/radios/actuators/nav_frequency_khz[1]"))
-defineProperty("dme_res_1", globalProperty("sim/custom/b2/sd67_1_dme_reserv"))
-defineProperty("dme_res_2", globalProperty("sim/custom/b2/sd67_2_dme_reserv"))
-defineProperty("dme_1", globalProperty("sim/cockpit2/radios/actuators/nav_dme_frequency_hz[4]"))
-defineProperty("dme_2", globalProperty("sim/cockpit2/radios/actuators/nav_dme_frequency_hz[5]"))
-defineProperty("dme_test_1", globalProperty("sim/custom/b2/sd67_1_test"))
-defineProperty("dme_test_2", globalProperty("sim/custom/b2/sd67_2_test"))
-defineProperty("squel_1", globalProperty("sim/custom/radios/vhf1_ps"))
-defineProperty("squel_2", globalProperty("sim/custom/radios/vhf2_ps"))
-defineProperty("vhf_2_left", globalProperty("sim/custom/vhf2_left_rot"))
-defineProperty("vhf_2_right", globalProperty("sim/custom/vhf2_right_rot"))
-defineProperty("vhf_3_left", globalProperty("sim/custom/vhf3_left_rot"))
-defineProperty("vhf_3_right", globalProperty("sim/custom/vhf3_right_rot"))
-defineProperty("kont", globalProperty("tu154b2/custom/b2/kontur_on"))
+cursmp2_1 = globalProperty("sim/cockpit2/radios/actuators/nav_frequency_Mhz[0]")
+cursmp2_2 = globalProperty("sim/cockpit2/radios/actuators/nav_frequency_khz[0]")
+cursmp2_3 = globalProperty("sim/cockpit2/radios/actuators/nav_frequency_Mhz[1]")
+cursmp2_4 = globalProperty("sim/cockpit2/radios/actuators/nav_frequency_khz[1]")
+dme_res_1 = globalProperty("sim/custom/b2/sd67_1_dme_reserv")
+dme_res_2 = globalProperty("sim/custom/b2/sd67_2_dme_reserv")
+dme_1 = globalProperty("sim/cockpit2/radios/actuators/nav_dme_frequency_hz[4]")
+dme_2 = globalProperty("sim/cockpit2/radios/actuators/nav_dme_frequency_hz[5]")
+dme_test_1 = globalProperty("sim/custom/b2/sd67_1_test")
+dme_test_2 = globalProperty("sim/custom/b2/sd67_2_test")
+squel_1 = globalProperty("sim/custom/radios/vhf1_ps")
+squel_2 = globalProperty("sim/custom/radios/vhf2_ps")
+vhf_2_left = globalProperty("sim/custom/vhf2_left_rot")
+vhf_2_right = globalProperty("sim/custom/vhf2_right_rot")
+vhf_3_left = globalProperty("sim/custom/vhf3_left_rot")
+vhf_3_right = globalProperty("sim/custom/vhf3_right_rot")
+kont = globalProperty("tu154b2/custom/b2/kontur_on")
 sd_1_vol = globalPropertyf("tu154b2/custom/switchers/SD67_1_vol")
 sd_2_vol = globalPropertyf("tu154b2/custom/switchers/SD67_2_vol")
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyi("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyi("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
-defineProperty("nav_course_1", globalPropertyf("tu154b2/custom/rotary/console/nav_1_course_1"))
-defineProperty("nav_course_2", globalPropertyf("tu154b2/custom/rotary/console/nav_2_course_1"))
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+nav_course_1 = globalPropertyf("tu154b2/custom/rotary/console/nav_1_course_1")
+nav_course_2 = globalPropertyf("tu154b2/custom/rotary/console/nav_2_course_1")
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+mp_dir_1 = globalPropertyi("sim/custom/b2/kurs_mp_1_dir")
+mp_dir_2 = globalPropertyi("sim/custom/b2/kurs_mp_2_dir")
 
 local panel_x=0
 local panel_z=-22.593817
@@ -111,6 +113,8 @@ local sd67_on_L = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_o
 local sd67_on_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_on_R.wav')
 local sd67_L = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_L.wav')
 local sd67_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/sd-67_R.wav')
+local switch_sm_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_small_L.wav')
+local switch_sm_R = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_small_R.wav')
 --setSampleGain(rot_small_sound, 500)
 
 local text_font = loadFont(moduleDirectory .. '/Custom Module/digital7.ttf')
@@ -127,6 +131,8 @@ local summ_sw_last=0
 local summ_back_last=0
 local sd_vol_1_last=0
 local sd_vol_2_last=0
+local mp_dir_1_last = 0
+local mp_dir_2_last = 0
 local function rotary()
     local cursmp2_1_sw = get(cursmp2_1)
     local cursmp2_2_sw = get(cursmp2_2)
@@ -324,6 +330,42 @@ local function rotary()
 		playSample(sd67_on_R, false)
 	end
 	
+	if get(mp_dir_1) ~= mp_dir_1_last then 		
+		local z_pos=get(pilot_Z)
+		local z_pos=get(pilot_Z)
+		local x_pos=get(pilot_X)
+		local plt_hdg=get(pilot_head)
+		local gain_L, gain_R = inn_balance (panel_left_x, panel_left_z, x_pos, z_pos , plt_hdg)
+		gain_L=gain_L*400
+		gain_R=gain_R*400
+		local dist=1
+		if z_pos-panel_left_z~=0 then
+			dist=math.min(1,1/math.sqrt(math.pow(z_pos-panel_left_z,2)+math.pow(x_pos-panel_left_x,2))/dist_gain)
+		end
+		setSampleGain(switch_sm_L,gain_L*dist)
+		setSampleGain(switch_sm_R,gain_R*dist)
+		playSample(switch_sm_L, false)
+		playSample(switch_sm_R, false)
+	end
+	
+	if get(mp_dir_2) ~= mp_dir_2_last then 		
+		local z_pos=get(pilot_Z)
+		local z_pos=get(pilot_Z)
+		local x_pos=get(pilot_X)
+		local plt_hdg=get(pilot_head)
+		local gain_L, gain_R = inn_balance (panel_right_x, panel_right_z, x_pos, z_pos , plt_hdg)
+		gain_L=gain_L*400
+		gain_R=gain_R*400
+		local dist=1
+		if z_pos-panel_right_z~=0 then
+			dist=math.min(1,1/math.sqrt(math.pow(z_pos-panel_right_z,2)+math.pow(x_pos-panel_right_x,2))/dist_gain)
+		end
+		setSampleGain(switch_sm_L,gain_L*dist)
+		setSampleGain(switch_sm_R,gain_R*dist)
+		playSample(switch_sm_L, false)
+		playSample(switch_sm_R, false)
+	end
+	
 	
 	summ_last = summ
 	summ_L_last = summ_L
@@ -336,7 +378,8 @@ local function rotary()
 	summ_back_last=summ_back
 	sd_vol_1_last=sd_vol_1
 	sd_vol_2_last=sd_vol_2
-	
+	mp_dir_1_last = get(mp_dir_1)
+	mp_dir_2_last = get(mp_dir_2)
 	
 
 end
