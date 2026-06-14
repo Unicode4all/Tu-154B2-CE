@@ -141,9 +141,9 @@ defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_pe
 defineProperty("rpm_low_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1")) -- обороты турбины низкого давления №1
 defineProperty("rpm_low_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2")) -- обороты турбины низкого давления №2
 defineProperty("rpm_low_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3")) -- обороты турбины низкого давления №3
-R_1 =  globalProperty("sim/flightmodel/engine/POINT_thrust[0]")
-R_2 =  globalProperty("sim/flightmodel/engine/POINT_thrust[1]")
-R_3 =  globalProperty("sim/flightmodel/engine/POINT_thrust[2]")
+R_1 =  globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[0]")
+R_2 =  globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[1]")
+R_3 =  globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[2]")
 R_SC_1 = globalPropertyf("tu154b2/custom/SC/thrust_1")
 R_SC_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
 R_SC_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")

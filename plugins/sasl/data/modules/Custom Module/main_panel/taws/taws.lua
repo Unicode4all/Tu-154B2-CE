@@ -63,8 +63,8 @@ components = {
 	-- },
 	
 	-- on screen and voice messages
-	taws_msg{
-		position = {0, 0, size[1], size[2]},
-	},	
+	-- taws_msg{
+		-- position = {0, 0, size[1], size[2]},
+	-- },	
 	
 }

@@ -20772,7 +20772,7 @@ ANIM_begin
 ATTR_no_solid_camera
 ATTR_light_level_reset
 ATTR_reset
-ATTR_manip_command button sim/FMS2/CDU_popup
+ATTR_manip_command button sim/FMS/CDU_popup
 TRIS 21969 6
 ANIM_end
 ANIM_begin

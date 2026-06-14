@@ -552,13 +552,14 @@ function update()
 	-- reverse sounds
 	local rev_L = get(revers_flap_L)
 	local rev_R = get(revers_flap_R)
-	local R_1=(get(thrust_L)-3000)/60000*-2
-	local R_1_in=math.max(0,(get(thrust_L)*-2-17000)/45000)*0.7
+	
+	local R_1=math.max(0,(get(thrust_L))/70000)
+	local R_1_in=math.max(0,(get(thrust_L)-15000)/55000)
 	-- if R_1<0.05 then
 		-- R_1=0
 	-- end
-	local R_3=(get(thrust_R)-3000)/60000*-2
-	local R_3_in=math.max(0,(get(thrust_R)*-2-17000)/45000)*0.7
+	local R_3=math.max(0,(get(thrust_R))/70000)
+	local R_3_in=math.max(0,(get(thrust_R)-15000)/55000)
 	-- if R_3<0.05 then
 		-- R_3=0
 	-- end
@@ -684,10 +685,11 @@ function update()
 		setSampleGain(inn_apu_left, 200 * bal_L * rpm_gain_apu * main_vol*(0.75+0.75*cockpit_dr))
 		setSampleGain(inn_apu_right, 200 * bal_R * rpm_gain_apu * main_vol*(0.75+0.75*cockpit_dr))
 		
-		local rev_snd =  math.min(R_1_in*rev_L*0.75+R_3_in*rev_R*0.75,1)*600* main_vol
+		local rev_snd =  math.min(R_1_in*rev_L*0.5+R_3_in*rev_R*0.5,1)*1000* main_vol
+		local rev_snd_out =  math.min(R_1*rev_L*0.5+R_3*rev_R*0.5,1)*500* main_vol
 		--set(db1,rev_snd)
-		local rev_snd_L = chan_left2*rev_snd * 3 * main_vol 
-		local rev_snd_R = chan_right2*rev_snd * 3 * main_vol 
+		local rev_snd_L = chan_left2*rev_snd_out * 3 * main_vol 
+		local rev_snd_R = chan_right2*rev_snd_out * 3 * main_vol 
 		local rev_ptch = 1000 + (math.max(rpm_1, rpm_3) - 78) * 10
 		setSampleGain(inn_reverse, rev_snd)
 		setSamplePitch(inn_reverse, rev_ptch)
@@ -755,7 +757,7 @@ function update()
 		setSampleGain(out_starter_left_1, 1000 * starter_L * main_vol)
 		setSampleGain(out_starter_right_1, 1000 * starter_R * main_vol)
         
-		local rev_snd =  math.min(R_1*rev_L*0.75+R_3*rev_R*0.75,1)*2000* main_vol
+		local rev_snd =  math.min(R_1*rev_L*0.5+R_3*rev_R*0.5,1)*2000* main_vol
 		local rev_ptch = 1000 + (math.max(rpm_1, rpm_3) - 78) * 10
 		--set(db3, rev_out_L*rev_snd)
 		setSampleGain(out_reverse_L, rev_out_L*rev_snd)

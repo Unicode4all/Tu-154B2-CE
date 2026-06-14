@@ -1,74 +1,75 @@
 -- this is engines sounds
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("external_view", globalPropertyi("sim/graphics/view/view_is_external")) -- enviroment
+external_view = globalPropertyi("sim/graphics/view/view_is_external") -- enviroment
 
 
 -- engines
-defineProperty("eng1_N1_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1")) -- engine 1 rpm
-defineProperty("eng2_N1_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2")) -- engine 2 rpm
-defineProperty("eng3_N1_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3")) -- engine 3 rpm
+eng1_N1_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1") -- engine 1 rpm
+eng2_N1_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2") -- engine 2 rpm
+eng3_N1_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3") -- engine 3 rpm
 
-defineProperty("eng1_N2_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1")) -- engine 1 rpm
-defineProperty("eng2_N2_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2")) -- engine 2 rpm
-defineProperty("eng3_N2_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3")) -- engine 3 rpm
+eng1_N2_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1") -- engine 1 rpm
+eng2_N2_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2") -- engine 2 rpm
+eng3_N2_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3") -- engine 3 rpm
 -- pilot head
 -- defineProperty("pilot_hdg", globalPropertyf("sim/graphics/view/pilots_head_psi")) -- CW from forward in cockpit
 -- defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX")) -- Position of pilot's head relative to CG
 -- defineProperty("pilot_Y", globalPropertyf("sim/aircraft/view/acf_peY")) -- Position of pilot's head relative to CG
 -- defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ")) -- Position of pilot's head relative to CG
 
-defineProperty("cam_HDG", globalPropertyf("sim/graphics/view/view_heading")) -- CW from true north
-defineProperty("acf_hdg", globalPropertyf("sim/flightmodel/position/psi")) -- degrees	The true heading of the aircraft in degrees from the Z axis - OpenGL coordinates
+cam_HDG = globalPropertyf("sim/graphics/view/view_heading") -- CW from true north
+acf_hdg = globalPropertyf("sim/flightmodel/position/psi") -- degrees	The true heading of the aircraft in degrees from the Z axis - OpenGL coordinates
 
-defineProperty("eng_main_vol", globalPropertyf("sim/operation/sound/engine_volume_ratio")) -- регулятор громкости для двигателей
-defineProperty("main_sound_on", globalPropertyi("sim/operation/sound/sound_on")) -- выключатель звука
+eng_main_vol = globalPropertyf("sim/operation/sound/engine_volume_ratio") -- регулятор громкости для двигателей
+main_sound_on = globalPropertyi("sim/operation/sound/sound_on") -- выключатель звука
 
-defineProperty("cockpit_door", globalPropertyf("tu154b2/custom/anim/cockpit_door")) 
-defineProperty("cockpit_window_left", globalPropertyf("tu154b2/custom/anim/cockpit_window_left")) -- открытие форточки
-defineProperty("cockpit_window_right", globalPropertyf("tu154b2/custom/anim/cockpit_window_right")) -- открытие форточки
+cockpit_door = globalPropertyf("tu154b2/custom/anim/cockpit_door") 
+cockpit_window_left = globalPropertyf("tu154b2/custom/anim/cockpit_window_left") -- открытие форточки
+cockpit_window_right = globalPropertyf("tu154b2/custom/anim/cockpit_window_right") -- открытие форточки
 
-defineProperty("pax_door_1", globalPropertyf("tu154b2/custom/anim/pax_door_1")) -- положение передних пасс дверей
-defineProperty("pax_door_2", globalPropertyf("tu154b2/custom/anim/pax_door_2")) -- положение средних пасс дверей
-defineProperty("pax_door_3", globalPropertyf("tu154b2/custom/anim/pax_door_3")) -- положение правых аварийных дверей
+pax_door_1 = globalPropertyf("tu154b2/custom/anim/pax_door_1") -- положение передних пасс дверей
+pax_door_2 = globalPropertyf("tu154b2/custom/anim/pax_door_2") -- положение средних пасс дверей
+pax_door_3 = globalPropertyf("tu154b2/custom/anim/pax_door_3") -- положение правых аварийных дверей
 
-defineProperty("cam_HDG", globalPropertyf("sim/graphics/view/view_heading")) -- CW from true north
-defineProperty("cam_X", globalPropertyf("sim/graphics/view/view_x")) -- The location of the camera, X coordinate (OpenGL)
-defineProperty("cam_Y", globalPropertyf("sim/graphics/view/view_y")) -- The location of the camera, Y coordinate (OpenGL)
-defineProperty("cam_Z", globalPropertyf("sim/graphics/view/view_z")) -- The location of the camera, Z coordinate (OpenGL)
+cam_HDG = globalPropertyf("sim/graphics/view/view_heading") -- CW from true north
+cam_X = globalPropertyf("sim/graphics/view/view_x") -- The location of the camera, X coordinate (OpenGL)
+cam_Y = globalPropertyf("sim/graphics/view/view_y") -- The location of the camera, Y coordinate (OpenGL)
+cam_Z = globalPropertyf("sim/graphics/view/view_z") -- The location of the camera, Z coordinate (OpenGL)
 
 
 -- pilot head
-defineProperty("pilot_hdg", globalPropertyf("sim/graphics/view/pilots_head_psi")) -- CW from forward in cockpit
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX")) -- Position of pilot's head relative to CG
-defineProperty("pilot_Y", globalPropertyf("sim/aircraft/view/acf_peY")) -- Position of pilot's head relative to CG
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ")) -- Position of pilot's head relative to CG
+pilot_hdg = globalPropertyf("sim/graphics/view/pilots_head_psi") -- CW from forward in cockpit
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX") -- Position of pilot's head relative to CG
+pilot_Y = globalPropertyf("sim/aircraft/view/acf_peY") -- Position of pilot's head relative to CG
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ") -- Position of pilot's head relative to CG
 
 
 -- acf position
 --defineProperty("acf_hdg", globalPropertyf("sim/flightmodel/position/psi")) -- degrees	The true heading of the aircraft in degrees from the Z axis - OpenGL coordinates
-defineProperty("acf_X", globalPropertyf("sim/flightmodel/position/local_x")) -- The location of the plane in OpenGL coordinates
-defineProperty("acf_Y", globalPropertyf("sim/flightmodel/position/local_y")) -- The location of the plane in OpenGL coordinates
-defineProperty("acf_Z", globalPropertyf("sim/flightmodel/position/local_z")) -- The location of the plane in OpenGL coordinates
+acf_X = globalPropertyf("sim/flightmodel/position/local_x") -- The location of the plane in OpenGL coordinates
+acf_Y = globalPropertyf("sim/flightmodel/position/local_y") -- The location of the plane in OpenGL coordinates
+acf_Z = globalPropertyf("sim/flightmodel/position/local_z") -- The location of the plane in OpenGL coordinates
 
-defineProperty("apd_working_1", globalPropertyf("tu154b2/custom/start/apd_working_1")) -- работа системы запуска
-defineProperty("apd_working_2", globalPropertyf("tu154b2/custom/start/apd_working_2")) -- работа системы запуска
-defineProperty("apd_working_3", globalPropertyf("tu154b2/custom/start/apd_working_3")) -- работа системы запуска
+apd_working_1 = globalPropertyf("tu154b2/custom/start/apd_working_1") -- работа системы запуска
+apd_working_2 = globalPropertyf("tu154b2/custom/start/apd_working_2") -- работа системы запуска
+apd_working_3 = globalPropertyf("tu154b2/custom/start/apd_working_3") -- работа системы запуска
 
-defineProperty("burn1", globalProperty("sim/flightmodel2/engines/engine_is_burning_fuel[0]"))
-defineProperty("burn2", globalProperty("sim/flightmodel2/engines/engine_is_burning_fuel[1]"))
-defineProperty("burn3", globalProperty("sim/flightmodel2/engines/engine_is_burning_fuel[2]"))
-defineProperty("vr_outside", globalPropertyi("sim/graphics/VR/teleport_on_ground"))
+burn1 = globalProperty("sim/flightmodel2/engines/engine_is_burning_fuel[0]")
+burn2 = globalProperty("sim/flightmodel2/engines/engine_is_burning_fuel[1]")
+burn3 = globalProperty("sim/flightmodel2/engines/engine_is_burning_fuel[2]")
+vr_outside = globalPropertyi("sim/graphics/VR/teleport_on_ground")
 
 R_1 = globalPropertyf("tu154b2/custom/SC/thrust_1")
 R_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
 R_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
+dens = globalPropertyf("sim/weather/rho")
 
 knd_1 = globalPropertyf("tu154b2/custom/engines/knd_1")
 knd_3 = globalPropertyf("tu154b2/custom/engines/knd_3")
 
-defineProperty("vr_outside", globalPropertyi("sim/graphics/VR/teleport_on_ground"))
+vr_outside = globalPropertyi("sim/graphics/VR/teleport_on_ground")
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -517,10 +518,13 @@ function update()
 	local rpm_gain_1_2 = interpolate(rpm2gain_tbl, rpm_1_2)
 	local rpm_gain_2_2 = interpolate(rpm2gain_tbl, rpm_2_2)
 	local rpm_gain_3_2 = interpolate(rpm2gain_tbl, rpm_3_2)
-
-    local R1=get(R_1)
-    local R2=get(R_2)
-    local R3=get(R_3)
+	local rho = get(dens)
+	local R1_in=get(R_1)
+    local R2_in=get(R_2)
+    local R3_in=get(R_3)
+    local R1=R1_in*1.225/rho
+    local R2=R2_in*1.225/rho
+    local R3=R3_in*1.225/rho
 	local eng_1_L, eng_1_R = out_balance (-3.34, 5, 0, 60, 120, 1000)
 	local eng_2_L, eng_2_R = out_balance (0, 12, 0, 50, 120, 1000)
 	local eng_3_L, eng_3_R = out_balance (3.34, 5, 0, 60, 120, 1000)
@@ -629,9 +633,9 @@ function update()
 			setSampleGain(out_starter_left_3,0)
 			setSampleGain(out_starter_right_3,0)
 		end
-		local howl_gain1=interpolate(howl_gain_tbl,R1)
-		local howl_gain2=interpolate(howl_gain_tbl,R2)
-		local howl_gain3=interpolate(howl_gain_tbl,R3)
+		local howl_gain1=interpolate(howl_gain_tbl,R1_in)
+		local howl_gain2=interpolate(howl_gain_tbl,R2_in)
+		local howl_gain3=interpolate(howl_gain_tbl,R3_in)
 		local howl_dist= 0.1053*(get(pilot_Z)+1.42)+4.158
 		setSampleGain(howl_L, (howl_gain1+howl_gain2+howl_gain3)/10*howl_dist)
 		setSampleGain(howl_R, (howl_gain1+howl_gain2+howl_gain3)/10*howl_dist)
