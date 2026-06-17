@@ -472,3 +472,33 @@ BEGIN_MANIP drag_axis tu154b2/custom/switchers/SD67_1_vol
 	ACTION axis_knob 0 1 0.05 tu154b2/custom/switchers/SD67_1_vol
 	DEG_PER_ACTION 5
 END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/kontur/info_knob2_r
+	ACTION axis_knob -10000 10000 10 sim/custom/kontur/info_knob2_r
+	DEG_PER_ACTION 10
+END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/kontur/info_knob1_r
+	ACTION axis_knob -10000 10000 10 sim/custom/kontur/info_knob1_r
+	DEG_PER_ACTION 10
+END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/kontur/info_knob2_l
+	ACTION axis_knob -10000 10000 10 sim/custom/kontur/info_knob2_l
+	DEG_PER_ACTION 10
+END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/kontur/info_knob1_l
+	ACTION axis_knob -10000 10000 10 sim/custom/kontur/info_knob1_l
+	DEG_PER_ACTION 10
+END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/kontur/rru_l
+	ACTION axis_knob 0 1 0.1 sim/custom/kontur/rru_l
+	DEG_PER_ACTION 10
+END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/kontur/rru_r
+	ACTION axis_knob 0 1 0.1 sim/custom/kontur/rru_r
+	DEG_PER_ACTION 10
+END_MANIP

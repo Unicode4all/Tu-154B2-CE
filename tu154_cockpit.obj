@@ -17258,22 +17258,22 @@ ATTR_manip_wheel 0.100000
 TRIS 3642 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_large 0.000000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob1_r
+ATTR_manip_drag_axis rotate_large 50.500000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob1_r
 ATTR_manip_wheel 10.000000
 TRIS 3648 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_small 0.000000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob2_r
+ATTR_manip_drag_axis rotate_small 50.500000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob2_r
 ATTR_manip_wheel 10.000000
 TRIS 3654 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_large 0.000000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob1_l
+ATTR_manip_drag_axis rotate_large 50.500000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob1_l
 ATTR_manip_wheel 10.000000
 TRIS 3660 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_small 0.000000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob2_l
+ATTR_manip_drag_axis rotate_small 50.500000 0.000000 0.000000 -10000.000000 10000.000000 sim/custom/kontur/info_knob2_l
 ATTR_manip_wheel 10.000000
 TRIS 3666 6
 ANIM_end
