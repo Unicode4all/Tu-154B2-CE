@@ -447,10 +447,10 @@ function update()
 		if azimuth_show==azimuth_show then -- check for NaN
 			set(azimuth, azimuth_show)
 		end
-		set(rsbn_rec,rsbn_receiving)
-		set(mrs_dot ,morse_dot*rsbn_receiving)
-		set(mrs_dash,morse_dash*rsbn_receiving)
 	end
+	set(rsbn_rec,rsbn_receiving)
+	set(mrs_dot ,morse_dot*rsbn_receiving)
+	set(mrs_dash,morse_dash*rsbn_receiving)
 	
 	
 
