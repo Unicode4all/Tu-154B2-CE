@@ -70258,166 +70258,9 @@ GROUP KNTR
   END_GROUP
   GROUP KONTUR_L
     SHOW_EQUAL 1.000000 sim/custom/kontur/left_power
-    GROUP_OPEN
     GROUP KONTUR_L_data
       SHOW_EQUAL 1.000000 sim/custom/kontur/left_on
       GROUP_OPEN
-      GROUP mode_wx 2
-        SHOW_GREATER 1.000000 sim/custom/kontur/left_wx
-        gen_rotary wx_test_1 2
-          POS 2328.000000 1542.000000
-          IMAGE KONTUR/bg_test_2
-          DATAREF 
-          SHOW_EQUAL 1.000000 sim/cockpit/switches/EFIS_map_range_selector
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 14
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -20.500000 0.000000  -20.500000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/left_wx
-        gen_rotary wx_test_1 2
-          POS 2328.000000 1542.000000
-          IMAGE KONTUR/bg_test_3
-          DATAREF 
-          SHOW_EQUAL 2.000000 sim/cockpit/switches/EFIS_map_range_selector
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 14
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -20.500000 0.000000  -20.500000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/left_wx
-        gen_rotary wx_test_1 2
-          POS 2328.000000 1542.000000
-          IMAGE KONTUR/bg_test_4
-          DATAREF 
-          SHOW_EQUAL 3.000000 sim/cockpit/switches/EFIS_map_range_selector
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 14
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -20.500000 0.000000  -20.500000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/left_wx
-        gen_rotary wx_test_1 2
-          POS 2328.000000 1542.000000
-          IMAGE KONTUR/bg_test_5
-          DATAREF 
-          SHOW_EQUAL 4.000000 sim/cockpit/switches/EFIS_map_range_selector
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 14
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -20.500000 0.000000  -20.500000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/left_wx
-        gen_rotary wx_test_1 2
-          POS 2328.000000 1542.000000
-          IMAGE KONTUR/bg_test_6
-          DATAREF 
-          SHOW_EQUAL 5.000000 sim/cockpit/switches/EFIS_map_range_selector
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 14
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -20.500000 0.000000  -20.500000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/left_wx
-        gen_rotary wx_test_1 2
-          POS 2328.000000 1542.000000
-          IMAGE KONTUR/bg_test_7
-          DATAREF 
-          SHOW_EQUAL 6.000000 sim/cockpit/switches/EFIS_map_range_selector
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 14
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -20.500000 0.000000  -20.500000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
       GROUP tcas_bg
         SHOW_EQUAL 0.000000 sim/custom/kontur/left_taws
         GROUP_OPEN
@@ -70906,7 +70749,7 @@ GROUP KNTR
                 IMAGE KONTUR/mode_rls_2
                 DATAREF 
                 SHOW_LESS 0.000000 sim/custom/kontur/wx_test_run
-                SHOW_EQUAL 1.000000 sim/cockpit2/EFIS/EFIS_weather_mode
+                SHOW_EQUAL 0.000000 sim/cockpit2/EFIS/EFIS_weather_mode
                 SHOW_GREATER 1.000000 sim/custom/kontur/weather_sys
                 LIGHT_MODE GLASS_AUTO
                 LIGHT_RHEOSTAT 14
@@ -71932,6 +71775,7 @@ GROUP KNTR
       END_GROUP
       GROUP mode_wx
         SHOW_GREATER 1.000000 sim/custom/kontur/left_wx
+        GROUP_OPEN
         gen_rotary no_stab
           POS 2527.500000 1643.500000
           IMAGE KONTUR/no_stab
@@ -72162,7 +72006,6 @@ GROUP KNTR
           GROUP RRU
             SHOW_EQUAL 4.000000 sim/cockpit2/EFIS/EFIS_weather_mode
             SHOW_GREATER 1.000000 sim/custom/kontur/left_wx
-            GROUP_OPEN
             gen_rotary RRU_BG
               POS 2131.000000 1426.500000
               IMAGE KONTUR/tape_rru_bg
@@ -72422,7 +72265,7 @@ GROUP KNTR
               IMAGE KONTUR/mode_rls_2
               DATAREF 
               SHOW_LESS 0.000000 sim/custom/kontur/wx_test_run
-              SHOW_EQUAL 1.000000 sim/cockpit2/EFIS/EFIS_weather_mode
+              SHOW_EQUAL 0.000000 sim/cockpit2/EFIS/EFIS_weather_mode
               SHOW_GREATER 1.000000 sim/custom/kontur/weather_sys
               LIGHT_MODE GLASS_AUTO
               LIGHT_RHEOSTAT 14
@@ -72646,7 +72489,7 @@ GROUP KNTR
               IMAGE KONTUR/mode_rls_nowx_2
               DATAREF 
               SHOW_LESS 0.000000 sim/custom/kontur/wx_test_run
-              SHOW_EQUAL 1.000000 sim/cockpit2/EFIS/EFIS_weather_mode
+              SHOW_EQUAL 0.000000 sim/cockpit2/EFIS/EFIS_weather_mode
               SHOW_GREATER 1.000000 sim/custom/kontur/weather_sys
               LIGHT_MODE GLASS_AUTO
               LIGHT_RHEOSTAT 14
@@ -77770,162 +77613,6 @@ GROUP KNTR
     GROUP KONTUR_R_data
       SHOW_EQUAL 1.000000 sim/custom/kontur/right_on
       GROUP_OPEN
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/right_wx
-        gen_rotary wx_test_2 2
-          POS 2829.000000 1542.000000
-          IMAGE KONTUR/bg_test_3
-          DATAREF 
-          SHOW_EQUAL 2.000000 sim/cockpit2/EFIS/map_range_copilot
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 15
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -22.000000 0.000000  -22.000000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/right_wx
-        gen_rotary wx_test_2 2
-          POS 2829.000000 1542.000000
-          IMAGE KONTUR/bg_test_4
-          DATAREF 
-          SHOW_EQUAL 3.000000 sim/cockpit2/EFIS/map_range_copilot
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 15
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -22.000000 0.000000  -22.000000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/right_wx
-        gen_rotary wx_test_2 2
-          POS 2829.000000 1542.000000
-          IMAGE KONTUR/bg_test_5
-          DATAREF 
-          SHOW_EQUAL 4.000000 sim/cockpit2/EFIS/map_range_copilot
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 15
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -22.000000 0.000000  -22.000000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/right_wx
-        gen_rotary wx_test_2 2
-          POS 2829.000000 1542.000000
-          IMAGE KONTUR/bg_test_6
-          DATAREF 
-          SHOW_EQUAL 5.000000 sim/cockpit2/EFIS/map_range_copilot
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 15
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -22.000000 0.000000  -22.000000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/right_wx
-        gen_rotary wx_test_2 2
-          POS 2829.000000 1542.000000
-          IMAGE KONTUR/bg_test_7
-          DATAREF 
-          SHOW_EQUAL 6.000000 sim/cockpit2/EFIS/map_range_copilot
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 15
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -22.000000 0.000000  -22.000000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
-      GROUP mode_wx 2
-        SHOW_EQUAL 1.000000 sim/custom/kontur/right_wx
-        gen_rotary wx_test_2 2
-          POS 2829.000000 1542.000000
-          IMAGE KONTUR/bg_test_2
-          DATAREF 
-          SHOW_EQUAL 1.000000 sim/cockpit2/EFIS/map_range_copilot
-          SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_test
-          LIGHT_MODE GLASS_AUTO
-          LIGHT_RHEOSTAT 15
-          BUS_SRC 1
-          CORNERS 0.000000 0.000000  0.000000 0.000000  -22.000000 0.000000  -22.000000 0.000000
-          KEY_FRAME 0.000000 0.000000 1.000000
-          KEY_FRAME 1.000000 1.000000
-          DIGITS 1
-          ROTARY_TYPE NO_CLICK
-          CLICK_RADIUS 0.000000
-          CLICK_RADIUS_DY 0.000000
-          OFFSET 0.000000
-          STEP1 1.000000
-          STEP2 1.000000
-          CURSOR DEFAULT
-          CLICK_DX 0
-          CLICK_DY 0
-
-      END_GROUP
       GROUP tcas_bg
         SHOW_EQUAL 0.000000 sim/custom/kontur/right_taws
         GROUP_OPEN
@@ -78414,7 +78101,7 @@ GROUP KNTR
                 IMAGE KONTUR/mode_rls_2
                 DATAREF 
                 SHOW_LESS 0.000000 sim/custom/kontur/wx_test_run
-                SHOW_EQUAL 1.000000 sim/cockpit2/EFIS/EFIS_weather_mode
+                SHOW_EQUAL 0.000000 sim/cockpit2/EFIS/EFIS_weather_mode
                 SHOW_GREATER 1.000000 sim/custom/kontur/weather_sys
                 LIGHT_MODE GLASS_AUTO
                 LIGHT_RHEOSTAT 15
@@ -79485,6 +79172,7 @@ GROUP KNTR
 
         GROUP nav_off
           SHOW_GREATER 1.000000 sim/custom/kontur/right_wx
+          GROUP_OPEN
           GROUP TCAS
             SHOW_EQUAL 1.000000 sim/custom/kontur/right_tcas_aux
             SHOW_GREATER 1.000000 sim/custom/tcas2000/tcas_pwr
@@ -79855,7 +79543,6 @@ GROUP KNTR
 
           END_GROUP
           GROUP modes
-            GROUP_OPEN
             gen_rotary mode_tcas
               POS 3016.000000 1516.500000
               IMAGE KONTUR/mode_tcas
@@ -79907,7 +79594,7 @@ GROUP KNTR
               IMAGE KONTUR/mode_rls_2
               DATAREF 
               SHOW_LESS 0.000000 sim/custom/kontur/wx_test_run
-              SHOW_EQUAL 1.000000 sim/cockpit2/EFIS/EFIS_weather_mode
+              SHOW_EQUAL 0.000000 sim/cockpit2/EFIS/EFIS_weather_mode
               SHOW_GREATER 1.000000 sim/custom/kontur/weather_sys
               LIGHT_MODE GLASS_AUTO
               LIGHT_RHEOSTAT 15
@@ -80079,7 +79766,6 @@ GROUP KNTR
           END_GROUP
           GROUP modesnowx
             SHOW_EQUAL 0.000000 sim/custom/kontur/wx_side
-            GROUP_OPEN
             gen_rotary mode_tcas
               POS 3016.000000 1516.500000
               IMAGE KONTUR/mode_tcas
@@ -80131,7 +79817,7 @@ GROUP KNTR
               IMAGE KONTUR/mode_rls_nowx_2
               DATAREF 
               SHOW_LESS 0.000000 sim/custom/kontur/wx_test_run
-              SHOW_EQUAL 1.000000 sim/cockpit2/EFIS/EFIS_weather_mode
+              SHOW_EQUAL 0.000000 sim/cockpit2/EFIS/EFIS_weather_mode
               SHOW_GREATER 1.000000 sim/custom/kontur/weather_sys
               LIGHT_MODE GLASS_AUTO
               LIGHT_RHEOSTAT 15
@@ -82554,7 +82240,6 @@ GROUP KNTR
 
         GROUP times
           SHOW_EQUAL 1.000000 sim/custom/kontur/right_nav
-          GROUP_OPEN
           gen_rotary time_eta
             POS 2935.000000 1569.000000
             IMAGE KONTUR/MENU/time2
@@ -82602,7 +82287,6 @@ GROUP KNTR
         END_GROUP
         GROUP LIT BTN
           SHOW_EQUAL 1.000000 sim/custom/kontur/right_nav_menu
-          GROUP_OPEN
           gen_rotary h_light1
             POS 2817.000000 1618.000000
             IMAGE KONTUR/MENU/h_light1
@@ -82644,7 +82328,6 @@ GROUP KNTR
         END_GROUP
         GROUP DIST
           SHOW_EQUAL 2.000000 sim/custom/kontur/right_nav_menu
-          GROUP_OPEN
           gen_rotary h_light2
             POS 2817.000000 1593.000000
             IMAGE KONTUR/MENU/h_light2

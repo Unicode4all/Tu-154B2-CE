@@ -117,7 +117,7 @@ components = {
 	},
 
 	taws {
-		position = {1034, 1270, 1000, 770},
+		position = {1034, 1270, 666, 513},
 	},
 
 	tks {},
@@ -218,6 +218,9 @@ components = {
 	
 	nav_draw {
 		position = {2067, 1660, 500, 400},
+	},
+	radar_test {
+		position = {1034, 1270, 666, 513},
 	},
 	
 }

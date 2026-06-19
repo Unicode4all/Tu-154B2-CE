@@ -37,6 +37,10 @@ pkp_fail = globalPropertyi("sim/operation/failures/rel_ss_ahz")
 az = globalProperty("sim/cockpit2/EFIS/EFIS_weather_sector_brg")
 kont_dist_mode = globalPropertyi("sim/custom/kontur/dist_mode_l")
 ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+wx_alpha = globalPropertyf("sim/cockpit2/EFIS/EFIS_weather_alpha")
+wx_alpha_fo = globalPropertyf("sim/cockpit2/EFIS/EFIS_weather_alpha_copilot")
+taws = globalPropertyi("sim/custom/kontur/left_taws")
+taws_fo = globalPropertyi("sim/custom/kontur/right_taws")
 
 range0 = globalProperty("sim/cockpit2/EFIS/map_range_steps[1]")
 range1 = globalProperty("sim/cockpit2/EFIS/map_range_steps[2]")
@@ -66,6 +70,7 @@ local wx_az=0
 local wx_speed=0
 local test_run=0
 local wx_side_prev = 0
+local wx_alph = 1
 	--- auto elevation
 local button=findCommand("kontur/info_btn_l")
 function button_hnd(phase)
@@ -167,7 +172,8 @@ function update()
 			test_run=0
 		else
 			if get(test)~=-1 then
-				wx_mode=1
+				wx_mode=0
+				wx_alph = 0
 				if get(test)==1 then
 					wx_autotilt=0
 					wx_tilt=15
@@ -183,11 +189,14 @@ function update()
 					-- --set(elev,0)
 				-- end
 				if radar_mode_set==2 then
-					wx_mode=1
+					wx_mode=0
+					wx_alph = 0
 				elseif radar_mode_set==3 then
 					wx_mode=3
+					wx_alph = 1
 				elseif radar_mode_set==4 then
 					wx_mode=4
+					wx_alph = 1
 				-- else
 					-- set(wxr_mode,mfi_mode)
 				end
@@ -224,6 +233,16 @@ function update()
 			set(wxr_mode_fo,wx_mode)
 			set(auto_tilt,wx_autotilt)
 			set(auto_tilt_fo,wx_autotilt)
+			if get(taws) > 0 then
+				set(wx_alpha,1)
+			else
+				set(wx_alpha,wx_alph)
+			end
+			if get(taws_fo) > 0 then
+				set(wx_alpha_fo,1)
+			else
+				set(wx_alpha_fo,wx_alph)
+			end
 			if get(stab_sw) + get(kontur_on)>0 and get(pkp)>0 and get(bus36) > 30 and get(pkp_fail)==0 then
 				set(stab,1)
 			else
@@ -249,5 +268,3 @@ function update()
 		set(disp_brt,1)
 	end
 end
-
-

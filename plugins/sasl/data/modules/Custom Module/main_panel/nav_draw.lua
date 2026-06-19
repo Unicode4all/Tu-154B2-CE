@@ -29,6 +29,8 @@ menu_l = globalPropertyi("sim/custom/kontur/left_nav_menu")
 menu_r = globalPropertyi("sim/custom/kontur/right_nav_menu")
 ap_alt = globalPropertyi("sim/cockpit2/autopilot/altitude_dial_ft")
 vvi = globalPropertyf("sim/flightmodel/position/vh_ind")
+info_left = globalPropertyi("sim/custom/kontur/left_info_page")
+info_right = globalPropertyi("sim/custom/kontur/right_info_page")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
@@ -73,7 +75,6 @@ for i = 1, 200, 1 do
 	table.insert(nd_name_tbl, "")
 end
 local n_FMS = 0
-local names = {}
 
 function update()
 	local wp_lat = get(lat)
@@ -147,7 +148,7 @@ components = {
 			return get(range_capt)
 		end,
 		brightness  = function()
-			return get(brt_left)
+			return get(brt_left) * (1 - get(info_left))
 		end,
 		navon  = function()
 			return bool2int(get(nav_left)>0 and get(taws_left)~=2)
@@ -174,7 +175,7 @@ components = {
 			return get(range_fo)
 		end,
 		brightness  = function()
-			return get(brt_right)
+			return get(brt_right) * (1 - get(info_right))
 		end,
 		navon  = function()
 			return bool2int(get(nav_right)>0 and get(taws_right)~=2)
@@ -195,7 +196,7 @@ components = {
 			return get(range_capt)
 		end,
 		brightness  = function()
-			return get(brt_left)
+			return get(brt_left) * (1 - get(info_left))
 		end,
 		navon  = function()
 			return bool2int(get(tcas_left)+get(tcas_aux_left)>0)
@@ -214,7 +215,7 @@ components = {
 			return get(range_fo)
 		end,
 		brightness  = function()
-			return get(brt_right)
+			return get(brt_right) * (1 - get(info_right))
 		end,
 		navon  = function()
 			return bool2int(get(tcas_right)+get(tcas_aux_right)>0)
@@ -226,5 +227,17 @@ components = {
 			return get(kont_dist_mode2)
 		end,
 	},
+	-- rdr_test {
+		-- position = {0, 0, 500, 400},
+		-- -- range = function()
+			-- -- return get(range_capt)
+		-- -- end,
+		-- -- brightness  = function()
+			-- -- return get(brt_left) * (1 - get(info_left))
+		-- -- end,
+		-- dist_mode  = function()
+			-- return get(kont_dist_mode)
+		-- end,
+	-- },
 
 }

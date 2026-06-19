@@ -1,5 +1,5 @@
 -- this is main TAWS script
-size = {1000, 770}
+size = {666, 513}
 
 components = {
 	
@@ -30,7 +30,7 @@ components = {
 	
 	-- side map
 	scr_map_side {
-		position = {0, size[2], size[1], size[2]},
+		position = {0, 770, size[1], size[2]},
 		capt = 0,
 		max_m = globalPropertyf("tu154b2/custom/taws/max_r"),
 		min_m = globalPropertyf("tu154b2/custom/taws/min_r"),
