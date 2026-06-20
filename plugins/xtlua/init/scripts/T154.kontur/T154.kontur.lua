@@ -110,6 +110,7 @@ simDR_dtk = find_dataref("sim/cockpit/radios/gps_course_degtm")
 simDR_rel_bear = find_dataref("sim/cockpit2/radios/indicators/gps_relative_bearing_deg")
 simDR_bear = find_dataref("sim/cockpit2/radios/indicators/gps_bearing_deg_mag")
 simDR_rdr_fail = find_dataref("tu154b2/custom/failures/radar_fail")
+simDR_wxr_mode = find_dataref("sim/cockpit2/EFIS/EFIS_weather_mode")
 -- simDR_hdg = find_dataref("tu154b2/custom/tks/kln_psi")
 
 simDR_radioalt					= find_dataref("sim/cockpit2/gauges/indicators/radio_altimeter_height_ft_pilot")
@@ -447,7 +448,7 @@ function kontur_zoomin_button_l_CMDhandler(phase, duration)
         if kontur_pow_l > 0 and simDR_bus27left > 0 and kontur_onoff_l < 1 and info_page_l < 1 then
 			if kontur_wx_l>0 and rng_wx_l>1 and kontur_wx_side == 0 then
 				rng_wx_l = rng_wx_l -1
-			elseif kontur_taws_l>0 and rng_taws_l>1 then
+			elseif kontur_taws_l>0 and rng_taws_l>1 and simDRtaws_rdy == 1 then
 				rng_taws_l = rng_taws_l -1
 			elseif kontur_tcas_l>0 and rng_tcas_l>1 then
 				rng_tcas_l = rng_tcas_l -1
@@ -487,7 +488,7 @@ function kontur_zoomout_button_l_CMDhandler(phase, duration)
         if kontur_pow_l > 0 and simDR_bus27left > 0 and kontur_onoff_l < 1 and info_page_l < 1 then
 			if kontur_wx_l>0 and rng_wx_l <5 and kontur_wx_side == 0 then
 				rng_wx_l = rng_wx_l + 1
-			elseif kontur_taws_l>0 and rng_taws_l <7 then
+			elseif kontur_taws_l>0 and rng_taws_l <7 and simDRtaws_rdy == 1 then
 				rng_taws_l = rng_taws_l + 1
 			elseif kontur_tcas_l>0 and rng_tcas_l<4 then
 				rng_tcas_l = rng_tcas_l + 1
@@ -943,7 +944,7 @@ function kontur_zoomin_button_r_CMDhandler(phase, duration)
         if kontur_pow_r > 0 and simDR_bus27right > 0 and kontur_onoff_r < 1 and info_page_r < 1 then
 			if kontur_wx_r>0 and rng_wx_l>1 and kontur_wx_side == 1 then
 				rng_wx_l = rng_wx_l -1
-			elseif kontur_taws_r>0 and rng_taws_r>1 then
+			elseif kontur_taws_r>0 and rng_taws_r>1 and simDRtaws_rdy == 1 then
 				rng_taws_r = rng_taws_r -1
 			elseif kontur_tcas_r>0 and rng_tcas_r>1 then
 				rng_tcas_r = rng_tcas_r -1
@@ -982,7 +983,7 @@ function kontur_zoomout_button_r_CMDhandler(phase, duration)
         if kontur_pow_r > 0 and simDR_bus27right > 0 and kontur_onoff_r < 1 and info_page_r < 1 then
 			if kontur_wx_r>0 and rng_wx_l<5 and kontur_wx_side == 1 then
 				rng_wx_l = rng_wx_l + 1
-			elseif kontur_taws_r>0 and rng_taws_r <7 then
+			elseif kontur_taws_r>0 and rng_taws_r <7 and simDRtaws_rdy == 1 then
 				rng_taws_r = rng_taws_r + 1
 			elseif kontur_tcas_r>0 and rng_tcas_r<4 then
 				rng_tcas_r = rng_tcas_r + 1
@@ -1468,7 +1469,7 @@ end
     end
 
     if kontur_pow_l > 0 and simDR_bus27left > 0 and kontur_onoff_l < 1 and kontur_test_start_l > 0 then
-         kontur_test_timer_l =  kontur_test_timer_l + simDR_passed
+         kontur_test_timer_l =  kontur_test_timer_l + simDR_passed*10
         if kontur_test_timer_l < 23 then
             if kontur_test_timer_l < 3 then
                 simDR_kontur_1_brt = 0
@@ -1623,12 +1624,12 @@ end
 	else
 		simDR_tcas_on = 0
 	end
-	if weather_mode > 0 and weather_sys > 0 and simDR_36v > 0 and (kontur_wx_l > 0 or kontur_wx_l_aux > 0) then
+	if simDR_wxr_mode > 0 and weather_sys > 0 and simDR_36v > 0 and (kontur_wx_l > 0 or kontur_wx_l_aux > 0) then
 		simDR_efis_1_wxr = 1
 	else
 		simDR_efis_1_wxr = 0
 	end
-    if weather_mode > 0 and weather_sys > 0 and simDR_36v > 0 and (kontur_wx_r > 0 or kontur_wx_r_aux > 0) then
+    if simDR_wxr_mode > 0 and weather_sys > 0 and simDR_36v > 0 and (kontur_wx_r > 0 or kontur_wx_r_aux > 0) then
 		simDR_efis_2_wxr = 1
 	else
 		simDR_efis_2_wxr = 0
@@ -1728,7 +1729,7 @@ end
     end
 
     if kontur_pow_r > 0 and simDR_bus27right > 0 and kontur_onoff_r < 1 and kontur_test_start_r > 0 then 
-         kontur_test_timer_r =  kontur_test_timer_r + simDR_passed
+         kontur_test_timer_r =  kontur_test_timer_r + simDR_passed*10
         if kontur_test_timer_r < 21 then
             if kontur_test_timer_r < 3 then
             simDR_kontur_2_brt = 0

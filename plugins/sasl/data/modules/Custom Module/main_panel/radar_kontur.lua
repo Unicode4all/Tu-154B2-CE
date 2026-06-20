@@ -54,7 +54,7 @@ disp_brt = globalProperty("sim/cockpit2/switches/instrument_brightness_ratio[0]"
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 local knob_1_prev=0
 local knob_2_prev=0
@@ -215,7 +215,7 @@ function update()
 		set(sec_width,60)
 		set(az,0)
 		--set(elev,wx_tilt)	
-		local dist_mode = 1-0.073*get(kont_dist_mode)
+		local dist_mode = (1-0.073*get(kont_dist_mode))*1.13
 		set(range0,4*dist_mode)
 		set(range1,10*dist_mode)
 		set(range2,20*dist_mode)

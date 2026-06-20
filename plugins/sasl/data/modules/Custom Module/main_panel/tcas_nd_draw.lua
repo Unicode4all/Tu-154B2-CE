@@ -22,6 +22,7 @@ defineProperty("mode")
 defineProperty("dist_mode")
 xpdr_mode = globalPropertyf("sim/cockpit/radios/transponder_mode")
 local font = loadFont(moduleDirectory.."/Custom Module/Verdana.ttf")
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
 function draw()
 	
@@ -64,11 +65,11 @@ function draw()
 			elseif range_set == 4 then range_coef = 100
 			elseif range_set == 5 then range_coef = 200
 			end
-			range_coef = range_coef * (1-0.073*get(dist_mode))
+			range_coef = range_coef * (1-0.073*get(dist_mode)) *  1.1
 			
 			local x = targets[i][1] / 1852 / range_coef * 678 + 235
-			local y = targets[i][2] / 1852 / range_coef * 678 -4 + 130 * bool2int(get(mode)==5)
-			local hide = y>320 or (x>360 and y>250) or (x<120 and y>290) or y>370 or x>475 or x<0 or y<0 or get(navon)==0
+			local y = targets[i][2] / 1852 / range_coef * 678 -4 + 130 * bool2int(get(mode)==5) + 21
+			local hide = y>320 or (x>360 and y>250) or (x<120 and y>290) or y>370 or x>460 or x<5 or y<0 or get(navon)==0
 			if not hide then
 					drawTexture(mark_img, x, y, 17, 17, {1,1,1,brt})
 					

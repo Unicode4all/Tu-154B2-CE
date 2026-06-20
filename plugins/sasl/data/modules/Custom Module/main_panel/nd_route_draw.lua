@@ -16,6 +16,7 @@ n_wp_app = globalPropertyi("tu154b2/custom/radio/appr_n_waypoints")
 local font = loadFont(moduleDirectory.."/Custom Module/Verdana.ttf")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 function draw()
 	
@@ -45,11 +46,11 @@ function draw()
 		elseif range_set == 6 then range_coef = 320
 		elseif range_set == 7 then range_coef = 640
 		end
-		range_coef = range_coef * (1-0.073*get(dist_mode))
-		local x = targets[i][1] / range_coef * 678 + 235
-		local y = targets[i][2] / range_coef * 678 -4 + 130 * bool2int(get(mode)==5)
+		range_coef = range_coef * (1-0.073*get(dist_mode)) *  1.1
+		local x = targets[i][1] / range_coef * 678 + 235 
+		local y = targets[i][2] / range_coef * 678 -4 + 130 * bool2int(get(mode)==5) + 21
 		local hide = y>320 or (x>360 and y>250) or (x<120 and y>290) or y>370 or x>475 or x<0 or y<0 or get(navon)==0 or (x<130 and y<66) or (x>70 and x<390 and y>140 and y<250 and get(menu) == 1)
-		local hide_txt = y>320 or (x>320 and y>250) or (x<120 and y>290) or y>370 or x>475 or x<0 or y<0 or get(navon)==0 or (x<130 and y<66) or (x>50 and x<390 and y>140 and y<250 and get(menu) == 1)
+		local hide_txt = y>320 or (x>320 and y>250) or (x<120 and y>290) or y>370 or x>420 or x<0 or y<0 or get(navon)==0 or (x<130 and y<66) or (x>50 and x<390 and y>140 and y<250 and get(menu) == 1)
 		-- sasl.gl.drawMaskStart ()
 		-- sasl.gl.drawRectangle(-4,29,165,66, {1,1,1,1})
 		-- sasl.gl.drawRectangle(-8,-5,140,29, {1,1,1,1})
