@@ -233,16 +233,6 @@ function update()
 			set(wxr_mode_fo,wx_mode)
 			set(auto_tilt,wx_autotilt)
 			set(auto_tilt_fo,wx_autotilt)
-			if get(taws) > 0 then
-				set(wx_alpha,1)
-			else
-				set(wx_alpha,wx_alph)
-			end
-			if get(taws_fo) > 0 then
-				set(wx_alpha_fo,1)
-			else
-				set(wx_alpha_fo,wx_alph)
-			end
 			if get(stab_sw) + get(kontur_on)>0 and get(pkp)>0 and get(bus36) > 30 and get(pkp_fail)==0 then
 				set(stab,1)
 			else
@@ -253,6 +243,16 @@ function update()
 			set(gain_fo,get(gain))
 			set(wxr_mode_fo,get(wxr_mode))
 			set(auto_tilt_fo,get(auto_tilt))
+		end
+		if get(taws) > 0 then
+			set(wx_alpha,1)
+		else
+			set(wx_alpha,wx_alph)
+		end
+		if get(taws_fo) > 0 then
+			set(wx_alpha_fo,1)
+		else
+			set(wx_alpha_fo,wx_alph)
 		end
 	else
 		set(az_lim,104)
@@ -266,5 +266,6 @@ function update()
 		set(range4,250*0.688)
 		set(range5,375*0.688)
 		set(disp_brt,1)
+		set(wx_alpha,1)
 	end
 end
