@@ -70212,19 +70212,20 @@ GROUP KNTR
   SHOW_EQUAL 1.000000 tu154b2/custom/b2/kontur_on
   GROUP_OPEN
   GROUP NAV
+    GROUP_OPEN
     GROUP left_nav
       SHOW_LESS 1.000000 sim/custom/kontur/left_taws
       SHOW_EQUAL 1.000000 sim/custom/kontur/light/left_power
       GROUP_OPEN
       GROUP map
+        GROUP_OPEN
         GROUP NAV
           SHOW_EQUAL 1.000000 sim/custom/kontur/left_on
           GROUP_OPEN
           EFIS_map_s_HM map_s_HM.png
-            POS 2318.000000 1552.000000
+            POS 2318.000000 1572.000000
             DATAREF 
             SIZE 2.500000
-            HIDE
             LIGHT_MODE MECHANICAL
             LIGHT_RHEOSTAT 14
             KEY_FRAME 0.000000 0.000000 1.000000
@@ -70243,7 +70244,7 @@ GROUP KNTR
           SHOW_EQUAL 1.000000 sim/custom/kontur/right_on
           GROUP_OPEN
           EFIS_map_s_HM map_s_HM.png
-            POS 2819.000000 1552.000000
+            POS 2819.000000 1572.000000
             DATAREF 
             SIZE 2.500000
             COPILOT
@@ -70258,9 +70259,9 @@ GROUP KNTR
   END_GROUP
   GROUP KONTUR_L
     SHOW_EQUAL 1.000000 sim/custom/kontur/left_power
+    GROUP_OPEN
     GROUP KONTUR_L_data
       SHOW_EQUAL 1.000000 sim/custom/kontur/left_on
-      GROUP_OPEN
       GROUP tcas_bg
         SHOW_EQUAL 0.000000 sim/custom/kontur/left_taws
         GROUP_OPEN
@@ -77615,7 +77616,6 @@ GROUP KNTR
       GROUP_OPEN
       GROUP tcas_bg
         SHOW_EQUAL 0.000000 sim/custom/kontur/right_taws
-        GROUP_OPEN
         GROUP mod1
           SHOW_EQUAL 1.000000 sim/custom/kontur/right_tcas
           gen_rotary bg_tcas
@@ -78065,7 +78065,6 @@ GROUP KNTR
         END_GROUP
         GROUP modes
           SHOW_GREATER 1.000000 sim/custom/kontur/right_tcas
-          GROUP_OPEN
           GROUP TCAS
             SHOW_LESS 99.000000 tu154b2/custom/tcas/screen_mode
             GROUP_OPEN
@@ -78453,6 +78452,7 @@ GROUP KNTR
       GROUP nav_bg
         SHOW_LESS 0.000000 sim/custom/kontur/right_taws
         SHOW_EQUAL 0.000000 sim/custom/kontur/right_tcas
+        GROUP_OPEN
         gen_rotary plane
           POS 2817.000000 1431.000000
           IMAGE KONTUR/plane
@@ -78475,6 +78475,7 @@ GROUP KNTR
 
         GROUP dist_km
           SHOW_EQUAL 0.000000 sim/custom/kontur/dist_mode_r
+          GROUP_OPEN
           gen_rotary bg_dist1
             POS 2828.500000 1542.000000
             IMAGE KONTUR/bg_dist_1
