@@ -1469,7 +1469,7 @@ end
     end
 
     if kontur_pow_l > 0 and simDR_bus27left > 0 and kontur_onoff_l < 1 and kontur_test_start_l > 0 then
-         kontur_test_timer_l =  kontur_test_timer_l + simDR_passed*10
+         kontur_test_timer_l =  kontur_test_timer_l + simDR_passed
         if kontur_test_timer_l < 23 then
             if kontur_test_timer_l < 3 then
                 simDR_kontur_1_brt = 0
@@ -1729,7 +1729,7 @@ end
     end
 
     if kontur_pow_r > 0 and simDR_bus27right > 0 and kontur_onoff_r < 1 and kontur_test_start_r > 0 then 
-         kontur_test_timer_r =  kontur_test_timer_r + simDR_passed*10
+         kontur_test_timer_r =  kontur_test_timer_r + simDR_passed
         if kontur_test_timer_r < 21 then
             if kontur_test_timer_r < 3 then
             simDR_kontur_2_brt = 0
