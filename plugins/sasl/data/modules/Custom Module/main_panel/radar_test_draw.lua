@@ -2,6 +2,7 @@ size = {666, 513}
 defineProperty("range")
 defineProperty("bright")
 defineProperty("mode")
+defineProperty("dist_mode")
 sweep = globalPropertyf("sim/cockpit2/EFIS/EFIS_weather_sweep")
 wx_test = globalPropertyi("sim/custom/kontur/left_wx_test")
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
@@ -13,17 +14,17 @@ wx_test = globalPropertyi("sim/custom/kontur/left_wx_test")
 
 function draw()
 		local angle=120-(get(sweep)+57)*1.0526
-		local range_coef = 1
+		local range_coef = 1  * (1+0.1 * get(dist_mode))
 		local disp_range = get(range)
 		local brt = get(bright)
 		local offst = 0
 		if get(mode) == 5 then
-			offst = 150
+			offst = 188
 		end
 		if disp_range == 1 then range_coef = 40/8
-		elseif disp_range == 2 then range_coef = 40/20
-		elseif disp_range == 4 then range_coef = 40/100
-		elseif disp_range == 5 then range_coef = 40/200
+		elseif disp_range == 2 then range_coef = 40/20 * 1.04  * (1+0.1 * get(dist_mode))
+		elseif disp_range == 4 then range_coef = 40/100 * 0.95 * (1 + 0.15 * get(dist_mode)) offst = offst -5
+		elseif disp_range == 5 then range_coef = 40/200 * 0.95 * (1 + 0.15 * get(dist_mode)) offst = offst -5
 		end
 		if offst == 0 then
 			if disp_range > 1 then

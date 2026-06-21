@@ -12,6 +12,7 @@ rng_fo =  globalPropertyi("sim/cockpit2/EFIS/map_range_copilot")
 brt_handle_fo = globalPropertyf("sim/custom/kontur/kntr_2_brt_sw")
 map_mode_fo = globalPropertyi("sim/cockpit2/EFIS/map_mode_copilot")
 radar_pow = globalPropertyi("sim/custom/kontur/weather_lit")
+kont_dist_mode = globalPropertyi("sim/custom/kontur/dist_mode_l")
 components = {
 	
 	radar_test_draw {
@@ -24,6 +25,9 @@ components = {
 		end,
 		mode = function()
 			return get(map_mode)
+		end,
+		dist_mode = function()
+			return get(kont_dist_mode)
 		end,
 		visible = function()
 			return get(wx_mode) == 0  and (get(wx_left) > 0 or get(wx_left_aux) > 0) and get(radar_pow) > 0
@@ -39,6 +43,9 @@ components = {
 		end,
 		mode = function()
 			return get(map_mode_fo)
+		end,
+		dist_mode = function()
+			return get(kont_dist_mode)
 		end,
 		visible = function()
 			return get(wx_mode) == 0  and (get(wx_right) > 0 or get(wx_right_aux) > 0) and get(radar_pow) > 0

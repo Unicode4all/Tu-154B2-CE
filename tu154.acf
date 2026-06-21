@@ -69917,7 +69917,6 @@ rad_DME_N12_BC DME_N12_BC.png 2 2
   KEY_FRAME 1.000000 1.000000
 
 GROUP TRANSAS
-  GROUP_OPEN
   gen_rotary black
     POS 1776.000000 -59.000000
     IMAGE KONTUR/bg_black2
@@ -70212,7 +70211,6 @@ GROUP KNTR
   SHOW_EQUAL 1.000000 tu154b2/custom/b2/kontur_on
   GROUP_OPEN
   GROUP NAV
-    GROUP_OPEN
     GROUP left_nav
       SHOW_LESS 1.000000 sim/custom/kontur/left_taws
       SHOW_EQUAL 1.000000 sim/custom/kontur/light/left_power
@@ -70262,13 +70260,15 @@ GROUP KNTR
     GROUP_OPEN
     GROUP KONTUR_L_data
       SHOW_EQUAL 1.000000 sim/custom/kontur/left_on
+      GROUP_OPEN
       GROUP tcas_bg
         SHOW_EQUAL 0.000000 sim/custom/kontur/left_taws
         GROUP_OPEN
         GROUP mod1
           SHOW_EQUAL 1.000000 sim/custom/kontur/left_tcas
+          GROUP_OPEN
           gen_rotary bg_tcas
-            POS 2328.500000 1553.000000
+            POS 2328.500000 1559.000000
             IMAGE KONTUR/bg_tcas
             DATAREF 
             LIGHT_MODE GLASS_AUTO
@@ -70289,7 +70289,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary bg_2mile_20km
-            POS 2328.500000 1553.000000
+            POS 2328.500000 1559.000000
             IMAGE KONTUR/bg_tcas22
             DATAREF 
             SHOW_EQUAL 2.000000 sim/cockpit/switches/EFIS_map_range_selector
@@ -70311,7 +70311,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary bg_2mile_40km
-            POS 2328.500000 1553.000000
+            POS 2328.500000 1559.000000
             IMAGE KONTUR/bg_tcas23
             DATAREF 
             SHOW_EQUAL 3.000000 sim/cockpit/switches/EFIS_map_range_selector
@@ -70333,7 +70333,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary bg_2mile_80km
-            POS 2328.500000 1553.000000
+            POS 2328.500000 1559.000000
             IMAGE KONTUR/bg_tcas24
             DATAREF 
             SHOW_EQUAL 4.000000 sim/cockpit/switches/EFIS_map_range_selector
@@ -70355,7 +70355,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary plane 2
-            POS 2317.000000 1555.000000
+            POS 2317.000000 1561.000000
             IMAGE KONTUR/plane
             DATAREF 
             LIGHT_MODE GLASS_AUTO
@@ -70399,7 +70399,6 @@ GROUP KNTR
 
           GROUP km_dist
             SHOW_EQUAL 0.000000 sim/custom/kontur/dist_mode_l
-            GROUP_OPEN
             gen_rotary bg_dist1
               POS 2328.500000 1541.000000
               IMAGE KONTUR/bg_dist_1
@@ -70715,9 +70714,7 @@ GROUP KNTR
         END_GROUP
         GROUP modes
           SHOW_GREATER 1.000000 sim/custom/kontur/left_tcas
-          GROUP_OPEN
           GROUP TCAS
-            GROUP_OPEN
             GROUP rls_aux
               SHOW_EQUAL 1.000000 sim/custom/kontur/weather_lit
               SHOW_GREATER 1.000000 sim/custom/kontur/left_wx_aux
@@ -71776,7 +71773,6 @@ GROUP KNTR
       END_GROUP
       GROUP mode_wx
         SHOW_GREATER 1.000000 sim/custom/kontur/left_wx
-        GROUP_OPEN
         gen_rotary no_stab
           POS 2527.500000 1643.500000
           IMAGE KONTUR/no_stab
@@ -77616,10 +77612,12 @@ GROUP KNTR
       GROUP_OPEN
       GROUP tcas_bg
         SHOW_EQUAL 0.000000 sim/custom/kontur/right_taws
+        GROUP_OPEN
         GROUP mod1
           SHOW_EQUAL 1.000000 sim/custom/kontur/right_tcas
+          GROUP_OPEN
           gen_rotary bg_tcas
-            POS 2828.500000 1553.000000
+            POS 2828.500000 1559.000000
             IMAGE KONTUR/bg_tcas
             DATAREF 
             LIGHT_MODE GLASS_AUTO
@@ -77640,7 +77638,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary bg_2mile_20km
-            POS 2828.500000 1553.000000
+            POS 2828.500000 1559.000000
             IMAGE KONTUR/bg_tcas22
             DATAREF 
             SHOW_EQUAL 2.000000 sim/cockpit2/EFIS/map_range_copilot
@@ -77662,7 +77660,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary bg_2mile_40km
-            POS 2828.500000 1553.000000
+            POS 2828.500000 1559.000000
             IMAGE KONTUR/bg_tcas23
             DATAREF 
             SHOW_EQUAL 3.000000 sim/cockpit2/EFIS/map_range_copilot
@@ -77684,7 +77682,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary bg_2mile_80km
-            POS 2828.500000 1553.000000
+            POS 2828.500000 1559.000000
             IMAGE KONTUR/bg_tcas24
             DATAREF 
             SHOW_EQUAL 4.000000 sim/cockpit2/EFIS/map_range_copilot
@@ -77706,7 +77704,7 @@ GROUP KNTR
             CLICK_DY 0
 
           gen_rotary plane 2
-            POS 2817.000000 1555.000000
+            POS 2817.000000 1561.000000
             IMAGE KONTUR/plane
             DATAREF 
             LIGHT_MODE GLASS_AUTO
@@ -78452,7 +78450,6 @@ GROUP KNTR
       GROUP nav_bg
         SHOW_LESS 0.000000 sim/custom/kontur/right_taws
         SHOW_EQUAL 0.000000 sim/custom/kontur/right_tcas
-        GROUP_OPEN
         gen_rotary plane
           POS 2817.000000 1431.000000
           IMAGE KONTUR/plane
