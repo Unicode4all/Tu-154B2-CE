@@ -251,6 +251,7 @@ kntr_1_brt_sw = 0.7
 kntr_2_brt_sw = 0.7
 simDR_kontur_1_brt = 0.6
 simDR_kontur_2_brt = 0.6
+taws_timer = 0
 
 function kontur_onoff_button_l_CMDhandler(phase, duration)
     if phase == 0 then
@@ -2065,6 +2066,15 @@ end
 	rng_wx_r = rng_wx_l
 	-- automatic taws display
 	if simDR_taws_message>0 and simDR_taws_message~=simDR_taws_message_prev and simDR_taws_message~=10 then
+		taws_timer = 0.1
+	elseif simDR_taws_message == 0 then
+		taws_timer = 0
+	end
+	if taws_timer > 0 then
+		taws_timer = taws_timer + simDR_passed
+	end
+	
+	if taws_timer>0.5 then
 		if kontur_taws_l ~= 1 then
 			kontur_tcas_l = 0
 			kontur_tcas_l_aux = 0
@@ -2083,6 +2093,7 @@ end
 			kontur_taws_r = 1
 			rng_taws_r = 2
 		end
+		taws_timer = 0
 	end
 	if kontur_taws_l > 1 and simDRtaws_rdy == 0 then
 		kontur_taws_l = 1

@@ -184,102 +184,102 @@ END_MANIP
  
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_1_hundr_left
 	ACTION axis_knob -50 70 1 tu154b2/custom/switchers/ovhd/ark_1_hundr_left
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_1_ones_left 
 	ACTION axis_knob -50 60 1 tu154b2/custom/switchers/ovhd/ark_1_ones_left 
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_2_hundr_left
 	ACTION axis_knob -50 70 1 tu154b2/custom/switchers/ovhd/ark_2_hundr_left
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_2_ones_left 
 	ACTION axis_knob -50 60 1 tu154b2/custom/switchers/ovhd/ark_2_ones_left 
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_1_hundr_right
 	ACTION axis_knob -50 70 1 tu154b2/custom/switchers/ovhd/ark_1_hundr_right
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_1_ones_right 
 	ACTION axis_knob -50 60 1 tu154b2/custom/switchers/ovhd/ark_1_ones_right 
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_2_hundr_right
 	ACTION axis_knob -50 70 1 tu154b2/custom/switchers/ovhd/ark_2_hundr_right
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_2_ones_right 
 	ACTION axis_knob -50 60 1 tu154b2/custom/switchers/ovhd/ark_2_ones_right 
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/eng/fire_place_sel
 	ACTION axis_knob 0 4 1 tu154b2/custom/switchers/eng/fire_place_sel
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/eng/fire_sensor_sel
 	ACTION axis_knob 0 6 1 tu154b2/custom/switchers/eng/fire_sensor_sel
-	DEG_PER_ACTION 15
+	DEG_PER_ACTION 30
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co70_sqwk_1
 	ACTION axis_knob 0 7 1 sim/custom/co70_sqwk_1
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 20
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co70_sqwk_2
 	ACTION axis_knob 0 7 1 sim/custom/co70_sqwk_2
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 20
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co70_sqwk_3
 	ACTION axis_knob 0 7 1 sim/custom/co70_sqwk_3
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 20
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co70_sqwk_4
 	ACTION axis_knob 0 7 1 sim/custom/co70_sqwk_4
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 20
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co63_sqwk_1
 	ACTION axis_knob 0 7 1 sim/custom/co63_sqwk_1
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 25
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co63_sqwk_2
 	ACTION axis_knob 0 7 1 sim/custom/co63_sqwk_2
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 25
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co63_sqwk_3
 	ACTION axis_knob 0 7 1 sim/custom/co63_sqwk_3
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 25
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co63_sqwk_4
 	ACTION axis_knob 0 7 1 sim/custom/co63_sqwk_4
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 25
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co63_mode
 	ACTION axis_knob 0 2 1 sim/custom/co63_mode
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 20
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co70_mode
 	ACTION axis_knob 0 3 -1 sim/custom/co70_mode
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 20
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/ovhd/ark_1_mode
@@ -294,7 +294,7 @@ END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/co63_mode2
 	ACTION axis_knob 0 3 -1 sim/custom/co63_mode2
-	DEG_PER_ACTION 30
+	DEG_PER_ACTION 20
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/buttons/ovhd/rsbn_ch_one
@@ -364,27 +364,27 @@ END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/airbleed/cockpit_temp_set
 	ACTION axis_knob -10 40 1 tu154b2/custom/switchers/airbleed/cockpit_temp_set
-	DEG_PER_ACTION 10
+	DEG_PER_ACTION 4
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/airbleed/cabin1_temp_set
 	ACTION axis_knob -10 40 1 tu154b2/custom/switchers/airbleed/cabin1_temp_set
-	DEG_PER_ACTION 10
+	DEG_PER_ACTION 4
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/airbleed/cabin2_temp_set
 	ACTION axis_knob -10 40 1 tu154b2/custom/switchers/airbleed/cabin2_temp_set
-	DEG_PER_ACTION 10
+	DEG_PER_ACTION 4
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/airbleed/left_sys_temp_set
 	ACTION axis_knob 5 40 1 tu154b2/custom/switchers/airbleed/left_sys_temp_set
-	DEG_PER_ACTION 10
+	DEG_PER_ACTION 4
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/airbleed/right_sys_temp_set
 	ACTION axis_knob 5 40 1 tu154b2/custom/switchers/airbleed/right_sys_temp_set
-	DEG_PER_ACTION 10
+	DEG_PER_ACTION 4
 END_MANIP
 
 
@@ -465,12 +465,12 @@ END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/SD67_2_vol
 	ACTION axis_knob 0 1 0.05 tu154b2/custom/switchers/SD67_2_vol
-	DEG_PER_ACTION 5
+	DEG_PER_ACTION 9
 END_MANIP
 
 BEGIN_MANIP drag_axis tu154b2/custom/switchers/SD67_1_vol
 	ACTION axis_knob 0 1 0.05 tu154b2/custom/switchers/SD67_1_vol
-	DEG_PER_ACTION 5
+	DEG_PER_ACTION 9
 END_MANIP
 
 BEGIN_MANIP drag_axis sim/custom/kontur/info_knob2_r
