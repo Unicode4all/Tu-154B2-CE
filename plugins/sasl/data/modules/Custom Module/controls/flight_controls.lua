@@ -392,7 +392,7 @@ end
 				-- auto_deploy=1
 			-- end
         end
-        if auto_deploy == 1 and get(speedbrake_ratio) < 0.95 and (get(revers_L) < 0.05 and get(revers_R) < 0.05) then
+        if auto_deploy == 1 and get(speedbrake_ratio) < 0.05 and (get(revers_L) < 0.05 and get(revers_R) < 0.05) then
             auto_deploy = 0
         end
     end
@@ -498,7 +498,7 @@ end
 	-- turn on the forcing
 	local forcing_sw = get(contr_force_set)
 if MASTER then
-	if power_27_L and power_27_R then
+	if power_27_L or power_27_R then
 		
 		-- forcing limit elevator
 		if (forcing_sw == 0 and get(flap_inn_L) < 7 and get(flap_inn_R) < 7) or forcing_sw == -1 then 

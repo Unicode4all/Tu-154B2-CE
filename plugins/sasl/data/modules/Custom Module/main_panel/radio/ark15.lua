@@ -29,7 +29,7 @@ defineProperty("ark_all_lit", globalPropertyf("tu154b2/custom/lights/ark1_all_li
 
 -- power
 defineProperty("bus27_volt", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus36_volt", globalPropertyf("tu154b2/custom/elec/bus36_volt_left"))
+defineProperty("bus36_volt", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1"))
 
 defineProperty("ark15_cc", globalPropertyf("tu154b2/custom/radio/ark15_L_cc")) -- потребление тока АРК
 

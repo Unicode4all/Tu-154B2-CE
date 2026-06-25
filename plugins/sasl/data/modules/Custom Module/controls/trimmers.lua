@@ -131,7 +131,7 @@ function update()
 	local passed = get(frame_time)
 	local power_27_L = bool2int(get(bus27_volt_left) > 13)
 	local power_27_R = bool2int(get(bus27_volt_right) > 13)
-	local power36_L = bool2int(get(bus36_volt_left) > 30)
+	local power36_L = bool2int(get(bus36_volt_pts250_2) > 30)
 	local power36_R = bool2int(get(bus36_volt_right) > 30)
 	
 	local CC_27L = get(ctr_27_L_cc)

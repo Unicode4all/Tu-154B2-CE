@@ -19,7 +19,7 @@ defineProperty("nav_L_ON", globalPropertyf("tu154b2/custom/radio/nav1_pow_cc")) 
 defineProperty("nav_R_ON", globalPropertyf("tu154b2/custom/radio/nav2_pow_cc")) -- потребление тока от КурсМП
 
 -- power
-defineProperty("bus36_volt", globalPropertyf("tu154b2/custom/elec/bus36_volt_right")) -- напряжение сети 36в
+defineProperty("bus36_volt", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")) -- напряжение сети 36в
 
 
 -- results

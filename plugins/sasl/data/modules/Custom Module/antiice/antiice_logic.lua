@@ -513,48 +513,48 @@ function update()
 		end
 		
 		-- engines heat
-		if get(antiice_eng_1)>0 and vna1<1 then
+		if get(antiice_eng_1)>0 and vna1<1 and power27_L then
 			vna1=vna1+passed*2
 			if vna1>1 then
 				vna1=1
 			end
-		elseif get(antiice_eng_1)==0 and vna1>0 then
+		elseif get(antiice_eng_1)==0 and vna1>0 and power27_L then
 			vna1=vna1-passed*2
 			if vna1<0 then
 				vna1=0
 			end
 		end
 		
-		if get(antiice_eng_2)>0 and vna2<1 then
+		if get(antiice_eng_2)>0 and vna2<1 and power27_R then
 			vna2=vna2+passed*2
 			if vna2>1 then
 				vna2=1
 			end
-		elseif get(antiice_eng_2)==0 and vna2>0 then
+		elseif get(antiice_eng_2)==0 and vna2>0 and power27_R then
 			vna2=vna2-passed*2
 			if vna2<0 then
 				vna2=0
 			end
 		end
 		
-		if get(antiice_eng_3)>0 and vna3<1 then
+		if get(antiice_eng_3)>0 and vna3<1 and power27_R then
 			vna3=vna3+passed*2
 			if vna3>1 then
 				vna3=1
 			end
-		elseif get(antiice_eng_3)==0 and vna3>0 then
+		elseif get(antiice_eng_3)==0 and vna3>0 and power27_R then
 			vna3=vna3-passed*2
 			if vna3<0 then
 				vna3=0
 			end
 		end
 		
-		if get(antiice_wing)>0 and pos_stab<1 then
+		if get(antiice_wing)>0 and pos_stab<1 and (power27_L or power27_R) then
 			pos_stab=pos_stab+passed*2
 			if pos_stab>1 then
 				pos_stab=1
 			end
-		elseif get(antiice_wing)==0 and pos_stab>0 then
+		elseif get(antiice_wing)==0 and pos_stab>0 and (power27_L or power27_R) then
 			pos_stab=pos_stab-passed*2
 			if pos_stab<0 then
 				pos_stab=0
@@ -562,20 +562,20 @@ function update()
 		end
 		
 		local rpm_1 = get(rpm_high_1) > 50 and vna1==1
-		set(inlet_heat_1, bool2int(get(rel_ice_inlet_heat1) ~= 6 and rpm_1 and power27_L) * vna1)
-		set(eng_heat_open_1, bool2int(get(rel_ice_inlet_heat1) ~= 6 and power27_L) * vna1)
+		set(inlet_heat_1, bool2int(get(rel_ice_inlet_heat1) ~= 6 and rpm_1) * vna1)
+		set(eng_heat_open_1, bool2int(get(rel_ice_inlet_heat1) ~= 6) * vna1)
 		
 		local rpm_2 = get(rpm_high_2) > 50 and vna2==1
-		set(inlet_heat_2, bool2int(rpm_2 and power27_R) * vna2 * bool2int(get(rel_ice_inlet_heat2) ~= 6))
-		set(eng_heat_open_2, bool2int(get(rel_ice_inlet_heat2) ~= 6 and power27_R) * vna2)
+		set(inlet_heat_2, bool2int(rpm_2) * vna2 * bool2int(get(rel_ice_inlet_heat2) ~= 6))
+		set(eng_heat_open_2, bool2int(get(rel_ice_inlet_heat2) ~= 6) * vna2)
 		
 		local rpm_3 = get(rpm_high_3) > 50 and vna3==1
-		set(inlet_heat_3, bool2int(rpm_3 and power27_R) * vna3 * bool2int(get(rel_ice_inlet_heat3) ~= 6))
-		set(eng_heat_open_3, bool2int(get(rel_ice_inlet_heat3) ~= 6 and power27_R) * vna3)
+		set(inlet_heat_3, bool2int(rpm_3) * vna3 * bool2int(get(rel_ice_inlet_heat3) ~= 6))
+		set(eng_heat_open_3, bool2int(get(rel_ice_inlet_heat3) ~= 6) * vna3)
 		
 		-- wings and slat heat
-		set(stab_heat_open, bool2int((power27_L or power27_R)) * pos_stab)
-		local wing_heat = bool2int((power27_L or power27_R) and get(rel_ice_surf_heat) < 6) * pos_stab
+		set(stab_heat_open, pos_stab)
+		local wing_heat = bool2int(get(rel_ice_surf_heat) < 6) * pos_stab
 		local slat_heat = bool2int(get(bus115_2_volt) > 110 and power27_R and get(rel_ice_surf_heat2) < 6 and grnd and get(pos_blok) == 0) * get(antiice_slats)
 		-- slat heat timer
 		local new_pos=get(mod_pos)

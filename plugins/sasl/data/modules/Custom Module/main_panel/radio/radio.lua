@@ -118,7 +118,7 @@ components = {
 		ark_all_lit = globalPropertyf("tu154b2/custom/lights/ark2_all_lit"), -- подсветка АРК 1
 		
 		bus27_volt = globalPropertyf("tu154b2/custom/elec/bus27_volt_right"),
-		bus36_volt = globalPropertyf("tu154b2/custom/elec/bus36_volt_right"),
+		bus36_volt = globalPropertyf("tu154b2/custom/elec/bus36_volt_left"),
 
 		ark15_cc = globalPropertyf("tu154b2/custom/radio/ark15_R_cc"), -- потребление тока АРК
 		adf_pow = globalPropertyi("sim/cockpit2/radios/actuators/adf2_power"),

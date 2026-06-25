@@ -335,8 +335,8 @@ if MASTER then
 	end
 	-- move the flaps
 	if flaps_mode ~= -1 and flap_power  then
-		flap_pos_now_L = flap_pos_now_L + flaps_dirr_L * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_L_fail) * (1 - flap_desync) 
-		flap_pos_now_R = flap_pos_now_R + flaps_dirr_R * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_R_fail) * (1 - flap_desync)
+		flap_pos_now_L = flap_pos_now_L + flaps_dirr_L * passed * (HS1 * math.max(flaps_mode,power36_L) + HS2 * math.max(flaps_mode,power36_R))/2 * flap_SPD * (1 - flap_mech_L_fail) * (1 - flap_desync) 
+		flap_pos_now_R = flap_pos_now_R + flaps_dirr_R * passed * (HS1 * math.max(flaps_mode,power36_L) + HS2 * math.max(flaps_mode,power36_R))/2 * flap_SPD * (1 - flap_mech_R_fail) * (1 - flap_desync)
 	elseif flaps_mode == -1 and flap_power then  -- resync mode
 		if resync_timer>5 then 
 			resync_timer = 0
@@ -350,7 +350,7 @@ if MASTER then
 					flaps_dirr_R = 0
 					resync_timer = 0
 				end		
-				flap_pos_now_R = flap_pos_now_R + flaps_dirr_R * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_R_fail)
+				flap_pos_now_R = flap_pos_now_R + flaps_dirr_R * passed * (HS1 + HS2)/2 * flap_SPD * (1 - flap_mech_R_fail)
 			else
 				if flap_pos_now_L < flap_pos_now_R - 0.1 then 
 					flaps_dirr_L = 1
@@ -360,7 +360,7 @@ if MASTER then
 					flaps_dirr_L = 0
 					resync_timer = 0
 				end
-				flap_pos_now_L = flap_pos_now_L + flaps_dirr_L * passed * (HS1 * power36_L + HS2 * power36_R)/2 * flap_SPD * (1 - flap_mech_L_fail)
+				flap_pos_now_L = flap_pos_now_L + flaps_dirr_L * passed * (HS1 + HS2)/2 * flap_SPD * (1 - flap_mech_L_fail)
 			
 			end
 			resync_timer = resync_timer + passed
