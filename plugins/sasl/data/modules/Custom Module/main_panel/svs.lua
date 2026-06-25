@@ -214,8 +214,8 @@ function update()
 	--p_q_ind=passed/(T_m+passed)*p_q + p_q_ind*T_m/(T_m+passed)
 	
 	if test then -- svs check
-		p_static=19550
-		p_d=10300
+		p_static=19400
+		p_d=10250
 		--altitude=12000
 	end 
 	
@@ -230,8 +230,8 @@ function update()
 			if p_static< 22630 then
 				t_avg = (288.15-6.5*11)+(288.15-(288.15-6.5*11))/2*11000/altitude
 			end
-			altitude = 29.27*t_avg*math.log(101325/p_static)
-			altitude_rel = 29.27*t_avg*math.log(p_set*133.322/p_static)
+			altitude = 29.1*t_avg*math.log(101325/p_static)
+			altitude_rel = 29.1*t_avg*math.log(p_set*133.322/p_static)
 			if get(kontur_90th)==0 then
 				set(qnh_set,p_set*0.0393701)
 			end

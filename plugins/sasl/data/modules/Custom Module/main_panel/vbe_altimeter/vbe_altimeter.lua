@@ -245,7 +245,7 @@ if MASTER then
 
 	--local press_inHg = press * 0.0295300586467
 	
-	if power and not staticFail then
+	if power and not staticFail and get(kontur_90th) == 1 then
 		local temperature=get(temp)
 		local p_s=get(p_stat)
 		--if get(real_alt)==0 and get(kontur_90th)~=0 then --use default altimeters if realistic altimeter option is off
