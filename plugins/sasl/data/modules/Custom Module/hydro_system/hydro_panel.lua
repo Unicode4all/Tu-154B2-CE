@@ -59,26 +59,8 @@ defineProperty("gs_press_4", globalPropertyf("tu154b2/custom/hydro/gs_press_4"))
 defineProperty("gs_qty_12_show", globalPropertyf("tu154b2/custom/hydro/gs_qty_12_show")) -- остаток масла в гидробаке
 defineProperty("gs_qty_3_show", globalPropertyf("tu154b2/custom/hydro/gs_qty_3_show")) -- остаток масла в гидробаке
 
-
---defineProperty("l_brake_add", globalPropertyf("sim/flightmodel/controls/l_brake_add")) -- Left Brake
---defineProperty("r_brake_add", globalPropertyf("sim/flightmodel/controls/r_brake_add")) -- Right Brake
-
 defineProperty("l_brake_add", globalPropertyf("tu154b2/custom/brakes/int_brakes_L")) -- реальное положение тормоза
 defineProperty("r_brake_add", globalPropertyf("tu154b2/custom/brakes/int_brakes_R")) -- реальное положение тормоза
-
---defineProperty("l_brake_add", globalPropertyf("sim/custom/SC/brakes/int_brakes_L")) 
---defineProperty("r_brake_add", globalPropertyf("sim/custom/SC/brakes/int_brakes_R")) 
-
-
-
---defineProperty("l_brake_add", globalPropertyf("sim/custom/controlls/brake_L")) -- 
---defineProperty("r_brake_add", globalPropertyf("sim/custom/controlls/brake_R")) -- 
-
-defineProperty("parkbrake", globalPropertyf("sim/flightmodel/controls/parkbrake")) -- Parking Brake
---defineProperty("parkbrake", globalPropertyf("sim/custom/SC/controls/parkbrake")) 
-
-
-defineProperty("brake_emerg", globalPropertyf("tu154b2/custom/controlls/brake_emerg")) -- аварийный тормоз
 
 -- failures
 defineProperty("rel_lbrakes", globalPropertyi("sim/operation/failures/rel_lbrakes")) -- Left Brakes
@@ -89,9 +71,11 @@ defineProperty("gear3_deflect", globalProperty("sim/flightmodel2/gear/tire_verti
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
 local panel_x=0.727
 local panel_z=-21.171
 local dist_gain=5
@@ -110,24 +94,17 @@ local press_1 = get(gs_press_1)
 local press_2 = get(gs_press_2)
 local press_3 = get(gs_press_3)
 local press_4 = get(gs_press_4)
-local tme_1=0
-local tme_1_lk=0
-local tme_2=0
-local tme_2_lk=0
 
-local tme_p_1=0
-local tme_p_1_lk=0
-local tme_p_2=0
-local tme_p_2_lk=0
-local tme_p_3=0
-local tme_p_3_lk=0
-local tme_p_4=0
-local tme_p_4_lk=0
-local power36_prev=0
 local press_1_ang=0
 local press_2_ang=0
 local press_3_ang=0
 local press_4_ang=0
+
+local press_gauge_tbl = {
+{-100, 0},
+{40, 0},
+{220, 220},
+{300, 300}}
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
@@ -153,6 +130,55 @@ local function inn_balance (src_x, src_z, x, z , cam_hdg)
 	
 	return ch_L, ch_R
 end
+
+local function needle_pos (ang_actual_prev,ang_need,dt,v_prev,k_spr,k_dmp,k_v,c_v)
+	local v_needle_max=5000*c_v
+	local e_c=(ang_need-ang_actual_prev)*k_spr
+    local v=v_prev*k_v+e_c*dt-v_prev*k_dmp
+	if v>v_needle_max then
+		v=v_needle_max
+	elseif v<-v_needle_max then
+		v=-v_needle_max
+	end
+    local ang_actual=ang_actual_prev+v*dt
+	if ang_actual<0 then
+		ang_actual=0
+		v=0
+	end
+	return v,ang_actual
+end
+
+local function needle_pos2 (ang_actual_prev,ang_need,dt,v_prev,k_spr,k_dmp,k_v,c_v)
+	local v_needle_max=5000*c_v
+	local e_c=(ang_need-ang_actual_prev)*k_spr
+    local v=v_prev*k_v+e_c*dt-v_prev*k_dmp
+	if v>v_needle_max then
+		v=v_needle_max
+	elseif v<-v_needle_max then
+		v=-v_needle_max
+	end
+    local ang_actual=ang_actual_prev+v*dt
+	if ang_actual<-180 then
+		ang_actual=-180
+		v=0
+	end
+	return v,ang_actual
+end
+local v_br1 = 0
+local v_br2 = 0
+local v_gs1 = 0
+local v_gs2 = 0
+local v_gs3 = 0
+local v_gs4 = 0
+local v_q1 = 0
+local v_q3 = 0
+local k_spr = 2500*0.2
+local k_dmp = 0.15 *18
+local k_v = 3.4
+local c_v = 0.1
+local k_spr2 = k_spr * 8
+local k_dmp2 = k_dmp * 1.05
+local c_v2 = c_v * 3.5
 
 local function lamps_eng()
 	local test_btn = get(lamp_test_hydro) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
@@ -276,18 +302,6 @@ local function buttons_check (gain_L, gain_R,dist)
 		sasl.al.playSample(button_sound_R, false)
     end
 	lamp_test_hydro_last = lamp_test_hydro_sw
-	if qty_test_12_sw>qty_test_12_last and get(bus27_volt_left)>12 then -- jitter from power switch
-		tme_1=0
-		tme_1_lk=0
-	-- elseif qty_test_12_sw<qty_test_12_last then
-		-- tme_1=1
-	end
-	if qty_test_3_sw>qty_test_3_last and get(bus27_volt_left)>12 then -- jitter from power switch
-		tme_2=0
-		tme_2_lk=0
-	-- elseif qty_test_3_sw<qty_test_3_last then
-		-- tme_2=1
-	end
 	qty_test_12_last = qty_test_12_sw
 	qty_test_3_last = qty_test_3_sw
 	accum_fill_last = accum_fill_sw
@@ -329,72 +343,38 @@ local function gauges()
 	local power27R = bool2int(get(bus27_volt_right) > 13)
 	
 	-- manometers
-	if power36>power36_prev then
-		tme_p_1=0
-		tme_p_1_lk=0
-		tme_p_2=0
-		tme_p_2_lk=0
-		tme_p_3=0
-		tme_p_3_lk=0
-		tme_p_4=0
-		tme_p_4_lk=0
-	end
-	power36_prev=power36
-	--- Needle jitter
-	if tme_p_1<4 then
-		tme_p_1=tme_p_1+passed*tme_p_1_lk
-	end
-	if math.abs(press_1 * power36 - press_1_ang)<15 then
-		tme_p_1_lk=1
-	end
-	local needle_jit_p_1=math.cos(30*tme_p_1)*math.exp(-3*tme_p_1)
-	press_1=press_1+needle_jit_p_1*10
-	press_1_ang=press_1_ang + (press_1 * power36 - press_1_ang) * passed * 10
 	
-	if tme_p_2<4 then
-		tme_p_2=tme_p_2+passed*tme_p_2_lk
-	end
-	if math.abs(press_1 * power36 - press_1_ang)<15 then
-		tme_p_2_lk=1
-	end
-	local needle_jit_p_2=math.cos(27*tme_p_2)*math.exp(-3*tme_p_2)
-	press_2=press_2+needle_jit_p_2*11
-	press_2_ang=press_2_ang + (press_2 * power36 - press_2_ang) * passed * 10
+	local v_press_1_set,press_1_set = needle_pos (press_1_ang,press_1 * power36,passed,v_gs1,k_spr,k_dmp,k_v,c_v)
+	press_1_ang=press_1_set
+	v_gs1=v_press_1_set
 	
+	local v_press_2_set,press_2_set = needle_pos (press_2_ang,press_2 * power36,passed,v_gs2,k_spr,k_dmp,k_v,c_v)
+	press_2_ang=press_2_set
+	v_gs2=v_press_2_set
 	
-	if tme_p_3<4 then
-		tme_p_3=tme_p_3+passed*tme_p_3_lk
-	end
-	if math.abs(press_3 * power36 - press_3_ang)<15 then
-		tme_p_3_lk=1
-	end
-	local needle_jit_p_3=math.cos(38*tme_p_3)*math.exp(-3.1*tme_p_3)
-	press_3=press_3+needle_jit_p_3*12
-	press_3_ang=press_3_ang + (press_3 * power36 - press_3_ang) * passed * 10
+	local v_press_3_set,press_3_set = needle_pos (press_3_ang,press_3 * power36,passed,v_gs3,k_spr,k_dmp,k_v,c_v)
+	press_3_ang=press_3_set
+	v_gs3=v_press_3_set
 	
-	if tme_p_4<4 then
-		tme_p_4=tme_p_4+passed*tme_p_4_lk
-	end
-	if math.abs(press_4 * power36 - press_4_ang)<15 then
-		tme_p_4_lk=1
-	end
-	local needle_jit_p_4=math.cos(32*tme_p_4)*math.exp(-2.9*tme_p_4)
-	press_4=press_4+needle_jit_p_4*14
-	press_4_ang=press_4_ang + (press_4 * power36 - press_4_ang) * passed * 10
-	
-	
+	local v_press_4_set,press_4_set = needle_pos (press_4_ang,press_4 * power36,passed,v_gs4,k_spr,k_dmp,k_v,c_v)
+	press_4_ang=press_4_set
+	v_gs4=v_press_4_set
+
 	set(pressure_ind_1, press_1_ang)
 	set(pressure_ind_2, press_2_ang)
 	set(pressure_ind_3, press_3_ang)
 	set(pressure_ind_emerg, press_4_ang)
-
-	local park = get(parkbrake)
 	
-	local e_brake = get(brake_emerg)
-	local e_press = math.min(get(gs_press_4) / 120, 1)
+	local left_br = math.min(get(l_brake_add), 1) * 120 * power36 * bool2int(get(rel_lbrakes) < 6) * bool2int(get(gear2_deflect) > 0.06)
+	local right_br = math.min(get(r_brake_add), 1) * 120 * power36 * bool2int(get(rel_rbrakes) < 6) * bool2int(get(gear3_deflect) > 0.06)
 	
-	left_br_act = left_br_act + (math.min(get(l_brake_add), 1) * 120 * power36 * bool2int(get(rel_lbrakes) < 6) * bool2int(get(gear2_deflect) > 0.06) - left_br_act) * passed * 10
-	right_br_act = right_br_act + (math.min(get(r_brake_add), 1) * 120 * power36 * bool2int(get(rel_rbrakes) < 6) * bool2int(get(gear3_deflect) > 0.06) - right_br_act) * passed * 10
+	local v_left_br_set,br_1_set = needle_pos (left_br_act,left_br,passed,v_br1,k_spr,k_dmp,k_v,c_v)
+	left_br_act=br_1_set
+	v_br1=v_left_br_set
+	
+	local v_right_br_set,br_2_set = needle_pos (right_br_act,right_br,passed,v_br2,k_spr,k_dmp,k_v,c_v)
+	right_br_act=br_2_set
+	v_br2=v_right_br_set
 	
 	set(gear_brake_press_L, left_br_act)
 	set(gear_brake_press_R, right_br_act)
@@ -406,29 +386,14 @@ local function gauges()
 	local qty_12_need =  interpolate(oil_qty_12_t, get(gs_qty_12_show) * test_btn_12 * power27L)
 	local qty_3_need = interpolate(oil_qty_3_t, get(gs_qty_3_show) * test_btn_3 * power27R)
 	
-	local needle_jit_1=math.cos(60*tme_1)*math.exp(-4*tme_1)
-	qty_12_need=qty_12_need+needle_jit_1*40*test_btn_12
-	local needle_jit_2=math.cos(60*tme_2)*math.exp(-4*tme_2)
-	qty_3_need=qty_3_need+needle_jit_2*40*test_btn_3
+	local v_q1_set,q1_set = needle_pos2 (oil_qty_12_act,qty_12_need,passed,v_q1,k_spr2,k_dmp2,k_v,c_v2)
+	oil_qty_12_act=q1_set
+	v_q1=v_q1_set
 	
-	if tme_1<4 then
-		tme_1=tme_1+passed*tme_1_lk
-	end
-	if math.abs(qty_12_need - oil_qty_12_act)<40 or test_btn_12==0 then
-		tme_1_lk=1
-	end
-	
-	if tme_2<4 then
-		tme_2=tme_2+passed*tme_2_lk
-	end
-	if math.abs(qty_3_need - oil_qty_3_act)<40 or test_btn_3==0 then
-		tme_2_lk=1
-	end
-	
-	
-	oil_qty_12_act = oil_qty_12_act + (qty_12_need - oil_qty_12_act) * passed * 15
-	oil_qty_3_act = oil_qty_3_act + (qty_3_need - oil_qty_3_act) * passed * 15
-	
+	local v_q3_set,q3_set = needle_pos2 (oil_qty_3_act,qty_3_need,passed,v_q3,k_spr2,k_dmp2,k_v,c_v2*0.9)
+	oil_qty_3_act=q3_set
+	v_q3=v_q3_set
+
 	set(qty_12, oil_qty_12_act)
 	set(qty_3, oil_qty_3_act)
 	

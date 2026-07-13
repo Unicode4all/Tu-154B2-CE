@@ -173,10 +173,15 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 defineProperty("elev_coeff", globalPropertyf("tu154b2/custom/controlls/elev_coeff"))
 defineProperty("rud_coeff", globalPropertyf("tu154b2/custom/controlls/rudder_coeff"))
 
+gear2_deflect = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
+kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th")
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 
 
 -- set initial values
@@ -207,19 +212,32 @@ set(gs_press_4, 210)
 
 --]]
 
+local acc_1 = 4
+local acc_2 = 4
+local acc_3 = 4
+local acc_4 = 4
 
+local sys_qty_1 = 58
+local sys_qty_2 = 58
+local sys_qty_3 = 45
 
-
-
-
+local hs1_qty = sys_qty_1 - 34 - acc_1 - acc_4 -- quantity of oil
+local hs2_qty = sys_qty_2 - 34 - acc_2  -- quantity of oil
+local hs3_qty = sys_qty_3 - 21 - acc_3 -- quantity of oil
 
 local notLoaded = true
 local sim_start_timer = 0
 
 local function reset_switchers()
 	if get(eng1_N1) < 5 and get(eng2_N1) < 5 and get(eng2_N1) < 5 then
-
-	set(gs_press_1, 0)
+		acc_1 = 0
+		acc_2 = 0
+		acc_3 = 0
+		acc_4 = 0
+		hs1_qty = sys_qty_1 - 34  -- quantity of oil
+		hs2_qty = sys_qty_2 - 34   -- quantity of oil
+		hs3_qty = sys_qty_3 - 21  -- quantity of oil
+		set(gs_press_1, 0)
 		set(gs_press_2, 0)
 		set(gs_press_3, 0)
 		set(gs_press_4, 0)
@@ -229,14 +247,60 @@ local function reset_switchers()
 end
 
 
+local function acc_press (V,V_th)
+	local p0 = 85*100000
+	local V0 = 0.0083
+	local k = 1.4
+	local press = p0/V_th*V
+	if V > V_th then
+		press = p0*math.pow(V0/(V0-V),k);
+	end
+	return press / 100000
+end
 
-local engine_pumps_t = { 
-{  -10000, 0.2},
-{  3.7, 0.15 },    
-{  4, 0.07 }, 
-{  4.06, 0.07 },   
-{  4.2, 0 },
-{  1000, 0 }}  
+local function acc_vol (press,V_th)
+	local p0 = 85*100000
+	local V0 = 0.0083
+	local k = 1.4
+	local V = V_th / p0 * press
+	if press > p0 then
+		V = - (V0 / (math.pow(press/p0,1/k)) - V0);
+	end
+	return V * 1000
+end
+
+function NP89(rpm,press)
+	local F = 55/60*rpm/92
+	if press>203 then
+		F=(4.5+50.5/7*(210-press))/60*rpm/92
+	end
+	F=F-0.0214*press/60
+	if F<0 then
+		F=0
+	end
+	return F
+end
+
+function NS46(power,press)
+	local F = 24/60*power
+	if press>203 then
+		F=(4.5+19.5/7*(210-press))/60*power
+	end
+	F=F-0.0214*press/60
+	if F<0 then
+		F=0
+	end
+	return F
+end
+
+
+-- local engine_pumps_t = { 
+-- {  -10000, 0.2},
+-- {  3.7, 0.15 },    
+-- {  4, 0.07 }, 
+-- {  4.06, 0.07 },   
+-- {  4.2, 0 },
+-- {  1000, 0 }}  
 
 local electric_pumps_t = { 
 {  -10000, 0.35},
@@ -246,6 +310,13 @@ local electric_pumps_t = {
 {  4.15, 0.2 },
 {  4.21, 0 },
 {  1000, 0 }} 
+
+local bypass_t = { 
+{  -10000, 0},
+{  0, 0},    
+{  205, 0 },    
+{  210, 1 },    
+{  1000, 1 }} 
 
 local brakes_L_last = get(l_brake_add)
 local brakes_R_last = get(r_brake_add)
@@ -292,7 +363,8 @@ local elevon_L_last=get(elevon_L)
 local elevon_R_last=get(elevon_R)
 local elec_pump_2_start_timer=0
 local elec_pump_3_start_timer=0
-local base_feed=0.06 --Base Hydraulic power consumption (elevator)
+local base_feed=0.055 --Base Hydraulic power consumption (elevator)
+
 
 function update()
 
@@ -315,21 +387,24 @@ if MASTER then
 	local gear3_fluid=get(fluid_3)
 	
 	-- calculate oil amount
-	local sys_qty_1 = get(system_qty_1)
-	local sys_qty_2 = get(system_qty_2)
-	local sys_qty_3 = get(system_qty_3)
+	-- local sys_qty_1 = get(system_qty_1)
+	-- local sys_qty_2 = get(system_qty_2)
+	-- local sys_qty_3 = get(system_qty_3)
 	
 	-- calculate amount of oil in accums
-	local acc_1 = get(gs_press_1) * 0.02
-	local acc_2 = get(gs_press_2) * 0.02
-	local acc_3 = get(gs_press_3) * 0.02
-	local acc_4 = get(gs_press_4) * 0.02
+	-- local acc_1 = acc_vol(get(gs_press_1)*100000,0.0005)--get(gs_press_1) * 0.02
+	-- local acc_2 = acc_vol(get(gs_press_2)*100000,0.0005)--get(gs_press_2) * 0.02
+	-- local acc_3 = get(gs_press_3) * 0.02
+	-- local acc_4 = get(gs_press_4) * 0.02
 	
-	
+	local press_1 = get(gs_press_1)
+	local press_2 = get(gs_press_2)
+	local press_3 = get(gs_press_3)
+	local press_4 = get(gs_press_4)
 	-- calculate amount in barrels. barrel = whole system - pipes - accums
-	local hs1_qty = sys_qty_1 - gear1_fluid - 34 - acc_1 - acc_4 -- quantity of oil
-	local hs2_qty = sys_qty_2 - gear2_fluid - 34 - acc_2  -- quantity of oil
-	local hs3_qty = sys_qty_3 - gear3_fluid - 21 - acc_3 -- quantity of oil
+	-- local hs1_qty = sys_qty_1 - 34 - acc_1 - acc_4 -- quantity of oil
+	-- local hs2_qty = sys_qty_2 - 34 - acc_2  -- quantity of oil
+	-- local hs3_qty = sys_qty_3 - 21 - acc_3 -- quantity of oil
 	
 	-- limit zero amount in barrels
 	if hs1_qty < 0 then hs1_qty = 0 end
@@ -359,21 +434,21 @@ if MASTER then
 	local RPM_1 = get(rpm_high_1)
 	local RPM_2 = get(rpm_high_2)
 	local RPM_3 = get(rpm_high_3)
-    local c_eng1=7.777777777778315e-05*RPM_1*RPM_1+0.004111111111111*RPM_1*1.2;
-    local c_eng2=7.777777777778315e-05*RPM_2*RPM_2+0.004111111111111*RPM_2*1.2;
-    local c_eng3=7.777777777778315e-05*RPM_3*RPM_3+0.004111111111111*RPM_3*1.2;
-	local eng_k1=math.min(7,9.235209235209163e-04*RPM_1*RPM_1-0.005339105339105*RPM_1)
-	local eng_k2=math.min(7,9.235209235209163e-04*RPM_2*RPM_2-0.005339105339105*RPM_2)
-	local eng_k3=math.min(7,9.235209235209163e-04*RPM_3*RPM_3-0.005339105339105*RPM_3)
-	local eng_pump_1_1 = math.max((-3.3/(1+math.exp(-eng_k1*(acc_1-4.2)))+1.64)*c_eng1* (1 - get(hydro_pump_fail_11)),0)
-	local eng_pump_1_2 = math.max((-3.3/(1+math.exp(-eng_k2*(acc_1-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_12)),0)
-	local eng_pump_2 = math.max((-3.3/(1+math.exp(-eng_k2*(acc_2-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_2)),0)
-	local eng_pump_3 = math.max((-3.3/(1+math.exp(-eng_k3*(acc_3-4.2)))+1.64)*c_eng3* (1 - get(hydro_pump_fail_3)),0)
+    -- local c_eng1=7.777777777778315e-05*RPM_1*RPM_1+0.004111111111111*RPM_1*1.2;
+    -- local c_eng2=7.777777777778315e-05*RPM_2*RPM_2+0.004111111111111*RPM_2*1.2;
+    -- local c_eng3=7.777777777778315e-05*RPM_3*RPM_3+0.004111111111111*RPM_3*1.2;
+	-- local eng_k1=math.min(7,9.235209235209163e-04*RPM_1*RPM_1-0.005339105339105*RPM_1)
+	-- local eng_k2=math.min(7,9.235209235209163e-04*RPM_2*RPM_2-0.005339105339105*RPM_2)
+	-- local eng_k3=math.min(7,9.235209235209163e-04*RPM_3*RPM_3-0.005339105339105*RPM_3)
+	local eng_pump_1_1 = NP89(RPM_1*(1 - get(hydro_pump_fail_11)),press_1) --math.max((-3.3/(1+math.exp(-eng_k1*(acc_1-4.2)))+1.64)*c_eng1* (1 - get(hydro_pump_fail_11)),0)
+	local eng_pump_1_2 = NP89(RPM_2*(1 - get(hydro_pump_fail_12)),press_1) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_1-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_12)),0)
+	local eng_pump_2 = NP89(RPM_2*(1 - get(hydro_pump_fail_2)),press_2) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_2-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_2)),0)
+	local eng_pump_3 = NP89(RPM_3*(1 - get(hydro_pump_fail_3)),press_3) --math.max((-3.3/(1+math.exp(-eng_k3*(acc_3-4.2)))+1.64)*c_eng3* (1 - get(hydro_pump_fail_3)),0)
 -- 41 93
 	-- pump oil from storage to accums
 	if hs1_qty > 0.1 then 
 		local flow = (eng_pump_1_1 + eng_pump_1_2) * passed
-		acc_1 = acc_1 + flow 
+		acc_1 = acc_1 + flow
 		hs1_qty = hs1_qty - flow
 	end	
 
@@ -394,18 +469,18 @@ if MASTER then
 	local elec_pump_3 = bool2int(power115_3 and power27R and get(pump_3) == 1 and get(hydro_elec_fail_3) == 0)
 	
 	if hs2_qty > 0 then 
-		local flow = elec_pump_2 * interpolate(electric_pumps_t, acc_2) * passed *0.9 * elec_pump_2_start_timer *(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
+		local flow = NS46(elec_pump_2 * elec_pump_2_start_timer,press_2) * passed --elec_pump_2 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_2))) * passed * elec_pump_2_start_timer --*(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
 		acc_2 = acc_2 + flow
 		hs2_qty = hs2_qty - flow
 	end
 	if hs3_qty > 0 then 
-		local flow = elec_pump_3 * interpolate(electric_pumps_t, acc_3) * passed *0.85 * elec_pump_3_start_timer*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
+		local flow = NS46(elec_pump_3 * elec_pump_3_start_timer,press_3) * passed --elec_pump_3 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_3))) * passed  * elec_pump_3_start_timer --*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
 		acc_3 = acc_3 + flow
 		hs3_qty = hs3_qty - flow
 	end
 	
-	local pump2_current = elec_pump_2 * (32 + interpolate(electric_pumps_t, acc_2 * 50) * 0.15)
-	local pump3_current = elec_pump_3 * (32 + interpolate(electric_pumps_t, acc_3 * 50) * 0.15)
+	local pump2_current = elec_pump_2 * (16 + 16 * acc_2 / 4)
+	local pump3_current = elec_pump_3 * (16 + 16 * acc_3 / 4)
 	
 
 	-- charge the accumulator for emergency brakes
@@ -418,7 +493,7 @@ if MASTER then
 	end
 
 	-- connect HS 1 and HS2
-	if get(connect2to1) == 1 and power27L and acc_2 > acc_1 then
+	if get(connect2to1) == 1 and power27L and acc_2 > acc_1 and (get(gear2_deflect) < 0.06 or get(kontur_90th) == 0) then
 		local flow = acc_2 - acc_1
 		if flow > 2 then flow = 2 end
 		
@@ -671,46 +746,81 @@ if MASTER then
 
 
 	-- gears
-	local gear_feed_1 = math.abs(get(gear1_deploy) - gear_pos_1_last) * 8 / 3
-	local gear_feed_2 = math.abs(get(gear2_deploy) - gear_pos_2_last) * 17 / 3
-	local gear_feed_3 = math.abs(get(gear3_deploy) - gear_pos_3_last) * 17 / 3
-	-- reduced consumption for extending gears
-	if get(gear1_deploy) - gear_pos_1_last>0 then
-		gear_feed_1 = math.abs(get(gear1_deploy) - gear_pos_1_last) * 8 / 4
-	end
-	if get(gear2_deploy) - gear_pos_2_last>0 then
-		gear_feed_2 = math.abs(get(gear2_deploy) - gear_pos_2_last) * 17 / 4
-	end
-	if get(gear3_deploy) - gear_pos_3_last>0 then
-		gear_feed_3 = math.abs(get(gear3_deploy) - gear_pos_3_last) * 17 / 4
-	end
-	gear_pos_1_last = get(gear1_deploy)
-	gear_pos_2_last = get(gear2_deploy)
-	gear_pos_3_last = get(gear3_deploy)
+	-- -- reduced consumption for extending gears
+	-- if get(gear1_deploy) - gear_pos_1_last>0 then
+		-- gear_feed_1 = math.abs(get(gear1_deploy) - gear_pos_1_last) * 8 / 4
+	-- end
+	-- if get(gear2_deploy) - gear_pos_2_last>0 then
+		-- gear_feed_2 = math.abs(get(gear2_deploy) - gear_pos_2_last) * 17 / 4
+	-- end
+	-- if get(gear3_deploy) - gear_pos_3_last>0 then
+		-- gear_feed_3 = math.abs(get(gear3_deploy) - gear_pos_3_last) * 17 / 4
+	-- end
 	
 	local emer_gear=get(emerg_gear_ext)
 	local emer_gear2=get(gears_ext_3GS)*bool2int(power27R)
+	local gear_pos_1 = get(gear1_deploy)
+	local gear_pos_2 = get(gear2_deploy)
+	local gear_pos_3 = get(gear3_deploy)
+	local gear_dir_1 = bool2int(gear_pos_1_last > gear_pos_1)
+	local gear_dir_2 = bool2int(gear_pos_2_last > gear_pos_2)
+	local gear_dir_3 = bool2int(gear_pos_3_last > gear_pos_3)
+	gear_pos_1_last = get(gear1_deploy)
+	gear_pos_2_last = get(gear2_deploy)
+	gear_pos_3_last = get(gear3_deploy)
+	-- gear feed from landing gears script
+	local gear_feed_1 = get(fluid_1)*passed  --math.abs(get(gear1_deploy) - gear_pos_1_last) * 8 / 3
+	local gear_feed_2 = get(fluid_2)*passed --math.abs(get(gear2_deploy) - gear_pos_2_last) * 17 / 3
+	local gear_feed_3 = get(fluid_3)*passed --math.abs(get(gear3_deploy) - gear_pos_3_last) * 17 / 3
+	-- backfeed to the reservoir
+	local gear_backfeed_1 = gear_feed_1 * 1.559
+	local gear_backfeed_2 = gear_feed_2 * 1.559
+	local gear_backfeed_3 = gear_feed_3 * 1.559
+	if gear_dir_1 == 1 then
+		if gear_pos_1 > 0.6 then
+			gear_backfeed_1 = 0
+		else
+			gear_backfeed_1 = gear_feed_1 * 0.75
+		end
+	end
+	if gear_dir_2 == 1 then
+		if gear_pos_2 > 0.6 then
+			gear_backfeed_2 = 0
+		else
+			gear_backfeed_2 = gear_feed_2 * 0.75
+		end
+	end
+	if gear_dir_3 == 1 then
+		if gear_pos_3 > 0.6 then
+			gear_backfeed_3 = 0
+		else
+			gear_backfeed_3 = gear_feed_3 * 0.75
+		end
+	end
 	-- normal operation
 	if acc_1 > 0 and emer_gear2 == 0 and emer_gear == 0 then
 		acc_1 = acc_1 - gear_feed_1 - gear_feed_2 - gear_feed_3 -- take oil from HS1
-		hs1_qty = hs1_qty + gear_feed_1 + gear_feed_2 + gear_feed_3 -- return it to barrel		
+		hs1_qty = hs1_qty + gear_backfeed_1 + gear_backfeed_2 + gear_backfeed_3 -- return it to barrel		
 	-- emerg operation
 	elseif acc_2 > 0 and emer_gear2 == 0 and emer_gear == 1 then
 		acc_2 = acc_2 - gear_feed_1 - gear_feed_2 - gear_feed_3 -- take oil from HS2
-		hs2_qty = hs2_qty + gear_feed_1 + gear_feed_2 + gear_feed_3 -- return it to barrel	
+		hs2_qty = hs2_qty + gear_backfeed_1 + gear_backfeed_2 + gear_backfeed_3 -- return it to barrel	
 	-- 3'd HS operation
 	elseif acc_3 > 0 and emer_gear2 == 1 then
 		acc_3 = acc_3 - gear_feed_1 - gear_feed_2 - gear_feed_3 -- take oil from HS3
-		hs3_qty = hs3_qty + gear_feed_1 + gear_feed_2 + gear_feed_3 -- return it to barrel	
+		hs3_qty = hs3_qty + gear_backfeed_1 + gear_backfeed_2 + gear_backfeed_3 -- return it to barrel	
 	end
 	
-	
+	local acc_press_1 = acc_press(acc_1/1000,0.00025)
+	local acc_press_2 = acc_press(acc_2/1000,0.00025)
+	local acc_press_3 = acc_press(acc_3/1000,0.00025)
+	local acc_press_4 = acc_press(acc_4/1000,0.00025)
 	
 	-- set results
-	set(gs_press_1, acc_1 * 50)
-	set(gs_press_2, acc_2 * 50)
-	set(gs_press_3, acc_3 * 50)
-	set(gs_press_4, acc_4 * 50)
+	set(gs_press_1, acc_press_1)
+	set(gs_press_2, acc_press_2)
+	set(gs_press_3, acc_press_3)
+	set(gs_press_4, acc_press_4)
 	
 	set(bak_qty_1, hs1_qty)
 	set(bak_qty_2, hs2_qty)
@@ -718,9 +828,9 @@ if MASTER then
 	
 	
 	-- whole system = barrel + pipes + accums
-	set(system_qty_1, hs1_qty + gear1_fluid + 34 + acc_1 + acc_4)
-	set(system_qty_2, hs2_qty + gear2_fluid + 34 + acc_2 )
-	set(system_qty_3, hs3_qty + gear3_fluid + 21 + acc_3)
+	set(system_qty_1, hs1_qty + 34 + acc_1 + acc_4)
+	set(system_qty_2, hs2_qty + 34 + acc_2 )
+	set(system_qty_3, hs3_qty + 21 + acc_3)
 	
 
 	set(gs_qty_12_show, hs1_qty + hs2_qty)
@@ -747,7 +857,7 @@ if MASTER then
 	end
 	if elec_pump_2==1 then
 		if elec_pump_2_start_timer<1 then
-			elec_pump_2_start_timer=elec_pump_2_start_timer+passed
+			elec_pump_2_start_timer=elec_pump_2_start_timer+passed*2
 		elseif elec_pump_2_start_timer>1 then
 			elec_pump_2_start_timer=1
 		end
@@ -756,7 +866,7 @@ if MASTER then
 	end
 	if elec_pump_3==1 then
 		if elec_pump_3_start_timer<1 then
-			elec_pump_3_start_timer=elec_pump_3_start_timer+passed
+			elec_pump_3_start_timer=elec_pump_3_start_timer+passed*2
 		elseif elec_pump_3_start_timer>1 then
 			elec_pump_3_start_timer=1
 		end

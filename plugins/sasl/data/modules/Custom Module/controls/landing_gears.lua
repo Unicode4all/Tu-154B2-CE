@@ -21,7 +21,7 @@ defineProperty("gear2_deploy", globalProperty("sim/aircraft/parts/acf_gear_deplo
 defineProperty("gear3_deploy", globalProperty("sim/aircraft/parts/acf_gear_deploy[2]"))  -- deploy of left gear
 
 -- enviroment
-defineProperty("airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed"))  -- knots indicated air speed
+--defineProperty("airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed"))  -- knots indicated air speed
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
 defineProperty("G", globalPropertyf("sim/flightmodel2/misc/gforce_normal")) -- G overload
 defineProperty("total_time", globalPropertyf("sim/time/total_flight_time_sec"))
@@ -68,8 +68,9 @@ fluid_3 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_3")
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
@@ -87,6 +88,7 @@ local handle_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/geal_lvr_R.
 local panel_x=0.24857304
 local panel_z=-22.834959
 local dist_gain=5
+local F_base = 130/60
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
@@ -113,6 +115,22 @@ local function inn_balance (src_x, src_z, x, z , cam_hdg)
 	return ch_L, ch_R
 end
 
+function gear_speed(press,F_base,pos,ext,coef,fail)
+	local spd=1/8
+	local c_spd=math.min(1,7.736980481054048e-17*math.pow(press,6.938))*fail*coef
+	spd=spd*c_spd
+	if pos>0.6 then
+		F=F_base*0.5*c_spd
+	else
+		F=F_base*c_spd
+	end
+	if ext==1 then
+		c_spd=math.min(1,6.189584397921812e-17*math.pow(press,6.938))*fail*coef
+		spd=1/10*c_spd
+		F=F_base*0.5*c_spd
+	end
+	return spd*bool2int(ext~=0),F*bool2int(ext~=0)
+end
 
 set(gear1_deploy, 1)
 set(gear2_deploy, 1)	
@@ -243,9 +261,9 @@ local pos3 = get(gear3_deploy)
 local door_can_close_left=1
 local door_can_close_right=1
 
-local cons_1=0 --hydraulic fluid consumption from tanks for gear operation
-local cons_2=0
-local cons_3=0
+-- local cons_1=0 --hydraulic fluid consumption from tanks for gear operation
+-- local cons_2=0
+-- local cons_3=0
 
 if pos1 < 0.5 then 
 	pos1 = 0 
@@ -271,10 +289,10 @@ if pos3 > 0 then pos3 = 1 end
 local GEAR_SPEED_FRONT = 0.039 --* (0.9 + math.random() * 0.2) -- per second
 local GEAR_SPEED_LEFT = 0.039 --* (0.9 + math.random() * 0.2) -- per second
 local GEAR_SPEED_RIGHT = 0.039 --* (0.9 + math.random() * 0.2) -- per second
-local G_coef_front = 0.08
-local G_coef_main = 0.08
-local A_coef_front = 0.000025
-local A_coef_main =  0.00003
+local c_v_nose = 0.000017
+local c_g_nose = 0.01
+local c_v_main = 0.00001
+local c_g_main = 0.01
 
 
 local start_timer = 0
@@ -323,16 +341,22 @@ local MASTER = get(ismaster) ~= 1
 	passed = get(frame_time)
 
 	if passed > 0 then
-	
 		
-		local main_hydro = math.min(get(gs_press_1) / 200, 1)
-		local main_hydro_2 = math.min(get(gs_press_2) / 200, 1)
-		local aux_hydro = math.min(get(gs_press_3) / 200, 1)
+		local q=get(rho)/2*math.pow(get(tas),2)
+		-- local main_hydro = math.min(get(gs_press_1) / 200, 1)
+		-- local main_hydro_2 = math.min(get(gs_press_2) / 200, 1)
+		-- local aux_hydro = math.min(get(gs_press_3) / 200, 1)
+		local flow_1 = 0
+		local flow_2 = 0
+		local flow_3 = 0
+		local press_1 = get(gs_press_1)
+		local press_2 = get(gs_press_2)
+		local press_3 = get(gs_press_3)
 		
 		local power_L = bool2int(get(bus27_volt_left) > 13)
 		local power_R = bool2int(get(bus27_volt_right) > 13)
 		
-		local IAS = get(airspeed) ^ 2
+		--local IAS = get(airspeed)
 		
 		-- calculate if gears can retract depending on autoblock
 		local retract = false
@@ -344,18 +368,27 @@ local MASTER = get(ismaster) ~= 1
 		
 		local pump2 = math.min(1,get(rpm_2)/80) * (1-get(pump_2_fail)) -- check if second pump for system no.1 is working
 		
-		-- calculate dirrection.
+		-- calculate direction.
 		local gs_in_use = power_R * get(gears_ext_3GS)
 		local lever = get(gear_lever) * bool2int(get(actuator_fail) ~= 6)
 		local emer_ext=get(emerg_gear_ext)
-		local dirrection = lever * main_hydro * power_L * (1 - gs_in_use) * (1+pump2) * (1-emer_ext) + aux_hydro * gs_in_use * 1.3 + emer_ext * main_hydro_2 * 1.3 * (1 - gs_in_use)
+		--local direction = lever * main_hydro * power_L * (1 - gs_in_use) * (1+pump2) * (1-emer_ext) + aux_hydro * gs_in_use * 1.3 + emer_ext * main_hydro_2 * 1.3 * (1 - gs_in_use)
+		local direction = 0
+		if gs_in_use == 1 then
+			direction = power_R * get(gears_ext_3GS)
+		elseif emer_ext == 1 then
+			direction = 1
+		else
+			direction = lever  * power_L
+		end
+		
 		if pos2>0.15 and pos2<0.85 then
 			door_can_close_left=0
 		end
 		if pos3>0.15 and pos3<0.85 then
 			door_can_close_right=0
 		end
-		if lever * bool2int(main_hydro>0.1) * power_L * (1 - gs_in_use) * (1-emer_ext) == 1 then --read doors only close with hyd no.1
+		if lever * power_L * (1 - gs_in_use) * (1-emer_ext) == 1 then --read doors only close with hyd no.1
 			if door_can_close_left<1 then
 				door_can_close_left=door_can_close_left+passed/2
 			else
@@ -398,12 +431,19 @@ local MASTER = get(ismaster) ~= 1
 		lever_last = lever
 		
 
-		local gear_move = bool2int(power_L * (1 - gs_in_use) == 1 or gs_in_use == 1 or (dirrection>0 and emer_ext==1))
+		local gear_move = bool2int(power_L * (1 - gs_in_use) == 1 or gs_in_use == 1 or (direction>0 and emer_ext==1))
 		
 		-- calculations for gear 1
-		if not lock1 and retract then
-			-- calculate position		
-			pos1 = pos1_last + GEAR_SPEED_FRONT * (dirrection * bool2int(get(retract1_fail) < 6) + get(G) * (math.cos(math.pi * pos1_last / 4) + 0.2) * G_coef_front - IAS * math.sin(math.pi * pos1_last / 3) * A_coef_front) * passed * gear_move
+		if not lock1 then
+			-- calculate position	
+			local coeff_front = (1 + get(G) * 9.81 * (math.cos(math.pi * pos1_last / 2)) * c_g_nose * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos1_last / 2) * c_v_nose * (1 - 2 * bool2int(direction==1))) * 1.025
+			GEAR_SPEED_FRONT,flow_1 = gear_speed(press_1,F_base*0.15,pos1,direction,coeff_front,bool2int(get(retract1_fail) < 6))
+			if gs_in_use == 1 then
+				GEAR_SPEED_FRONT,flow_1 = gear_speed(press_3,F_base*0.15,pos1,direction,coeff_front,bool2int(get(retract1_fail) < 6))
+			elseif emer_ext == 1 then
+				GEAR_SPEED_FRONT,flow_1 = gear_speed(press_2,F_base*0.15,pos1,direction,coeff_front,bool2int(get(retract1_fail) < 6))
+			end
+			pos1 = pos1_last + GEAR_SPEED_FRONT * direction * passed * gear_move
 			if pos1 < 0 then  -- limit positions and close lock when reached
 				pos1 = 0
 				lock1 = true
@@ -417,9 +457,16 @@ local MASTER = get(ismaster) ~= 1
 
 		
 		-- calculations for gear 2
-		if not lock2 and retract then
-			-- calculate position		
-			pos2 = pos2_last + GEAR_SPEED_LEFT * (dirrection * bool2int(get(retract2_fail) < 6) + get(G) * (math.cos(math.pi * pos1_last / 5) + 0.3) * G_coef_main - IAS * math.sin(math.pi * pos1_last / 5) * A_coef_main) * passed * gear_move
+		if not lock2 then
+			-- calculate position
+			local coeff_left = 1 + get(G) * 9.81 * (math.cos(math.pi * pos2_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos2_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))
+			GEAR_SPEED_LEFT,flow_2 = gear_speed(press_1,F_base*0.425,pos2,direction,coeff_left,bool2int(get(retract2_fail) < 6))
+			if gs_in_use == 1 then
+				GEAR_SPEED_LEFT,flow_2 = gear_speed(press_3,F_base*0.425,pos2,direction,coeff_left,bool2int(get(retract2_fail) < 6))
+			elseif emer_ext == 1 then
+				GEAR_SPEED_LEFT,flow_2 = gear_speed(press_2,F_base*0.425,pos2,direction,coeff_left,bool2int(get(retract2_fail) < 6))
+			end
+			pos2 = pos2_last + GEAR_SPEED_LEFT * direction * passed * gear_move
 			if pos2 < 0 then  -- limit positions and close lock when reached
 				pos2 = 0
 				lock2 = true
@@ -432,9 +479,16 @@ local MASTER = get(ismaster) ~= 1
 	
 		
 		-- calculations for gear 3
-		if not lock3 and retract then
+		if not lock3 then
 			-- calculate position		
-			pos3 = pos3_last + GEAR_SPEED_RIGHT * (dirrection * bool2int(get(retract3_fail) < 6) + get(G) * (math.cos(math.pi * pos1_last / 5) + 0.3) * G_coef_main - IAS * math.sin(math.pi * pos1_last / 5) * A_coef_main) * passed * gear_move
+			local coeff_right = (1 + get(G) * 9.81 * (math.cos(math.pi * pos3_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos3_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * 1.15
+			GEAR_SPEED_RIGHT,flow_3 = gear_speed(press_1,F_base*0.425,pos3,direction,coeff_right,bool2int(get(retract3_fail) < 6))
+			if gs_in_use == 1 then
+				GEAR_SPEED_RIGHT,flow_3 = gear_speed(press_3,F_base*0.425,pos3,direction,coeff_right,bool2int(get(retract3_fail) < 6))
+			elseif emer_ext == 1 then
+				GEAR_SPEED_RIGHT,flow_3 = gear_speed(press_2,F_base*0.425,pos3,direction,coeff_right,bool2int(get(retract3_fail) < 6))
+			end
+			pos3 = pos3_last + GEAR_SPEED_RIGHT * direction * passed * gear_move
 			if pos3 < 0 then  -- limit positions and close lock when reached
 				pos3 = 0
 				lock3 = true
@@ -445,7 +499,6 @@ local MASTER = get(ismaster) ~= 1
 		end
 
 		-- Gear drag reduction to match RW data
-		local q=get(rho)/2*math.pow(get(tas),2)
 		local gear_drag_red=7654*math.exp(q*7.981663712193334e-06)-7660*math.exp(q*-5.969175256502823e-04)
 		gear_drag_red=-gear_drag_red*(0.1*pos1+0.45*pos2+0.45*pos3)
 		if get(tas)> 22 then --better pushback fix
@@ -460,17 +513,17 @@ local MASTER = get(ismaster) ~= 1
 		if pos3 > 1 then pos3 = 1 end
 		if pos3 < 0 then pos3 = 0 end
 	
-		-- fluid consumption
-		cons_1 = cons_1 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * (1 - gs_in_use * power_R) * (1-emer_ext)
-		cons_2 = cons_2 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * (1 - gs_in_use * power_R) * emer_ext
-		cons_3 = cons_3 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * gs_in_use * power_R
+		-- -- fluid consumption
+		-- cons_1 = cons_1 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * (1 - gs_in_use * power_R) * (1-emer_ext)
+		-- cons_2 = cons_2 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * (1 - gs_in_use * power_R) * emer_ext
+		-- cons_3 = cons_3 + ((pos1_last - pos1) + (pos2_last - pos2)*2.5 + (pos3_last - pos3)*2.5) * gs_in_use * power_R
 	
 		-- calculate locks
 
 		
-		lock1 = dirrection < 1 and pos1 == 0 or dirrection > -1 and pos1 == 1
-		lock2 = dirrection < 1 and pos2 == 0 or dirrection > -1 and pos2 == 1
-		lock3 = dirrection < 1 and pos3 == 0 or dirrection > -1 and pos3 == 1
+		lock1 = direction < 1 and pos1 == 0 or direction > -1 and pos1 == 1
+		lock2 = direction < 1 and pos2 == 0 or direction > -1 and pos2 == 1
+		lock3 = direction < 1 and pos3 == 0 or direction > -1 and pos3 == 1
 
 		
 		
@@ -537,9 +590,9 @@ if MASTER then
 		set(gear3_deploy, pos3)
 		set(door_left,pos2*0.85+0.15*door_can_close_left)
 		set(door_right,pos3*0.85+0.15*door_can_close_right)
-		set(fluid_1,cons_1)
-		set(fluid_2,cons_2)
-		set(fluid_3,cons_3)
+		set(fluid_1,flow_1)
+		set(fluid_2,flow_2)
+		set(fluid_3,flow_3)
 
 else -- read data if not master for sync
 		pos1 = get(gear1_deploy)

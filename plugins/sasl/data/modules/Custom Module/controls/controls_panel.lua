@@ -160,6 +160,9 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 
 defineProperty("elev_coeff", globalPropertyf("tu154b2/custom/controlls/elev_coeff"))
 
+flap_drive_1 = globalPropertyi("tu154b2/custom/controlls/flap_chan_1")
+flap_drive_2 = globalPropertyi("tu154b2/custom/controlls/flap_chan_2")
+
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
@@ -309,13 +312,11 @@ local function lamps()
 	local flap_pos_now_L = get(flap_inn_L)
 	local flap_pos_now_R = get(flap_inn_R)
 	
-	local flaps_1_valve_brt = 0--math.min(1, get(flap_inn_L))
-	if flap_L_pos_last ~= flap_pos_now_L then flaps_1_valve_brt = 1 end
+	local flaps_1_valve_brt = get(flap_drive_1)
 	flaps_1_valve_brt = math.max(flaps_1_valve_brt * lamps_brt, test_btn)
 	if get(ismaster) ~= 1 then set(flaps_1_valve, flaps_1_valve_brt) end
 	
-	local flaps_2_valve_brt = 0--math.min(1, get(flap_inn_R))
-	if flap_R_pos_last ~= flap_pos_now_R then flaps_2_valve_brt = 1 end
+	local flaps_2_valve_brt = get(flap_drive_2)
 	flaps_2_valve_brt = math.max(flaps_2_valve_brt * lamps_brt, test_btn)
 	if get(ismaster) ~= 1 then set(flaps_2_valve, flaps_2_valve_brt) end
 	
@@ -488,7 +489,7 @@ local function lamps()
 	gears_green_front_brt = math.max(gears_green_front_brt * lamps_brt, test_btn)
 	set(gears_green_front, gears_green_front_brt)
 	
-	local gears_green_right_brt = bool2int(gear_L_pos >= 0.99)
+	local gears_green_right_brt = bool2int(gear_R_pos >= 0.99)
 	gears_green_right_brt = math.max(gears_green_right_brt * lamps_brt, test_btn)
 	set(gears_green_right, gears_green_right_brt)
 	
@@ -514,7 +515,7 @@ local function lamps()
 	gears_green_front_eng_brt = math.max(gears_green_front_eng_brt * lamps_brt, test_btn_eng)
 	set(gears_green_front_eng, gears_green_front_eng_brt)
 	
-	local gears_green_right_eng_brt = bool2int(gear_L_pos >= 0.99)
+	local gears_green_right_eng_brt = bool2int(gear_R_pos >= 0.99)
 	gears_green_right_eng_brt = math.max(gears_green_right_eng_brt * lamps_brt, test_btn_eng)
 	set(gears_green_right_eng, gears_green_right_eng_brt)	
 	

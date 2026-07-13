@@ -21,8 +21,8 @@ function update()
 	local power=get(absu_power_27)
 	if get(ismaster) ~= 1 then
 		set(rudder_pos_ind, get(absu_contr_yaw) / 0.4*power)
-		set(aileron_pos_ind, get(absu_contr_roll) / 0.45*power)
-		set(elevator_pos_ind, get(absu_contr_pitch) / 0.45*power)
+		set(aileron_pos_ind, get(absu_contr_roll) / 0.5*power)
+		set(elevator_pos_ind, get(absu_contr_pitch) / 0.345*power)
 	end
 
 	--if get(gear1_deflect) > 0.01 and get(int_pitch_trim) < -0.5 then set(elevator_pos_ind, -get(absu_contr_pitch) / 0.4) end

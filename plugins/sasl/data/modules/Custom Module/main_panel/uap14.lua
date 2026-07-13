@@ -100,7 +100,7 @@ function update()
 	
 	local MASTER = get(ismaster) ~= 1	
 	
-	local power = bool2int(get(bus27_volt_right) > 13 and get(bus115_3_volt) > 110 and get(auasp_on) == 1 and get(uap_fail) < 6)
+	local power = bool2int(get(bus27_volt_right) > 13 and get(bus115_3_volt) > 110 and (get(auasp_on) == 1 or get(deflection_mtr_1) < 0.05) and get(uap_fail) < 6)
 	local passed = get(frame_time)
 	local mode_sw = get(auasp_contr)
 	
