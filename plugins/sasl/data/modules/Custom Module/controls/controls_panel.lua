@@ -260,8 +260,8 @@ local forcer_timer = 0
 local forcer_rud_lit = false
 local forcer_timer_rud = 0
 
-local flap_L_pos_last = 0
-local flap_R_pos_last = 0
+-- local flap_L_pos_last = 0
+-- local flap_R_pos_last = 0
 
 local slats_lit = false
 local slats_timer = 0
@@ -320,8 +320,8 @@ local function lamps()
 	flaps_2_valve_brt = math.max(flaps_2_valve_brt * lamps_brt, test_btn)
 	if get(ismaster) ~= 1 then set(flaps_2_valve, flaps_2_valve_brt) end
 	
-	flap_L_pos_last = flap_pos_now_L
-	flap_R_pos_last = flap_pos_now_R
+	-- flap_L_pos_last = flap_pos_now_L
+	-- flap_R_pos_last = flap_pos_now_R
 		
 	local spoilers_mid_left_brt = math.min(1, get(spd_brk_mid_L))
 	spoilers_mid_left_brt = math.max(spoilers_mid_left_brt * lamps_brt, test_btn)
@@ -541,6 +541,10 @@ local stab_ind_act = 0
 local elev_ind_act = 0
 local flap_ind_L_act = 0
 local flap_ind_R_act = 0
+local flap_ind_L = 0
+local flap_ind_R = 0
+local stabil_ind = 0
+local elev_ind = 0
 
 -- local mach_tbl = {
 -- {-10, 1},
@@ -560,10 +564,6 @@ local flap_ind_R_act = 0
 
 local function gauges()
 	-- add power here
-	local stabil_ind = 0
-	local elev_ind = 0
-	local flap_ind_L = 0
-	local flap_ind_R = 0
 	
 	--print(get(stab_pos))
 	

@@ -521,9 +521,9 @@ defineProperty("pax4", globalProperty("sim/flightmodel/weight/m_stations[7]"))
 defineProperty("pax5", globalProperty("sim/flightmodel/weight/m_stations[8]")) 
 defineProperty("eng_rpm1", globalProperty("sim/flightmodel/engine/ENGN_N2_[0]"))
 
-oil_qty_1 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_1")
-oil_qty_2 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_2")
-oil_qty_3 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_3")   
+-- oil_qty_1 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_1")
+-- oil_qty_2 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_2")
+-- oil_qty_3 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_3")   
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -1871,9 +1871,9 @@ local function read_file()
 		if var_table["engOilQty2"] then set(engn_oil_qty_2, var_table["engOilQty2"]) end
 		if var_table["engOilQty3"] then set(engn_oil_qty_3, var_table["engOilQty3"]) end
 		
-		if var_table["engOilQty1"] then set(oil_qty_1, var_table["engOilQty1"]) end
-		if var_table["engOilQty2"] then set(oil_qty_2, var_table["engOilQty2"]) end
-		if var_table["engOilQty3"] then set(oil_qty_3, var_table["engOilQty3"]) end
+		-- if var_table["engOilQty1"] then set(oil_qty_1, var_table["engOilQty1"]) end
+		-- if var_table["engOilQty2"] then set(oil_qty_2, var_table["engOilQty2"]) end
+		-- if var_table["engOilQty3"] then set(oil_qty_3, var_table["engOilQty3"]) end
 			
 		if var_table["engOilLeak1"] then set(engn_oil_leak_1, var_table["engOilLeak1"]) end
 		if var_table["engOilLeak2"] then set(engn_oil_leak_2, var_table["engOilLeak2"]) end

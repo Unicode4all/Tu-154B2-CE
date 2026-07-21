@@ -98,9 +98,9 @@ if MASTER then
 		set(hydro_elec_fail_2, 0)
 		set(hydro_elec_fail_3, 0)
 		
-		set(system_qty_1, 58)
-		set(system_qty_2, 58)
-		set(system_qty_3, 45)
+		-- set(system_qty_1, 103)
+		-- set(system_qty_2, 103)
+		-- set(system_qty_3, 45)
 		
 		
 	end

@@ -203,7 +203,7 @@ local auto_retract = 0
 local flaps_dir_1 = 0
 local flaps_dir_2 = 0
 
-local flap_SPD = 1.8 -- deg per second
+local flap_SPD = 45/21 -- deg per second
 local flap_pos_L_last = flaps_pos_cmd
 local flap_pos_R_last = flaps_pos_cmd
 
@@ -269,11 +269,13 @@ if MASTER then
         
 	local gears = get(deflection_mtr_2) > 0.01 and get(deflection_mtr_3) > 0.01
 	local revers = get(revers_L) > 0.05 and get(revers_R) > 0.05
-	local HS1 = math.min(get(gs_press_1) * 0.15, 1)
-	local HS2 = math.min(get(gs_press_2) * 0.15, 1)
+	local gs_1 = get(gs_press_1)
+	local gs_2 = get(gs_press_2)
+	local HS1 = math.min(gs_1 * 0.01, 1) * bool2int(gs_1>40)
+	local HS2 = math.min(gs_2 * 0.01, 1) * bool2int(gs_2>40)
     local flap_power=get(flaps_power)>0 and (power27_L or power27_R)
         
-    if revers and gears and auto_retract == 0 and flap_power and (get(gs_press_1) > 50 or get(gs_press_2) > 50) and (flaps_pos_cmd) > 31 and (get(spd_brk_inn_L)+get(spd_brk_inn_R))/2 > 10 and flaps_mode_1 + flaps_mode_2 == 0 and get(kontur_on) > 0 then
+    if revers and gears and auto_retract == 0 and flap_power and (gs_1 > 50 or gs_2 > 50) and (flaps_pos_cmd) > 31 and (get(spd_brk_inn_L)+get(spd_brk_inn_R))/2 > 10 and flaps_mode_1 + flaps_mode_2 == 0 and get(kontur_on) > 0 then
 	   auto_retract = 1
     end
         
@@ -377,7 +379,7 @@ if MASTER then
 		flap_desync = 1
 	end
 	-- move the flaps
-	drive_pos_now = drive_pos_now + passed * (flaps_dir_1 * HS1 * math.max(flaps_mode_1,power36_L) * power_1 +  flaps_dir_2 * HS2 * math.max(flaps_mode_2,power36_R) * power_2 )/2 * flap_SPD
+	drive_pos_now = drive_pos_now + passed * (flaps_dir_1 * HS1 * power_1 +  flaps_dir_2 * HS2 * power_2 )/2 * flap_SPD
 	
 	-- set limits
 	if drive_pos_now > 45 then 

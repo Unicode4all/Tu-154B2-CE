@@ -68,9 +68,12 @@ fluid_3 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_3")
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
@@ -81,6 +84,9 @@ pump_2_fail = globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_12")
 
 door_left = globalPropertyf("tu154b2/custom/anim/gear_door_left")
 door_right = globalPropertyf("tu154b2/custom/anim/gear_door_right")
+
+temp_out = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
+temp_le = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
 
 local handle_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/geal_lvr_L.wav') --
 local handle_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/geal_lvr_R.wav') --
@@ -132,6 +138,14 @@ function gear_speed(press,F_base,pos,ext,coef,fail)
 	return spd*bool2int(ext~=0),F*bool2int(ext~=0)
 end
 
+function temp_coeff (temp,ext)
+	local c_temp = math.max(1/(30.82*math.exp(-0.07405*temp)/(100+50*ext)),0.15+0.05*ext)
+	if c_temp >1 then
+		c_temp = 1
+	end
+	return c_temp
+end
+
 set(gear1_deploy, 1)
 set(gear2_deploy, 1)	
 set(gear3_deploy, 1)
@@ -156,12 +170,19 @@ set(gear3_deploy, 1)
 
 
 local dmp_tbl = {
-{0, 1},
---{10, 0.2},
-{0.5, 1},
-{0.6, 100},
-{100, 100}
+	{0, 1},
+	--{10, 0.2},
+	{0.5, 1},
+	{0.6, 100},
+	{100, 100}
 }
+
+local temp_c_tbl = {
+	{0, 0.00025},
+	{50, 0.0025},
+	{1000, 0.0025}
+}
+
 local dmp_1_tmr=0
 
 local lock_sound = loadSample(moduleDirectory .. '/Custom Sounds/gear_lock.wav') --
@@ -261,9 +282,10 @@ local pos3 = get(gear3_deploy)
 local door_can_close_left=1
 local door_can_close_right=1
 
--- local cons_1=0 --hydraulic fluid consumption from tanks for gear operation
--- local cons_2=0
--- local cons_3=0
+local t_gear_1 = get(temp_out)
+local t_gear_2 = get(temp_out)
+local t_gear_3 = get(temp_out)
+
 
 if pos1 < 0.5 then 
 	pos1 = 0 
@@ -436,7 +458,8 @@ local MASTER = get(ismaster) ~= 1
 		-- calculations for gear 1
 		if not lock1 then
 			-- calculate position	
-			local coeff_front = (1 + get(G) * 9.81 * (math.cos(math.pi * pos1_last / 2)) * c_g_nose * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos1_last / 2) * c_v_nose * (1 - 2 * bool2int(direction==1))) * 1.025
+			local temp_coeff_1 = temp_coeff (t_gear_1,bool2int(direction==1))
+			local coeff_front = (1 + get(G) * 9.81 * (math.cos(math.pi * pos1_last / 2)) * c_g_nose * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos1_last / 2) * c_v_nose * (1 - 2 * bool2int(direction==1))) * 1.025 * temp_coeff_1
 			GEAR_SPEED_FRONT,flow_1 = gear_speed(press_1,F_base*0.15,pos1,direction,coeff_front,bool2int(get(retract1_fail) < 6))
 			if gs_in_use == 1 then
 				GEAR_SPEED_FRONT,flow_1 = gear_speed(press_3,F_base*0.15,pos1,direction,coeff_front,bool2int(get(retract1_fail) < 6))
@@ -459,7 +482,8 @@ local MASTER = get(ismaster) ~= 1
 		-- calculations for gear 2
 		if not lock2 then
 			-- calculate position
-			local coeff_left = 1 + get(G) * 9.81 * (math.cos(math.pi * pos2_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos2_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))
+			local temp_coeff_2 = temp_coeff (t_gear_2,bool2int(direction==1))
+			local coeff_left = (1 + get(G) * 9.81 * (math.cos(math.pi * pos2_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos2_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * temp_coeff_2
 			GEAR_SPEED_LEFT,flow_2 = gear_speed(press_1,F_base*0.425,pos2,direction,coeff_left,bool2int(get(retract2_fail) < 6))
 			if gs_in_use == 1 then
 				GEAR_SPEED_LEFT,flow_2 = gear_speed(press_3,F_base*0.425,pos2,direction,coeff_left,bool2int(get(retract2_fail) < 6))
@@ -481,7 +505,8 @@ local MASTER = get(ismaster) ~= 1
 		-- calculations for gear 3
 		if not lock3 then
 			-- calculate position		
-			local coeff_right = (1 + get(G) * 9.81 * (math.cos(math.pi * pos3_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos3_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * 1.15
+			local temp_coeff_3 = temp_coeff (t_gear_3,bool2int(direction==1))
+			local coeff_right = (1 + get(G) * 9.81 * (math.cos(math.pi * pos3_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos3_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * 1.15 * temp_coeff_3
 			GEAR_SPEED_RIGHT,flow_3 = gear_speed(press_1,F_base*0.425,pos3,direction,coeff_right,bool2int(get(retract3_fail) < 6))
 			if gs_in_use == 1 then
 				GEAR_SPEED_RIGHT,flow_3 = gear_speed(press_3,F_base*0.425,pos3,direction,coeff_right,bool2int(get(retract3_fail) < 6))
@@ -583,6 +608,28 @@ local MASTER = get(ismaster) ~= 1
 		defl_1_prev=defl_1
 		defl_2_prev=defl_2
 		defl_3_prev=defl_3
+		-- temperatures
+		local t_out = get(temp_out)
+		local t_le = get(temp_le)
+		local c_temp = interpolate(temp_c_tbl,get(tas))
+		
+		if pos1 < 0.2 then
+			t_gear_1 = t_gear_1 - (t_gear_1 - t_out) * c_temp * passed
+		else
+			t_gear_1 = t_gear_1 - (t_gear_1 - t_le) * c_temp * passed
+		end
+		
+		if pos2 < 0.2 then
+			t_gear_2 = t_gear_2 - (t_gear_2 - t_out) * c_temp * passed
+		else
+			t_gear_2 = t_gear_2 - (t_gear_2 - t_le) * c_temp * passed
+		end
+		
+		if pos3 < 0.2 then
+			t_gear_3 = t_gear_3 - (t_gear_3 - t_out) * c_temp * passed
+		else
+			t_gear_3 = t_gear_3 - (t_gear_3 - t_le) * c_temp * passed
+		end
 if MASTER then	
 		-- set results
 		set(gear1_deploy, pos1)

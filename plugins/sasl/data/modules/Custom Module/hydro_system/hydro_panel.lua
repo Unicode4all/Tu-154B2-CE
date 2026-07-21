@@ -134,6 +134,7 @@ end
 local function needle_pos (ang_actual_prev,ang_need,dt,v_prev,k_spr,k_dmp,k_v,c_v)
 	local v_needle_max=5000*c_v
 	local e_c=(ang_need-ang_actual_prev)*k_spr
+	dt=math.min(dt,0.025)
     local v=v_prev*k_v+e_c*dt-v_prev*k_dmp
 	if v>v_needle_max then
 		v=v_needle_max
@@ -152,6 +153,7 @@ local function needle_pos2 (ang_actual_prev,ang_need,dt,v_prev,k_spr,k_dmp,k_v,c
 	local v_needle_max=5000*c_v
 	local e_c=(ang_need-ang_actual_prev)*k_spr
     local v=v_prev*k_v+e_c*dt-v_prev*k_dmp
+	dt=math.min(dt,0.025)
 	if v>v_needle_max then
 		v=v_needle_max
 	elseif v<-v_needle_max then
@@ -393,7 +395,7 @@ local function gauges()
 	local v_q3_set,q3_set = needle_pos2 (oil_qty_3_act,qty_3_need,passed,v_q3,k_spr2,k_dmp2,k_v,c_v2*0.9)
 	oil_qty_3_act=q3_set
 	v_q3=v_q3_set
-
+	
 	set(qty_12, oil_qty_12_act)
 	set(qty_3, oil_qty_3_act)
 	

@@ -72,8 +72,8 @@ defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) 
 -- users --
 
 -- flaps
-defineProperty("flap_inn_L", globalPropertyf("sim/flightmodel/controls/wing1l_fla1def")) -- inner flaps left
-defineProperty("flap_inn_R", globalPropertyf("sim/flightmodel/controls/wing1r_fla1def")) -- inner flaps right
+-- defineProperty("flap_inn_L", globalPropertyf("sim/flightmodel/controls/wing1l_fla1def")) -- inner flaps left
+-- defineProperty("flap_inn_R", globalPropertyf("sim/flightmodel/controls/wing1r_fla1def")) -- inner flaps right
 
 -- brakes
 defineProperty("l_brake_add", globalPropertyf("tu154b2/custom/brakes/int_brakes_L")) -- реальное положение тормоза
@@ -176,6 +176,14 @@ defineProperty("rud_coeff", globalPropertyf("tu154b2/custom/controlls/rudder_coe
 gear2_deflect = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
 kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th")
 
+flap_drive_1 = globalPropertyi("tu154b2/custom/controlls/flap_chan_1")
+flap_drive_2 = globalPropertyi("tu154b2/custom/controlls/flap_chan_2")
+
+tas = globalPropertyf("sim/flightmodel/position/true_airspeed")
+cabin_2_temp = globalPropertyf("tu154b2/custom/bleed/cabin_2_temp") 
+temp_out = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
+eng2_bay_temp = globalPropertyf("tu154b2/custom/engines/engine2_case_temp")
+
 defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
@@ -185,14 +193,14 @@ defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 
 
 -- set initial values
-set(system_qty_1, 58)
-set(system_qty_2, 58)
+set(system_qty_1, 103)
+set(system_qty_2, 103)
 set(system_qty_3, 45)
 
-set(gs_press_1, 210)
-set(gs_press_2, 210)
-set(gs_press_3, 210)
-set(gs_press_4, 210)
+set(gs_press_1, 0)
+set(gs_press_2, 0)
+set(gs_press_3, 0)
+set(gs_press_4, 0)
 
 
 
@@ -212,35 +220,49 @@ set(gs_press_4, 210)
 
 --]]
 
-local acc_1 = 4
-local acc_2 = 4
-local acc_3 = 4
-local acc_4 = 4
+local acc_1 = 0
+local acc_2 = 0
+local acc_3 = 0
+local acc_4 = 0
 
-local sys_qty_1 = 58
-local sys_qty_2 = 58
+local sys_qty_1 = 103
+local sys_qty_2 = 103
 local sys_qty_3 = 45
 
-local hs1_qty = sys_qty_1 - 34 - acc_1 - acc_4 -- quantity of oil
-local hs2_qty = sys_qty_2 - 34 - acc_2  -- quantity of oil
+-- oil temperature params
+local temp_bar1_prev=get(temp_out)
+local temp_bar2_prev=temp_bar1_prev
+local c_oil = 1.9
+local c_W = 10
+local A_bar = 0.94
+
+local hs1_qty = sys_qty_1 - 79 - acc_1 - acc_4 -- quantity of oil
+local hs2_qty = sys_qty_2 - 79 - acc_2 -- quantity of oil
 local hs3_qty = sys_qty_3 - 21 - acc_3 -- quantity of oil
 
 local notLoaded = true
 local sim_start_timer = 0
 
 local function reset_switchers()
-	if get(eng1_N1) < 5 and get(eng2_N1) < 5 and get(eng2_N1) < 5 then
-		acc_1 = 0
-		acc_2 = 0
-		acc_3 = 0
-		acc_4 = 0
-		hs1_qty = sys_qty_1 - 34  -- quantity of oil
-		hs2_qty = sys_qty_2 - 34   -- quantity of oil
-		hs3_qty = sys_qty_3 - 21  -- quantity of oil
-		set(gs_press_1, 0)
-		set(gs_press_2, 0)
-		set(gs_press_3, 0)
-		set(gs_press_4, 0)
+	hs1_qty = hs1_qty + (get(temp_out) - 20) / 20
+	hs2_qty = hs2_qty + (get(temp_out) - 20) / 20
+	hs3_qty = hs3_qty + (get(temp_out) - 20) / 20
+	temp_bar1_prev=get(temp_out)
+	temp_bar2_prev=temp_bar1_prev
+	if get(eng1_N1) > 25 then
+		acc_4 = 4
+		hs1_qty = hs1_qty - 4
+		-- acc_1 = 0
+		-- acc_2 = 0
+		-- acc_3 = 0
+		-- acc_4 = 0
+		-- hs1_qty = sys_qty_1 - 79  -- quantity of oil
+		-- hs2_qty = sys_qty_2 - 79   -- quantity of oil
+		-- hs3_qty = sys_qty_3 - 21  -- quantity of oil
+		-- set(gs_press_1, 0)
+		-- set(gs_press_2, 0)
+		-- set(gs_press_3, 0)
+		-- set(gs_press_4, 0)
 		
 	end
 	notLoaded = false
@@ -271,26 +293,30 @@ end
 
 function NP89(rpm,press)
 	local F = 55/60*rpm/92
+	local F_bp = 0.0214 * press / 60 * math.min(F / 4.5 * 60,1)
 	if press>203 then
 		F=(4.5+50.5/7*(210-press))/60*rpm/92
 	end
-	F=F-0.0214*press/60
-	if F<0 then
-		F=0
+	F = F - F_bp
+	
+	if F < 0 then
+		F = 0
 	end
-	return F
+	return F,F_bp
 end
 
 function NS46(power,press)
 	local F = 24/60*power
+	local F_bp = 0.0214 * press / 60 * math.min(F / 4.5 * 60,1)
 	if press>203 then
 		F=(4.5+19.5/7*(210-press))/60*power
+	end	
+	F = F - F_bp
+	if F < 0 then
+		F = 0
 	end
-	F=F-0.0214*press/60
-	if F<0 then
-		F=0
-	end
-	return F
+	local W = (F + F_bp)* press * 100000 / 1000
+	return F,F_bp,W
 end
 
 
@@ -302,21 +328,27 @@ end
 -- {  4.2, 0 },
 -- {  1000, 0 }}  
 
-local electric_pumps_t = { 
-{  -10000, 0.35},
-{  0, 0.35},    
-{  2.5, 0.35 },    
-{  3.8, 0.35 },    
-{  4.15, 0.2 },
-{  4.21, 0 },
-{  1000, 0 }} 
+-- local electric_pumps_t = { 
+-- {  -10000, 0.35},
+-- {  0, 0.35},    
+-- {  2.5, 0.35 },    
+-- {  3.8, 0.35 },    
+-- {  4.15, 0.2 },
+-- {  4.21, 0 },
+-- {  1000, 0 }} 
 
-local bypass_t = { 
-{  -10000, 0},
-{  0, 0},    
-{  205, 0 },    
-{  210, 1 },    
-{  1000, 1 }} 
+-- local bypass_t = { 
+-- {  -10000, 0},
+-- {  0, 0},    
+-- {  205, 0 },    
+-- {  210, 1 },    
+-- {  1000, 1 }} 
+
+local cool_t = { 
+{  -10000, 60},
+{  0, 60},
+{  100, 120},    
+{  1000, 120 }} 
 
 local brakes_L_last = get(l_brake_add)
 local brakes_R_last = get(r_brake_add)
@@ -328,8 +360,8 @@ local brakes_EM_L_last = get(brake_emerg_L)
 local brakes_EM_R_last = get(brake_emerg_R)
 local brakes_EM_last = get(brake_emerg)
 
-local flap_L_last = get(flap_inn_L)
-local flap_R_last = get(flap_inn_R)
+-- local flap_L_last = get(flap_inn_L)
+-- local flap_R_last = get(flap_inn_R)
 
 local ail_L_last = get(ail_L)
 local ail_R_last = get(ail_R)
@@ -378,7 +410,7 @@ if MASTER then
 	
 	-- reset some variables for cold start
 	sim_start_timer = sim_start_timer + passed
-	if sim_start_timer > 0.3 then 
+	if sim_start_timer > 10 then 
 		if notLoaded then reset_switchers() end
 	end
 	
@@ -440,10 +472,14 @@ if MASTER then
 	-- local eng_k1=math.min(7,9.235209235209163e-04*RPM_1*RPM_1-0.005339105339105*RPM_1)
 	-- local eng_k2=math.min(7,9.235209235209163e-04*RPM_2*RPM_2-0.005339105339105*RPM_2)
 	-- local eng_k3=math.min(7,9.235209235209163e-04*RPM_3*RPM_3-0.005339105339105*RPM_3)
-	local eng_pump_1_1 = NP89(RPM_1*(1 - get(hydro_pump_fail_11)),press_1) --math.max((-3.3/(1+math.exp(-eng_k1*(acc_1-4.2)))+1.64)*c_eng1* (1 - get(hydro_pump_fail_11)),0)
-	local eng_pump_1_2 = NP89(RPM_2*(1 - get(hydro_pump_fail_12)),press_1) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_1-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_12)),0)
-	local eng_pump_2 = NP89(RPM_2*(1 - get(hydro_pump_fail_2)),press_2) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_2-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_2)),0)
-	local eng_pump_3 = NP89(RPM_3*(1 - get(hydro_pump_fail_3)),press_3) --math.max((-3.3/(1+math.exp(-eng_k3*(acc_3-4.2)))+1.64)*c_eng3* (1 - get(hydro_pump_fail_3)),0)
+	local eng_pump_1_1, eng_pump_1_1_bp = NP89(RPM_1*(1 - get(hydro_pump_fail_11)),press_1) --math.max((-3.3/(1+math.exp(-eng_k1*(acc_1-4.2)))+1.64)*c_eng1* (1 - get(hydro_pump_fail_11)),0)
+	local eng_pump_1_2, eng_pump_1_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_12)),press_1) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_1-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_12)),0)
+	local eng_pump_2, eng_pump_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_2)),press_2) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_2-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_2)),0)
+	local eng_pump_3, eng_pump_3_bp = NP89(RPM_3*(1 - get(hydro_pump_fail_3)),press_3) --math.max((-3.3/(1+math.exp(-eng_k3*(acc_3-4.2)))+1.64)*c_eng3* (1 - get(hydro_pump_fail_3)),0)
+	local elec_pump_2 = bool2int(power115_1 and power27L and get(pump_2) == 1 and get(hydro_elec_fail_2) == 0)
+	local elec_pump_3 = bool2int(power115_3 and power27R and get(pump_3) == 1 and get(hydro_elec_fail_3) == 0)
+	local el_pump_2,ns1_bp,W_el_1 = NS46(elec_pump_2 * elec_pump_2_start_timer,press_2)
+	local el_pump_3,ns2_bp,W_el_2 = NS46(elec_pump_3 * elec_pump_3_start_timer,press_3)
 -- 41 93
 	-- pump oil from storage to accums
 	if hs1_qty > 0.1 then 
@@ -465,40 +501,43 @@ if MASTER then
 	end	
 
 	-- gain pressure from electrical pumps
-	local elec_pump_2 = bool2int(power115_1 and power27L and get(pump_2) == 1 and get(hydro_elec_fail_2) == 0)
-	local elec_pump_3 = bool2int(power115_3 and power27R and get(pump_3) == 1 and get(hydro_elec_fail_3) == 0)
 	
 	if hs2_qty > 0 then 
-		local flow = NS46(elec_pump_2 * elec_pump_2_start_timer,press_2) * passed --elec_pump_2 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_2))) * passed * elec_pump_2_start_timer --*(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
+		local flow = el_pump_2 * passed --elec_pump_2 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_2))) * passed * elec_pump_2_start_timer --*(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
 		acc_2 = acc_2 + flow
 		hs2_qty = hs2_qty - flow
 	end
 	if hs3_qty > 0 then 
-		local flow = NS46(elec_pump_3 * elec_pump_3_start_timer,press_3) * passed --elec_pump_3 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_3))) * passed  * elec_pump_3_start_timer --*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
+		local flow = el_pump_3 * passed --elec_pump_3 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_3))) * passed  * elec_pump_3_start_timer --*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
 		acc_3 = acc_3 + flow
 		hs3_qty = hs3_qty - flow
 	end
 	
-	local pump2_current = elec_pump_2 * (16 + 16 * acc_2 / 4)
-	local pump3_current = elec_pump_3 * (16 + 16 * acc_3 / 4)
-	
 
 	-- charge the accumulator for emergency brakes
 	if get(accum_fill) == 1 and acc_4 < acc_1 and power27L then
-		local flow = (acc_1 - acc_4)
-		if flow > 2 then flow = 2 end
+		local flow = (acc_1 - acc_4) * 10
+		if flow * passed > acc_1 - acc_4 then
+			flow = (acc_1 - acc_4)/passed
+		elseif flow > 2 then
+			flow = 2 
+		end
 		
 		acc_1 = acc_1 - flow * passed
 		acc_4 = acc_4 + flow * passed
 	end
 
 	-- connect HS 1 and HS2
-	if get(connect2to1) == 1 and power27L and acc_2 > acc_1 and (get(gear2_deflect) < 0.06 or get(kontur_90th) == 0) then
-		local flow = acc_2 - acc_1
-		if flow > 2 then flow = 2 end
+	if get(connect2to1) == 1 and power27L and acc_2 > acc_1 and (get(gear2_deflect) > 0.06 or get(kontur_90th) == 0) then
+		local flow = (acc_2 - acc_1) * 10
+		if flow * passed > acc_2 - acc_1 then
+			flow = (acc_2 - acc_1)/passed
+		elseif flow > 2 then
+			flow = 2 
+		end
 		
-		acc_1 = acc_1 + flow * passed*5
-		acc_2 = acc_2 - flow * passed*5
+		acc_1 = acc_1 + flow * passed
+		acc_2 = acc_2 - flow * passed
 	end
 
 	
@@ -603,14 +642,14 @@ if MASTER then
 	
 	------
 	-- flaps
-	local flap_L_now = get(flap_inn_L)
-	local flap_R_now = get(flap_inn_R)	
+	-- local flap_L_now = get(flap_inn_L)
+	-- local flap_R_now = get(flap_inn_R)	
 	
-	local flaps_feed = math.abs(flap_L_now - flap_L_last + flap_R_now - flap_R_last) * 0.01
-
+	local flaps_feed_1 = 0.3172 * get(flap_drive_1) * passed * bool2int(press_1 > 40 )
+	local flaps_feed_2 = 0.3172 * get(flap_drive_2) * passed * bool2int(press_2 > 40 )
 	
-	flap_L_last = flap_L_now
-	flap_R_last = flap_R_now
+	-- flap_L_last = flap_L_now
+	-- flap_R_last = flap_R_now
 	
 
 	-- flight controls
@@ -694,14 +733,49 @@ if MASTER then
 	elevon_L_last=elevon_L_now
 	elevon_R_last=elevon_R_now
 	
+	-- Hydrailic fluid temperatures
+	local t_out = get(temp_out)
+	local t_tech = get(cabin_2_temp)*2/6+t_out*3/6+get(eng2_bay_temp)/6 --rear tech compartment temperature approximation
+	-- heat from pressure energy dissipation
+	local W_1_hyd = (eng_pump_1_1_bp + eng_pump_1_2_bp) / 1000 * press_1 * 100000
+	local W_2_hyd = (eng_pump_2_bp + ns1_bp) / 1000 * press_2 * 100000
+	local W_3_hyd = (eng_pump_3_bp + ns2_bp) / 1000 * press_3 * 100000
+	-- bypass flow cooling
+	local c_cool = interpolate(cool_t,get(tas)) / 2
+	local W_1_cool = ((temp_bar1_prev + 13 - t_out) * c_cool * eng_pump_1_1_bp + (temp_bar1_prev + 13 - t_out) * c_cool * eng_pump_1_2_bp + (temp_bar1_prev + 13 - t_out) * c_cool * eng_pump_2_bp  + (temp_bar1_prev + 13 - t_out) * c_cool * ns1_bp) / 0.075
+	local W_3_cool = ((temp_bar2_prev + 13 - t_out) * c_cool * eng_pump_3_bp + (temp_bar2_prev + 13 - t_out) * c_cool * ns2_bp) / 0.075
+	-- ambient heat/cool
+	local W_1_t = c_W * A_bar * (t_tech-temp_bar1_prev)
+	local W_3_t = c_W * A_bar*2/3 * (t_tech-temp_bar2_prev)
+	-- total energy balance
+	local W_1 = W_1_hyd + W_2_hyd - W_1_cool + W_1_t
+	local W_3 = W_3_hyd - W_3_cool + W_3_t
+	-- Temperatures from energy
+	local temp_bar1 = (273 + temp_bar1_prev) + W_1 * passed / c_oil / (hs1_qty + hs2_qty) * 1000 / 850000 - 273
+	local temp_bar2 = (273 + temp_bar2_prev) + W_3 * passed / c_oil /  hs3_qty * 1000 / 850000 - 273
+	-- temperature delta and fluid expansion (0.5L for every 10° difference from +20°)
+	local d_temp_1 = (temp_bar1 - temp_bar1_prev) / 20
+	local d_temp_2 = (temp_bar2 - temp_bar2_prev) / 20
+	hs1_qty = hs1_qty + d_temp_1
+	hs2_qty = hs2_qty + d_temp_1
+	hs3_qty = hs3_qty + d_temp_2
+	temp_bar1_prev = temp_bar1
+	temp_bar2_prev = temp_bar2
+	-- set(db1,temp_bar1)
+	-- set(db2,temp_bar2)
+	-- set(db3,t_tech)
+	-- set(db4,W_1_hyd)
+	-- set(db5,W_1_cool)
+	-- set(db6,W_3_hyd)
+	
 	if acc_1 > 0 then
-		local flow = (ailerons_feed + elev_feed + rudder_feed+elevon_feed) * buster_1_ON + sbd_brk_inn_feed + sbd_brk_mid_feed +flaps_feed
+		local flow = (ailerons_feed + elev_feed + rudder_feed+elevon_feed) * buster_1_ON + sbd_brk_inn_feed + sbd_brk_mid_feed + flaps_feed_1
 		acc_1 = acc_1 - flow -- take oil from HS1
 		hs1_qty = hs1_qty + flow -- return it to barrel		
 	end
 	
 	if acc_2 > 0 then
-		local flow = (ailerons_feed + elev_feed + rudder_feed+elevon_feed) * buster_2_ON + flaps_feed
+		local flow = (ailerons_feed + elev_feed + rudder_feed+elevon_feed) * buster_2_ON + flaps_feed_2
 		acc_2 = acc_2 - flow -- take oil from HS2
 		hs2_qty = hs2_qty + flow -- return it to barrel
 	end		
@@ -828,32 +902,32 @@ if MASTER then
 	
 	
 	-- whole system = barrel + pipes + accums
-	set(system_qty_1, hs1_qty + 34 + acc_1 + acc_4)
-	set(system_qty_2, hs2_qty + 34 + acc_2 )
+	set(system_qty_1, hs1_qty + 79 + acc_1 + acc_4)
+	set(system_qty_2, hs2_qty + 79 + acc_2 )
 	set(system_qty_3, hs3_qty + 21 + acc_3)
 	
 
 	set(gs_qty_12_show, hs1_qty + hs2_qty)
 	set(gs_qty_3_show, hs3_qty)	
-	
-	if elec_pump_2~=elec_pump_2_prev then
-		elec_pump_2_start=1.4*elec_pump_2
+	-- electric pumps currrents
+	if elec_pump_2~=elec_pump_2_prev and elec_pump_2_start_timer <0.1 then
+		elec_pump_2_start=30*elec_pump_2
 	end
 	elec_pump_2_prev=elec_pump_2
-	if elec_pump_2_start>1 then
-		elec_pump_2_start=elec_pump_2_start-passed*0.6
-	elseif elec_pump_2_start<1 then
-		elec_pump_2_start=1
+	if elec_pump_2_start>0 then
+		elec_pump_2_start=elec_pump_2_start-passed*30
+	elseif elec_pump_2_start<0 then
+		elec_pump_2_start=0
 	end
 	
-	if elec_pump_3~=elec_pump_3_prev then
-		elec_pump_3_start=1.4*elec_pump_3
+	if elec_pump_3~=elec_pump_3_prev and elec_pump_3_start_timer <0.1 then
+		elec_pump_3_start=30*elec_pump_3
 	end
 	elec_pump_3_prev=elec_pump_3
-	if elec_pump_3_start>1 then
-		elec_pump_3_start=elec_pump_3_start-passed*0.6
-	elseif elec_pump_3_start<1 then
-		elec_pump_3_start=1
+	if elec_pump_3_start>0 then
+		elec_pump_3_start=elec_pump_3_start-passed*30
+	elseif elec_pump_3_start<0 then
+		elec_pump_3_start=0
 	end
 	if elec_pump_2==1 then
 		if elec_pump_2_start_timer<1 then
@@ -862,7 +936,10 @@ if MASTER then
 			elec_pump_2_start_timer=1
 		end
 	elseif elec_pump_2_start_timer>0 and elec_pump_2==0 then
-		elec_pump_2_start_timer=elec_pump_2_start_timer-passed/2
+		elec_pump_2_start_timer=elec_pump_2_start_timer-passed
+		if elec_pump_2_start_timer < 0 then
+			 elec_pump_2_start_timer = 0
+		end
 	end
 	if elec_pump_3==1 then
 		if elec_pump_3_start_timer<1 then
@@ -871,10 +948,16 @@ if MASTER then
 			elec_pump_3_start_timer=1
 		end
 	elseif elec_pump_3_start_timer>0 and elec_pump_3==0 then
-		elec_pump_3_start_timer=elec_pump_3_start_timer-passed/2
+		elec_pump_3_start_timer=elec_pump_3_start_timer-passed
+		if elec_pump_3_start_timer < 0 then
+			 elec_pump_3_start_timer = 0
+		end
 	end
-	set(gs_pump_2_cc, pump2_current*elec_pump_2_start)
-	set(gs_pump_3_cc, pump3_current*elec_pump_3_start)	
+		
+	local pump2_current = W_el_1 / 200 / math.sqrt(3) / 0.8 
+	local pump3_current = W_el_2 / 200 / math.sqrt(3) / 0.8 
+	set(gs_pump_2_cc, math.max(elec_pump_2_start,pump2_current))
+	set(gs_pump_3_cc, math.max(elec_pump_3_start,pump3_current))	
 	
 	--print(get(system_qty_1) + get(system_qty_2))
 

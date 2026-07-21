@@ -446,7 +446,7 @@ local case_t_table = {{ -100000, 0.01 },    -- bugs walkaround
           	      {  1000000000, 1 }}    -- bugs walkaround	
 
 local function emi3()
-	if start_timer<60 then
+	if start_timer<10 then
 		start_timer=start_timer+passed
 	end
 
@@ -482,6 +482,11 @@ local function emi3()
 		oil_tmp_1,case_temp_1,brg_temp_1 = oil_temp(get(ENGN_FF_1),get(nk8_temp1),get(rpm_high_1),get(rpm_low_1),oilP_1,oil_tmp_1,case_temp_1,brg_temp_1,get(thermo),fuel_temp,passed)
 		oil_tmp_2,case_temp_2,brg_temp_2 = oil_temp(get(ENGN_FF_2),get(nk8_temp2),get(rpm_high_2),get(rpm_low_2),oilP_2,oil_tmp_2,case_temp_2,brg_temp_2,get(thermo),fuel_temp,passed)
 		oil_tmp_3,case_temp_3,brg_temp_3 = oil_temp(get(ENGN_FF_3),get(nk8_temp3),get(rpm_high_3),get(rpm_low_3),oilP_3,oil_tmp_3,case_temp_3,brg_temp_3,get(thermo),fuel_temp,passed)
+		if start_timer<10 then
+			oil_tmp_1 = get(thermo)
+			oil_tmp_2 = get(thermo)
+			oil_tmp_3 = get(thermo)
+		end
 		-- middle/rear end case temp for APU oil heat
 		local case_heat_spd_22= get(nk8_temp2)*7.5
 		local case_cool_spd_22=(case_temp_22-get(thermo))*40*1.003*math.exp(-2.922e-05*get(rpm_low_2)) -0.9027*math.exp(-0.1749*get(rpm_low_2))
@@ -516,11 +521,6 @@ local function emi3()
 	oilT_1_actual = oilT_1_actual + (oilT_1 - oilT_1_actual) * passed * 3
 	oilT_2_actual = oilT_2_actual + (oilT_2 - oilT_2_actual) * passed * 3
 	oilT_3_actual = oilT_3_actual + (oilT_3 - oilT_3_actual) * passed * 3
-	if start_timer<60 then
-		oilT_1_actual =get(thermo)
-	    oilT_2_actual =get(thermo)
-	    oilT_3_actual =get(thermo)
-	end
 
 	-- set results
 	set(fuel_press_1, fuelP_1_actual)
