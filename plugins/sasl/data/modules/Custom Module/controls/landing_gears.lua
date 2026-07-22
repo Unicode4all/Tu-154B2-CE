@@ -609,8 +609,8 @@ local MASTER = get(ismaster) ~= 1
 		defl_2_prev=defl_2
 		defl_3_prev=defl_3
 		-- temperatures
-		local t_out = get(temp_out)
 		local t_le = get(temp_le)
+		local t_out = (get(temp_out) + t_le) / 2
 		local c_temp = interpolate(temp_c_tbl,get(tas))
 		
 		if pos1 < 0.2 then

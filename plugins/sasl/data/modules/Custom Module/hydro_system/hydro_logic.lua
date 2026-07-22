@@ -184,12 +184,12 @@ cabin_2_temp = globalPropertyf("tu154b2/custom/bleed/cabin_2_temp")
 temp_out = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
 eng2_bay_temp = globalPropertyf("tu154b2/custom/engines/engine2_case_temp")
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
-defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
-defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 
 
 -- set initial values

@@ -69,33 +69,33 @@ defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_vo
 defineProperty("tth_left_fail", globalPropertyi("tu154b2/custom/failures/tth_left_fail")) -- отказ турбохолодильника
 defineProperty("tth_right_fail", globalPropertyi("tu154b2/custom/failures/tth_right_fail")) -- отказ турбохолодильника
 
-defineProperty("cockpit_door", globalPropertyi("tu154b2/custom/anim/cockpit_door"))
-defineProperty("px_door1", globalPropertyi("tu154b2/custom/anim/pax_door_1"))
-defineProperty("px_door2", globalPropertyi("tu154b2/custom/anim/pax_door_2"))
-defineProperty("px_door3", globalPropertyi("tu154b2/custom/anim/pax_door_3"))
-defineProperty("window_left", globalPropertyi("tu154b2/custom/anim/cockpit_window_left"))
-defineProperty("window_right", globalPropertyi("tu154b2/custom/anim/cockpit_window_right"))
-defineProperty("srd_eject", globalPropertyi("sim/custom/b2/airflow_eject"))
-defineProperty("gear_defl", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]"))
-defineProperty("pax1", globalPropertyi("tu154b2/custom/payload/zone_1"))
-defineProperty("pax2", globalPropertyi("tu154b2/custom/payload/zone_2"))
-defineProperty("pax3", globalPropertyi("tu154b2/custom/payload/zone_4"))
-defineProperty("pax4", globalPropertyi("tu154b2/custom/payload/zone_5"))
-defineProperty("pax5", globalPropertyi("tu154b2/custom/payload/zone_6"))
-defineProperty("ard_temp", globalPropertyf("tu154b2/custom/kskv/ard_temp"))
-defineProperty("ard_obogr", globalPropertyf("tu154b2/custom/switchers/eng/tail_temp_heat"))
-defineProperty("press_diff", globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_diff"))
-defineProperty("sbros_davl", globalPropertyf("tu154b2/custom/switchers/airbleed/emerg_decompress"))
+cockpit_door = globalPropertyi("tu154b2/custom/anim/cockpit_door")
+px_door1 = globalPropertyi("tu154b2/custom/anim/pax_door_1")
+px_door2 = globalPropertyi("tu154b2/custom/anim/pax_door_2")
+px_door3 = globalPropertyi("tu154b2/custom/anim/pax_door_3")
+window_left = globalPropertyi("tu154b2/custom/anim/cockpit_window_left")
+window_right = globalPropertyi("tu154b2/custom/anim/cockpit_window_right")
+srd_eject = globalPropertyi("sim/custom/b2/airflow_eject")
+gear_defl = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
+pax1 = globalPropertyi("tu154b2/custom/payload/zone_1")
+pax2 = globalPropertyi("tu154b2/custom/payload/zone_2")
+pax3 = globalPropertyi("tu154b2/custom/payload/zone_4")
+pax4 = globalPropertyi("tu154b2/custom/payload/zone_5")
+pax5 = globalPropertyi("tu154b2/custom/payload/zone_6")
+ard_temp = globalPropertyf("tu154b2/custom/kskv/ard_temp")
+ard_obogr = globalPropertyf("tu154b2/custom/switchers/eng/tail_temp_heat")
+press_diff = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_diff")
+sbros_davl = globalPropertyf("tu154b2/custom/switchers/airbleed/emerg_decompress")
 --defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("total_temp", globalPropertyf("sim/cockpit2/temperature/outside_air_LE_temp_degc"))
+total_temp = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
 -- defineProperty("srd_set", globalPropertyf("tu154b2/custom/switchers/sard/sard_set"))
 -- defineProperty("srd", globalPropertyf("sim/custom/switchers/sard/sard_cabin_press_set_osn"))
-defineProperty("vr", globalPropertyi("sim/graphics/VR/enabled"))
-defineProperty("cover", globalPropertyi("tu154b2/custom/anim/sensors_caps"))
-defineProperty("gear_blocks", globalPropertyf("tu154b2/custom/anim/gear_blocks")) -- Chocks. I know this shouldn't be here but since there's an initialization function at the end of this script I might just use it for the chocks
+vr = globalPropertyi("sim/graphics/VR/enabled")
+cover = globalPropertyi("tu154b2/custom/anim/sensors_caps")
+gear_blocks = globalPropertyf("tu154b2/custom/anim/gear_blocks") -- Chocks. I know this shouldn't be here but since there's an initialization function at the end of this script I might just use it for the chocks
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
@@ -188,8 +188,8 @@ function update()
 	local airflow_L = get(air_usage_L)
 	local airflow_R = get(air_usage_R)
 	
-	termo_out = get(termo)
 	local termo_torm=get(total_temp)
+	termo_out = get(termo)*2/3 + termo_torm/3
 	--local IAS = get(airspeed) * 1.852
 	local IAS = math.max(get(airspeed) * 1.852, 0)
 	-- calculate hot air temperature
