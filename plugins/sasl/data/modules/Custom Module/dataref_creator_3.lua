@@ -35,6 +35,7 @@ createGlobalPropertyi("tu154b2/custom/failures/psvp_fail_right", 0	) -- отка
 createGlobalPropertyi("tu154b2/custom/failures/airbleed_1", 0) -- отказ отбора воздуха от двигателя
 createGlobalPropertyi("tu154b2/custom/failures/airbleed_2", 0) -- отказ отбора воздуха от двигателя
 createGlobalPropertyi("tu154b2/custom/failures/airbleed_3", 0) -- отказ отбора воздуха от двигателя
+createGlobalPropertyi("tu154b2/custom/failures/vvr_leak", 0)
 createGlobalPropertyi("tu154b2/custom/failures/apu_start_fail", 0) -- отказ стартера ВСУ
 createGlobalPropertyi("tu154b2/custom/failures/apu_gen_fail", 0) -- отказ генератора ВСУ
 createGlobalPropertyf("tu154b2/custom/failures/apu_runtime", 0) -- наработка ВСУ

@@ -1139,19 +1139,16 @@ function update()
 			-- gyro commutator
 			if math.abs(mgv_tet1-mgv_tet2)>8 and math.abs(mgv_tet1-mgv_tet3)>8 then
 				set(mgv_tet_1_fail,1)
-				mgv_tet_res=(mgv_tet2+mgv_tet3)/2
 				if math.abs(mgv_tet3-mgv_tet2)>8 then
 					set(mgv_tet_2_fail,1)
 				end
 			elseif math.abs(mgv_tet2-mgv_tet3)>8 and math.abs(mgv_tet2-mgv_tet1)>8 then
 				set(mgv_tet_2_fail,1)
-				mgv_tet_res=(mgv_tet2+mgv_tet1)/2
 				if math.abs(mgv_tet3-mgv_tet1)>8 then
 					set(mgv_tet_3_fail,1)
 				end
 			elseif math.abs(mgv_tet3-mgv_tet2)>8 and math.abs(mgv_tet3-mgv_tet1)>8 then
 				set(mgv_tet_3_fail,1)
-				mgv_tet_res=(mgv_tet1+mgv_tet2)/2
 				if math.abs(mgv_tet1-mgv_tet2)>8 then
 					set(mgv_tet_2_fail,1)
 				end
@@ -1163,19 +1160,16 @@ function update()
 			end
 			if math.abs(mgv_gam1-mgv_gam2)>10 and math.abs(mgv_gam1-mgv_gam3)>10 then
 				set(mgv_gam_1_fail,1)
-				mgv_gam_res=(mgv_gam2+mgv_gam3)/2
 				if math.abs(mgv_gam3-mgv_gam2)>10 then
 					set(mgv_gam_2_fail,1)
 				end
 			elseif math.abs(mgv_gam2-mgv_gam3)>10 and math.abs(mgv_gam2-mgv_gam1)>10 then
 				set(mgv_gam_2_fail,1)
-				mgv_gam_res=(mgv_gam2+mgv_gam1)/2
 				if math.abs(mgv_gam3-mgv_gam1)>10 then
 					set(mgv_gam_3_fail,1)
 				end
 			elseif math.abs(mgv_gam3-mgv_gam2)>10 and math.abs(mgv_gam3-mgv_gam1)>10 then
 				set(mgv_gam_3_fail,1)
-				mgv_gam_res=(mgv_gam1+mgv_gam2)/2
 				if math.abs(mgv_gam1-mgv_gam2)>10 then
 					set(mgv_gam_2_fail,1)
 				end
@@ -1183,9 +1177,29 @@ function update()
 				set(mgv_gam_1_fail,0)
 				set(mgv_gam_2_fail,0)
 				set(mgv_gam_3_fail,0)
-				mgv_gam_res=(mgv_gam1+mgv_gam2+mgv_gam3)/3
 			end
-			
+			if get(roll_submode) > 2 then
+				mgv_gam_res=(mgv_gam1+mgv_gam2+mgv_gam3)/3
+				if mgv_gam_sau1_mem + mgv_gam_sau2_mem + mgv_gam_sau3_mem < 2 then
+					mgv_gam_res=(mgv_gam1 * (1-mgv_gam_sau1_mem) + mgv_gam2 * (1-mgv_gam_sau2_mem) + mgv_gam3 * (1-mgv_gam_sau3_mem))/( 3 - mgv_gam_sau1_mem - mgv_gam_sau2_mem - mgv_gam_sau3_mem)
+				end
+			else
+				mgv_gam_res=(mgv_gam1+mgv_gam2+mgv_gam3)/3
+				if mgv_gam1_mem + mgv_gam2_mem + mgv_gam3_mem < 2 then
+					mgv_gam_res=(mgv_gam1 * (1-mgv_gam1_mem) + mgv_gam2 * (1-mgv_gam2_mem) + mgv_gam3 * (1-mgv_gam3_mem))/( 3 - mgv_gam1_mem - mgv_gam2_mem - mgv_gam3_mem)
+				end
+			end
+			if get(pitch_submode) == 5 then
+				mgv_tet_res=(mgv_tet1+mgv_tet2+mgv_tet3)/3
+				if mgv_tet1_mem + mgv_tet2_mem + mgv_tet3_mem < 2 then
+					mgv_tet_res=(mgv_tet1 * (1-mgv_tet1_mem) + mgv_tet2 * (1-mgv_tet2_mem) + mgv_tet3 * (1-mgv_tet3_mem))/( 3 - mgv_tet1_mem - mgv_tet2_mem - mgv_tet3_mem)
+				end
+			else
+				mgv_tet_res=(mgv_tet1+mgv_tet2+mgv_tet3)/3
+				if mgv_tet_sau1_mem + mgv_tet_sau2_mem + mgv_tet_sau3_mem < 2 then
+					mgv_tet_res=(mgv_tet1 * (1-mgv_tet_sau1_mem) + mgv_tet2 * (1-mgv_tet_sau2_mem) + mgv_tet3 * (1-mgv_tet_sau3_mem))/( 3 -mgv_tet_sau1_mem - mgv_tet_sau2_mem - mgv_tet_sau3_mem)
+				end
+			end
 			set(bkk_pitch, mgv_tet_res)
 			set(bkk_roll, mgv_gam_res)
 			-- damper fails, with 250ms delay

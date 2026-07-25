@@ -324,6 +324,7 @@ customFails["Bearing Overtemp Sensor 3 Fail"] = globalPropertyi("tu154b2/custom/
 customFails["TR 1 Switchover Fail"] = globalPropertyi("tu154b2/custom/failures/tr1_switch_fail")
 customFails["TR 2 Switchover Fail"] = globalPropertyi("tu154b2/custom/failures/tr2_switch_fail")
 customFails["SO-72 Fail"] = globalPropertyi("tu154b2/custom/failures/so72_fail")
+customFails["Main Heat Exchanger Leak"] = globalPropertyi("tu154b2/custom/failures/vvr_leak")
 
 
 

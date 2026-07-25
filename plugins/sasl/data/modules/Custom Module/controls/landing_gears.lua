@@ -410,7 +410,7 @@ local MASTER = get(ismaster) ~= 1
 		if pos3>0.15 and pos3<0.85 then
 			door_can_close_right=0
 		end
-		if lever * power_L * (1 - gs_in_use) * (1-emer_ext) == 1 then --read doors only close with hyd no.1
+		if lever * power_L * (1 - gs_in_use) * (1-emer_ext) == 1 and press_1 > 40 then --rear doors only close with hyd no.1 and main gear lever up
 			if door_can_close_left<1 then
 				door_can_close_left=door_can_close_left+passed/2
 			else
@@ -459,7 +459,13 @@ local MASTER = get(ismaster) ~= 1
 		if not lock1 then
 			-- calculate position	
 			local temp_coeff_1 = temp_coeff (t_gear_1,bool2int(direction==1))
-			local coeff_front = (1 + get(G) * 9.81 * (math.cos(math.pi * pos1_last / 2)) * c_g_nose * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos1_last / 2) * c_v_nose * (1 - 2 * bool2int(direction==1))) * 1.025 * temp_coeff_1
+			local valve_coef_1 = 1.025 -- this accounts for the fact the main hydraulic valve for gear operation is located close to the right main, causing it to move faster than the rest		
+			if gs_in_use == 1 then -- the emergency valves are in different positions (below the cockpit and in the rear tech compartment)
+				 valve_coef_1 = 0.93
+			elseif emer_ext == 1 then
+				valve_coef_1 = 1.1
+			end			
+			local coeff_front = (1 + get(G) * 9.81 * (math.cos(math.pi * pos1_last / 2)) * c_g_nose * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos1_last / 2) * c_v_nose * (1 - 2 * bool2int(direction==1))) * valve_coef_1 * temp_coeff_1
 			GEAR_SPEED_FRONT,flow_1 = gear_speed(press_1,F_base*0.15,pos1,direction,coeff_front,bool2int(get(retract1_fail) < 6))
 			if gs_in_use == 1 then
 				GEAR_SPEED_FRONT,flow_1 = gear_speed(press_3,F_base*0.15,pos1,direction,coeff_front,bool2int(get(retract1_fail) < 6))
@@ -483,7 +489,8 @@ local MASTER = get(ismaster) ~= 1
 		if not lock2 then
 			-- calculate position
 			local temp_coeff_2 = temp_coeff (t_gear_2,bool2int(direction==1))
-			local coeff_left = (1 + get(G) * 9.81 * (math.cos(math.pi * pos2_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos2_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * temp_coeff_2
+			local valve_coef_2 = 1
+			local coeff_left = (1 + get(G) * 9.81 * (math.cos(math.pi * pos2_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos2_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * valve_coef_2 * temp_coeff_2
 			GEAR_SPEED_LEFT,flow_2 = gear_speed(press_1,F_base*0.425,pos2,direction,coeff_left,bool2int(get(retract2_fail) < 6))
 			if gs_in_use == 1 then
 				GEAR_SPEED_LEFT,flow_2 = gear_speed(press_3,F_base*0.425,pos2,direction,coeff_left,bool2int(get(retract2_fail) < 6))
@@ -506,7 +513,11 @@ local MASTER = get(ismaster) ~= 1
 		if not lock3 then
 			-- calculate position		
 			local temp_coeff_3 = temp_coeff (t_gear_3,bool2int(direction==1))
-			local coeff_right = (1 + get(G) * 9.81 * (math.cos(math.pi * pos3_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos3_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * 1.15 * temp_coeff_3
+			local valve_coef_3 = 1.15 -- this accounts for the fact the main hydraulic valve for gear operation is located close to the right main, causing it to move faster than the rest			
+			if gs_in_use == 1 or emer_ext == 1 then -- the emergency valves are in different positions (below the cockpit and in the rear tech compartment)
+				 valve_coef_3 = 1.025
+			end
+			local coeff_right = (1 + get(G) * 9.81 * (math.cos(math.pi * pos3_last / 2)) * c_g_main * (-1 + 2 * bool2int(direction==1)) + q * math.sin(math.pi * pos3_last / 5) * c_v_main * (1 - 2 * bool2int(direction==1))) * valve_coef_3 * temp_coeff_3
 			GEAR_SPEED_RIGHT,flow_3 = gear_speed(press_1,F_base*0.425,pos3,direction,coeff_right,bool2int(get(retract3_fail) < 6))
 			if gs_in_use == 1 then
 				GEAR_SPEED_RIGHT,flow_3 = gear_speed(press_3,F_base*0.425,pos3,direction,coeff_right,bool2int(get(retract3_fail) < 6))

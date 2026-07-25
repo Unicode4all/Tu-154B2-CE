@@ -54,19 +54,19 @@ defineProperty("start_sys_work", globalPropertyf("tu154b2/custom/start/start_sys
 
 
 
-defineProperty("engine_bleed_sov_1", globalProperty("sim/cockpit2/bleedair/actuators/engine_bleed_sov[0]")) -- открытие отбора воздуха от двигателя
-defineProperty("engine_bleed_sov_2", globalProperty("sim/cockpit2/bleedair/actuators/engine_bleed_sov[1]")) -- открытие отбора воздуха от двигателя
-defineProperty("engine_bleed_sov_3", globalProperty("sim/cockpit2/bleedair/actuators/engine_bleed_sov[2]")) -- открытие отбора воздуха от двигателя
-defineProperty("bleed_air", globalPropertyi("tu154b2/custom/kskv/bleed_avail"))
-defineProperty("temp", globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c"))
-defineProperty("rho", globalPropertyf("sim/weather/rho"))
-defineProperty("cabin_altitude_ft", globalPropertyf("sim/cockpit/pressure/cabin_altitude_actual_ft"))
---defineProperty("tropo_alt", globalPropertyf("sim/weather/region/tropo_alt_m"))
-defineProperty("valve_left", globalPropertyf("tu154b2/custom/bleedair/valve_left"))
-defineProperty("valve_right", globalPropertyf("tu154b2/custom/bleedair/valve_right"))
-defineProperty("bleed_1", globalPropertyf("tu154b2/custom/bleedair/eng_1_bleed"))
-defineProperty("bleed_2", globalPropertyf("tu154b2/custom/bleedair/eng_2_bleed"))
-defineProperty("bleed_3", globalPropertyf("tu154b2/custom/bleedair/eng_3_bleed"))
+engine_bleed_sov_1 = globalProperty("sim/cockpit2/bleedair/actuators/engine_bleed_sov[0]") -- открытие отбора воздуха от двигателя
+engine_bleed_sov_2 = globalProperty("sim/cockpit2/bleedair/actuators/engine_bleed_sov[1]") -- открытие отбора воздуха от двигателя
+engine_bleed_sov_3 = globalProperty("sim/cockpit2/bleedair/actuators/engine_bleed_sov[2]") -- открытие отбора воздуха от двигателя
+bleed_air = globalPropertyi("tu154b2/custom/kskv/bleed_avail")
+temp = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
+rho = globalPropertyf("sim/weather/rho")
+cabin_altitude_ft = globalPropertyf("sim/cockpit/pressure/cabin_altitude_actual_ft")
+valve_left = globalPropertyf("tu154b2/custom/bleedair/valve_left")
+valve_right = globalPropertyf("tu154b2/custom/bleedair/valve_right")
+bleed_1 = globalPropertyf("tu154b2/custom/bleedair/eng_1_bleed")
+bleed_2 = globalPropertyf("tu154b2/custom/bleedair/eng_2_bleed")
+bleed_3 = globalPropertyf("tu154b2/custom/bleedair/eng_3_bleed")
+bleed_4 = globalPropertyf("tu154b2/custom/bleedair/apu_bleed")
 -- sim/cockpit2/bleedair/actuators/engine_bleed_sov
 
 -- time
@@ -391,6 +391,7 @@ if MASTER then
 		set(bleed_1,eng_airflow_1*main_valve_L)
 		set(bleed_2,eng_airflow_2*(main_valve_L+main_valve_R)/2)
 		set(bleed_3,eng_airflow_3*main_valve_R)
+		set(bleed_4,eng_airflow_4)
 	end
 
 

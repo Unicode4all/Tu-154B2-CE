@@ -54,6 +54,8 @@ defineProperty("stp_4", globalPropertyi("sim/custom/b2/stp_test_4"))
 defineProperty("stp_5", globalPropertyi("sim/custom/b2/stp_test_5"))
 defineProperty("stp_6", globalPropertyi("sim/custom/b2/stp_test_6"))
 
+rear_tech_compartment_T = globalPropertyf("tu154b2/custom/bleed/rear_tech_temp")
+
 -- results
 defineProperty("water_lvl", globalPropertyf("tu154b2/custom/misc/water_level")) -- уровень воды
 
@@ -145,7 +147,7 @@ local function lamps()
 	local water_level_0_brt = math.max(bool2int(water_level < 0.25 and water_level >= 0 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
 	set(water_level_0, water_level_0_brt)
 	
-	local tail_temp_high_brt = math.max(bool2int(get(tail_temp_signal_control_1) + get(tail_temp_signal_control_2) > 0) * get(tail_temp_signal) * lamps_brt, test_btn) -- temp
+	local tail_temp_high_brt = math.max(bool2int(get(tail_temp_signal_control_1) + get(tail_temp_signal_control_2) > 0 or get(rear_tech_compartment_T) > 100) * get(tail_temp_signal) * lamps_brt, test_btn) -- temp
 	set(tail_temp_high, tail_temp_high_brt)
 	
 	local lavatory_heat_brt = math.max(bool2int(get(lavatory_heat) < 0) * lamps_brt, test_btn) -- temp get(lavatory_heat)

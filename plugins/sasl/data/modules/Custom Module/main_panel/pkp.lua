@@ -94,9 +94,12 @@ defineProperty("absu_power", globalPropertyi("tu154b2/custom/absu_power_cc"))
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
-
-
-
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 
 
 
@@ -121,6 +124,8 @@ local notLoaded = true
 
 local roll_show_2 = roll_show
 local pitch_show_2 = pitch_show
+local v_roll_show_2 = 0
+local v_pitch_show_2 = 0
 
 local v_plank_act = 0
 local h_plank_act = 0
@@ -128,6 +133,26 @@ local h_plank_act = 0
 local absu_v_act = 0
 local absu_h_act = 0
 local spinup=0
+
+
+local function needle_pos (ang_actual_prev,ang_need,dt,v_prev,k_spr,k_dmp,k_v,c_v)
+	local v_needle_max=5000*c_v
+	local e_c=(ang_need-ang_actual_prev)*k_spr
+	dt=math.min(dt,0.025)
+    local v=v_prev*k_v+e_c*dt-v_prev*k_dmp
+	if v>v_needle_max then
+		v=v_needle_max
+	elseif v<-v_needle_max then
+		v=-v_needle_max
+	end
+    local ang_actual=ang_actual_prev+v*dt
+	-- if ang_actual<0 then
+		-- ang_actual=0
+		-- v=0
+	-- end
+	return v,ang_actual
+end
+
 
 function update()
 	local passed = get(frame_time)
@@ -253,9 +278,22 @@ function update()
 	if roll_delta > 180 then roll_delta = roll_delta - 360
 	elseif roll_delta < -180 then roll_delta = roll_delta + 360 end
 	
-	roll_show_2 = roll_show_2 + (roll_delta) * passed * 5
-	pitch_show_2 = pitch_show_2 + (pitch_show - pitch_show_2) * passed * 5
-	
+
+	local k_spr = 2500*0.1
+	local k_dmp = 0.15 *18
+	local k_v = 3.4*1.025
+	local c_v = 0.1*0.7
+
+	if power then
+		local v_roll_show_2_set,roll_show_2_set = needle_pos (roll_show_2,roll_show,passed,v_roll_show_2,k_spr,k_dmp,k_v,c_v)
+		roll_show_2=roll_show_2_set
+		v_roll_show_2=v_roll_show_2_set
+		--roll_show_2 = roll_show_2 + (roll_delta) * passed * 5
+		--pitch_show_2 = pitch_show_2 + (pitch_show - pitch_show_2) * passed * 5
+		local v_pitch_show_2_set,pitch_show_2_set = needle_pos (pitch_show_2,pitch_show,passed,v_pitch_show_2,k_spr,k_dmp,k_v,c_v)
+		pitch_show_2=pitch_show_2_set
+		v_pitch_show_2=v_pitch_show_2_set
+	end
 	
 	-- flag logic
 	local flag = bool2int(not power or arrest or get(pkp_fail) == 1)

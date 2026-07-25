@@ -14,13 +14,14 @@ defineProperty("tth_left_fail", globalPropertyi("tu154b2/custom/failures/tth_lef
 defineProperty("tth_right_fail", globalPropertyi("tu154b2/custom/failures/tth_right_fail")) -- отказ турбохолодильника
 
 --defineProperty("sard_valve_fail", globalPropertyi("tu154b2/custom/failures/sard_valve_fail")) -- отказ выпускного клапана
-defineProperty("sard_valve_fail_1", globalPropertyi("tu154b2/custom/failures/valve_1"))
-defineProperty("sard_valve_fail_2", globalPropertyi("tu154b2/custom/failures/valve_2"))
-defineProperty("sard_valve_fail_3", globalPropertyi("tu154b2/custom/failures/valve_3"))
-defineProperty("sard_valve_fail_4", globalPropertyi("tu154b2/custom/failures/valve_4"))
-defineProperty("sard_reg_fail_1", globalPropertyi("tu154b2/custom/failures/srd_regulator_1"))
-defineProperty("sard_reg_fail_2", globalPropertyi("tu154b2/custom/failures/srd_regulator_2"))
+sard_valve_fail_1 = globalPropertyi("tu154b2/custom/failures/valve_1")
+sard_valve_fail_2 = globalPropertyi("tu154b2/custom/failures/valve_2")
+sard_valve_fail_3 = globalPropertyi("tu154b2/custom/failures/valve_3")
+sard_valve_fail_4 = globalPropertyi("tu154b2/custom/failures/valve_4")
+sard_reg_fail_1 = globalPropertyi("tu154b2/custom/failures/srd_regulator_1")
+sard_reg_fail_2 = globalPropertyi("tu154b2/custom/failures/srd_regulator_2")
 
+vvr_leak = globalPropertyi("tu154b2/custom/failures/vvr_leak")
 
 
 
@@ -82,8 +83,7 @@ if MASTER then
 			
 			if get(sard_reg_fail_1) ~= 1 then set(sard_reg_fail_1, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(sard_reg_fail_2) ~= 1 then set(sard_reg_fail_2, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
-
-			
+			if get(vvr_leak) ~= 1 then set(vvr_leak, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 		
 		end
 		
@@ -114,6 +114,7 @@ if MASTER then
 		set(sard_valve_fail_4, 0)
 		set(sard_reg_fail_1, 0)
         set(sard_reg_fail_2, 0)
+		set(vvr_leak, 0)
 	
 	end
 	

@@ -86,8 +86,24 @@ ard_temp = globalPropertyf("tu154b2/custom/kskv/ard_temp")
 ard_obogr = globalPropertyf("tu154b2/custom/switchers/eng/tail_temp_heat")
 press_diff = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_diff")
 sbros_davl = globalPropertyf("tu154b2/custom/switchers/airbleed/emerg_decompress")
---defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 total_temp = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
+tas = globalPropertyf("sim/flightmodel2/position/true_airspeed")
+bleed_avail = globalPropertyi("tu154b2/custom/kskv/bleed_avail")
+rear_tech_compartment_T = globalPropertyf("tu154b2/custom/bleed/rear_tech_temp")
+vvr_leak = globalPropertyi("tu154b2/custom/failures/vvr_leak")
+
+-- bleed_air_1 = globalPropertyf("tu154b2/custom/bleedair/eng_1_bleed")
+-- bleed_air_2 = globalPropertyf("tu154b2/custom/bleedair/eng_2_bleed")
+-- bleed_air_3 = globalPropertyf("tu154b2/custom/bleedair/eng_3_bleed")
+-- bleed_air_4 = globalPropertyf("tu154b2/custom/bleedair/apu_bleed")
+
+defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
+
 -- defineProperty("srd_set", globalPropertyf("tu154b2/custom/switchers/sard/sard_set"))
 -- defineProperty("srd", globalPropertyf("sim/custom/switchers/sard/sard_cabin_press_set_osn"))
 vr = globalPropertyi("sim/graphics/VR/enabled")
@@ -99,24 +115,49 @@ hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plug
 
 
 
-
 local eng_temp_tbl = {{ -100000, 0.0 },    -- bugs walkaround
                   {  0, 00 }, -- 0.0
-				  { 55, 270 },   --
-				  { 95, 320 }, -- 
+				  { 55, 240 },   --
+				  { 95, 350 }, -- 
           	      {  10000000, 320 }}    -- bugs walkaround
 				  
-local convection_tbl = {{ -100000, 10.0 },    -- bugs walkaround
-                  {  0, 10 }, -- 0.0
-				  { 155, 2 },   --
-				  { 600, 1 }, -- 
-          	      {  10000000, 1 }}    -- bugs walkaround
+local vvr_coef_t = {{ -100000, 80.0 },    -- bugs walkaround
+                  {  0, 50 }, -- 0.0
+				  { 100, 100 },   --
+          	      {  10000000, 120 }}    -- bugs walkaround
 				  
+local function vvr(Units,c_cool,t_cool,t_in)
+	local L=0.4 -- VVR length
+	local r=0.1 -- VVR tube radius
+	local nTS=10 --how many timesteps in the modelling loop
+	local t_out=t_in
+	-- Flow-through time
+	if Units > 0.05 then
+		local F=330/3600*Units/1.225 -- Volumetric flow rate at N units
+		local v=F/(math.pi*math.pow(r,2)) -- flow velocity
+		local T_end=L/v
+		local dt=T_end/nTS
+		for i = 2, nTS do
+		   t_out=t_out+(t_cool-t_out)*c_cool*dt
+		end
+		if t_out < t_cool then
+			t_out = t_cool
+		end
+	else
+		t_out=t_cool
+	end
+	return t_out
+end
 
 local termo_out = get(termo)
+local hot_air_T_L = termo_out
+local hot_air_T_R = termo_out
 local hot_air_T = termo_out
 local cold_air_T = termo_out
-	
+local t_ex = termo_out
+
+local engines_air_T_L = termo_out
+local engines_air_T_R = termo_out	
 	
 local cold_tube_T_L = termo_out
 local cold_tube_T_R = termo_out
@@ -130,6 +171,8 @@ local cold_tube_th_reg_R = cold_tube_th_reg_L -- regulator
 
 local cold_tube_act_L = termo_out
 local cold_tube_act_R = termo_out
+
+local t_tech = termo_out 
 
 local door_heat_T = termo_out
 local door_heat_reg = 0.0
@@ -155,7 +198,8 @@ local art2_pause=40 -- dwell time for cabin temp regulation
 local art_cab_1_pulse=0
 local art_cab_2_pulse=0
 local art_cab_3_pulse=0
-
+-- vvr heat exchanger cooling coefficient
+local c_ex=0.02
 -- cabin temp model coefficients
 local c_amb=0.000075
 local c_tube=2.5000e-07
@@ -174,7 +218,7 @@ local c_dt=0.05
 local start_timer=0
 local vvr_hold_timer=0
 local cabin_hold_timer=0
-c_psd=1.5
+local c_psd=1.5
 function update()
 	local passed = get(frame_time)
 	if start_timer<30 then
@@ -197,12 +241,9 @@ function update()
 	local eng_vlv_2 = get(eng_valve_2)
 	local eng_vlv_3 = get(eng_valve_3)
 	local eng_vlv_4 = get(apu_air_doors)
-	local eng_T_1 = interpolate(eng_temp_tbl, get(rpm_high_1) * eng_vlv_1)
-	local eng_T_2 = interpolate(eng_temp_tbl, get(rpm_high_2) * eng_vlv_2)
-	local eng_T_3 = interpolate(eng_temp_tbl, get(rpm_high_3) * eng_vlv_3)
-
-
-	local engines_air_T = termo_out
+	local eng_T_1 = interpolate(eng_temp_tbl, get(rpm_high_1))
+	local eng_T_2 = interpolate(eng_temp_tbl, get(rpm_high_2))
+	local eng_T_3 = interpolate(eng_temp_tbl, get(rpm_high_3))
 
 
 	local door1=get(px_door1)
@@ -215,16 +256,23 @@ function update()
 	local pax_cab2=get(pax3)+get(pax4)+get(pax5)
 	local compressed=door1+door2+door3+win1+win2+get(sbros_davl)==0
 	local ard_heat=termo_out
-	if hot_air_T>90 and get(ard_obogr)>0 then --ard heat, either through heater or ejected air
+	if hot_air_T_R > 90 and get(ard_obogr)>0 then --ard heat, either through heater or ejected air
 		ard_heat=100
 	elseif compressed and (airflow_L+airflow_L>100) then
 		ard_heat=(cabin_1_T+cabin_2_T)*(airflow_L+airflow_R)/1200
 	end
 	temp_ard=temp_ard+(termo_out-temp_ard+ard_heat-temp_ard)*passed*c_ard_heat
+	if eng_vlv_1 + eng_vlv_2 + eng_vlv_4 > 0 then
+		--engines_air_T = termo_out * 0.3 + (eng_T_1 + eng_T_2 + eng_T_3 + get(apu_n1) * eng_vlv_4 * 1.5) / (eng_vlv_1 + eng_vlv_2 + eng_vlv_3 + eng_vlv_4)*get(db1)	
+		engines_air_T_L = termo_torm  + (eng_T_1 * eng_vlv_1 + eng_T_2 * eng_vlv_2 / 2 + get(apu_n1) * 2.3 * eng_vlv_4 / 2) / (eng_vlv_1 + eng_vlv_2 / 2 + eng_vlv_4 / 2)
+	else
+		engines_air_T_L = engines_air_T_L + (termo_torm - engines_air_T_L) * passed / 50
+	end
 	
-	if eng_vlv_1 + eng_vlv_2 + eng_vlv_3 + eng_vlv_4 > 0 and (airflow_L + airflow_R) > 200 then
-		--engines_air_T = termo_out * 0.3 + (eng_T_1 + eng_T_2 + eng_T_3 + get(apu_n1) * eng_vlv_4 * 1.5) / (eng_vlv_1 + eng_vlv_2 + eng_vlv_3 + eng_vlv_4)*get(db1)
-		engines_air_T = termo_torm * 1.2 + (eng_T_1 + eng_T_2 + eng_T_3 + get(apu_n1) * eng_vlv_4 * 2.3) / (eng_vlv_1 + eng_vlv_2 + eng_vlv_3 + eng_vlv_4)
+	if eng_vlv_3 + eng_vlv_2 + eng_vlv_4 > 0 then
+		engines_air_T_R = termo_torm  + (eng_T_3 * eng_vlv_3 + eng_T_2 * eng_vlv_2 / 2 + get(apu_n1) * 2.3 * eng_vlv_4 / 2) / (eng_vlv_3 + eng_vlv_2 / 2 + eng_vlv_4 / 2)
+	else
+		engines_air_T_R = engines_air_T_R + (termo_torm - engines_air_T_R) * passed / 50
 	end
 	if win1>0 and win1<1 then
 		win1=0.05
@@ -232,12 +280,31 @@ function update()
 	if win2>0 and win2<1 then
 		win2=0.05
 	end
-	-- heating the air by compressors
-	--hot_air_T = hot_air_T + (engines_air_T - hot_air_T) * ((airflow_L + airflow_R) * 0.0001 + 1) * passed * 0.05 
-	hot_air_T=hot_air_T+(engines_air_T-hot_air_T)* ((airflow_L + airflow_R) * 0.0001+1) * passed * 0.5
-	-- initial cooling of hot air by first air radiator
-    c_vvr1=0.007353*engines_air_T -0.1471;
-    hot_air_T= hot_air_T + (termo_torm - hot_air_T) * passed * (1.5 + IAS * 0.001 - (airflow_L + airflow_R) * 4.1665e-04)*0.23*c_vvr1
+	-- first air-air heat exchanger (VVR)
+	local vvr_coef = interpolate(vvr_coef_t,get(tas)) -- cooling efficiency rises with speed
+	local service_air = get(bleed_avail) -- bleed air is needed for the forced-flow ejector which increases VVR effectivity on the ground
+	if get(tas)< 10 and service_air == 0 then
+		vvr_coef = 1
+	end
+	hot_air_T_L = vvr(airflow_L/100,vvr_coef,t_ex,engines_air_T_L)
+	hot_air_T_R = vvr(airflow_R/100,vvr_coef,t_ex,engines_air_T_R)
+	local c_ex2=c_ex * 0.75 * vvr_coef / 100
+	-- heat exchanger temperature
+	if (airflow_L+airflow_L>10) then
+		t_ex=t_ex + ((engines_air_T_L-hot_air_T_L) / 2 + (engines_air_T_R-hot_air_T_R) / 2 - t_ex) * c_ex * passed + (termo_torm - t_ex) * c_ex2 * passed
+	else
+		t_ex = t_ex + (t_tech - t_ex) * passed / (50-40*service_air)
+	end
+	-- c_vvr1=0.007353*engines_air_T -0.1471
+    --hot_air_T= hot_air_T + (termo_torm - hot_air_T) * passed * (1.5 + IAS * 0.001 - (airflow_L + airflow_R) * 4.1665e-04)*0.23*c_vvr1
+	-- set(db1,t_ex)
+	-- set(db2,hot_air_T_L)
+	-- set(db3,hot_air_T_R)
+	-- set(db4,engines_air_T_L)
+	-- set(db5,engines_air_T_R)
+	-- rear tech compartment temperature
+	local t_pipe = (engines_air_T_L + engines_air_T_R + hot_air_T_L  + hot_air_T_R) / 4
+	t_tech = t_tech + (termo_torm - t_tech) * 0.0025 * passed + (t_pipe - t_tech) * 5.0000e-04 * passed * (1 + 9 * get(vvr_leak)) + (cabin_2_T - t_tech) * 5.0000e-04 * passed
 	--hot_air_T = hot_air_T + (termo_out - hot_air_T) * passed * (1 + IAS * 0.001 * (airflow_L + airflow_R) * 0.0001) * 0.02
 	
 	---------------------------------------------------
@@ -338,7 +405,7 @@ function update()
 	local tx_left_fail=get(tth_left_fail)
 	local vent=math.max(math.min((cold_tube_th_reg_L+cold_tube_vvr_reg_L-cold_tube_th_reg_L*cold_tube_vvr_reg_L)+1-0.001667*airflow_L+tx_left_fail,1)-IAS/250,0,get(cover))
 	local c_vvr2=  1.5*math.pow(vent,2) + 1	
-    local cold_tube_L_vvr=hot_air_T*c_vvr*c_vvr2*(1-cold_tube_vvr_reg_L)+hot_air_T*cold_tube_vvr_reg_L
+    local cold_tube_L_vvr=hot_air_T_L*c_vvr*c_vvr2*(1-cold_tube_vvr_reg_L)+hot_air_T_L*cold_tube_vvr_reg_L
     local c_tx=(-0.00333*termo_torm+1)*(1-cold_tube_vvr_reg_L)*math.min(airflow_L/50,1)*(1-tx_left_fail)
     local cold_tube_L_tx=(cold_tube_L_vvr-50*c_tx)*(1-cold_tube_th_reg_L)+cold_tube_L_vvr*cold_tube_th_reg_L
     if airflow_L>20 then
@@ -450,7 +517,7 @@ function update()
 	c_vvr=0.35*math.min((-1.636e-06*math.pow(airflow_R,2)+0.001973*airflow_R+0.4055), 1)
 	vent=math.max(math.min((cold_tube_th_reg_R+cold_tube_vvr_reg_R-cold_tube_th_reg_R*cold_tube_vvr_reg_R)+1-0.001667*airflow_R+tx_right_fail,1)-IAS/250,0,get(cover))
 	c_vvr2=  1.5*math.pow(vent,2) + 1
-    local cold_tube_R_vvr=hot_air_T*c_vvr*c_vvr2*(1-cold_tube_vvr_reg_R)+hot_air_T*cold_tube_vvr_reg_R
+    local cold_tube_R_vvr=hot_air_T_R*c_vvr*c_vvr2*(1-cold_tube_vvr_reg_R)+hot_air_T_R*cold_tube_vvr_reg_R
     c_tx=(-0.00333*termo_torm+1)*(1-cold_tube_vvr_reg_R)*math.min(airflow_R/50,1)*(1-tx_right_fail)
     local cold_tube_R_tx=(cold_tube_R_vvr-50*c_tx)*(1-cold_tube_th_reg_R)+cold_tube_R_vvr*cold_tube_th_reg_R
     if airflow_R>20 then
@@ -466,13 +533,19 @@ function update()
 	
 	--------------------------------------------------
 	-- fast heat or cooling
-	local fast_hc_sw = get(skv_faster_work)
-	local fast_heat_cool_T = termo_out
-	if fast_hc_sw == -1 and power_R then fast_heat_cool_T = cold_air_T
-	elseif fast_hc_sw == 1 and power_R then fast_heat_cool_T = hot_air_T end
+	-- local fast_hc_sw = get(skv_faster_work)
+	-- local fast_heat_cool_T = termo_out
+	-- if fast_hc_sw == -1 and power_R then fast_heat_cool_T = cold_air_T
+	-- elseif fast_hc_sw == 1 and power_R then fast_heat_cool_T = hot_air_T end
 	
 	--------------------------------------------------
 	local termo_tech=cabin_1_T*3/4+termo_out/4 -- tech compartment temperature
+	if airflow_L + airflow_R > 10 then
+		hot_air_T = (hot_air_T_R * airflow_L +  hot_air_T_R * airflow_R) / (airflow_L + airflow_R)
+	else
+		hot_air_T= hot_air_T + (termo_torm - hot_air_T) * passed / 100
+	end
+	-- set(db6,hot_air_T)
 	-- door heat temperature
 	door_heat_T = door_heat_T + (termo_tech - door_heat_T) * passed * 0.01 -- cooling by time
 	local door_ht_sw = get(door_heat)
@@ -678,6 +751,7 @@ if MASTER then
 	set(cabin2_tube_t, cabin_2_tube_temp)
 	set(cabin_2_temp, cabin_2_T)
 	set(ard_temp,temp_ard)
+	set(rear_tech_compartment_T,t_tech)
 	-- set(vvr_left_reg,cold_tube_th_reg_L)
 	-- set(vvr_right_reg,cold_tube_vvr_reg_L)		
 

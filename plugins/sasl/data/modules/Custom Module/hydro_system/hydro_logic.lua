@@ -182,7 +182,7 @@ flap_drive_2 = globalPropertyi("tu154b2/custom/controlls/flap_chan_2")
 tas = globalPropertyf("sim/flightmodel/position/true_airspeed")
 cabin_2_temp = globalPropertyf("tu154b2/custom/bleed/cabin_2_temp") 
 temp_out = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
-eng2_bay_temp = globalPropertyf("tu154b2/custom/engines/engine2_case_temp")
+rear_tech_T = globalPropertyf("tu154b2/custom/bleed/rear_tech_temp")
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -735,7 +735,7 @@ if MASTER then
 	
 	-- Hydrailic fluid temperatures
 	local t_out = get(temp_out)
-	local t_tech = get(cabin_2_temp)*2/6+t_out*3/6+get(eng2_bay_temp)/6 --rear tech compartment temperature approximation
+	local t_tech = get(rear_tech_T) --rear tech compartment temperature
 	-- heat from pressure energy dissipation
 	local W_1_hyd = (eng_pump_1_1_bp + eng_pump_1_2_bp) / 1000 * press_1 * 100000
 	local W_2_hyd = (eng_pump_2_bp + ns1_bp) / 1000 * press_2 * 100000
