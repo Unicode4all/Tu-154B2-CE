@@ -162,7 +162,7 @@ function update()
 		if pts_1_volt > 0 then
 			bus_1_volt = 36
 			--set(bus27_amp_right, get(bus27_amp_right) + get(bus36_amp_pts250_1) * 1.4) -- add current to bus 27
-		elseif pts_1_fail then
+		else
 			bus_1_volt = get(bus36_volt_right)
 			--set(bus36_amp_right, get(bus36_amp_right) + get(bus36_amp_pts250_1) * 1.05) -- add current to bus 36R
 		end

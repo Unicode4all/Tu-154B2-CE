@@ -97,12 +97,12 @@ vvr_leak = globalPropertyi("tu154b2/custom/failures/vvr_leak")
 -- bleed_air_3 = globalPropertyf("tu154b2/custom/bleedair/eng_3_bleed")
 -- bleed_air_4 = globalPropertyf("tu154b2/custom/bleedair/apu_bleed")
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
-defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
-defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
 
 -- defineProperty("srd_set", globalPropertyf("tu154b2/custom/switchers/sard/sard_set"))
 -- defineProperty("srd", globalPropertyf("sim/custom/switchers/sard/sard_cabin_press_set_osn"))
@@ -293,7 +293,7 @@ function update()
 	if (airflow_L+airflow_L>10) then
 		t_ex=t_ex + ((engines_air_T_L-hot_air_T_L) / 2 + (engines_air_T_R-hot_air_T_R) / 2 - t_ex) * c_ex * passed + (termo_torm - t_ex) * c_ex2 * passed
 	else
-		t_ex = t_ex + (t_tech - t_ex) * passed / (50-40*service_air)
+		t_ex = t_ex + (t_tech - t_ex * (1 - service_air) - termo_torm * service_air) * passed / (50-40*service_air)
 	end
 	-- c_vvr1=0.007353*engines_air_T -0.1471
     --hot_air_T= hot_air_T + (termo_torm - hot_air_T) * passed * (1.5 + IAS * 0.001 - (airflow_L + airflow_R) * 4.1665e-04)*0.23*c_vvr1

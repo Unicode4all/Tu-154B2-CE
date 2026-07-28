@@ -16,6 +16,7 @@ defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) 
 
 defineProperty("failures_enabled", globalPropertyi("tu154b2/custom/failures/failures_enabled")) -- отказы включены
 
+--temp_out = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
 
 
 local runtime_tbl = {}
@@ -236,9 +237,9 @@ customFails["ABSU RA56 yaw"] = globalPropertyi("tu154b2/custom/failures/absu_ra5
 customFails["ABSU AT1"] = globalPropertyi("tu154b2/custom/failures/absu_at1_fail") -- отказ AT
 customFails["ABSU AT2"] = globalPropertyi("tu154b2/custom/failures/absu_at2_fail") -- отказ AT
 
-customFails["ABSU Roll damper"] = globalPropertyi("tu154b2/custom/failures/absu_damp_roll_fail") -- отказ демперов крена
-customFails["ABSU Pitch damper"] = globalPropertyi("tu154b2/custom/failures/absu_damp_pitch_fail") -- отказ демперов тангажа
-customFails["ABSU Yaw damper"] = globalPropertyi("tu154b2/custom/failures/absu_damp_yaw_fail") -- отказ демперов курса
+-- customFails["ABSU Roll damper"] = globalPropertyi("tu154b2/custom/failures/absu_damp_roll_fail") -- отказ демперов крена
+-- customFails["ABSU Pitch damper"] = globalPropertyi("tu154b2/custom/failures/absu_damp_pitch_fail") -- отказ демперов тангажа
+-- customFails["ABSU Yaw damper"] = globalPropertyi("tu154b2/custom/failures/absu_damp_yaw_fail") -- отказ демперов курса
 customFails["ABSU Roll control"] = globalPropertyi("tu154b2/custom/failures/absu_contr_roll_fail") -- отказ бокового управления
 customFails["ABSU Pitch control"] = globalPropertyi("tu154b2/custom/failures/absu_contr_pitch_fail") -- отказ продольного управления
 customFails["ABSU TOGA Calc"] = globalPropertyi("tu154b2/custom/failures/absu_calc_toga_fail") -- отказ вычислителя УХОД
@@ -390,10 +391,13 @@ local function fixAll()
 	for k,v in pairs(simFails) do -- scan sim failures
 		set(v, 0)
 	end
+
+	sys_data_tbl.hyd_1_qty = 26
+	sys_data_tbl.hyd_2_qty = 22
+	sys_data_tbl.hyd_3_qty = 24
 	
-	set(hydro_tbl[1][2], 58)
-	set(hydro_tbl[2][2], 58)
-	set(hydro_tbl[3][2], 45)
+	sys_data_tbl.hyd_1_temp = 20
+	sys_data_tbl.hyd_2_temp = 20
 	
 	set(save_state, 1)
 

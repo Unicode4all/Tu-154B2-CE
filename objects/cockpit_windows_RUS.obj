@@ -12259,31 +12259,31 @@ ANIM_trans 0.272500 1.529600 19.021999 0.272500 1.529600 19.021999 0.000000 0.00
 TRIS 11334 12
 ANIM_end
 ANIM_begin
-ANIM_show 0.000000 0.000000 tu154b2/custom/switchers/spu_4_mode
+ANIM_hide 1.000000 2.000000 tu154b2/custom/switchers/spu_4_source
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT
 TRIS 11346 312
 ANIM_end
 ANIM_begin
-ANIM_show 0.000000 0.000000 tu154b2/custom/switchers/spu_4_source
+ANIM_hide 1.000000 2.000000 tu154b2/custom/switchers/spu_4_mode
 TRIS 11658 312
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 1.900000 tu154b2/custom/switchers/spu_4_source
+ANIM_hide 0.000000 1.900000 tu154b2/custom/switchers/spu_4_mode
 ATTR_light_level_reset
 TRIS 11970 384
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/spu_4_source
-ANIM_hide 1.100000 5.000000 tu154b2/custom/switchers/spu_4_source
+ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/spu_4_mode
+ANIM_hide 1.100000 5.000000 tu154b2/custom/switchers/spu_4_mode
 TRIS 12354 336
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/spu_4_mode
-ANIM_hide 1.100000 5.000000 tu154b2/custom/switchers/spu_4_mode
+ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/spu_4_source
+ANIM_hide 1.100000 5.000000 tu154b2/custom/switchers/spu_4_source
 TRIS 12690 336
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 1.900000 tu154b2/custom/switchers/spu_4_mode
+ANIM_hide 0.000000 1.900000 tu154b2/custom/switchers/spu_4_source
 TRIS 13026 384
 ANIM_end
 TRIS 13410 9900

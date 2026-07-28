@@ -138,27 +138,27 @@ defineProperty("elevon_R", globalPropertyf("tu154b2/custom/controlls/spoil_R_phy
 
 
 -- busters
-defineProperty("buster_on_1", globalPropertyi("tu154b2/custom/switchers/console/buster_on_1")) -- выключатель бустера
-defineProperty("buster_on_2", globalPropertyi("tu154b2/custom/switchers/console/buster_on_2")) -- выключатель бустера
-defineProperty("buster_on_3", globalPropertyi("tu154b2/custom/switchers/console/buster_on_3")) -- выключатель бустера
+buster_on_1 = globalPropertyi("tu154b2/custom/switchers/console/buster_on_1") -- выключатель бустера
+buster_on_2 = globalPropertyi("tu154b2/custom/switchers/console/buster_on_2") -- выключатель бустера
+buster_on_3 = globalPropertyi("tu154b2/custom/switchers/console/buster_on_3") -- выключатель бустера
 
 -- currents
-defineProperty("gs_pump_2_cc", globalPropertyf("tu154b2/custom/hydro/gs_pump_2_cc")) -- ток насосной станции
-defineProperty("gs_pump_3_cc", globalPropertyf("tu154b2/custom/hydro/gs_pump_3_cc")) -- ток насосной станции
+gs_pump_2_cc = globalPropertyf("tu154b2/custom/hydro/gs_pump_2_cc") -- ток насосной станции
+gs_pump_3_cc = globalPropertyf("tu154b2/custom/hydro/gs_pump_3_cc") -- ток насосной станции
 
-defineProperty("hod1_p", globalPropertyf("tu154b2/custom/absu/d_ra1_p"))
-defineProperty("hod2_p", globalPropertyf("tu154b2/custom/absu/d_ra2_p"))
-defineProperty("hod3_p", globalPropertyf("tu154b2/custom/absu/d_ra3_p"))
+hod1_p = globalPropertyf("tu154b2/custom/absu/d_ra1_p")
+hod2_p = globalPropertyf("tu154b2/custom/absu/d_ra2_p")
+hod3_p = globalPropertyf("tu154b2/custom/absu/d_ra3_p")
 
-defineProperty("hod1_r", globalPropertyf("tu154b2/custom/absu/d_ra1_r"))
-defineProperty("hod2_r", globalPropertyf("tu154b2/custom/absu/d_ra2_r"))
-defineProperty("hod3_r", globalPropertyf("tu154b2/custom/absu/d_ra3_r"))
+hod1_r = globalPropertyf("tu154b2/custom/absu/d_ra1_r")
+hod2_r = globalPropertyf("tu154b2/custom/absu/d_ra2_r")
+hod3_r = globalPropertyf("tu154b2/custom/absu/d_ra3_r")
 
-defineProperty("hod1_y", globalPropertyf("tu154b2/custom/absu/d_ra1_y"))
-defineProperty("hod2_y", globalPropertyf("tu154b2/custom/absu/d_ra2_y"))
-defineProperty("hod3_y", globalPropertyf("tu154b2/custom/absu/d_ra3_y"))
+hod1_y = globalPropertyf("tu154b2/custom/absu/d_ra1_y")
+hod2_y = globalPropertyf("tu154b2/custom/absu/d_ra2_y")
+hod3_y = globalPropertyf("tu154b2/custom/absu/d_ra3_y")
 
-defineProperty("nosewheel_power", globalPropertyi("tu154b2/custom/hydro/nosewheel_turn_power"))
+nosewheel_power = globalPropertyi("tu154b2/custom/hydro/nosewheel_turn_power")
 
 fluid_1 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_1")
 fluid_2 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_2")
@@ -183,6 +183,8 @@ tas = globalPropertyf("sim/flightmodel/position/true_airspeed")
 cabin_2_temp = globalPropertyf("tu154b2/custom/bleed/cabin_2_temp") 
 temp_out = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
 rear_tech_T = globalPropertyf("tu154b2/custom/bleed/rear_tech_temp")
+
+save_state = globalPropertyi("tu154b2/custom/save_state")
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -247,11 +249,11 @@ local function reset_switchers()
 	hs1_qty = hs1_qty + (get(temp_out) - 20) / 20
 	hs2_qty = hs2_qty + (get(temp_out) - 20) / 20
 	hs3_qty = hs3_qty + (get(temp_out) - 20) / 20
-	temp_bar1_prev=get(temp_out)
-	temp_bar2_prev=temp_bar1_prev
+	temp_bar1_prev = get(temp_out)
+	temp_bar2_prev = temp_bar1_prev
 	if get(eng1_N1) > 25 then
-		acc_4 = 4
-		hs1_qty = hs1_qty - 4
+		acc_4 = 3.9
+		hs1_qty = hs1_qty - 3.9
 		-- acc_1 = 0
 		-- acc_2 = 0
 		-- acc_3 = 0
@@ -397,6 +399,8 @@ local elec_pump_2_start_timer=0
 local elec_pump_3_start_timer=0
 local base_feed=0.055 --Base Hydraulic power consumption (elevator)
 
+local hs_connect = 0
+
 
 function update()
 
@@ -412,6 +416,18 @@ if MASTER then
 	sim_start_timer = sim_start_timer + passed
 	if sim_start_timer > 10 then 
 		if notLoaded then reset_switchers() end
+	end
+	
+	if get(save_state) == 1 then
+		hs1_qty = sys_data_tbl.hyd_1_qty - acc_1 - acc_4
+		hs2_qty = sys_data_tbl.hyd_2_qty - acc_2 
+		hs3_qty = sys_data_tbl.hyd_3_qty - acc_3
+		temp_bar1_prev = sys_data_tbl.hyd_1_temp
+		temp_bar2_prev = sys_data_tbl.hyd_2_temp
+	-- else
+		-- sys_data_tbl.hyd_1_qty = hs1_qty + acc_1 + acc_4
+		-- sys_data_tbl.hyd_2_qty = hs2_qty + acc_2
+		-- sys_data_tbl.hyd_3_qty = hs3_qty + acc_3
 	end
 	
 	local gear1_fluid=get(fluid_1)
@@ -476,7 +492,7 @@ if MASTER then
 	local eng_pump_1_2, eng_pump_1_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_12)),press_1) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_1-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_12)),0)
 	local eng_pump_2, eng_pump_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_2)),press_2) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_2-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_2)),0)
 	local eng_pump_3, eng_pump_3_bp = NP89(RPM_3*(1 - get(hydro_pump_fail_3)),press_3) --math.max((-3.3/(1+math.exp(-eng_k3*(acc_3-4.2)))+1.64)*c_eng3* (1 - get(hydro_pump_fail_3)),0)
-	local elec_pump_2 = bool2int(power115_1 and power27L and get(pump_2) == 1 and get(hydro_elec_fail_2) == 0)
+	local elec_pump_2 = bool2int(power115_1 and power27R and get(pump_2) == 1 and get(hydro_elec_fail_2) == 0)
 	local elec_pump_3 = bool2int(power115_3 and power27R and get(pump_3) == 1 and get(hydro_elec_fail_3) == 0)
 	local el_pump_2,ns1_bp,W_el_1 = NS46(elec_pump_2 * elec_pump_2_start_timer,press_2)
 	local el_pump_3,ns2_bp,W_el_2 = NS46(elec_pump_3 * elec_pump_3_start_timer,press_3)
@@ -486,36 +502,47 @@ if MASTER then
 		local flow = (eng_pump_1_1 + eng_pump_1_2) * passed
 		acc_1 = acc_1 + flow
 		hs1_qty = hs1_qty - flow
+	else
+		eng_pump_1_1_bp = 0
+		eng_pump_1_2_bp = 0
 	end	
 
 	if hs2_qty > 0.1 then 
 		local flow = eng_pump_2 * passed
 		acc_2 = acc_2 + flow 
 		hs2_qty = hs2_qty - flow
+	else
+		eng_pump_2_bp = 0
 	end
 
 	if hs3_qty > 0.1 then 
 		local flow = eng_pump_3 * passed
 		acc_3 = acc_3 + flow
 		hs3_qty = hs3_qty - flow
+	else
+		eng_pump_3_bp = 0
 	end	
 
 	-- gain pressure from electrical pumps
 	
-	if hs2_qty > 0 then 
+	if hs2_qty > 0.1 then 
 		local flow = el_pump_2 * passed --elec_pump_2 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_2))) * passed * elec_pump_2_start_timer --*(0.7275*math.pow(acc_2 * 0.5,2)-2.956*(acc_2 * 0.5)+4)
 		acc_2 = acc_2 + flow
 		hs2_qty = hs2_qty - flow
+	else
+		ns1_bp = 0
 	end
-	if hs3_qty > 0 then 
+	if hs3_qty > 0.1 then 
 		local flow = el_pump_3 * passed --elec_pump_3 * (20/60 - 20/60 * interpolate(bypass_t,get(gs_press_3))) * passed  * elec_pump_3_start_timer --*(0.7275*math.pow(acc_3 * 0.5,2)-2.956*(acc_3 * 0.5)+4)
 		acc_3 = acc_3 + flow
 		hs3_qty = hs3_qty - flow
+	else
+		ns2_bp = 0
 	end
 	
 
 	-- charge the accumulator for emergency brakes
-	if get(accum_fill) == 1 and acc_4 < acc_1 and power27L then
+	if get(accum_fill) == 1 and acc_4 < acc_1 and power27R then
 		local flow = (acc_1 - acc_4) * 10
 		if flow * passed > acc_1 - acc_4 then
 			flow = (acc_1 - acc_4)/passed
@@ -528,7 +555,13 @@ if MASTER then
 	end
 
 	-- connect HS 1 and HS2
-	if get(connect2to1) == 1 and power27L and acc_2 > acc_1 and (get(gear2_deflect) > 0.06 or get(kontur_90th) == 0) then
+	if get(connect2to1) == 1 and power27R and (get(gear2_deflect) > 0.06 or get(kontur_90th) == 0) then
+		hs_connect = 1
+	elseif get(connect2to1) == 0 and power27R then
+		hs_connect = 0
+	end
+	
+	if hs_connect == 1 and acc_2 > acc_1 then
 		local flow = (acc_2 - acc_1) * 10
 		if flow * passed > acc_2 - acc_1 then
 			flow = (acc_2 - acc_1)/passed
@@ -592,7 +625,18 @@ if MASTER then
 	acc_3 = acc_3 - high_leak_3 * math.max(0,acc_3) * passed * 0.05
 	acc_4 = acc_4 - high_leak_4 * math.max(0,acc_4) * passed * 0.05
 	
-
+	if acc_1 < 0 then
+		acc_1 = 0
+	end
+	if acc_2 < 0 then
+		acc_2 = 0
+	end
+	if acc_3 < 0 then
+		acc_3 = 0
+	end
+	if acc_4 < 0 then
+		acc_4 = 0
+	end
 	-- для каждого потребителя давления нужно прописывать перекачку масла из аккумуляторов обратно в баки
 	-- кроме утечек :)
 	
@@ -751,8 +795,8 @@ if MASTER then
 	local W_1 = W_1_hyd + W_2_hyd - W_1_cool + W_1_t
 	local W_3 = W_3_hyd - W_3_cool + W_3_t
 	-- Temperatures from energy
-	local temp_bar1 = (273 + temp_bar1_prev) + W_1 * passed / c_oil / (hs1_qty + hs2_qty) * 1000 / 850000 - 273
-	local temp_bar2 = (273 + temp_bar2_prev) + W_3 * passed / c_oil /  hs3_qty * 1000 / 850000 - 273
+	local temp_bar1 = (273 + temp_bar1_prev) + W_1 * passed / c_oil / math.max(1,hs1_qty + hs2_qty) * 1000 / 850000 - 273
+	local temp_bar2 = (273 + temp_bar2_prev) + W_3 * passed / c_oil / math.max(1,hs3_qty) * 1000 / 850000 - 273
 	-- temperature delta and fluid expansion (0.5L for every 10° difference from +20°)
 	local d_temp_1 = (temp_bar1 - temp_bar1_prev) / 20
 	local d_temp_2 = (temp_bar2 - temp_bar2_prev) / 20
@@ -900,11 +944,14 @@ if MASTER then
 	set(bak_qty_2, hs2_qty)
 	set(bak_qty_3, hs3_qty)	
 	
-	
 	-- whole system = barrel + pipes + accums
 	set(system_qty_1, hs1_qty + 79 + acc_1 + acc_4)
 	set(system_qty_2, hs2_qty + 79 + acc_2 )
 	set(system_qty_3, hs3_qty + 21 + acc_3)
+	-- set(db1,acc_1)
+	-- set(db2,acc_2)
+	-- set(db3,acc_3)
+	
 	
 
 	set(gs_qty_12_show, hs1_qty + hs2_qty)

@@ -224,7 +224,7 @@ local pitch_joy_prev=0
 local joy_pitch2=0
 local elev_coef = get(elev_coeff)
 -- local joy_pitch2_prev=0
-local reduce=0
+local reduce=1
 local yoke_tbl = {
 {-2, -2},
 {-1, -1},
@@ -293,9 +293,9 @@ function update()
 	local HS2 = math.min(get(gs_press_2) / 63, 1)
 	local HS3 = math.min(get(gs_press_3) / 63, 1)
 	
-	HS1 = HS1 * bool2int(HS1>0.1)
-	HS2 = HS2 * bool2int(HS2>0.1)
-	HS3 = HS3 * bool2int(HS3>0.1)
+	HS1 = HS1 * bool2int(HS1>0.2)
+	HS2 = HS2 * bool2int(HS2>0.2)
+	HS3 = HS3 * bool2int(HS3>0.2)
 	--------------------------
 	-- ailerons and roll-spoilers --
 	local cockpit_yoke_roll = get(joy_roll) + get(int_roll_trim) --*(0.7+0.3*get(nosewheel_turn_sel))

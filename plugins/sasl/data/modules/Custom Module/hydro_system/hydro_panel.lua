@@ -71,11 +71,11 @@ defineProperty("gear3_deflect", globalProperty("sim/flightmodel2/gear/tire_verti
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
-defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
 local panel_x=0.727
 local panel_z=-21.171
 local dist_gain=5
@@ -183,8 +183,8 @@ local k_dmp2 = k_dmp * 1.05
 local c_v2 = c_v * 3.5
 
 local function lamps_eng()
-	local test_btn = get(lamp_test_hydro) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
+	local lamps_brt = math.max(( get(bus27_volt_left) - 10) / 18.5, 0)
+	local test_btn = get(lamp_test_hydro) * lamps_brt
 	
 	press_1 = get(gs_press_1)
 	press_2 = get(gs_press_2)
@@ -215,8 +215,8 @@ end
 
 
 local function lamps_front()
-	local test_btn = get(lamp_test_front) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
+	local lamps_brt = math.max(( get(bus27_volt_left) - 10) / 18.5, 0)
+	local test_btn = get(lamp_test_front) * lamps_brt
 	
 	local front_hydr_fail_1_brt = 0
 	if press_1 < 100 then front_hydr_fail_1_brt = 1 end
@@ -340,7 +340,7 @@ local right_br_act = 0
 
 local function gauges()
 	
-	local power36 = bool2int(get(bus36_volt_pts250_1) > 30 or get(bus36_volt_right) > 30)
+	local power36 = bool2int(get(bus36_volt_pts250_1) > 30)
 	local power27L = bool2int(get(bus27_volt_left) > 13)
 	local power27R = bool2int(get(bus27_volt_right) > 13)
 	
@@ -385,7 +385,7 @@ local function gauges()
 	local test_btn_12 = get(qty_test_12)
 	local test_btn_3 = get(qty_test_3)
 	
-	local qty_12_need =  interpolate(oil_qty_12_t, get(gs_qty_12_show) * test_btn_12 * power27L)
+	local qty_12_need =  interpolate(oil_qty_12_t, get(gs_qty_12_show) * test_btn_12 * power27R)
 	local qty_3_need = interpolate(oil_qty_3_t, get(gs_qty_3_show) * test_btn_3 * power27R)
 	
 	local v_q1_set,q1_set = needle_pos2 (oil_qty_12_act,qty_12_need,passed,v_q1,k_spr2,k_dmp2,k_v,c_v2)

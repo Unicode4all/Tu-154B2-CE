@@ -2112,7 +2112,7 @@ function update()
 	end
 	
 	-- save the file
-	if (save_counter > 30 or get(save_state) == 1) and get(slider50)>0 and string.len(liv)>0 then
+	if save_counter > 30 and (get(save_state) == 1 or get(slider50) > 0 ) and string.len(liv) > 0 then
 		write_file()
 		save_counter = 0
 		set(save_state, 0) -- reset saving state dataref
