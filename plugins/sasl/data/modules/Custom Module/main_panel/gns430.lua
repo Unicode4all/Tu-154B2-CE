@@ -1,4 +1,4 @@
--- this is GNS supplement logicS
+-- this is GNS supplement logic
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
 
 defineProperty("show_gns", globalPropertyi("tu154b2/custom/anim/show_gns"))
@@ -33,32 +33,32 @@ defineProperty("LS_angle", globalPropertyf("tu154b2/custom/rotary/GNS430/LS_angl
 defineProperty("RB_angle", globalPropertyf("tu154b2/custom/rotary/GNS430/RB_angle")) -- RB_angle
 defineProperty("RS_angle", globalPropertyf("tu154b2/custom/rotary/GNS430/RS_angle")) -- RS_angle
 
-defineProperty("kill_map_fms_line", globalPropertyi("sim/graphics/misc/kill_map_fms_line")) --
-defineProperty("gps_dest", globalPropertyi("tu154b2/custom/radio/curr_wp"))
-defineProperty("gps_dest_app", globalPropertyi("tu154b2/custom/radio/curr_wp_app"))
-defineProperty("gps_phase", globalPropertyi("tu154b2/custom/radio/appr_phase"))
-defineProperty("gps_n_wp", globalPropertyi("tu154b2/custom/radio/gns_n_waypoints"))
-defineProperty("gps_dest_lat", globalPropertyf("tu154b2/custom/radio/dest_lat"))
-defineProperty("gps_dest_lon", globalPropertyf("tu154b2/custom/radio/dest_lon"))
-defineProperty("curr_lat", globalPropertyf("sim/flightmodel/position/latitude"))
-defineProperty("curr_lon", globalPropertyf("sim/flightmodel/position/longitude"))
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
-defineProperty("gps_dest_app_lat", globalPropertyf("tu154b2/custom/radio/dest_app_lat"))
-defineProperty("gps_dest_app_lon", globalPropertyf("tu154b2/custom/radio/dest_app_lon"))
-defineProperty("gps_dest_lat2", globalPropertyf("tu154b2/custom/radio/dest_lat2"))
-defineProperty("gps_dest_lon2", globalPropertyf("tu154b2/custom/radio/dest_lon2"))
-defineProperty("gps_dest_app_lat2", globalPropertyf("tu154b2/custom/radio/dest_app_lat2"))
-defineProperty("gps_dest_app_lon2", globalPropertyf("tu154b2/custom/radio/dest_app_lon2"))
-defineProperty("magv", globalPropertyf("sim/flightmodel/position/magnetic_variation"))
-defineProperty("but_up", globalPropertyi("tu154b2/custom/taws/taws_button")) 
-defineProperty("tss_rot", globalPropertyi("tu154b2/custom/rotary/GNS430/tss_rot"))
-hsi_source = globalPropertyi("sim/cockpit/switches/HSI_selector2")
+kill_map_fms_line = globalPropertyi("sim/graphics/misc/kill_map_fms_line") --
+-- gps_dest = globalPropertyi("tu154b2/custom/radio/curr_wp")
+-- gps_dest_app = globalPropertyi("tu154b2/custom/radio/curr_wp_app")
+-- gps_phase = globalPropertyi("tu154b2/custom/radio/appr_phase")
+-- gps_n_wp = globalPropertyi("tu154b2/custom/radio/gns_n_waypoints")
+-- gps_dest_lat = globalPropertyf("tu154b2/custom/radio/dest_lat")
+-- gps_dest_lon = globalPropertyf("tu154b2/custom/radio/dest_lon")
+-- curr_lat = globalPropertyf("sim/flightmodel/position/latitude")
+-- curr_lon = globalPropertyf("sim/flightmodel/position/longitude")
+-- frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
+-- gps_dest_app_lat = globalPropertyf("tu154b2/custom/radio/dest_app_lat")
+-- gps_dest_app_lon = globalPropertyf("tu154b2/custom/radio/dest_app_lon")
+-- gps_dest_lat2 = globalPropertyf("tu154b2/custom/radio/dest_lat2")
+-- gps_dest_lon2 = globalPropertyf("tu154b2/custom/radio/dest_lon2")
+-- gps_dest_app_lat2 = globalPropertyf("tu154b2/custom/radio/dest_app_lat2")
+-- gps_dest_app_lon2 = globalPropertyf("tu154b2/custom/radio/dest_app_lon2")
+-- magv = globalPropertyf("sim/flightmodel/position/magnetic_variation")
+but_up = globalPropertyi("tu154b2/custom/taws/taws_button")
+tss_rot = globalPropertyi("tu154b2/custom/rotary/GNS430/tss_rot")
+--hsi_source = globalPropertyi("sim/cockpit/switches/HSI_selector2")
 show_taws= globalPropertyi("tu154b2/custom/anim/show_taws")
 kontur_on = globalPropertyi("tu154b2/custom/b2/kontur_on") 
 -- kontur_off = globalPropertyi("sim/custom/b2/kontur_off")
 kontur70 = globalPropertyi("sim/custom/b2/kontur_70th")
-z_bok = globalPropertyf("sim/custom/kontur/zbok")
-z_bok_nm = globalPropertyf("sim/custom/kontur/zbok_nm")
+-- z_bok = globalPropertyf("sim/custom/kontur/zbok")
+-- z_bok_nm = globalPropertyf("sim/custom/kontur/zbok_nm")
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
@@ -76,8 +76,8 @@ local gps_dest_app_prev=0
 local LB_left = findCommand("sim/GPS/g430n1_coarse_down")
 local but_sound=0
 local rot_sound=0
-local dir_lat = get(curr_lat)
-local dir_lon = get(curr_lon)
+-- local dir_lat = get(curr_lat)
+-- local dir_lon = get(curr_lon)
 local dir_to = 0
 
 function LB_left_hnd(phase)
@@ -186,8 +186,8 @@ function dirct_hnd(phase)
 		else
 			dir_to = 1
 			dir_arm=0
-			dir_lat = get(curr_lat)
-			dir_lon = get(curr_lon)
+			-- dir_lat = get(curr_lat)
+			-- dir_lon = get(curr_lon)
 		end
 	elseif phase == 2 then
         but_sound = 0
@@ -249,8 +249,8 @@ function ent_hnd(phase)
 		--set(sync,1)
 		if dir_arm==1 then
 			dir_to = 1
-			dir_lat = get(curr_lat)
-			dir_lon = get(curr_lon)
+			-- dir_lat = get(curr_lat)
+			-- dir_lon = get(curr_lon)
 			dir_arm=0
 		else
 			dir_arm=0
@@ -381,76 +381,76 @@ sim/GPS/g430n1_ent				ENT button
 
 --]]
 
-local function distance(lat,lon,lat2,lon2,magvar)
-	local phi_1=lat*math.pi/180
-	local phi_2=lat2*math.pi/180
-	local phi=phi_2-phi_1
-	local lam=(lon2-lon)*math.pi/180
-	local a=math.sin(phi/2)*math.sin(phi/2)+math.cos(phi_1)*math.cos(phi_2)*math.sin(lam/2)*math.sin(lam/2)
-	local c=2*math.atan2(math.sqrt(a),math.sqrt(1-a))
-	local d=6371*c/1.852
-	return d
-end
+-- local function distance(lat,lon,lat2,lon2,magvar)
+	-- local phi_1=lat*math.pi/180
+	-- local phi_2=lat2*math.pi/180
+	-- local phi=phi_2-phi_1
+	-- local lam=(lon2-lon)*math.pi/180
+	-- local a=math.sin(phi/2)*math.sin(phi/2)+math.cos(phi_1)*math.cos(phi_2)*math.sin(lam/2)*math.sin(lam/2)
+	-- local c=2*math.atan2(math.sqrt(a),math.sqrt(1-a))
+	-- local d=6371*c/1.852
+	-- return d
+-- end
 
-local function crs(lat,lon,lat2,lon2,magvar)
-	local phi_1=lat*math.pi/180
-	local phi_2=lat2*math.pi/180
-	local phi=phi_1-phi_2
-	local lam=(lon2-lon)*math.pi/180
-	local course=math.atan2(math.sin(lam)*math.cos(phi_2),math.cos(phi_1)*math.sin(phi_2)-math.sin(phi_1)*math.cos(phi_2)*math.cos(lam))+magvar*math.pi/180
-	course=course/math.pi*180
-	if course < 0 then 
-		course = 360+course
-	elseif course > 360 then 
-		course =course - 360 
-	end
-	return course
-end
+-- local function crs(lat,lon,lat2,lon2,magvar)
+	-- local phi_1=lat*math.pi/180
+	-- local phi_2=lat2*math.pi/180
+	-- local phi=phi_1-phi_2
+	-- local lam=(lon2-lon)*math.pi/180
+	-- local course=math.atan2(math.sin(lam)*math.cos(phi_2),math.cos(phi_1)*math.sin(phi_2)-math.sin(phi_1)*math.cos(phi_2)*math.cos(lam))+magvar*math.pi/180
+	-- course=course/math.pi*180
+	-- if course < 0 then 
+		-- course = 360+course
+	-- elseif course > 360 then 
+		-- course =course - 360 
+	-- end
+	-- return course
+-- end
 
-local function x_trk(pos_lat,pos_lon,lat,lon,lat2,lon2)
-	local d13=distance(lat,lon,pos_lat,pos_lon)*1.852/6371
-	local tet13=crs(lat,lon,pos_lat,pos_lon,0)
-	local tet12=crs(lat,lon,lat2,lon2,0)
-	local xtr=math.asin(math.sin(d13)*math.sin((tet13-tet12)*math.pi/180))*6371
-	return xtr
-end
+-- local function x_trk(pos_lat,pos_lon,lat,lon,lat2,lon2)
+	-- local d13=distance(lat,lon,pos_lat,pos_lon)*1.852/6371
+	-- local tet13=crs(lat,lon,pos_lat,pos_lon,0)
+	-- local tet12=crs(lat,lon,lat2,lon2,0)
+	-- local xtr=math.asin(math.sin(d13)*math.sin((tet13-tet12)*math.pi/180))*6371
+	-- return xtr
+-- end
 
 
 
-local overr = 0
-local side_filt=0
-local appr=0
+-- local overr = 0
+-- local side_filt=0
+-- local appr=0
 function update()
-	local passed = get(frame_time)
-	local magvar=get(magv)
-	local wp_lat=get(gps_dest_lat)
-	local wp_lon=get(gps_dest_lon)
-	local wp_lat2=get(gps_dest_lat2)
-	local wp_lon2=get(gps_dest_lon2)
-	-- Calculate distance to destination WP
-	local d=-1
-	local phi_1=get(curr_lat)*math.pi/180
-	local course=0
-	local curr_dest=get(gps_dest)
-	local curr_dest_app=get(gps_dest_app)
-	local app_lat=get(gps_dest_app_lat)
-	local app_lon=get(gps_dest_app_lon)
-	local app_lat2=get(gps_dest_app_lat2)
-	local app_lon2=get(gps_dest_app_lon2)
-	-- force right HSI to radnav mode
-	if get(hsi_source)~=1 then
-		set(hsi_source,1)
-	end
-	-- calculate next leg course
-	if wp_lat~=0 and wp_lon~=0 then
-		d=distance(wp_lat,wp_lon,get(curr_lat),get(curr_lon))
-		if wp_lat2~=0 and wp_lon2~=0 then
-			course=crs(wp_lat,wp_lon,wp_lat2,wp_lon2,magvar)
-		end
-		if curr_dest==get(gps_n_wp)-1 and app_lat~=0 and app_lon~=0 then
-			course=crs(wp_lat,wp_lon,app_lat,app_lon,magvar)
-		end
-	end
+	-- local passed = get(frame_time)
+	-- local magvar=get(magv)
+	-- local wp_lat=get(gps_dest_lat)
+	-- local wp_lon=get(gps_dest_lon)
+	-- local wp_lat2=get(gps_dest_lat2)
+	-- local wp_lon2=get(gps_dest_lon2)
+	-- -- Calculate distance to destination WP
+	-- local d=-1
+	-- local phi_1=get(curr_lat)*math.pi/180
+	-- local course=0
+	-- local curr_dest=get(gps_dest)
+	-- local curr_dest_app=get(gps_dest_app)
+	-- local app_lat=get(gps_dest_app_lat)
+	-- local app_lon=get(gps_dest_app_lon)
+	-- local app_lat2=get(gps_dest_app_lat2)
+	-- local app_lon2=get(gps_dest_app_lon2)
+	-- -- force right HSI to radnav mode
+	-- if get(hsi_source)~=1 then
+		-- set(hsi_source,1)
+	-- end
+	-- -- calculate next leg course
+	-- if wp_lat~=0 and wp_lon~=0 then
+		-- d=distance(wp_lat,wp_lon,get(curr_lat),get(curr_lon))
+		-- if wp_lat2~=0 and wp_lon2~=0 then
+			-- course=crs(wp_lat,wp_lon,wp_lat2,wp_lon2,magvar)
+		-- end
+		-- if curr_dest==get(gps_n_wp)-1 and app_lat~=0 and app_lon~=0 then
+			-- course=crs(wp_lat,wp_lon,app_lat,app_lon,magvar)
+		-- end
+	-- end
 	-- distance to approach FP destination WP
 	-- local d_app=-1
 	-- local course_app=0
@@ -477,16 +477,16 @@ function update()
 		--set(GNS430_dev, get(gps_hdef_dot))
 		set(GNS430_flag, bool2int(get(gps_fromto) == 0 or get(gps_power) == 0))
 		-- Approach phase flag
-		if (d<3 and d>0 and get(gps_phase)==0 and curr_dest==get(gps_n_wp)-1) or (curr_dest_app~=gps_dest_app_prev and appr==0) then
-			appr=1
-			--set(gps_phase,1)
-		elseif (get(gps_phase)==1 and curr_dest<get(gps_n_wp)-1) or curr_dest~=gps_dest_prev then
-			appr=0
-			--set(gps_phase,0)
-		end
+		-- if (d<3 and d>0 and get(gps_phase)==0 and curr_dest==get(gps_n_wp)-1) or (curr_dest_app~=gps_dest_app_prev and appr==0) then
+			-- appr=1
+			-- --set(gps_phase,1)
+		-- elseif (get(gps_phase)==1 and curr_dest<get(gps_n_wp)-1) or curr_dest~=gps_dest_prev then
+			-- appr=0
+			-- --set(gps_phase,0)
+		-- end
 		
 		local gps_course=get(gps_course_degtm)
-		local z=get(gps_hdef_dot)* 1.852* get(gps_dot)
+		-- local z=get(gps_hdef_dot)* 1.852* get(gps_dot)
 		-- local cross=0
 		-- calculate cross track error for either enroute or approach legs
 		-- if dir_to == 1 then
@@ -532,11 +532,11 @@ function update()
 				-- gps_switchover_timer=0
 			-- end
 		-- end
-		gps_dest_app_prev=curr_dest_app
-		gps_dest_prev=curr_dest
-		local side = z--*(1-math.min(gps_switchover_timer,1))-cross*math.min(gps_switchover_timer,1) -- meters
+		-- gps_dest_app_prev=curr_dest_app
+		-- gps_dest_prev=curr_dest
+		local side = get(gps_hdef_dot)* 1.852* get(gps_dot) -- z--*(1-math.min(gps_switchover_timer,1))-cross*math.min(gps_switchover_timer,1) -- meters
 		if get(GNS430_flag) == 1 then 
-			side=0
+			side = 0
 		end
 		-- if math.abs(get(gps_hdef_dot))>=2.5 then
 			-- set(z_bok,cross)
@@ -553,6 +553,11 @@ function update()
 		if get(kontur70)==1 and get(show_gns)==1 then
 			taws_show=1
 		end
+		local fms_line = 1
+		if get(kontur_on) == 1 and fms_line == 1 then
+			fms_line = 0
+		end
+		set(kill_map_fms_line,fms_line)
 		set(show_taws,taws_show)
 	end
 	set(but_up,but_sound)
@@ -560,8 +565,8 @@ function update()
 	set(GNS_direct,dir_to)
 end
 
-function onAvionicsDone()
-	
+function onModuleDone()
+	set(kill_map_fms_line,0)
 	set(gps_power, 1)
 	set(overrideGPS,0)
 	print("GPS reset")

@@ -61,8 +61,8 @@ simDR_left_panel_lit = find_dataref("tu154b2/custom/lights/left_panel_int_set")
 simDR_left_panel_c_lit = find_dataref("tu154b2/custom/lights/mid_left_panel_int_set")
 simDR_right_panel_lit = find_dataref("tu154b2/custom/lights/right_panel_int_set")
 simDR_right_panel_c_lit = find_dataref("tu154b2/custom/lights/mid_right_panel_int_set")
-simDR_left_pnppkp_lit = find_dataref("tu154b2/custom/switchers/airbleed/ground_cond_on_cap")
-simDR_right_pnppkp_lit = find_dataref("tu154b2/custom/switchers/airbleed/skv_faster_work_cap")
+simDR_left_pnppkp_lit = find_dataref("tu154b2/custom/lights/left_pkp_set")
+simDR_right_pnppkp_lit = find_dataref("tu154b2/custom/lights/right_pkp_set")
 simDR_chocks = find_dataref("tu154b2/custom/anim/gear_blocks")
 --*************************************************************************************--
 --** 				        MAIN PROGRAM LOGIC                                       **--
@@ -605,7 +605,7 @@ function after_physics()
         livery_change()
     end
 
-    kontur_set()
+    --kontur_set()
     lights_sync()
     baro_sync()
     antenna()

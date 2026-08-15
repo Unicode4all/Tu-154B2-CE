@@ -378,7 +378,7 @@ function update()
     
 	local passed = get(frame_time)
 	
-	local main_vol =1 --get(eng_main_vol)
+	local main_vol = get(eng_main_vol)
 	
 	local rpm_1 = get(eng1_N1_2)
 	local rpm_2 = get(eng2_N1_2)
@@ -757,12 +757,12 @@ function update()
 		setSampleGain(out_starter_left_1, 1000 * starter_L * main_vol)
 		setSampleGain(out_starter_right_1, 1000 * starter_R * main_vol)
         
-		local rev_snd =  math.min(R_1*rev_L*0.5+R_3*rev_R*0.5,1)*2000* main_vol
+		local rev_snd =  math.min(R_1*rev_L*0.5+R_3*rev_R*0.5,1)*2000 * main_vol
 		local rev_ptch = 1000 + (math.max(rpm_1, rpm_3) - 78) * 10
 		--set(db3, rev_out_L*rev_snd)
-		setSampleGain(out_reverse_L, rev_out_L*rev_snd)
+		setSampleGain(out_reverse_L, rev_out_L * rev_snd * main_vol)
 		setSamplePitch(out_reverse_L, rev_ptch)
-		setSampleGain(out_reverse_R, rev_out_R*rev_snd)
+		setSampleGain(out_reverse_R, rev_out_R * rev_snd * main_vol)
 		setSamplePitch(out_reverse_R, rev_ptch)
         
         

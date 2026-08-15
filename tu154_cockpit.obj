@@ -16366,10 +16366,10 @@ ATTR_no_hard
 ANIM_begin
 ANIM_trans 0.0845 0.000000 0.000000 0 0 0 0.000000 1.000000 tu154b2/custom/anim/show_taws
 TRIS 2382 6
+ANIM_end
 ANIM_begin
 ATTR_manip_toggle left_right 1.000000 0.000000 sim/custom/switchers/tcas_select
 TRIS 2388 6
-ANIM_end
 ANIM_end
 ANIM_begin
 ATTR_manip_toggle left_right 1.000000 0.000000 tu154b2/custom/switchers/vbe_select
@@ -18680,7 +18680,7 @@ ATTR_manip_wheel 1.000000
 TRIS 17745 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_large 0.000000 0.000000 -0.200000 0.000000 10.000000 tu154b2/custom/switchers/airbleed/ground_cond_on_cap
+ATTR_manip_drag_axis rotate_large 0.000000 0.000000 -0.200000 0.000000 10.000000 tu154b2/custom/lights/left_pkp_set
 ATTR_manip_wheel 1.000000
 TRIS 17751 6
 ANIM_end
@@ -18705,7 +18705,7 @@ ATTR_manip_wheel 1.000000
 TRIS 17775 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_large 0.000000 0.000000 0.200000 0.000000 10.000000 tu154b2/custom/switchers/airbleed/skv_faster_work_cap
+ATTR_manip_drag_axis rotate_large 0.000000 0.000000 0.200000 0.000000 10.000000 tu154b2/custom/lights/right_pkp_set
 ATTR_manip_wheel 1.000000
 TRIS 17781 6
 ANIM_end

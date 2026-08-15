@@ -96,8 +96,8 @@ defineProperty("icao_wx_3", globalPropertyi("sim/custom/t154_efb/wx_icao3"))
 defineProperty("icao_wx_4", globalPropertyi("sim/custom/t154_efb/wx_icao4"))
 
 
-defineProperty("slider0", globalPropertyi("tu154b2/custom/switchers/airbleed/ground_cond_on_cap"))
-defineProperty("slider1", globalPropertyi("tu154b2/custom/switchers/airbleed/skv_faster_work_cap"))
+defineProperty("slider0", globalPropertyi("tu154b2/custom/lights/left_pkp_set"))
+defineProperty("slider1", globalPropertyi("tu154b2/custom/lights/right_pkp_set"))
 defineProperty("slider2", globalPropertyi("tu154b2/custom/switchers/spu_2_power"))
 defineProperty("slider3", globalProperty("sim/cockpit2/switches/custom_slider_on[0]"))
 defineProperty("slider4", globalProperty("sim/cockpit2/switches/custom_slider_on[1]"))

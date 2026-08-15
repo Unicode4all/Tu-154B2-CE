@@ -232138,7 +232138,7 @@ TRIS 263814 168
 ANIM_end
 ANIM_begin
 ANIM_trans 0.879383 -1.957660 -21.245701 0.879383 -1.957660 -21.245701 0.000000 0.000000 none
-ANIM_rotate_begin -0.302543 0.943179 0.137405 tu154b2/custom/switchers/airbleed/skv_faster_work_cap
+ANIM_rotate_begin -0.302543 0.943179 0.137405 tu154b2/custom/lights/right_pkp_set
 ANIM_rotate_key 0.000000 90.000000
 ANIM_rotate_key 5.000000 0.000000
 ANIM_rotate_key 10.000000 -90.000000
@@ -232196,7 +232196,7 @@ TRIS 265806 168
 ANIM_end
 ANIM_begin
 ANIM_trans -0.950920 -1.931500 -21.275999 -0.950920 -1.931500 -21.275999 0.000000 0.000000 none
-ANIM_rotate_begin 0.325527 0.943180 0.066668 tu154b2/custom/switchers/airbleed/ground_cond_on_cap
+ANIM_rotate_begin 0.325527 0.943180 0.066668 tu154b2/custom/lights/left_pkp_set
 ANIM_rotate_key 0.000000 90.000000
 ANIM_rotate_key 5.000000 0.000000
 ANIM_rotate_key 10.000000 -90.000000

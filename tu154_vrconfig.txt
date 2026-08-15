@@ -352,13 +352,13 @@ BEGIN_MANIP drag_axis tu154b2/custom/lights/right_panel_int_set
 	DEG_PER_ACTION 30
 END_MANIP
 
-BEGIN_MANIP drag_axis tu154b2/custom/switchers/airbleed/ground_cond_on_cap
-	ACTION axis_knob 0 10 1 tu154b2/custom/switchers/airbleed/ground_cond_on_cap
+BEGIN_MANIP drag_axis tu154b2/custom/lights/left_pkp_set
+	ACTION axis_knob 0 10 1 tu154b2/custom/lights/left_pkp_set
 	DEG_PER_ACTION 30
 END_MANIP
 
-BEGIN_MANIP drag_axis tu154b2/custom/switchers/airbleed/skv_faster_work_cap
-	ACTION axis_knob 0 10 1 tu154b2/custom/switchers/airbleed/skv_faster_work_cap
+BEGIN_MANIP drag_axis tu154b2/custom/lights/right_pkp_set
+	ACTION axis_knob 0 10 1 tu154b2/custom/lights/right_pkp_set
 	DEG_PER_ACTION 30
 END_MANIP
 

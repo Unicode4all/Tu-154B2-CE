@@ -69,8 +69,8 @@ simDR_gauges1 = find_dataref("tu154b2/custom/switchers/eng/gauges_on_1")
 simDR_gauges2 = find_dataref("tu154b2/custom/switchers/eng/gauges_on_2")
 simDR_gauges3 = find_dataref("tu154b2/custom/switchers/eng/gauges_on_3")
 
-simDR_left_pnppkp_light = find_dataref("tu154b2/custom/switchers/airbleed/ground_cond_on_cap")
-simDR_right_pnppkp_light = find_dataref("tu154b2/custom/switchers/airbleed/skv_faster_work_cap")
+simDR_left_pnppkp_light = find_dataref("tu154b2/custom/lights/left_pkp_set")
+simDR_right_pnppkp_light = find_dataref("tu154b2/custom/lights/right_pkp_set")
 
 
 simDR_fireturn1 = find_dataref("tu154b2/custom/fire/ext_used_1")

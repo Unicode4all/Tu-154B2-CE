@@ -88,7 +88,7 @@ simDR_efis_2_vor					= find_dataref("sim/cockpit2/EFIS/EFIS_vor_on_copilot")
 simDR_efis_2_apt					= find_dataref("sim/cockpit2/EFIS/EFIS_airport_on_copilot")
 simDR_efis_2_tcas					= find_dataref("sim/cockpit2/EFIS/EFIS_tcas_on_copilot")
 
-simDR_fms_line					= find_dataref("sim/graphics/misc/kill_map_fms_line")
+--simDR_fms_line					= find_dataref("sim/graphics/misc/kill_map_fms_line")
 simDR_36v				= find_dataref("tu154b2/custom/elec/bus36_volt_left")
 simDR_rv2				= find_dataref("tu154b2/custom/elec/rv5_right_cc")
 simDRutchours				= find_dataref("sim/cockpit2/clock_timer/zulu_time_hours")
@@ -2041,11 +2041,11 @@ end
         -- simDR_taws_dist = 0
     -- end
     
-    if T154_kontur_on == 1 then
-		simDR_fms_line = 0
-	else
-		simDR_fms_line = 1
-	end
+    -- if T154_kontur_on == 1 then
+		-- simDR_fms_line = 0
+	-- else
+		-- simDR_fms_line = 1
+	-- end
 	
 	if kontur_wx_l>0 then
 		simDR_efis_1_range = rng_wx_l

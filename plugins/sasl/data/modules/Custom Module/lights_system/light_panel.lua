@@ -6,14 +6,14 @@ defineProperty("mid_left_panel_int_set", globalPropertyf("tu154b2/custom/lights/
 defineProperty("left_panel_int_set", globalPropertyf("tu154b2/custom/lights/left_panel_int_set")) --  регулятор встроенного освещения левой панели
 defineProperty("left_panel_fld_set", globalPropertyf("tu154b2/custom/lights/left_panel_flood_set")) --  регулятор встроенного освещения левой панели
 defineProperty("right_panel_fld_set", globalPropertyf("tu154b2/custom/lights/right_panel_flood_set")) --  регулятор встроенного освещения левой панели
-defineProperty("pkp_left", globalPropertyf("tu154b2/custom/switchers/airbleed/ground_cond_on_cap"))
+defineProperty("pkp_left", globalPropertyf("tu154b2/custom/lights/left_pkp_set"))
 defineProperty("front_flood", globalPropertyf("tu154b2/custom/lights/front_panel_flood_set"))
 defineProperty("ovhd_back_flood", globalPropertyf("tu154b2/custom/lights/ovhd_back_panel_flood_set"))
 defineProperty("ovhd_front_flood", globalPropertyf("tu154b2/custom/lights/ovhd_front_panel_flood_set"))
 defineProperty("mid_flood", globalPropertyf("tu154b2/custom/lights/mid_panel_flood_set"))
 defineProperty("ovhd_panel", globalPropertyi("tu154b2/custom/lights/ovhd_panel_int_set")) -- 
 defineProperty("nvu_panel", globalPropertyi("tu154b2/custom/lights/mid_left_panel_int_set")) -- 
-defineProperty("pkp_right", globalPropertyi("tu154b2/custom/switchers/airbleed/skv_faster_work_cap")) -- 
+defineProperty("pkp_right", globalPropertyi("tu154b2/custom/lights/right_pkp_set")) -- 
 
 defineProperty("right_panel_int_set", globalPropertyf("tu154b2/custom/lights/right_panel_int_set")) -- регулятор встроенного освещения правой панели
 defineProperty("mid_right_panel_int_set", globalPropertyf("tu154b2/custom/lights/mid_right_panel_int_set")) -- регулятор встроенного освещения передней панели 2П

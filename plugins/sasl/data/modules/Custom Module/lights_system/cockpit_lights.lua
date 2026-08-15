@@ -190,22 +190,26 @@ defineProperty("l11_8", globalProperty("sim/weapons/Qrad[8]")) set(l11_8, 1)  --
 
 
 -- panel lights
-defineProperty("nvu_lit", globalPropertyf("tu154b2/custom/lights/nvu_panel_int")) -- 
-defineProperty("mid_left_panel_int", globalPropertyf("tu154b2/custom/lights/mid_left_panel_int"))  -- €ркость свечени€ пъедестала
-defineProperty("left_panel_int", globalPropertyf("tu154b2/custom/lights/left_panel_int"))  -- €ркость свечени€ встроенного освещени€ панели  ¬—
-defineProperty("right_panel_int", globalPropertyf("tu154b2/custom/lights/right_panel_int"))   -- €ркость свечени€ встроенного освещени€ панели 2ѕ
-defineProperty("mid_right_panel_int", globalPropertyf("tu154b2/custom/lights/mid_right_panel_int"))  -- €ркость свечени€ встроенного освещени€ средней передней панели
-defineProperty("ovhd_panel_int", globalPropertyf("tu154b2/custom/lights/ovhd_panel_int"))   -- €ркость свечени€ встроенного освещени€ верхней панели
-defineProperty("left_panel_flood", globalPropertyf("tu154b2/custom/lights/left_panel_flood"))   -- €ркость заливающего света левой панели
-defineProperty("right_panel_flood", globalPropertyf("tu154b2/custom/lights/right_panel_flood"))   -- €ркость заливающего света правой панели
-defineProperty("mid_panel_flood", globalPropertyf("tu154b2/custom/lights/mid_panel_flood"))   -- €ркость заливающего света центральной панели
-defineProperty("front_panel_flood", globalPropertyf("tu154b2/custom/lights/front_panel_flood"))   -- €ркость заливающего света передней панели
-defineProperty("ovhd_front_panel_flood", globalPropertyf("tu154b2/custom/lights/ovhd_front_panel_flood"))   -- €ркость заливающего света передней части оверхеда
-defineProperty("ovhd_back_panel_flood", globalPropertyf("tu154b2/custom/lights/ovhd_back_panel_flood"))   -- €ркость заливающего света задней части оверхеда
-defineProperty("km_panel_flood", globalPropertyf("tu154b2/custom/lights/km_panel_flood"))   -- €ркость освещени€ панели Ѕ»
-defineProperty("eng_panel_flood", globalPropertyf("tu154b2/custom/lights/eng_panel_flood"))   -- €ркость освещени€ панели Ѕ»
-defineProperty("azs_panel_flood", globalPropertyf("tu154b2/custom/lights/azs_panel_flood"))   -- освещение панели ј«—
-defineProperty("left_spotlight_flood", globalPropertyf("tu154b2/custom/lights/left_spotlight_flood"))   -- €ркость левого фонарика
+nvu_lit = globalPropertyf("tu154b2/custom/lights/nvu_panel_int") -- 
+mid_left_panel_int = globalPropertyf("tu154b2/custom/lights/mid_left_panel_int")  -- €ркость свечени€ пъедестала
+left_panel_int = globalPropertyf("tu154b2/custom/lights/left_panel_int")  -- €ркость свечени€ встроенного освещени€ панели  ¬—
+right_panel_int = globalPropertyf("tu154b2/custom/lights/right_panel_int")   -- €ркость свечени€ встроенного освещени€ панели 2ѕ
+mid_right_panel_int = globalPropertyf("tu154b2/custom/lights/mid_right_panel_int")  -- €ркость свечени€ встроенного освещени€ средней передней панели
+ovhd_panel_int = globalPropertyf("tu154b2/custom/lights/ovhd_panel_int")   -- €ркость свечени€ встроенного освещени€ верхней панели
+left_panel_flood = globalPropertyf("tu154b2/custom/lights/left_panel_flood")   -- €ркость заливающего света левой панели
+right_panel_flood = globalPropertyf("tu154b2/custom/lights/right_panel_flood")   -- €ркость заливающего света правой панели
+mid_panel_flood = globalPropertyf("tu154b2/custom/lights/mid_panel_flood")   -- €ркость заливающего света центральной панели
+front_panel_flood = globalPropertyf("tu154b2/custom/lights/front_panel_flood")   -- €ркость заливающего света передней панели
+ovhd_front_panel_flood = globalPropertyf("tu154b2/custom/lights/ovhd_front_panel_flood")   -- €ркость заливающего света передней части оверхеда
+ovhd_back_panel_flood = globalPropertyf("tu154b2/custom/lights/ovhd_back_panel_flood")   -- €ркость заливающего света задней части оверхеда
+km_panel_flood = globalPropertyf("tu154b2/custom/lights/km_panel_flood")   -- €ркость освещени€ панели Ѕ»
+eng_panel_flood = globalPropertyf("tu154b2/custom/lights/eng_panel_flood")   -- €ркость освещени€ панели Ѕ»
+azs_panel_flood = globalPropertyf("tu154b2/custom/lights/azs_panel_flood")   -- освещение панели ј«—
+left_spotlight_flood = globalPropertyf("tu154b2/custom/lights/left_spotlight_flood")   -- €ркость левого фонарика
+pkp_left_set = globalPropertyi("tu154b2/custom/lights/left_pkp_set")
+pkp_right_set = globalPropertyi("tu154b2/custom/lights/right_pkp_set")
+pkp_left = globalPropertyf("tu154b2/custom/lights/left_pkp")
+pkp_right = globalPropertyf("tu154b2/custom/lights/right_pkp")
 
 
 -- controls
@@ -260,77 +264,87 @@ function update()
 
 local passed = get(frame_time)
 
--- calculate light coefficients depending on bus voltages
-local light_coef_27 = (get(bus27_volt_left) + get(bus27_volt_right)) / (29 * 2) -- настроить светимость так, чтобы при половине питани€ свет все-же был.
+local volt_left = get(bus27_volt_left) 
+local volt_right = get(bus27_volt_right) 
 
-local light_coef_115 = (get(bus115_1_volt) + get(bus115_3_volt)) / (117 * 2)
+-- calculate light coefficients depending on bus voltages
+local light_coef_27_L = volt_left / 29 -- настроить светимость так, чтобы при половине питани€ свет все-же был.
+local light_coef_27_R = volt_right / 29
+
+local light_coef_115_L = get(bus115_1_volt) / 117 
+local light_coef_115_R = get(bus115_3_volt) / 117 
 
 
 local current_115 = 0
 
 -- internal panel lights
-local pedestal_int = get(mid_left_panel_int_set) * light_coef_115
+local pedestal_int = math.ceil(get(mid_left_panel_int_set) * light_coef_115_L)
 set(mid_left_panel_int, pedestal_int * 0.1)
 
-local nvu_int = get(mid_left_panel_int_set) * light_coef_115 * get(nvu_power_on)
+local nvu_int = math.ceil(get(mid_left_panel_int_set) * light_coef_115_L * get(nvu_power_on))
 set(nvu_lit, nvu_int * 0.1)
 
-local left_pan_int = get(left_panel_int_set) * light_coef_115
+local left_pan_int = math.ceil(get(left_panel_int_set) * light_coef_27_L)
 set(left_panel_int, left_pan_int * 0.1)
 
-local right_pan_int = get(right_panel_int_set) * light_coef_115
+local right_pan_int = math.ceil(get(right_panel_int_set) * light_coef_27_R)
 set(right_panel_int, right_pan_int * 0.1)
 
-local mid_pan_int = get(mid_right_panel_int_set) * light_coef_115
+local mid_pan_int = math.ceil(get(mid_right_panel_int_set) * light_coef_27_L)
 set(mid_right_panel_int, mid_pan_int * 0.1)
 
-local ovhd_pan_int = get(ovhd_panel_int_set) * light_coef_115
+local ovhd_pan_int = math.ceil(get(ovhd_panel_int_set) * light_coef_27_L)
 set(ovhd_panel_int, ovhd_pan_int * 0.1)
 
+local pkp_left_int = math.ceil(get(pkp_left_set) * light_coef_115_L)
+set(pkp_left, pkp_left_int)
+
+local pkp_right_int = math.ceil(get(pkp_right_set) * light_coef_115_R)
+set(pkp_right, pkp_right_int)
 
 -- panel flood lights
-local left_flood = get(left_panel_flood_set) * light_coef_27
+local left_flood = get(left_panel_flood_set) * light_coef_27_L
 set(l1_3, left_flood * 1.5)
 set(left_panel_flood, left_flood)
 
-local right_flood = get(right_panel_flood_set) * light_coef_27
+local right_flood = get(right_panel_flood_set) * light_coef_27_R
 set(l2_3, right_flood * 1.5)
 set(right_panel_flood, right_flood)
 
-local front_flood = get(front_panel_flood_set) * light_coef_27
+local front_flood = get(front_panel_flood_set) * light_coef_27_L
 set(l3_3, front_flood * 1.5)
 set(front_panel_flood, front_flood)
 
-local pedestal_flood = get(mid_panel_flood_set) * light_coef_27
+local pedestal_flood = get(mid_panel_flood_set) * light_coef_27_L
 set(l4_3, pedestal_flood * 1.5)
 set(mid_panel_flood, pedestal_flood)
 
-local ovhd_fr_flood = get(ovhd_front_panel_flood_set) * light_coef_27
+local ovhd_fr_flood = get(ovhd_front_panel_flood_set) * light_coef_27_L
 set(l5_3, ovhd_fr_flood * 1.5)
 set(ovhd_front_panel_flood, ovhd_fr_flood )
 
-local ovhd_bk_flood = get(ovhd_back_panel_flood_set) * light_coef_27
+local ovhd_bk_flood = get(ovhd_back_panel_flood_set) * light_coef_27_L
 set(l6_3, ovhd_bk_flood * 1.5)
 set(ovhd_back_panel_flood, ovhd_bk_flood)
 
-local eng_flood = get(eng_panel_flood_set) * light_coef_27
+local eng_flood = get(eng_panel_flood_set) * light_coef_27_R
 set(l7_3, eng_flood * 1.5)
 set(l7_1_3, eng_flood * 1.5)
 set(eng_panel_flood, eng_flood)
     
     
-local km_flood = get(km_panel_flood_set) * light_coef_27
+local km_flood = get(km_panel_flood_set) * light_coef_27_R
 set(l10_3, km_flood * 1.5)
 set(km_panel_flood, km_flood)
 
-local azs_flood = get(azs_panel_flood_set) * light_coef_27
+local azs_flood = get(azs_panel_flood_set) * light_coef_27_R
 set(azs_panel_flood, azs_flood)
 
 
 -- cockpit lights
 local non_HDR = 1 - get(HDR_on) -- enable default lights if HDR is disabled
 
-local cockpit_flood = get(cabinl_flood_set) * light_coef_27
+local cockpit_flood = get(cabinl_flood_set) * light_coef_27_L
 set(default_cockpit_flood, interpolate(bright_tbl, cockpit_flood) * 0.8) 
 
 set(default_eng_panel_flood, interpolate(bright_tbl, eng_flood) * non_HDR)
@@ -345,20 +359,20 @@ set(default_pedestal_flood, interpolate(bright_tbl, pedestal_flood) * non_HDR)
 	set(cabin_2d_light, 0)
 --end
  
-set(l9_3, light_coef_27)
-set(l11_3, light_coef_27/8)
+set(l9_3, light_coef_27_L)
+set(l11_3, light_coef_27_L/8)
 
 -- cabin signs
-set(exit_lamp, get(sign_exit) * light_coef_27)
-set(fasten_seatbelts_lamp, get(sign_belts) * light_coef_27)
-set(nosmoking_lamp, get(sign_nosmoke) * light_coef_27)
+set(exit_lamp, get(sign_exit) * light_coef_27_R)
+set(fasten_seatbelts_lamp, get(sign_belts) * light_coef_27_R)
+set(nosmoking_lamp, get(sign_nosmoke) * light_coef_27_R)
 
 -- toilet lamp
 toilet_timer_before = toilet_timer_before - passed
 
 if toilet_timer_before < 0 then
 	
-	set(toilet_busy_lamp, light_coef_27) -- turn on the light
+	set(toilet_busy_lamp, light_coef_27_R) -- turn on the light
 	toilet_use_timer = toilet_use_timer - passed
 	
 	if toilet_use_timer < 0 then
@@ -369,16 +383,24 @@ if toilet_timer_before < 0 then
 
 end
 
-set(seats_leters_lamp, light_coef_27)
+set(seats_leters_lamp, light_coef_27_R)
 
 
 
 -- calculate currents
-local current_27 = left_flood + right_flood + front_flood + pedestal_flood * 0.7 
-current_27 = current_27 + ovhd_fr_flood * 0.7 + ovhd_bk_flood * 0.7 + eng_flood + azs_flood * 1.5 + cockpit_flood * 0.5
+local flood_amps_L = 4.5 / math.max(volt_left, 10)
+local gauge_amps_L = 1.5 / math.max(volt_left, 10)
+local flood_amps_R = 4.5 / math.max(volt_right, 10)
+local gauge_amps_R = 1.5 / math.max(volt_right, 10)
+local current_27_L = (left_flood + front_flood * 2 + pedestal_flood * 2) * flood_amps_L
+current_27 = current_27_L + (ovhd_fr_flood + ovhd_bk_flood + cockpit_flood) * flood_amps_L
+local current_27_R =  (right_flood + eng_flood * 2 + azs_flood) * flood_amps_R
 
-set(cockpit_light_cc_left, current_27 * get(bus27_volt_left) / 58)
-set(cockpit_light_cc_right, current_27 * get(bus27_volt_right) / 58)
+current_27_L = current_27_L + (left_pan_int * 32 + mid_pan_int * 26) * gauge_amps_L / 10
+current_27_R = current_27_R + (right_pan_int * 22 + km_flood * 4 ) * gauge_amps_R / 10
+
+set(cockpit_light_cc_left, current_27_L)
+set(cockpit_light_cc_right, current_27_R)
 
 
 
