@@ -7,67 +7,67 @@
 -- defineProperty("ksvk_debug2", globalPropertyf("tu154b2/custom/bleed/ksvk_debug2")) -- температура в трубопроводе обогрева дверей
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- internal
-defineProperty("air_usage_L", globalPropertyf("tu154b2/custom/bleed/air_usage_L")) -- расход воздуха лев
-defineProperty("air_usage_R", globalPropertyf("tu154b2/custom/bleed/air_usage_R")) -- расход воздуха прав
+air_usage_L = globalPropertyf("tu154b2/custom/bleed/air_usage_L") -- расход воздуха лев
+air_usage_R = globalPropertyf("tu154b2/custom/bleed/air_usage_R") -- расход воздуха прав
 
-defineProperty("hot_tube_t", globalPropertyf("tu154b2/custom/bleed/hot_tube_t")) -- температура горячего воздуха в трубопроводе
-defineProperty("door_heat_tube_t", globalPropertyf("tu154b2/custom/bleed/door_heat_tube_t")) -- температура в трубопроводе обогрева дверей
-defineProperty("cockpit_tube_t", globalPropertyf("tu154b2/custom/bleed/cockpit_tube_t")) -- температура в трубопроводе в кабину
-defineProperty("cabin1_tube_t", globalPropertyf("tu154b2/custom/bleed/cabin1_tube_t")) -- температура в трубопроводе в салон 1
-defineProperty("cabin2_tube_t", globalPropertyf("tu154b2/custom/bleed/cabin2_tube_t")) -- температура в трубопроводе в салон 2
-defineProperty("cold_tube1_t", globalPropertyf("tu154b2/custom/bleed/cold_tube1_t")) -- температура в трубопроводе 1
-defineProperty("cold_tube2_t", globalPropertyf("tu154b2/custom/bleed/cold_tube2_t")) -- температура в трубопроводе 2
+hot_tube_t = globalPropertyf("tu154b2/custom/bleed/hot_tube_t") -- температура горячего воздуха в трубопроводе
+door_heat_tube_t = globalPropertyf("tu154b2/custom/bleed/door_heat_tube_t") -- температура в трубопроводе обогрева дверей
+cockpit_tube_t = globalPropertyf("tu154b2/custom/bleed/cockpit_tube_t") -- температура в трубопроводе в кабину
+cabin1_tube_t = globalPropertyf("tu154b2/custom/bleed/cabin1_tube_t") -- температура в трубопроводе в салон 1
+cabin2_tube_t = globalPropertyf("tu154b2/custom/bleed/cabin2_tube_t") -- температура в трубопроводе в салон 2
+cold_tube1_t = globalPropertyf("tu154b2/custom/bleed/cold_tube1_t") -- температура в трубопроводе 1
+cold_tube2_t = globalPropertyf("tu154b2/custom/bleed/cold_tube2_t") -- температура в трубопроводе 2
 
-defineProperty("cockpit_temp", globalPropertyf("tu154b2/custom/bleed/cockpit_temp")) -- температура в кабине
-defineProperty("cabin_1_temp", globalPropertyf("tu154b2/custom/bleed/cabin_1_temp")) -- температура в салоне 1
-defineProperty("cabin_2_temp", globalPropertyf("tu154b2/custom/bleed/cabin_2_temp")) -- температура в салоне 2
+cockpit_temp = globalPropertyf("tu154b2/custom/bleed/cockpit_temp") -- температура в кабине
+cabin_1_temp = globalPropertyf("tu154b2/custom/bleed/cabin_1_temp") -- температура в салоне 1
+cabin_2_temp = globalPropertyf("tu154b2/custom/bleed/cabin_2_temp") -- температура в салоне 2
 
 -- controls
-defineProperty("cockpit_temp_set", globalPropertyi("tu154b2/custom/switchers/airbleed/cockpit_temp_set")) -- установка температуры кабины
-defineProperty("cabin1_temp_set", globalPropertyi("tu154b2/custom/switchers/airbleed/cabin1_temp_set")) -- установка температуры салона
-defineProperty("cabin2_temp_set", globalPropertyi("tu154b2/custom/switchers/airbleed/cabin2_temp_set")) -- установка температуры салона
-defineProperty("cockpit_mode_set", globalPropertyi("tu154b2/custom/switchers/airbleed/cockpit_mode_set")) -- становка режима обогрева. 0 - нейтр. 1 - авто, 2 - хол, 3 - гор
-defineProperty("cabin1_mode_set", globalPropertyi("tu154b2/custom/switchers/airbleed/cabin1_mode_set")) -- установка режима обогрева
-defineProperty("cabin2_mode_set", globalPropertyi("tu154b2/custom/switchers/airbleed/cabin2_mode_set")) -- установка режима обогрева
+cockpit_temp_set = globalPropertyi("tu154b2/custom/switchers/airbleed/cockpit_temp_set") -- установка температуры кабины
+cabin1_temp_set = globalPropertyi("tu154b2/custom/switchers/airbleed/cabin1_temp_set") -- установка температуры салона
+cabin2_temp_set = globalPropertyi("tu154b2/custom/switchers/airbleed/cabin2_temp_set") -- установка температуры салона
+cockpit_mode_set = globalPropertyi("tu154b2/custom/switchers/airbleed/cockpit_mode_set") -- становка режима обогрева. 0 - нейтр. 1 - авто, 2 - хол, 3 - гор
+cabin1_mode_set = globalPropertyi("tu154b2/custom/switchers/airbleed/cabin1_mode_set") -- установка режима обогрева
+cabin2_mode_set = globalPropertyi("tu154b2/custom/switchers/airbleed/cabin2_mode_set") -- установка режима обогрева
 
-defineProperty("left_sys_temp_set", globalPropertyi("tu154b2/custom/switchers/airbleed/left_sys_temp_set")) -- установка температуры левой магистрали
-defineProperty("right_sys_temp_set", globalPropertyi("tu154b2/custom/switchers/airbleed/right_sys_temp_set")) -- установка температуры правой магистрали
-defineProperty("left_sys_mode_set", globalPropertyi("tu154b2/custom/switchers/airbleed/left_sys_mode_set")) -- установка режима левой магистрали
-defineProperty("right_sys_mode_set", globalPropertyi("tu154b2/custom/switchers/airbleed/right_sys_mode_set")) -- установка режима правой магистрали
-defineProperty("left_vvr_mode_set", globalPropertyi("sim/custom/b2/vvr_1"))
-defineProperty("right_vvr_mode_set", globalPropertyi("sim/custom/b2/vvr_2"))
-defineProperty("art_on", globalPropertyi("sim/custom/b2/art"))
+left_sys_temp_set = globalPropertyi("tu154b2/custom/switchers/airbleed/left_sys_temp_set") -- установка температуры левой магистрали
+right_sys_temp_set = globalPropertyi("tu154b2/custom/switchers/airbleed/right_sys_temp_set") -- установка температуры правой магистрали
+left_sys_mode_set = globalPropertyi("tu154b2/custom/switchers/airbleed/left_sys_mode_set") -- установка режима левой магистрали
+right_sys_mode_set = globalPropertyi("tu154b2/custom/switchers/airbleed/right_sys_mode_set") -- установка режима правой магистрали
+left_vvr_mode_set = globalPropertyi("sim/custom/b2/vvr_1")
+right_vvr_mode_set = globalPropertyi("sim/custom/b2/vvr_2")
+art_on = globalPropertyi("sim/custom/b2/art")
 
-defineProperty("door_heat", globalPropertyi("tu154b2/custom/switchers/eng/door_heat")) -- обогрев дверей
+door_heat = globalPropertyi("tu154b2/custom/switchers/eng/door_heat") -- обогрев дверей
 
-defineProperty("skv_faster_work", globalPropertyi("tu154b2/custom/switchers/airbleed/skv_faster_work")) -- -1 - охлаждение ГК, 0 - выкл, +1 - ускоренноые режимы обогрева
+skv_faster_work = globalPropertyi("tu154b2/custom/switchers/airbleed/skv_faster_work") -- -1 - охлаждение ГК, 0 - выкл, +1 - ускоренноые режимы обогрева
 
 -- sources
-defineProperty("termo", globalPropertyf("sim/weather/temperature_ambient_c")) -- тепература воздуха
-defineProperty("airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed")) -- скорость полета
+termo = globalPropertyf("sim/weather/temperature_ambient_c") -- тепература воздуха
+airspeed = globalPropertyf("sim/flightmodel/position/indicated_airspeed") -- скорость полета
 
 
 
-defineProperty("rpm_high_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1")) -- обороты турбины высокого давления №1
-defineProperty("rpm_high_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2")) -- обороты турбины высокого давления №2
-defineProperty("rpm_high_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3")) -- обороты турбины высокого давления №3
-defineProperty("apu_n1", globalPropertyf("tu154b2/custom/eng/apu_n1")) -- обороты ВСУ
+rpm_high_1 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1") -- обороты турбины высокого давления №1
+rpm_high_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2") -- обороты турбины высокого давления №2
+rpm_high_3 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3") -- обороты турбины высокого давления №3
+apu_n1 = globalPropertyf("tu154b2/custom/eng/apu_n1") -- обороты ВСУ
 
-defineProperty("eng_valve_1", globalPropertyi("tu154b2/custom/switchers/airbleed/eng_valve_1")) -- отбор воздуха от двигателей
-defineProperty("eng_valve_2", globalPropertyi("tu154b2/custom/switchers/airbleed/eng_valve_2")) -- отбор воздуха от двигателей
-defineProperty("eng_valve_3", globalPropertyi("tu154b2/custom/switchers/airbleed/eng_valve_3")) -- отбор воздуха от двигателей
-defineProperty("apu_air_doors", globalPropertyf("tu154b2/custom/eng/apu_air_doors")) -- положение створок для накачки воздуха
+eng_valve_1 = globalPropertyi("tu154b2/custom/switchers/airbleed/eng_valve_1") -- отбор воздуха от двигателей
+eng_valve_2 = globalPropertyi("tu154b2/custom/switchers/airbleed/eng_valve_2") -- отбор воздуха от двигателей
+eng_valve_3 = globalPropertyi("tu154b2/custom/switchers/airbleed/eng_valve_3") -- отбор воздуха от двигателей
+apu_air_doors = globalPropertyf("tu154b2/custom/eng/apu_air_doors") -- положение створок для накачки воздуха
 
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
 -- failures
-defineProperty("tth_left_fail", globalPropertyi("tu154b2/custom/failures/tth_left_fail")) -- отказ турбохолодильника
-defineProperty("tth_right_fail", globalPropertyi("tu154b2/custom/failures/tth_right_fail")) -- отказ турбохолодильника
+tth_left_fail = globalPropertyi("tu154b2/custom/failures/tth_left_fail") -- отказ турбохолодильника
+tth_right_fail = globalPropertyi("tu154b2/custom/failures/tth_right_fail") -- отказ турбохолодильника
 
 cockpit_door = globalPropertyi("tu154b2/custom/anim/cockpit_door")
 px_door1 = globalPropertyi("tu154b2/custom/anim/pax_door_1")
@@ -91,6 +91,10 @@ tas = globalPropertyf("sim/flightmodel2/position/true_airspeed")
 bleed_avail = globalPropertyi("tu154b2/custom/kskv/bleed_avail")
 rear_tech_compartment_T = globalPropertyf("tu154b2/custom/bleed/rear_tech_temp")
 vvr_leak = globalPropertyi("tu154b2/custom/failures/vvr_leak")
+
+eng_fire_1 = globalPropertyi("sim/operation/failures/rel_engfir0")
+eng_fire_2 = globalPropertyi("sim/operation/failures/rel_engfir1")
+eng_fire_3 = globalPropertyi("sim/operation/failures/rel_engfir2")
 
 -- bleed_air_1 = globalPropertyf("tu154b2/custom/bleedair/eng_1_bleed")
 -- bleed_air_2 = globalPropertyf("tu154b2/custom/bleedair/eng_2_bleed")
@@ -293,7 +297,7 @@ function update()
 	if (airflow_L+airflow_L>10) then
 		t_ex=t_ex + ((engines_air_T_L-hot_air_T_L) / 2 + (engines_air_T_R-hot_air_T_R) / 2 - t_ex) * c_ex * passed + (termo_torm - t_ex) * c_ex2 * passed
 	else
-		t_ex = t_ex + (t_tech - t_ex * (1 - service_air) - termo_torm * service_air) * passed / (50-40*service_air)
+		t_ex = t_ex + ((t_tech - t_ex) * (1 - service_air) - (t_ex - termo_torm) * service_air) * passed / (50-40*service_air)
 	end
 	-- c_vvr1=0.007353*engines_air_T -0.1471
     --hot_air_T= hot_air_T + (termo_torm - hot_air_T) * passed * (1.5 + IAS * 0.001 - (airflow_L + airflow_R) * 4.1665e-04)*0.23*c_vvr1
@@ -304,7 +308,8 @@ function update()
 	-- set(db5,engines_air_T_R)
 	-- rear tech compartment temperature
 	local t_pipe = (engines_air_T_L + engines_air_T_R + hot_air_T_L  + hot_air_T_R) / 4
-	t_tech = t_tech + (termo_torm - t_tech) * 0.0025 * passed + (t_pipe - t_tech) * 5.0000e-04 * passed * (1 + 9 * get(vvr_leak)) + (cabin_2_T - t_tech) * 5.0000e-04 * passed
+	local tech_fire = bool2int(sys_data_tbl.eng_fire_timer_2 * get(eng_fire_2) / 6 > 30 or sys_data_tbl.eng_fire_timer_1 * get(eng_fire_1) / 6 > 180 or sys_data_tbl.eng_fire_timer_3 * get(eng_fire_3) / 6 > 180)
+	t_tech = t_tech + (termo_torm - t_tech) * 0.0025 * passed + (t_pipe - t_tech) * 5.0000e-04 * passed * (1 + 9 * get(vvr_leak)) + (cabin_2_T - t_tech) * 5.0000e-04 * passed  + (300 - t_tech) * 0.005 * passed * tech_fire
 	--hot_air_T = hot_air_T + (termo_out - hot_air_T) * passed * (1 + IAS * 0.001 * (airflow_L + airflow_R) * 0.0001) * 0.02
 	
 	---------------------------------------------------

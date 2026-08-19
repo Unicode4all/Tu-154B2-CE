@@ -13,9 +13,9 @@ defineProperty("cm2", globalPropertyf("sim/aircraft/controls/acf_flap2_cm"))
 -- defineProperty("c1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("c2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
 --[[
 sim/aircraft/controls/acf_flap_cl	float	y

@@ -1,105 +1,105 @@
 -- this is fire system's logic
 
 -- sim variables
-defineProperty("sim_engine_on_fire1", globalPropertyi("sim/operation/failures/rel_engfir0"))  -- left engine on fire
-defineProperty("sim_engine_on_fire2", globalPropertyi("sim/operation/failures/rel_engfir1"))  -- mid engine on fire
-defineProperty("sim_engine_on_fire3", globalPropertyi("sim/operation/failures/rel_engfir2"))  -- right engine on fire
-defineProperty("sim_engine_on_fire4", globalPropertyi("sim/operation/failures/rel_engfir3"))  -- apu on fire
+sim_engine_on_fire1 = globalPropertyi("sim/operation/failures/rel_engfir0")  -- left engine on fire
+sim_engine_on_fire2 = globalPropertyi("sim/operation/failures/rel_engfir1")  -- mid engine on fire
+sim_engine_on_fire3 = globalPropertyi("sim/operation/failures/rel_engfir2")  -- right engine on fire
+sim_engine_on_fire4 = globalPropertyi("sim/operation/failures/rel_engfir3")  -- apu on fire
 
 
 
-defineProperty("sim_engine_ext1", globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[0]"))  -- left engine fire extinguiher
-defineProperty("sim_engine_ext2", globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[1]"))  -- mid engine fire extinguiher
-defineProperty("sim_engine_ext3", globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[2]"))  -- right engine fire extinguiher
-defineProperty("sim_engine_ext4", globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[3]"))  -- apu fire extinguiher
+sim_engine_ext1 = globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[0]")  -- left engine fire extinguiher
+sim_engine_ext2 = globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[1]")  -- mid engine fire extinguiher
+sim_engine_ext3 = globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[2]")  -- right engine fire extinguiher
+sim_engine_ext4 = globalProperty("sim/cockpit2/engine/actuators/fire_extinguisher_on[3]")  -- apu fire extinguiher
 
 -- controls
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_fire_panel")) -- кнопка проверки ламп на пожарной панели	0
---defineProperty("smoke_test", globalPropertyi("tu154b2/custom/buttons/eng/smoke_test")) -- проверка датчиков дыма
-defineProperty("ext_test", globalPropertyi("tu154b2/custom/buttons/eng/ext_test")) -- проверка огнетушителей
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_fire_panel") -- кнопка проверки ламп на пожарной панели	0
+--smoke_test = globalPropertyi("tu154b2/custom/buttons/eng/smoke_test") -- проверка датчиков дыма
+ext_test = globalPropertyi("tu154b2/custom/buttons/eng/ext_test") -- проверка огнетушителей
 
 
-defineProperty("fire_ext_1", globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_1")) -- очередь тушения пожара
-defineProperty("fire_ext_2", globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_2")) -- очередь тушения пожара
-defineProperty("fire_ext_3", globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_3")) -- очередь тушения пожара
-defineProperty("cold_eng_1", globalPropertyi("sim/custom/b2/fire_eng1_button")) -- подача хладона
-defineProperty("cold_eng_2", globalPropertyi("sim/custom/b2/fire_eng2_button")) -- подача хладона
-defineProperty("cold_eng_3", globalPropertyi("sim/custom/b2/fire_eng3_button")) -- подача хладона
-defineProperty("cold_apu", globalPropertyi("sim/custom/b2/fire_apu_button")) -- подача хладона
-defineProperty("neutral_gas", globalPropertyi("tu154b2/custom/buttons/eng/neutral_gas")) -- нейтральный газ
+fire_ext_1 = globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_1") -- очередь тушения пожара
+fire_ext_2 = globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_2") -- очередь тушения пожара
+fire_ext_3 = globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_3") -- очередь тушения пожара
+cold_eng_1 = globalPropertyi("sim/custom/b2/fire_eng1_button") -- подача хладона
+cold_eng_2 = globalPropertyi("sim/custom/b2/fire_eng2_button") -- подача хладона
+cold_eng_3 = globalPropertyi("sim/custom/b2/fire_eng3_button") -- подача хладона
+cold_apu = globalPropertyi("sim/custom/b2/fire_apu_button") -- подача хладона
+neutral_gas = globalPropertyi("tu154b2/custom/buttons/eng/neutral_gas") -- нейтральный газ
 
-defineProperty("fire_sensor_sel", globalPropertyi("tu154b2/custom/switchers/eng/fire_sensor_sel")) -- выбор группы датчиков
-defineProperty("fire_place_sel", globalPropertyi("tu154b2/custom/switchers/eng/fire_place_sel")) -- выбор отсека
+fire_sensor_sel = globalPropertyi("tu154b2/custom/switchers/eng/fire_sensor_sel") -- выбор группы датчиков
+fire_place_sel = globalPropertyi("tu154b2/custom/switchers/eng/fire_place_sel") -- выбор отсека
 
-defineProperty("fire_main_switch", globalPropertyi("tu154b2/custom/switchers/eng/fire_main_switch")) -- выключатель пожарной системы
-defineProperty("fire_buzzer", globalPropertyi("tu154b2/custom/switchers/eng/fire_buzzer")) -- пожарная сирена
+fire_main_switch = globalPropertyi("tu154b2/custom/switchers/eng/fire_main_switch") -- выключатель пожарной системы
+fire_buzzer = globalPropertyi("tu154b2/custom/switchers/eng/fire_buzzer") -- пожарная сирена
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
-defineProperty("fire_sys_cc", globalPropertyf("tu154b2/custom/fire/fire_sys_cc")) -- потребление тока пожарной системой
+fire_sys_cc = globalPropertyf("tu154b2/custom/fire/fire_sys_cc") -- потребление тока пожарной системой
 
 
 
 -- results
-defineProperty("ext_used_1", globalPropertyi("tu154b2/custom/fire/ext_used_1")) -- огнетушитель использован
-defineProperty("ext_used_2", globalPropertyi("tu154b2/custom/fire/ext_used_2")) -- огнетушитель использован
-defineProperty("ext_used_3", globalPropertyi("tu154b2/custom/fire/ext_used_3")) -- огнетушитель использован
+ext_used_1 = globalPropertyi("tu154b2/custom/fire/ext_used_1") -- огнетушитель использован
+ext_used_2 = globalPropertyi("tu154b2/custom/fire/ext_used_2") -- огнетушитель использован
+ext_used_3 = globalPropertyi("tu154b2/custom/fire/ext_used_3") -- огнетушитель использован
 
-defineProperty("ng_used", globalPropertyi("tu154b2/custom/fire/ng_used")) -- НГ использован
+ng_used = globalPropertyi("tu154b2/custom/fire/ng_used") -- НГ использован
 
-defineProperty("valve_open_1", globalPropertyi("tu154b2/custom/fire/valve_open_1")) -- кран тушения двиг 1
-defineProperty("valve_open_2", globalPropertyi("tu154b2/custom/fire/valve_open_2")) -- кран тушения двиг 2
-defineProperty("valve_open_3", globalPropertyi("tu154b2/custom/fire/valve_open_3")) -- кран тушения двиг 3
-defineProperty("valve_open_4", globalPropertyi("tu154b2/custom/fire/valve_open_4")) -- кран тушения ВСУ
+valve_open_1 = globalPropertyi("tu154b2/custom/fire/valve_open_1") -- кран тушения двиг 1
+valve_open_2 = globalPropertyi("tu154b2/custom/fire/valve_open_2") -- кран тушения двиг 2
+valve_open_3 = globalPropertyi("tu154b2/custom/fire/valve_open_3") -- кран тушения двиг 3
+valve_open_4 = globalPropertyi("tu154b2/custom/fire/valve_open_4") -- кран тушения ВСУ
 
-defineProperty("engine_fire_state_1", globalPropertyi("tu154b2/custom/fire/engine_fire_state_1")) -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
-defineProperty("engine_fire_state_2", globalPropertyi("tu154b2/custom/fire/engine_fire_state_2")) -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
-defineProperty("engine_fire_state_3", globalPropertyi("tu154b2/custom/fire/engine_fire_state_3")) -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
-defineProperty("engine_fire_state_4", globalPropertyi("tu154b2/custom/fire/engine_fire_state_4")) -- состояние ВСУ. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_1 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_1") -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_2 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_2") -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_3 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_3") -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_4 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_4") -- состояние ВСУ. 0 - норм, 1 - перегрев, 2 - пожар
 
-defineProperty("fire_detected", globalPropertyi("tu154b2/custom/fire/fire_detected")) -- обнаружен пожар
+fire_detected = globalPropertyi("tu154b2/custom/fire/fire_detected") -- обнаружен пожар
 
-defineProperty("fire_siren", globalPropertyi("tu154b2/custom/fire/fire_siren")) -- работа сирены
-
-
-
-defineProperty("fire_vlv_open_1", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_1")) -- пожарный кран открыт
-defineProperty("fire_vlv_open_2", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2")) -- пожарный кран открыт
-defineProperty("fire_vlv_open_3", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3")) -- пожарный кран открыт
-defineProperty("fire_vlv_open_4", globalPropertyf("sim/custom/b2/apu_fire_crane")) -- пожарный кран открыт
+fire_siren = globalPropertyi("tu154b2/custom/fire/fire_siren") -- работа сирены
 
 
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+fire_vlv_open_1 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_1") -- пожарный кран открыт
+fire_vlv_open_2 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2") -- пожарный кран открыт
+fire_vlv_open_3 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3") -- пожарный кран открыт
+fire_vlv_open_4 = globalPropertyf("sim/custom/b2/apu_fire_crane") -- пожарный кран открыт
 
-defineProperty("test_grp", globalPropertyi("tu154b2/custom/switchers/eng/fire_place_sel"))
-defineProperty("test_sns", globalPropertyi("tu154b2/custom/switchers/eng/fire_sensor_sel"))
 
-defineProperty("azs1", globalPropertyi("sim/custom/b2/azs_fireext1"))
-defineProperty("azs2", globalPropertyi("sim/custom/b2/azs_fireext2"))
 
-defineProperty("smoke_test1", globalPropertyi("sim/custom/buttons/eng/smoke_test_1")) -- проверка датчиков дыма
-defineProperty("smoke_test2", globalPropertyi("sim/custom/buttons/eng/smoke_test_2")) -- проверка датчиков дыма
-defineProperty("smoke_test3", globalPropertyi("sim/custom/buttons/eng/smoke_test_3")) -- проверка датчиков дыма
-defineProperty("smoke_test4", globalPropertyi("sim/custom/buttons/eng/smoke_test_4")) -- проверка датчиков дыма
-defineProperty("smoke_test5", globalPropertyi("sim/custom/buttons/eng/smoke_test_5")) -- проверка датчиков дыма
-defineProperty("smoke_test6", globalPropertyi("sim/custom/buttons/eng/smoke_test_6")) -- проверка датчиков дыма
-defineProperty("smoke_test7", globalPropertyi("sim/custom/buttons/eng/smoke_test_7")) -- проверка датчиков дыма
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("fire_bag1", globalPropertyi("tu154b2/custom/fire/fire_bag1"))
-defineProperty("fire_bag2", globalPropertyi("tu154b2/custom/fire/fire_bag2"))
+test_grp = globalPropertyi("tu154b2/custom/switchers/eng/fire_place_sel")
+test_sns = globalPropertyi("tu154b2/custom/switchers/eng/fire_sensor_sel")
 
-defineProperty("eng1_ext", globalPropertyi("tu154b2/custom/fire/eng1_ext_used"))
-defineProperty("eng2_ext", globalPropertyi("tu154b2/custom/fire/eng2_ext_used"))
-defineProperty("eng3_ext", globalPropertyi("tu154b2/custom/fire/eng3_ext_used"))
-defineProperty("eng4_ext", globalPropertyi("tu154b2/custom/fire/apu_ext_used"))
+azs1 = globalPropertyi("sim/custom/b2/azs_fireext1")
+azs2 = globalPropertyi("sim/custom/b2/azs_fireext2")
 
-defineProperty("apu_fail", globalPropertyi("sim/operation/failures/rel_engfai3"))
+smoke_test1 = globalPropertyi("sim/custom/buttons/eng/smoke_test_1") -- проверка датчиков дыма
+smoke_test2 = globalPropertyi("sim/custom/buttons/eng/smoke_test_2") -- проверка датчиков дыма
+smoke_test3 = globalPropertyi("sim/custom/buttons/eng/smoke_test_3") -- проверка датчиков дыма
+smoke_test4 = globalPropertyi("sim/custom/buttons/eng/smoke_test_4") -- проверка датчиков дыма
+smoke_test5 = globalPropertyi("sim/custom/buttons/eng/smoke_test_5") -- проверка датчиков дыма
+smoke_test6 = globalPropertyi("sim/custom/buttons/eng/smoke_test_6") -- проверка датчиков дыма
+smoke_test7 = globalPropertyi("sim/custom/buttons/eng/smoke_test_7") -- проверка датчиков дыма
+
+fire_bag1 = globalPropertyi("tu154b2/custom/fire/fire_bag1")
+fire_bag2 = globalPropertyi("tu154b2/custom/fire/fire_bag2")
+
+eng1_ext = globalPropertyi("tu154b2/custom/fire/eng1_ext_used")
+eng2_ext = globalPropertyi("tu154b2/custom/fire/eng2_ext_used")
+eng3_ext = globalPropertyi("tu154b2/custom/fire/eng3_ext_used")
+eng4_ext = globalPropertyi("tu154b2/custom/fire/apu_ext_used")
+
+apu_fail = globalPropertyi("sim/operation/failures/rel_engfai3")
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
@@ -137,6 +137,11 @@ if MASTER then
 
 	local power27L = get(bus27_volt_left) > 13
 	local power27R = get(bus27_volt_right) > 13
+	
+	-- The longer the fire burns, the less likely it will be extinguished
+	local ext_th_1 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_1 - 20 )/ 100)
+	local ext_th_2 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_2 - 20 )/ 100)
+	local ext_th_3 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_3 - 20 )/ 100)
 	
 	if power27L and get(fire_main_switch) == 1 then
 		
@@ -197,7 +202,7 @@ if MASTER then
 				set(ext_used_1, 1) -- use extinguisher
 				set(eng1_ext,1)
 				--set(sim_engine_ext1, 1)
-				if math.random() + get(fire_vlv_open_1)/2 < 0.18 / valves_open then 
+				if math.random() + get(fire_vlv_open_1)/3 < ext_th_1 / valves_open then 
 					fire1_out=1
 				end
 			end
@@ -206,7 +211,7 @@ if MASTER then
 				set(ext_used_2, 1) -- use extinguisher
 				set(eng1_ext,1)
 				--set(sim_engine_ext1, 1)
-				if math.random() + get(fire_vlv_open_1)/2 < 0.98 / valves_open then 
+				if math.random() + get(fire_vlv_open_1)/3 < ext_th_1 / valves_open then 
 					fire1_out=1
 
 				end
@@ -216,7 +221,7 @@ if MASTER then
 				set(ext_used_3, 1) -- use extinguisher
 				set(eng1_ext,1)
 				--set(sim_engine_ext1, 1)
-				if math.random() + get(fire_vlv_open_1)/2 < 0.98 / valves_open then 
+				if math.random() + get(fire_vlv_open_1)/3 < ext_th_1 / valves_open then 
 					fire1_out=1
 
 				end
@@ -238,7 +243,7 @@ if MASTER then
 				set(ext_used_1, 1) -- use extinguisher
 				set(eng2_ext,1)
 				--set(sim_engine_ext2, 1)
-				if math.random()+get(fire_vlv_open_2)/2 < 0.98 / valves_open then 
+				if math.random()+get(fire_vlv_open_2)/3 < ext_th_2 / valves_open then 
 					fire2_out=1
 				end
 			end
@@ -247,7 +252,7 @@ if MASTER then
 				set(ext_used_2, 1) -- use extinguisher
 				set(eng2_ext,1)
 				--set(sim_engine_ext2, 1)
-				if math.random()+get(fire_vlv_open_2)/2 < 0.98 / valves_open then 
+				if math.random()+get(fire_vlv_open_2)/3 < ext_th_2 / valves_open then 
 					fire2_out=1
 				end
 			end
@@ -256,7 +261,7 @@ if MASTER then
 				set(ext_used_3, 1) -- use extinguisher
 				set(eng2_ext,1)
 				--set(sim_engine_ext2, 1)
-				if math.random()+get(fire_vlv_open_2)/2 < 0.98 / valves_open then 
+				if math.random()+get(fire_vlv_open_2)/3 < ext_th_2 / valves_open then 
 					fire2_out=1
 				end
 			end
@@ -277,7 +282,7 @@ if MASTER then
 				set(ext_used_1, 1) -- use extinguisher
 				set(eng3_ext,1)
 				--set(sim_engine_ext3, 1)
-				if math.random() + get(fire_vlv_open_3)/2 < 0.98 / valves_open then 
+				if math.random() + get(fire_vlv_open_3)/3 < ext_th_3 / valves_open then 
 					fire3_out=1
 				end
 			end
@@ -286,7 +291,7 @@ if MASTER then
 				set(ext_used_2, 1) -- use extinguisher
 				set(eng3_ext,1)
 				--set(sim_engine_ext3, 1)
-				if math.random() + get(fire_vlv_open_3)/2 < 0.98 / valves_open then 
+				if math.random() + get(fire_vlv_open_3)/3 < ext_th_3 / valves_open then 
 					fire3_out=1
 				end
 			end
@@ -295,7 +300,7 @@ if MASTER then
 				set(ext_used_3, 1) -- use extinguisher
 				set(eng3_ext,1)
 				--set(sim_engine_ext3, 1)
-				if math.random() + get(fire_vlv_open_3)/2 < 0.98 / valves_open  then 
+				if math.random() + get(fire_vlv_open_3)/3 < ext_th_3 / valves_open  then 
 					fire3_out=1
 				end
 			end

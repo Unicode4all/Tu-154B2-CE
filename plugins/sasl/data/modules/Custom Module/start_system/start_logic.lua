@@ -131,9 +131,9 @@ defineProperty("fail_3", globalPropertyf("tu154b2/custom/engine/startfail_3"))
 defineProperty("heater_cur", globalPropertyf("tu154b2/custom/engines/heater_current"))
 defineProperty("flt_idle", globalPropertyf("tu154b2/custom/engines/flight_idle"))
 defineProperty("airstart", globalPropertyi("tu154b2/custom/engines/airstart"))
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug2"))
 
 --[[
 sim/aircraft/engine/acf_starter_torque_ratio	float	y	Ratio	This is the ratio of the engine's maximum torque that the starter applies at its design RPM.
@@ -646,7 +646,7 @@ function update()
 		failstart_2=get(fail_2)
 		failstart_3=get(fail_3)
 	end
-	if eng1_starting or (burn_1>0 and rpm1<=54.2) then
+	if eng1_starting or (burn_1>0 and rpm1<=54.2 and sys_data_tbl.eng_fire_timer_1 < 20) then
 		set(heater_cur,50*heat*bool2int(eng1_starting)*get(sim_ignition1))
 		set(fuel_1,interpolate(fuel_table,rpm1)-eng1_rt)
 		-- fuel is flooding the engine during a failed start
@@ -664,7 +664,7 @@ function update()
 		if heat>0 then
 			failstart_1=0
 		end
-	elseif eng2_starting or (burn_2>0 and rpm2<=54.2) then
+	elseif eng2_starting or (burn_2>0 and rpm2<=54.2 and sys_data_tbl.eng_fire_timer_2 < 20) then
 		set(heater_cur,50*heat*bool2int(eng2_starting)*get(sim_ignition2))
 		set(fuel_2,interpolate(fuel_table,rpm2)-eng2_rt)
 		if failstart_2==1 and burn_2>0 then
@@ -685,7 +685,7 @@ function update()
 		if heat>0 then
 			failstart_2=0
 		end
-	elseif eng3_starting or (burn_3>0 and rpm3<=54.2) then
+	elseif eng3_starting or (burn_3>0 and rpm3<=54.2 and sys_data_tbl.eng_fire_timer_3 < 20) then
 		set(heater_cur,50*heat*bool2int(eng3_starting)*get(sim_ignition3))
 		set(fuel_3,interpolate(fuel_table,rpm3)-eng3_rt)
 		if failstart_3==1 and burn_3>0 then

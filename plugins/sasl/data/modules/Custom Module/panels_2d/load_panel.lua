@@ -2,7 +2,7 @@
 size = {1024, 683}
 
 
-defineProperty("save_state", globalPropertyi("tu154b2/custom/save_state")) -- принудительное сохранение состояния самолета
+-- defineProperty("save_state", globalPropertyi("tu154b2/custom/save_state")) -- принудительное сохранение состояния самолета
 
 -- time
 defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
@@ -2084,7 +2084,7 @@ components = {
       
 		onMouseDown = function() 
 			set(load_fast_btn, 1)
-			set(save_state, 1)
+			--set(save_state, 1)
 			return true
 		end,
 		onMouseUp = function() 

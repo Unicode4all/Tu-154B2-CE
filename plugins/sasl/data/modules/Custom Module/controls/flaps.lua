@@ -382,11 +382,11 @@ if MASTER then
 	drive_pos_now = drive_pos_now + passed * (flaps_dir_1 * HS1 * power_1 +  flaps_dir_2 * HS2 * power_2 )/2 * flap_SPD
 	
 	-- set limits
-	if drive_pos_now > 45 then 
+	if drive_pos_now >= 45 then 
 		drive_pos_now = 45
 		power_1 = 0
 		power_2 = 0
-	elseif drive_pos_now < 0 then 
+	elseif drive_pos_now <= 0 then 
 		drive_pos_now= 0
 		power_1 = 0
 		power_2 = 0

@@ -12,10 +12,10 @@ frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 external_view = globalPropertyi("sim/graphics/view/view_is_external") -- enviroment
 vr_outside = globalPropertyi("sim/graphics/VR/teleport_on_ground")
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
 
 local door_1_lock_L = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/door_lock_L.wav')
 local door_1_lock_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/door_lock_R.wav')

@@ -427,11 +427,11 @@ local brg_temp_3=oil_tmp_3
 
 local fuel_P_table = {{ -100000, 0.0 },    -- bugs walkaround
                   {  0, 00 }, -- zero pressure
-				  {  40, 30 }, --
-				  {  50, 40 }, -- 
-           	      {  60, 60 }, -- 
-				  {  100, 100 },    -- 
-          	      {  1000000000, 110 }}    -- bugs walkaround	
+				  {  40, 4 }, --
+				  {  50, 5 }, -- 
+           	      {  58, 15 }, -- 
+				  {  100, 30 },    -- 
+          	      {  1000000000, 60 }}    -- bugs walkaround	
 
 local oil_P_table = {{ -100000, 0.0 },    -- bugs walkaround
 				  {  15, 1 },
@@ -465,15 +465,15 @@ local function emi3()
 	local rep_mode=get(replay)
 	if power_36_L then 
 		fuelP_1 = interpolate(fuel_P_table, get(fuel_p_1))-- * gau_1_on
-		oilP_1 = interpolate(oil_P_table, get(eng1_N2)) * 0.1 * 1/(get(oil_t_1)*0.27/80+0.85)*(1-get(oil_pump_otk_1)/6)-- * gau_1_on 
+		oilP_1 = math.min(interpolate(oil_P_table, get(eng1_N2)) * 0.11 * 1/(get(oil_t_1)*0.27/80+0.85)*(1-get(oil_pump_otk_1)/6),4.0)-- * gau_1_on 
 	end	
 	
 	if power_36_R then
 		fuelP_2 = interpolate(fuel_P_table, get(fuel_p_2))-- * gau_2_on
 		fuelP_3 = interpolate(fuel_P_table, get(fuel_p_3))-- * gau_3_on
 		
-		oilP_2 = interpolate(oil_P_table, get(eng2_N2)) * 0.1* 1/(get(oil_t_2)*0.27/80+0.85)*(1-get(oil_pump_otk_2)/6)-- * gau_2_on
-		oilP_3 = interpolate(oil_P_table, get(eng3_N2)) * 0.1* 1/(get(oil_t_3)*0.27/80+0.85)*(1-get(oil_pump_otk_3)/6)-- * gau_3_on
+		oilP_2 = math.min(interpolate(oil_P_table, get(eng2_N2)) * 0.11* 1/(get(oil_t_2)*0.27/80+0.85)*(1-get(oil_pump_otk_2)/6),4.1)-- * gau_2_on
+		oilP_3 = math.min(interpolate(oil_P_table, get(eng3_N2)) * 0.11* 1/(get(oil_t_3)*0.27/80+0.85)*(1-get(oil_pump_otk_3)/6),4.05)-- * gau_3_on
 	end
 	--Oil and case temperatures
 	local fuel_temp=(get(fuel_temp_1)+get(fuel_temp_2))/2

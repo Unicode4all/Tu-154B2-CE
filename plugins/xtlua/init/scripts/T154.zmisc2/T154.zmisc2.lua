@@ -172,9 +172,9 @@ simDR_payload_pax4 = find_dataref("tu154b2/custom/payload/zone_5")
 simDR_payload_pax5 = find_dataref("tu154b2/custom/payload/zone_6")
 simDR_payload_crew = find_dataref("tu154b2/custom/payload/crew_num")
 simDR_payload_cabin = find_dataref("tu154b2/custom/payload/cabin_num")
-simDR_fuel_press_1 = find_dataref("tu154b2/custom/gauges/eng/fuel_press_1")
-simDR_fuel_press_2 = find_dataref("tu154b2/custom/gauges/eng/fuel_press_2")
-simDR_fuel_press_3 = find_dataref("tu154b2/custom/gauges/eng/fuel_press_3")
+-- simDR_fuel_press_1 = find_dataref("tu154b2/custom/gauges/eng/fuel_press_1")
+-- simDR_fuel_press_2 = find_dataref("tu154b2/custom/gauges/eng/fuel_press_2")
+-- simDR_fuel_press_3 = find_dataref("tu154b2/custom/gauges/eng/fuel_press_3")
 
 
 
@@ -1830,9 +1830,9 @@ else
     fuel_press_3_corr = 1
 end
 
-fuel_press_1 = simDR_fuel_press_1 * fuel_press_1_corr
-fuel_press_2 = simDR_fuel_press_2 * fuel_press_2_corr
-fuel_press_3 = simDR_fuel_press_3 * fuel_press_3_corr
+-- fuel_press_1 = simDR_fuel_press_1 * fuel_press_1_corr
+-- fuel_press_2 = simDR_fuel_press_2 * fuel_press_2_corr
+-- fuel_press_3 = simDR_fuel_press_3 * fuel_press_3_corr
     
     
     

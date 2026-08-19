@@ -2,21 +2,30 @@
 
 size = {512, 700}
 
-defineProperty("save_state", globalPropertyi("tu154b2/custom/save_state")) -- принудительное сохранение состояния самолета
+save_state = globalPropertyi("tu154b2/custom/save_state") -- принудительное сохранение состояния самолета
 
 -- images
-defineProperty("bg_img", loadImage("repair_tex.png"))
+bg_img = loadImage("repair_tex.png")
 
 
-defineProperty("show_fail_panel", globalPropertyi("tu154b2/custom/panels/show_fail_panel")) -- показать панель отказов
+show_fail_panel = globalPropertyi("tu154b2/custom/panels/show_fail_panel") -- показать панель отказов
 
-defineProperty("reset_state", globalPropertyi("tu154b2/custom/reset_state")) -- сброс состояния самолета
+reset_state = globalPropertyi("tu154b2/custom/reset_state") -- сброс состояния самолета
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("failures_enabled", globalPropertyi("tu154b2/custom/failures/failures_enabled")) -- отказы включены
+failures_enabled = globalPropertyi("tu154b2/custom/failures/failures_enabled") -- отказы включены
 
---temp_out = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
+
+eng1_ext = globalPropertyi("tu154b2/custom/fire/eng1_ext_used")
+eng2_ext = globalPropertyi("tu154b2/custom/fire/eng2_ext_used")
+eng3_ext = globalPropertyi("tu154b2/custom/fire/eng3_ext_used")
+eng4_ext = globalPropertyi("tu154b2/custom/fire/apu_ext_used")
+
+fire_ext_1 = globalPropertyi("tu154b2/custom/fire/ext_used_1")
+fire_ext_2 = globalPropertyi("tu154b2/custom/fire/ext_used_2")
+fire_ext_3 = globalPropertyi("tu154b2/custom/fire/ext_used_3")
+
 
 
 local runtime_tbl = {}
@@ -383,6 +392,16 @@ end
 
 
 local function fixAll()
+
+	set(fire_ext_1,0) 
+	set(fire_ext_2,0) 
+	set(fire_ext_3,0) 
+
+	set(eng1_ext,0)
+	set(eng2_ext,0)
+	set(eng3_ext,0)
+	set(eng4_ext,0)
+
 	
 	for k,v in pairs(customFails) do -- scan custom failures
 		set(v, 0)
@@ -391,13 +410,22 @@ local function fixAll()
 	for k,v in pairs(simFails) do -- scan sim failures
 		set(v, 0)
 	end
-
+	
 	sys_data_tbl.hyd_1_qty = 26
 	sys_data_tbl.hyd_2_qty = 22
 	sys_data_tbl.hyd_3_qty = 24
 	
 	sys_data_tbl.hyd_1_temp = 20
 	sys_data_tbl.hyd_2_temp = 20
+	
+	sys_data_tbl.eng_fire_timer_1 = 0
+	sys_data_tbl.eng_fire_timer_2 = 0
+	sys_data_tbl.eng_fire_timer_3 = 0
+	sys_data_tbl.eng_fire_timer_4 = 0
+	
+	sys_data_tbl.starter_ovspd_timer_1 = 0
+	sys_data_tbl.starter_ovspd_timer_2 = 0
+	sys_data_tbl.starter_ovspd_timer_3 = 0
 	
 	set(save_state, 1)
 

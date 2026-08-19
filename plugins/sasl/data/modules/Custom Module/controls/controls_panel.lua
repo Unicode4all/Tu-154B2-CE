@@ -2,170 +2,170 @@
 
 
 -- controls
-defineProperty("stab_man_cap", globalPropertyi("tu154b2/custom/controll/stab_man_cap")) -- крышка управления стабилизатором
-defineProperty("stab_manual", globalPropertyi("tu154b2/custom/controll/stab_manual")) -- уплавение стабилизатором. 0 - нейтр, +1 - кабрирование
-defineProperty("stab_setting", globalPropertyi("tu154b2/custom/controll/stab_setting")) -- положение центровки для стаба. 0 - З, 1 - С, 2 - П	1
-defineProperty("ail_trimm_sw", globalPropertyi("tu154b2/custom/controll/ail_trimm_sw")) -- переключатель триммера элеронов
-defineProperty("rudd_trimm_sw", globalPropertyi("tu154b2/custom/controll/rudd_trimm_sw")) -- переключатель триммера РН
-defineProperty("contr_force_cap", globalPropertyi("tu154b2/custom/controll/contr_force_cap")) -- крышка переключателя загружателя РВ РН
-defineProperty("contr_force_set", globalPropertyi("tu154b2/custom/controll/contr_force_set")) -- переключатель загружателя РВ РН. -1 - полет, 0 авто, +1 - взлет-посадка
+stab_man_cap = globalPropertyi("tu154b2/custom/controll/stab_man_cap") -- крышка управления стабилизатором
+stab_manual = globalPropertyi("tu154b2/custom/controll/stab_manual") -- уплавение стабилизатором. 0 - нейтр, +1 - кабрирование
+stab_setting = globalPropertyi("tu154b2/custom/controll/stab_setting") -- положение центровки для стаба. 0 - З, 1 - С, 2 - П	1
+ail_trimm_sw = globalPropertyi("tu154b2/custom/controll/ail_trimm_sw") -- переключатель триммера элеронов
+rudd_trimm_sw = globalPropertyi("tu154b2/custom/controll/rudd_trimm_sw") -- переключатель триммера РН
+contr_force_cap = globalPropertyi("tu154b2/custom/controll/contr_force_cap") -- крышка переключателя загружателя РВ РН
+contr_force_set = globalPropertyi("tu154b2/custom/controll/contr_force_set") -- переключатель загружателя РВ РН. -1 - полет, 0 авто, +1 - взлет-посадка
 
-defineProperty("nosewheel_turn_enable", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_enable")) -- выключатель поворота передней стойки на штурвале
-defineProperty("nosewheel_turn_sel", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel")) -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
-defineProperty("nosewheel_turn_cap", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_cap")) -- вкрышка переключателя угла поворота
-defineProperty("slat_man", globalPropertyi("tu154b2/custom/switchers/slat_man")) -- ручное управление предкрылками. -1 - уборка, 0 выкл, +1 - выпуск
-defineProperty("slat_man_cap", globalPropertyi("tu154b2/custom/switchers/slat_man_cap")) -- крышка ручного урпавления предкрылками
-defineProperty("flaps_sel", globalPropertyi("tu154b2/custom/switchers/flaps_sel")) -- выбор режимов работы закрылков. -1 - выкл, 0 - авт, +1 - ручное
-defineProperty("flaps_sel_cap", globalPropertyi("tu154b2/custom/switchers/flaps_sel_cap")) -- крышка выбора работы закрылков
-defineProperty("gears_retr_lock", globalPropertyi("tu154b2/custom/switchers/gears_retr_lock")) -- блокировка уборки шасси
-defineProperty("gears_retr_lock_cap", globalPropertyi("tu154b2/custom/switchers/gears_retr_lock_cap")) -- крышка блокировки уборки шасси
-defineProperty("gears_ext_3GS", globalPropertyi("tu154b2/custom/switchers/gears_ext_3GS")) -- выпуск шасси от 3ГС	
-defineProperty("gears_ext_3GS_cap", globalPropertyi("tu154b2/custom/switchers/gears_ext_3GS_cap")) -- крышка выпуска шасси от 3ГС
+nosewheel_turn_enable = globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_enable") -- выключатель поворота передней стойки на штурвале
+nosewheel_turn_sel = globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel") -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
+nosewheel_turn_cap = globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_cap") -- вкрышка переключателя угла поворота
+slat_man = globalPropertyi("tu154b2/custom/switchers/slat_man") -- ручное управление предкрылками. -1 - уборка, 0 выкл, +1 - выпуск
+slat_man_cap = globalPropertyi("tu154b2/custom/switchers/slat_man_cap") -- крышка ручного урпавления предкрылками
+flaps_sel = globalPropertyi("tu154b2/custom/switchers/flaps_sel") -- выбор режимов работы закрылков. -1 - выкл, 0 - авт, +1 - ручное
+flaps_sel_cap = globalPropertyi("tu154b2/custom/switchers/flaps_sel_cap") -- крышка выбора работы закрылков
+gears_retr_lock = globalPropertyi("tu154b2/custom/switchers/gears_retr_lock") -- блокировка уборки шасси
+gears_retr_lock_cap = globalPropertyi("tu154b2/custom/switchers/gears_retr_lock_cap") -- крышка блокировки уборки шасси
+gears_ext_3GS = globalPropertyi("tu154b2/custom/switchers/gears_ext_3GS") -- выпуск шасси от 3ГС	
+gears_ext_3GS_cap = globalPropertyi("tu154b2/custom/switchers/gears_ext_3GS_cap") -- крышка выпуска шасси от 3ГС
 
-defineProperty("buster_on_1", globalPropertyi("tu154b2/custom/switchers/console/buster_on_1")) -- выключатель бустера
-defineProperty("buster_on_2", globalPropertyi("tu154b2/custom/switchers/console/buster_on_2")) -- выключатель бустера
-defineProperty("buster_on_3", globalPropertyi("tu154b2/custom/switchers/console/buster_on_3")) -- выключатель бустера
-defineProperty("busters_cap", globalPropertyi("tu154b2/custom/switchers/console/busters_cap")) -- крышка выключателей бустеров
+buster_on_1 = globalPropertyi("tu154b2/custom/switchers/console/buster_on_1") -- выключатель бустера
+buster_on_2 = globalPropertyi("tu154b2/custom/switchers/console/buster_on_2") -- выключатель бустера
+buster_on_3 = globalPropertyi("tu154b2/custom/switchers/console/buster_on_3") -- выключатель бустера
+busters_cap = globalPropertyi("tu154b2/custom/switchers/console/busters_cap") -- крышка выключателей бустеров
 
-defineProperty("elev_trimm_switcher", globalPropertyi("tu154b2/custom/controll/elev_trimm_switcher")) -- ручка управления триммером РВ. -1 - пикирование, 0 - нейтр, +1 кабрирование
+elev_trimm_switcher = globalPropertyi("tu154b2/custom/controll/elev_trimm_switcher") -- ручка управления триммером РВ. -1 - пикирование, 0 - нейтр, +1 кабрирование
 
-defineProperty("emerg_elev_trimm", globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm")) -- аварийное управление триммером
-defineProperty("emerg_elev_trimm_cap", globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm_cap")) -- аварийное управление триммером
+emerg_elev_trimm = globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm") -- аварийное управление триммером
+emerg_elev_trimm_cap = globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm_cap") -- аварийное управление триммером
 
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка теста ламп
-defineProperty("lamp_test_eng", globalPropertyi("tu154b2/custom/buttons/lamp_test_upper_gear")) -- кнопка теста ламп
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка теста ламп
+lamp_test_eng = globalPropertyi("tu154b2/custom/buttons/lamp_test_upper_gear") -- кнопка теста ламп
 
 
-defineProperty("flaps_lever", globalPropertyf("tu154b2/custom/controll/flaps_lever")) -- sim flaps ratio control. use for axis and commands
-defineProperty("gear_lever", globalPropertyi("tu154b2/custom/controll/gear_lever")) -- ручка выпуска шасси. -1 - уборка, 0 - нейтр, +1 - выпуск
+flaps_lever = globalPropertyf("tu154b2/custom/controll/flaps_lever") -- sim flaps ratio control. use for axis and commands
+gear_lever = globalPropertyi("tu154b2/custom/controll/gear_lever") -- ручка выпуска шасси. -1 - уборка, 0 - нейтр, +1 - выпуск
 
 anim_rud1 = globalPropertyf("tu154b2/custom/controlls/throttle_1") -- РУД 1
 anim_rud2 = globalPropertyf("tu154b2/custom/controlls/throttle_2") -- РУД 2
 anim_rud3 = globalPropertyf("tu154b2/custom/controlls/throttle_3") -- РУД 3
 
 -- gauges
-defineProperty("stab_ind", globalPropertyf("tu154b2/custom/gauges/misc/stab_ind")) -- индикатор положения стаб
-defineProperty("elevator_ind", globalPropertyf("tu154b2/custom/gauges/misc/elevator_ind")) -- индикатор положения стаб
-defineProperty("flap_left_ind", globalPropertyf("tu154b2/custom/gauges/misc/flap_left_ind")) -- индикатор положения стаб
-defineProperty("flap_right_ind", globalPropertyf("tu154b2/custom/gauges/misc/flap_right_ind")) -- индикатор положения стаб
+stab_ind = globalPropertyf("tu154b2/custom/gauges/misc/stab_ind") -- индикатор положения стаб
+elevator_ind = globalPropertyf("tu154b2/custom/gauges/misc/elevator_ind") -- индикатор положения стаб
+flap_left_ind = globalPropertyf("tu154b2/custom/gauges/misc/flap_left_ind") -- индикатор положения стаб
+flap_right_ind = globalPropertyf("tu154b2/custom/gauges/misc/flap_right_ind") -- индикатор положения стаб
 
 -- lamps
-defineProperty("stab_work", globalPropertyf("tu154b2/custom/lights/stab_work")) -- стабилиз включен
-defineProperty("flaps_1_valve", globalPropertyf("tu154b2/custom/lights/flaps_1_valve")) -- закрылки 1 ПК
-defineProperty("flaps_2_valve", globalPropertyf("tu154b2/custom/lights/flaps_2_valve")) -- закрылки 2 ПК
-defineProperty("spoilers_mid_left", globalPropertyf("tu154b2/custom/lights/spoilers_mid_left")) -- интерцепторы средн лев
-defineProperty("spoilers_mid_right", globalPropertyf("tu154b2/custom/lights/spoilers_mid_right")) -- интерцепторы средн прав
-defineProperty("spoilers_inn_left", globalPropertyf("tu154b2/custom/lights/spoilers_inn_left")) -- интерцепторы внутр лев
-defineProperty("spoilers_inn_right", globalPropertyf("tu154b2/custom/lights/spoilers_inn_right")) -- интерцепторы внутр прав
+stab_work = globalPropertyf("tu154b2/custom/lights/stab_work") -- стабилиз включен
+flaps_1_valve = globalPropertyf("tu154b2/custom/lights/flaps_1_valve") -- закрылки 1 ПК
+flaps_2_valve = globalPropertyf("tu154b2/custom/lights/flaps_2_valve") -- закрылки 2 ПК
+spoilers_mid_left = globalPropertyf("tu154b2/custom/lights/spoilers_mid_left") -- интерцепторы средн лев
+spoilers_mid_right = globalPropertyf("tu154b2/custom/lights/spoilers_mid_right") -- интерцепторы средн прав
+spoilers_inn_left = globalPropertyf("tu154b2/custom/lights/spoilers_inn_left") -- интерцепторы внутр лев
+spoilers_inn_right = globalPropertyf("tu154b2/custom/lights/spoilers_inn_right") -- интерцепторы внутр прав
 
-defineProperty("flaps_unsync", globalPropertyf("tu154b2/custom/lights/flaps_unsync")) -- рассинхр закрылки
-defineProperty("slats_unsync", globalPropertyf("tu154b2/custom/lights/slats_unsync")) -- рассинхр предкр
-defineProperty("slats_extended", globalPropertyf("tu154b2/custom/lights/slats_extended")) -- предкрылки выпущены
+flaps_unsync = globalPropertyf("tu154b2/custom/lights/flaps_unsync") -- рассинхр закрылки
+slats_unsync = globalPropertyf("tu154b2/custom/lights/slats_unsync") -- рассинхр предкр
+slats_extended = globalPropertyf("tu154b2/custom/lights/slats_extended") -- предкрылки выпущены
 
-defineProperty("to_rudder", globalPropertyf("tu154b2/custom/lights/to_rudder")) -- взлет-посадка РН
-defineProperty("to_elevator", globalPropertyf("tu154b2/custom/lights/to_elevator")) -- взлет-посадка РВ
-defineProperty("trimm_zero_course", globalPropertyf("tu154b2/custom/lights/trimm_zero_course")) -- нетрально курс
-defineProperty("trimm_zero_roll", globalPropertyf("tu154b2/custom/lights/trimm_zero_roll")) -- нетрально крен
-defineProperty("trimm_zero_pitch", globalPropertyf("tu154b2/custom/lights/trimm_zero_pitch")) -- нетрально тангаж
+to_rudder = globalPropertyf("tu154b2/custom/lights/to_rudder") -- взлет-посадка РН
+to_elevator = globalPropertyf("tu154b2/custom/lights/to_elevator") -- взлет-посадка РВ
+trimm_zero_course = globalPropertyf("tu154b2/custom/lights/trimm_zero_course") -- нетрально курс
+trimm_zero_roll = globalPropertyf("tu154b2/custom/lights/trimm_zero_roll") -- нетрально крен
+trimm_zero_pitch = globalPropertyf("tu154b2/custom/lights/trimm_zero_pitch") -- нетрально тангаж
 
-defineProperty("gears_not_ext", globalPropertyf("tu154b2/custom/lights/gears_not_ext")) -- шасси не выпущенны
-defineProperty("gears_red_left", globalPropertyf("tu154b2/custom/lights/gears_red_left")) -- шасси 
-defineProperty("gears_red_front", globalPropertyf("tu154b2/custom/lights/gears_red_front")) -- шасси 
-defineProperty("gears_red_right", globalPropertyf("tu154b2/custom/lights/gears_red_right")) -- шасси 
-defineProperty("gears_green_left", globalPropertyf("tu154b2/custom/lights/gears_green_left")) -- шасси 
-defineProperty("gears_green_front", globalPropertyf("tu154b2/custom/lights/gears_green_front")) -- шасси 
-defineProperty("gears_green_right", globalPropertyf("tu154b2/custom/lights/gears_green_right")) -- шасси 
+gears_not_ext = globalPropertyf("tu154b2/custom/lights/gears_not_ext") -- шасси не выпущенны
+gears_red_left = globalPropertyf("tu154b2/custom/lights/gears_red_left") -- шасси 
+gears_red_front = globalPropertyf("tu154b2/custom/lights/gears_red_front") -- шасси 
+gears_red_right = globalPropertyf("tu154b2/custom/lights/gears_red_right") -- шасси 
+gears_green_left = globalPropertyf("tu154b2/custom/lights/gears_green_left") -- шасси 
+gears_green_front = globalPropertyf("tu154b2/custom/lights/gears_green_front") -- шасси 
+gears_green_right = globalPropertyf("tu154b2/custom/lights/gears_green_right") -- шасси 
 
-defineProperty("gears_red_left_eng", globalPropertyf("tu154b2/custom/lights/gears_red_left_eng")) -- шасси 
-defineProperty("gears_red_front_eng", globalPropertyf("tu154b2/custom/lights/gears_red_front_eng")) -- шасси 
-defineProperty("gears_red_right_eng", globalPropertyf("tu154b2/custom/lights/gears_red_right_eng")) -- шасси 
-defineProperty("gears_green_left_eng", globalPropertyf("tu154b2/custom/lights/gears_green_left_eng")) -- шасси 
-defineProperty("gears_green_front_eng", globalPropertyf("tu154b2/custom/lights/gears_green_front_eng")) -- шасси 
-defineProperty("gears_green_right_eng", globalPropertyf("tu154b2/custom/lights/gears_green_right_eng")) -- шасси 
+gears_red_left_eng = globalPropertyf("tu154b2/custom/lights/gears_red_left_eng") -- шасси 
+gears_red_front_eng = globalPropertyf("tu154b2/custom/lights/gears_red_front_eng") -- шасси 
+gears_red_right_eng = globalPropertyf("tu154b2/custom/lights/gears_red_right_eng") -- шасси 
+gears_green_left_eng = globalPropertyf("tu154b2/custom/lights/gears_green_left_eng") -- шасси 
+gears_green_front_eng = globalPropertyf("tu154b2/custom/lights/gears_green_front_eng") -- шасси 
+gears_green_right_eng = globalPropertyf("tu154b2/custom/lights/gears_green_right_eng") -- шасси 
 
 
 -- sources
-defineProperty("elevator_L", globalPropertyf("tu154b2/custom/controlls/elev_L_phys")) -- Degrees, positive is trailing-edge down.
+elevator_L = globalPropertyf("tu154b2/custom/controlls/elev_L_phys") -- Degrees, positive is trailing-edge down.
 --defineProperty("elevator_R", globalPropertyf("sim/flightmodel/controls/hstab2_elv1def")) -- Degrees, positive is trailing-edge down.
-defineProperty("stab_pos", globalPropertyf("sim/flightmodel2/controls/elevator_trim")) -- sim pitch trimmer
-defineProperty("flap_inn_L", globalPropertyf("sim/flightmodel/controls/wing1l_fla1def")) -- inner flaps left
-defineProperty("flap_inn_R", globalPropertyf("sim/flightmodel/controls/wing1r_fla1def")) -- inner flaps right
-defineProperty("slats", globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio")) -- slats position. this one works too
+stab_pos = globalPropertyf("sim/flightmodel2/controls/elevator_trim") -- sim pitch trimmer
+flap_inn_L = globalPropertyf("sim/flightmodel/controls/wing1l_fla1def") -- inner flaps left
+flap_inn_R = globalPropertyf("sim/flightmodel/controls/wing1r_fla1def") -- inner flaps right
+slats = globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio") -- slats position. this one works too
 
-defineProperty("spd_brk_inn_L", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]")) -- inner speedbrake left Degrees
-defineProperty("spd_brk_inn_R", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]")) -- inner speedbrake right Degrees
+spd_brk_inn_L = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]") -- inner speedbrake left Degrees
+spd_brk_inn_R = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]") -- inner speedbrake right Degrees
 
-defineProperty("spd_brk_mid_L", globalPropertyf("sim/flightmodel/controls/wing2l_spo2def")) -- middle speedbrake left Degrees
-defineProperty("spd_brk_mid_R", globalPropertyf("sim/flightmodel/controls/wing2r_spo2def")) -- middle speedbrake right Degrees
+spd_brk_mid_L = globalPropertyf("sim/flightmodel/controls/wing2l_spo2def") -- middle speedbrake left Degrees
+spd_brk_mid_R = globalPropertyf("sim/flightmodel/controls/wing2r_spo2def") -- middle speedbrake right Degrees
 
-defineProperty("int_pitch_trim", globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim")) -- положение триммера руля высоты
-defineProperty("int_roll_trim", globalPropertyf("tu154b2/custom/trimmers/int_roll_trim")) -- положение триммера элеронов
-defineProperty("int_yaw_trim", globalPropertyf("tu154b2/custom/trimmers/int_yaw_trim")) -- положение триммера руля направления
+int_pitch_trim = globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim") -- положение триммера руля высоты
+int_roll_trim = globalPropertyf("tu154b2/custom/trimmers/int_roll_trim") -- положение триммера элеронов
+int_yaw_trim = globalPropertyf("tu154b2/custom/trimmers/int_yaw_trim") -- положение триммера руля направления
 
-defineProperty("control_force_pos", globalPropertyf("tu154b2/custom/controls/control_force_pos")) -- положение загружателя РВ. 0 - выклчюен, 1 - подключен
-defineProperty("control_force_pos_rud", globalPropertyf("tu154b2/custom/controls/control_force_pos_rud")) -- положение загружателя РН. 0 - выклчюен, 1 - подключен
+control_force_pos = globalPropertyf("tu154b2/custom/controls/control_force_pos") -- положение загружателя РВ. 0 - выклчюен, 1 - подключен
+control_force_pos_rud = globalPropertyf("tu154b2/custom/controls/control_force_pos_rud") -- положение загружателя РН. 0 - выклчюен, 1 - подключен
 
-defineProperty("gear1_deploy", globalProperty("sim/aircraft/parts/acf_gear_deploy[0]"))  -- deploy of front gear
-defineProperty("gear2_deploy", globalProperty("sim/aircraft/parts/acf_gear_deploy[1]"))  -- deploy of right gear
-defineProperty("gear3_deploy", globalProperty("sim/aircraft/parts/acf_gear_deploy[2]"))  -- deploy of left gear
+gear1_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[0]")  -- deploy of front gear
+gear2_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[1]")  -- deploy of right gear
+gear3_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[2]")  -- deploy of left gear
 
-defineProperty("deflection_mtr_2", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")) -- 
-defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]")) -- 
+deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]") -- 
+deflection_mtr_3 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]") -- 
 
 
-defineProperty("indicated_airspeed", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot")) -- приборная скорость
-defineProperty("machno", globalPropertyf("sim/flightmodel/misc/machno")) -- скорость Маха
+indicated_airspeed = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot") -- приборная скорость
+machno = globalPropertyf("sim/flightmodel/misc/machno") -- скорость Маха
 
 -- defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
 -- defineProperty("anim_rud2", globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
 -- defineProperty("anim_rud3", globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt")) -- напряжение на сети 115в
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt")) -- напряжение на сети 115в
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt") -- напряжение на сети 115в
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt") -- напряжение на сети 115в
 
-defineProperty("bus36_volt_left", globalPropertyf("tu154b2/custom/elec/bus36_volt_left")) -- напряжение сети 36в лев
-defineProperty("bus36_volt_right", globalPropertyf("tu154b2/custom/elec/bus36_volt_right")) -- напряжение сети 36в прав
-defineProperty("bus36_volt_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")) -- напряжение сети 36 ПТС 1
-defineProperty("bus36_volt_pts250_2", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2")) -- напряжение сети 36 ПТС 2
-defineProperty("flaps_power_cap", globalPropertyf("sim/custom/b2/flaps_power_cap"))
-defineProperty("flaps_power", globalPropertyf("sim/custom/b2/flaps_power"))
+bus36_volt_left = globalPropertyf("tu154b2/custom/elec/bus36_volt_left") -- напряжение сети 36в лев
+bus36_volt_right = globalPropertyf("tu154b2/custom/elec/bus36_volt_right") -- напряжение сети 36в прав
+bus36_volt_pts250_1 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1") -- напряжение сети 36 ПТС 1
+bus36_volt_pts250_2 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2") -- напряжение сети 36 ПТС 2
+flaps_power_cap = globalPropertyf("sim/custom/b2/flaps_power_cap")
+flaps_power = globalPropertyf("sim/custom/b2/flaps_power")
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
 -- other datarefs
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- control surfaces
 
 --defineProperty("slats", globalPropertyf("sim/flightmodel/controls/slatrat")) -- slats position. this one works
 --defineProperty("slats", globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio")) -- slats position. this one works too
 
-defineProperty("rv5_alt_L", globalPropertyf("tu154b2/custom/misc/rv5_alt_left"))  -- высота на левом высотомере
-defineProperty("rv5_alt_R", globalPropertyf("tu154b2/custom/misc/rv5_alt_right"))  -- высота на левом высотомере
-defineProperty("trimm_azs", globalPropertyi("sim/custom/switchers/emerg_trimm_azs"))
+rv5_alt_L = globalPropertyf("tu154b2/custom/misc/rv5_alt_left")  -- высота на левом высотомере
+rv5_alt_R = globalPropertyf("tu154b2/custom/misc/rv5_alt_right")  -- высота на левом высотомере
+trimm_azs = globalPropertyi("sim/custom/switchers/emerg_trimm_azs")
 
 -- alarm
-defineProperty("main_gear_flaps", globalPropertyi("tu154b2/custom/alarm/main_gear_flaps")) -- не взлетное положение закрылков или не выпущенны шасси
+main_gear_flaps = globalPropertyi("tu154b2/custom/alarm/main_gear_flaps") -- не взлетное положение закрылков или не выпущенны шасси
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
-defineProperty("elev_coeff", globalPropertyf("tu154b2/custom/controlls/elev_coeff"))
+elev_coeff = globalPropertyf("tu154b2/custom/controlls/elev_coeff")
 
 flap_drive_1 = globalPropertyi("tu154b2/custom/controlls/flap_chan_1")
 flap_drive_2 = globalPropertyi("tu154b2/custom/controlls/flap_chan_2")
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 cockpit_80s = globalPropertyi("sim/custom/b2/kontur_pa_off")
 flaps_lever = globalPropertyf("tu154b2/custom/controll/flaps_lever")
@@ -230,6 +230,7 @@ end
 
 
 local passed = get(frame_time)
+local stabil_ind = 0
 
 local notLoaded = true
 
@@ -240,7 +241,7 @@ local function reset_switchers()
 		set(buster_on_3, 0)
 		
 		set(busters_cap, 1)
-		
+		stabil_ind = 0
 		set(nosewheel_turn_sel, 1)
 		set(nosewheel_turn_cap, 1)
 		
@@ -543,7 +544,6 @@ local flap_ind_L_act = 0
 local flap_ind_R_act = 0
 local flap_ind_L = 0
 local flap_ind_R = 0
-local stabil_ind = 0
 local elev_ind = 0
 
 -- local mach_tbl = {
