@@ -114,6 +114,16 @@ fire_vlv_open_1 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_1") -- по
 fire_vlv_open_2 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2") -- пожарный кран открыт
 fire_vlv_open_3 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3") -- пожарный кран открыт
 
+starter_disc_fail = globalPropertyi("tu154b2/custom/radio/starter_disconncet_fail")
+
+apd_working_1 = globalPropertyf("tu154b2/custom/start/apd_working_1") -- работа системы запуска
+apd_working_2 = globalPropertyf("tu154b2/custom/start/apd_working_2") -- работа системы запуска
+apd_working_3 = globalPropertyf("tu154b2/custom/start/apd_working_3") -- работа системы запуска
+
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+
 -- Smart Copilot
 ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
 
@@ -136,7 +146,17 @@ sys_data_tbl.starter_ovspd_timer_1 = 0
 sys_data_tbl.starter_ovspd_timer_2 = 0
 sys_data_tbl.starter_ovspd_timer_3 = 0
 
+sys_data_tbl.starter_fail_1 = 0
+sys_data_tbl.starter_fail_2 = 0
+sys_data_tbl.starter_fail_3 = 0
 
+sys_data_tbl.starter_desint_1 = 0
+sys_data_tbl.starter_desint_2 = 0
+sys_data_tbl.starter_desint_3 = 0
+
+sys_data_tbl.starter_rpm_1 = 0
+sys_data_tbl.starter_rpm_2 = 0
+sys_data_tbl.starter_rpm_3 = 0
 
 local engnRuntimeCoef = {
   {-1000, 0},
@@ -185,6 +205,10 @@ if get(ismaster) ~= 1 then
 	local FAIL = get(failures_enabled)
 	FAIL = FAIL * 0.05 * 4 ^ (FAIL * 0.5)
 	
+	local rpm1 = get(rpm_high_1)
+	local rpm2 = get(rpm_high_2)
+	local rpm3 = get(rpm_high_3)
+	
 	-- check failures
 	if FAIL > 0 then
 		-- check engine stall
@@ -212,18 +236,18 @@ if get(ismaster) ~= 1 then
 			local alt_mtr = altitude_ft * 0.3048
 			local ALT_coef = math.max(0, alt_mtr - 8000) / 10000
 			
-			local RPM_coef_1 = math.max(0, get(rpm_high_1) * 0.01 - 0.7) * 3
-			local RPM_coef_2 = math.max(0, get(rpm_high_2) * 0.01 - 0.7) * 3
-			local RPM_coef_3 = math.max(0, get(rpm_high_3) * 0.01 - 0.7) * 3
+			local RPM_coef_1 = math.max(0, rpm1 * 0.01 - 0.7) * 3
+			local RPM_coef_2 = math.max(0, rpm2 * 0.01 - 0.7) * 3
+			local RPM_coef_3 = math.max(0, rpm3 * 0.01 - 0.7) * 3
 			
 			if get(eng_stall_1) ~= 6 then set(eng_stall_1, bool2int(math.random() < 1 * AOA_coef * ALT_coef * RPM_coef_1) * 6) end
 			if get(eng_stall_2) ~= 6 then set(eng_stall_2, bool2int(math.random() < 1 * AOA_coef * ALT_coef * RPM_coef_2) * 6) end
 			if get(eng_stall_3) ~= 6 then set(eng_stall_3, bool2int(math.random() < 1 * AOA_coef * ALT_coef * RPM_coef_3) * 6) end
 			
-			-- reset stall, if engine is not working
-			if get(eng_work_1) == 0 then set(eng_stall_1, 0) end
-			if get(eng_work_2) == 0 then set(eng_stall_2, 0) end
-			if get(eng_work_3) == 0 then set(eng_stall_3, 0) end
+			-- reset stall, if engine is not working or aoa/rpm are reduced
+			if (get(eng_work_1) == 0 or (rpm1 < 75 and aoa < 1)) and sys_data_tbl.starter_desint_1 == 0 then set(eng_stall_1, 0) end
+			if (get(eng_work_2) == 0 or (rpm2 < 75 and aoa < 1)) and sys_data_tbl.starter_desint_2 == 0 then set(eng_stall_2, 0) end
+			if (get(eng_work_3) == 0 or (rpm3 < 75 and aoa < 1)) and sys_data_tbl.starter_desint_3 == 0 then set(eng_stall_3, 0) end
 			
 		
 		end
@@ -296,6 +320,19 @@ if get(ismaster) ~= 1 then
 			if get(stp_1_fail) ~= 1 then set(stp_1_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(stp_2_fail) ~= 1 then set(stp_2_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(stp_3_fail) ~= 1 then set(stp_3_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			
+			if sys_data_tbl.starter_fail_1 ~= 1 and get(apd_working_1) > 0 then 
+				sys_data_tbl.starter_fail_1 = bool2int(math.random() < 0.0001 * FAIL * 0.3) 
+				set(starter_disc_fail,1)
+			end
+			if sys_data_tbl.starter_fail_2 ~= 1 and get(apd_working_2) > 0 then 
+				sys_data_tbl.starter_fail_2 = bool2int(math.random() < 0.0001 * FAIL * 0.3) 
+				set(starter_disc_fail,1)
+			end
+			if sys_data_tbl.starter_fail_3 ~= 1 and get(apd_working_3) > 0 then 
+				sys_data_tbl.starter_fail_3 = bool2int(math.random() < 0.0001 * FAIL * 0.3) 
+				set(starter_disc_fail,1)
+			end
 			
 		
 		end
@@ -400,7 +437,31 @@ if get(ismaster) ~= 1 then
 				set(eng_fire_2,6)
 			end
 		end
-	
+		
+		if sys_data_tbl.starter_ovspd_timer_1 > 120 then
+			if math.random(1000) == 1 and sys_data_tbl.starter_desint_1 == 0 then
+				sys_data_tbl.starter_desint_1 = 1
+				set(eng_stall_1,6)
+				set(eng_fire_1,6)
+			end
+		end
+			
+		if sys_data_tbl.starter_ovspd_timer_2 > 120 then
+			if math.random(1000) == 1 and sys_data_tbl.starter_desint_2 == 0 then
+				sys_data_tbl.starter_desint_2 = 1
+				set(eng_stall_2,6)
+				set(eng_fire_2,6)
+			end
+		end
+		
+		if sys_data_tbl.starter_ovspd_timer_3 > 120 then
+			if math.random(1000) == 1 and sys_data_tbl.starter_desint_3 == 0 then
+				sys_data_tbl.starter_desint_3 = 1
+				set(eng_stall_3,6)
+				set(eng_fire_3,6)
+			end
+		end
+		
 	
 	else
 		-- no failures enabled
@@ -418,9 +479,9 @@ if get(ismaster) ~= 1 then
 		set(fuel_flowmeter_2_fail, 0)
 		set(fuel_flowmeter_3_fail, 0)
 		
-		set(eng_fail_1, fire1_used*6)
-		set(eng_fail_2, fire2_used*6)
-		set(eng_fail_3, fire3_used*6)
+		set(eng_fail_1, 0)
+		set(eng_fail_2, 0)
+		set(eng_fail_3, 0)
 		
 		set(eng_fire_1, 0)
 		set(eng_fire_2, 0)
@@ -463,18 +524,18 @@ if get(ismaster) ~= 1 then
 			local alt_mtr = altitude_ft * 0.3048
 			local ALT_coef = math.max(0, alt_mtr - 8000) / 10000
 			
-			local RPM_coef_1 = math.max(0, get(rpm_high_1) * 0.01 - 0.7) * 3
-			local RPM_coef_2 = math.max(0, get(rpm_high_2) * 0.01 - 0.7) * 3
-			local RPM_coef_3 = math.max(0, get(rpm_high_3) * 0.01 - 0.7) * 3
+			local RPM_coef_1 = math.max(0, rpm1 * 0.01 - 0.7) * 3
+			local RPM_coef_2 = math.max(0, rpm2 * 0.01 - 0.7) * 3
+			local RPM_coef_3 = math.max(0, rpm3 * 0.01 - 0.7) * 3
 			
 			if get(eng_stall_1) ~= 6 then set(eng_stall_1, bool2int(math.random() < 1 * AOA_coef * ALT_coef * RPM_coef_1) * 6) end
 			if get(eng_stall_2) ~= 6 then set(eng_stall_2, bool2int(math.random() < 1 * AOA_coef * ALT_coef * RPM_coef_2) * 6) end
 			if get(eng_stall_3) ~= 6 then set(eng_stall_3, bool2int(math.random() < 1 * AOA_coef * ALT_coef * RPM_coef_3) * 6) end
 			
-			-- reset stall, if engine is not working
-			if get(eng_work_1) == 0 then set(eng_stall_1, 0) end
-			if get(eng_work_2) == 0 then set(eng_stall_2, 0) end
-			if get(eng_work_3) == 0 then set(eng_stall_3, 0) end
+			-- reset stall, if engine is not working or aoa/rpm are reduced
+			if (get(eng_work_1) == 0 or (rpm1 < 75 and aoa < 1)) then set(eng_stall_1, 0) end
+			if (get(eng_work_2) == 0 or (rpm2 < 75 and aoa < 1)) then set(eng_stall_2, 0) end
+			if (get(eng_work_3) == 0 or (rpm3 < 75 and aoa < 1)) then set(eng_stall_3, 0) end
 			
 		
 		end
@@ -523,6 +584,10 @@ if get(ismaster) ~= 1 then
 		sys_data_tbl.starter_ovspd_timer_1 = 0
 		sys_data_tbl.starter_ovspd_timer_2 = 0
 		sys_data_tbl.starter_ovspd_timer_3 = 0
+		
+		sys_data_tbl.starter_fail_1 = 0
+		sys_data_tbl.starter_fail_2 = 0
+		sys_data_tbl.starter_fail_3 = 0
 
 	
 	end

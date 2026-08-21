@@ -249,6 +249,11 @@ local rev_L=0
 local rev_R=0
 
 local eng_block_brt = 0
+
+local starter_ovspd_1 = 0
+local starter_ovspd_2 = 0
+local starter_ovspd_3 = 0
+
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
 	local hdg_rad = math.rad(cam_hdg)
@@ -291,16 +296,6 @@ local function small_lamps()
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	
-	
-	local starter_high_rpm_1_brt = math.max(0, test_btn) -- fake for now
-	set(starter_high_rpm_1, starter_high_rpm_1_brt)
-	
-	local starter_high_rpm_2_brt = math.max(0, test_btn) -- fake for now
-	set(starter_high_rpm_2, starter_high_rpm_2_brt)
-	
-	local starter_high_rpm_3_brt = math.max(0, test_btn) -- fake for now
-	set(starter_high_rpm_3, starter_high_rpm_3_brt)
-	
 	local fuel_2500_brt = 0
 	if get(tank1_w) < 2500 then fuel_2500_brt = 1 end
 	
@@ -335,7 +330,11 @@ local function lamps_eng1()
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	
 	local lamps_brt = math.max((get(bus27_volt_left) - 10) / 18.5, 0) * day_night
-	local RPM = get(eng1_N2)
+	local RPM = get(eng1_N2)	
+	local starter_high_rpm_1_brt = math.max(bool2int(sys_data_tbl.starter_rpm_1 > 45) * (1 - sys_data_tbl.starter_desint_1), test_btn) -- not fake anymore
+	starter_ovspd_1 = sys_data_tbl.starter_ovspd_timer_1
+	set(starter_high_rpm_1, starter_high_rpm_1_brt)
+	
 	--local RPM2 = get(rpm_high_1)
 	local eng1_dangerous_vibro_brt = 0
 	local vibr = get(vibra_1)
@@ -430,6 +429,9 @@ local function lamps_eng2()
 	local day_night = 1 - get(day_night_set) * 0.25
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng2_N2)
+	local starter_high_rpm_2_brt = math.max(bool2int(sys_data_tbl.starter_rpm_2 > 45) * (1 - sys_data_tbl.starter_desint_2), test_btn) -- not fake anymore
+	starter_ovspd_2 = sys_data_tbl.starter_ovspd_timer_2
+	set(starter_high_rpm_2, starter_high_rpm_2_brt)
 	--local RPM2 = get(rpm_high_2)
 	local eng2_dangerous_vibro_brt = 0
 	local vibr = get(vibra_2)
@@ -516,6 +518,9 @@ local function lamps_eng3()
 	local day_night = 1 - get(day_night_set) * 0.25
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng3_N2)
+	local starter_high_rpm_3_brt = math.max(bool2int(sys_data_tbl.starter_rpm_3 > 45) * (1 - sys_data_tbl.starter_desint_3), test_btn) -- not fake anymore
+	starter_ovspd_3 = sys_data_tbl.starter_ovspd_timer_3
+	set(starter_high_rpm_3, starter_high_rpm_3_brt)
 	--local RPM2 = get(rpm_high_3)
 	local eng3_dangerous_vibro_brt = 0
 	local vibr = get(vibra_3)

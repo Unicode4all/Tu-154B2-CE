@@ -75,6 +75,10 @@ local out_starter_right_2 = loadSample(moduleDirectory .. '/Custom Sounds/engine
 local out_starter_left_3 = loadSample(moduleDirectory .. '/Custom Sounds/engines/kvd_start_inn_L.wav')
 local out_starter_right_3 = loadSample(moduleDirectory .. '/Custom Sounds/engines/kvd_start_inn_R.wav')
 
+local starter_expl_L = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/starter_expl_L.wav')
+local starter_expl_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/starter_expl_R.wav')
+
+
 setSampleGain(inn_starter_cut_left_1,0)
 setSampleGain(inn_starter_cut_left_2,0)
 setSampleGain(inn_starter_cut_left_3,0)
@@ -118,6 +122,10 @@ local cam_z = get(cam_Z)
 local acf_x = get(acf_X)
 local acf_y = get(acf_Y)
 local acf_z = get(acf_Z)
+
+local starter_exp_1 = 0
+local starter_exp_2 = 0
+local starter_exp_3 = 0
 
 local rpmgain_tbl = {
 {0, 0},
@@ -305,21 +313,21 @@ function update ()
 	local starter_2 = get(apd_working_2)
 	local starter_3 = get(apd_working_3)
 	
-	if starter_1 ~= starter_1_last and starter_1 == 0 then
+	if starter_1 ~= starter_1_last and starter_1 == 0 and sys_data_tbl.starter_fail_1 == 0 then
 		playSample(inn_starter_cut_left_1, false)
 		playSample(inn_starter_cut_right_1, false)
 		playSample(out_starter_cut_left_1, false)
 		playSample(out_starter_cut_right_1, false)
 	end
 	
-	if starter_2 ~= starter_2_last and starter_2 == 0 then
+	if starter_2 ~= starter_2_last and starter_2 == 0 and sys_data_tbl.starter_fail_2 == 0 then
 		playSample(inn_starter_cut_left_2, false)
 		playSample(inn_starter_cut_right_2, false)
 		playSample(out_starter_cut_left_2, false)
 		playSample(out_starter_cut_right_2, false)
 	end
 	
-	if starter_3 ~= starter_3_last and starter_3 == 0 then
+	if starter_3 ~= starter_3_last and starter_3 == 0 and sys_data_tbl.starter_fail_3 == 0 then
 		playSample(inn_starter_cut_left_3, false)
 		playSample(inn_starter_cut_right_3, false)
 		playSample(out_starter_cut_left_3, false)
@@ -363,6 +371,30 @@ function update ()
 		setSampleGain(inn_starter_cut_right_1, 70 * bal_R * main_vol)
 		setSampleGain(inn_starter_cut_right_2, 70 * bal_R * main_vol)
 		setSampleGain(inn_starter_cut_right_3, 70 * bal_R * main_vol)
+		
+		if starter_exp_1 ~= sys_data_tbl.starter_desint_1 then
+			setSampleGain(starter_expl_L,bal_L * 500 * main_vol)
+			setSampleGain(starter_expl_R,bal_R * 500 * main_vol)
+			playSample(starter_expl_L,false)
+			playSample(starter_expl_R,false)
+			starter_exp_1 = sys_data_tbl.starter_desint_1
+		end
+		
+		if starter_exp_2 ~= sys_data_tbl.starter_desint_2 then
+			setSampleGain(starter_expl_L,bal_L * 500 * main_vol)
+			setSampleGain(starter_expl_R,bal_R * 500 * main_vol)
+			playSample(starter_expl_L,false)
+			playSample(starter_expl_R,false)
+			starter_exp_2 = sys_data_tbl.starter_desint_2
+		end
+		
+		if starter_exp_3 ~= sys_data_tbl.starter_desint_3 then
+			setSampleGain(starter_expl_L,bal_L * 500 * main_vol)
+			setSampleGain(starter_expl_R,bal_R * 500 * main_vol)
+			playSample(starter_expl_L,false)
+			playSample(starter_expl_R,false)
+			starter_exp_3 = sys_data_tbl.starter_desint_3
+		end
 		
 		if rpm_1<49 and starter_1+get(burn1)>0 then
 			setSampleGain(out_starter_left_1, 100 * bal_L * main_vol*interpolate(rpmgain_tbl,rpm_1)*70)

@@ -336,6 +336,7 @@ customFails["TR 2 Switchover Fail"] = globalPropertyi("tu154b2/custom/failures/t
 customFails["SO-72 Fail"] = globalPropertyi("tu154b2/custom/failures/so72_fail")
 customFails["Main Heat Exchanger Leak"] = globalPropertyi("tu154b2/custom/failures/vvr_leak")
 
+customFails["Starter Disconnect Fail"] = globalPropertyi("tu154b2/custom/radio/starter_disconncet_fail")
 
 
 --[[
@@ -426,6 +427,10 @@ local function fixAll()
 	sys_data_tbl.starter_ovspd_timer_1 = 0
 	sys_data_tbl.starter_ovspd_timer_2 = 0
 	sys_data_tbl.starter_ovspd_timer_3 = 0
+	
+	sys_data_tbl.starter_fail_1 = 0
+	sys_data_tbl.starter_fail_2 = 0
+	sys_data_tbl.starter_fail_3 = 0
 	
 	set(save_state, 1)
 

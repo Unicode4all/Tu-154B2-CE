@@ -41,6 +41,9 @@ hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plug
 
 local fail_counter = 0
 local check_time = math.random(15, 30)
+local starter_desint_1 = 0
+local starter_desint_2 = 0
+local starter_desint_3 = 0
 
 
 function update()
@@ -100,6 +103,29 @@ local MASTER = get(ismaster) ~= 1
 					set(hs_leak_3, 1)
 				end
 			end
+			-- starter rotor desintegrates, sends metal flyng through the rear compartments, possibly hitting hydraulic lines
+			if sys_data_tbl.starter_desint_1 > 0 and starter_desint_1 == 0 then
+				if math.random() > 0.5  then
+					set(hs_leak_1, 1)
+				end
+				starter_desint_1 = 1
+			end	
+			if sys_data_tbl.starter_desint_2 > 0 and starter_desint_2 == 0 then
+				if math.random() > 0.5  then
+					set(hs_leak_1, 1)
+				end
+				if math.random() > 0.5  then
+					set(hs_leak_2, 1)
+				end
+				starter_desint_2 = 1
+			end	
+			if sys_data_tbl.starter_desint_3 > 0 and starter_desint_3 == 0 then
+				if math.random() > 0.5  then
+					set(hs_leak_3, 1)
+				end
+				starter_desint_3 = 1
+			end	
+			
 		else
 			-- no failures enabled
 			fail_counter = 0

@@ -139,9 +139,9 @@ if MASTER then
 	local power27R = get(bus27_volt_right) > 13
 	
 	-- The longer the fire burns, the less likely it will be extinguished
-	local ext_th_1 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_1 - 20 )/ 100)
-	local ext_th_2 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_2 - 20 )/ 100)
-	local ext_th_3 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_3 - 20 )/ 100)
+	local ext_th_1 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_1 - 20 )/ 100) - 0.4 * sys_data_tbl.starter_desint_1
+	local ext_th_2 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_2 - 20 )/ 100) - 0.4 * sys_data_tbl.starter_desint_2
+	local ext_th_3 = 0.9 - math.max(0 , (sys_data_tbl.eng_fire_timer_3 - 20 )/ 100) - 0.4 * sys_data_tbl.starter_desint_3
 	
 	if power27L and get(fire_main_switch) == 1 then
 		

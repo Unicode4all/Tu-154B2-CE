@@ -197,17 +197,17 @@ function update()
 	end
 	
 	-- result vibration and engine faulre
-	vibro1 = vibro1 + (fire_counter1 + chip_counter1 + oil_counter1) * rpm1 / 100  + stall_vibr_1
+	vibro1 = vibro1 + (fire_counter1 + chip_counter1 + oil_counter1  + stall_vibr_1) * rpm1 / 100
 	if vibro1 > 100 then vibro1 = 100 end
 	--if vibro1 > 70 then set(chip_detect1, 1) end -- not working. may set a custom failue here
 	if vibro1 > 90 then set(eng1_fail, 6) end
 	
-	vibro2 = vibro2 + (fire_counter2 + chip_counter2 + oil_counter2) * rpm2 / 100 + stall_vibr_2
+	vibro2 = vibro2 + (fire_counter2 + chip_counter2 + oil_counter2 + stall_vibr_2) * rpm2 / 100
 	if vibro2 > 100 then vibro2 = 100 end	
 	--if vibro2 > 70 then set(chip_detect2, 1) end
 	if vibro2 > 90 then set(eng2_fail, 6) end
 
-	vibro3 = vibro3 + (fire_counter3 + chip_counter3 + oil_counter3) * rpm3 / 100 + stall_vibr_3
+	vibro3 = vibro3 + (fire_counter3 + chip_counter3 + oil_counter3 + stall_vibr_3) * rpm3 / 100
 	if vibro3 > 100 then vibro3 = 100 end	
 	--if vibro3 > 70 then set(chip_detect3, 1) end
 	if vibro3 > 90 then set(eng3_fail, 6) end	
