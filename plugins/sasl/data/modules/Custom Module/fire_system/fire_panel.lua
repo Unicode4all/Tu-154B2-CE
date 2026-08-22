@@ -1,147 +1,142 @@
 -- this is fire system panel
 -- controls
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_fire_panel")) -- кнопка проверки ламп на пожарной панели	0
-defineProperty("lamp_test_2", globalPropertyi("tu154b2/custom/buttons/lamp_test_engines")) -- кнопка проверки ламп на пожарной панели	0
-defineProperty("smoke_test", globalPropertyi("tu154b2/custom/buttons/eng/smoke_test")) -- проверка датчиков дыма
-defineProperty("ext_test", globalPropertyi("tu154b2/custom/buttons/eng/ext_test")) -- проверка огнетушителей
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_fire_panel") -- кнопка проверки ламп на пожарной панели	0
+lamp_test_2 = globalPropertyi("tu154b2/custom/buttons/lamp_test_engines") -- кнопка проверки ламп на пожарной панели	0
+smoke_test = globalPropertyi("tu154b2/custom/buttons/eng/smoke_test") -- проверка датчиков дыма
+ext_test = globalPropertyi("tu154b2/custom/buttons/eng/ext_test") -- проверка огнетушителей
 
-defineProperty("smoke_test1", globalPropertyi("sim/custom/buttons/eng/smoke_test_1")) -- проверка датчиков дыма
-defineProperty("smoke_test2", globalPropertyi("sim/custom/buttons/eng/smoke_test_2")) -- проверка датчиков дыма
-defineProperty("smoke_test3", globalPropertyi("sim/custom/buttons/eng/smoke_test_3")) -- проверка датчиков дыма
-defineProperty("smoke_test4", globalPropertyi("sim/custom/buttons/eng/smoke_test_4")) -- проверка датчиков дыма
-defineProperty("smoke_test5", globalPropertyi("sim/custom/buttons/eng/smoke_test_5")) -- проверка датчиков дыма
-defineProperty("smoke_test6", globalPropertyi("sim/custom/buttons/eng/smoke_test_6")) -- проверка датчиков дыма
-defineProperty("smoke_test7", globalPropertyi("sim/custom/buttons/eng/smoke_test_7")) -- проверка датчиков дыма
-defineProperty("smoke_1btn", globalPropertyi("sim/custom/b2/smoke_1_button")) -- проверка датчиков дыма
-defineProperty("smoke_2btn", globalPropertyi("sim/custom/b2/smoke_2_button")) -- проверка датчиков дыма
-
-
+smoke_test1 = globalPropertyi("sim/custom/buttons/eng/smoke_test_1") -- проверка датчиков дыма
+smoke_test2 = globalPropertyi("sim/custom/buttons/eng/smoke_test_2") -- проверка датчиков дыма
+smoke_test3 = globalPropertyi("sim/custom/buttons/eng/smoke_test_3") -- проверка датчиков дыма
+smoke_test4 = globalPropertyi("sim/custom/buttons/eng/smoke_test_4") -- проверка датчиков дыма
+smoke_test5 = globalPropertyi("sim/custom/buttons/eng/smoke_test_5") -- проверка датчиков дыма
+smoke_test6 = globalPropertyi("sim/custom/buttons/eng/smoke_test_6") -- проверка датчиков дыма
+smoke_test7 = globalPropertyi("sim/custom/buttons/eng/smoke_test_7") -- проверка датчиков дыма
+smoke_1btn = globalPropertyi("sim/custom/b2/smoke_1_button") -- проверка датчиков дыма
+smoke_2btn = globalPropertyi("sim/custom/b2/smoke_2_button") -- проверка датчиков дыма
 
 
 
-defineProperty("lamp_test_front", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп передней панели
 
-defineProperty("fire_ext_1", globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_1")) -- очередь тушения пожара
-defineProperty("fire_ext_2", globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_2")) -- очередь тушения пожара
-defineProperty("fire_ext_3", globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_3")) -- очередь тушения пожара
-defineProperty("cold_eng_1", globalPropertyi("sim/custom/b2/fire_eng1_button")) -- подача хладона
-defineProperty("cold_eng_2", globalPropertyi("sim/custom/b2/fire_eng2_button")) -- подача хладона
-defineProperty("cold_eng_3", globalPropertyi("sim/custom/b2/fire_eng3_button")) -- подача хладона
-defineProperty("cold_apu", globalPropertyi("sim/custom/b2/fire_apu_button")) -- подача хладона
-defineProperty("neutral_gas", globalPropertyi("tu154b2/custom/buttons/eng/neutral_gas")) -- нейтральный газ
 
-defineProperty("fire_sensor_sel", globalPropertyi("tu154b2/custom/switchers/eng/fire_sensor_sel")) -- выбор группы датчиков
-defineProperty("fire_place_sel", globalPropertyi("tu154b2/custom/switchers/eng/fire_place_sel")) -- выбор отсека
+lamp_test_front = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп передней панели
 
-defineProperty("fire_main_switch", globalPropertyi("tu154b2/custom/switchers/eng/fire_main_switch")) -- выключатель пожарной системы
-defineProperty("fire_buzzer", globalPropertyi("tu154b2/custom/switchers/eng/fire_buzzer")) -- пожарная сирена
-defineProperty("fire_buzzer_cap", globalPropertyi("tu154b2/custom/switchers/eng/fire_buzzer_cap")) -- пожарная сирена
+fire_ext_1 = globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_1") -- очередь тушения пожара
+fire_ext_2 = globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_2") -- очередь тушения пожара
+fire_ext_3 = globalPropertyi("tu154b2/custom/buttons/eng/fire_ext_3") -- очередь тушения пожара
+cold_eng_1 = globalPropertyi("sim/custom/b2/fire_eng1_button") -- подача хладона
+cold_eng_2 = globalPropertyi("sim/custom/b2/fire_eng2_button") -- подача хладона
+cold_eng_3 = globalPropertyi("sim/custom/b2/fire_eng3_button") -- подача хладона
+cold_apu = globalPropertyi("sim/custom/b2/fire_apu_button") -- подача хладона
+neutral_gas = globalPropertyi("tu154b2/custom/buttons/eng/neutral_gas") -- нейтральный газ
+
+fire_sensor_sel = globalPropertyi("tu154b2/custom/switchers/eng/fire_sensor_sel") -- выбор группы датчиков
+fire_place_sel = globalPropertyi("tu154b2/custom/switchers/eng/fire_place_sel") -- выбор отсека
+
+fire_main_switch = globalPropertyi("tu154b2/custom/switchers/eng/fire_main_switch") -- выключатель пожарной системы
+fire_buzzer = globalPropertyi("tu154b2/custom/switchers/eng/fire_buzzer") -- пожарная сирена
+fire_buzzer_cap = globalPropertyi("tu154b2/custom/switchers/eng/fire_buzzer_cap") -- пожарная сирена
 
 -- lamps
-defineProperty("smoke_1", globalPropertyf("tu154b2/custom/lights/fire/smoke_1")) -- дым в отсеках
-defineProperty("smoke_2", globalPropertyf("tu154b2/custom/lights/fire/smoke_2")) -- дым в отсеках
-defineProperty("smoke_zone2_left", globalPropertyf("tu154b2/custom/lights/fire/smoke_zone2_left")) -- дым в отсеках
-defineProperty("smoke_zone2_right", globalPropertyf("tu154b2/custom/lights/fire/smoke_zone2_right")) -- дым в отсеках
-defineProperty("smoke_zone3", globalPropertyf("tu154b2/custom/lights/fire/smoke_zone3")) -- дым в отсеках
-defineProperty("smoke_zone4", globalPropertyf("tu154b2/custom/lights/fire/smoke_zone4")) -- дым в отсеках
-defineProperty("smoke_zone5_left", globalPropertyf("tu154b2/custom/lights/fire/smoke_zone5_left")) -- дым в отсеках
-defineProperty("smoke_zone5_right", globalPropertyf("tu154b2/custom/lights/fire/smoke_zone5_right")) -- дым в отсеках
-defineProperty("smoke_zone6", globalPropertyf("tu154b2/custom/lights/fire/smoke_zone6")) -- дым в отсеках
+smoke_1 = globalPropertyf("tu154b2/custom/lights/fire/smoke_1") -- дым в отсеках
+smoke_2 = globalPropertyf("tu154b2/custom/lights/fire/smoke_2") -- дым в отсеках
+smoke_zone2_left = globalPropertyf("tu154b2/custom/lights/fire/smoke_zone2_left") -- дым в отсеках
+smoke_zone2_right = globalPropertyf("tu154b2/custom/lights/fire/smoke_zone2_right") -- дым в отсеках
+smoke_zone3 = globalPropertyf("tu154b2/custom/lights/fire/smoke_zone3") -- дым в отсеках
+smoke_zone4 = globalPropertyf("tu154b2/custom/lights/fire/smoke_zone4") -- дым в отсеках
+smoke_zone5_left = globalPropertyf("tu154b2/custom/lights/fire/smoke_zone5_left") -- дым в отсеках
+smoke_zone5_right = globalPropertyf("tu154b2/custom/lights/fire/smoke_zone5_right") -- дым в отсеках
+smoke_zone6 = globalPropertyf("tu154b2/custom/lights/fire/smoke_zone6") -- дым в отсеках
 
-defineProperty("fire_eng_1", globalPropertyf("tu154b2/custom/lights/fire/fire_eng_1")) -- пожар в двигателе
-defineProperty("fire_eng_2", globalPropertyf("tu154b2/custom/lights/fire/fire_eng_2")) -- пожар в двигателе
-defineProperty("fire_eng_3", globalPropertyf("tu154b2/custom/lights/fire/fire_eng_3")) -- пожар в двигателе
+fire_eng_1 = globalPropertyf("tu154b2/custom/lights/fire/fire_eng_1") -- пожар в двигателе
+fire_eng_2 = globalPropertyf("tu154b2/custom/lights/fire/fire_eng_2") -- пожар в двигателе
+fire_eng_3 = globalPropertyf("tu154b2/custom/lights/fire/fire_eng_3") -- пожар в двигателе
 
-defineProperty("overheat_eng_1", globalPropertyf("tu154b2/custom/lights/fire/overheat_eng_1")) -- перегрев двигателя
-defineProperty("overheat_eng_2", globalPropertyf("tu154b2/custom/lights/fire/overheat_eng_2")) -- перегрев двигателя
-defineProperty("overheat_eng_3", globalPropertyf("tu154b2/custom/lights/fire/overheat_eng_3")) -- перегрев двигателя
+overheat_eng_1 = globalPropertyf("tu154b2/custom/lights/fire/overheat_eng_1") -- перегрев двигателя
+overheat_eng_2 = globalPropertyf("tu154b2/custom/lights/fire/overheat_eng_2") -- перегрев двигателя
+overheat_eng_3 = globalPropertyf("tu154b2/custom/lights/fire/overheat_eng_3") -- перегрев двигателя
 
-defineProperty("fuel_off_eng_1", globalPropertyf("tu154b2/custom/lights/fire/fuel_off_eng_1")) -- топливо закрыто
-defineProperty("fuel_off_eng_2", globalPropertyf("tu154b2/custom/lights/fire/fuel_off_eng_2")) -- топливо закрыто
-defineProperty("fuel_off_eng_3", globalPropertyf("tu154b2/custom/lights/fire/fuel_off_eng_3")) -- топливо закрыто
+fuel_off_eng_1 = globalPropertyf("tu154b2/custom/lights/fire/fuel_off_eng_1") -- топливо закрыто
+fuel_off_eng_2 = globalPropertyf("tu154b2/custom/lights/fire/fuel_off_eng_2") -- топливо закрыто
+fuel_off_eng_3 = globalPropertyf("tu154b2/custom/lights/fire/fuel_off_eng_3") -- топливо закрыто
 
-defineProperty("check_overheat", globalPropertyf("tu154b2/custom/lights/fire/check_overheat")) -- проверь перегрев и дым
-defineProperty("fire_apu", globalPropertyf("tu154b2/custom/lights/fire/fire_apu")) -- пожар ВСУ
-defineProperty("turn_on_spz", globalPropertyf("tu154b2/custom/lights/fire/turn_on_spz")) -- включи СПЗ
-
-
-defineProperty("button_fire_eng_1", globalPropertyf("tu154b2/custom/lights/button/fire_eng_1")) -- тушение пожара двиг 1
-defineProperty("button_fire_eng_2", globalPropertyf("tu154b2/custom/lights/button/fire_eng_2")) -- тушение пожара двиг 2
-defineProperty("button_fire_eng_3", globalPropertyf("tu154b2/custom/lights/button/fire_eng_3")) -- тушение пожара двиг 3
-defineProperty("button_fire_apu", globalPropertyf("tu154b2/custom/lights/button/fire_apu")) -- тушение пожара ВСУ
-defineProperty("button_fire_ng", globalPropertyf("tu154b2/custom/lights/button/fire_ng")) -- тушение пожара НГ
-defineProperty("button_fire_turn_3", globalPropertyf("tu154b2/custom/lights/button/fire_turn_3")) -- тушение пожара двиг 1
-defineProperty("button_fire_turn_2", globalPropertyf("tu154b2/custom/lights/button/fire_turn_2")) -- тушение пожара двиг 1
-defineProperty("button_fire_turn_1", globalPropertyf("tu154b2/custom/lights/button/fire_turn_1")) -- тушение пожара двиг 1
+check_overheat = globalPropertyf("tu154b2/custom/lights/fire/check_overheat") -- проверь перегрев и дым
+fire_apu = globalPropertyf("tu154b2/custom/lights/fire/fire_apu") -- пожар ВСУ
+turn_on_spz = globalPropertyf("tu154b2/custom/lights/fire/turn_on_spz") -- включи СПЗ
 
 
-defineProperty("throttle_1_fire", globalPropertyf("tu154b2/custom/lights/small/throttle_1_fire")) -- лампа пожара на РУД
-defineProperty("throttle_2_fire", globalPropertyf("tu154b2/custom/lights/small/throttle_2_fire")) -- лампа пожара на РУД
-defineProperty("throttle_3_fire", globalPropertyf("tu154b2/custom/lights/small/throttle_3_fire")) -- лампа пожара на РУД
+button_fire_eng_1 = globalPropertyf("tu154b2/custom/lights/button/fire_eng_1") -- тушение пожара двиг 1
+button_fire_eng_2 = globalPropertyf("tu154b2/custom/lights/button/fire_eng_2") -- тушение пожара двиг 2
+button_fire_eng_3 = globalPropertyf("tu154b2/custom/lights/button/fire_eng_3") -- тушение пожара двиг 3
+button_fire_apu = globalPropertyf("tu154b2/custom/lights/button/fire_apu") -- тушение пожара ВСУ
+button_fire_ng = globalPropertyf("tu154b2/custom/lights/button/fire_ng") -- тушение пожара НГ
+button_fire_turn_3 = globalPropertyf("tu154b2/custom/lights/button/fire_turn_3") -- тушение пожара двиг 1
+button_fire_turn_2 = globalPropertyf("tu154b2/custom/lights/button/fire_turn_2") -- тушение пожара двиг 1
+button_fire_turn_1 = globalPropertyf("tu154b2/custom/lights/button/fire_turn_1") -- тушение пожара двиг 1
 
-defineProperty("fire_lamp", globalPropertyf("sim/custom/lights/fire/fire_switch")) -- ПОЖАР
-defineProperty("fire_lamp_front", globalPropertyf("tu154b2/custom/lights/fire")) -- ПОЖАР
+fire_lamp = globalPropertyf("sim/custom/lights/fire/fire_switch") -- ПОЖАР
+fire_lamp_front = globalPropertyf("tu154b2/custom/lights/fire") -- ПОЖАР
 
 
 
-defineProperty("eng1_dangerous_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng1_dangerous_vibro")) -- опасная вибрация
-defineProperty("eng2_dangerous_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng2_dangerous_vibro")) -- опасная вибрация
-defineProperty("eng3_dangerous_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng3_dangerous_vibro")) -- опасная вибрация
+eng1_dangerous_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng1_dangerous_vibro") -- опасная вибрация
+eng2_dangerous_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng2_dangerous_vibro") -- опасная вибрация
+eng3_dangerous_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng3_dangerous_vibro") -- опасная вибрация
 
 
 
 
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- other sources
 
 
-defineProperty("ext_used_1", globalPropertyi("tu154b2/custom/fire/ext_used_1")) -- огнетушитель использован
-defineProperty("ext_used_2", globalPropertyi("tu154b2/custom/fire/ext_used_2")) -- огнетушитель использован
-defineProperty("ext_used_3", globalPropertyi("tu154b2/custom/fire/ext_used_3")) -- огнетушитель использован
+ext_used_1 = globalPropertyi("tu154b2/custom/fire/ext_used_1") -- огнетушитель использован
+ext_used_2 = globalPropertyi("tu154b2/custom/fire/ext_used_2") -- огнетушитель использован
+ext_used_3 = globalPropertyi("tu154b2/custom/fire/ext_used_3") -- огнетушитель использован
 
-defineProperty("ng_used", globalPropertyi("tu154b2/custom/fire/ng_used")) -- НГ использован
+ng_used = globalPropertyi("tu154b2/custom/fire/ng_used") -- НГ использован
 
-defineProperty("valve_open_1", globalPropertyi("tu154b2/custom/fire/valve_open_1")) -- кран тушения двиг 1
-defineProperty("valve_open_2", globalPropertyi("tu154b2/custom/fire/valve_open_2")) -- кран тушения двиг 2
-defineProperty("valve_open_3", globalPropertyi("tu154b2/custom/fire/valve_open_3")) -- кран тушения двиг 3
-defineProperty("valve_open_4", globalPropertyi("tu154b2/custom/fire/valve_open_4")) -- кран тушения ВСУ
+valve_open_1 = globalPropertyi("tu154b2/custom/fire/valve_open_1") -- кран тушения двиг 1
+valve_open_2 = globalPropertyi("tu154b2/custom/fire/valve_open_2") -- кран тушения двиг 2
+valve_open_3 = globalPropertyi("tu154b2/custom/fire/valve_open_3") -- кран тушения двиг 3
+valve_open_4 = globalPropertyi("tu154b2/custom/fire/valve_open_4") -- кран тушения ВСУ
 
-defineProperty("engine_fire_state_1", globalPropertyi("tu154b2/custom/fire/engine_fire_state_1")) -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
-defineProperty("engine_fire_state_2", globalPropertyi("tu154b2/custom/fire/engine_fire_state_2")) -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
-defineProperty("engine_fire_state_3", globalPropertyi("tu154b2/custom/fire/engine_fire_state_3")) -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
-defineProperty("engine_fire_state_4", globalPropertyi("tu154b2/custom/fire/engine_fire_state_4")) -- состояние ВСУ. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_1 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_1") -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_2 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_2") -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_3 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_3") -- состояние двигателя. 0 - норм, 1 - перегрев, 2 - пожар
+engine_fire_state_4 = globalPropertyi("tu154b2/custom/fire/engine_fire_state_4") -- состояние ВСУ. 0 - норм, 1 - перегрев, 2 - пожар
 
-defineProperty("engine_fuel_cut_1", globalPropertyi("tu154b2/custom/fire/engine_fuel_cut_1")) -- топливо перекрыто
-defineProperty("engine_fuel_cut_2", globalPropertyi("tu154b2/custom/fire/engine_fuel_cut_2")) -- топливо перекрыто
-defineProperty("engine_fuel_cut_3", globalPropertyi("tu154b2/custom/fire/engine_fuel_cut_3")) -- топливо перекрыто
+engine_fuel_cut_1 = globalPropertyi("tu154b2/custom/fire/engine_fuel_cut_1") -- топливо перекрыто
+engine_fuel_cut_2 = globalPropertyi("tu154b2/custom/fire/engine_fuel_cut_2") -- топливо перекрыто
+engine_fuel_cut_3 = globalPropertyi("tu154b2/custom/fire/engine_fuel_cut_3") -- топливо перекрыто
 
-defineProperty("fire_vlv_open_1", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_1")) -- пожарный кран открыт
-defineProperty("fire_vlv_open_2", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2")) -- пожарный кран открыт
-defineProperty("fire_vlv_open_3", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3")) -- пожарный кран открыт
+fire_vlv_open_1 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_1") -- пожарный кран открыт
+fire_vlv_open_2 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2") -- пожарный кран открыт
+fire_vlv_open_3 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3") -- пожарный кран открыт
 
-defineProperty("fire_detected", globalPropertyi("tu154b2/custom/fire/fire_detected")) -- обнаружен пожар
-defineProperty("fire_siren", globalPropertyi("tu154b2/custom/fire/fire_siren")) -- работа сирены
+fire_detected = globalPropertyi("tu154b2/custom/fire/fire_detected") -- обнаружен пожар
+fire_siren = globalPropertyi("tu154b2/custom/fire/fire_siren") -- работа сирены
 
-defineProperty("azs1", globalPropertyi("sim/custom/b2/azs_fireext1"))
-defineProperty("azs2", globalPropertyi("sim/custom/b2/azs_fireext2"))
+azs1 = globalPropertyi("sim/custom/b2/azs_fireext1")
+azs2 = globalPropertyi("sim/custom/b2/azs_fireext2")
 
-defineProperty("fire_bag1", globalPropertyi("tu154b2/custom/fire/fire_bag1"))
-defineProperty("fire_bag2", globalPropertyi("tu154b2/custom/fire/fire_bag2"))
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+fire_bag1 = globalPropertyi("tu154b2/custom/fire/fire_bag1")
+fire_bag2 = globalPropertyi("tu154b2/custom/fire/fire_bag2")
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 -- sounds
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
@@ -444,24 +439,6 @@ local function lamps()
 	-- if eng_fire_3 > 0 then overheat_eng_3_brt = 1 end
 	-- overheat_eng_3_brt = math.max(overheat_eng_3_brt * power_sw * lamps_brt * day_night, test_btn)
 	-- set(overheat_eng_3, overheat_eng_3_brt)
-
-
-	local throttle_1_fire_brt = 0
-	if eng_fire_1 > 0 or get(eng1_dangerous_vibro) > 0 then throttle_1_fire_brt = 1 end
-	throttle_1_fire_brt = math.max(throttle_1_fire_brt * lamps_brt, test_btn)
-	set(throttle_1_fire, throttle_1_fire_brt)
-
-	local throttle_2_fire_brt = 0
-	if eng_fire_2 > 0 or get(eng2_dangerous_vibro) > 0 then throttle_2_fire_brt = 1 end
-	throttle_2_fire_brt = math.max(throttle_2_fire_brt * lamps_brt, test_btn)
-	set(throttle_2_fire, throttle_2_fire_brt)
-	
-	local throttle_3_fire_brt = 0
-	if eng_fire_3 > 0 or get(eng3_dangerous_vibro) > 0 then throttle_3_fire_brt = 1 end
-	throttle_3_fire_brt = math.max(throttle_3_fire_brt * lamps_brt, test_btn)
-	set(throttle_3_fire, throttle_3_fire_brt)
-
-	
 
 	-- local fuel_off_eng_1_brt = 0
 	-- if get(fire_vlv_open_1) < 0.5 then fuel_off_eng_1_brt = 1 end

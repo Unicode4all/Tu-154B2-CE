@@ -3,217 +3,217 @@
 -- createGlobalPropertyf("tu154b2/custom/controlls/eng_debug1", 1)
 -- createGlobalPropertyf("tu154b2/custom/controlls/eng_debug2", 0)
 
--- defineProperty("eng_debug1", globalPropertyf("tu154b2/custom/controlls/eng_debug1")) 
--- defineProperty("eng_debug2", globalPropertyf("tu154b2/custom/controlls/eng_debug2")) 
+-- eng_debug1 = globalPropertyf("tu154b2/custom/controlls/eng_debug1") 
+-- eng_debug2 = globalPropertyf("tu154b2/custom/controlls/eng_debug2") 
 
-defineProperty("control_ut1", globalPropertyi("sim/custom/gauges/eng/egt_1_test")) -- кнопка контроль УТ
-defineProperty("control_ut2", globalPropertyi("sim/custom/gauges/eng/egt_2_test")) -- кнопка контроль УТ
-defineProperty("control_ut3", globalPropertyi("sim/custom/gauges/eng/egt_3_test")) -- кнопка контроль УТ
-defineProperty("control_vibro_1", globalPropertyi("tu154b2/custom/buttons/eng/control_vibro_1")) -- кнопка контроль вибрации
-defineProperty("control_vibro_2", globalPropertyi("tu154b2/custom/buttons/eng/control_vibro_2")) -- кнопка контроль вибрации
-defineProperty("control_vibro_3", globalPropertyi("tu154b2/custom/buttons/eng/control_vibro_3")) -- кнопка контроль вибрации
---defineProperty("vibro_sel_1", globalPropertyi("tu154b2/custom/switchers/eng/vibro_sel_1")) -- переключатель прибора вибрации
---defineProperty("vibro_sel_2", globalPropertyi("tu154b2/custom/switchers/eng/vibro_sel_2")) -- переключатель прибора вибрации
---defineProperty("vibro_sel_3", globalPropertyi("tu154b2/custom/switchers/eng/vibro_sel_3")) -- переключатель прибора вибрации
-defineProperty("vibro_sel", globalPropertyi("sim/custom/gauges/eng/eng_sel_vibro"))
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_engines")) -- кнопка проверки ламп панели двигателей
-defineProperty("lamp_test_fwd", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп на передней панели	0
+control_ut1 = globalPropertyi("sim/custom/gauges/eng/egt_1_test") -- кнопка контроль УТ
+control_ut2 = globalPropertyi("sim/custom/gauges/eng/egt_2_test") -- кнопка контроль УТ
+control_ut3 = globalPropertyi("sim/custom/gauges/eng/egt_3_test") -- кнопка контроль УТ
+control_vibro_1 = globalPropertyi("tu154b2/custom/buttons/eng/control_vibro_1") -- кнопка контроль вибрации
+control_vibro_2 = globalPropertyi("tu154b2/custom/buttons/eng/control_vibro_2") -- кнопка контроль вибрации
+control_vibro_3 = globalPropertyi("tu154b2/custom/buttons/eng/control_vibro_3") -- кнопка контроль вибрации
+--vibro_sel_1 = globalPropertyi("tu154b2/custom/switchers/eng/vibro_sel_1") -- переключатель прибора вибрации
+--vibro_sel_2 = globalPropertyi("tu154b2/custom/switchers/eng/vibro_sel_2") -- переключатель прибора вибрации
+--vibro_sel_3 = globalPropertyi("tu154b2/custom/switchers/eng/vibro_sel_3") -- переключатель прибора вибрации
+vibro_sel = globalPropertyi("sim/custom/gauges/eng/eng_sel_vibro")
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_engines") -- кнопка проверки ламп панели двигателей
+lamp_test_fwd = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
 
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
-defineProperty("gauges_on_1", globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_1")) -- приборы контроля двигателей
-defineProperty("gauges_on_2", globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_2")) -- приборы контроля двигателей
-defineProperty("gauges_on_3", globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_3")) -- приборы контроля двигателей
+gauges_on_1 = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_1") -- приборы контроля двигателей
+gauges_on_2 = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_2") -- приборы контроля двигателей
+gauges_on_3 = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_3") -- приборы контроля двигателей
 
-defineProperty("gauges_on_1_cap", globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_1_cap")) -- приборы контроля двигателей
-defineProperty("gauges_on_2_cap", globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_2_cap")) -- приборы контроля двигателей
-defineProperty("gauges_on_3_cap", globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_3_cap")) -- приборы контроля двигателей
+gauges_on_1_cap = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_1_cap") -- приборы контроля двигателей
+gauges_on_2_cap = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_2_cap") -- приборы контроля двигателей
+gauges_on_3_cap = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_3_cap") -- приборы контроля двигателей
 
 -- lamps
-defineProperty("eng1_dangerous_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng1_dangerous_vibro")) -- опасная вибрация
-defineProperty("eng1_oil_level", globalPropertyf("tu154b2/custom/lights/engines/eng1_oil_level")) -- уровень масла
-defineProperty("eng1_oil_p", globalPropertyf("tu154b2/custom/lights/engines/eng1_oil_p")) -- давление масла
-defineProperty("eng1_bypass_valve", globalPropertyf("tu154b2/custom/lights/engines/eng1_bypass_valve")) -- клапаны перепуска
-defineProperty("eng1_vna33", globalPropertyf("tu154b2/custom/lights/engines/eng1_vna33")) -- ВНА 33
-defineProperty("eng1_reverse_lock", globalPropertyf("tu154b2/custom/lights/engines/eng1_reverse_lock")) -- замок реверса
-defineProperty("eng1_high_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng1_high_vibro")) -- вибрация велика
-defineProperty("eng1_chips", globalPropertyf("tu154b2/custom/lights/engines/eng1_chips")) -- стружка в масле
-defineProperty("eng1_fuel_p", globalPropertyf("tu154b2/custom/lights/engines/eng1_fuel_p")) -- давление топлива
-defineProperty("eng1_filter_fail", globalPropertyf("tu154b2/custom/lights/engines/eng1_filter_fail")) -- фильтр засорен
-defineProperty("eng1_vna0", globalPropertyf("tu154b2/custom/lights/engines/eng1_vna0")) -- ВНА 0
-defineProperty("eng1_reverse_doors", globalPropertyf("tu154b2/custom/lights/engines/eng1_reverse_doors")) -- створки реверса
+eng1_dangerous_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng1_dangerous_vibro") -- опасная вибрация
+eng1_oil_level = globalPropertyf("tu154b2/custom/lights/engines/eng1_oil_level") -- уровень масла
+eng1_oil_p = globalPropertyf("tu154b2/custom/lights/engines/eng1_oil_p") -- давление масла
+eng1_bypass_valve = globalPropertyf("tu154b2/custom/lights/engines/eng1_bypass_valve") -- клапаны перепуска
+eng1_vna33 = globalPropertyf("tu154b2/custom/lights/engines/eng1_vna33") -- ВНА 33
+eng1_reverse_lock = globalPropertyf("tu154b2/custom/lights/engines/eng1_reverse_lock") -- замок реверса
+eng1_high_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng1_high_vibro") -- вибрация велика
+eng1_chips = globalPropertyf("tu154b2/custom/lights/engines/eng1_chips") -- стружка в масле
+eng1_fuel_p = globalPropertyf("tu154b2/custom/lights/engines/eng1_fuel_p") -- давление топлива
+eng1_filter_fail = globalPropertyf("tu154b2/custom/lights/engines/eng1_filter_fail") -- фильтр засорен
+eng1_vna0 = globalPropertyf("tu154b2/custom/lights/engines/eng1_vna0") -- ВНА 0
+eng1_reverse_doors = globalPropertyf("tu154b2/custom/lights/engines/eng1_reverse_doors") -- створки реверса
 
-defineProperty("eng2_dangerous_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng2_dangerous_vibro")) -- опасная вибрация
-defineProperty("eng2_oil_level", globalPropertyf("tu154b2/custom/lights/engines/eng2_oil_level")) -- уровень масла
-defineProperty("eng2_oil_p", globalPropertyf("tu154b2/custom/lights/engines/eng2_oil_p")) -- давление масла
-defineProperty("eng2_bypass_valve", globalPropertyf("tu154b2/custom/lights/engines/eng2_bypass_valve")) -- клапаны перепуска
-defineProperty("eng2_vna33", globalPropertyf("tu154b2/custom/lights/engines/eng2_vna33")) -- ВНА 33
-defineProperty("eng_at_on", globalPropertyf("tu154b2/custom/lights/engines/eng_at_on")) -- АТ включен
-defineProperty("eng2_high_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng2_high_vibro")) -- вибрация велика
-defineProperty("eng2_chips", globalPropertyf("tu154b2/custom/lights/engines/eng2_chips")) -- стружка в масле
-defineProperty("eng2_fuel_p", globalPropertyf("tu154b2/custom/lights/engines/eng2_fuel_p")) -- давление топлива
-defineProperty("eng2_filter_fail", globalPropertyf("tu154b2/custom/lights/engines/eng2_filter_fail")) -- фильтр засорен
-defineProperty("eng2_vna0", globalPropertyf("tu154b2/custom/lights/engines/eng2_vna0")) -- ВНА 0
-defineProperty("eng_block", globalPropertyf("tu154b2/custom/lights/engines/eng_block")) -- расстоп сектора
+eng2_dangerous_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng2_dangerous_vibro") -- опасная вибрация
+eng2_oil_level = globalPropertyf("tu154b2/custom/lights/engines/eng2_oil_level") -- уровень масла
+eng2_oil_p = globalPropertyf("tu154b2/custom/lights/engines/eng2_oil_p") -- давление масла
+eng2_bypass_valve = globalPropertyf("tu154b2/custom/lights/engines/eng2_bypass_valve") -- клапаны перепуска
+eng2_vna33 = globalPropertyf("tu154b2/custom/lights/engines/eng2_vna33") -- ВНА 33
+eng_at_on = globalPropertyf("tu154b2/custom/lights/engines/eng_at_on") -- АТ включен
+eng2_high_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng2_high_vibro") -- вибрация велика
+eng2_chips = globalPropertyf("tu154b2/custom/lights/engines/eng2_chips") -- стружка в масле
+eng2_fuel_p = globalPropertyf("tu154b2/custom/lights/engines/eng2_fuel_p") -- давление топлива
+eng2_filter_fail = globalPropertyf("tu154b2/custom/lights/engines/eng2_filter_fail") -- фильтр засорен
+eng2_vna0 = globalPropertyf("tu154b2/custom/lights/engines/eng2_vna0") -- ВНА 0
+eng_block = globalPropertyf("tu154b2/custom/lights/engines/eng_block") -- расстоп сектора
 
-defineProperty("eng3_dangerous_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng3_dangerous_vibro")) -- опасная вибрация
-defineProperty("eng3_oil_level", globalPropertyf("tu154b2/custom/lights/engines/eng3_oil_level")) -- уровень масла
-defineProperty("eng3_oil_p", globalPropertyf("tu154b2/custom/lights/engines/eng3_oil_p")) -- давление масла
-defineProperty("eng3_bypass_valve", globalPropertyf("tu154b2/custom/lights/engines/eng3_bypass_valve")) -- клапаны перепуска
-defineProperty("eng3_vna33", globalPropertyf("tu154b2/custom/lights/engines/eng3_vna33")) -- ВНА 33
-defineProperty("eng3_reverse_lock", globalPropertyf("tu154b2/custom/lights/engines/eng3_reverse_lock")) -- замок реверса
-defineProperty("eng3_high_vibro", globalPropertyf("tu154b2/custom/lights/engines/eng3_high_vibro")) -- вибрация велика
-defineProperty("eng3_chips", globalPropertyf("tu154b2/custom/lights/engines/eng3_chips")) -- стружка в масле
-defineProperty("eng3_fuel_p", globalPropertyf("tu154b2/custom/lights/engines/eng3_fuel_p")) -- давление топлива
-defineProperty("eng3_filter_fail", globalPropertyf("tu154b2/custom/lights/engines/eng3_filter_fail")) -- фильтр засорен
-defineProperty("eng3_vna0", globalPropertyf("tu154b2/custom/lights/engines/eng3_vna0")) -- ВНА 0
-defineProperty("eng3_reverse_doors", globalPropertyf("tu154b2/custom/lights/engines/eng3_reverse_doors")) -- створки реверса
-
-
-defineProperty("starter_high_rpm_1", globalPropertyf("tu154b2/custom/lights/small/starter_high_rpm_1")) -- опасные обороты стартера
-defineProperty("starter_high_rpm_2", globalPropertyf("tu154b2/custom/lights/small/starter_high_rpm_2")) -- опасные обороты стартера
-defineProperty("starter_high_rpm_3", globalPropertyf("tu154b2/custom/lights/small/starter_high_rpm_3")) -- опасные обороты стартера
-defineProperty("fuel_2500", globalPropertyf("tu154b2/custom/lights/small/fuel_2500")) -- остаток топлива 2500
-defineProperty("fuel_tank1_used", globalPropertyf("tu154b2/custom/lights/small/fuel_tank1_used")) -- расход из бака 1
+eng3_dangerous_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng3_dangerous_vibro") -- опасная вибрация
+eng3_oil_level = globalPropertyf("tu154b2/custom/lights/engines/eng3_oil_level") -- уровень масла
+eng3_oil_p = globalPropertyf("tu154b2/custom/lights/engines/eng3_oil_p") -- давление масла
+eng3_bypass_valve = globalPropertyf("tu154b2/custom/lights/engines/eng3_bypass_valve") -- клапаны перепуска
+eng3_vna33 = globalPropertyf("tu154b2/custom/lights/engines/eng3_vna33") -- ВНА 33
+eng3_reverse_lock = globalPropertyf("tu154b2/custom/lights/engines/eng3_reverse_lock") -- замок реверса
+eng3_high_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng3_high_vibro") -- вибрация велика
+eng3_chips = globalPropertyf("tu154b2/custom/lights/engines/eng3_chips") -- стружка в масле
+eng3_fuel_p = globalPropertyf("tu154b2/custom/lights/engines/eng3_fuel_p") -- давление топлива
+eng3_filter_fail = globalPropertyf("tu154b2/custom/lights/engines/eng3_filter_fail") -- фильтр засорен
+eng3_vna0 = globalPropertyf("tu154b2/custom/lights/engines/eng3_vna0") -- ВНА 0
+eng3_reverse_doors = globalPropertyf("tu154b2/custom/lights/engines/eng3_reverse_doors") -- створки реверса
 
 
-defineProperty("fp_eng_fail_1", globalPropertyf("tu154b2/custom/lights/fp_eng_fail_1")) -- двиг. неиспр 1 на передней панели
-defineProperty("fp_eng_fail_2", globalPropertyf("tu154b2/custom/lights/fp_eng_fail_2")) -- двиг. неиспр 2 на передней панели
-defineProperty("fp_eng_fail_3", globalPropertyf("tu154b2/custom/lights/fp_eng_fail_3")) -- двиг. неиспр 3 на передней панели
+starter_high_rpm_1 = globalPropertyf("tu154b2/custom/lights/small/starter_high_rpm_1") -- опасные обороты стартера
+starter_high_rpm_2 = globalPropertyf("tu154b2/custom/lights/small/starter_high_rpm_2") -- опасные обороты стартера
+starter_high_rpm_3 = globalPropertyf("tu154b2/custom/lights/small/starter_high_rpm_3") -- опасные обороты стартера
+fuel_2500 = globalPropertyf("tu154b2/custom/lights/small/fuel_2500") -- остаток топлива 2500
+fuel_tank1_used = globalPropertyf("tu154b2/custom/lights/small/fuel_tank1_used") -- расход из бака 1
 
-defineProperty("fp_reverse_1", globalPropertyf("tu154b2/custom/lights/fp_reverse_1")) -- створки реверса 1 на передней панели
-defineProperty("fp_reverse_3", globalPropertyf("tu154b2/custom/lights/fp_reverse_3")) -- створки реверса 3 на передней панели
 
-defineProperty("oil_meter_qty_1", globalPropertyf("tu154b2/custom/lights/small/oil_meter_1")) -- лампа на масломере
-defineProperty("oil_meter_qty_2", globalPropertyf("tu154b2/custom/lights/small/oil_meter_2")) -- лампа на масломере
-defineProperty("oil_meter_qty_3", globalPropertyf("tu154b2/custom/lights/small/oil_meter_3")) -- лампа на масломере
+fp_eng_fail_1 = globalPropertyf("tu154b2/custom/lights/fp_eng_fail_1") -- двиг. неиспр 1 на передней панели
+fp_eng_fail_2 = globalPropertyf("tu154b2/custom/lights/fp_eng_fail_2") -- двиг. неиспр 2 на передней панели
+fp_eng_fail_3 = globalPropertyf("tu154b2/custom/lights/fp_eng_fail_3") -- двиг. неиспр 3 на передней панели
+
+fp_reverse_1 = globalPropertyf("tu154b2/custom/lights/fp_reverse_1") -- створки реверса 1 на передней панели
+fp_reverse_3 = globalPropertyf("tu154b2/custom/lights/fp_reverse_3") -- створки реверса 3 на передней панели
+
+oil_meter_qty_1 = globalPropertyf("tu154b2/custom/lights/small/oil_meter_1") -- лампа на масломере
+oil_meter_qty_2 = globalPropertyf("tu154b2/custom/lights/small/oil_meter_2") -- лампа на масломере
+oil_meter_qty_3 = globalPropertyf("tu154b2/custom/lights/small/oil_meter_3") -- лампа на масломере
 
 
 -- sources
-defineProperty("vibra_1", globalPropertyf("tu154b2/custom/gauges/eng/vibra_1")) -- вибрация двиг 1
-defineProperty("vibra_2", globalPropertyf("tu154b2/custom/gauges/eng/vibra_2")) -- вибрация двиг 2
-defineProperty("vibra_3", globalPropertyf("tu154b2/custom/gauges/eng/vibra_3")) -- вибрация двиг 3
+vibra_1 = globalPropertyf("tu154b2/custom/gauges/eng/vibra_1") -- вибрация двиг 1
+vibra_2 = globalPropertyf("tu154b2/custom/gauges/eng/vibra_2") -- вибрация двиг 2
+vibra_3 = globalPropertyf("tu154b2/custom/gauges/eng/vibra_3") -- вибрация двиг 3
 
-defineProperty("rpm_high_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1")) -- обороты турбины высокого давления №1
-defineProperty("rpm_high_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2")) -- обороты турбины высокого давления №2
-defineProperty("rpm_high_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3")) -- обороты турбины высокого давления №3
+rpm_high_1 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1") -- обороты турбины высокого давления №1
+rpm_high_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2") -- обороты турбины высокого давления №2
+rpm_high_3 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3") -- обороты турбины высокого давления №3
 
-defineProperty("rpm_low_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1")) -- обороты турбины высокого давления №1
-defineProperty("rpm_low_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2")) -- обороты турбины высокого давления №2
-defineProperty("rpm_low_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3")) -- обороты турбины высокого давления №3
+rpm_low_1 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1") -- обороты турбины высокого давления №1
+rpm_low_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2") -- обороты турбины высокого давления №2
+rpm_low_3 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3") -- обороты турбины высокого давления №3
 
-defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
-defineProperty("revers_flap_R", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]")) -- reverse on right engine
+revers_flap_L = globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]") -- reverse on left engine
+revers_flap_R = globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]") -- reverse on right engine
 
-defineProperty("chip_detect1", globalProperty("sim/cockpit/warnings/annunciators/chip_detected[0]")) -- chip in engine1
-defineProperty("chip_detect2", globalProperty("sim/cockpit/warnings/annunciators/chip_detected[1]")) -- chip in engine1
-defineProperty("chip_detect3", globalProperty("sim/cockpit/warnings/annunciators/chip_detected[2]")) -- chip in engine1
+chip_detect1 = globalProperty("sim/cockpit/warnings/annunciators/chip_detected[0]") -- chip in engine1
+chip_detect2 = globalProperty("sim/cockpit/warnings/annunciators/chip_detected[1]") -- chip in engine1
+chip_detect3 = globalProperty("sim/cockpit/warnings/annunciators/chip_detected[2]") -- chip in engine1
 
-defineProperty("fuel_p_1", globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[0]"))
-defineProperty("fuel_p_2", globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[1]"))
-defineProperty("fuel_p_3", globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[2]"))
+fuel_p_1 = globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[0]")
+fuel_p_2 = globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[1]")
+fuel_p_3 = globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[2]")
 
-defineProperty("oil_p_1", globalPropertyf("tu154b2/custom/gauges/eng/oil_press_1")) -- давление масла двиг 1
-defineProperty("oil_p_2", globalPropertyf("tu154b2/custom/gauges/eng/oil_press_2")) -- давление масла двиг 2
-defineProperty("oil_p_3", globalPropertyf("tu154b2/custom/gauges/eng/oil_press_3")) -- давление масла двиг 3
+oil_p_1 = globalPropertyf("tu154b2/custom/gauges/eng/oil_press_1") -- давление масла двиг 1
+oil_p_2 = globalPropertyf("tu154b2/custom/gauges/eng/oil_press_2") -- давление масла двиг 2
+oil_p_3 = globalPropertyf("tu154b2/custom/gauges/eng/oil_press_3") -- давление масла двиг 3
 
-defineProperty("eng_fuel_press_1", globalPropertyi("tu154b2/custom/fuel/eng_fuel_press_1")) -- топливо может быть подано в двигатель. без учета стоп-кранов
-defineProperty("eng_fuel_press_2", globalPropertyi("tu154b2/custom/fuel/eng_fuel_press_2")) -- топливо может быть подано в двигатель. без учета стоп-кранов
-defineProperty("eng_fuel_press_3", globalPropertyi("tu154b2/custom/fuel/eng_fuel_press_3")) -- топливо может быть подано в двигатель. без учета стоп-кранов
+eng_fuel_press_1 = globalPropertyi("tu154b2/custom/fuel/eng_fuel_press_1") -- топливо может быть подано в двигатель. без учета стоп-кранов
+eng_fuel_press_2 = globalPropertyi("tu154b2/custom/fuel/eng_fuel_press_2") -- топливо может быть подано в двигатель. без учета стоп-кранов
+eng_fuel_press_3 = globalPropertyi("tu154b2/custom/fuel/eng_fuel_press_3") -- топливо может быть подано в двигатель. без учета стоп-кранов
 
-defineProperty("throttle_lock", globalPropertyf("tu154b2/custom/controlls/throttle_lock")) -- рычаг фиксации РУД
+throttle_lock = globalPropertyf("tu154b2/custom/controlls/throttle_lock") -- рычаг фиксации РУД
 
-defineProperty("tank1_w", globalProperty("sim/flightmodel/weight/m_fuel[0]")) -- fuel weight
-defineProperty("pump_tank2_left1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work1"))
-defineProperty("pump_tank2_left2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work2"))
-defineProperty("pump_tank2_right1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work1"))
-defineProperty("pump_tank2_right2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work2"))
-defineProperty("pump_tank3_left1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work1"))
-defineProperty("pump_tank3_left2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work2"))
-defineProperty("pump_tank3_left3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work3"))
-defineProperty("pump_tank3_right1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work1"))
-defineProperty("pump_tank3_right2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work2"))
-defineProperty("pump_tank3_right3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work3"))
-defineProperty("pump_tank41_work", globalPropertyi("tu154b2/custom/fuel/pump_tank4_work1"))
-defineProperty("pump_tank42_work", globalPropertyi("tu154b2/custom/fuel/pump_tank4_work2"))
-defineProperty("pump_tank1_1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_1_work"))
-defineProperty("pump_tank1_2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_2_work"))
-defineProperty("pump_tank1_3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_3_work"))
-defineProperty("pump_tank1_4_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_4_work"))
+tank1_w = globalProperty("sim/flightmodel/weight/m_fuel[0]") -- fuel weight
+pump_tank2_left1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work1")
+pump_tank2_left2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work2")
+pump_tank2_right1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work1")
+pump_tank2_right2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work2")
+pump_tank3_left1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work1")
+pump_tank3_left2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work2")
+pump_tank3_left3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work3")
+pump_tank3_right1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work1")
+pump_tank3_right2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work2")
+pump_tank3_right3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work3")
+pump_tank41_work = globalPropertyi("tu154b2/custom/fuel/pump_tank4_work1")
+pump_tank42_work = globalPropertyi("tu154b2/custom/fuel/pump_tank4_work2")
+pump_tank1_1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_1_work")
+pump_tank1_2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_2_work")
+pump_tank1_3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_3_work")
+pump_tank1_4_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_4_work")
 
-defineProperty("stu_mode", globalPropertyi("tu154b2/custom/absu/stu_mode")) -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб, 4 - уход	
+stu_mode = globalPropertyi("tu154b2/custom/absu/stu_mode") -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб, 4 - уход	
 
--- defineProperty("engn_oil_qty_1", globalPropertyf("tu154b2/custom/failures/engn_oil_qty_1")) 
--- defineProperty("engn_oil_qty_2", globalPropertyf("tu154b2/custom/failures/engn_oil_qty_2")) 
--- defineProperty("engn_oil_qty_3", globalPropertyf("tu154b2/custom/failures/engn_oil_qty_3"))
+-- engn_oil_qty_1 = globalPropertyf("tu154b2/custom/failures/engn_oil_qty_1") 
+-- engn_oil_qty_2 = globalPropertyf("tu154b2/custom/failures/engn_oil_qty_2") 
+-- engn_oil_qty_3 = globalPropertyf("tu154b2/custom/failures/engn_oil_qty_3")
 
-defineProperty("oil_qty_1", globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_1")) -- количество масла
-defineProperty("oil_qty_2", globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_2")) -- количество масла
-defineProperty("oil_qty_3", globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_3")) -- количество масла
+oil_qty_1 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_1") -- количество масла
+oil_qty_2 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_2") -- количество масла
+oil_qty_3 = globalPropertyf("tu154b2/custom/gauges/eng/oil_qty_3") -- количество масла
 
 
 
-defineProperty("eng_filter_1", globalPropertyi("sim/operation/failures/rel_eng_lo0"))
-defineProperty("eng_filter_2", globalPropertyi("sim/operation/failures/rel_eng_lo1"))
-defineProperty("eng_filter_3", globalPropertyi("sim/operation/failures/rel_eng_lo2"))
+eng_filter_1 = globalPropertyi("sim/operation/failures/rel_eng_lo0")
+eng_filter_2 = globalPropertyi("sim/operation/failures/rel_eng_lo1")
+eng_filter_3 = globalPropertyi("sim/operation/failures/rel_eng_lo2")
 
-defineProperty("vibro_pwr_1", globalPropertyi("sim/custom/gauges/eng/vibro_pwr1"))
-defineProperty("vibro_pwr_2", globalPropertyi("sim/custom/gauges/eng/vibro_pwr2"))
-defineProperty("vibro_pwr_3", globalPropertyi("sim/custom/gauges/eng/vibro_pwr3"))
-defineProperty("vibro_opor", globalPropertyi("sim/custom/gauges/eng/opora_sel_vibro"))
-defineProperty("vibr_test_1", globalPropertyi("sim/custom/gauges/eng/back_opora_push_vibro"))
-defineProperty("vibr_test_2", globalPropertyi("sim/custom/gauges/eng/front_opora_push_vibro"))
-defineProperty("egt_1", globalPropertyi("sim/custom/gauges/eng/eng1_temp_ctrl"))
-defineProperty("egt_2", globalPropertyi("sim/custom/gauges/eng/eng2_temp_ctrl"))
-defineProperty("egt_3", globalPropertyi("sim/custom/gauges/eng/eng3_temp_ctrl"))
+vibro_pwr_1 = globalPropertyi("sim/custom/gauges/eng/vibro_pwr1")
+vibro_pwr_2 = globalPropertyi("sim/custom/gauges/eng/vibro_pwr2")
+vibro_pwr_3 = globalPropertyi("sim/custom/gauges/eng/vibro_pwr3")
+vibro_opor = globalPropertyi("sim/custom/gauges/eng/opora_sel_vibro")
+vibr_test_1 = globalPropertyi("sim/custom/gauges/eng/back_opora_push_vibro")
+vibr_test_2 = globalPropertyi("sim/custom/gauges/eng/front_opora_push_vibro")
+egt_1_on = globalPropertyi("sim/custom/gauges/eng/eng1_temp_ctrl")
+egt_2_on = globalPropertyi("sim/custom/gauges/eng/eng2_temp_ctrl")
+egt_3_on = globalPropertyi("sim/custom/gauges/eng/eng3_temp_ctrl")
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- engines
-defineProperty("eng1_N2", globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd1")) -- engine 1 rpm
-defineProperty("eng2_N2", globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd2")) -- engine 2 rpm
-defineProperty("eng3_N2", globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd3")) -- engine 3 rpm
+eng1_N2 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd1") -- engine 1 rpm
+eng2_N2 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd2") -- engine 2 rpm
+eng3_N2 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd3") -- engine 3 rpm
 
-defineProperty("fire_main_switch", globalPropertyi("tu154b2/custom/switchers/eng/fire_main_switch")) -- выключатель пожарной системы
+fire_main_switch = globalPropertyi("tu154b2/custom/switchers/eng/fire_main_switch") -- выключатель пожарной системы
 
-defineProperty("sim_engine_on_fire1", globalPropertyi("sim/operation/failures/rel_engfir0"))  -- left engine on fire
-defineProperty("sim_engine_on_fire2", globalPropertyi("sim/operation/failures/rel_engfir1"))  -- mid engine on fire
-defineProperty("sim_engine_on_fire3", globalPropertyi("sim/operation/failures/rel_engfir2"))  -- right engine on fire
+sim_engine_on_fire1 = globalPropertyi("sim/operation/failures/rel_engfir0")  -- left engine on fire
+sim_engine_on_fire2 = globalPropertyi("sim/operation/failures/rel_engfir1")  -- mid engine on fire
+sim_engine_on_fire3 = globalPropertyi("sim/operation/failures/rel_engfir2")  -- right engine on fire
 
-defineProperty("egt_1", globalPropertyf("sim/custom/gauges/eng/egt_1_new")) -- ТВГ двиг 1
-defineProperty("egt_2", globalPropertyf("sim/custom/gauges/eng/egt_2_new")) -- ТВГ двиг 2
-defineProperty("egt_3", globalPropertyf("sim/custom/gauges/eng/egt_3_new")) -- ТВГ двиг 3
+egt_1 = globalPropertyf("sim/custom/gauges/eng/egt_1_new") -- ТВГ двиг 1
+egt_2 = globalPropertyf("sim/custom/gauges/eng/egt_2_new") -- ТВГ двиг 2
+egt_3 = globalPropertyf("sim/custom/gauges/eng/egt_3_new") -- ТВГ двиг 3
 
-defineProperty("speaker_fuel", globalPropertyi("tu154b2/custom/alarm/speaker_fuel")) -- остаток топлива 2500 в баке 1
+speaker_fuel = globalPropertyi("tu154b2/custom/alarm/speaker_fuel") -- остаток топлива 2500 в баке 1
 
-defineProperty("eng1_high_temp", globalPropertyf("tu154b2/custom/lights/engines/eng1_t_high"))
-defineProperty("eng2_high_temp", globalPropertyf("tu154b2/custom/lights/engines/eng2_t_high"))
-defineProperty("eng3_high_temp", globalPropertyf("tu154b2/custom/lights/engines/eng3_t_high"))
+eng1_high_temp = globalPropertyf("tu154b2/custom/lights/engines/eng1_t_high")
+eng2_high_temp = globalPropertyf("tu154b2/custom/lights/engines/eng2_t_high")
+eng3_high_temp = globalPropertyf("tu154b2/custom/lights/engines/eng3_t_high")
 
-defineProperty("eng1_stop", globalPropertyf("sim/custom/lights/engines/eng1_stop_gas"))
-defineProperty("eng2_stop", globalPropertyf("sim/custom/lights/engines/eng2_stop_gas"))
-defineProperty("eng3_stop", globalPropertyf("sim/custom/lights/engines/eng3_stop_gas"))
+eng1_stop = globalPropertyf("sim/custom/lights/engines/eng1_stop_gas")
+eng2_stop = globalPropertyf("sim/custom/lights/engines/eng2_stop_gas")
+eng3_stop = globalPropertyf("sim/custom/lights/engines/eng3_stop_gas")
 
-defineProperty("rt1_stop", globalPropertyi("tu154b2/custom/SC/engine/rt_stop1"))
-defineProperty("rt2_stop", globalPropertyi("tu154b2/custom/SC/engine/rt_stop2"))
-defineProperty("rt3_stop", globalPropertyi("tu154b2/custom/SC/engine/rt_stop3"))
+rt1_stop = globalPropertyi("tu154b2/custom/SC/engine/rt_stop1")
+rt2_stop = globalPropertyi("tu154b2/custom/SC/engine/rt_stop2")
+rt3_stop = globalPropertyi("tu154b2/custom/SC/engine/rt_stop3")
 
-defineProperty("igv1", globalPropertyi("tu154b2/custom/engines/rna_1"))
-defineProperty("igv2", globalPropertyi("tu154b2/custom/engines/rna_2"))
-defineProperty("igv3", globalPropertyi("tu154b2/custom/engines/rna_3"))
+igv1 = globalPropertyi("tu154b2/custom/engines/rna_1")
+igv2 = globalPropertyi("tu154b2/custom/engines/rna_2")
+igv3 = globalPropertyi("tu154b2/custom/engines/rna_3")
 
-defineProperty("man_at", globalPropertyi("tu154b2/custom/failures/absu_at_blocked"))
+man_at = globalPropertyi("tu154b2/custom/failures/absu_at_blocked")
 
-defineProperty("kpp1", globalPropertyf("tu154b2/custom/engine/kpp1"))
-defineProperty("kpp2", globalPropertyf("tu154b2/custom/engine/kpp2"))
-defineProperty("kpp3", globalPropertyf("tu154b2/custom/engine/kpp3"))
+kpp1 = globalPropertyf("tu154b2/custom/engine/kpp1")
+kpp2 = globalPropertyf("tu154b2/custom/engine/kpp2")
+kpp3 = globalPropertyf("tu154b2/custom/engine/kpp3")
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 bearing_1_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_1")
 bearing_2_temp = globalPropertyf("tu154b2/custom/gauges/eng/brg_temp_2")
@@ -230,8 +230,16 @@ stp_3_test = globalPropertyi("sim/custom/b2/stp_test_6")
 stp_1_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_1")
 stp_2_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_2")
 stp_3_fail = globalPropertyi("tu154b2/custom/failures/stp_fail_3")
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+
+fire_eng_1 = globalPropertyf("tu154b2/custom/lights/fire/fire_eng_1") -- пожар в двигателе
+fire_eng_2 = globalPropertyf("tu154b2/custom/lights/fire/fire_eng_2") -- пожар в двигателе
+fire_eng_3 = globalPropertyf("tu154b2/custom/lights/fire/fire_eng_3") -- пожар в двигателе
+
+throttle_1_fire = globalPropertyf("tu154b2/custom/lights/small/throttle_1_fire") -- лампа пожара на РУД
+throttle_2_fire = globalPropertyf("tu154b2/custom/lights/small/throttle_2_fire") -- лампа пожара на РУД
+throttle_3_fire = globalPropertyf("tu154b2/custom/lights/small/throttle_3_fire") -- лампа пожара на РУД
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
 
 local panel_x=0.727
 local panel_z=-21.342
@@ -250,9 +258,6 @@ local rev_R=0
 
 local eng_block_brt = 0
 
-local starter_ovspd_1 = 0
-local starter_ovspd_2 = 0
-local starter_ovspd_3 = 0
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
@@ -332,7 +337,6 @@ local function lamps_eng1()
 	local lamps_brt = math.max((get(bus27_volt_left) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng1_N2)	
 	local starter_high_rpm_1_brt = math.max(bool2int(sys_data_tbl.starter_rpm_1 > 45) * (1 - sys_data_tbl.starter_desint_1), test_btn) -- not fake anymore
-	starter_ovspd_1 = sys_data_tbl.starter_ovspd_timer_1
 	set(starter_high_rpm_1, starter_high_rpm_1_brt)
 	
 	--local RPM2 = get(rpm_high_1)
@@ -414,13 +418,14 @@ local function lamps_eng1()
 	eng1_stp_brt = math.max(eng1_stp_brt * lamps_brt, test_btn) 
 	set(stp_1,eng1_stp_brt)
 	
-	eng_1_fail_src = bool2int(oil_p < 2.3 or (rev_L ~= revers_flap_L_last and rev_L > 0.05 and rev_L < 0.95) or vibr > 55 or chip_det == 1 or fuel_p == 0 or (get(fire_main_switch) * get(sim_engine_on_fire1) == 6) or get(egt_1) > 710)
-	--set(eng_debug1,eng_1_fail_src)
+	local throttle_1_fire_brt = 0
+	if get(fire_eng_1) > 0 or eng1_chips_brt > 0 or (eng1_rt_brt > 0 and eng1_t_brt > 0) then throttle_1_fire_brt = 1 end
+	throttle_1_fire_brt = math.max(throttle_1_fire_brt * lamps_brt, test_btn)
+	set(throttle_1_fire, throttle_1_fire_brt)
+	
+	eng_1_fail_src = bool2int(get(fire_eng_1) > 0 or eng1_t_brt > 0 or eng1_oil_p_brt > 0 or eng1_oil_level_brt > 0 or eng1_fuel_p_brt > 0 or eng1_high_vibro_brt > 0 or eng1_stp_brt > 0 or (rev_L ~= revers_flap_L_last and rev_L > 0.05 and rev_L < 0.95) or eng1_chips_brt > 0 or starter_high_rpm_1_brt > 0 )
 	
 	revers_flap_L_last = rev_L
-	
-	
-	
 end
 
 local function lamps_eng2()
@@ -430,7 +435,6 @@ local function lamps_eng2()
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng2_N2)
 	local starter_high_rpm_2_brt = math.max(bool2int(sys_data_tbl.starter_rpm_2 > 45) * (1 - sys_data_tbl.starter_desint_2), test_btn) -- not fake anymore
-	starter_ovspd_2 = sys_data_tbl.starter_ovspd_timer_2
 	set(starter_high_rpm_2, starter_high_rpm_2_brt)
 	--local RPM2 = get(rpm_high_2)
 	local eng2_dangerous_vibro_brt = 0
@@ -506,7 +510,12 @@ local function lamps_eng2()
 	eng2_stp_brt = math.max(eng2_stp_brt * lamps_brt, test_btn) 
 	set(stp_2,eng2_stp_brt)
 
-	eng_2_fail_src = bool2int(oil_p < 2.3 or vibr > 55 or chip_det == 1 or fuel_p == 0 or (get(fire_main_switch) * get(sim_engine_on_fire2) == 6) or get(egt_2) > 710)
+	local throttle_2_fire_brt = 0
+	if get(fire_eng_2) > 0 or eng2_chips_brt > 0 or (eng2_rt_brt > 0 and eng2_t_brt > 0) then throttle_2_fire_brt = 1 end
+	throttle_2_fire_brt = math.max(throttle_2_fire_brt * lamps_brt, test_btn)
+	set(throttle_2_fire, throttle_2_fire_brt)
+	
+	eng_2_fail_src = bool2int(get(fire_eng_2) > 0 or eng2_t_brt > 0 or eng2_oil_p_brt > 0 or eng2_oil_level_brt > 0 or eng2_fuel_p_brt > 0 or eng2_high_vibro_brt > 0 or eng2_stp_brt > 0 or eng2_chips_brt > 0 or starter_high_rpm_2_brt > 0 )
 		
 end
 
@@ -519,7 +528,6 @@ local function lamps_eng3()
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng3_N2)
 	local starter_high_rpm_3_brt = math.max(bool2int(sys_data_tbl.starter_rpm_3 > 45) * (1 - sys_data_tbl.starter_desint_3), test_btn) -- not fake anymore
-	starter_ovspd_3 = sys_data_tbl.starter_ovspd_timer_3
 	set(starter_high_rpm_3, starter_high_rpm_3_brt)
 	--local RPM2 = get(rpm_high_3)
 	local eng3_dangerous_vibro_brt = 0
@@ -600,8 +608,13 @@ local function lamps_eng3()
 	eng3_stp_brt = math.max(eng3_stp_brt * lamps_brt, test_btn) 
 	set(stp_3,eng3_stp_brt)
 		
-	eng_3_fail_src = bool2int(oil_p < 2.3 or (rev_R ~= revers_flap_R_last and rev_R > 0.05 and rev_R < 0.95) or vibr > 55 or chip_det == 1 or fuel_p == 0 or (get(fire_main_switch) * get(sim_engine_on_fire3) == 6) or get(egt_3) > 710)	
+	local throttle_3_fire_brt = 0
+	if get(fire_eng_3) > 0 or eng3_chips_brt > 0 or (eng3_rt_brt > 0 and eng3_t_brt > 0) then throttle_3_fire_brt = 1 end
+	throttle_3_fire_brt = math.max(throttle_3_fire_brt * lamps_brt, test_btn)
+	set(throttle_3_fire, throttle_3_fire_brt)
 	
+	eng_3_fail_src = bool2int(get(fire_eng_3) > 0 or eng3_t_brt > 0 or eng3_oil_p_brt > 0 or eng3_oil_level_brt > 0 or eng3_fuel_p_brt > 0 or eng3_high_vibro_brt > 0 or eng3_stp_brt > 0 or (rev_R ~= revers_flap_R_last and rev_R > 0.05 and rev_R < 0.95) or eng3_chips_brt > 0 or starter_high_rpm_3_brt > 0 )
+		
 	revers_flap_R_last = rev_R
 end
 
@@ -682,9 +695,9 @@ local vibro_select_last=get(vibro_sel)
 local vibr_bear_last=get(vibro_opor)
 local vibr_test_front_last=get(vibr_test_1)
 local vibr_test_back_last=get(vibr_test_2)
-local egt_1_last=get(egt_1)
-local egt_2_last=get(egt_2)
-local egt_3_last=get(egt_3)
+local egt_1_last=get(egt_1_on)
+local egt_2_last=get(egt_2_on)
+local egt_3_last=get(egt_3_on)
 
 local function check_controls(gain_L, gain_R,dist)
 	
@@ -713,9 +726,9 @@ local function check_controls(gain_L, gain_R,dist)
 	local vibr_bear_sw=get(vibro_opor)
 	local vibr_test_front_sw=get(vibr_test_1)
 	local vibr_test_back_sw=get(vibr_test_2)
-	local egt_1_sw=get(egt_1)
-	local egt_2_sw=get(egt_2)
-	local egt_3_sw=get(egt_3)
+	local egt_1_sw=get(egt_1_on)
+	local egt_2_sw=get(egt_2_on)
+	local egt_3_sw=get(egt_3_on)
 	-- play sounds on change position
 	local change_but = control_ut1_sw + control_ut2_sw +control_ut3_sw +control_vibro_1_sw + control_vibro_2_sw + control_vibro_3_sw + test_lamps_swt + vibr_test_front_sw + vibr_test_back_sw - vibr_test_front_last - vibr_test_back_last
 	change_but = change_but - control_ut1_last- control_ut2_last- control_ut3_last - control_vibro_1_last - control_vibro_2_last - control_vibro_3_last - test_lamps_last

@@ -391,15 +391,15 @@ if get(ismaster) ~= 1 then
 		end
 		
 		-- TakeOff mode limits
-		if get(rpm_high_1) > 95 or get(engn_oil_qty_1) < 4 then engToCounter1 = engToCounter1 + passed
+		if get(rpm_high_1) > 98 or get(engn_oil_qty_1) < 4 then engToCounter1 = engToCounter1 + passed
 		else engToCounter1 = engToCounter1 - passed end
 		if engToCounter1 < 0 then engToCounter1 = 0 end
 		
-		if get(rpm_high_2) > 95 or get(engn_oil_qty_2) < 4 then engToCounter2 = engToCounter2 + passed
+		if get(rpm_high_2) > 98 or get(engn_oil_qty_2) < 4 then engToCounter2 = engToCounter2 + passed
 		else engToCounter2 = engToCounter2 - passed end
 		if engToCounter2 < 0 then engToCounter2 = 0 end
 		
-		if get(rpm_high_3) > 95 or get(engn_oil_qty_3) < 4 then engToCounter3 = engToCounter3 + passed
+		if get(rpm_high_3) > 98 or get(engn_oil_qty_3) < 4 then engToCounter3 = engToCounter3 + passed
 		else engToCounter3 = engToCounter3 - passed end
 		if engToCounter3 < 0 then engToCounter3 = 0 end
 		
