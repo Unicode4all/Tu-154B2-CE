@@ -1,225 +1,224 @@
 -- fuel system panel
 
 -- gauges
-defineProperty("fuel_meter_summ", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_summ")) -- сумарная масса топлива
-defineProperty("fuel_meter_tank1", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank1")) -- масса топлива в баке 1
-defineProperty("fuel_meter_tank2_left", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank2_left")) -- масса топлива в баке 2
-defineProperty("fuel_meter_tank2_right", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank2_right")) -- масса топлива в баке 2
-defineProperty("fuel_meter_tank3_left", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank3_left")) -- масса топлива в баке 3
-defineProperty("fuel_meter_tank3_right", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank3_right")) -- масса топлива в баке 3
-defineProperty("fuel_meter_tank4", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank4")) -- масса топлива в баке 4
-defineProperty("fuel_meter_mech", globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_mech")) -- расходомер
-defineProperty("fuel_front_ind", globalPropertyf("tu154b2/custom/gauges/misc/fuel_front_ind")) -- индикатор топлива на передней панели
+fuel_meter_summ = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_summ") -- сумарная масса топлива
+fuel_meter_tank1 = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank1") -- масса топлива в баке 1
+fuel_meter_tank2_left = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank2_left") -- масса топлива в баке 2
+fuel_meter_tank2_right = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank2_right") -- масса топлива в баке 2
+fuel_meter_tank3_left = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank3_left") -- масса топлива в баке 3
+fuel_meter_tank3_right = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank3_right") -- масса топлива в баке 3
+fuel_meter_tank4 = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_tank4") -- масса топлива в баке 4
+fuel_meter_mech = globalPropertyf("tu154b2/custom/gauges/fuel/fuel_meter_mech") -- расходомер
+fuel_front_ind = globalPropertyf("tu154b2/custom/gauges/misc/fuel_front_ind") -- индикатор топлива на передней панели
 
 
 -- controls on gauges
-defineProperty("fuel_meter_summ_zero", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_summ_zero")) -- сумарная масса топлива. кнопка нуля
-defineProperty("fuel_meter_summ_max", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_summ_max")) -- сумарная масса топлива. кнопка P
-defineProperty("fuel_meter_tank2_zero", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank2_zero")) -- топливомер бака 2. кнопка нуля
-defineProperty("fuel_meter_tank2_max", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank2_max")) -- стопливомер бака 2. кнопка P
-defineProperty("fuel_meter_tank3_zero", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank3_zero")) -- топливомер бака 3. кнопка нуля
-defineProperty("fuel_meter_tank3_max", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank3_max")) -- топливомер бака 3. кнопка P
-defineProperty("fuel_meter_tank4_zero", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank4_zero")) -- топливомер бака 4. кнопка нуля
-defineProperty("fuel_meter_tank4_max", globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank4_max")) -- топливомер бака 4. кнопка P
-defineProperty("fuel_front_zero", globalPropertyf("tu154b2/custom/buttons/misc/fuel_front_zero")) -- индикатор топлива на передней панели.кнопка нуля
-defineProperty("fuel_front_max", globalPropertyf("tu154b2/custom/buttons/misc/fuel_front_max")) -- индикатор топлива на передней панели.кнопка макс
+fuel_meter_summ_zero = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_summ_zero") -- сумарная масса топлива. кнопка нуля
+fuel_meter_summ_max = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_summ_max") -- сумарная масса топлива. кнопка P
+fuel_meter_tank2_zero = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank2_zero") -- топливомер бака 2. кнопка нуля
+fuel_meter_tank2_max = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank2_max") -- стопливомер бака 2. кнопка P
+fuel_meter_tank3_zero = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank3_zero") -- топливомер бака 3. кнопка нуля
+fuel_meter_tank3_max = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank3_max") -- топливомер бака 3. кнопка P
+fuel_meter_tank4_zero = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank4_zero") -- топливомер бака 4. кнопка нуля
+fuel_meter_tank4_max = globalPropertyf("tu154b2/custom/buttons/fuel/fuel_meter_tank4_max") -- топливомер бака 4. кнопка P
+fuel_front_zero = globalPropertyf("tu154b2/custom/buttons/misc/fuel_front_zero") -- индикатор топлива на передней панели.кнопка нуля
+fuel_front_max = globalPropertyf("tu154b2/custom/buttons/misc/fuel_front_max") -- индикатор топлива на передней панели.кнопка макс
 
 
 -- controls
-defineProperty("pump_tank2_left", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_left")) -- насосы бака 2
-defineProperty("pump_tank2_right", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_right")) -- насосы бака 2
-defineProperty("pump_tank3_left", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_left")) -- насосы бака 3
-defineProperty("pump_tank3_right", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_right")) -- насосы бака 3
-defineProperty("pump_tank4", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank4")) -- насосы бака 4
-defineProperty("pump_tank1_1", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_1")) -- насосы бака 1
-defineProperty("pump_tank1_2", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_2")) -- насосы бака 1
-defineProperty("pump_tank1_3", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_3")) -- насосы бака 1
-defineProperty("pump_tank1_4", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_4")) -- насосы бака 1
+pump_tank2_left = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_left") -- насосы бака 2
+pump_tank2_right = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_right") -- насосы бака 2
+pump_tank3_left = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_left") -- насосы бака 3
+pump_tank3_right = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_right") -- насосы бака 3
+pump_tank4 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank4") -- насосы бака 4
+pump_tank1_1 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_1") -- насосы бака 1
+pump_tank1_2 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_2") -- насосы бака 1
+pump_tank1_3 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_3") -- насосы бака 1
+pump_tank1_4 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_4") -- насосы бака 1
 
-defineProperty("fuel_trans", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_trans")) -- краны резервой перекачки
-defineProperty("fuel_trans_cap", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_trans_cap")) -- краны резервой перекачки
-defineProperty("fuel_porc", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_porc")) -- принуд порц
-defineProperty("fuel_porc_cap", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_porc_cap")) -- принуд порц
-defineProperty("fuel_level", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_level")) -- автомат выравнивания
-defineProperty("fuel_flow_mode", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_mode")) -- режим топлвиной системы. ручное - автомат
-defineProperty("fuel_flow_on", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_on")) -- автомат расхода
-defineProperty("fuel_flow_on_cap", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_on_cap")) -- автомат расхода
+fuel_trans = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_trans") -- краны резервой перекачки
+fuel_trans_cap = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_trans_cap") -- краны резервой перекачки
+fuel_porc = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_porc") -- принуд порц
+fuel_porc_cap = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_porc_cap") -- принуд порц
+fuel_level = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_level") -- автомат выравнивания
+fuel_flow_mode = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_mode") -- режим топлвиной системы. ручное - автомат
+fuel_flow_on = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_on") -- автомат расхода
+fuel_flow_on_cap = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_on_cap") -- автомат расхода
 
-defineProperty("fuel_meter_on", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_meter_on")) -- топливомер
-defineProperty("fuel_meter_mech_on", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_meter_mech_on")) -- расходомер
-defineProperty("fire_valve_1", globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_1")) -- пожарный кран
-defineProperty("fire_valve_2", globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_2")) -- пожарный кран
-defineProperty("fire_valve_3", globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_3")) -- пожарный кран
-defineProperty("fire_valve_1_cap", globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_1_cap")) -- пожарный кран
-defineProperty("fire_valve_2_cap", globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_2_cap")) -- пожарный кран
-defineProperty("fire_valve_3_cap", globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_3_cap")) -- пожарный кран
+fuel_meter_on = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_meter_on") -- топливомер
+fuel_meter_mech_on = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_meter_mech_on") -- расходомер
+fire_valve_1 = globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_1") -- пожарный кран
+fire_valve_2 = globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_2") -- пожарный кран
+fire_valve_3 = globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_3") -- пожарный кран
+fire_valve_1_cap = globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_1_cap") -- пожарный кран
+fire_valve_2_cap = globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_2_cap") -- пожарный кран
+fire_valve_3_cap = globalPropertyi("tu154b2/custom/switchers/fuel/fire_valve_3_cap") -- пожарный кран
 
-defineProperty("reserv_pump_test", globalPropertyi("tu154b2/custom/buttons/eng/reserv_pump_test")) -- кнопка проверки резерв насоса
+reserv_pump_test = globalPropertyi("tu154b2/custom/buttons/eng/reserv_pump_test") -- кнопка проверки резерв насоса
 
 
 -- lamps
-defineProperty("fuel_2500", globalPropertyf("tu154b2/custom/lights/small/fuel_2500")) -- остаток топлива 2500
-defineProperty("fuel_tank1_used", globalPropertyf("tu154b2/custom/lights/small/fuel_tank1_used")) -- расход из бака 1
-defineProperty("fuel_tank3_left_fail", globalPropertyf("tu154b2/custom/lights/small/fuel_tank3_left_fail")) -- красная лампа бака 3 лев
-defineProperty("fuel_tank2_left_fail", globalPropertyf("tu154b2/custom/lights/small/fuel_tank2_left_fail")) -- красная лампа бака 2 лев
-defineProperty("fuel_tank2_right_fail", globalPropertyf("tu154b2/custom/lights/small/fuel_tank2_right_fail")) -- красная лампа бака 2 прав
-defineProperty("fuel_tank3_right_fail", globalPropertyf("tu154b2/custom/lights/small/fuel_tank3_right_fail")) -- красная лампа бака 3 прав
+fuel_2500 = globalPropertyf("tu154b2/custom/lights/small/fuel_2500") -- остаток топлива 2500
+fuel_tank1_used = globalPropertyf("tu154b2/custom/lights/small/fuel_tank1_used") -- расход из бака 1
+fuel_tank3_left_fail = globalPropertyf("tu154b2/custom/lights/small/fuel_tank3_left_fail") -- красная лампа бака 3 лев
+fuel_tank2_left_fail = globalPropertyf("tu154b2/custom/lights/small/fuel_tank2_left_fail") -- красная лампа бака 2 лев
+fuel_tank2_right_fail = globalPropertyf("tu154b2/custom/lights/small/fuel_tank2_right_fail") -- красная лампа бака 2 прав
+fuel_tank3_right_fail = globalPropertyf("tu154b2/custom/lights/small/fuel_tank3_right_fail") -- красная лампа бака 3 прав
 
-defineProperty("fuel_pump_left_5", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_5")) -- насос бака 5 лев
-defineProperty("fuel_pump_left_6", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_6")) -- насос бака 6 лев
-defineProperty("fuel_pump_left_7", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_7")) -- насос бака 7 лев
-defineProperty("fuel_pump_left_8", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_8")) -- насос бака 8 лев
-defineProperty("fuel_pump_left_9", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_9")) -- насос бака 9 лев
+fuel_pump_left_5 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_5") -- насос бака 5 лев
+fuel_pump_left_6 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_6") -- насос бака 6 лев
+fuel_pump_left_7 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_7") -- насос бака 7 лев
+fuel_pump_left_8 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_8") -- насос бака 8 лев
+fuel_pump_left_9 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_left_9") -- насос бака 9 лев
 
-defineProperty("fuel_pump_right_5", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_5")) -- насос бака 5 прав
-defineProperty("fuel_pump_right_6", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_6")) -- насос бака 6 прав
-defineProperty("fuel_pump_right_7", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_7")) -- насос бака 7 прав
-defineProperty("fuel_pump_right_8", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_8")) -- насос бака 8 прав
-defineProperty("fuel_pump_right_9", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_9")) -- насос бака 9 прав
+fuel_pump_right_5 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_5") -- насос бака 5 прав
+fuel_pump_right_6 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_6") -- насос бака 6 прав
+fuel_pump_right_7 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_7") -- насос бака 7 прав
+fuel_pump_right_8 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_8") -- насос бака 8 прав
+fuel_pump_right_9 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_right_9") -- насос бака 9 прав
 
-defineProperty("fuel_pump_10", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_10")) -- насос бака 10 прав
-defineProperty("fuel_pump_11", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_11")) -- насос бака 11 прав
-defineProperty("fuel_pump_1", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_1")) -- насос бака 1 прав
-defineProperty("fuel_pump_2", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_2")) -- насос бака 2 прав
-defineProperty("fuel_pump_3", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_3")) -- насос бака 3 прав
-defineProperty("fuel_pump_4", globalPropertyf("tu154b2/custom/lights/small/fuel_pump_4")) -- насос бака 4 прав
+fuel_pump_10 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_10") -- насос бака 10 прав
+fuel_pump_11 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_11") -- насос бака 11 прав
+fuel_pump_1 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_1") -- насос бака 1 прав
+fuel_pump_2 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_2") -- насос бака 2 прав
+fuel_pump_3 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_3") -- насос бака 3 прав
+fuel_pump_4 = globalPropertyf("tu154b2/custom/lights/small/fuel_pump_4") -- насос бака 4 прав
 
 
-defineProperty("fuel_cut_off_1", globalPropertyf("tu154b2/custom/lights/small/fuel_cut_off_1")) -- перекрывные краны
-defineProperty("fuel_cut_off_2", globalPropertyf("tu154b2/custom/lights/small/fuel_cut_off_2")) -- перекрывные краны
-defineProperty("fuel_cut_off_3", globalPropertyf("tu154b2/custom/lights/small/fuel_cut_off_3")) -- перекрывные краны
-defineProperty("fuel_flow_from_2", globalPropertyf("tu154b2/custom/lights/small/fuel_flow_from_2")) -- порядок расхода
-defineProperty("fuel_flow_from_3", globalPropertyf("tu154b2/custom/lights/small/fuel_flow_from_3")) -- порядок расхода
-defineProperty("fuel_flow_from_4", globalPropertyf("tu154b2/custom/lights/small/fuel_flow_from_4")) -- порядок расхода
+fuel_cut_off_1 = globalPropertyf("tu154b2/custom/lights/small/fuel_cut_off_1") -- перекрывные краны
+fuel_cut_off_2 = globalPropertyf("tu154b2/custom/lights/small/fuel_cut_off_2") -- перекрывные краны
+fuel_cut_off_3 = globalPropertyf("tu154b2/custom/lights/small/fuel_cut_off_3") -- перекрывные краны
+fuel_flow_from_2 = globalPropertyf("tu154b2/custom/lights/small/fuel_flow_from_2") -- порядок расхода
+fuel_flow_from_3 = globalPropertyf("tu154b2/custom/lights/small/fuel_flow_from_3") -- порядок расхода
+fuel_flow_from_4 = globalPropertyf("tu154b2/custom/lights/small/fuel_flow_from_4") -- порядок расхода
 
-defineProperty("fuel_flow_auto_fail", globalPropertyf("tu154b2/custom/lights/small/fuel_flow_auto_fail")) -- автомат расхода не работает
-defineProperty("fuel_reserv_trans_left", globalPropertyf("tu154b2/custom/lights/small/fuel_reserv_trans_left")) -- резервная перекачка в бак 1 
-defineProperty("fuel_reserv_trans_right", globalPropertyf("tu154b2/custom/lights/small/fuel_reserv_trans_right")) -- резервная перекачка в бак 1 
-defineProperty("fuel_porc_reserv", globalPropertyf("tu154b2/custom/lights/small/fuel_porc_reserv")) -- порцевание
-defineProperty("fuel_level_automat", globalPropertyf("tu154b2/custom/lights/small/fuel_level_automat")) -- автомат выравнивания
+fuel_flow_auto_fail = globalPropertyf("tu154b2/custom/lights/small/fuel_flow_auto_fail") -- автомат расхода не работает
+fuel_reserv_trans_left = globalPropertyf("tu154b2/custom/lights/small/fuel_reserv_trans_left") -- резервная перекачка в бак 1 
+fuel_reserv_trans_right = globalPropertyf("tu154b2/custom/lights/small/fuel_reserv_trans_right") -- резервная перекачка в бак 1 
+fuel_porc_reserv = globalPropertyf("tu154b2/custom/lights/small/fuel_porc_reserv") -- порцевание
+fuel_level_automat = globalPropertyf("tu154b2/custom/lights/small/fuel_level_automat") -- автомат выравнивания
 
 
 -- sources -- 
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("ENGN_FF_1", globalProperty("tu154b2/custom/gauges/eng/fuel_flow_1")) -- FF kg/h
-defineProperty("ENGN_FF_2", globalProperty("tu154b2/custom/gauges/eng/fuel_flow_2")) -- FF kg/h
-defineProperty("ENGN_FF_3", globalProperty("tu154b2/custom/gauges/eng/fuel_flow_3")) -- FF kg/h
+ENGN_FF_1 = globalProperty("tu154b2/custom/gauges/eng/fuel_flow_1") -- FF kg/h
+ENGN_FF_2 = globalProperty("tu154b2/custom/gauges/eng/fuel_flow_2") -- FF kg/h
+ENGN_FF_3 = globalProperty("tu154b2/custom/gauges/eng/fuel_flow_3") -- FF kg/h
 
 -- fuel tanks
-defineProperty("total_w", globalPropertyf("sim/flightmodel/weight/m_fuel_total")) -- fuel weight
+total_w = globalPropertyf("sim/flightmodel/weight/m_fuel_total") -- fuel weight
 
-defineProperty("tank1_w", globalProperty("sim/flightmodel/weight/m_fuel[0]")) -- fuel weight
-defineProperty("tank4_w", globalProperty("sim/flightmodel/weight/m_fuel[1]")) -- fuel weight
-defineProperty("tank2R_w", globalProperty("sim/flightmodel/weight/m_fuel[2]")) -- fuel weight
-defineProperty("tank2L_w", globalProperty("sim/flightmodel/weight/m_fuel[3]")) -- fuel weight
-defineProperty("tank3R_w", globalProperty("sim/flightmodel/weight/m_fuel[4]")) -- fuel weight
-defineProperty("tank3L_w", globalProperty("sim/flightmodel/weight/m_fuel[5]")) -- fuel weight
+tank1_w = globalProperty("sim/flightmodel/weight/m_fuel[0]") -- fuel weight
+tank4_w = globalProperty("sim/flightmodel/weight/m_fuel[1]") -- fuel weight
+tank2R_w = globalProperty("sim/flightmodel/weight/m_fuel[2]") -- fuel weight
+tank2L_w = globalProperty("sim/flightmodel/weight/m_fuel[3]") -- fuel weight
+tank3R_w = globalProperty("sim/flightmodel/weight/m_fuel[4]") -- fuel weight
+tank3L_w = globalProperty("sim/flightmodel/weight/m_fuel[5]") -- fuel weight
 
-defineProperty("reserv_trans", globalPropertyi("tu154b2/custom/fuel/reserv_trans"))
+reserv_trans = globalPropertyi("tu154b2/custom/fuel/reserv_trans")
 
-defineProperty("total_ft", globalPropertyf("sim/time/total_flight_time_sec")) -- 
+total_ft = globalPropertyf("sim/time/total_flight_time_sec") -- 
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 -- bus parameters
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
-defineProperty("bus115_2_volt", globalPropertyf("tu154b2/custom/elec/bus115_2_volt"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+bus115_2_volt = globalPropertyf("tu154b2/custom/elec/bus115_2_volt")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
 -- lamps sources
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_hydro")) -- кнопка првоерки ламп панели ВСУ
 
-defineProperty("pump_tank2_left1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work1"))
-defineProperty("pump_tank2_left2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work2"))
-defineProperty("pump_tank2_right1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work1"))
-defineProperty("pump_tank2_right2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work2"))
-defineProperty("pump_tank3_left1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work1"))
-defineProperty("pump_tank3_left2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work2"))
-defineProperty("pump_tank3_left3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work3"))
-defineProperty("pump_tank3_right1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work1"))
-defineProperty("pump_tank3_right2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work2"))
-defineProperty("pump_tank3_right3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work3"))
-defineProperty("pump_tank41_work", globalPropertyi("tu154b2/custom/fuel/pump_tank4_work1"))
-defineProperty("pump_tank42_work", globalPropertyi("tu154b2/custom/fuel/pump_tank4_work2"))
-defineProperty("pump_tank1_1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_1_work"))
-defineProperty("pump_tank1_2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_2_work"))
-defineProperty("pump_tank1_3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_3_work"))
-defineProperty("pump_tank1_4_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_4_work"))
+pump_tank2_left1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work1")
+pump_tank2_left2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work2")
+pump_tank2_right1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work1")
+pump_tank2_right2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work2")
+pump_tank3_left1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work1")
+pump_tank3_left2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work2")
+pump_tank3_left3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work3")
+pump_tank3_right1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work1")
+pump_tank3_right2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work2")
+pump_tank3_right3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work3")
+pump_tank41_work = globalPropertyi("tu154b2/custom/fuel/pump_tank4_work1")
+pump_tank42_work = globalPropertyi("tu154b2/custom/fuel/pump_tank4_work2")
+pump_tank1_1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_1_work")
+pump_tank1_2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_2_work")
+pump_tank1_3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_3_work")
+pump_tank1_4_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_4_work")
 
-defineProperty("auto_tanks_turn", globalPropertyi("tu154b2/custom/fuel/auto_tanks_turn")) -- рабочие очередные баки. 0, 1 - не работает, 2, 3, 4	0
---defineProperty("auto_tank_level", globalPropertyi("tu154b2/custom/fuel/auto_tank_level")) -- выравнивание в баках. -2 - 2L, -3 - 3L, +3 - 3R, +2 - 2R	0
+auto_tanks_turn = globalPropertyi("tu154b2/custom/fuel/auto_tanks_turn") -- рабочие очередные баки. 0, 1 - не работает, 2, 3, 4	0
+--auto_tank_level = globalPropertyi("tu154b2/custom/fuel/auto_tank_level") -- выравнивание в баках. -2 - 2L, -3 - 3L, +3 - 3R, +2 - 2R	0
 
-defineProperty("auto_tank_level_2", globalPropertyi("tu154b2/custom/fuel/auto_tank_level_2")) -- выравнивание в баках 2. -1 = L, 0 = none, +1 = R	0
-defineProperty("auto_tank_level_3", globalPropertyi("tu154b2/custom/fuel/auto_tank_level_3")) -- выравнивание в баках 3. -1 = L, 0 = none, +1 = R	0
+auto_tank_level_2 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_2") -- выравнивание в баках 2. -1 = L, 0 = none, +1 = R	0
+auto_tank_level_3 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_3") -- выравнивание в баках 3. -1 = L, 0 = none, +1 = R	0
 
 
-defineProperty("tank1_w", globalProperty("sim/flightmodel/weight/m_fuel[0]")) -- fuel weight
+tank1_w = globalProperty("sim/flightmodel/weight/m_fuel[0]") -- fuel weight
 
-defineProperty("fire_vlv_open_1", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_1")) -- пожарный кран открыт
-defineProperty("fire_vlv_open_2", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2")) -- пожарный кран открыт
-defineProperty("fire_vlv_open_3", globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3")) -- пожарный кран открыт
+fire_vlv_open_1 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_1") -- пожарный кран открыт
+fire_vlv_open_2 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2") -- пожарный кран открыт
+fire_vlv_open_3 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3") -- пожарный кран открыт
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
 -- failures
-defineProperty("fuel_auto_fail", globalPropertyi("tu154b2/custom/failures/fuel_auto_fail"))
-defineProperty("fuel_level_fail", globalPropertyi("tu154b2/custom/failures/fuel_level_fail"))
-defineProperty("fuel_porc_fail", globalPropertyi("tu154b2/custom/failures/fuel_porc_fail"))
+fuel_auto_fail = globalPropertyi("tu154b2/custom/failures/fuel_auto_fail")
+fuel_level_fail = globalPropertyi("tu154b2/custom/failures/fuel_level_fail")
+fuel_porc_fail = globalPropertyi("tu154b2/custom/failures/fuel_porc_fail")
 
--- defineProperty("fuel_pump_2l_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_2l_fail")) -- number of failed pumps
--- defineProperty("fuel_pump_2r_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_2r_fail"))
--- defineProperty("fuel_pump_3l_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_3l_fail"))
--- defineProperty("fuel_pump_3r_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_3r_fail"))
--- --defineProperty("fuel_pump_1_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_1_fail"))
--- defineProperty("fuel_pump_4_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_4_fail"))
+-- fuel_pump_2l_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_2l_fail")) -- number of failed pumps
+-- fuel_pump_2r_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_2r_fail"))
+-- fuel_pump_3l_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_3l_fail"))
+-- fuel_pump_3r_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_3r_fail"))
+-- --fuel_pump_1_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_1_fail"))
+-- fuel_pump_4_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_4_fail"))
 
-defineProperty("fuel_meter_2l_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_2l_fail"))
-defineProperty("fuel_meter_2r_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_2r_fail"))
-defineProperty("fuel_meter_3l_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_3l_fail"))
-defineProperty("fuel_meter_3r_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_3r_fail"))
-defineProperty("fuel_meter_1_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_1_fail"))
-defineProperty("fuel_meter_4_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_4_fail"))
-defineProperty("fuel_meter_summ_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_summ"))
+fuel_meter_2l_fail = globalPropertyi("tu154b2/custom/failures/fuel_meter_2l_fail")
+fuel_meter_2r_fail = globalPropertyi("tu154b2/custom/failures/fuel_meter_2r_fail")
+fuel_meter_3l_fail = globalPropertyi("tu154b2/custom/failures/fuel_meter_3l_fail")
+fuel_meter_3r_fail = globalPropertyi("tu154b2/custom/failures/fuel_meter_3r_fail")
+fuel_meter_1_fail = globalPropertyi("tu154b2/custom/failures/fuel_meter_1_fail")
+fuel_meter_4_fail = globalPropertyi("tu154b2/custom/failures/fuel_meter_4_fail")
+fuel_meter_summ_fail = globalPropertyi("tu154b2/custom/failures/fuel_meter_summ")
 
-defineProperty("fuel_flowmeter_1_fail", globalPropertyi("tu154b2/custom/failures/fuel_flowmeter_1_fail"))
-defineProperty("fuel_flowmeter_2_fail", globalPropertyi("tu154b2/custom/failures/fuel_flowmeter_2_fail"))
-defineProperty("fuel_flowmeter_3_fail", globalPropertyi("tu154b2/custom/failures/fuel_flowmeter_3_fail"))
+fuel_flowmeter_1_fail = globalPropertyi("tu154b2/custom/failures/fuel_flowmeter_1_fail")
+fuel_flowmeter_2_fail = globalPropertyi("tu154b2/custom/failures/fuel_flowmeter_2_fail")
+fuel_flowmeter_3_fail = globalPropertyi("tu154b2/custom/failures/fuel_flowmeter_3_fail")
 
-defineProperty("fuel_flow_1", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_1")) -- расход топлива двиг 1
-defineProperty("fuel_flow_2", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_2")) -- расход топлива двиг 2
-defineProperty("fuel_flow_3", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_3")) -- расход топлива двиг 3
+fuel_flow_1 = globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_1") -- расход топлива двиг 1
+fuel_flow_2 = globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_2") -- расход топлива двиг 2
+fuel_flow_3 = globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_3") -- расход топлива двиг 3
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_Y", globalPropertyf("sim/aircraft/view/acf_peY"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-defineProperty("external_view", globalPropertyi("sim/graphics/view/view_is_external")) 
-defineProperty("vr_outside", globalPropertyi("sim/graphics/VR/teleport_on_ground"))
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_Y = globalPropertyf("sim/aircraft/view/acf_peY")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+external_view = globalPropertyi("sim/graphics/view/view_is_external") 
+vr_outside = globalPropertyi("sim/graphics/VR/teleport_on_ground")
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2"))
 
 local panel_x=0.727
 local panel_z=-21.171
 local dist_gain=2
 local click_timer=0
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
--- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- db4 = globalPropertyf("tu154b2/custom/controlls/debug4"))
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
@@ -283,7 +282,6 @@ local passed = get(frame_time)
 
 local function lamps()
 	
-	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	
 	local pump_2L1 = get(pump_tank2_left1_work)
@@ -308,125 +306,125 @@ local function lamps()
 	
 	local fuel_tank3_left_brt = 0
 	if tank_level_3 == -1 then fuel_tank3_left_brt = 1 end
-	fuel_tank3_left_brt = math.max(fuel_tank3_left_brt * lamps_brt, test_btn)
+	fuel_tank3_left_brt = fuel_tank3_left_brt * lamps_brt
 	set(fuel_tank3_left_fail, fuel_tank3_left_brt)
 	
 	local fuel_tank2_left_brt = 0
 	if tank_level_2 == -1 then fuel_tank2_left_brt = 1 end
-	fuel_tank2_left_brt = math.max(fuel_tank2_left_brt * lamps_brt, test_btn)
+	fuel_tank2_left_brt = fuel_tank2_left_brt * lamps_brt
 	set(fuel_tank2_left_fail, fuel_tank2_left_brt)
 	
 	local fuel_tank3_right_brt = 0
 	if tank_level_3 == 1 then fuel_tank3_right_brt = 1 end
-	fuel_tank3_right_brt = math.max(fuel_tank3_right_brt * lamps_brt, test_btn)
+	fuel_tank3_right_brt = fuel_tank3_right_brt * lamps_brt
 	set(fuel_tank3_right_fail, fuel_tank3_right_brt)
 	
 	local fuel_tank2_right_brt = 0
 	if tank_level_2 == 1 then fuel_tank2_right_brt = 1 end
-	fuel_tank2_right_brt = math.max(fuel_tank2_right_brt * lamps_brt, test_btn)
+	fuel_tank2_right_brt = fuel_tank2_right_brt * lamps_brt
 	set(fuel_tank2_right_fail, fuel_tank2_right_brt)	
 	
 	
-	local fuel_pump_left_5_brt = math.max(bool2int(pump_2L1 > 0) * lamps_brt, test_btn)
+	local fuel_pump_left_5_brt = bool2int(pump_2L1 > 0) * lamps_brt
 	set(fuel_pump_left_5, fuel_pump_left_5_brt)	
 	
-	local fuel_pump_left_6_brt = math.max(bool2int(pump_2L2 > 0) * lamps_brt, test_btn)
+	local fuel_pump_left_6_brt = bool2int(pump_2L2 > 0) * lamps_brt
 	set(fuel_pump_left_6, fuel_pump_left_6_brt)	
 	
-	local fuel_pump_left_7_brt = math.max(bool2int(pump_3L1 > 0) * lamps_brt, test_btn)
+	local fuel_pump_left_7_brt = bool2int(pump_3L1 > 0) * lamps_brt
 	set(fuel_pump_left_7, fuel_pump_left_7_brt)	
 	
-	local fuel_pump_left_8_brt = math.max(bool2int(pump_3L2 > 0) * lamps_brt, test_btn) 
+	local fuel_pump_left_8_brt = bool2int(pump_3L2 > 0) * lamps_brt
 	set(fuel_pump_left_8, fuel_pump_left_8_brt)	
 	
-	local fuel_pump_left_9_brt = math.max(bool2int(pump_3L3 > 0) * lamps_brt, test_btn)
+	local fuel_pump_left_9_brt = bool2int(pump_3L3 > 0) * lamps_brt
 	set(fuel_pump_left_9, fuel_pump_left_9_brt)	
 	
 	
-	local fuel_pump_right_5_brt = math.max(bool2int(pump_2R1 > 0) * lamps_brt, test_btn) 
+	local fuel_pump_right_5_brt = bool2int(pump_2R1 > 0) * lamps_brt
 	set(fuel_pump_right_5, fuel_pump_right_5_brt)	
 	
-	local fuel_pump_right_6_brt = math.max(bool2int(pump_2R2 > 0) * lamps_brt, test_btn) 
+	local fuel_pump_right_6_brt = bool2int(pump_2R2 > 0) * lamps_brt
 	set(fuel_pump_right_6, fuel_pump_right_6_brt)	
 	
-	local fuel_pump_right_7_brt = math.max(bool2int(pump_3R1 > 0) * lamps_brt, test_btn) 
+	local fuel_pump_right_7_brt = bool2int(pump_3R1 > 0) * lamps_brt
 	set(fuel_pump_right_7, fuel_pump_right_7_brt)	
 	
-	local fuel_pump_right_8_brt = math.max(bool2int(pump_3R2 > 0) * lamps_brt, test_btn)
+	local fuel_pump_right_8_brt = bool2int(pump_3R2 > 0) * lamps_brt
 	set(fuel_pump_right_8, fuel_pump_right_8_brt)	
 	
-	local fuel_pump_right_9_brt = math.max(bool2int(pump_3R3 > 0) * lamps_brt, test_btn) 
+	local fuel_pump_right_9_brt = bool2int(pump_3R3 > 0) * lamps_brt
 	set(fuel_pump_right_9, fuel_pump_right_9_brt)	
 	
 	
-	local fuel_pump_10_brt = math.max(bool2int(pump41 > 0) * lamps_brt, test_btn)
+	local fuel_pump_10_brt = bool2int(pump41 > 0) * lamps_brt
 	set(fuel_pump_10, fuel_pump_10_brt)	
 	
-	local fuel_pump_11_brt = math.max(bool2int(pump42 > 0) * lamps_brt, test_btn)
+	local fuel_pump_11_brt = bool2int(pump42 > 0) * lamps_brt
 	set(fuel_pump_11, fuel_pump_11_brt)	
 	
-	local fuel_pump_1_brt = math.max(pump_1_1 * lamps_brt, test_btn)
+	local fuel_pump_1_brt = pump_1_1 * lamps_brt
 	set(fuel_pump_1, fuel_pump_1_brt)	
 	
-	local fuel_pump_2_brt = math.max(pump_1_2 * lamps_brt, test_btn) 
+	local fuel_pump_2_brt = pump_1_2 * lamps_brt
 	set(fuel_pump_2, fuel_pump_2_brt)	
 	
-	local fuel_pump_3_brt = math.max(pump_1_3 * lamps_brt, test_btn) 
+	local fuel_pump_3_brt = pump_1_3 * lamps_brt
 	set(fuel_pump_3, fuel_pump_3_brt)	
 	
-	local fuel_pump_4_brt = math.max(pump_1_4 * lamps_brt, test_btn)
+	local fuel_pump_4_brt = pump_1_4 * lamps_brt
 	set(fuel_pump_4, fuel_pump_4_brt)
 	
 	
 	
 	local fuel_cut_off_1_brt = 0
 	if get(fire_vlv_open_1) > 0.7 then fuel_cut_off_1_brt = 1 end
-	fuel_cut_off_1_brt = math.max(fuel_cut_off_1_brt * lamps_brt, test_btn)
+	fuel_cut_off_1_brt = fuel_cut_off_1_brt * lamps_brt
 	set(fuel_cut_off_1, fuel_cut_off_1_brt)
 	
 	local fuel_cut_off_2_brt = 0
 	if get(fire_vlv_open_2) > 0.7 then fuel_cut_off_2_brt = 1 end
-	fuel_cut_off_2_brt = math.max(fuel_cut_off_2_brt * lamps_brt, test_btn)
+	fuel_cut_off_2_brt = fuel_cut_off_2_brt * lamps_brt
 	set(fuel_cut_off_2, fuel_cut_off_2_brt)
 	
 	local fuel_cut_off_3_brt = 0
 	if get(fire_vlv_open_3) > 0.7 then fuel_cut_off_3_brt = 1 end
-	fuel_cut_off_3_brt = math.max(fuel_cut_off_3_brt * lamps_brt, test_btn) 
+	fuel_cut_off_3_brt = fuel_cut_off_3_brt * lamps_brt 
 	set(fuel_cut_off_3, fuel_cut_off_3_brt)	
 	
 	
 	local fuel_flow_from_2_brt = 0
 	local tank_turn = get(auto_tanks_turn)
 	if tank_turn == 1 or tank_turn == 2 then fuel_flow_from_2_brt = 1 end
-	fuel_flow_from_2_brt = math.max(fuel_flow_from_2_brt * lamps_brt, test_btn) 
+	fuel_flow_from_2_brt = fuel_flow_from_2_brt * lamps_brt 
 	set(fuel_flow_from_2, fuel_flow_from_2_brt)
 
 	local fuel_flow_from_3_brt = 0
 	if tank_turn == 2 or tank_turn == 3 then fuel_flow_from_3_brt = 1 end
-	fuel_flow_from_3_brt = math.max(fuel_flow_from_3_brt * lamps_brt, test_btn)
+	fuel_flow_from_3_brt = fuel_flow_from_3_brt * lamps_brt
 	set(fuel_flow_from_3, fuel_flow_from_3_brt)
 	
 	local fuel_flow_from_4_brt = 0
 	if tank_turn == 4 then fuel_flow_from_4_brt = 1 end
-	fuel_flow_from_4_brt = math.max(fuel_flow_from_4_brt * lamps_brt, test_btn)
+	fuel_flow_from_4_brt = fuel_flow_from_4_brt * lamps_brt
 	set(fuel_flow_from_4, fuel_flow_from_4_brt)
 
 	local fuel_flow_auto_fail_brt = 0
 	if tank_turn == 0 then fuel_flow_auto_fail_brt = 1 end
-	fuel_flow_auto_fail_brt = math.max(fuel_flow_auto_fail_brt * lamps_brt, test_btn)
+	fuel_flow_auto_fail_brt = fuel_flow_auto_fail_brt * lamps_brt
 	set(fuel_flow_auto_fail, fuel_flow_auto_fail_brt)
 	
-	local fuel_reserv_trans_left_brt = math.max(get(reserv_trans) * lamps_brt, test_btn) 
+	local fuel_reserv_trans_left_brt = get(reserv_trans) * lamps_brt 
 	set(fuel_reserv_trans_left, fuel_reserv_trans_left_brt)
 	
-	local fuel_reserv_trans_right_brt = math.max(get(reserv_trans) * lamps_brt, test_btn)
+	local fuel_reserv_trans_right_brt = get(reserv_trans) * lamps_brt
 	set(fuel_reserv_trans_right, fuel_reserv_trans_right_brt)
 	
-	local fuel_porc_reserv_brt = math.max(get(reserv_pump_test) * lamps_brt, test_btn) 
+	local fuel_porc_reserv_brt = get(reserv_pump_test) * lamps_brt 
 	set(fuel_porc_reserv, fuel_porc_reserv_brt)
 	
 	--local fuel_level_automat_brt = math.max(get(fuel_level) * get(fuel_flow_mode) * get(fuel_flow_on) * lamps_brt, test_btn)
-	local fuel_level_automat_brt = math.max(get(fuel_level) * (1-get(fuel_level_fail)) * lamps_brt, test_btn)
+	local fuel_level_automat_brt = get(fuel_level) * (1-get(fuel_level_fail)) * lamps_brt
 	set(fuel_level_automat, fuel_level_automat_brt)
 	
 end

@@ -25,30 +25,46 @@ defineProperty("showLeadingZeros", false)
 -- show sign instead of first digit
 defineProperty("showSign", false)
 
+defineProperty("lit",0)
 
 function draw(self)
+    local img = get(image)
+    local overlayImg = get(overlayImage)
     local sign = get(showSign)
     local leading = get(showLeadingZeros)
     local digitsNum = get(digits)
     local frac = get(fractional)
     local symbolsNum = digitsNum
+	local light = get(lit)
+	local clr = {1 - 0.5 * light, 1 - 0.5 * light , 1 - 0.5 * light , 1.0 }
     if 0 < frac then
         symbolsNum = symbolsNum + 1
     end
-    local digitWidth = 100 / symbolsNum
+    local imgWidth, imgHeight = getTextureSize(img)
+
+    local digitTileWidth = imgWidth
 
     local v = math.abs(get(value)) * (10 ^ frac)
     if get(allowNonRound) then
         v = math.floor(v + 0.5)
     end
-    local pos = 100 - digitWidth
-    local digitHeight = 0.0714285714286
-    local img = get(image)
-    local overlayImg = get(overlayImage)
+    --local pos = 100 - digitTileWidth
+    local posX = get(position)[3] - digitTileWidth + 15
+    --local digitTileHeight = 0.0714285714286
+    local digitTileHeight = imgHeight / 14
+
+    local digitWidth = (digitTileWidth + (get(position)[4]) )*0.35 - 4
+    local digitHeight = (digitTileHeight + (get(position)[4]))*0.35
+
+
+    --drawTexturePart(img, posX, 0, digitTileWidth, digitTileHeight, 0, 1*14, digitTileWidth, digitTileHeight)
+
+    --if true then return end
 
     if 0 < frac then
-        local y = (12 + 1) * digitHeight
-        drawTexturePart(img, pos - digitWidth * frac, 0, digitWidth, 100, 0, y, 1, digitHeight, 1, 1, 1) 
+        local y = (12 + 1) * digitTileHeight
+        -- TODO: fix frac drawing
+        drawTexturePart(img, posX - digitTileWidth * frac, 0, digitTileWidth, 100, 0, y, 1, digitTileHeight) 
     end
 
     if get(valueEnabler) then
@@ -63,24 +79,29 @@ function draw(self)
             end
             prevDigit = digit
             v = math.floor(v / 10)
-            local y = (10 - digit + 1) * digitHeight
-            drawTexturePart(img, pos, 0, digitWidth, 100, 0, y, 1, digitHeight, 1, 1, 1) 
-            pos = pos - digitWidth
+            local y = (10 - digit + 2) * digitTileHeight
+            y = imgHeight - y - 10 -- reverse y position because 0 is bottom left image point
+--            print("digit: "..tostring(digit).." y= "..tostring(y))
+            drawTexturePart(img, posX, 0, digitWidth, digitHeight, 0, y, digitTileWidth, digitTileHeight, clr)
+            posX = posX - digitWidth
             if frac == i then
-                pos = pos - digitWidth
+                posX = posX - digitWidth
             end
             if (i > frac) and (not leading) and (0 == v) then
                 break;
             end
         end
         if sign and (0 > get(value)) then
-            local y = (13 + 1) * digitHeight
-            drawTexturePart(img, pos, 0, digitWidth, 100, 0, y, 1, digitHeight, 1, 1, 1) 
+            -- TODO: fix sign drawing
+            local y = (13 + 1) * digitTileHeight
+            y = imgHeight - y - 14
+            drawTexturePart(img, posX, 0, digitWidth, digitHeight, 0, y, digitTileWidth, digitTileHeight, clr) 
         end
     end
         
     if overlayImg then
-        drawTexture(overlayImg, 0, 0, 100, 100, 1, 1, 1) 
+        local w, h = getTextureSize(overlayImg)
+        drawTexture(overlayImg, 0, 0, w, h)
     end
 end
 

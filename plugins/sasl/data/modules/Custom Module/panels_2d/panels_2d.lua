@@ -156,28 +156,28 @@ absu_2d_panel = contextWindow {
 	-- };
 -- }
 
--- nvu_2D_panel =  contextWindow {
-	-- position = { 50, 0, 636 * coef, 786 * coef };
-	-- noBackground = true;
-	-- noClose = true;
-	-- noDecore = true;
-	-- --resizeProportional = true;
-	-- savePosition = true;
-	-- name = "nvu_2D_panel";	
-	-- components = {
-		-- nvu_panel_2d {
-			-- position = { 0, 0, 636 * coef, 786 * coef },
+nvu_2D_panel =  contextWindow {
+	position = { 50, 0, 636 * coef, 786 * coef };
+	noBackground = true;
+	noClose = true;
+	noDecore = true;
+	--resizeProportional = true;
+	savePosition = true;
+	name = "nvu_2D_panel";	
+	components = {
+		nvu_panel_2d {
+			position = { 0, 0, 636 * coef, 786 * coef },
 			
-		-- };
+		};
 		
-		-- textureLit {
-			-- position = { 636 * coef - 15, 786 * coef - 15, 15, 15 },
-			-- image = get(closeImage),
-		-- };
+		textureLit {
+			position = { 636 * coef - 15, 786 * coef - 15, 15, 15 },
+			image = get(closeImage),
+		};
 
-	-- };
+	};
 
--- }
+}
 
 checklist_panel = contextWindow {
 	position = { 50, 50, 240 * coef, 850 * coef };
@@ -722,7 +722,7 @@ function update()
 	absu_2d_panel:setIsVisible(get(show_absu_panel) == 1)
 	-- absu_2d_panel.visible = false
 	-- ovhd_2d_panel.visible = false
-	-- nvu_2D_panel:setIsVisible(get(show_nvu_panel) == 1)
+	nvu_2D_panel:setIsVisible(get(show_nvu_panel) == 1)
 	checklist_panel:setIsVisible(get(show_checklist_panel) == 1)
 	ground_srv_panel:setIsVisible(get(show_ground_panel) == 1)
 	--uphone.visible = get(show_phone) == 1

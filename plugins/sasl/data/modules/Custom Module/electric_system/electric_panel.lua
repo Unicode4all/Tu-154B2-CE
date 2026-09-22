@@ -1,99 +1,99 @@
 -- this is electric panel. here we have controls and indicators for electric system
 -- controls on panel
-defineProperty("gpu_on", globalPropertyi("tu154b2/custom/switchers/eng/gpu_on")) -- выключатель РАП
-defineProperty("apu_gen_on", globalPropertyi("tu154b2/custom/switchers/eng/apu_gen_on")) -- выключатель ген ВСУ
-defineProperty("bus115_volt_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus115_volt_sel")) -- переключатель источника вольтметра
-defineProperty("bus115_volt_phase_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus115_volt_phase_sel")) -- переключатель источника вольтметра
-defineProperty("bus115_amp_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus115_amp_sel")) -- переключатель источника амерметра
-defineProperty("bus115_amp_phase_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus115_amp_phase_sel")) -- переключатель источника амерметра
+gpu_on = globalPropertyi("tu154b2/custom/switchers/eng/gpu_on") -- выключатель РАП
+apu_gen_on = globalPropertyi("tu154b2/custom/switchers/eng/apu_gen_on") -- выключатель ген ВСУ
+bus115_volt_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus115_volt_sel") -- переключатель источника вольтметра
+bus115_volt_phase_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus115_volt_phase_sel") -- переключатель источника вольтметра
+bus115_amp_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus115_amp_sel") -- переключатель источника амерметра
+bus115_amp_phase_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus115_amp_phase_sel") -- переключатель источника амерметра
 
-defineProperty("gen_1_on", globalPropertyi("tu154b2/custom/switchers/eng/gen_1_on")) -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
-defineProperty("gen_2_on", globalPropertyi("tu154b2/custom/switchers/eng/gen_2_on")) -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
-defineProperty("gen_3_on", globalPropertyi("tu154b2/custom/switchers/eng/gen_3_on")) -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
+gen_1_on = globalPropertyi("tu154b2/custom/switchers/eng/gen_1_on") -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
+gen_2_on = globalPropertyi("tu154b2/custom/switchers/eng/gen_2_on") -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
+gen_3_on = globalPropertyi("tu154b2/custom/switchers/eng/gen_3_on") -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
 
-defineProperty("emerg_inv115", globalPropertyi("tu154b2/custom/switchers/eng/emerg_inv115")) -- аварийн. преобраз 115в
-defineProperty("emerg_inv115_cap", globalPropertyi("tu154b2/custom/switchers/eng/emerg_inv115_cap")) -- аварийн. преобраз 115в
+emerg_inv115 = globalPropertyi("tu154b2/custom/switchers/eng/emerg_inv115") -- аварийн. преобраз 115в
+emerg_inv115_cap = globalPropertyi("tu154b2/custom/switchers/eng/emerg_inv115_cap") -- аварийн. преобраз 115в
 
-defineProperty("bus36_volt_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus36_volt_sel")) -- переключатель вольтметра 36в
-defineProperty("pts250_sel", globalPropertyi("tu154b2/custom/switchers/eng/pts250_sel")) -- переключатель ПТС250. 0 - №1, 1 - №2
-defineProperty("bus36_tr_left_to_right", globalPropertyi("tu154b2/custom/switchers/eng/bus36_tr_left_to_right")) -- лев сеть на тр2. 0 - авто, 1 - ручное
-defineProperty("bus36_tr_right_to_left", globalPropertyi("tu154b2/custom/switchers/eng/bus36_tr_right_to_left")) -- прав сеть на тр1
-defineProperty("pts250_on", globalPropertyi("tu154b2/custom/switchers/eng/pts250_on")) -- выключатель ПТС250
-defineProperty("pts250_mode", globalPropertyi("tu154b2/custom/switchers/eng/pts250_mode")) -- режим ПТС250. авто - ручное
-defineProperty("pts250_on_cap", globalPropertyi("tu154b2/custom/switchers/eng/pts250_on_cap")) -- выключатель ПТС250
-defineProperty("pts250_mode_cap", globalPropertyi("tu154b2/custom/switchers/eng/pts250_mode_cap")) -- режим ПТС250. авто - ручное
+bus36_volt_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus36_volt_sel") -- переключатель вольтметра 36в
+pts250_sel = globalPropertyi("tu154b2/custom/switchers/eng/pts250_sel") -- переключатель ПТС250. 0 - №1, 1 - №2
+bus36_tr_left_to_right = globalPropertyi("tu154b2/custom/switchers/eng/bus36_tr_left_to_right") -- лев сеть на тр2. 0 - авто, 1 - ручное
+bus36_tr_right_to_left = globalPropertyi("tu154b2/custom/switchers/eng/bus36_tr_right_to_left") -- прав сеть на тр1
+pts250_on = globalPropertyi("tu154b2/custom/switchers/eng/pts250_on") -- выключатель ПТС250
+pts250_mode = globalPropertyi("tu154b2/custom/switchers/eng/pts250_mode") -- режим ПТС250. авто - ручное
+pts250_on_cap = globalPropertyi("tu154b2/custom/switchers/eng/pts250_on_cap") -- выключатель ПТС250
+pts250_mode_cap = globalPropertyi("tu154b2/custom/switchers/eng/pts250_mode_cap") -- режим ПТС250. авто - ручное
 
-defineProperty("bus27_volt_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus27_volt_sel")) -- переключатель вольтметра 27в
-defineProperty("bus27_amp1_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus27_amp1_sel")) -- переключатель амперметра 27в
-defineProperty("bus27_amp2_sel", globalPropertyi("tu154b2/custom/switchers/eng/bus27_amp2_sel")) -- переключатель амперметра 27в
+bus27_volt_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus27_volt_sel") -- переключатель вольтметра 27в
+bus27_amp1_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus27_amp1_sel") -- переключатель амперметра 27в
+bus27_amp2_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus27_amp2_sel") -- переключатель амперметра 27в
 
-defineProperty("bus27_connect", globalPropertyi("tu154b2/custom/switchers/eng/bus27_connect")) -- соединение сетей 27в
-defineProperty("bus27_connect_cap", globalPropertyi("tu154b2/custom/switchers/eng/bus27_connect_cap")) -- соединение сетей 27в
-defineProperty("bus27_vu1", globalPropertyi("tu154b2/custom/switchers/eng/bus27_vu1")) -- ВУ1. -1 - резерв, 0 - выкл, +1 - вкл.
-defineProperty("bus27_vu2", globalPropertyi("tu154b2/custom/switchers/eng/bus27_vu2")) -- ВУ2. -1 - резерв, 0 - выкл, +1 - вкл.
-defineProperty("bat1_on", globalPropertyi("tu154b2/custom/switchers/eng/bat1_on")) -- батарея 1
-defineProperty("bat2_on", globalPropertyi("tu154b2/custom/switchers/eng/bat2_on")) -- батарея 2
-defineProperty("bat3_on", globalPropertyi("tu154b2/custom/switchers/eng/bat3_on")) -- батарея 3
-defineProperty("bat4_on", globalPropertyi("tu154b2/custom/switchers/eng/bat4_on")) -- батарея 4
+bus27_connect = globalPropertyi("tu154b2/custom/switchers/eng/bus27_connect") -- соединение сетей 27в
+bus27_connect_cap = globalPropertyi("tu154b2/custom/switchers/eng/bus27_connect_cap") -- соединение сетей 27в
+bus27_vu1 = globalPropertyi("tu154b2/custom/switchers/eng/bus27_vu1") -- ВУ1. -1 - резерв, 0 - выкл, +1 - вкл.
+bus27_vu2 = globalPropertyi("tu154b2/custom/switchers/eng/bus27_vu2") -- ВУ2. -1 - резерв, 0 - выкл, +1 - вкл.
+bat1_on = globalPropertyi("tu154b2/custom/switchers/eng/bat1_on") -- батарея 1
+bat2_on = globalPropertyi("tu154b2/custom/switchers/eng/bat2_on") -- батарея 2
+bat3_on = globalPropertyi("tu154b2/custom/switchers/eng/bat3_on") -- батарея 3
+bat4_on = globalPropertyi("tu154b2/custom/switchers/eng/bat4_on") -- батарея 4
 
 -- gauges
-defineProperty("bus115_freq", globalPropertyf("tu154b2/custom/gauges/eng/bus115_freq")) -- частотомер сети 115в - угол
-defineProperty("bus115_volt", globalPropertyf("tu154b2/custom/gauges/eng/bus115_volt")) -- вольтметр сети 115в - угол
-defineProperty("bus115_amp", globalPropertyf("tu154b2/custom/gauges/eng/bus115_amp")) -- амерметр сети 115в - угол
+bus115_freq = globalPropertyf("tu154b2/custom/gauges/eng/bus115_freq") -- частотомер сети 115в - угол
+bus115_volt = globalPropertyf("tu154b2/custom/gauges/eng/bus115_volt") -- вольтметр сети 115в - угол
+bus115_amp = globalPropertyf("tu154b2/custom/gauges/eng/bus115_amp") -- амерметр сети 115в - угол
 
-defineProperty("bus36_volt", globalPropertyf("tu154b2/custom/gauges/eng/bus36_volt")) -- вольтметр сети 36в - угол
+bus36_volt = globalPropertyf("tu154b2/custom/gauges/eng/bus36_volt") -- вольтметр сети 36в - угол
 
-defineProperty("bus27_volt", globalPropertyf("tu154b2/custom/gauges/eng/bus27_volt")) -- вольтметр сети 36в - угол
-defineProperty("bus27_amp1", globalPropertyf("tu154b2/custom/gauges/eng/bus27_amp1")) -- вольтметр сети 36в - угол
-defineProperty("bus27_amp2", globalPropertyf("tu154b2/custom/gauges/eng/bus27_amp2")) -- вольтметр сети 36в - угол
+bus27_volt = globalPropertyf("tu154b2/custom/gauges/eng/bus27_volt") -- вольтметр сети 36в - угол
+bus27_amp1 = globalPropertyf("tu154b2/custom/gauges/eng/bus27_amp1") -- вольтметр сети 36в - угол
+bus27_amp2 = globalPropertyf("tu154b2/custom/gauges/eng/bus27_amp2") -- вольтметр сети 36в - угол
 
 -- other datarefs
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
-defineProperty("sim_run_time", globalPropertyf("sim/time/total_running_time_sec"))
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
+sim_run_time = globalPropertyf("sim/time/total_running_time_sec")
 
 -- sources  for gauges
 -- bus 27v
-defineProperty("bat_volt_1", globalPropertyf("tu154b2/custom/elec/bat_volt_1"))
-defineProperty("bat_volt_2", globalPropertyf("tu154b2/custom/elec/bat_volt_2"))
-defineProperty("bat_volt_3", globalPropertyf("tu154b2/custom/elec/bat_volt_3"))
-defineProperty("bat_volt_4", globalPropertyf("tu154b2/custom/elec/bat_volt_4"))
+bat_volt_1 = globalPropertyf("tu154b2/custom/elec/bat_volt_1")
+bat_volt_2 = globalPropertyf("tu154b2/custom/elec/bat_volt_2")
+bat_volt_3 = globalPropertyf("tu154b2/custom/elec/bat_volt_3")
+bat_volt_4 = globalPropertyf("tu154b2/custom/elec/bat_volt_4")
 
-defineProperty("bat_amp_1", globalPropertyf("tu154b2/custom/elec/bat_amp_1"))
-defineProperty("bat_amp_2", globalPropertyf("tu154b2/custom/elec/bat_amp_2"))
-defineProperty("bat_amp_3", globalPropertyf("tu154b2/custom/elec/bat_amp_3"))
-defineProperty("bat_amp_4", globalPropertyf("tu154b2/custom/elec/bat_amp_4"))
+bat_amp_1 = globalPropertyf("tu154b2/custom/elec/bat_amp_1")
+bat_amp_2 = globalPropertyf("tu154b2/custom/elec/bat_amp_2")
+bat_amp_3 = globalPropertyf("tu154b2/custom/elec/bat_amp_3")
+bat_amp_4 = globalPropertyf("tu154b2/custom/elec/bat_amp_4")
 
-defineProperty("bat_amp_cc_1", globalPropertyf("tu154b2/custom/elec/bat_cc_1")) -- ток заряда батареи
-defineProperty("bat_amp_cc_2", globalPropertyf("tu154b2/custom/elec/bat_cc_2")) -- ток заряда батареи
-defineProperty("bat_amp_cc_3", globalPropertyf("tu154b2/custom/elec/bat_cc_3")) -- ток заряда батареи
-defineProperty("bat_amp_cc_4", globalPropertyf("tu154b2/custom/elec/bat_cc_4")) -- ток заряда батареи
+bat_amp_cc_1 = globalPropertyf("tu154b2/custom/elec/bat_cc_1") -- ток заряда батареи
+bat_amp_cc_2 = globalPropertyf("tu154b2/custom/elec/bat_cc_2") -- ток заряда батареи
+bat_amp_cc_3 = globalPropertyf("tu154b2/custom/elec/bat_cc_3") -- ток заряда батареи
+bat_amp_cc_4 = globalPropertyf("tu154b2/custom/elec/bat_cc_4") -- ток заряда батареи
 
-defineProperty("vu1_amp", globalPropertyf("tu154b2/custom/elec/vu1_amp"))
-defineProperty("vu2_amp", globalPropertyf("tu154b2/custom/elec/vu2_amp"))
-defineProperty("vu_res_amp", globalPropertyf("tu154b2/custom/elec/vu_res_amp"))
+vu1_amp = globalPropertyf("tu154b2/custom/elec/vu1_amp")
+vu2_amp = globalPropertyf("tu154b2/custom/elec/vu2_amp")
+vu_res_amp = globalPropertyf("tu154b2/custom/elec/vu_res_amp")
 
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
 -- bus 36v
-defineProperty("bus36_volt_left", globalPropertyf("tu154b2/custom/elec/bus36_volt_left"))
-defineProperty("bus36_volt_right", globalPropertyf("tu154b2/custom/elec/bus36_volt_right"))
-defineProperty("bus36_volt_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1"))
-defineProperty("bus36_volt_pts250_2", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2"))
+bus36_volt_left = globalPropertyf("tu154b2/custom/elec/bus36_volt_left")
+bus36_volt_right = globalPropertyf("tu154b2/custom/elec/bus36_volt_right")
+bus36_volt_pts250_1 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")
+bus36_volt_pts250_2 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2")
 
 -- bus 115/200v
-defineProperty("gen1_volt", globalPropertyf("tu154b2/custom/elec/gen1_volt"))
-defineProperty("gen2_volt", globalPropertyf("tu154b2/custom/elec/gen2_volt"))
-defineProperty("gen3_volt", globalPropertyf("tu154b2/custom/elec/gen3_volt"))
-defineProperty("gen4_volt", globalPropertyf("tu154b2/custom/elec/gen4_volt"))
-defineProperty("gpu_volt", globalPropertyf("tu154b2/custom/elec/gpu_volt"))
+gen1_volt = globalPropertyf("tu154b2/custom/elec/gen1_volt")
+gen2_volt = globalPropertyf("tu154b2/custom/elec/gen2_volt")
+gen3_volt = globalPropertyf("tu154b2/custom/elec/gen3_volt")
+gen4_volt = globalPropertyf("tu154b2/custom/elec/gen4_volt")
+gpu_volt = globalPropertyf("tu154b2/custom/elec/gpu_volt")
 
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
-defineProperty("bus115_2_volt", globalPropertyf("tu154b2/custom/elec/bus115_2_volt"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+bus115_2_volt = globalPropertyf("tu154b2/custom/elec/bus115_2_volt")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
-defineProperty("bus115_em_1_volt", globalPropertyf("tu154b2/custom/elec/avto_L_volt"))
-defineProperty("bus115_em_2_volt", globalPropertyf("tu154b2/custom/elec/avto_R_volt"))
+bus115_em_1_volt = globalPropertyf("tu154b2/custom/elec/avto_L_volt")
+bus115_em_2_volt = globalPropertyf("tu154b2/custom/elec/avto_R_volt")
 
 gen1_amp_A = globalPropertyf("tu154b2/custom/elec/gen1_amp_A")
 gen2_amp_A = globalPropertyf("tu154b2/custom/elec/gen2_amp_A")
@@ -114,107 +114,107 @@ gen4_amp_C = globalPropertyf("tu154b2/custom/elec/gen4_amp_C")
 gpu_amp_C = globalPropertyf("tu154b2/custom/elec/gpu_amp_C")
 
 -- lamps
-defineProperty("lamp_apu_gen_on", globalPropertyf("tu154b2/custom/lights/small/apu_gen_on")) -- РАП подключен
-defineProperty("bus_npk_1", globalPropertyf("tu154b2/custom/lights/small/bus_npk_1")) -- сети НПК лев на 3
-defineProperty("bus_npk_2", globalPropertyf("tu154b2/custom/lights/small/bus_npk_2")) -- сети НПК прав на 1
-defineProperty("emerg_inv_115", globalPropertyf("tu154b2/custom/lights/small/emerg_inv_115")) -- аварийный преобразов. 115в
+lamp_apu_gen_on = globalPropertyf("tu154b2/custom/lights/small/apu_gen_on") -- РАП подключен
+bus_npk_1 = globalPropertyf("tu154b2/custom/lights/small/bus_npk_1") -- сети НПК лев на 3
+bus_npk_2 = globalPropertyf("tu154b2/custom/lights/small/bus_npk_2") -- сети НПК прав на 1
+emerg_inv_115 = globalPropertyf("tu154b2/custom/lights/small/emerg_inv_115") -- аварийный преобразов. 115в
 
-defineProperty("gen_fail_1", globalPropertyf("tu154b2/custom/lights/small/gen_fail_1")) -- генератор не работает
-defineProperty("gen_fail_2", globalPropertyf("tu154b2/custom/lights/small/gen_fail_2")) -- генератор не работает
-defineProperty("gen_fail_3", globalPropertyf("tu154b2/custom/lights/small/gen_fail_3")) -- генератор не работает
+gen_fail_1 = globalPropertyf("tu154b2/custom/lights/small/gen_fail_1") -- генератор не работает
+gen_fail_2 = globalPropertyf("tu154b2/custom/lights/small/gen_fail_2") -- генератор не работает
+gen_fail_3 = globalPropertyf("tu154b2/custom/lights/small/gen_fail_3") -- генератор не работает
 
-defineProperty("bus_connected", globalPropertyf("tu154b2/custom/lights/small/bus_connected")) -- сети соединены
-defineProperty("left_bus_use_bat", globalPropertyf("tu154b2/custom/lights/small/left_bus_use_bat")) -- левая сеть от батарей
-defineProperty("right_bus_use_bat", globalPropertyf("tu154b2/custom/lights/small/right_bus_use_bat")) -- правая сеть от батарей
+bus_connected = globalPropertyf("tu154b2/custom/lights/small/bus_connected") -- сети соединены
+left_bus_use_bat = globalPropertyf("tu154b2/custom/lights/small/left_bus_use_bat") -- левая сеть от батарей
+right_bus_use_bat = globalPropertyf("tu154b2/custom/lights/small/right_bus_use_bat") -- правая сеть от батарей
 
-defineProperty("turn_off_bat_1", globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_1")) -- выключи батарею
-defineProperty("turn_off_bat_3", globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_3")) -- выключи батарею
-defineProperty("turn_off_bat_2", globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_2")) -- выключи батарею
-defineProperty("turn_off_bat_4", globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_4")) -- выключи батарею
+turn_off_bat_1 = globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_1") -- выключи батарею
+turn_off_bat_3 = globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_3") -- выключи батарею
+turn_off_bat_2 = globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_2") -- выключи батарею
+turn_off_bat_4 = globalPropertyf("tu154b2/custom/lights/small/turn_off_bat_4") -- выключи батарею
 
-defineProperty("vu_on_1", globalPropertyf("tu154b2/custom/lights/small/vu_on_1")) -- ВУ1
-defineProperty("vu_on_2", globalPropertyf("tu154b2/custom/lights/small/vu_on_2")) -- ВУ2
-defineProperty("left_bus_on_tr2", globalPropertyf("tu154b2/custom/lights/small/left_bus_on_tr2")) -- левая сеть на тр 2
-defineProperty("right_bus_on_tr1", globalPropertyf("tu154b2/custom/lights/small/right_bus_on_tr1")) -- правая сеть на тр 1
-defineProperty("pts250_n1", globalPropertyf("tu154b2/custom/lights/small/pts250_n1")) -- ПТС 250 не работает
-defineProperty("pts250_n2", globalPropertyf("tu154b2/custom/lights/small/pts250_n2")) -- ПТС 250 на сеть
+vu_on_1 = globalPropertyf("tu154b2/custom/lights/small/vu_on_1") -- ВУ1
+vu_on_2 = globalPropertyf("tu154b2/custom/lights/small/vu_on_2") -- ВУ2
+left_bus_on_tr2 = globalPropertyf("tu154b2/custom/lights/small/left_bus_on_tr2") -- левая сеть на тр 2
+right_bus_on_tr1 = globalPropertyf("tu154b2/custom/lights/small/right_bus_on_tr1") -- правая сеть на тр 1
+pts250_n1 = globalPropertyf("tu154b2/custom/lights/small/pts250_n1") -- ПТС 250 не работает
+pts250_n2 = globalPropertyf("tu154b2/custom/lights/small/pts250_n2") -- ПТС 250 на сеть
 
 -- lamps sources
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_apu")) -- кнопка првоерки ламп панели ВСУ
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_apu") -- кнопка првоерки ламп панели ВСУ
 
-defineProperty("gpu_work_bus", globalPropertyf("tu154b2/custom/elec/gpu_work"))
-defineProperty("inv115_fail", globalPropertyf("tu154b2/custom/failures/inv115_fail"))
+gpu_work_bus = globalPropertyf("tu154b2/custom/elec/gpu_work")
+inv115_fail = globalPropertyf("tu154b2/custom/failures/inv115_fail")
 
 
-defineProperty("buses_connected", globalPropertyf("tu154b2/custom/elec/bus_connected"))
+buses_connected = globalPropertyf("tu154b2/custom/elec/bus_connected")
 
-defineProperty("bus27_source_left", globalPropertyf("tu154b2/custom/elec/bus27_source_left")) -- источник сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 6 - соседняя сеть
-defineProperty("bus27_source_right", globalPropertyf("tu154b2/custom/elec/bus27_source_right")) -- источник сети. 0 - ничего. 1 - ВУ2, 2 - ВУрезерв, 3 - батареи 2 и 4, 6 - соседняя сеть
+bus27_source_left = globalPropertyf("tu154b2/custom/elec/bus27_source_left") -- источник сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 6 - соседняя сеть
+bus27_source_right = globalPropertyf("tu154b2/custom/elec/bus27_source_right") -- источник сети. 0 - ничего. 1 - ВУ2, 2 - ВУрезерв, 3 - батареи 2 и 4, 6 - соседняя сеть
 
-defineProperty("vu_res_to_L", globalPropertyi("tu154b2/custom/elec/vu_res_to_L")) -- резервное ВУ подключено на лев сеть
-defineProperty("vu_res_to_R", globalPropertyi("tu154b2/custom/elec/vu_res_to_R")) -- резервное ВУ подключено на прав сеть
+vu_res_to_L = globalPropertyi("tu154b2/custom/elec/vu_res_to_L") -- резервное ВУ подключено на лев сеть
+vu_res_to_R = globalPropertyi("tu154b2/custom/elec/vu_res_to_R") -- резервное ВУ подключено на прав сеть
 
-defineProperty("bus36_src_L", globalPropertyi("tu154b2/custom/elec/bus36_src_L")) --  источник левой сети. 0 = ТР1, 1 = ТР2
-defineProperty("bus36_src_R", globalPropertyi("tu154b2/custom/elec/bus36_src_R")) -- источник правой сети. 0 = ТР2, 1 = ТР1
+bus36_src_L = globalPropertyi("tu154b2/custom/elec/bus36_src_L") --  источник левой сети. 0 = ТР1, 1 = ТР2
+bus36_src_R = globalPropertyi("tu154b2/custom/elec/bus36_src_R") -- источник правой сети. 0 = ТР2, 1 = ТР1
 
-defineProperty("bus36_pts1_work", globalPropertyi("tu154b2/custom/elec/bus36_pts1_work")) -- ПТС250 1 работает
-defineProperty("bus36_pts2_work", globalPropertyi("tu154b2/custom/elec/bus36_pts2_work")) -- ПТС250 2 работает
+bus36_pts1_work = globalPropertyi("tu154b2/custom/elec/bus36_pts1_work") -- ПТС250 1 работает
+bus36_pts2_work = globalPropertyi("tu154b2/custom/elec/bus36_pts2_work") -- ПТС250 2 работает
 
-defineProperty("bat_therm_1", globalPropertyf("tu154b2/custom/elec/bat_therm_1")) -- температурыа батаре
-defineProperty("bat_therm_2", globalPropertyf("tu154b2/custom/elec/bat_therm_2")) -- температурыа батаре
-defineProperty("bat_therm_3", globalPropertyf("tu154b2/custom/elec/bat_therm_3")) -- температурыа батаре
-defineProperty("bat_therm_4", globalPropertyf("tu154b2/custom/elec/bat_therm_4")) -- температурыа батаре
+bat_therm_1 = globalPropertyf("tu154b2/custom/elec/bat_therm_1") -- температурыа батаре
+bat_therm_2 = globalPropertyf("tu154b2/custom/elec/bat_therm_2") -- температурыа батаре
+bat_therm_3 = globalPropertyf("tu154b2/custom/elec/bat_therm_3") -- температурыа батаре
+bat_therm_4 = globalPropertyf("tu154b2/custom/elec/bat_therm_4") -- температурыа батаре
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("sim_avionics", globalPropertyi("sim/cockpit2/switches/avionics_power_on")) -- default sim avionics switcher
-
-
+sim_avionics = globalPropertyi("sim/cockpit2/switches/avionics_power_on") -- default sim avionics switcher
 
 
 
--- defineProperty("bus115_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_1_amp"))
--- defineProperty("bus115_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_2_amp"))
--- defineProperty("bus115_3_amp", globalPropertyf("tu154b2/custom/elec/bus115_3_amp"))
-
---defineProperty("bus115_em_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp"))
---defineProperty("bus115_em_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp"))
-
-defineProperty("gen1_work", globalPropertyi("tu154b2/custom/elec/gen1_work")) --
-defineProperty("gen2_work", globalPropertyi("tu154b2/custom/elec/gen2_work")) --
-defineProperty("gen3_work", globalPropertyi("tu154b2/custom/elec/gen3_work")) --
-defineProperty("gen4_work", globalPropertyi("tu154b2/custom/elec/gen4_work")) --
-defineProperty("disable_def_veh", globalPropertyi("sim/custom/t154cfg/hide_def")) --
-defineProperty("freq_115_1", globalPropertyf("tu154b2/custom/elec/bus115_1_freq")) 
-defineProperty("freq_115_2", globalPropertyf("tu154b2/custom/elec/bus115_2_freq")) 
-defineProperty("freq_115_3", globalPropertyf("tu154b2/custom/elec/bus115_3_freq")) 
-defineProperty("freq_avt_1", globalPropertyf("tu154b2/custom/elec/bus115_avt_l_freq"))
-defineProperty("freq_avt_2", globalPropertyf("tu154b2/custom/elec/bus115_avt_r_freq"))
 
 
-defineProperty("freq_gen_1", globalPropertyf("tu154b2/custom/elec/gen_1_freq")) 
-defineProperty("freq_gen_2", globalPropertyf("tu154b2/custom/elec/gen_2_freq")) 
-defineProperty("freq_gen_3", globalPropertyf("tu154b2/custom/elec/gen_3_freq")) 
-defineProperty("freq_gen_4", globalPropertyf("tu154b2/custom/elec/gen_4_freq")) 
-defineProperty("freq_gpu", globalPropertyf("tu154b2/custom/elec/gpu_freq")) 
+-- bus115_1_amp = globalPropertyf("tu154b2/custom/elec/bus115_1_amp")
+-- bus115_2_amp = globalPropertyf("tu154b2/custom/elec/bus115_2_amp")
+-- bus115_3_amp = globalPropertyf("tu154b2/custom/elec/bus115_3_amp")
 
-defineProperty("gen_1_run", globalPropertyi("tu154b2/custom/elec/gen1_run"))
-defineProperty("gen_2_run", globalPropertyi("tu154b2/custom/elec/gen2_run"))
-defineProperty("gen_3_run", globalPropertyi("tu154b2/custom/elec/gen3_run"))
+--bus115_em_1_amp = globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp")
+--bus115_em_2_amp = globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp")
 
-defineProperty("apu_rap_select_sw", globalPropertyi("sim/custom/gauges/elec/apu_rap_sel"))
+gen1_work = globalPropertyi("tu154b2/custom/elec/gen1_work") --
+gen2_work = globalPropertyi("tu154b2/custom/elec/gen2_work") --
+gen3_work = globalPropertyi("tu154b2/custom/elec/gen3_work") --
+gen4_work = globalPropertyi("tu154b2/custom/elec/gen4_work") --
+disable_def_veh = globalPropertyi("sim/custom/t154cfg/hide_def") --
+freq_115_1 = globalPropertyf("tu154b2/custom/elec/bus115_1_freq") 
+freq_115_2 = globalPropertyf("tu154b2/custom/elec/bus115_2_freq") 
+freq_115_3 = globalPropertyf("tu154b2/custom/elec/bus115_3_freq") 
+freq_avt_1 = globalPropertyf("tu154b2/custom/elec/bus115_avt_l_freq")
+freq_avt_2 = globalPropertyf("tu154b2/custom/elec/bus115_avt_r_freq")
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-defineProperty("vu_test", globalPropertyi("sim/custom/gauges/elec/vu_res_test"))
-defineProperty("vu_cap", globalPropertyi("sim/custom/gauges/elec/vu_res_test_cap"))
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+
+freq_gen_1 = globalPropertyf("tu154b2/custom/elec/gen_1_freq") 
+freq_gen_2 = globalPropertyf("tu154b2/custom/elec/gen_2_freq") 
+freq_gen_3 = globalPropertyf("tu154b2/custom/elec/gen_3_freq") 
+freq_gen_4 = globalPropertyf("tu154b2/custom/elec/gen_4_freq") 
+freq_gpu = globalPropertyf("tu154b2/custom/elec/gpu_freq") 
+
+gen_1_run = globalPropertyi("tu154b2/custom/elec/gen1_run")
+gen_2_run = globalPropertyi("tu154b2/custom/elec/gen2_run")
+gen_3_run = globalPropertyi("tu154b2/custom/elec/gen3_run")
+
+apu_rap_select_sw = globalPropertyi("sim/custom/gauges/elec/apu_rap_sel")
+
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+vu_test = globalPropertyi("sim/custom/gauges/elec/vu_res_test")
+vu_cap = globalPropertyi("sim/custom/gauges/elec/vu_res_test_cap")
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
 
 local freq_115_curr = 0
 local freq_115_curr_delta = 0
@@ -289,9 +289,9 @@ end
 
 
 
-local k1 = 25 -- needle acceleration koef
+local k1 = 15 -- needle acceleration koef
 local k2 = 300 -- needle friction coef
-local vlim = 28 -- needle speed limit
+local vlim = 18 -- needle speed limit
 local alim = 6 -- needle acceleration limit
 	
 
@@ -514,7 +514,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 	-- set angles
 	amp115_timer = amp115_timer + passed
 	local amp115_angle = -120
-	if amp115_timer < 0.05 then amp115_angle = -120
+	if amp115_timer < 1 then amp115_angle = -120
 	elseif ampSel_115 == 0 then 
 		if ampPhaseSel_115 == 0 then
 			amp115_angle = interpolate(amp115_table, get(gpu_amp_A)-ampphase_corr)
@@ -937,62 +937,62 @@ local function lamps()
 	local test_btn = get(test_lamps) * math.max(get(bus27_volt_right)  - 10 / 18.5, 0)
 		
 	-- lamps logic
-	local gpu_brt = math.max(get(gpu_work_bus) * lamps_brt, test_btn)
+	local gpu_brt = get(gpu_work_bus) * lamps_brt
 	
 	local npk_brt = 0
 	if get(bus115_1_volt) < 110 and get(bus115_3_volt) < 110 then npk_brt = 1 end
-	npk_brt = math.max(npk_brt * lamps_brt, test_btn)
+	npk_brt = npk_brt * lamps_brt
 	
-	local emerg115_brt = math.max(get(emerg_inv115) * (1 - get(inv115_fail)), test_btn) * lamps_brt
+	local emerg115_brt = get(emerg_inv115) * (1 - get(inv115_fail)) * lamps_brt
 		
 	if get(freq_gen_1) > 380 and gen_on_1==1 then gen_on_1 = 0 end
 	if get(gen1_volt) < 100 and gen_on_1==0 then gen_on_1 = 1 end
-	gen_1_brt = math.max(math.max(gen_on_1,(1-get(gen_1_run))) * lamps_brt, test_btn)
+	gen_1_brt = math.max(gen_on_1,(1-get(gen_1_run))) * lamps_brt
 
 	if get(freq_gen_2) > 380 and gen_on_2==1 then gen_on_2 = 0 end
 	if get(gen2_volt) < 100 and gen_on_2==0 then gen_on_2 = 1 end
-	gen_2_brt = math.max(math.max(gen_on_2,(1-get(gen_2_run))) * lamps_brt, test_btn)
+	gen_2_brt = math.max(gen_on_2,(1-get(gen_2_run))) * lamps_brt
 
 	if get(freq_gen_3) > 380 and gen_on_3==1 then gen_on_3 = 0 end
 	if get(gen3_volt) < 100 and gen_on_3==0 then gen_on_3 = 1 end
-	gen_3_brt = math.max(math.max(gen_on_3,(1-get(gen_3_run))) * lamps_brt, test_btn)
+	gen_3_brt = math.max(gen_on_3,(1-get(gen_3_run))) * lamps_brt
 	
-	local bus_con_brt = math.max(get(buses_connected) * lamps_brt, test_btn)
+	local bus_con_brt = get(buses_connected) * lamps_brt
 
 	local left_bat_brt = 0
 	if get(bus27_source_left) > 2 then left_bat_brt = math.max(get(bat1_on), get(bat3_on)) end
-	left_bat_brt = math.max(left_bat_brt * lamps_brt, test_btn)
+	left_bat_brt = left_bat_brt * lamps_brt
 	
 	local right_bat_brt = 0
 	if get(bus27_source_right) > 2 then right_bat_brt = math.max(get(bat2_on), get(bat4_on)) end
-	right_bat_brt = math.max(right_bat_brt * lamps_brt, test_btn)
+	right_bat_brt = right_bat_brt * lamps_brt
 	
 	local bat_1_brt = 0
 	if get(bat_therm_1) > 100 then bat_1_brt = 1 end
-	bat_1_brt = math.max(bat_1_brt * lamps_brt, test_btn)
+	bat_1_brt = bat_1_brt * lamps_brt
 	
 	local bat_2_brt = 0
 	if get(bat_therm_2) > 100 then bat_2_brt = 1 end
-	bat_2_brt = math.max(bat_2_brt * lamps_brt, test_btn)
+	bat_2_brt = bat_2_brt * lamps_brt
 
 	local bat_3_brt = 0
 	if get(bat_therm_3) > 100 then bat_3_brt = 1 end
-	bat_3_brt = math.max(bat_3_brt * lamps_brt, test_btn)
+	bat_3_brt = bat_3_brt * lamps_brt
 
 	local bat_4_brt = 0
 	if get(bat_therm_4) > 100 then bat_4_brt = 1 end
-	bat_4_brt = math.max(bat_4_brt * lamps_brt, test_btn)
+	bat_4_brt = bat_4_brt * lamps_brt
 
 	
-	local left_VU_brt = math.max(get(vu_res_to_L) * lamps_brt*bool2int(get(bus115_1_volt)>100), test_btn)
-	local right_VU_brt = math.max(get(vu_res_to_R) * lamps_brt*bool2int(get(bus115_3_volt)>100), test_btn)
+	local left_VU_brt = get(vu_res_to_L) * lamps_brt*bool2int(get(bus115_1_volt)>100)
+	local right_VU_brt = get(vu_res_to_R) * lamps_brt*bool2int(get(bus115_3_volt)>100)
 	
-	local L_R_brt = math.max(get(bus36_src_L) * lamps_brt, test_btn)
-	local R_L_brt = math.max(get(bus36_src_R) * lamps_brt, test_btn)
+	local L_R_brt = get(bus36_src_L) * lamps_brt
+	local R_L_brt = get(bus36_src_R) * lamps_brt
 	
 	
-	local pts_1_brt = math.max((1 - get(bus36_pts1_work)) * lamps_brt, test_btn)
-	local pts_2_brt = math.max(get(bus36_pts2_work) * lamps_brt, test_btn)
+	local pts_1_brt = (1 - get(bus36_pts1_work)) * lamps_brt
+	local pts_2_brt = get(bus36_pts2_work) * lamps_brt
 
 	-- set results
 	set(lamp_apu_gen_on, gpu_brt)
@@ -1025,7 +1025,7 @@ local sim_start_timer = 0
 
 function update()
 	
-	--print(get(eng1_N1), "  ", get(eng2_N1), "  ", get(eng3_N1))
+	--print(get(eng1_N1), "   = get(eng2_N1), "   = get(eng3_N1))
 	
 	passed = get(frame_time)
 	

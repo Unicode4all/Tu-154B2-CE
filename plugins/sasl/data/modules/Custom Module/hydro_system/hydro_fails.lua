@@ -15,9 +15,9 @@ hydro_pump_fail_3 = globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_3")
 hydro_elec_fail_2 = globalPropertyi("tu154b2/custom/failures/hydro_elec_fail_2") -- fail
 hydro_elec_fail_3 = globalPropertyi("tu154b2/custom/failures/hydro_elec_fail_3") -- fail
 
-system_qty_1 = globalPropertyf("tu154b2/custom/hydro/gs_qty_1") -- остаток масла в системе
-system_qty_2 = globalPropertyf("tu154b2/custom/hydro/gs_qty_2") -- остаток масла в системе
-system_qty_3 = globalPropertyf("tu154b2/custom/hydro/gs_qty_3") -- остаток масла в системе
+-- system_qty_1 = globalPropertyf("tu154b2/custom/hydro/gs_qty_1") -- остаток масла в системе
+-- system_qty_2 = globalPropertyf("tu154b2/custom/hydro/gs_qty_2") -- остаток масла в системе
+-- system_qty_3 = globalPropertyf("tu154b2/custom/hydro/gs_qty_3") -- остаток масла в системе
 
 eng_fire_1 = globalPropertyi("sim/operation/failures/rel_engfir0")
 eng_fire_2 = globalPropertyi("sim/operation/failures/rel_engfir1")

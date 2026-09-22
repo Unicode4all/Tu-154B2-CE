@@ -16659,6 +16659,11 @@ ATTR_manip_toggle button 1.000000 0.000000 tu154b2/custom/panels/show_absu_panel
 TRIS 2958 6
 ANIM_end
 ANIM_begin
+ANIM_trans 0.04 0.1 -0.17 0.04 0.1 -0.17 0.000000 0.000000 none
+ATTR_manip_toggle button 1.000000 0.000000 tu154b2/custom/panels/show_nvu_panel
+TRIS 17769 6
+ANIM_end
+ANIM_begin
 ANIM_trans 1.848200 -2.058000 -8.547900 1.848200 -2.058000 -8.547900 0.000000 0.000000 none
 ANIM_rotate_begin 0.000000 1.000000 0.000000 tu154b2/custom/anim/pax_door_3
 ANIM_rotate_key 0.000000 0.000000

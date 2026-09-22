@@ -55,9 +55,9 @@ liqd_tbl[3] = {"Engine #3 Oil", globalPropertyf("tu154b2/custom/failures/engn_oi
 
 
 local hydro_tbl = {}
-hydro_tbl[1] = {"Hydro Sys #1", globalPropertyf("tu154b2/custom/hydro/gs_qty_1")} -- остаток масла в системе
-hydro_tbl[2] = {"Hydro Sys #2", globalPropertyf("tu154b2/custom/hydro/gs_qty_2")} -- остаток масла в системе
-hydro_tbl[3] = {"Hydro Sys #3", globalPropertyf("tu154b2/custom/hydro/gs_qty_3")} -- остаток масла в системе
+hydro_tbl[1] = {"Hydro Sys #1", sys_data_tbl.hyd_1_qty} -- остаток масла в системе
+hydro_tbl[2] = {"Hydro Sys #2", sys_data_tbl.hyd_2_qty} -- остаток масла в системе
+hydro_tbl[3] = {"Hydro Sys #3", sys_data_tbl.hyd_3_qty} -- остаток масла в системе
 
 
 
@@ -415,9 +415,6 @@ local function fixAll()
 	sys_data_tbl.hyd_1_qty = 26
 	sys_data_tbl.hyd_2_qty = 22
 	sys_data_tbl.hyd_3_qty = 24
-	
-	sys_data_tbl.hyd_1_temp = 20
-	sys_data_tbl.hyd_2_temp = 20
 	
 	sys_data_tbl.eng_fire_timer_1 = 0
 	sys_data_tbl.eng_fire_timer_2 = 0

@@ -206,11 +206,12 @@ set(gs_press_4, 0)
 
 
 
+sys_data_tbl.hyd_1_qty = 26
+sys_data_tbl.hyd_2_qty = 22
+sys_data_tbl.hyd_3_qty = 24
 
-
-
-
-
+sys_data_tbl.hyd_1_temp = get(temp_out)
+sys_data_tbl.hyd_2_temp = get(temp_out)	
 
 --[[
 при выпущенном шасси, убраны закрылки, разряжены ГА, включен тормоз
@@ -418,16 +419,16 @@ if MASTER then
 		if notLoaded then reset_switchers() end
 	end
 	
-	if get(save_state) == 1 then
-		hs1_qty = sys_data_tbl.hyd_1_qty - acc_1 - acc_4
-		hs2_qty = sys_data_tbl.hyd_2_qty - acc_2 
-		hs3_qty = sys_data_tbl.hyd_3_qty - acc_3
-		temp_bar1_prev = sys_data_tbl.hyd_1_temp
-		temp_bar2_prev = sys_data_tbl.hyd_2_temp
-	-- else
-		-- sys_data_tbl.hyd_1_qty = hs1_qty + acc_1 + acc_4
-		-- sys_data_tbl.hyd_2_qty = hs2_qty + acc_2
-		-- sys_data_tbl.hyd_3_qty = hs3_qty + acc_3
+	if get(save_state) == 1 or sim_start_timer < 10 then
+		hs1_qty = sys_data_tbl.hyd_1_qty - acc_1 - acc_4 + (get(temp_out) - 20) / 20
+		hs2_qty = sys_data_tbl.hyd_2_qty - acc_2 + (get(temp_out) - 20) / 20
+		hs3_qty = sys_data_tbl.hyd_3_qty - acc_3 + (get(temp_out) - 20) / 20
+		temp_bar1_prev = get(temp_out)
+		temp_bar2_prev = get(temp_out)
+	else 
+		sys_data_tbl.hyd_1_qty = hs1_qty + acc_1 + acc_4 - (temp_bar1_prev - 20) / 20
+		sys_data_tbl.hyd_2_qty = hs2_qty + acc_2 - (temp_bar1_prev - 20) / 20
+		sys_data_tbl.hyd_3_qty = hs3_qty + acc_3 - (temp_bar2_prev - 20) / 20
 	end
 	
 	local gear1_fluid=get(fluid_1)
@@ -1005,6 +1006,10 @@ if MASTER then
 	local pump3_current = W_el_2 / 200 / math.sqrt(3) / 0.8 
 	set(gs_pump_2_cc, math.max(elec_pump_2_start,pump2_current))
 	set(gs_pump_3_cc, math.max(elec_pump_3_start,pump3_current))	
+	
+	-- set(db1,sys_data_tbl.hyd_1_qty)
+	-- set(db2,sys_data_tbl.hyd_2_qty)
+	-- set(db3,sys_data_tbl.hyd_3_qty)
 	
 	--print(get(system_qty_1) + get(system_qty_2))
 

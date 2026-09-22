@@ -173,9 +173,9 @@ createGlobalPropertyf("tu154b2/custom/hydro/gs_press_1", 0																) -- �
 createGlobalPropertyf("tu154b2/custom/hydro/gs_press_2", 0																) -- давление в ГС2
 createGlobalPropertyf("tu154b2/custom/hydro/gs_press_3", 0																) -- давление в ГС3
 createGlobalPropertyf("tu154b2/custom/hydro/gs_press_4", 0																) -- давление в аварийной тормозной системе
-createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_1", 55																) -- остаток масла в системе
-createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_2", 55																) -- остаток масла в системе
-createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_3", 49																) -- остаток масла в системе
+-- createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_1", 55																) -- остаток масла в системе
+-- createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_2", 55																) -- остаток масла в системе
+-- createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_3", 49																) -- остаток масла в системе
 createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_12_show", 48																) -- остаток масла в гидробаке
 createGlobalPropertyf("tu154b2/custom/hydro/gs_qty_3_show", 24																) -- остаток масла в гидробаке
 createGlobalPropertyf("tu154b2/custom/hydro/gs_pump_2_cc", 0																) -- ток насосной станции

@@ -417,7 +417,7 @@ function update()
 		------------ Radar Modes Logic---------------
 		local xmt_work=bool2int(get(radar_fail) == 0 or get(backup_xmt)>0) 
 		local contr=0.1+0.9*get(grz_kontr)
-		wx_tilt=get(rls_nakl)-40*bool2int(mode==1 or mode==4)
+		wx_tilt=get(rls_nakl)-- -40*bool2int(mode==1 or mode==4)
 		--local sweep_a=get(sweep_angle)
 		--local alt=get(agl)
 		if mode==0 or not power then -- stby
@@ -447,7 +447,7 @@ function update()
 		elseif mode==2 then -- meteo
 			wx_az=0
 			wx_mode=2*xmt_work
-			wx_gain=1
+			wx_gain=0.9
 			wx_speed=2/3
 			brg=sweep
 			wx_sect=104
@@ -456,7 +456,7 @@ function update()
 		elseif mode==3 then --kontur
 			wx_az=0
 			wx_mode=3*xmt_work
-			wx_gain=1.5
+			wx_gain=1.2
 			wx_speed=2/3
 			--set(elev,0)
 			wx_sect=104
