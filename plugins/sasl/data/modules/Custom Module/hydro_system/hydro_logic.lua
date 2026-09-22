@@ -206,8 +206,8 @@ set(gs_press_4, 0)
 
 
 
-sys_data_tbl.hyd_1_qty = 26
-sys_data_tbl.hyd_2_qty = 22
+sys_data_tbl.hyd_1_qty = 24
+sys_data_tbl.hyd_2_qty = 24
 sys_data_tbl.hyd_3_qty = 24
 
 sys_data_tbl.hyd_1_temp = get(temp_out)
@@ -247,11 +247,11 @@ local notLoaded = true
 local sim_start_timer = 0
 
 local function reset_switchers()
-	hs1_qty = hs1_qty + (get(temp_out) - 20) / 20
-	hs2_qty = hs2_qty + (get(temp_out) - 20) / 20
-	hs3_qty = hs3_qty + (get(temp_out) - 20) / 20
-	temp_bar1_prev = get(temp_out)
-	temp_bar2_prev = temp_bar1_prev
+	-- hs1_qty = hs1_qty + (get(temp_out) - 20) / 20
+	-- hs2_qty = hs2_qty + (get(temp_out) - 20) / 20
+	-- hs3_qty = hs3_qty + (get(temp_out) - 20) / 20
+	-- temp_bar1_prev = get(temp_out)
+	-- temp_bar2_prev = temp_bar1_prev
 	if get(eng1_N1) > 25 then
 		acc_4 = 3.9
 		hs1_qty = hs1_qty - 3.9

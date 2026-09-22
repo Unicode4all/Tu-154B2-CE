@@ -915,9 +915,9 @@ local var_table = {}
 	var_table["HydroElecFail2"] = get(hydro_elec_fail_2)
 	var_table["HydroElecFail3"] = get(hydro_elec_fail_3)
 	
-	var_table["hydroQty1"] = 26
-	var_table["hydroQty2"] = 22
-	var_table["hydroQty3"] = 24
+	var_table["hydrotankQty1"] = 24 * 100000
+	var_table["hydrotankQty2"] = 24 * 100000
+	var_table["hydrotankQty3"] = 24 * 100000
 
 	var_table["tthLeftFail"] = get(tth_left_fail)
 	var_table["tthRightFail"] = get(tth_right_fail)
@@ -1403,9 +1403,9 @@ local function write_file()
 		savefile:write("HydroElecFail2="..get(hydro_elec_fail_2).."\n")
 		savefile:write("HydroElecFail3="..get(hydro_elec_fail_3).."\n")
 
-		savefile:write("hydroQty1="..sys_data_tbl.hyd_1_qty * 100000 .."\n")
-		savefile:write("hydroQty2="..sys_data_tbl.hyd_2_qty * 100000 .."\n")
-		savefile:write("hydroQty3="..sys_data_tbl.hyd_3_qty * 100000 .."\n")
+		savefile:write("hydrotankQty1="..sys_data_tbl.hyd_1_qty * 100000 .."\n")
+		savefile:write("hydrotankQty2="..sys_data_tbl.hyd_2_qty * 100000 .."\n")
+		savefile:write("hydrotankQty3="..sys_data_tbl.hyd_3_qty * 100000 .."\n")
 
 		savefile:write("tthLeftFail="..get(tth_left_fail).."\n")
 		savefile:write("tthRightFail="..get(tth_right_fail).."\n")
@@ -1935,9 +1935,9 @@ local function read_file()
 		if var_table["HydroElecFail3"] then set(hydro_elec_fail_3, var_table["HydroElecFail3"]) end
 
 		
-		if var_table["hydroQty1"] then sys_data_tbl.hyd_1_qty = var_table["hydroQty1"]*0.00001 end
-		if var_table["hydroQty2"] then sys_data_tbl.hyd_2_qty = var_table["hydroQty2"]*0.00001 end
-		if var_table["hydroQty3"] then sys_data_tbl.hyd_3_qty = var_table["hydroQty3"]*0.00001 end
+		if var_table["hydrotankQty1"] then sys_data_tbl.hyd_1_qty = var_table["hydrotankQty1"]*0.00001 end
+		if var_table["hydrotankQty2"] then sys_data_tbl.hyd_2_qty = var_table["hydrotankQty2"]*0.00001 end
+		if var_table["hydrotankQty3"] then sys_data_tbl.hyd_3_qty = var_table["hydrotankQty3"]*0.00001 end
 	
 		if var_table["tthLeftFail"] then set(tth_left_fail, var_table["tthLeftFail"]) end
 		if var_table["tthRightFail"] then set(tth_right_fail, var_table["tthRightFail"]) end
