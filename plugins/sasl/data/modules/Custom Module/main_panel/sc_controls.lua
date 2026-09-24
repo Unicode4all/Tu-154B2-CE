@@ -61,6 +61,8 @@ defineProperty("control_thro_other", globalPropertyf("tu154b2/custom/SC/control_
 defineProperty("override_wheel_steer", globalPropertyf("sim/operation/override/override_wheel_steer")) -- wheel steering
 
 
+local crew_throttle = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/main_panel/crew_throttle.lua")
+
 local conr_last = true
 set(override_wheel_steer, 0)
 
@@ -114,7 +116,9 @@ function update()
 	conr_last = has_contr
 	
 	-- let this control the throttles when SC controls on other client and "other" option enabled or no CS connection at all
-	if (not has_contr and other_tro) or (has_contr and not other_tro) or get(ismaster) == 0 then
+	local throttle_input_allowed = (not has_contr and other_tro) or (has_contr and not other_tro) or get(ismaster) == 0
+    if crew_throttle.active() then throttle_input_allowed = crew_throttle.owned() end
+    if throttle_input_allowed then
 		set(SC_ENGN_thro_0, get(ENGN_thro_0))
 		set(SC_ENGN_thro_1, get(ENGN_thro_1))
 		set(SC_ENGN_thro_2, get(ENGN_thro_2))

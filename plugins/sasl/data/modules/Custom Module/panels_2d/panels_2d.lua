@@ -585,6 +585,8 @@ local misc_ext = false
 	-- };
 -- }
 
+local crew_throttle = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/main_panel/crew_throttle.lua")
+
 thro_button = contextWindow {
 	position = { 0, 640, 31, 30 };
 	noBackground = false;
@@ -606,7 +608,8 @@ thro_button = contextWindow {
 			position = { 0, 0, 31, 30 };
 			image = get(thro_grn);
 			visible = function()
-				return (get(hascontrol_1) == 2 and get(control_thro_other) == 0) or (get(hascontrol_1) == 1 and get(control_thro_other) == 1)
+				if crew_throttle.active() then return crew_throttle.owned() end
+                return (get(hascontrol_1) == 2 and get(control_thro_other) == 0) or (get(hascontrol_1) == 1 and get(control_thro_other) == 1)
 			end;
 		},	
 
@@ -614,7 +617,11 @@ thro_button = contextWindow {
 			position = {0, 0, 31, 30 },
 		  
 			onMouseDown = function() 
-				set(control_thro_other, 1 - get(control_thro_other))
+				if crew_throttle.active() then
+                    crew_throttle.take()
+                else
+                    set(control_thro_other, 1 - get(control_thro_other))
+                end
 				return true
 			end,
 		},

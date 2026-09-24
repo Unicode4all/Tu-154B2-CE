@@ -1,4 +1,5 @@
 -- this is TCAS gauge
+local crew_session = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/main_panel/crew_session.lua")
 
 size = {482, 530}
 defineProperty("side")
@@ -17,7 +18,7 @@ defineProperty("vsi_brt", globalPropertyf("tu154b2/custom/gauges/vsi/vsi_brt_lef
 -- source
 defineProperty("vvi", globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_pilot")) -- VVI
 
-defineProperty("vvi_int2", globalPropertyi("tu154b2/custom/gauges/vvi_left")) -- VVI
+defineProperty("vvi_int2", globalPropertyf("tu154b2/custom/gauges/vvi_left")) -- VVI
 defineProperty("vvi_int", globalPropertyi("sim/custom/gauges/vvi_left_new")) -- VVI
 defineProperty("ta_sel", globalPropertyi("sim/custom/tcas2000/ta_sel"))  -- появление желтых или красных меток
 defineProperty("static_fail", globalPropertyi("sim/operation/failures/rel_static"))  -- static fail
@@ -166,12 +167,21 @@ function update()
     ta_select = get(ta_sel)
 	
 	
-if get(ismaster) ~= 1 then set(vvi_int2, get(vvi_int)) end
+local source_vvi = get(vvi)
+if crew_session.active() then
+    if get(ismaster) == 1 then
+        source_vvi = get(vvi_int2)
+    else
+        set(vvi_int2, source_vvi)
+    end
+elseif get(ismaster) ~= 1 then
+    set(vvi_int2, get(vvi_int))
+end
 	
 	local staticFail_left = get(static_fail) == 6
 
 	-- variometers
-	local var=get(vvi) * 0.00508 * bool2int(not staticFail_left)
+	local var=source_vvi * 0.00508 * bool2int(not staticFail_left)
 	local T=0
 	if get(slow_vario)>0 then
 		T=7
