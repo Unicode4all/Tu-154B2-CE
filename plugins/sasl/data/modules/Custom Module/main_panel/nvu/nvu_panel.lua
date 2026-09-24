@@ -1,216 +1,217 @@
 -- this is NVU panel
 
 -- controls
-defineProperty("nvu_param_sel", globalPropertyi("tu154b2/custom/switchers/console/nvu_param_sel")) -- ручка выбора вводимого параметра НВУ. -4 - Z, -3 - S, -2 - Zm, -1 - Sm, 0 - off, 1 - Sn, 2 - Zn, 3 - S, 4 - Z
-defineProperty("nvu_turn_sel", globalPropertyi("tu154b2/custom/switchers/console/nvu_turn_sel")) -- ручка выбора радиуса разворота, -1 - принуд, 0 - выкл, 1 - 5, 2 - 10, 3 - 15, 4 - 20, 5 - 25
-defineProperty("nvu_power_on", globalPropertyi("tu154b2/custom/switchers/console/nvu_power_on")) -- питание НВУ
-defineProperty("nvu_calc_on", globalPropertyi("tu154b2/custom/switchers/console/nvu_calc_on")) -- счисление НВУ
-defineProperty("nvu_corr_on", globalPropertyi("tu154b2/custom/switchers/console/nvu_corr_on")) -- коррекция НВУ
+nvu_param_sel = globalPropertyi("tu154b2/custom/switchers/console/nvu_param_sel") -- ручка выбора вводимого параметра НВУ. -4 - Z, -3 - S, -2 - Zm, -1 - Sm, 0 - off, 1 - Sn, 2 - Zn, 3 - S, 4 - Z
+nvu_turn_sel = globalPropertyi("tu154b2/custom/switchers/console/nvu_turn_sel") -- ручка выбора радиуса разворота, -1 - принуд, 0 - выкл, 1 - 5, 2 - 10, 3 - 15, 4 - 20, 5 - 25
+nvu_power_on = globalPropertyi("tu154b2/custom/switchers/console/nvu_power_on") -- питание НВУ
+nvu_calc_on = globalPropertyi("tu154b2/custom/switchers/console/nvu_calc_on") -- счисление НВУ
+nvu_corr_on = globalPropertyi("tu154b2/custom/switchers/console/nvu_corr_on") -- коррекция НВУ
 
 
-defineProperty("nvu_left_btn", globalPropertyi("tu154b2/custom/buttons/nvu/nvu_left_btn")) -- левая кнопка НВУ
-defineProperty("nvu_ctr_btn", globalPropertyi("tu154b2/custom/buttons/nvu/nvu_ctr_btn")) -- центр кнопка НВУ
-defineProperty("nvu_right_btn", globalPropertyi("tu154b2/custom/buttons/nvu/nvu_right_btn")) -- правая кнопка НВУ
+nvu_left_btn = globalPropertyi("tu154b2/custom/buttons/nvu/nvu_left_btn") -- левая кнопка НВУ
+nvu_ctr_btn = globalPropertyi("tu154b2/custom/buttons/nvu/nvu_ctr_btn") -- центр кнопка НВУ
+nvu_right_btn = globalPropertyi("tu154b2/custom/buttons/nvu/nvu_right_btn") -- правая кнопка НВУ
 
-defineProperty("zpu_1_left_btn", globalPropertyi("tu154b2/custom/buttons/nvu/zpu_1_left_btn")) -- левая кнопка ЗПУ
-defineProperty("zpu_1_ctr_btn", globalPropertyi("tu154b2/custom/buttons/nvu/zpu_1_ctr_btn")) -- центр кнопка ЗПУ
-defineProperty("zpu_1_right_btn", globalPropertyi("tu154b2/custom/buttons/nvu/zpu_1_right_btn")) -- правая кнопка ЗПУ
+zpu_1_left_btn = globalPropertyi("tu154b2/custom/buttons/nvu/zpu_1_left_btn") -- левая кнопка ЗПУ
+zpu_1_ctr_btn = globalPropertyi("tu154b2/custom/buttons/nvu/zpu_1_ctr_btn") -- центр кнопка ЗПУ
+zpu_1_right_btn = globalPropertyi("tu154b2/custom/buttons/nvu/zpu_1_right_btn") -- правая кнопка ЗПУ
 
-defineProperty("zpu_2_left_btn", globalPropertyi("tu154b2/custom/buttons/nvu/zpu_2_left_btn")) -- левая кнопка ЗПУ
-defineProperty("zpu_2_ctr_btn", globalPropertyi("tu154b2/custom/buttons/nvu/zpu_2_ctr_btn")) -- центр кнопка ЗПУ
-defineProperty("zpu_2_right_btn", globalPropertyi("tu154b2/custom/buttons/nvu/zpu_2_right_btn")) -- правая кнопка ЗПУ
+zpu_2_left_btn = globalPropertyi("tu154b2/custom/buttons/nvu/zpu_2_left_btn") -- левая кнопка ЗПУ
+zpu_2_ctr_btn = globalPropertyi("tu154b2/custom/buttons/nvu/zpu_2_ctr_btn") -- центр кнопка ЗПУ
+zpu_2_right_btn = globalPropertyi("tu154b2/custom/buttons/nvu/zpu_2_right_btn") -- правая кнопка ЗПУ
 
 -- internal datarefs
-defineProperty("current_Z1", globalPropertyf("tu154b2/custom/nvu/current_Z1")) -- Z1
-defineProperty("current_S1", globalPropertyf("tu154b2/custom/nvu/current_S1")) -- S1
-defineProperty("next_Z1", globalPropertyf("tu154b2/custom/nvu/next_Z1")) -- Z1
-defineProperty("next_S1", globalPropertyf("tu154b2/custom/nvu/next_S1")) -- S1
+current_Z1 = globalPropertyf("tu154b2/custom/nvu/current_Z1") -- Z1
+current_S1 = globalPropertyf("tu154b2/custom/nvu/current_S1") -- S1
+next_Z1 = globalPropertyf("tu154b2/custom/nvu/next_Z1") -- Z1
+next_S1 = globalPropertyf("tu154b2/custom/nvu/next_S1") -- S1
 
-defineProperty("current_Z2", globalPropertyf("tu154b2/custom/nvu/current_Z2")) -- Z2
-defineProperty("current_S2", globalPropertyf("tu154b2/custom/nvu/current_S2")) -- S2
-defineProperty("next_Z2", globalPropertyf("tu154b2/custom/nvu/next_Z2")) -- Z2
-defineProperty("next_S2", globalPropertyf("tu154b2/custom/nvu/next_S2")) -- S2
+current_Z2 = globalPropertyf("tu154b2/custom/nvu/current_Z2") -- Z2
+current_S2 = globalPropertyf("tu154b2/custom/nvu/current_S2") -- S2
+next_Z2 = globalPropertyf("tu154b2/custom/nvu/next_Z2") -- Z2
+next_S2 = globalPropertyf("tu154b2/custom/nvu/next_S2") -- S2
 
-defineProperty("zpu1", globalPropertyf("tu154b2/custom/nvu/zpu1")) -- ZPU1
-defineProperty("zpu2", globalPropertyf("tu154b2/custom/nvu/zpu2")) -- ZPU2
+zpu1 = globalPropertyf("tu154b2/custom/nvu/zpu1") -- ZPU1
+zpu2 = globalPropertyf("tu154b2/custom/nvu/zpu2") -- ZPU2
 
 
 -- gauges - numbers
-defineProperty("current_Z1_1", globalPropertyf("tu154b2/custom/nvu/current_Z1_1")) -- Z1
-defineProperty("current_Z1_10", globalPropertyf("tu154b2/custom/nvu/current_Z1_10")) -- Z1
-defineProperty("current_Z1_100", globalPropertyf("tu154b2/custom/nvu/current_Z1_100")) -- Z1
-defineProperty("current_Z1_1000", globalPropertyf("tu154b2/custom/nvu/current_Z1_1000")) -- Z1
+current_Z1_1 = globalPropertyf("tu154b2/custom/nvu/current_Z1_1") -- Z1
+current_Z1_10 = globalPropertyf("tu154b2/custom/nvu/current_Z1_10") -- Z1
+current_Z1_100 = globalPropertyf("tu154b2/custom/nvu/current_Z1_100") -- Z1
+current_Z1_1000 = globalPropertyf("tu154b2/custom/nvu/current_Z1_1000") -- Z1
 
-defineProperty("current_Z1_min_1", globalPropertyf("tu154b2/custom/nvu/current_Z1_min_1")) -- Z1
-defineProperty("current_Z1_min_10", globalPropertyf("tu154b2/custom/nvu/current_Z1_min_10")) -- Z1
-defineProperty("current_Z1_min_100", globalPropertyf("tu154b2/custom/nvu/current_Z1_min_100")) -- Z1
-defineProperty("current_Z1_min_1000", globalPropertyf("tu154b2/custom/nvu/current_Z1_min_1000")) -- Z1
-
-
-defineProperty("current_S1_1", globalPropertyf("tu154b2/custom/nvu/current_S1_1")) -- S1
-defineProperty("current_S1_10", globalPropertyf("tu154b2/custom/nvu/current_S1_10")) -- S1
-defineProperty("current_S1_100", globalPropertyf("tu154b2/custom/nvu/current_S1_100")) -- S1
-defineProperty("current_S1_1000", globalPropertyf("tu154b2/custom/nvu/current_S1_1000")) -- S1
-
-defineProperty("current_S1_min_1", globalPropertyf("tu154b2/custom/nvu/current_S1_min_1")) -- S1
-defineProperty("current_S1_min_10", globalPropertyf("tu154b2/custom/nvu/current_S1_min_10")) -- S1
-defineProperty("current_S1_min_100", globalPropertyf("tu154b2/custom/nvu/current_S1_min_100")) -- S1
-defineProperty("current_S1_min_1000", globalPropertyf("tu154b2/custom/nvu/current_S1_min_1000")) -- S1
+current_Z1_min_1 = globalPropertyf("tu154b2/custom/nvu/current_Z1_min_1") -- Z1
+current_Z1_min_10 = globalPropertyf("tu154b2/custom/nvu/current_Z1_min_10") -- Z1
+current_Z1_min_100 = globalPropertyf("tu154b2/custom/nvu/current_Z1_min_100") -- Z1
+current_Z1_min_1000 = globalPropertyf("tu154b2/custom/nvu/current_Z1_min_1000") -- Z1
 
 
-defineProperty("next_Z1_1", globalPropertyf("tu154b2/custom/nvu/next_Z1_1")) -- Z1
-defineProperty("next_Z1_10", globalPropertyf("tu154b2/custom/nvu/next_Z1_10")) -- Z1
-defineProperty("next_Z1_100", globalPropertyf("tu154b2/custom/nvu/next_Z1_100")) -- Z1
-defineProperty("next_Z1_1000", globalPropertyf("tu154b2/custom/nvu/next_Z1_1000")) -- Z1
+current_S1_1 = globalPropertyf("tu154b2/custom/nvu/current_S1_1") -- S1
+current_S1_10 = globalPropertyf("tu154b2/custom/nvu/current_S1_10") -- S1
+current_S1_100 = globalPropertyf("tu154b2/custom/nvu/current_S1_100") -- S1
+current_S1_1000 = globalPropertyf("tu154b2/custom/nvu/current_S1_1000") -- S1
 
-defineProperty("next_Z1_min_1", globalPropertyf("tu154b2/custom/nvu/next_Z1_min_1")) -- Z1
-defineProperty("next_Z1_min_10", globalPropertyf("tu154b2/custom/nvu/next_Z1_min_10")) -- Z1
-defineProperty("next_Z1_min_100", globalPropertyf("tu154b2/custom/nvu/next_Z1_min_100")) -- Z1
-defineProperty("next_Z1_min_1000", globalPropertyf("tu154b2/custom/nvu/next_Z1_min_1000")) -- Z1
+current_S1_min_1 = globalPropertyf("tu154b2/custom/nvu/current_S1_min_1") -- S1
+current_S1_min_10 = globalPropertyf("tu154b2/custom/nvu/current_S1_min_10") -- S1
+current_S1_min_100 = globalPropertyf("tu154b2/custom/nvu/current_S1_min_100") -- S1
+current_S1_min_1000 = globalPropertyf("tu154b2/custom/nvu/current_S1_min_1000") -- S1
 
 
-defineProperty("next_S1_1", globalPropertyf("tu154b2/custom/nvu/next_S1_1")) -- S1
-defineProperty("next_S1_10", globalPropertyf("tu154b2/custom/nvu/next_S1_10")) -- S1
-defineProperty("next_S1_100", globalPropertyf("tu154b2/custom/nvu/next_S1_100")) -- S1
-defineProperty("next_S1_1000", globalPropertyf("tu154b2/custom/nvu/next_S1_1000")) -- S1
+next_Z1_1 = globalPropertyf("tu154b2/custom/nvu/next_Z1_1") -- Z1
+next_Z1_10 = globalPropertyf("tu154b2/custom/nvu/next_Z1_10") -- Z1
+next_Z1_100 = globalPropertyf("tu154b2/custom/nvu/next_Z1_100") -- Z1
+next_Z1_1000 = globalPropertyf("tu154b2/custom/nvu/next_Z1_1000") -- Z1
 
-defineProperty("next_S1_min_1", globalPropertyf("tu154b2/custom/nvu/next_S1_min_1")) -- S1
-defineProperty("next_S1_min_10", globalPropertyf("tu154b2/custom/nvu/next_S1_min_10")) -- S1
-defineProperty("next_S1_min_100", globalPropertyf("tu154b2/custom/nvu/next_S1_min_100")) -- S1
-defineProperty("next_S1_min_1000", globalPropertyf("tu154b2/custom/nvu/next_S1_min_1000")) -- S1
+next_Z1_min_1 = globalPropertyf("tu154b2/custom/nvu/next_Z1_min_1") -- Z1
+next_Z1_min_10 = globalPropertyf("tu154b2/custom/nvu/next_Z1_min_10") -- Z1
+next_Z1_min_100 = globalPropertyf("tu154b2/custom/nvu/next_Z1_min_100") -- Z1
+next_Z1_min_1000 = globalPropertyf("tu154b2/custom/nvu/next_Z1_min_1000") -- Z1
+
+
+next_S1_1 = globalPropertyf("tu154b2/custom/nvu/next_S1_1") -- S1
+next_S1_10 = globalPropertyf("tu154b2/custom/nvu/next_S1_10") -- S1
+next_S1_100 = globalPropertyf("tu154b2/custom/nvu/next_S1_100") -- S1
+next_S1_1000 = globalPropertyf("tu154b2/custom/nvu/next_S1_1000") -- S1
+
+next_S1_min_1 = globalPropertyf("tu154b2/custom/nvu/next_S1_min_1") -- S1
+next_S1_min_10 = globalPropertyf("tu154b2/custom/nvu/next_S1_min_10") -- S1
+next_S1_min_100 = globalPropertyf("tu154b2/custom/nvu/next_S1_min_100") -- S1
+next_S1_min_1000 = globalPropertyf("tu154b2/custom/nvu/next_S1_min_1000") -- S1
 
 ----
-defineProperty("current_Z2_1", globalPropertyf("tu154b2/custom/nvu/current_Z2_1")) -- Z2
-defineProperty("current_Z2_10", globalPropertyf("tu154b2/custom/nvu/current_Z2_10")) -- Z2
-defineProperty("current_Z2_100", globalPropertyf("tu154b2/custom/nvu/current_Z2_100")) -- Z2
-defineProperty("current_Z2_1000", globalPropertyf("tu154b2/custom/nvu/current_Z2_1000")) -- Z2
+current_Z2_1 = globalPropertyf("tu154b2/custom/nvu/current_Z2_1") -- Z2
+current_Z2_10 = globalPropertyf("tu154b2/custom/nvu/current_Z2_10") -- Z2
+current_Z2_100 = globalPropertyf("tu154b2/custom/nvu/current_Z2_100") -- Z2
+current_Z2_1000 = globalPropertyf("tu154b2/custom/nvu/current_Z2_1000") -- Z2
 
-defineProperty("current_Z2_min_1", globalPropertyf("tu154b2/custom/nvu/current_Z2_min_1")) -- Z2
-defineProperty("current_Z2_min_10", globalPropertyf("tu154b2/custom/nvu/current_Z2_min_10")) -- Z2
-defineProperty("current_Z2_min_100", globalPropertyf("tu154b2/custom/nvu/current_Z2_min_100")) -- Z2
-defineProperty("current_Z2_min_1000", globalPropertyf("tu154b2/custom/nvu/current_Z2_min_1000")) -- Z2
-
-
-defineProperty("current_S2_1", globalPropertyf("tu154b2/custom/nvu/current_S2_1")) -- S2
-defineProperty("current_S2_10", globalPropertyf("tu154b2/custom/nvu/current_S2_10")) -- S2
-defineProperty("current_S2_100", globalPropertyf("tu154b2/custom/nvu/current_S2_100")) -- S2
-defineProperty("current_S2_1000", globalPropertyf("tu154b2/custom/nvu/current_S2_1000")) -- S2
-
-defineProperty("current_S2_min_1", globalPropertyf("tu154b2/custom/nvu/current_S2_min_1")) -- S2
-defineProperty("current_S2_min_10", globalPropertyf("tu154b2/custom/nvu/current_S2_min_10")) -- S2
-defineProperty("current_S2_min_100", globalPropertyf("tu154b2/custom/nvu/current_S2_min_100")) -- S2
-defineProperty("current_S2_min_1000", globalPropertyf("tu154b2/custom/nvu/current_S2_min_1000")) -- S2
+current_Z2_min_1 = globalPropertyf("tu154b2/custom/nvu/current_Z2_min_1") -- Z2
+current_Z2_min_10 = globalPropertyf("tu154b2/custom/nvu/current_Z2_min_10") -- Z2
+current_Z2_min_100 = globalPropertyf("tu154b2/custom/nvu/current_Z2_min_100") -- Z2
+current_Z2_min_1000 = globalPropertyf("tu154b2/custom/nvu/current_Z2_min_1000") -- Z2
 
 
-defineProperty("next_Z2_1", globalPropertyf("tu154b2/custom/nvu/next_Z2_1")) -- Z2
-defineProperty("next_Z2_10", globalPropertyf("tu154b2/custom/nvu/next_Z2_10")) -- Z2
-defineProperty("next_Z2_100", globalPropertyf("tu154b2/custom/nvu/next_Z2_100")) -- Z2
-defineProperty("next_Z2_1000", globalPropertyf("tu154b2/custom/nvu/next_Z2_1000")) -- Z2
+current_S2_1 = globalPropertyf("tu154b2/custom/nvu/current_S2_1") -- S2
+current_S2_10 = globalPropertyf("tu154b2/custom/nvu/current_S2_10") -- S2
+current_S2_100 = globalPropertyf("tu154b2/custom/nvu/current_S2_100") -- S2
+current_S2_1000 = globalPropertyf("tu154b2/custom/nvu/current_S2_1000") -- S2
 
-defineProperty("next_Z2_min_1", globalPropertyf("tu154b2/custom/nvu/next_Z2_min_1")) -- Z2
-defineProperty("next_Z2_min_10", globalPropertyf("tu154b2/custom/nvu/next_Z2_min_10")) -- Z2
-defineProperty("next_Z2_min_100", globalPropertyf("tu154b2/custom/nvu/next_Z2_min_100")) -- Z2
-defineProperty("next_Z2_min_1000", globalPropertyf("tu154b2/custom/nvu/next_Z2_min_1000")) -- Z2
+current_S2_min_1 = globalPropertyf("tu154b2/custom/nvu/current_S2_min_1") -- S2
+current_S2_min_10 = globalPropertyf("tu154b2/custom/nvu/current_S2_min_10") -- S2
+current_S2_min_100 = globalPropertyf("tu154b2/custom/nvu/current_S2_min_100") -- S2
+current_S2_min_1000 = globalPropertyf("tu154b2/custom/nvu/current_S2_min_1000") -- S2
 
 
-defineProperty("next_S2_1", globalPropertyf("tu154b2/custom/nvu/next_S2_1")) -- S2
-defineProperty("next_S2_10", globalPropertyf("tu154b2/custom/nvu/next_S2_10")) -- S2
-defineProperty("next_S2_100", globalPropertyf("tu154b2/custom/nvu/next_S2_100")) -- S2
-defineProperty("next_S2_1000", globalPropertyf("tu154b2/custom/nvu/next_S2_1000")) -- S2
+next_Z2_1 = globalPropertyf("tu154b2/custom/nvu/next_Z2_1") -- Z2
+next_Z2_10 = globalPropertyf("tu154b2/custom/nvu/next_Z2_10") -- Z2
+next_Z2_100 = globalPropertyf("tu154b2/custom/nvu/next_Z2_100") -- Z2
+next_Z2_1000 = globalPropertyf("tu154b2/custom/nvu/next_Z2_1000") -- Z2
 
-defineProperty("next_S2_min_1", globalPropertyf("tu154b2/custom/nvu/next_S2_min_1")) -- S2
-defineProperty("next_S2_min_10", globalPropertyf("tu154b2/custom/nvu/next_S2_min_10")) -- S2
-defineProperty("next_S2_min_100", globalPropertyf("tu154b2/custom/nvu/next_S2_min_100")) -- S2
-defineProperty("next_S2_min_1000", globalPropertyf("tu154b2/custom/nvu/next_S2_min_1000")) -- S2
+next_Z2_min_1 = globalPropertyf("tu154b2/custom/nvu/next_Z2_min_1") -- Z2
+next_Z2_min_10 = globalPropertyf("tu154b2/custom/nvu/next_Z2_min_10") -- Z2
+next_Z2_min_100 = globalPropertyf("tu154b2/custom/nvu/next_Z2_min_100") -- Z2
+next_Z2_min_1000 = globalPropertyf("tu154b2/custom/nvu/next_Z2_min_1000") -- Z2
+
+
+next_S2_1 = globalPropertyf("tu154b2/custom/nvu/next_S2_1") -- S2
+next_S2_10 = globalPropertyf("tu154b2/custom/nvu/next_S2_10") -- S2
+next_S2_100 = globalPropertyf("tu154b2/custom/nvu/next_S2_100") -- S2
+next_S2_1000 = globalPropertyf("tu154b2/custom/nvu/next_S2_1000") -- S2
+
+next_S2_min_1 = globalPropertyf("tu154b2/custom/nvu/next_S2_min_1") -- S2
+next_S2_min_10 = globalPropertyf("tu154b2/custom/nvu/next_S2_min_10") -- S2
+next_S2_min_100 = globalPropertyf("tu154b2/custom/nvu/next_S2_min_100") -- S2
+next_S2_min_1000 = globalPropertyf("tu154b2/custom/nvu/next_S2_min_1000") -- S2
 
 ---------
-defineProperty("Z1_minus_cap", globalPropertyf("tu154b2/custom/nvu/z1_minus_cap")) -- digits cap
-defineProperty("Z1_plus_cap", globalPropertyf("tu154b2/custom/nvu/z1_plus_cap")) -- digits cap
-defineProperty("S1_minus_cap", globalPropertyf("tu154b2/custom/nvu/s1_minus_cap")) -- digits cap
-defineProperty("S1_plus_cap", globalPropertyf("tu154b2/custom/nvu/s1_plus_cap")) -- digits cap
+Z1_minus_cap = globalPropertyf("tu154b2/custom/nvu/z1_minus_cap") -- digits cap
+Z1_plus_cap = globalPropertyf("tu154b2/custom/nvu/z1_plus_cap") -- digits cap
+S1_minus_cap = globalPropertyf("tu154b2/custom/nvu/s1_minus_cap") -- digits cap
+S1_plus_cap = globalPropertyf("tu154b2/custom/nvu/s1_plus_cap") -- digits cap
 
-defineProperty("Z2_minus_cap", globalPropertyf("tu154b2/custom/nvu/z2_minus_cap")) -- digits cap
-defineProperty("Z2_plus_cap", globalPropertyf("tu154b2/custom/nvu/z2_plus_cap")) -- digits cap
-defineProperty("S2_minus_cap", globalPropertyf("tu154b2/custom/nvu/s2_minus_cap")) -- digits cap
-defineProperty("S2_plus_cap", globalPropertyf("tu154b2/custom/nvu/s2_plus_cap")) -- digits cap
+Z2_minus_cap = globalPropertyf("tu154b2/custom/nvu/z2_minus_cap") -- digits cap
+Z2_plus_cap = globalPropertyf("tu154b2/custom/nvu/z2_plus_cap") -- digits cap
+S2_minus_cap = globalPropertyf("tu154b2/custom/nvu/s2_minus_cap") -- digits cap
+S2_plus_cap = globalPropertyf("tu154b2/custom/nvu/s2_plus_cap") -- digits cap
 
 
-defineProperty("Z1_next_minus_cap", globalPropertyf("tu154b2/custom/nvu/z1_next_minus_cap")) -- digits cap
-defineProperty("Z1_next_plus_cap", globalPropertyf("tu154b2/custom/nvu/z1_next_plus_cap")) -- digits cap
-defineProperty("S1_next_minus_cap", globalPropertyf("tu154b2/custom/nvu/s1_next_minus_cap")) -- digits cap
-defineProperty("S1_next_plus_cap", globalPropertyf("tu154b2/custom/nvu/s1_next_plus_cap")) -- digits cap
+Z1_next_minus_cap = globalPropertyf("tu154b2/custom/nvu/z1_next_minus_cap") -- digits cap
+Z1_next_plus_cap = globalPropertyf("tu154b2/custom/nvu/z1_next_plus_cap") -- digits cap
+S1_next_minus_cap = globalPropertyf("tu154b2/custom/nvu/s1_next_minus_cap") -- digits cap
+S1_next_plus_cap = globalPropertyf("tu154b2/custom/nvu/s1_next_plus_cap") -- digits cap
 
-defineProperty("Z2_next_minus_cap", globalPropertyf("tu154b2/custom/nvu/z2_next_minus_cap")) -- digits cap
-defineProperty("Z2_next_plus_cap", globalPropertyf("tu154b2/custom/nvu/z2_next_plus_cap")) -- digits cap
-defineProperty("S2_next_minus_cap", globalPropertyf("tu154b2/custom/nvu/s2_next_minus_cap")) -- digits cap
-defineProperty("S2_next_plus_cap", globalPropertyf("tu154b2/custom/nvu/s2_next_plus_cap")) -- digits cap
+Z2_next_minus_cap = globalPropertyf("tu154b2/custom/nvu/z2_next_minus_cap") -- digits cap
+Z2_next_plus_cap = globalPropertyf("tu154b2/custom/nvu/z2_next_plus_cap") -- digits cap
+S2_next_minus_cap = globalPropertyf("tu154b2/custom/nvu/s2_next_minus_cap") -- digits cap
+S2_next_plus_cap = globalPropertyf("tu154b2/custom/nvu/s2_next_plus_cap") -- digits cap
 
 --------
-defineProperty("zpu1_01", globalPropertyf("tu154b2/custom/nvu/zpu1_01")) -- ZPU
-defineProperty("zpu1_1", globalPropertyf("tu154b2/custom/nvu/zpu1_1")) -- ZPU
-defineProperty("zpu1_10", globalPropertyf("tu154b2/custom/nvu/zpu1_10")) -- ZPU
-defineProperty("zpu1_100", globalPropertyf("tu154b2/custom/nvu/zpu1_100")) -- ZPU
+zpu1_01 = globalPropertyf("tu154b2/custom/nvu/zpu1_01") -- ZPU
+zpu1_1 = globalPropertyf("tu154b2/custom/nvu/zpu1_1") -- ZPU
+zpu1_10 = globalPropertyf("tu154b2/custom/nvu/zpu1_10") -- ZPU
+zpu1_100 = globalPropertyf("tu154b2/custom/nvu/zpu1_100") -- ZPU
 
-defineProperty("zpu2_01", globalPropertyf("tu154b2/custom/nvu/zpu2_01")) -- ZPU
-defineProperty("zpu2_1", globalPropertyf("tu154b2/custom/nvu/zpu2_1")) -- ZPU
-defineProperty("zpu2_10", globalPropertyf("tu154b2/custom/nvu/zpu2_10")) -- ZPU
-defineProperty("zpu2_100", globalPropertyf("tu154b2/custom/nvu/zpu2_100")) -- ZPU
+zpu2_01 = globalPropertyf("tu154b2/custom/nvu/zpu2_01") -- ZPU
+zpu2_1 = globalPropertyf("tu154b2/custom/nvu/zpu2_1") -- ZPU
+zpu2_10 = globalPropertyf("tu154b2/custom/nvu/zpu2_10") -- ZPU
+zpu2_100 = globalPropertyf("tu154b2/custom/nvu/zpu2_100") -- ZPU
 
 
 ---
-defineProperty("map_angle", globalPropertyf("tu154b2/custom/gauges/console/map_angle")) -- угол карты
+map_angle = globalPropertyf("tu154b2/custom/gauges/console/map_angle") -- угол карты
 
 
 -- lamps
-defineProperty("nvu_on_lit", globalPropertyf("tu154b2/custom/lights/small/nvu_on")) -- НВУ испр
-defineProperty("nvu_corr_lit", globalPropertyf("tu154b2/custom/lights/small/nvu_corr")) -- НВУ КОРР
+nvu_on_lit = globalPropertyf("tu154b2/custom/lights/small/nvu_on") -- НВУ испр
+nvu_corr_lit = globalPropertyf("tu154b2/custom/lights/small/nvu_corr") -- НВУ КОРР
 
-defineProperty("nvu_1_active", globalPropertyf("tu154b2/custom/lights/nvu_1_active")) -- светимость активной панели НВУ
-defineProperty("nvu_2_active", globalPropertyf("tu154b2/custom/lights/nvu_2_active")) -- светимость активной панели НВУ
+nvu_1_active = globalPropertyf("tu154b2/custom/lights/nvu_1_active") -- светимость активной панели НВУ
+nvu_2_active = globalPropertyf("tu154b2/custom/lights/nvu_2_active") -- светимость активной панели НВУ
 
-defineProperty("nvu_fail_lit", globalPropertyf("tu154b2/custom/lights/nvu_fail")) -- отаказ НВУ
-defineProperty("nvu_vor_automat", globalPropertyf("tu154b2/custom/lights/nvu_vor_automat")) -- НВУ-VOR автомат
-defineProperty("correct_on_lit", globalPropertyf("tu154b2/custom/lights/correct_on")) -- коррекция включ
-defineProperty("change_ch_o", globalPropertyf("tu154b2/custom/lights/change_ch_o")) -- смена ЧО
+nvu_fail_lit = globalPropertyf("tu154b2/custom/lights/nvu_fail") -- отаказ НВУ
+nvu_vor_automat = globalPropertyf("tu154b2/custom/lights/nvu_vor_automat") -- НВУ-VOR автомат
+correct_on_lit = globalPropertyf("tu154b2/custom/lights/correct_on") -- коррекция включ
+change_ch_o = globalPropertyf("tu154b2/custom/lights/change_ch_o") -- смена ЧО
 
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
 
-defineProperty("nvu_changing_ort", globalPropertyi("tu154b2/custom/nvu/nvu_changing_ort")) -- смена ЧО
-defineProperty("nvu_fail", globalPropertyi("tu154b2/custom/nvu/nvu_fail")) -- отказ или недостаточно систем для НВУ
+nvu_changing_ort = globalPropertyi("tu154b2/custom/nvu/nvu_changing_ort") -- смена ЧО
+nvu_fail = globalPropertyi("tu154b2/custom/nvu/nvu_fail") -- отказ или недостаточно систем для НВУ
 
-defineProperty("nvu_mode", globalPropertyi("tu154b2/custom/nvu/nvu_mode")) -- режим НВУ. 0 = выкл, 1 = готов, 2 = счисление, 3 = коррекция
-defineProperty("nvu_active", globalPropertyi("tu154b2/custom/nvu/nvu_active")) -- активный комплект НВУ. 1 - 2
+nvu_mode = globalPropertyi("tu154b2/custom/nvu/nvu_mode") -- режим НВУ. 0 = выкл, 1 = готов, 2 = счисление, 3 = коррекция
+nvu_active = globalPropertyi("tu154b2/custom/nvu/nvu_active") -- активный комплект НВУ. 1 - 2
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп 
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп 
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
-defineProperty("rsbn_distance", globalPropertyf("tu154b2/custom/rsbn/distance")) -- геометрическая дистанция от маяка
-defineProperty("rsbn_azimuth", globalPropertyf("tu154b2/custom/rsbn/azimuth")) -- азимут от маяка
+rsbn_distance = globalPropertyf("tu154b2/custom/rsbn/distance") -- геометрическая дистанция от маяка
+rsbn_azimuth = globalPropertyf("tu154b2/custom/rsbn/azimuth") -- азимут от маяка
 
 
-defineProperty("compas_big_needle", globalPropertyf("tu154b2/custom/gauges/misc/compas_big_needle")) -- БДК
-defineProperty("compas_small_needle", globalPropertyf("tu154b2/custom/gauges/misc/compas_small_needle")) -- БДК
-defineProperty("compas_knob", globalPropertyf("tu154b2/custom/gauges/misc/compas_knob")) -- БДК
-defineProperty("vor_avtomat", globalPropertyi("tu154b2/custom/failures/nvu_vor_avtomat_fail"))
+compas_big_needle = globalPropertyf("tu154b2/custom/gauges/misc/compas_big_needle") -- БДК
+compas_small_needle = globalPropertyf("tu154b2/custom/gauges/misc/compas_small_needle") -- БДК
+compas_knob = globalPropertyf("tu154b2/custom/gauges/misc/compas_knob") -- БДК
+vor_avtomat = globalPropertyi("tu154b2/custom/failures/nvu_vor_avtomat_fail")
 
 
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
-
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_8")
+lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_9")
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
@@ -631,13 +632,13 @@ local function lamps()
 	local nvu_fail_lit_brt = math.max(bool2int(get(nvu_fail) == 1) * lamps_brt, test_btn)
 	set(nvu_fail_lit, nvu_fail_lit_brt)
 	
-	local nvu_vor_automat_brt = math.max(get(vor_avtomat) * lamps_brt, test_btn) -- temp
+	local nvu_vor_automat_brt = math.max(get(vor_avtomat) * lamps_brt, test_btn) * (1 - get(lamp_1))
 	set(nvu_vor_automat, nvu_vor_automat_brt)
 	
 	local correct_on_lit_brt = math.max(bool2int(mode == 3 and get(rsbn_distance) ~= 0) * lamps_brt, test_btn)
 	set(correct_on_lit, correct_on_lit_brt)
 	
-	local change_ch_o_brt = math.max(bool2int(get(nvu_changing_ort) == 1) * lamps_brt, test_btn)
+	local change_ch_o_brt = math.max(bool2int(get(nvu_changing_ort) == 1) * lamps_brt, test_btn) * (1 - get(lamp_2))
 	set(change_ch_o, change_ch_o_brt)
 
 end

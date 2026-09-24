@@ -238,6 +238,12 @@ fire_eng_3 = globalPropertyf("tu154b2/custom/lights/fire/fire_eng_3") -- пож�
 throttle_1_fire = globalPropertyf("tu154b2/custom/lights/small/throttle_1_fire") -- лампа пожара на РУД
 throttle_2_fire = globalPropertyf("tu154b2/custom/lights/small/throttle_2_fire") -- лампа пожара на РУД
 throttle_3_fire = globalPropertyf("tu154b2/custom/lights/small/throttle_3_fire") -- лампа пожара на РУД
+
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_13")
+lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_14")
+lamp_3 = globalPropertyi("tu154b2/custom/failures/lamp_15")
+lamp_4 = globalPropertyi("tu154b2/custom/failures/lamp_16")
+lamp_5 = globalPropertyi("tu154b2/custom/failures/lamp_17")
 -- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
 -- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
 
@@ -337,7 +343,7 @@ local function lamps_eng1()
 	local lamps_brt = math.max((get(bus27_volt_left) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng1_N2)	
 	local starter_high_rpm_1_brt = math.max(bool2int(sys_data_tbl.starter_rpm_1 > 45) * (1 - sys_data_tbl.starter_desint_1), test_btn) -- not fake anymore
-	set(starter_high_rpm_1, starter_high_rpm_1_brt)
+	set(starter_high_rpm_1, starter_high_rpm_1_brt * (1 - get(lamp_1)))
 	
 	--local RPM2 = get(rpm_high_1)
 	local eng1_dangerous_vibro_brt = 0
@@ -358,7 +364,7 @@ local function lamps_eng1()
 	local eng1_bypass_valve_brt = 0
 	if get(kpp1)>0 then eng1_bypass_valve_brt = 1 end
 	eng1_bypass_valve_brt = math.max(eng1_bypass_valve_brt * lamps_brt, test_btn)
-	set(eng1_bypass_valve, eng1_bypass_valve_brt)
+	set(eng1_bypass_valve, eng1_bypass_valve_brt * (1 - get(lamp_4)))
 
 	local eng1_vna33_brt = 0
 	eng1_vna33_brt = get(igv1)
@@ -396,7 +402,7 @@ local function lamps_eng1()
 	local fuel_p = get(eng_fuel_press_1)
 	local eng1_fuel_p_brt = (1 - fuel_p) * lamps_brt -- * get(gauges_on_1)
 	eng1_fuel_p_brt = math.max(eng1_fuel_p_brt, test_btn)
-	set(eng1_fuel_p, eng1_fuel_p_brt)
+	set(eng1_fuel_p, eng1_fuel_p_brt * (1 - get(lamp_3)))
 	
 	local eng1_filter_fail_brt = math.max(bool2int(get(eng_filter_1) == 6), test_btn)
 	set(eng1_filter_fail, eng1_filter_fail_brt)
@@ -435,7 +441,7 @@ local function lamps_eng2()
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng2_N2)
 	local starter_high_rpm_2_brt = math.max(bool2int(sys_data_tbl.starter_rpm_2 > 45) * (1 - sys_data_tbl.starter_desint_2), test_btn) -- not fake anymore
-	set(starter_high_rpm_2, starter_high_rpm_2_brt)
+	set(starter_high_rpm_2, starter_high_rpm_2_brt * (1 - get(lamp_1)))
 	--local RPM2 = get(rpm_high_2)
 	local eng2_dangerous_vibro_brt = 0
 	local vibr = get(vibra_2)
@@ -468,7 +474,7 @@ local function lamps_eng2()
 	local eng2_high_vibro_brt = 0
 	if vibr > 55 then eng2_high_vibro_brt = 1 end
 	eng2_high_vibro_brt = math.max(eng2_high_vibro_brt * lamps_brt, test_btn)
-	set(eng2_high_vibro, eng2_high_vibro_brt)
+	set(eng2_high_vibro, eng2_high_vibro_brt * (1 - get(lamp_2)))
 	
 	local chip_det = get(chip_detect2)
 	local eng2_chips_brt = math.max(chip_det * lamps_brt, test_btn)
@@ -528,7 +534,7 @@ local function lamps_eng3()
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng3_N2)
 	local starter_high_rpm_3_brt = math.max(bool2int(sys_data_tbl.starter_rpm_3 > 45) * (1 - sys_data_tbl.starter_desint_3), test_btn) -- not fake anymore
-	set(starter_high_rpm_3, starter_high_rpm_3_brt)
+	set(starter_high_rpm_3, starter_high_rpm_3_brt * (1 - get(lamp_1)))
 	--local RPM2 = get(rpm_high_3)
 	local eng3_dangerous_vibro_brt = 0
 	local vibr = get(vibra_3)
@@ -581,7 +587,7 @@ local function lamps_eng3()
 	
 	local eng3_rt = get(rt3_stop)
 	eng3_rt_brt = math.max(eng3_rt * lamps_brt, test_btn)
-	set(eng3_stop, eng3_rt_brt)
+	set(eng3_stop, eng3_rt_brt * (1 - get(lamp_5)))
 	
 	local fuel_p = get(eng_fuel_press_3)
 	local eng3_fuel_p_brt = (1 - fuel_p) * lamps_brt

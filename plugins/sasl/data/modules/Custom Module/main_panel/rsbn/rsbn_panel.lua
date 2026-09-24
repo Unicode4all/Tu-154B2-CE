@@ -1,52 +1,53 @@
 -- this is RSBN panel
 
 -- controls
-defineProperty("rsbn_control_strobe", globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_control_strobe")) -- контроль строба РСБН
-defineProperty("rsbn_control_azimuth", globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_control_azimuth")) -- контроль нуля азимут РСБН
-defineProperty("rsbn_control_distance", globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_control_distance")) -- контроль нуля дальность РСБН
+rsbn_control_strobe = globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_control_strobe") -- контроль строба РСБН
+rsbn_control_azimuth = globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_control_azimuth") -- контроль нуля азимут РСБН
+rsbn_control_distance = globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_control_distance") -- контроль нуля дальность РСБН
 
-defineProperty("rsbn_ch_ten", globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_ch_ten")) -- установки десятков канала
-defineProperty("rsbn_ch_one", globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_ch_one")) -- установки единиц канала
+rsbn_ch_ten = globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_ch_ten") -- установки десятков канала
+rsbn_ch_one = globalPropertyi("tu154b2/custom/buttons/ovhd/rsbn_ch_one") -- установки единиц канала
 
 
-defineProperty("rsbn_on", globalPropertyi("tu154b2/custom/switchers/ovhd/rsbn_on")) -- питание РСБН
-defineProperty("rsbn_recon", globalPropertyi("tu154b2/custom/switchers/ovhd/rsbn_recon")) -- опознавание РСБН
+rsbn_on = globalPropertyi("tu154b2/custom/switchers/ovhd/rsbn_on") -- питание РСБН
+rsbn_recon = globalPropertyi("tu154b2/custom/switchers/ovhd/rsbn_recon") -- опознавание РСБН
 
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп 
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп 
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
 
 -- gauges
-defineProperty("rsbn_azimuth_ind", globalPropertyf("tu154b2/custom/gauges/misc/rsbn_azimuth_ind")) -- азимут РСБН
-defineProperty("rsbn_distance_km", globalPropertyf("tu154b2/custom/gauges/misc/rsbn_distance_km")) -- дистанция РСБН
-defineProperty("rsbn_km_one", globalPropertyf("tu154b2/custom/gauges/misc/rsbn_km_one")) -- барабанчик единиц км
-defineProperty("rsbn_km_ten", globalPropertyf("tu154b2/custom/gauges/misc/rsbn_km_ten")) -- барабанчик десятков км
-defineProperty("rsbn_km_hun", globalPropertyf("tu154b2/custom/gauges/misc/rsbn_km_hun")) -- барабанчик сотен км
+rsbn_azimuth_ind = globalPropertyf("tu154b2/custom/gauges/misc/rsbn_azimuth_ind") -- азимут РСБН
+rsbn_distance_km = globalPropertyf("tu154b2/custom/gauges/misc/rsbn_distance_km") -- дистанция РСБН
+rsbn_km_one = globalPropertyf("tu154b2/custom/gauges/misc/rsbn_km_one") -- барабанчик единиц км
+rsbn_km_ten = globalPropertyf("tu154b2/custom/gauges/misc/rsbn_km_ten") -- барабанчик десятков км
+rsbn_km_hun = globalPropertyf("tu154b2/custom/gauges/misc/rsbn_km_hun") -- барабанчик сотен км
 
 -- lamps
-defineProperty("dist_autonom", globalPropertyf("tu154b2/custom/lights/dist_autonom")) -- дистанция
-defineProperty("azimuth_autonom", globalPropertyf("tu154b2/custom/lights/azimuth_autonom")) -- азимут
+dist_autonom = globalPropertyf("tu154b2/custom/lights/dist_autonom") -- дистанция
+azimuth_autonom = globalPropertyf("tu154b2/custom/lights/azimuth_autonom") -- азимут
 
 set(dist_autonom, 1)
 set(azimuth_autonom, 1)
 
 -- sources
-defineProperty("distance", globalPropertyf("tu154b2/custom/rsbn/distance")) -- геометрическая дистанция от маяка
-defineProperty("azimuth", globalPropertyf("tu154b2/custom/rsbn/azimuth")) -- азимут от маяка
+distance = globalPropertyf("tu154b2/custom/rsbn/distance") -- геометрическая дистанция от маяка
+azimuth = globalPropertyf("tu154b2/custom/rsbn/azimuth") -- азимут от маяка
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
-defineProperty("rsbn_rec", globalPropertyi("tu154b2/custom/failures/rsbn_rec"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
+rsbn_rec = globalPropertyi("tu154b2/custom/failures/rsbn_rec")
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
---defineProperty("azimuth_init", globalPropertyi("tu154b2/custom/rsbn/azimuth_init"))
-defineProperty("dist_in", globalPropertyi("tu154b2/custom/rsbn/dist_init"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+--azimuth_init = globalPropertyi("tu154b2/custom/rsbn/azimuth_init")
+dist_in = globalPropertyi("tu154b2/custom/rsbn/dist_init")
 
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_10")
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
 local button_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_btn_L.wav')
@@ -202,7 +203,7 @@ local function lamps()
 	local day_night = 1 - get(day_night_set) * 0.25
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 
-	local dist_autonom_brt = math.max(bool2int(get(rsbn_rec) == 0) * lamps_brt * get(rsbn_on), test_btn)
+	local dist_autonom_brt = math.max(bool2int(get(rsbn_rec) == 0) * lamps_brt * get(rsbn_on), test_btn) * (1 - get(lamp_1))
 	set(dist_autonom, dist_autonom_brt)
 	
 	local azimuth_autonom_brt = math.max(bool2int(get(rsbn_rec) == 0) * lamps_brt * get(rsbn_on), test_btn)

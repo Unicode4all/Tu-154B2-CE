@@ -171,6 +171,9 @@ cockpit_80s = globalPropertyi("sim/custom/b2/kontur_pa_off")
 flaps_lever = globalPropertyf("tu154b2/custom/controll/flaps_lever")
 rv_test = globalPropertyi("tu154b2/custom/gauges/alt/radioalt_button_left")
 
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_11")
+lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_12")
+
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
 local switcher_sound_2_L= loadSample(moduleDirectory .. '/Custom Sounds/metal_switch2_L.wav')
@@ -314,7 +317,7 @@ local function lamps()
 	local flap_pos_now_R = get(flap_inn_R)
 	
 	local flaps_1_valve_brt = get(flap_drive_1)
-	flaps_1_valve_brt = math.max(flaps_1_valve_brt * lamps_brt, test_btn)
+	flaps_1_valve_brt = math.max(flaps_1_valve_brt * lamps_brt, test_btn) * (1 - get(lamp_1))
 	if get(ismaster) ~= 1 then set(flaps_1_valve, flaps_1_valve_brt) end
 	
 	local flaps_2_valve_brt = get(flap_drive_2)
@@ -329,7 +332,7 @@ local function lamps()
 	set(spoilers_mid_left, spoilers_mid_left_brt)	
 
 	local spoilers_mid_right_brt = math.min(1, get(spd_brk_mid_R))
-	spoilers_mid_right_brt = math.max(spoilers_mid_right_brt * lamps_brt, test_btn) 
+	spoilers_mid_right_brt = math.max(spoilers_mid_right_brt * lamps_brt, test_btn) * (1 - get(lamp_2))
 	set(spoilers_mid_right, spoilers_mid_right_brt)	
 
 	local spoilers_inn_left_brt = math.min(1, get(spd_brk_inn_L))

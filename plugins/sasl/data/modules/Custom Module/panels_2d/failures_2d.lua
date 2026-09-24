@@ -338,6 +338,27 @@ customFails["Main Heat Exchanger Leak"] = globalPropertyi("tu154b2/custom/failur
 
 customFails["Starter Disconnect Fail"] = globalPropertyi("tu154b2/custom/radio/starter_disconncet_fail")
 
+customFails["Cockpit Lamp 1 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_1")
+customFails["Cockpit Lamp 2 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_2")
+customFails["Cockpit Lamp 3 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_3")
+customFails["Cockpit Lamp 4 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_4")
+customFails["Cockpit Lamp 5 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_5")
+customFails["Cockpit Lamp 6 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_6")
+customFails["Cockpit Lamp 7 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_7")
+customFails["Cockpit Lamp 8 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_8")
+customFails["Cockpit Lamp 9 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_9")
+customFails["Cockpit Lamp 10 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_10")
+customFails["Cockpit Lamp 11 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_11")
+customFails["Cockpit Lamp 12 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_12")
+customFails["Cockpit Lamp 13 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_13")
+customFails["Cockpit Lamp 14 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_14")
+customFails["Cockpit Lamp 15 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_15")
+customFails["Cockpit Lamp 16 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_16")
+customFails["Cockpit Lamp 17 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_17")
+customFails["Cockpit Lamp 18 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_18")
+customFails["Cockpit Lamp 19 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_19")
+customFails["Cockpit Lamp 20 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_20")
+
 
 --[[
 defineProperty("system_qty_1", globalPropertyf("tu154b2/custom/hydro/gs_qty_1")) -- остаток масла в системе

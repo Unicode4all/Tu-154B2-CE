@@ -2,108 +2,108 @@
 
 -- power and test buttons
 
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп на передней панели	0
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
 
 
 
 
 -- lamps
-defineProperty("dh_lamp", globalPropertyf("tu154b2/custom/lights/decision_height")) -- высота принятия решения Н
-defineProperty("to_not_ready", globalPropertyf("tu154b2/custom/lights/to_not_ready")) -- к взлету не готов
-defineProperty("fuel_less_2500", globalPropertyf("tu154b2/custom/lights/fuel_less_2500")) -- остаток топлива 2500
-defineProperty("sso_danger", globalPropertyf("tu154b2/custom/lights/sso_danger")) -- ССО опасно
-defineProperty("sso_connect", globalPropertyf("tu154b2/custom/lights/sso_connect")) -- ССО связь
-defineProperty("speed_high", globalPropertyf("tu154b2/custom/lights/speed_high")) -- предел скорости
+dh_lamp = globalPropertyf("tu154b2/custom/lights/decision_height") -- высота принятия решения Н
+to_not_ready = globalPropertyf("tu154b2/custom/lights/to_not_ready") -- к взлету не готов
+fuel_less_2500 = globalPropertyf("tu154b2/custom/lights/fuel_less_2500") -- остаток топлива 2500
+sso_danger = globalPropertyf("tu154b2/custom/lights/sso_danger") -- ССО опасно
+sso_connect = globalPropertyf("tu154b2/custom/lights/sso_connect") -- ССО связь
+speed_high = globalPropertyf("tu154b2/custom/lights/speed_high") -- предел скорости
 --
-defineProperty("damper_course", globalPropertyf("tu154b2/custom/lights/damper_course")) -- демпер курс
-defineProperty("damper_roll", globalPropertyf("tu154b2/custom/lights/damper_roll")) -- демпер крен
-defineProperty("damper_pitch", globalPropertyf("tu154b2/custom/lights/damper_pitch")) -- демпер тангаж
+damper_course = globalPropertyf("tu154b2/custom/lights/damper_course") -- демпер курс
+damper_roll = globalPropertyf("tu154b2/custom/lights/damper_roll") -- демпер крен
+damper_pitch = globalPropertyf("tu154b2/custom/lights/damper_pitch") -- демпер тангаж
 
-defineProperty("no_reserve_c", globalPropertyf("tu154b2/custom/lights/no_reserve_c")) -- нет резерва К
-defineProperty("no_reserve_g", globalPropertyf("tu154b2/custom/lights/no_reserve_g")) -- нет резерва Г
+no_reserve_c = globalPropertyf("tu154b2/custom/lights/no_reserve_c") -- нет резерва К
+no_reserve_g = globalPropertyf("tu154b2/custom/lights/no_reserve_g") -- нет резерва Г
 
-defineProperty("msg_lamp", globalPropertyf("tu154b2/custom/lights/msg_lamp")) -- MSG
-defineProperty("wpt_lamp", globalPropertyf("tu154b2/custom/lights/wpt_lamp")) -- WPT
-defineProperty("stuard_call", globalPropertyf("tu154b2/custom/lights/stuard_call")) -- вызов БП
+msg_lamp = globalPropertyf("tu154b2/custom/lights/msg_lamp") -- MSG
+wpt_lamp = globalPropertyf("tu154b2/custom/lights/wpt_lamp") -- WPT
+stuard_call = globalPropertyf("tu154b2/custom/lights/stuard_call") -- вызов БП
 
-defineProperty("sns_lamp", globalPropertyf("tu154b2/custom/lights/sns_lamp")) -- СНС
+sns_lamp = globalPropertyf("tu154b2/custom/lights/sns_lamp") -- СНС
 
 
 -- sources
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
 
 -- DH
-defineProperty("dh_set_L", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_left"))  -- DH angle
-defineProperty("rv_angle_L", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_left"))  -- RV needle
-defineProperty("dh_set_R", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_right"))  -- DH angle
-defineProperty("rv_angle_R", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_right"))  -- RV needle
+dh_set_L = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_left")  -- DH angle
+rv_angle_L = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_left")  -- RV needle
+dh_set_R = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_right")  -- DH angle
+rv_angle_R = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_right")  -- RV needle
 
-defineProperty("rv5_dh_signal_left", globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_left"))
-defineProperty("rv5_dh_signal_right", globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_right"))
+rv5_dh_signal_left = globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_left")
+rv5_dh_signal_right = globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_right")
 
 
 
 -- TakeOff ready
-defineProperty("nosewheel_steer_on", globalPropertyi("tu154b2/custom/hydro/nosewheel_turn_power"))
-defineProperty("nosewheel_turn_sel", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel")) -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
+nosewheel_steer_on = globalPropertyi("tu154b2/custom/hydro/nosewheel_turn_power")
+nosewheel_turn_sel = globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel") -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
 
-defineProperty("cargo_1", globalPropertyf("tu154b2/custom/anim/cargo_1")) -- положение багажной двери 1. 0 - закрыта, 1 - открыта
-defineProperty("cargo_2", globalPropertyf("tu154b2/custom/anim/cargo_2")) -- положение багажной двери 1. 0 - закрыта, 1 - открыта
-defineProperty("pax_door_1", globalPropertyf("tu154b2/custom/anim/pax_door_1")) -- положение передних пасс дверей
-defineProperty("pax_door_2", globalPropertyf("tu154b2/custom/anim/pax_door_2")) -- положение средних пасс дверей
-defineProperty("pax_door_3", globalPropertyf("tu154b2/custom/anim/pax_door_3")) -- положение правых аварийных дверей
+cargo_1 = globalPropertyf("tu154b2/custom/anim/cargo_1") -- положение багажной двери 1. 0 - закрыта, 1 - открыта
+cargo_2 = globalPropertyf("tu154b2/custom/anim/cargo_2") -- положение багажной двери 1. 0 - закрыта, 1 - открыта
+pax_door_1 = globalPropertyf("tu154b2/custom/anim/pax_door_1") -- положение передних пасс дверей
+pax_door_2 = globalPropertyf("tu154b2/custom/anim/pax_door_2") -- положение средних пасс дверей
+pax_door_3 = globalPropertyf("tu154b2/custom/anim/pax_door_3") -- положение правых аварийных дверей
 
-defineProperty("busters_cap", globalPropertyi("tu154b2/custom/switchers/console/busters_cap")) -- крышка выключателей бустеров
+busters_cap = globalPropertyi("tu154b2/custom/switchers/console/busters_cap") -- крышка выключателей бустеров
 
-defineProperty("spd_brk_inn_L", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]")) -- inner speedbrake left Degrees
-defineProperty("spd_brk_inn_R", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]")) -- inner speedbrake right Degrees
-defineProperty("slats", globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio")) -- slats position. this one works too
+spd_brk_inn_L = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]") -- inner speedbrake left Degrees
+spd_brk_inn_R = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]") -- inner speedbrake right Degrees
+slats = globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio") -- slats position. this one works too
 
-defineProperty("gear1_deflect", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[0]"))
-defineProperty("gear2_deflect", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]"))  -- vertical deflection of left gear
-defineProperty("gear3_deflect", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]"))  -- vertical deflection of right gear
+gear1_deflect = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[0]")
+gear2_deflect = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")  -- vertical deflection of left gear
+gear3_deflect = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]")  -- vertical deflection of right gear
 
 -- fuel 2500
-defineProperty("tank1_w", globalProperty("sim/flightmodel/weight/m_fuel[0]")) -- fuel weight
+tank1_w = globalProperty("sim/flightmodel/weight/m_fuel[0]") -- fuel weight
 
 -- speed
-defineProperty("ias_L", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")) -- indicated airspeed in KTS
---defineProperty("ias_R", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
+ias_L = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot") -- indicated airspeed in KTS
+--ias_R = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot")
 
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- pressure altitude in feet
---defineProperty("msl_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
-defineProperty("mach_sim", globalPropertyf("tu154b2/custom/gauges/speed/mach_right")) -- Mach number
-defineProperty("rel_pitot", globalPropertyi("sim/operation/failures/rel_pitot")) -- Pitot 1 - Blockage
-defineProperty("rel_pitot2", globalPropertyi("sim/operation/failures/rel_pitot2")) -- Pitot 2 - Blockage
+msl_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")  -- pressure altitude in feet
+--msl_press = globalPropertyf("sim/weather/barometer_sealevel_inhg")  -- pressire at sea level in.Hg
+mach_sim = globalPropertyf("tu154b2/custom/gauges/speed/mach_right") -- Mach number
+rel_pitot = globalPropertyi("sim/operation/failures/rel_pitot") -- Pitot 1 - Blockage
+rel_pitot2 = globalPropertyi("sim/operation/failures/rel_pitot2") -- Pitot 2 - Blockage
 
 -- KLN
-defineProperty("WPTalert", globalPropertyi("custom/KLN90/WPT"))
-defineProperty("MSGalert", globalProperty("custom/KLN90/MSG"))
+WPTalert = globalPropertyi("custom/KLN90/WPT")
+MSGalert = globalProperty("custom/KLN90/MSG")
 -- GNS
-defineProperty("has_gns", globalPropertyi("tu154b2/custom/anim/show_gns"))
-defineProperty("gns_ind", globalPropertyf("sim/cockpit/gps/destination_index"))
-defineProperty("gns_wp_time", globalPropertyf("sim/cockpit/radios/gps_dme_time_secs"))
+has_gns = globalPropertyi("tu154b2/custom/anim/show_gns")
+gns_ind = globalPropertyf("sim/cockpit/gps/destination_index")
+gns_wp_time = globalPropertyf("sim/cockpit/radios/gps_dme_time_secs")
 
-defineProperty("speaker_speed", globalPropertyi("tu154b2/custom/alarm/speaker_speed")) -- предельная скорость
+speaker_speed = globalPropertyi("tu154b2/custom/alarm/speaker_speed") -- предельная скорость
 
 -- ABSU
-defineProperty("damp_roll_lamp", globalPropertyi("tu154b2/custom/absu/damp_roll_lamp")) -- 
-defineProperty("damp_pitch_lamp", globalPropertyi("tu154b2/custom/absu/damp_pitch_lamp")) -- 
-defineProperty("damp_yaw_lamp", globalPropertyi("tu154b2/custom/absu/damp_yaw_lamp")) -- 
-defineProperty("roll_contr_lamp", globalPropertyi("tu154b2/custom/absu/roll_contr_lamp")) -- 
-defineProperty("pitch_contr_lamp", globalPropertyi("tu154b2/custom/absu/pitch_contr_lamp")) -- 
-defineProperty("man_roll_lamp", globalPropertyi("tu154b2/custom/absu/man_roll_lamp")) -- 
-defineProperty("man_pitch_lamp", globalPropertyi("tu154b2/custom/absu/man_pitch_lamp")) -- 
-defineProperty("man_toga_lamp", globalPropertyi("tu154b2/custom/absu/man_toga_lamp")) -- 
+damp_roll_lamp = globalPropertyi("tu154b2/custom/absu/damp_roll_lamp") -- 
+damp_pitch_lamp = globalPropertyi("tu154b2/custom/absu/damp_pitch_lamp") -- 
+damp_yaw_lamp = globalPropertyi("tu154b2/custom/absu/damp_yaw_lamp") -- 
+roll_contr_lamp = globalPropertyi("tu154b2/custom/absu/roll_contr_lamp") -- 
+pitch_contr_lamp = globalPropertyi("tu154b2/custom/absu/pitch_contr_lamp") -- 
+man_roll_lamp = globalPropertyi("tu154b2/custom/absu/man_roll_lamp") -- 
+man_pitch_lamp = globalPropertyi("tu154b2/custom/absu/man_pitch_lamp") -- 
+man_toga_lamp = globalPropertyi("tu154b2/custom/absu/man_toga_lamp") -- 
 
-defineProperty("absu_landing_on", globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on")) -- стрелки посадка
-defineProperty("roll_main_mode", globalPropertyi("tu154b2/custom/absu/roll_main_mode")) -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
-defineProperty("pitch_main_mode", globalPropertyi("tu154b2/custom/absu/pitch_main_mode")) -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
+absu_landing_on = globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on") -- стрелки посадка
+roll_main_mode = globalPropertyi("tu154b2/custom/absu/roll_main_mode") -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
+pitch_main_mode = globalPropertyi("tu154b2/custom/absu/pitch_main_mode") -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
 
 
 -- CourseMP
@@ -113,20 +113,23 @@ nav_gs_flag = globalPropertyi("tu154b2/custom/radio/nav1_gs_flag")
 nav2_cs_flag = globalPropertyi("tu154b2/custom/radio/nav2_cs_flag")
 nav2_gs_flag = globalPropertyi("tu154b2/custom/radio/nav2_gs_flag")
 
-defineProperty("nav1_pow_cc", globalPropertyf("tu154b2/custom/radio/nav1_pow_cc")) -- потребление тока от КурсМП
-defineProperty("nav2_pow_cc", globalPropertyf("tu154b2/custom/radio/nav2_pow_cc")) -- потребление тока от КурсМП
-defineProperty("nav1_fail", globalPropertyi("tu154b2/custom/failures/nav1_fail")) -- fail
-defineProperty("nav2_fail", globalPropertyi("tu154b2/custom/failures/nav2_fail")) -- fail
+nav1_pow_cc = globalPropertyf("tu154b2/custom/radio/nav1_pow_cc") -- потребление тока от КурсМП
+nav2_pow_cc = globalPropertyf("tu154b2/custom/radio/nav2_pow_cc") -- потребление тока от КурсМП
+nav1_fail = globalPropertyi("tu154b2/custom/failures/nav1_fail") -- fail
+nav2_fail = globalPropertyi("tu154b2/custom/failures/nav2_fail") -- fail
 
 -- ready
-defineProperty("to_ready", globalPropertyi("tu154b2/custom/checklist/to_ready")) -- лампа горит
-defineProperty("absu_bns_pitch_fail", globalPropertyi("tu154b2/custom/failures/bns_tet_fail"))
-defineProperty("absu_power_27", globalPropertyf("tu154b2/custom/absu_power_27"))
+to_ready = globalPropertyi("tu154b2/custom/checklist/to_ready") -- лампа горит
+absu_bns_pitch_fail = globalPropertyi("tu154b2/custom/failures/bns_tet_fail")
+absu_power_27 = globalPropertyf("tu154b2/custom/absu_power_27")
 
-defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
-defineProperty("anim_rud2", globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
-defineProperty("anim_rud3", globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
+anim_rud1 = globalPropertyf("tu154b2/custom/controlls/throttle_1") -- РУД 1
+anim_rud2 = globalPropertyf("tu154b2/custom/controlls/throttle_2") -- РУД 2
+anim_rud3 = globalPropertyf("tu154b2/custom/controlls/throttle_3") -- РУД 3
 
+
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_1")
+lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_2")
 
 
 
@@ -218,7 +221,7 @@ function update()
 		fuel2500_lit = 0
 	end
 	
-	local fuel_less_2500_brt = math.max(fuel2500_lit * lamps_brt, test_btn)
+	local fuel_less_2500_brt = math.max(fuel2500_lit * lamps_brt, test_btn) * (1 - get(lamp_1))
 	set(fuel_less_2500, fuel_less_2500_brt)
 	
 	-- overspeed
@@ -286,7 +289,7 @@ function update()
 	set(damper_pitch, damper_pitch_brt)
 	local absu_power=get(absu_power_27)>0
 	-- CourseMP
-	local no_reserve_c_brt = math.max(bool2int(get(absu_landing_on) == 1 and absu_power and get(nav_cs_flag) == 0 and get(nav2_cs_flag)==1) * lamps_brt, test_btn)
+	local no_reserve_c_brt = math.max(bool2int(get(absu_landing_on) == 1 and absu_power and get(nav_cs_flag) == 0 and get(nav2_cs_flag)==1) * lamps_brt, test_btn)  * (1 - get(lamp_2))
 	set(no_reserve_c, no_reserve_c_brt)
 	
 	local no_reserve_g_brt = math.max(bool2int(get(absu_landing_on) == 1 and absu_power and get(nav_gs_flag) == 0 and get(nav2_gs_flag)==1) * lamps_brt, test_btn)

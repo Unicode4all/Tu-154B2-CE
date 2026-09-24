@@ -103,6 +103,7 @@ components = {
 		rv_сс = globalPropertyf("tu154b2/custom/elec/rv5_right_cc"),  -- RV current
 		rv5_alt = globalPropertyf("tu154b2/custom/misc/rv5_alt_right"),  -- высота на правом высотомере
 		rv_fail = globalPropertyi("tu154b2/custom/failures/rv2_fail"),  -- fail
+		light_lim = globalPropertyf("sim/custom/b2/rv5_2_lit_lim")
 	},
 	
 	

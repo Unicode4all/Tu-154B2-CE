@@ -1,292 +1,297 @@
 -- this is ABSU panel script
 -- createGlobalPropertyf("tu154b2/custom/controlls/absu_debug1", 0)
--- defineProperty("absu_debug1", globalPropertyf("tu154b2/custom/controlls/absu_debug1")) 
+-- absu_debug1 = globalPropertyf("tu154b2/custom/controlls/absu_debug1") 
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
 
 -- gauges
-defineProperty("absu_roll_mode", globalPropertyi("tu154b2/custom/gauges/console/absu_roll_mode")) -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
-defineProperty("absu_pitch_mode", globalPropertyi("tu154b2/custom/gauges/console/absu_pitch_mode")) -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
+absu_roll_mode = globalPropertyi("tu154b2/custom/gauges/console/absu_roll_mode") -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
+absu_pitch_mode = globalPropertyi("tu154b2/custom/gauges/console/absu_pitch_mode") -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
 
 -- controls
-defineProperty("absu_zpu_sel", globalPropertyi("tu154b2/custom/switchers/console/absu_zpu_sel")) -- переключатель ЗПУ. лев - прав
-defineProperty("absu_nav_on", globalPropertyi("tu154b2/custom/switchers/console/absu_nav_on")) -- стрелки навигация
-defineProperty("absu_landing_on", globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on")) -- стрелки посадка
-defineProperty("absu_needles_on", globalPropertyi("tu154b2/custom/switchers/console/absu_needles_on")) -- стрелки
-defineProperty("absu_speed_mode", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_mode")) -- режим СТУ. 0 - откл, 1 - нву, 2 - аз1, 3 - аз2, 4 - пос
-defineProperty("absu_speed_change", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_change")) -- ручка изменения скорости. 
-defineProperty("absu_speed_off", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_off")) -- отключение 1 и 2
-defineProperty("absu_speed_prepare", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare")) -- подготовка
-defineProperty("absu_speed_us_right_left", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_us_right_left")) -- подготовка
+absu_zpu_sel = globalPropertyi("tu154b2/custom/switchers/console/absu_zpu_sel") -- переключатель ЗПУ. лев - прав
+absu_nav_on = globalPropertyi("tu154b2/custom/switchers/console/absu_nav_on") -- стрелки навигация
+absu_landing_on = globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on") -- стрелки посадка
+absu_needles_on = globalPropertyi("tu154b2/custom/switchers/console/absu_needles_on") -- стрелки
+absu_speed_mode = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_mode") -- режим СТУ. 0 - откл, 1 - нву, 2 - аз1, 3 - аз2, 4 - пос
+absu_speed_change = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_change") -- ручка изменения скорости. 
+absu_speed_off = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_off") -- отключение 1 и 2
+absu_speed_prepare = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare") -- подготовка
+absu_speed_us_right_left = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_us_right_left") -- подготовка
 
-defineProperty("absu_roll_ch_on", globalPropertyi("tu154b2/custom/switchers/console/absu_roll_ch_on")) -- выключатель канал крена
-defineProperty("absu_pitch_ch_on", globalPropertyi("tu154b2/custom/switchers/console/absu_pitch_ch_on")) -- выключатель канала тангажа
-defineProperty("absu_smooth_on", globalPropertyi("tu154b2/custom/switchers/console/absu_smooth_on")) -- выключатель "в болтанку"
+absu_roll_ch_on = globalPropertyi("tu154b2/custom/switchers/console/absu_roll_ch_on") -- выключатель канал крена
+absu_pitch_ch_on = globalPropertyi("tu154b2/custom/switchers/console/absu_pitch_ch_on") -- выключатель канала тангажа
+absu_smooth_on = globalPropertyi("tu154b2/custom/switchers/console/absu_smooth_on") -- выключатель "в болтанку"
 
-defineProperty("absu_turn_handle", globalPropertyi("tu154b2/custom/switchers/console/absu_turn_handle")) -- ручка поворота
-defineProperty("absu_pitch_wheel", globalPropertyf("tu154b2/custom/switchers/console/absu_pitch_wheel")) -- колесико спуска, подъема
-defineProperty("absu_pitch_wheel_dir", globalPropertyi("tu154b2/custom/switchers/console/absu_pitch_wheel_dir")) -- колесико спуска, подъема
-
-
-defineProperty("hydro_ra56_rud_1", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_rud_1")) -- гидропитание РА56 курс
-defineProperty("hydro_ra56_rud_2", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_rud_2")) -- гидропитание РА56 курс
-defineProperty("hydro_ra56_rud_3", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_rud_3")) -- гидропитание РА56 курс
-
-defineProperty("hydro_ra56_ail_1", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_ail_1")) -- гидропитание РА56 крен
-defineProperty("hydro_ra56_ail_2", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_ail_2")) -- гидропитание РА56 крен
-defineProperty("hydro_ra56_ail_3", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_ail_3")) -- гидропитание РА56 крен
-
-defineProperty("hydro_ra56_elev_1", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_elev_1")) -- гидропитание РА56 тангаж
-defineProperty("hydro_ra56_elev_2", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_elev_2")) -- гидропитание РА56 тангаж
-defineProperty("hydro_ra56_elev_3", globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_elev_3")) -- гидропитание РА56 тангаж
+absu_turn_handle = globalPropertyi("tu154b2/custom/switchers/console/absu_turn_handle") -- ручка поворота
+absu_pitch_wheel = globalPropertyf("tu154b2/custom/switchers/console/absu_pitch_wheel") -- колесико спуска, подъема
+absu_pitch_wheel_dir = globalPropertyi("tu154b2/custom/switchers/console/absu_pitch_wheel_dir") -- колесико спуска, подъема
 
 
-defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man")) -- кольцевание автомат - ручное
-defineProperty("hydro_long_control", globalPropertyi("tu154b2/custom/switchers/eng/hydro_long_control")) -- продольная управляемость
+hydro_ra56_rud_1 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_rud_1") -- гидропитание РА56 курс
+hydro_ra56_rud_2 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_rud_2") -- гидропитание РА56 курс
+hydro_ra56_rud_3 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_rud_3") -- гидропитание РА56 курс
 
-defineProperty("hydro_circuit_auto_man_cap", globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man_cap")) -- кольцевание автомат - ручное
-defineProperty("hydro_long_control_cap", globalPropertyi("tu154b2/custom/switchers/eng/hydro_long_control_cap")) -- продольная управляемость
+hydro_ra56_ail_1 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_ail_1") -- гидропитание РА56 крен
+hydro_ra56_ail_2 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_ail_2") -- гидропитание РА56 крен
+hydro_ra56_ail_3 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_ail_3") -- гидропитание РА56 крен
 
-defineProperty("ZK_select", globalPropertyi("tu154b2/custom/switchers/ZK_select")) -- 
-defineProperty("nav_select", globalPropertyi("tu154b2/custom/switchers/nav_select")) -- 
-defineProperty("vbe_select", globalPropertyi("tu154b2/custom/switchers/vbe_select")) -- 
+hydro_ra56_elev_1 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_elev_1") -- гидропитание РА56 тангаж
+hydro_ra56_elev_2 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_elev_2") -- гидропитание РА56 тангаж
+hydro_ra56_elev_3 = globalPropertyi("tu154b2/custom/switchers/eng/hydro_ra56_elev_3") -- гидропитание РА56 тангаж
+
+
+hydro_circuit_auto_man = globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man") -- кольцевание автомат - ручное
+hydro_long_control = globalPropertyi("tu154b2/custom/switchers/eng/hydro_long_control") -- продольная управляемость
+
+hydro_circuit_auto_man_cap = globalPropertyi("tu154b2/custom/switchers/eng/hydro_circuit_auto_man_cap") -- кольцевание автомат - ручное
+hydro_long_control_cap = globalPropertyi("tu154b2/custom/switchers/eng/hydro_long_control_cap") -- продольная управляемость
+
+ZK_select = globalPropertyi("tu154b2/custom/switchers/ZK_select") -- 
+nav_select = globalPropertyi("tu154b2/custom/switchers/nav_select") -- 
+vbe_select = globalPropertyi("tu154b2/custom/switchers/vbe_select") -- 
 
 
 -- buttons
-defineProperty("absu_zk", globalPropertyi("tu154b2/custom/buttons/console/absu_zk")) -- кнопка ЗК на панели АБСУ
-defineProperty("absu_reset", globalPropertyi("tu154b2/custom/buttons/console/absu_reset")) -- кнопка сброс программы на панели АБСУ
-defineProperty("absu_nvu", globalPropertyi("tu154b2/custom/buttons/console/absu_nvu")) -- кнопка НВУ на панели АБСУ
-defineProperty("absu_az1", globalPropertyi("tu154b2/custom/buttons/console/absu_az1")) -- кнопка АЗ 1 на панели АБСУ
-defineProperty("absu_az2", globalPropertyi("tu154b2/custom/buttons/console/absu_az2")) -- кнопка АЗ 2 на панели АБСУ
-defineProperty("absu_app", globalPropertyi("tu154b2/custom/buttons/console/absu_app")) -- кнопка заход на панели АБСУ
-defineProperty("absu_gs", globalPropertyi("tu154b2/custom/buttons/console/absu_gs")) -- кнопка глиссада на панели АБСУ
-defineProperty("absu_stab_m", globalPropertyi("tu154b2/custom/buttons/console/absu_stab_m")) -- кнопка M на панели АБСУ
-defineProperty("absu_stab_v", globalPropertyi("tu154b2/custom/buttons/console/absu_stab_v")) -- кнопка V на панели АБСУ
-defineProperty("absu_stab_h", globalPropertyi("tu154b2/custom/buttons/console/absu_stab_h")) -- кнопка H на панели АБСУ
-defineProperty("absu_stab", globalPropertyi("tu154b2/custom/buttons/console/absu_stab")) -- кнопка СТАБ на панели АБСУ
+absu_zk = globalPropertyi("tu154b2/custom/buttons/console/absu_zk") -- кнопка ЗК на панели АБСУ
+absu_reset = globalPropertyi("tu154b2/custom/buttons/console/absu_reset") -- кнопка сброс программы на панели АБСУ
+absu_nvu = globalPropertyi("tu154b2/custom/buttons/console/absu_nvu") -- кнопка НВУ на панели АБСУ
+absu_az1 = globalPropertyi("tu154b2/custom/buttons/console/absu_az1") -- кнопка АЗ 1 на панели АБСУ
+absu_az2 = globalPropertyi("tu154b2/custom/buttons/console/absu_az2") -- кнопка АЗ 2 на панели АБСУ
+absu_app = globalPropertyi("tu154b2/custom/buttons/console/absu_app") -- кнопка заход на панели АБСУ
+absu_gs = globalPropertyi("tu154b2/custom/buttons/console/absu_gs") -- кнопка глиссада на панели АБСУ
+absu_stab_m = globalPropertyi("tu154b2/custom/buttons/console/absu_stab_m") -- кнопка M на панели АБСУ
+absu_stab_v = globalPropertyi("tu154b2/custom/buttons/console/absu_stab_v") -- кнопка V на панели АБСУ
+absu_stab_h = globalPropertyi("tu154b2/custom/buttons/console/absu_stab_h") -- кнопка H на панели АБСУ
+absu_stab = globalPropertyi("tu154b2/custom/buttons/console/absu_stab") -- кнопка СТАБ на панели АБСУ
 
-defineProperty("absu_az1_arm", globalPropertyi("tu154b2/custom/buttons/console/absu_az1_arm"))
-defineProperty("absu_az2_arm", globalPropertyi("tu154b2/custom/buttons/console/absu_az2_arm"))
-defineProperty("absu_nvu_arm", globalPropertyi("tu154b2/custom/buttons/console/absu_nvu_arm"))
-defineProperty("absu_app_arm", globalPropertyi("tu154b2/custom/buttons/console/absu_app_arm"))
-defineProperty("absu_gs_arm", globalPropertyi("tu154b2/custom/buttons/console/absu_gs_arm"))
+absu_az1_arm = globalPropertyi("tu154b2/custom/buttons/console/absu_az1_arm")
+absu_az2_arm = globalPropertyi("tu154b2/custom/buttons/console/absu_az2_arm")
+absu_nvu_arm = globalPropertyi("tu154b2/custom/buttons/console/absu_nvu_arm")
+absu_app_arm = globalPropertyi("tu154b2/custom/buttons/console/absu_app_arm")
+absu_gs_arm = globalPropertyi("tu154b2/custom/buttons/console/absu_gs_arm")
 
-defineProperty("absu_arrest", globalPropertyi("tu154b2/custom/buttons/console/absu_arrest")) -- кнопки арретировки МГВ
-defineProperty("absu_speed_test_1", globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_1")) -- кнопка првоерки СТУ нижняя
-defineProperty("absu_speed_test_2", globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_2")) -- кнопка првоерки СТУ верхняя
+absu_arrest = globalPropertyi("tu154b2/custom/buttons/console/absu_arrest") -- кнопки арретировки МГВ
+absu_speed_test_1 = globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_1") -- кнопка првоерки СТУ нижняя
+absu_speed_test_2 = globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_2") -- кнопка првоерки СТУ верхняя
 
-defineProperty("absu_stab_speed", globalPropertyi("tu154b2/custom/buttons/console/absu_stab_speed")) -- кнопка C на панели АБСУ
-defineProperty("absu_throt_off_1", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_1")) -- кнопка откл Г1 на панели АБСУ
-defineProperty("absu_throt_off_2", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_2")) -- кнопка откл Г2 на панели АБСУ
-defineProperty("absu_throt_off_3", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_3")) -- кнопка откл Г3 на панели АБСУ
+absu_stab_speed = globalPropertyi("tu154b2/custom/buttons/console/absu_stab_speed") -- кнопка C на панели АБСУ
+absu_throt_off_1 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_1") -- кнопка откл Г1 на панели АБСУ
+absu_throt_off_2 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_2") -- кнопка откл Г2 на панели АБСУ
+absu_throt_off_3 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_3") -- кнопка откл Г3 на панели АБСУ
 
 
 -- caps
-defineProperty("absu_arrest_cap", globalPropertyi("tu154b2/custom/buttons/console/absu_arrest_cap")) -- кнопка првоерки СТУ верхняя
-defineProperty("absu_smooth_on_cap", globalPropertyi("tu154b2/custom/switchers/console/absu_smooth_on_cap")) -- выключатель "в болтанку"
-defineProperty("absu_speed_prepare_cap", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare_cap")) -- подготовка
-defineProperty("absu_speed_off_cap", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_off_cap")) -- отключение 1 и 2
+absu_arrest_cap = globalPropertyi("tu154b2/custom/buttons/console/absu_arrest_cap") -- кнопка првоерки СТУ верхняя
+absu_smooth_on_cap = globalPropertyi("tu154b2/custom/switchers/console/absu_smooth_on_cap") -- выключатель "в болтанку"
+absu_speed_prepare_cap = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare_cap") -- подготовка
+absu_speed_off_cap = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_off_cap") -- отключение 1 и 2
 
 -- lamps
-defineProperty("absu_zk_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_zk")) -- АБСУ ЗК
-defineProperty("absu_reset_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_reset")) -- АБСУ ЗК
-defineProperty("absu_nvu_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_nvu")) -- АБСУ ЗК
-defineProperty("absu_az1_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_az1")) -- АБСУ ЗК
-defineProperty("absu_az2_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_az2")) -- АБСУ ЗК
-defineProperty("absu_app_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_app")) -- АБСУ ЗК
-defineProperty("absu_gz_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_gz")) -- АБСУ ЗК
-defineProperty("absu_stab_m_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_stab_m")) -- АБСУ ЗК
-defineProperty("absu_stab_v_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_stab_v")) -- АБСУ ЗК
-defineProperty("absu_stab_h_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_stab_h")) -- АБСУ ЗК
-defineProperty("absu_stab_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_stab")) -- АБСУ ЗК
-defineProperty("absu_stab_spd_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_stab_spd")) -- АБСУ ЗК
-defineProperty("absu_thro1_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_thro1")) -- АБСУ ЗК
-defineProperty("absu_thro2_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_thro2")) -- АБСУ ЗК
-defineProperty("absu_thro3_lamp", globalPropertyf("tu154b2/custom/lights/button/absu_thro3")) -- АБСУ ЗК
+absu_zk_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_zk") -- АБСУ ЗК
+absu_reset_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_reset") -- АБСУ ЗК
+absu_nvu_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_nvu") -- АБСУ ЗК
+absu_az1_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_az1") -- АБСУ ЗК
+absu_az2_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_az2") -- АБСУ ЗК
+absu_app_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_app") -- АБСУ ЗК
+absu_gz_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_gz") -- АБСУ ЗК
+absu_stab_m_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_stab_m") -- АБСУ ЗК
+absu_stab_v_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_stab_v") -- АБСУ ЗК
+absu_stab_h_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_stab_h") -- АБСУ ЗК
+absu_stab_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_stab") -- АБСУ ЗК
+absu_stab_spd_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_stab_spd") -- АБСУ ЗК
+absu_thro1_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_thro1") -- АБСУ ЗК
+absu_thro2_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_thro2") -- АБСУ ЗК
+absu_thro3_lamp = globalPropertyf("tu154b2/custom/lights/button/absu_thro3") -- АБСУ ЗК
 
-defineProperty("stu_roll_lamp", globalPropertyf("tu154b2/custom/lights/small/stu_roll")) -- крен
-defineProperty("stu_pitch_lamp", globalPropertyf("tu154b2/custom/lights/small/stu_pitch")) -- тангаж
-defineProperty("stu_toga_lamp", globalPropertyf("tu154b2/custom/lights/small/stu_toga")) -- УХОД
+stu_roll_lamp = globalPropertyf("tu154b2/custom/lights/small/stu_roll") -- крен
+stu_pitch_lamp = globalPropertyf("tu154b2/custom/lights/small/stu_pitch") -- тангаж
+stu_toga_lamp = globalPropertyf("tu154b2/custom/lights/small/stu_toga") -- УХОД
 
-defineProperty("at_1_lamp", globalPropertyf("tu154b2/custom/lights/small/at_1")) -- АТ 1
-defineProperty("at_2_lamp", globalPropertyf("tu154b2/custom/lights/small/at_2")) -- АТ 2
+at_1_lamp = globalPropertyf("tu154b2/custom/lights/small/at_1") -- АТ 1
+at_2_lamp = globalPropertyf("tu154b2/custom/lights/small/at_2") -- АТ 2
 
-defineProperty("course_lim", globalPropertyf("tu154b2/custom/lights/course_lim")) -- выход за пределы курса
-defineProperty("gs_lim", globalPropertyf("tu154b2/custom/lights/gs_lim")) -- выход за пределы глиссады
+course_lim = globalPropertyf("tu154b2/custom/lights/course_lim") -- выход за пределы курса
+gs_lim = globalPropertyf("tu154b2/custom/lights/gs_lim") -- выход за пределы глиссады
 
 
 
 
 -- forward panel lamps
-defineProperty("wrong_trimm", globalPropertyf("tu154b2/custom/lights/wrong_trimm")) -- ложное триммирование
-defineProperty("controll_roll", globalPropertyf("tu154b2/custom/lights/controll_roll")) -- управляй креном
-defineProperty("controll_pitch", globalPropertyf("tu154b2/custom/lights/controll_pitch")) -- управляй тангажом
-defineProperty("yoke_sign", globalPropertyf("tu154b2/custom/lights/yoke_sign")) -- сигнализация ухода на второй круг в штурвальном режиме
-defineProperty("triangle", globalPropertyf("tu154b2/custom/lights/triangle")) -- интегральный сигнальный огонь
-defineProperty("controll_thrust", globalPropertyf("tu154b2/custom/lights/controll_thrust")) -- управляй тягой
+wrong_trimm = globalPropertyf("tu154b2/custom/lights/wrong_trimm") -- ложное триммирование
+controll_roll = globalPropertyf("tu154b2/custom/lights/controll_roll") -- управляй креном
+controll_pitch = globalPropertyf("tu154b2/custom/lights/controll_pitch") -- управляй тангажом
+yoke_sign = globalPropertyf("tu154b2/custom/lights/yoke_sign") -- сигнализация ухода на второй круг в штурвальном режиме
+triangle = globalPropertyf("tu154b2/custom/lights/triangle") -- интегральный сигнальный огонь
+controll_thrust = globalPropertyf("tu154b2/custom/lights/controll_thrust") -- управляй тягой
 
-defineProperty("toga", globalPropertyf("tu154b2/custom/lights/toga")) -- уход
+toga = globalPropertyf("tu154b2/custom/lights/toga") -- уход
 
-defineProperty("course", globalPropertyf("tu154b2/custom/lights/course")) -- КУРС
-defineProperty("glideslope", globalPropertyf("tu154b2/custom/lights/glideslope")) -- ГЛИСС
-defineProperty("zk_lamp", globalPropertyf("tu154b2/custom/lights/zk_lamp")) -- ЗК
-defineProperty("thrust_automat", globalPropertyf("tu154b2/custom/lights/thrust_automat")) -- автомат тяги
-defineProperty("stab_roll", globalPropertyf("tu154b2/custom/lights/stab_roll")) -- стабилизация боков
-defineProperty("stab_pitch", globalPropertyf("tu154b2/custom/lights/stab_pitch")) -- стабилизация продольная
-defineProperty("nvu_lamp", globalPropertyf("tu154b2/custom/lights/nvu_lamp")) -- НВУ
-defineProperty("vor_lamp", globalPropertyf("tu154b2/custom/lights/vor_lamp")) -- VOR
+course = globalPropertyf("tu154b2/custom/lights/course") -- КУРС
+glideslope = globalPropertyf("tu154b2/custom/lights/glideslope") -- ГЛИСС
+zk_lamp = globalPropertyf("tu154b2/custom/lights/zk_lamp") -- ЗК
+thrust_automat = globalPropertyf("tu154b2/custom/lights/thrust_automat") -- автомат тяги
+stab_roll = globalPropertyf("tu154b2/custom/lights/stab_roll") -- стабилизация боков
+stab_pitch = globalPropertyf("tu154b2/custom/lights/stab_pitch") -- стабилизация продольная
+nvu_lamp = globalPropertyf("tu154b2/custom/lights/nvu_lamp") -- НВУ
+vor_lamp = globalPropertyf("tu154b2/custom/lights/vor_lamp") -- VOR
 
-defineProperty("stab_h", globalPropertyf("tu154b2/custom/lights/stab_h")) -- стаб H
-defineProperty("stab_v", globalPropertyf("tu154b2/custom/lights/stab_v")) -- стаб V
-defineProperty("stab_m", globalPropertyf("tu154b2/custom/lights/stab_m")) -- стаб M
+stab_h = globalPropertyf("tu154b2/custom/lights/stab_h") -- стаб H
+stab_v = globalPropertyf("tu154b2/custom/lights/stab_v") -- стаб V
+stab_m = globalPropertyf("tu154b2/custom/lights/stab_m") -- стаб M
 
-defineProperty("pitch_control_fail", globalPropertyf("tu154b2/custom/lights/pitch_control_fail")) -- продол управл
-defineProperty("roll_control_fail", globalPropertyf("tu154b2/custom/lights/roll_control_fail")) -- боков управл
+pitch_control_fail = globalPropertyf("tu154b2/custom/lights/pitch_control_fail") -- продол управл
+roll_control_fail = globalPropertyf("tu154b2/custom/lights/roll_control_fail") -- боков управл
 
-defineProperty("absu_work", globalPropertyf("tu154b2/custom/lights/absu_work")) -- испр АБСУ
-defineProperty("work_state", globalPropertyi("tu154b2/custom/failures/absu_work_state"))
-defineProperty("sns_lamp", globalPropertyf("tu154b2/custom/lights/sns_lamp")) -- SNS lamp
+absu_work = globalPropertyf("tu154b2/custom/lights/absu_work") -- испр АБСУ
+work_state = globalPropertyi("tu154b2/custom/failures/absu_work_state")
+sns_lamp = globalPropertyf("tu154b2/custom/lights/sns_lamp") -- SNS lamp
 
 
 
 -- eng panel lamps
-defineProperty("ra56_roll_fail_1", globalPropertyf("tu154b2/custom/lights/ra56_roll_fail_1")) -- отказ РА56 крен
-defineProperty("ra56_roll_fail_2", globalPropertyf("tu154b2/custom/lights/ra56_roll_fail_2")) -- отказ РА56 крен
-defineProperty("ra56_roll_fail_3", globalPropertyf("tu154b2/custom/lights/ra56_roll_fail_3")) -- отказ РА56 крен
+ra56_roll_fail_1 = globalPropertyf("tu154b2/custom/lights/ra56_roll_fail_1") -- отказ РА56 крен
+ra56_roll_fail_2 = globalPropertyf("tu154b2/custom/lights/ra56_roll_fail_2") -- отказ РА56 крен
+ra56_roll_fail_3 = globalPropertyf("tu154b2/custom/lights/ra56_roll_fail_3") -- отказ РА56 крен
 
-defineProperty("ra56_pitch_fail_1", globalPropertyf("tu154b2/custom/lights/ra56_pitch_fail_1")) -- отказ РА56 тангаж
-defineProperty("ra56_pitch_fail_2", globalPropertyf("tu154b2/custom/lights/ra56_pitch_fail_2")) -- отказ РА56 тангаж
-defineProperty("ra56_pitch_fail_3", globalPropertyf("tu154b2/custom/lights/ra56_pitch_fail_3")) -- отказ РА56 тангаж
+ra56_pitch_fail_1 = globalPropertyf("tu154b2/custom/lights/ra56_pitch_fail_1") -- отказ РА56 тангаж
+ra56_pitch_fail_2 = globalPropertyf("tu154b2/custom/lights/ra56_pitch_fail_2") -- отказ РА56 тангаж
+ra56_pitch_fail_3 = globalPropertyf("tu154b2/custom/lights/ra56_pitch_fail_3") -- отказ РА56 тангаж
 
-defineProperty("ra56_course_fail_1", globalPropertyf("tu154b2/custom/lights/ra56_course_fail_1")) -- отказ РА56 курс
-defineProperty("ra56_course_fail_2", globalPropertyf("tu154b2/custom/lights/ra56_course_fail_2")) -- отказ РА56 курс
-defineProperty("ra56_course_fail_3", globalPropertyf("tu154b2/custom/lights/ra56_course_fail_3")) -- отказ РА56 курс
+ra56_course_fail_1 = globalPropertyf("tu154b2/custom/lights/ra56_course_fail_1") -- отказ РА56 курс
+ra56_course_fail_2 = globalPropertyf("tu154b2/custom/lights/ra56_course_fail_2") -- отказ РА56 курс
+ra56_course_fail_3 = globalPropertyf("tu154b2/custom/lights/ra56_course_fail_3") -- отказ РА56 курс
 
-defineProperty("eng_at_on_lamp", globalPropertyf("tu154b2/custom/lights/engines/eng_at_on")) -- АТ включен
+eng_at_on_lamp = globalPropertyf("tu154b2/custom/lights/engines/eng_at_on") -- АТ включен
 
 -- other sources
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп на передней панели	0
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
-defineProperty("lamp_test_eng", globalPropertyi("tu154b2/custom/buttons/lamp_test_pa56")) -- кнопка проверки ламп на панели	БИ
+lamp_test_eng = globalPropertyi("tu154b2/custom/buttons/lamp_test_pa56") -- кнопка проверки ламп на панели	БИ
 
 
 -- 
 
-defineProperty("roll_main_mode", globalPropertyi("tu154b2/custom/absu/roll_main_mode")) -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
-defineProperty("pitch_main_mode", globalPropertyi("tu154b2/custom/absu/pitch_main_mode")) -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
+roll_main_mode = globalPropertyi("tu154b2/custom/absu/roll_main_mode") -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
+pitch_main_mode = globalPropertyi("tu154b2/custom/absu/pitch_main_mode") -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
 
-defineProperty("roll_sub_mode", globalPropertyi("tu154b2/custom/absu/roll_sub_mode")) -- режим АБСУ по крену. 0 - выкл, 1 - стаб, 2 - ЗК, 3 - НВУ, 4 - АЗ1, 5 - АЗ2, 6 - заход
-defineProperty("pitch_sub_mode", globalPropertyi("tu154b2/custom/absu/pitch_sub_mode")) -- режим АБСУ по тангажу. 0 - выкл, 1 - стаб, 2 - V, 3 - M, 4 - H, 5 - глисс, 6 - уход
+roll_sub_mode = globalPropertyi("tu154b2/custom/absu/roll_sub_mode") -- режим АБСУ по крену. 0 - выкл, 1 - стаб, 2 - ЗК, 3 - НВУ, 4 - АЗ1, 5 - АЗ2, 6 - заход
+pitch_sub_mode = globalPropertyi("tu154b2/custom/absu/pitch_sub_mode") -- режим АБСУ по тангажу. 0 - выкл, 1 - стаб, 2 - V, 3 - M, 4 - H, 5 - глисс, 6 - уход
 
-defineProperty("stu_mode", globalPropertyi("tu154b2/custom/absu/stu_mode")) -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб, 4 - уход	
+stu_mode = globalPropertyi("tu154b2/custom/absu/stu_mode") -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб, 4 - уход	
 
-defineProperty("absu_throt_off_1", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_1")) -- кнопка откл Г1 на панели АБСУ
-defineProperty("absu_throt_off_2", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_2")) -- кнопка откл Г2 на панели АБСУ
-defineProperty("absu_throt_off_3", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_3")) -- кнопка откл Г3 на панели АБСУ
-
-
-defineProperty("absu_pnp_mode_1", globalPropertyi("tu154b2/custom/absu/absu_pnp_mode_1")) -- режим индикации ПНП. 0 = off, 1 = НВУ, 2 = VOR1, 3 = VOR2, 4 = ПС
-defineProperty("absu_pnp_mode_2", globalPropertyi("tu154b2/custom/absu/absu_pnp_mode_2")) -- режим индикации ПНП. 0 = off, 1 = НВУ, 2 = VOR1, 3 = VOR2, 4 = ПС
-
-defineProperty("absu_course_out", globalPropertyi("tu154b2/custom/absu_course_out")) -- flying outside the course limits
-defineProperty("absu_gs_out", globalPropertyi("tu154b2/custom/absu_gs_out")) -- flying outside the course limits
+absu_throt_off_1 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_1") -- кнопка откл Г1 на панели АБСУ
+absu_throt_off_2 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_2") -- кнопка откл Г2 на панели АБСУ
+absu_throt_off_3 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_3") -- кнопка откл Г3 на панели АБСУ
 
 
-defineProperty("pkp_fail_left", globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_L")) -- 
-defineProperty("pkp_fail_right", globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_R")) -- 
-defineProperty("mgv_contr_fail", globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag")) -- 
+absu_pnp_mode_1 = globalPropertyi("tu154b2/custom/absu/absu_pnp_mode_1") -- режим индикации ПНП. 0 = off, 1 = НВУ, 2 = VOR1, 3 = VOR2, 4 = ПС
+absu_pnp_mode_2 = globalPropertyi("tu154b2/custom/absu/absu_pnp_mode_2") -- режим индикации ПНП. 0 = off, 1 = НВУ, 2 = VOR1, 3 = VOR2, 4 = ПС
+
+absu_course_out = globalPropertyi("tu154b2/custom/absu_course_out") -- flying outside the course limits
+absu_gs_out = globalPropertyi("tu154b2/custom/absu_gs_out") -- flying outside the course limits
 
 
-defineProperty("pressure_ind_1", globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_1")) -- индикатор давления гидросистемы 1
-defineProperty("pressure_ind_2", globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_2")) -- индикатор давления гидросистемы 2
-defineProperty("pressure_ind_3", globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_3")) -- индикатор давления гидросистемы 3
-
-defineProperty("sau_stu_on", globalPropertyi("tu154b2/custom/switchers/ovhd/sau_stu_on"))  -- САУ СТУ выключатель
-
-defineProperty("tks_fail_left", globalPropertyi("tu154b2/custom/tks/fail_left")) -- флаг отказа
-defineProperty("tks_fail_right", globalPropertyi("tu154b2/custom/tks/fail_right")) -- флаг отказа
+pkp_fail_left = globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_L") -- 
+pkp_fail_right = globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_R") -- 
+mgv_contr_fail = globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag") -- 
 
 
-defineProperty("elev_trimm_switcher", globalPropertyi("tu154b2/custom/controll/elev_trimm_switcher")) -- ручка управления триммером РВ. -1 - пикирование, 0 - нейтр, +1 кабрирование
-defineProperty("emerg_elev_trimm", globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm")) -- аварийное управление триммером
+pressure_ind_1 = globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_1") -- индикатор давления гидросистемы 1
+pressure_ind_2 = globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_2") -- индикатор давления гидросистемы 2
+pressure_ind_3 = globalPropertyf("tu154b2/custom/gauges/hydro/pressure_ind_3") -- индикатор давления гидросистемы 3
+
+sau_stu_on = globalPropertyi("tu154b2/custom/switchers/ovhd/sau_stu_on")  -- САУ СТУ выключатель
+
+tks_fail_left = globalPropertyi("tu154b2/custom/tks/fail_left") -- флаг отказа
+tks_fail_right = globalPropertyi("tu154b2/custom/tks/fail_right") -- флаг отказа
+
+
+elev_trimm_switcher = globalPropertyi("tu154b2/custom/controll/elev_trimm_switcher") -- ручка управления триммером РВ. -1 - пикирование, 0 - нейтр, +1 кабрирование
+emerg_elev_trimm = globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm") -- аварийное управление триммером
 
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
-defineProperty("int_pitch_trim", globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim")) -- положение триммера руля высоты
-defineProperty("absu_pitch_trimm", globalPropertyi("tu154b2/custom/absu/absu_pitch_trimm")) -- комманда триммеру от АБСУ. +1 = вверх, -1 = ввениз
+int_pitch_trim = globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim") -- положение триммера руля высоты
+absu_pitch_trimm = globalPropertyi("tu154b2/custom/absu/absu_pitch_trimm") -- комманда триммеру от АБСУ. +1 = вверх, -1 = ввениз
 
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
 
-defineProperty("damp_roll_lamp", globalPropertyi("tu154b2/custom/absu/damp_roll_lamp")) -- 
-defineProperty("damp_pitch_lamp", globalPropertyi("tu154b2/custom/absu/damp_pitch_lamp")) -- 
-defineProperty("damp_yaw_lamp", globalPropertyi("tu154b2/custom/absu/damp_yaw_lamp")) -- 
-defineProperty("roll_contr_lamp", globalPropertyi("tu154b2/custom/absu/roll_contr_lamp")) -- 
-defineProperty("pitch_contr_lamp", globalPropertyi("tu154b2/custom/absu/pitch_contr_lamp")) -- 
-defineProperty("man_roll_lamp", globalPropertyi("tu154b2/custom/absu/man_roll_lamp")) -- 
-defineProperty("man_pitch_lamp", globalPropertyi("tu154b2/custom/absu/man_pitch_lamp")) -- 
-defineProperty("man_toga_lamp", globalPropertyi("tu154b2/custom/absu/man_toga_lamp")) -- 
-defineProperty("triangle_lamp_signal", globalPropertyi("tu154b2/custom/absu/triangle_lamp_signal")) -- 
+damp_roll_lamp = globalPropertyi("tu154b2/custom/absu/damp_roll_lamp") -- 
+damp_pitch_lamp = globalPropertyi("tu154b2/custom/absu/damp_pitch_lamp") -- 
+damp_yaw_lamp = globalPropertyi("tu154b2/custom/absu/damp_yaw_lamp") -- 
+roll_contr_lamp = globalPropertyi("tu154b2/custom/absu/roll_contr_lamp") -- 
+pitch_contr_lamp = globalPropertyi("tu154b2/custom/absu/pitch_contr_lamp") -- 
+man_roll_lamp = globalPropertyi("tu154b2/custom/absu/man_roll_lamp") -- 
+man_pitch_lamp = globalPropertyi("tu154b2/custom/absu/man_pitch_lamp") -- 
+man_toga_lamp = globalPropertyi("tu154b2/custom/absu/man_toga_lamp") -- 
+triangle_lamp_signal = globalPropertyi("tu154b2/custom/absu/triangle_lamp_signal") -- 
 
 
 -- failures
-defineProperty("absu_ra56_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra56_roll_fail")) -- отказ ra56
-defineProperty("absu_ra56_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra56_pitch_fail")) -- отказ ra56
-defineProperty("absu_ra56_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra56_yaw_fail")) -- отказ ra56
+absu_ra56_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_ra56_roll_fail") -- отказ ra56
+absu_ra56_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_ra56_pitch_fail") -- отказ ra56
+absu_ra56_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_ra56_yaw_fail") -- отказ ra56
 
-defineProperty("absu_at1_fail", globalPropertyi("tu154b2/custom/failures/absu_at1_fail")) -- отказ AT
-defineProperty("absu_at2_fail", globalPropertyi("tu154b2/custom/failures/absu_at2_fail")) -- отказ AT
+absu_at1_fail = globalPropertyi("tu154b2/custom/failures/absu_at1_fail") -- отказ AT
+absu_at2_fail = globalPropertyi("tu154b2/custom/failures/absu_at2_fail") -- отказ AT
 
-defineProperty("absu_damp_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_damp_roll_fail")) -- отказ демперов крена
-defineProperty("absu_damp_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_damp_pitch_fail")) -- отказ демперов тангажа
-defineProperty("absu_damp_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_damp_yaw_fail")) -- отказ демперов курса
-defineProperty("absu_contr_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_contr_roll_fail")) -- отказ бокового управления
-defineProperty("absu_contr_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_contr_pitch_fail")) -- отказ продольного управления
-defineProperty("absu_calc_toga_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_toga_fail")) -- отказ вычислителя УХОД
-defineProperty("absu_calc_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_roll_fail")) -- отказ бокового канала СТУ
-defineProperty("absu_calc_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_pitch_fail")) -- отказ продольного канала СТУ
+absu_damp_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_damp_roll_fail") -- отказ демперов крена
+absu_damp_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_damp_pitch_fail") -- отказ демперов тангажа
+absu_damp_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_damp_yaw_fail") -- отказ демперов курса
+absu_contr_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_contr_roll_fail") -- отказ бокового управления
+absu_contr_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_contr_pitch_fail") -- отказ продольного управления
+absu_calc_toga_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_toga_fail") -- отказ вычислителя УХОД
+absu_calc_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_roll_fail") -- отказ бокового канала СТУ
+absu_calc_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_pitch_fail") -- отказ продольного канала СТУ
 -- RA56 failures
-defineProperty("absu_ra1_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_roll_fail"))
-defineProperty("absu_ra2_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_roll_fail"))
-defineProperty("absu_ra3_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_roll_fail"))
-defineProperty("absu_ra1_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_pitch_fail"))
-defineProperty("absu_ra2_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_pitch_fail"))
-defineProperty("absu_ra3_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_pitch_fail"))
-defineProperty("absu_ra1_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_yaw_fail"))
-defineProperty("absu_ra2_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_yaw_fail"))
-defineProperty("absu_ra3_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_yaw_fail"))
-defineProperty("man_at", globalPropertyi("tu154b2/custom/failures/absu_man_at"))
-defineProperty("absu_power", globalPropertyi("tu154b2/custom/absu_power_27"))
-defineProperty("bdlu_fail", globalPropertyi("tu154b2/custom/failures/absu_bdlu_fail"))
-defineProperty("test_stu", globalPropertyi("tu154b2/custom/failures/absu_stu_test"))
-defineProperty("test_vu", globalPropertyi("tu154b2/custom/failures/absu_vu_test"))
-defineProperty("absu_power_cc", globalPropertyf("tu154b2/custom/absu_power_cc")) -- потребление тока АБСУ
-defineProperty("gen_1_bus_auto", globalPropertyi("sim/custom/elec/gen_1_bus_auto")) --
-defineProperty("gen_2_bus_auto", globalPropertyi("sim/custom/elec/gen_2_bus_auto")) --
-defineProperty("gen_3_bus_auto", globalPropertyi("sim/custom/elec/gen_3_bus_auto")) ---
-defineProperty("gen_1_bus_auto_cap", globalPropertyi("sim/custom/elec/gen_1_bus_auto_cap")) --
-defineProperty("gen_2_bus_auto_cap", globalPropertyi("sim/custom/elec/gen_2_bus_auto_cap")) --
-defineProperty("gen_3_bus_auto_cap", globalPropertyi("sim/custom/elec/gen_3_bus_auto_cap")) --
-defineProperty("vent", globalPropertyi("tu154b2/custom/switchers/ovhd/vent_3"))
-defineProperty("trimm_1", globalPropertyi("sim/custom/b2/elev_trimm_1_pk"))
-defineProperty("trimm_2", globalPropertyi("sim/custom/b2/elev_trimm_2_pk"))
-defineProperty("trimm_1_cap", globalPropertyi("sim/custom/b2/elev_trimm_1_pk_cap"))
-defineProperty("trimm_2_cap", globalPropertyi("sim/custom/b2/elev_trimm_2_pk_cap"))
+absu_ra1_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_ra1_roll_fail")
+absu_ra2_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_ra2_roll_fail")
+absu_ra3_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_ra3_roll_fail")
+absu_ra1_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_ra1_pitch_fail")
+absu_ra2_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_ra2_pitch_fail")
+absu_ra3_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_ra3_pitch_fail")
+absu_ra1_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_ra1_yaw_fail")
+absu_ra2_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_ra2_yaw_fail")
+absu_ra3_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_ra3_yaw_fail")
+man_at = globalPropertyi("tu154b2/custom/failures/absu_man_at")
+absu_power = globalPropertyi("tu154b2/custom/absu_power_27")
+bdlu_fail = globalPropertyi("tu154b2/custom/failures/absu_bdlu_fail")
+test_stu = globalPropertyi("tu154b2/custom/failures/absu_stu_test")
+test_vu = globalPropertyi("tu154b2/custom/failures/absu_vu_test")
+absu_power_cc = globalPropertyf("tu154b2/custom/absu_power_cc") -- потребление тока АБСУ
+gen_1_bus_auto = globalPropertyi("sim/custom/elec/gen_1_bus_auto") --
+gen_2_bus_auto = globalPropertyi("sim/custom/elec/gen_2_bus_auto") --
+gen_3_bus_auto = globalPropertyi("sim/custom/elec/gen_3_bus_auto") ---
+gen_1_bus_auto_cap = globalPropertyi("sim/custom/elec/gen_1_bus_auto_cap") --
+gen_2_bus_auto_cap = globalPropertyi("sim/custom/elec/gen_2_bus_auto_cap") --
+gen_3_bus_auto_cap = globalPropertyi("sim/custom/elec/gen_3_bus_auto_cap") --
+vent = globalPropertyi("tu154b2/custom/switchers/ovhd/vent_3")
+trimm_1 = globalPropertyi("sim/custom/b2/elev_trimm_1_pk")
+trimm_2 = globalPropertyi("sim/custom/b2/elev_trimm_2_pk")
+trimm_1_cap = globalPropertyi("sim/custom/b2/elev_trimm_1_pk_cap")
+trimm_2_cap = globalPropertyi("sim/custom/b2/elev_trimm_2_pk_cap")
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-defineProperty("nvu_rez", globalPropertyi("tu154b2/custom/lights/nvu_no_reserve"))
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+nvu_rez = globalPropertyi("tu154b2/custom/lights/nvu_no_reserve")
+
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_3")
+lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_4")
+lamp_3 = globalPropertyi("tu154b2/custom/failures/lamp_5")
+lamp_4 = globalPropertyi("tu154b2/custom/failures/lamp_6")
 
 
 local button_dn_L = loadSample(moduleDirectory .. '/Custom Sounds/absu_dn_L.wav')
@@ -801,7 +806,7 @@ local function lamps()
 	local absu_reset_lamp_brt = math.max(bool2int(power115 and roll_submode == 1 and pitch_submode < 5 and get(absu_nvu_arm)+get(absu_az1_arm)+get(absu_az2_arm)+get(absu_app_arm)+get(absu_gs_arm)==0) * lamps_brt * day_night, 0) 
 	set(absu_reset_lamp, absu_reset_lamp_brt)
 	
-	local absu_nvu_lamp_brt = math.max(bool2int(power115 and (roll_submode == 3 or (get(absu_nvu_arm)==1 and pnp_mode==1))) * lamps_brt * day_night, 0)
+	local absu_nvu_lamp_brt = math.max(bool2int(power115 and (roll_submode == 3 or (get(absu_nvu_arm)==1 and pnp_mode==1))) * lamps_brt * day_night, 0)  * (1 - get(lamp_3))
 	set(absu_nvu_lamp, absu_nvu_lamp_brt)
 	
 	local absu_az1_lamp_brt = math.max(bool2int(power115 and (roll_submode == 4 or (get(absu_az1_arm)==1 and pnp_mode==2))) * lamps_brt * day_night, 0)
@@ -816,10 +821,10 @@ local function lamps()
 	local absu_gz_lamp_brt = math.max(bool2int(power115 and (pitch_submode == 5 or pitch_submode == 10)) * lamps_brt * day_night, 0) 
 	set(absu_gz_lamp, absu_gz_lamp_brt)
 	
-	local absu_stab_m_lamp_brt = math.max(bool2int(power115 and pitch_submode == 3) * lamps_brt * day_night, 0) 
+	local absu_stab_m_lamp_brt = math.max(bool2int(power115 and pitch_submode == 3) * lamps_brt * day_night, 0)  * (1 - get(lamp_1))
 	set(absu_stab_m_lamp, absu_stab_m_lamp_brt)
 	
-	local absu_stab_v_lamp_brt = math.max(bool2int(power115 and pitch_submode == 2) * lamps_brt * day_night, 0)
+	local absu_stab_v_lamp_brt = math.max(bool2int(power115 and pitch_submode == 2) * lamps_brt * day_night, 0)  * (1 - get(lamp_2))
 	set(absu_stab_v_lamp, absu_stab_v_lamp_brt)
 	
 	local absu_stab_h_lamp_brt = math.max(bool2int(power115 and pitch_submode == 4) * lamps_brt * day_night, 0) 
@@ -1031,7 +1036,7 @@ local function lamps()
 	-- eng panel lamps
 	local test_btn_eng = get(lamp_test_eng) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
 	
-	local ra56_roll_fail_1_brt = math.max(bool2int(get(absu_ra1_roll_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_roll_fail_1_brt = math.max(bool2int(get(absu_ra1_roll_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) * (1 - get(lamp_4))
 	set(ra56_roll_fail_1, ra56_roll_fail_1_brt)
 	
 	local ra56_roll_fail_2_brt = math.max(bool2int(get(absu_ra2_roll_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 

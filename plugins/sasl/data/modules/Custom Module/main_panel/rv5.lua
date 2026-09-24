@@ -33,7 +33,8 @@ defineProperty("rv_lamp", globalPropertyf("tu154b2/custom/lights/small/rv5_left_
 
 defineProperty("rv_сс", globalPropertyf("tu154b2/custom/elec/rv5_left_cc"))  -- Current consumption
 defineProperty("kontur_90th", globalPropertyi("sim/custom/b2/kontur_90th"))
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+defineProperty("light_lim", globalPropertyf("sim/custom/b2/rv5_1_lit_lim"))
 bank = globalPropertyf("sim/flightmodel2/position/true_phi")
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
@@ -147,9 +148,11 @@ function update()
 	
 	-- lamp logic
 	local lamp_lit = bool2int(alt_angle < get(dh_set) - 1 and power)
-	
-	
-	
+	local light_brt = get(light_lim)
+	if lamp_lit > light_brt then
+		lamp_lit = light_brt
+	end
+
 	local lamp_coef = math.max((get(bus27_volt) - 10) / 18.5, 0)
 	-- set results
 	if get(ismaster)~=1 then

@@ -45943,6 +45943,8 @@ P acf/_auto_rpm_EQ 0
 P acf/_auto_rpm_with_tvec 0
 P acf/_auto_sync_EQ 0
 P acf/_auto_trim_EQ 0
+P acf/_autofeather_disarm_trq 0.144999996
+P acf/_autofeather_feather_trq 0.094999999
 P acf/_autofeather_min_throttle 0.500000000
 P acf/_autopilot_logic 0
 P acf/_average_mac_acf 21.016468048
@@ -46227,6 +46229,7 @@ P acf/_chute_z/1 0.000000000
 P acf/_chute_z/2 0.000000000
 P acf/_chute_z/count 3
 P acf/_click_step_otto_alt 10.000000000
+P acf/_click_step_otto_alt_hold 10.000000000
 P acf/_click_step_otto_vvi 100.000000000
 P acf/_click_step_radio_alt 10.000000000
 P acf/_clutch_cycle_time 30.000000000
@@ -46246,6 +46249,7 @@ P acf/_collective_en 0
 P acf/_con_smooth_ailn 2
 P acf/_con_smooth_elev 2
 P acf/_con_smooth_rudd 2
+P acf/_copilot_audio_EQ 1
 P acf/_correlator_interp/0 0.000000000
 P acf/_correlator_interp/1 0.000000000
 P acf/_correlator_interp/2 0.000000000
@@ -47398,7 +47402,7 @@ P acf/_feathered_pitch 0.000000000
 P acf/_ff_rat_idle_JET 0.150000006
 P acf/_ff_rat_idle_PRP 0.100000001
 P acf/_ff_rat_idle_turbo 0.100000001
-P acf/_file_writer_version 124308
+P acf/_file_writer_version 124410
 P acf/_fixed_max/0 1.41037E4
 P acf/_fixed_max/1 1.12437E4
 P acf/_fixed_max/2 440.000000000
@@ -48507,7 +48511,7 @@ P acf/_vect_min_nace 0.000000000
 P acf/_vect_power_aft 1.000000000
 P acf/_vect_power_for 1.000000000
 P acf/_vect_rate 15.000000000
-P acf/_version 1.44
+P acf/_version 1.45
 P acf/_vnav_descend_auto_arm 0
 P acf/_vor_mode_has_dead_reckon 0
 P acf/_vvi_but_adjusts_pitch 0

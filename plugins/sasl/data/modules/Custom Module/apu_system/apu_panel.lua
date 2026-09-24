@@ -1,106 +1,107 @@
 -- this is an APU panel
 -- gauges and controlls
-defineProperty("apu_main_switch", globalPropertyi("tu154b2/custom/switchers/eng/apu_main_switch")) -- выключатель ВСУ
-defineProperty("apu_start_mode", globalPropertyi("tu154b2/custom/switchers/eng/apu_start_mode")) -- режим запуска ВСУ
-defineProperty("apu_air_bleed", globalPropertyi("tu154b2/custom/switchers/eng/apu_air_bleed")) -- переключение заслонки отбора воздуха. -1 - закрыть, 0 - нейтр, +1 - открыть
-defineProperty("apu_start", globalPropertyi("tu154b2/custom/buttons/eng/apu_start")) -- кнопка старта ВСУ
-defineProperty("apu_stop", globalPropertyi("tu154b2/custom/buttons/eng/apu_stop")) -- кнопка стоп ВСУ
+apu_main_switch = globalPropertyi("tu154b2/custom/switchers/eng/apu_main_switch") -- выключатель ВСУ
+apu_start_mode = globalPropertyi("tu154b2/custom/switchers/eng/apu_start_mode") -- режим запуска ВСУ
+apu_air_bleed = globalPropertyi("tu154b2/custom/switchers/eng/apu_air_bleed") -- переключение заслонки отбора воздуха. -1 - закрыть, 0 - нейтр, +1 - открыть
+apu_start = globalPropertyi("tu154b2/custom/buttons/eng/apu_start") -- кнопка старта ВСУ
+apu_stop = globalPropertyi("tu154b2/custom/buttons/eng/apu_stop") -- кнопка стоп ВСУ
 
 
-defineProperty("apu_rpm", globalPropertyf("tu154b2/custom/gauges/eng/apu_rpm")) -- обороты ВСУ. 0-100%
-defineProperty("apu_egt_gau", globalPropertyf("tu154b2/custom/gauges/eng/apu_egt")) -- ТВГ ВСУ. 0 - 900 C
-defineProperty("apu_oil_temp", globalPropertyf("tu154b2/custom/gauges/eng/apu_oil_temp")) -- температура масла ВСУ -50 - 150 C
+apu_rpm = globalPropertyf("tu154b2/custom/gauges/eng/apu_rpm") -- обороты ВСУ. 0-100%
+apu_egt_gau = globalPropertyf("tu154b2/custom/gauges/eng/apu_egt") -- ТВГ ВСУ. 0 - 900 C
+apu_oil_temp = globalPropertyf("tu154b2/custom/gauges/eng/apu_oil_temp") -- температура масла ВСУ -50 - 150 C
 
 
 
 
 -- lamps
-defineProperty("low_oil", globalPropertyf("tu154b2/custom/lights/apu/low_oil")) -- масла мало
-defineProperty("low_oil_press", globalPropertyf("tu154b2/custom/lights/apu/low_oil_press")) -- Р масла
-defineProperty("high_temp", globalPropertyf("tu154b2/custom/lights/apu/high_temp")) -- предельная температура
-defineProperty("high_rpm", globalPropertyf("tu154b2/custom/lights/apu/high_rpm")) -- предельные обороты
-defineProperty("pta6_fail", globalPropertyf("tu154b2/custom/lights/apu/pta6_fail")) -- ПТА 6А неисправн
-defineProperty("doors_open", globalPropertyf("tu154b2/custom/lights/apu/doors_open")) -- створки открыты
-defineProperty("fuel_press", globalPropertyf("tu154b2/custom/lights/apu/fuel_press")) -- Р топлива
-defineProperty("start_ready", globalPropertyf("tu154b2/custom/lights/apu/start_ready")) -- Готов к запуску
-defineProperty("work_mode", globalPropertyf("tu154b2/custom/lights/apu/work_mode")) -- Выход на режим
-defineProperty("start_apu", globalPropertyf("tu154b2/custom/lights/apu/start_apu")) -- запусти ВСУ
+low_oil = globalPropertyf("tu154b2/custom/lights/apu/low_oil") -- масла мало
+low_oil_press = globalPropertyf("tu154b2/custom/lights/apu/low_oil_press") -- Р масла
+high_temp = globalPropertyf("tu154b2/custom/lights/apu/high_temp") -- предельная температура
+high_rpm = globalPropertyf("tu154b2/custom/lights/apu/high_rpm") -- предельные обороты
+pta6_fail = globalPropertyf("tu154b2/custom/lights/apu/pta6_fail") -- ПТА 6А неисправн
+doors_open = globalPropertyf("tu154b2/custom/lights/apu/doors_open") -- створки открыты
+fuel_press = globalPropertyf("tu154b2/custom/lights/apu/fuel_press") -- Р топлива
+start_ready = globalPropertyf("tu154b2/custom/lights/apu/start_ready") -- Готов к запуску
+work_mode = globalPropertyf("tu154b2/custom/lights/apu/work_mode") -- Выход на режим
+start_apu = globalPropertyf("tu154b2/custom/lights/apu/start_apu") -- запусти ВСУ
 
 
 -- internal datarefs
-defineProperty("apu_n1", globalPropertyf("tu154b2/custom/eng/apu_n1")) -- обороты ВСУ
-defineProperty("apu_oil_t", globalPropertyf("tu154b2/custom/eng/apu_oil_t")) -- температура масла ВСУ
-defineProperty("apu_oil_q", globalPropertyf("tu154b2/custom/eng/apu_oil_q")) -- количество масла ВСУ
-defineProperty("apu_oil_p", globalPropertyf("tu154b2/custom/eng/apu_oil_p")) -- давление масла ВС
-defineProperty("apu_egt", globalPropertyf("tu154b2/custom/eng/apu_egt")) -- температура выходных газов ВСУ
-defineProperty("apu_air_press", globalPropertyf("tu154b2/custom/eng/apu_air_press")) -- давление воздуха для запуска двигателей
+apu_n1 = globalPropertyf("tu154b2/custom/eng/apu_n1") -- обороты ВСУ
+apu_oil_t = globalPropertyf("tu154b2/custom/eng/apu_oil_t") -- температура масла ВСУ
+apu_oil_q = globalPropertyf("tu154b2/custom/eng/apu_oil_q") -- количество масла ВСУ
+apu_oil_p = globalPropertyf("tu154b2/custom/eng/apu_oil_p") -- давление масла ВС
+apu_egt = globalPropertyf("tu154b2/custom/eng/apu_egt") -- температура выходных газов ВСУ
+apu_air_press = globalPropertyf("tu154b2/custom/eng/apu_air_press") -- давление воздуха для запуска двигателей
 
-defineProperty("apu_air_doors", globalPropertyf("tu154b2/custom/eng/apu_air_doors")) -- положение створок для накачки воздуха
-defineProperty("apu_fuel_p", globalPropertyf("tu154b2/custom/eng/apu_fuel_p")) -- давление топлива ВСУ
+apu_air_doors = globalPropertyf("tu154b2/custom/eng/apu_air_doors") -- положение створок для накачки воздуха
+apu_fuel_p = globalPropertyf("tu154b2/custom/eng/apu_fuel_p") -- давление топлива ВСУ
 
-defineProperty("apu_start_bus", globalPropertyf("tu154b2/custom/elec/apu_start_bus")) -- напряжение в сети ВСУ
-defineProperty("apu_start_cc", globalPropertyf("tu154b2/custom/elec/apu_start_cc")) -- потребление тока стартером ВСУ
-defineProperty("apu_start_seq", globalPropertyi("tu154b2/custom/elec/apu_start_seq")) -- идет процесс запуска ВСУ
+apu_start_bus = globalPropertyf("tu154b2/custom/elec/apu_start_bus") -- напряжение в сети ВСУ
+apu_start_cc = globalPropertyf("tu154b2/custom/elec/apu_start_cc") -- потребление тока стартером ВСУ
+apu_start_seq = globalPropertyi("tu154b2/custom/elec/apu_start_seq") -- идет процесс запуска ВСУ
 
-defineProperty("apu_doors", globalPropertyf("tu154b2/custom/anim/apu_doors")) -- положение створок ВСУ. 0 - закрыты, 1 - открыты.
+apu_doors = globalPropertyf("tu154b2/custom/anim/apu_doors") -- положение створок ВСУ. 0 - закрыты, 1 - открыты.
 
-defineProperty("cockpit_window_left", globalPropertyf("tu154b2/custom/anim/cockpit_window_left")) -- открытие форточки
-defineProperty("cockpit_window_right", globalPropertyf("tu154b2/custom/anim/cockpit_window_right")) -- открытие форточки
+cockpit_window_left = globalPropertyf("tu154b2/custom/anim/cockpit_window_left") -- открытие форточки
+cockpit_window_right = globalPropertyf("tu154b2/custom/anim/cockpit_window_right") -- открытие форточки
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
-defineProperty("outside_air_temp", globalPropertyf("sim/cockpit2/temperature/outside_air_temp_degc")) -- 
+outside_air_temp = globalPropertyf("sim/cockpit2/temperature/outside_air_temp_degc") -- 
 
 -- lamp sources
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_apu")) -- кнопка проверки ламп панели ВСУ
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
-defineProperty("gear_vent_set", globalPropertyi("tu154b2/custom/switchers/eng/gear_fan")) -- вентиляция шасси
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_apu") -- кнопка проверки ламп панели ВСУ
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+gear_vent_set = globalPropertyi("tu154b2/custom/switchers/eng/gear_fan") -- вентиляция шасси
 
 -- enviroment
-defineProperty("external_view", globalPropertyi("sim/graphics/view/view_is_external"))
+external_view = globalPropertyi("sim/graphics/view/view_is_external")
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- default sim APU
-defineProperty("APU_generator_on", globalPropertyi("sim/cockpit2/electrical/APU_generator_on")) -- boolean	APU generator is turned on, 0 or 1.
-defineProperty("APU_starter_switch", globalPropertyi("sim/cockpit2/electrical/APU_starter_switch")) -- boolean	APU power switch, 0 is off, 1 is on, 2 is start-er-up!
-defineProperty("APU_N1_percent", globalPropertyi("sim/cockpit2/electrical/APU_N1_percent")) -- percent	N1 of the APU
-defineProperty("APU_running", globalPropertyi("sim/cockpit2/electrical/APU_running")) -- boolean	APU actually running, 0 or 1.
+APU_generator_on = globalPropertyi("sim/cockpit2/electrical/APU_generator_on") -- boolean	APU generator is turned on, 0 or 1.
+APU_starter_switch = globalPropertyi("sim/cockpit2/electrical/APU_starter_switch") -- boolean	APU power switch, 0 is off, 1 is on, 2 is start-er-up!
+APU_N1_percent = globalPropertyi("sim/cockpit2/electrical/APU_N1_percent") -- percent	N1 of the APU
+APU_running = globalPropertyi("sim/cockpit2/electrical/APU_running") -- boolean	APU actually running, 0 or 1.
 
---defineProperty("acf_has_APU_switch", globalPropertyi("sim/aircraft/overflow/acf_has_APU_switch")) -- 
-defineProperty("rel_APU_press", globalPropertyi("sim/operation/failures/rel_APU_press")) -- 
-defineProperty("bleed_air_mode", globalPropertyi("sim/cockpit2/pressurization/actuators/bleed_air_mode")) -- Bleed air mode, 0=of, 1=left,2=both,3=right,4=apu,5=auto
+--acf_has_APU_switch = globalPropertyi("sim/aircraft/overflow/acf_has_APU_switch") -- 
+rel_APU_press = globalPropertyi("sim/operation/failures/rel_APU_press") -- 
+bleed_air_mode = globalPropertyi("sim/cockpit2/pressurization/actuators/bleed_air_mode") -- Bleed air mode, 0=of, 1=left,2=both,3=right,4=apu,5=auto
 
 -- coordinates of airplane and camera
-defineProperty("local_x", globalPropertyf("sim/flightmodel/position/local_x")) -- position X
-defineProperty("local_y", globalPropertyf("sim/flightmodel/position/local_y")) -- position Y
-defineProperty("local_z", globalPropertyf("sim/flightmodel/position/local_z")) -- position Z
+local_x = globalPropertyf("sim/flightmodel/position/local_x") -- position X
+local_y = globalPropertyf("sim/flightmodel/position/local_y") -- position Y
+local_z = globalPropertyf("sim/flightmodel/position/local_z") -- position Z
 
-defineProperty("view_x", globalPropertyf("sim/graphics/view/view_x")) -- camera position X
-defineProperty("view_y", globalPropertyf("sim/graphics/view/view_y")) -- camera position Y
-defineProperty("view_z", globalPropertyf("sim/graphics/view/view_z")) -- camera position Z
+view_x = globalPropertyf("sim/graphics/view/view_x") -- camera position X
+view_y = globalPropertyf("sim/graphics/view/view_y") -- camera position Y
+view_z = globalPropertyf("sim/graphics/view/view_z") -- camera position Z
 
 
 -- failures
-defineProperty("apu_start_fail",globalPropertyi("tu154b2/custom/failures/apu_start_fail")) -- отказ стартера
-defineProperty("apu_gen_fail",globalPropertyi("tu154b2/custom/failures/apu_gen_fail")) -- отказ генератора
-defineProperty("apu_fail_oilt",globalPropertyi("tu154b2/custom/failures/apu_fail_oilt")) -- отказ по температуре масла
-defineProperty("apu_fail_egt",globalPropertyi("tu154b2/custom/failures/apu_fail_egt")) -- отказ по ТВГ
-defineProperty("apu_fail_fuel_left",globalPropertyi("tu154b2/custom/failures/apu_fail_fuel_left")) -- отказ пр остатку топлива в камере при запуске
-defineProperty("apu_fail",globalPropertyi("tu154b2/custom/failures/apu_fail")) -- отказ по наработке
-defineProperty("apu_press_fail", globalPropertyi("tu154b2/custom/failures/apu_press_fail")) -- отказ отбора воздуха от двигателя
-defineProperty("vsu_rezh", globalPropertyi("tu154b2/custom/eng/apu_ready"))
-defineProperty("fire_vlv", globalPropertyi("sim/custom/b2/apu_fire_crane"))
-defineProperty("fire_vlv_cap", globalPropertyi("sim/custom/b2/apu_fire_crane_cap"))
-defineProperty("door_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_doors"))
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-defineProperty("gear_defl", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]"))
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster"))
+apu_start_fail = globalPropertyi("tu154b2/custom/failures/apu_start_fail") -- отказ стартера
+apu_gen_fail = globalPropertyi("tu154b2/custom/failures/apu_gen_fail") -- отказ генератора
+apu_fail_oilt = globalPropertyi("tu154b2/custom/failures/apu_fail_oilt") -- отказ по температуре масла
+apu_fail_egt = globalPropertyi("tu154b2/custom/failures/apu_fail_egt") -- отказ по ТВГ
+apu_fail_fuel_left = globalPropertyi("tu154b2/custom/failures/apu_fail_fuel_left") -- отказ пр остатку топлива в камере при запуске
+apu_fail = globalPropertyi("tu154b2/custom/failures/apu_fail") -- отказ по наработке
+apu_press_fail = globalPropertyi("tu154b2/custom/failures/apu_press_fail") -- отказ отбора воздуха от двигателя
+vsu_rezh = globalPropertyi("tu154b2/custom/eng/apu_ready")
+fire_vlv = globalPropertyi("sim/custom/b2/apu_fire_crane")
+fire_vlv_cap = globalPropertyi("sim/custom/b2/apu_fire_crane_cap")
+door_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_doors")
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+gear_defl = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
+ismaster = globalPropertyf("scp/api/ismaster")
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_20")
 
 
 -- sounds
@@ -386,7 +387,7 @@ local function lamps()
 	if vychod_timer>=3 then work_mode_brt = 1 end
 	set(vsu_rezh,work_mode_brt)
 	work_mode_brt = math.max(work_mode_brt * lamps_brt, test_btn)
-	set(work_mode, work_mode_brt)
+	set(work_mode, work_mode_brt * (1 - get(lamp_1)))
 	
 	local start_apu_brt = 0
 	if rpm < 92 and get(gear_vent_set) == 1 and get(gear_defl)>0.05 then start_apu_brt = 1 end

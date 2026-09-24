@@ -1,72 +1,72 @@
 -- this is DISS panel - B-57
 
 -- controls
-defineProperty("diss_on", globalPropertyi("tu154b2/custom/switchers/ovhd/diss_on")) -- питание ДИСС
-defineProperty("diss_mode", globalPropertyi("tu154b2/custom/switchers/ovhd/diss_mode")) -- режим дисс. 0 - море, 1 - суша
-defineProperty("nvu_calc_set", globalPropertyi("tu154b2/custom/switchers/ovhd/nvu_calc_set")) -- счисление. -1 - контроль ДИСС в полете, 0 - НВУ по СВС, 1 - НВУ по ДИСС
+diss_on = globalPropertyi("tu154b2/custom/switchers/ovhd/diss_on") -- питание ДИСС
+diss_mode = globalPropertyi("tu154b2/custom/switchers/ovhd/diss_mode") -- режим дисс. 0 - море, 1 - суша
+nvu_calc_set = globalPropertyi("tu154b2/custom/switchers/ovhd/nvu_calc_set") -- счисление. -1 - контроль ДИСС в полете, 0 - НВУ по СВС, 1 - НВУ по ДИСС
 
 
-defineProperty("wind_set", globalPropertyf("tu154b2/custom/rotary/console/wind_set")) -- установка ветра
+wind_set = globalPropertyf("tu154b2/custom/rotary/console/wind_set") -- установка ветра
 
-defineProperty("wind_course_left", globalPropertyi("tu154b2/custom/button/console/wind_course_left")) -- кнопка установки курса ветра 
-defineProperty("wind_course_ctr", globalPropertyi("tu154b2/custom/button/console/wind_course_ctr")) -- кнопка установки курса ветра 
-defineProperty("wind_course_right", globalPropertyi("tu154b2/custom/button/console/wind_course_right")) -- кнопка установки курса ветра 
+wind_course_left = globalPropertyi("tu154b2/custom/button/console/wind_course_left") -- кнопка установки курса ветра 
+wind_course_ctr = globalPropertyi("tu154b2/custom/button/console/wind_course_ctr") -- кнопка установки курса ветра 
+wind_course_right = globalPropertyi("tu154b2/custom/button/console/wind_course_right") -- кнопка установки курса ветра 
 
-defineProperty("wind_spd_left", globalPropertyi("tu154b2/custom/button/console/wind_spd_left")) -- кнопка установки скорости ветра 
-defineProperty("wind_spd_ctr", globalPropertyi("tu154b2/custom/button/console/wind_spd_ctr")) -- кнопка установки скорости ветра 
-defineProperty("wind_spd_right", globalPropertyi("tu154b2/custom/button/console/wind_spd_right")) -- кнопка установки скорости ветра 
+wind_spd_left = globalPropertyi("tu154b2/custom/button/console/wind_spd_left") -- кнопка установки скорости ветра 
+wind_spd_ctr = globalPropertyi("tu154b2/custom/button/console/wind_spd_ctr") -- кнопка установки скорости ветра 
+wind_spd_right = globalPropertyi("tu154b2/custom/button/console/wind_spd_right") -- кнопка установки скорости ветра 
 
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп 
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп 
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
 
 -- power
-defineProperty("bus27_volt", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus115_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt")) -- напряжение на сети 115в
+bus27_volt = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus115_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt") -- напряжение на сети 115в
 
 -- sources
-defineProperty("diss_wind_course", globalPropertyf("tu154b2/custom/nvu/diss_wind_course")) -- курс ветра по ДИСС
-defineProperty("diss_wind_spd", globalPropertyf("tu154b2/custom/nvu/diss_wind_spd")) -- скорость ветра по ДИСС
+diss_wind_course = globalPropertyf("tu154b2/custom/nvu/diss_wind_course") -- курс ветра по ДИСС
+diss_wind_spd = globalPropertyf("tu154b2/custom/nvu/diss_wind_spd") -- скорость ветра по ДИСС
 
 
-defineProperty("diss_mode_set", globalPropertyi("tu154b2/custom/nvu/diss_mode")) -- режим ДИСС. 0 - выкл, 1 - работа, 2 - память, 10 - отказ
+diss_mode_set = globalPropertyi("tu154b2/custom/nvu/diss_mode") -- режим ДИСС. 0 - выкл, 1 - работа, 2 - память, 10 - отказ
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
 
 
 -- panel results
-defineProperty("diss_abs_angle_1", globalPropertyf("tu154b2/custom/gauges/misc/diss_abs_angle_1")) -- барабанчик единиц угла
-defineProperty("diss_abs_angle_10", globalPropertyf("tu154b2/custom/gauges/misc/diss_abs_angle_10")) -- барабанчик единиц угла
-defineProperty("diss_abs_angle_100", globalPropertyf("tu154b2/custom/gauges/misc/diss_abs_angle_100")) -- барабанчик единиц угла
-defineProperty("diss_plus_angle_1", globalPropertyf("tu154b2/custom/gauges/misc/diss_plus_angle_1")) -- барабанчик единиц угла
-defineProperty("diss_plus_angle_10", globalPropertyf("tu154b2/custom/gauges/misc/diss_plus_angle_10")) -- барабанчик единиц угла
-defineProperty("diss_minus_angle_1", globalPropertyf("tu154b2/custom/gauges/misc/diss_minus_angle_1")) -- барабанчик единиц угла
-defineProperty("diss_minus_angle_10", globalPropertyf("tu154b2/custom/gauges/misc/diss_minus_angle_10")) -- барабанчик единиц угла
-defineProperty("diss_wind_spd_1", globalPropertyf("tu154b2/custom/gauges/misc/diss_wind_spd_1")) -- барабанчик единиц угла
-defineProperty("diss_wind_spd_10", globalPropertyf("tu154b2/custom/gauges/misc/diss_wind_spd_10")) -- барабанчик единиц угла
-defineProperty("diss_wind_spd_100", globalPropertyf("tu154b2/custom/gauges/misc/diss_wind_spd_100")) -- барабанчик единиц угла
+diss_abs_angle_1 = globalPropertyf("tu154b2/custom/gauges/misc/diss_abs_angle_1") -- барабанчик единиц угла
+diss_abs_angle_10 = globalPropertyf("tu154b2/custom/gauges/misc/diss_abs_angle_10") -- барабанчик единиц угла
+diss_abs_angle_100 = globalPropertyf("tu154b2/custom/gauges/misc/diss_abs_angle_100") -- барабанчик единиц угла
+diss_plus_angle_1 = globalPropertyf("tu154b2/custom/gauges/misc/diss_plus_angle_1") -- барабанчик единиц угла
+diss_plus_angle_10 = globalPropertyf("tu154b2/custom/gauges/misc/diss_plus_angle_10") -- барабанчик единиц угла
+diss_minus_angle_1 = globalPropertyf("tu154b2/custom/gauges/misc/diss_minus_angle_1") -- барабанчик единиц угла
+diss_minus_angle_10 = globalPropertyf("tu154b2/custom/gauges/misc/diss_minus_angle_10") -- барабанчик единиц угла
+diss_wind_spd_1 = globalPropertyf("tu154b2/custom/gauges/misc/diss_wind_spd_1") -- барабанчик единиц угла
+diss_wind_spd_10 = globalPropertyf("tu154b2/custom/gauges/misc/diss_wind_spd_10") -- барабанчик единиц угла
+diss_wind_spd_100 = globalPropertyf("tu154b2/custom/gauges/misc/diss_wind_spd_100") -- барабанчик единиц угла
 
 -- lamps
-defineProperty("diss_memory", globalPropertyf("tu154b2/custom/lights/diss_memory")) -- память ДИСС
+diss_memory = globalPropertyf("tu154b2/custom/lights/diss_memory") -- память ДИСС
 
 
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
-
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_7")
 
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
 local button_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_btn_L.wav')
@@ -191,7 +191,7 @@ local function lamps()
 	local day_night = 1 - get(day_night_set) * 0.25
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 
-	local diss_memory_brt = math.max(bool2int(get(diss_mode_set) == 2 or get(diss_mode_set) == 10) * lamps_brt, test_btn)
+	local diss_memory_brt = math.max(bool2int(get(diss_mode_set) == 2 or get(diss_mode_set) == 10) * lamps_brt, test_btn) * (1 - get(lamp_1))
 	set(diss_memory, diss_memory_brt)
 	
 	--set(diss_memory, bool2int(get(diss_mode_set) == 2))

@@ -1,58 +1,79 @@
 -- all other systems fails
 
 -- custom fails
-defineProperty("diss_fail", globalPropertyi("tu154b2/custom/failures/diss_fail"))
-defineProperty("nvu_fail", globalPropertyi("tu154b2/custom/failures/nvu_fail"))
-defineProperty("radar_fail", globalPropertyi("tu154b2/custom/failures/radar_fail"))
-defineProperty("rsbn_fail", globalPropertyi("tu154b2/custom/failures/rsbn_fail"))
-defineProperty("taws_fail", globalPropertyi("tu154b2/custom/failures/taws_fail"))
+diss_fail = globalPropertyi("tu154b2/custom/failures/diss_fail")
+nvu_fail = globalPropertyi("tu154b2/custom/failures/nvu_fail")
+radar_fail = globalPropertyi("tu154b2/custom/failures/radar_fail")
+rsbn_fail = globalPropertyi("tu154b2/custom/failures/rsbn_fail")
+taws_fail = globalPropertyi("tu154b2/custom/failures/taws_fail")
 
-defineProperty("acs1_fail", globalPropertyi("tu154b2/custom/failures/acs1_fail"))
-defineProperty("acs2_fail", globalPropertyi("tu154b2/custom/failures/acs2_fail"))
-defineProperty("acs3_fail", globalPropertyi("tu154b2/custom/failures/acs3_fail"))
+acs1_fail = globalPropertyi("tu154b2/custom/failures/acs1_fail")
+acs2_fail = globalPropertyi("tu154b2/custom/failures/acs2_fail")
+acs3_fail = globalPropertyi("tu154b2/custom/failures/acs3_fail")
 
-defineProperty("agr_fail", globalPropertyi("tu154b2/custom/failures/agr_fail"))
-defineProperty("bkk_fail", globalPropertyi("tu154b2/custom/failures/bkk_fail"))
-defineProperty("bkk_fail2", globalPropertyi("tu154b2/custom/failures/bkk_fail_2"))
+agr_fail = globalPropertyi("tu154b2/custom/failures/agr_fail")
+bkk_fail = globalPropertyi("tu154b2/custom/failures/bkk_fail")
+bkk_fail2 = globalPropertyi("tu154b2/custom/failures/bkk_fail_2")
 
-defineProperty("pitot1", globalPropertyi("tu154b2/custom/failures/pitot1"))
-defineProperty("pitot2", globalPropertyi("tu154b2/custom/failures/pitot2"))
-defineProperty("static1", globalPropertyi("tu154b2/custom/failures/static1"))
-defineProperty("static2", globalPropertyi("tu154b2/custom/failures/static2"))
+pitot1 = globalPropertyi("tu154b2/custom/failures/pitot1")
+pitot2 = globalPropertyi("tu154b2/custom/failures/pitot2")
+static1 = globalPropertyi("tu154b2/custom/failures/static1")
+static2 = globalPropertyi("tu154b2/custom/failures/static2")
 
-defineProperty("mgv_fail", globalPropertyi("tu154b2/custom/failures/mgv_fail"))
-defineProperty("rv1_fail", globalPropertyi("tu154b2/custom/failures/rv1_fail"))
-defineProperty("rv2_fail", globalPropertyi("tu154b2/custom/failures/rv2_fail"))
-defineProperty("AOA", globalPropertyi("tu154b2/custom/failures/AOA"))
-defineProperty("uvid15_fail", globalPropertyi("tu154b2/custom/failures/uvid15_fail"))
+mgv_fail = globalPropertyi("tu154b2/custom/failures/mgv_fail")
+rv1_fail = globalPropertyi("tu154b2/custom/failures/rv1_fail")
+rv2_fail = globalPropertyi("tu154b2/custom/failures/rv2_fail")
+AOA = globalPropertyi("tu154b2/custom/failures/AOA")
+uvid15_fail = globalPropertyi("tu154b2/custom/failures/uvid15_fail")
 
 
 
 -- sim fails
 
-defineProperty("rel_ss_alt", globalPropertyi("sim/operation/failures/rel_ss_alt"))
-defineProperty("rel_cop_alt", globalPropertyi("sim/operation/failures/rel_cop_alt"))
-defineProperty("rel_ss_tsi", globalPropertyi("sim/operation/failures/rel_ss_tsi"))
+rel_ss_alt = globalPropertyi("sim/operation/failures/rel_ss_alt")
+rel_cop_alt = globalPropertyi("sim/operation/failures/rel_cop_alt")
+rel_ss_tsi = globalPropertyi("sim/operation/failures/rel_ss_tsi")
 
-defineProperty("rel_adc_comp", globalPropertyi("sim/operation/failures/rel_adc_comp"))
-defineProperty("rel_ss_ahz", globalPropertyi("sim/operation/failures/rel_ss_ahz"))
-defineProperty("rel_cop_ahz", globalPropertyi("sim/operation/failures/rel_cop_ahz"))
-defineProperty("rel_stall_warn", globalPropertyi("sim/operation/failures/rel_stall_warn"))
-defineProperty("rel_ss_vvi", globalPropertyi("sim/operation/failures/rel_ss_vvi"))
-defineProperty("rel_cop_vvi", globalPropertyi("sim/operation/failures/rel_cop_vvi"))
+rel_adc_comp = globalPropertyi("sim/operation/failures/rel_adc_comp")
+rel_ss_ahz = globalPropertyi("sim/operation/failures/rel_ss_ahz")
+rel_cop_ahz = globalPropertyi("sim/operation/failures/rel_cop_ahz")
+rel_stall_warn = globalPropertyi("sim/operation/failures/rel_stall_warn")
+rel_ss_vvi = globalPropertyi("sim/operation/failures/rel_ss_vvi")
+rel_cop_vvi = globalPropertyi("sim/operation/failures/rel_cop_vvi")
 so72_fail = globalPropertyi("tu154b2/custom/failures/so72_fail")
 
---defineProperty("rel_bird_strike", globalPropertyi("sim/operation/failures/rel_bird_strike"))
+lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_1")
+lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_2")
+lamp_3 = globalPropertyi("tu154b2/custom/failures/lamp_3")
+lamp_4 = globalPropertyi("tu154b2/custom/failures/lamp_4")
+lamp_5 = globalPropertyi("tu154b2/custom/failures/lamp_5")
+lamp_6 = globalPropertyi("tu154b2/custom/failures/lamp_6")
+lamp_7 = globalPropertyi("tu154b2/custom/failures/lamp_7")
+lamp_8 = globalPropertyi("tu154b2/custom/failures/lamp_8")
+lamp_9 = globalPropertyi("tu154b2/custom/failures/lamp_9")
+lamp_10 = globalPropertyi("tu154b2/custom/failures/lamp_10")
+lamp_11 = globalPropertyi("tu154b2/custom/failures/lamp_11")
+lamp_12 = globalPropertyi("tu154b2/custom/failures/lamp_12")
+lamp_13 = globalPropertyi("tu154b2/custom/failures/lamp_13")
+lamp_14 = globalPropertyi("tu154b2/custom/failures/lamp_14")
+lamp_15 = globalPropertyi("tu154b2/custom/failures/lamp_15")
+lamp_16 = globalPropertyi("tu154b2/custom/failures/lamp_16")
+lamp_17 = globalPropertyi("tu154b2/custom/failures/lamp_17")
+lamp_18 = globalPropertyi("tu154b2/custom/failures/lamp_18")
+lamp_19 = globalPropertyi("tu154b2/custom/failures/lamp_19")
+lamp_20 = globalPropertyi("tu154b2/custom/failures/lamp_20")
+
+--rel_bird_strike = globalPropertyi("sim/operation/failures/rel_bird_strike"))
 
 
 
 -- define sources
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
-defineProperty("failures_enabled", globalPropertyi("tu154b2/custom/failures/failures_enabled"))
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
+failures_enabled = globalPropertyi("tu154b2/custom/failures/failures_enabled")
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
@@ -127,6 +148,27 @@ if MASTER then
 			if get(rel_cop_vvi) ~= 6 then set(rel_cop_vvi, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6) end
 			if get(so72_fail) ~= 1 then set(so72_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			
+			if get(lamp_1) ~= 1 then set(lamp_1, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_2) ~= 1 then set(lamp_2, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_3) ~= 1 then set(lamp_3, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_4) ~= 1 then set(lamp_4, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_5) ~= 1 then set(lamp_5, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_6) ~= 1 then set(lamp_6, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_7) ~= 1 then set(lamp_7, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_8) ~= 1 then set(lamp_8, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_9) ~= 1 then set(lamp_9, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_10) ~= 1 then set(lamp_10, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_11) ~= 1 then set(lamp_11, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_12) ~= 1 then set(lamp_12, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_13) ~= 1 then set(lamp_13, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_14) ~= 1 then set(lamp_14, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_15) ~= 1 then set(lamp_15, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_16) ~= 1 then set(lamp_16, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_17) ~= 1 then set(lamp_17, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_18) ~= 1 then set(lamp_18, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_19) ~= 1 then set(lamp_19, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(lamp_20) ~= 1 then set(lamp_20, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			
 	
 		end
 		
@@ -177,7 +219,28 @@ if MASTER then
 		set(rel_ss_vvi, 0)
 		set(rel_cop_vvi, 0)
 		set(so72_fail,0)
-
+		
+		 set(lamp_1,0) 
+		 set(lamp_2,0) 
+		 set(lamp_3,0) 
+		 set(lamp_4,0) 
+		 set(lamp_5,0) 
+		 set(lamp_6,0) 
+		 set(lamp_7,0) 
+		 set(lamp_8,0) 
+		 set(lamp_9,0) 
+		 set(lamp_10,0)
+		 set(lamp_11,0)
+		 set(lamp_12,0)
+		 set(lamp_13,0)
+		 set(lamp_14,0)
+		 set(lamp_15,0)
+		 set(lamp_16,0)
+		 set(lamp_17,0)
+		 set(lamp_18,0)
+		 set(lamp_19,0)
+		 set(lamp_20,0)
+		
 	
 	end
 	

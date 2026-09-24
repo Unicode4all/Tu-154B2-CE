@@ -286,8 +286,8 @@ flaps_power_cap = deferred_dataref("sim/custom/b2/flaps_power_cap", "number")
 
 rv5_1_lit_lim = deferred_dataref("sim/custom/b2/rv5_1_lit_lim", "number")
 rv5_2_lit_lim = deferred_dataref("sim/custom/b2/rv5_2_lit_lim", "number")
-rv5_1_lit = find_dataref("tu154b2/custom/lights/small/rv5_left_dh")
-rv5_2_lit = find_dataref("tu154b2/custom/lights/small/rv5_right_dh")
+-- rv5_1_lit = find_dataref("tu154b2/custom/lights/small/rv5_left_dh")
+-- rv5_2_lit = find_dataref("tu154b2/custom/lights/small/rv5_right_dh")
 
 
 
@@ -796,13 +796,13 @@ function misc()
     end
 
 
-    if rv5_1_lit > rv5_1_lit_lim then
-        rv5_1_lit = rv5_1_lit_lim
-    end
+    -- if rv5_1_lit > rv5_1_lit_lim then
+        -- rv5_1_lit = rv5_1_lit_lim
+    -- end
 
-    if rv5_2_lit > rv5_2_lit_lim then
-        rv5_2_lit = rv5_2_lit_lim
-    end
+    -- if rv5_2_lit > rv5_2_lit_lim then
+        -- rv5_2_lit = rv5_2_lit_lim
+    -- end
     
     -- if simDR_flapratio > 0.73 and simDR_flapratio < 0.77 and flapratio_loc < 1 then
        -- simDR_flapratio = 1
