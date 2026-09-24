@@ -184,7 +184,7 @@ local c_v2 = c_v * 3.5
 
 local function lamps_eng()
 	local lamps_brt = math.max(( get(bus27_volt_left) - 10) / 18.5, 0)
-	local test_btn = get(lamp_test_hydro) * lamps_brt
+	local test_btn = 0 --get(lamp_test_hydro) * lamps_brt
 	
 	press_1 = get(gs_press_1)
 	press_2 = get(gs_press_2)
@@ -216,7 +216,7 @@ end
 
 local function lamps_front()
 	local lamps_brt = math.max(( get(bus27_volt_left) - 10) / 18.5, 0)
-	local test_btn = get(lamp_test_front) * lamps_brt
+	local test_btn = 0 --get(lamp_test_front) * lamps_brt
 	
 	local front_hydr_fail_1_brt = 0
 	if press_1 < 100 then front_hydr_fail_1_brt = 1 end
