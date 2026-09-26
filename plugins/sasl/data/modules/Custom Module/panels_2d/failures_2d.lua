@@ -359,6 +359,10 @@ customFails["Cockpit Lamp 18 Fail"] = globalPropertyi("tu154b2/custom/failures/l
 customFails["Cockpit Lamp 19 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_19")
 customFails["Cockpit Lamp 20 Fail"] = globalPropertyi("tu154b2/custom/failures/lamp_20")
 
+customFails["SSOS Channel 1 Fail"] = globalPropertyi("tu154b2/custom/failures/ssos_S1")
+customFails["SSOS Channel 2 Fail"] = globalPropertyi("tu154b2/custom/failures/ssos_S2")
+customFails["SSOS Channel 3 Fail"] = globalPropertyi("tu154b2/custom/failures/ssos_S3")
+
 
 --[[
 defineProperty("system_qty_1", globalPropertyf("tu154b2/custom/hydro/gs_qty_1")) -- остаток масла в системе

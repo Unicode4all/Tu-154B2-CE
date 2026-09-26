@@ -529,7 +529,9 @@ defineProperty("eng_rpm1", globalProperty("sim/flightmodel/engine/ENGN_N2_[0]"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 defineProperty("livpath", globalPropertys("sim/aircraft/view/acf_livery_path"))
 --defineProperty("dbs", globalPropertyf("tu154b2/custom/controlls/debugstr"))
-
+S1_fail = globalPropertyi("tu154b2/custom/failures/ssos_S1")
+S2_fail = globalPropertyi("tu154b2/custom/failures/ssos_S2")
+S3_fail = globalPropertyi("tu154b2/custom/failures/ssos_S3")
 
 
 local path=sasl.getAircraftPath ()
@@ -1039,6 +1041,9 @@ local var_table = {}
 	var_table["oilqty1"] = get(oil_qty_1)
 	var_table["oilqty2"] = get(oil_qty_1)
 	var_table["oilqty3"] = get(oil_qty_1)
+	var_table["ssos1"] = get(S1_fail)
+	var_table["ssos2"] = get(S2_fail)
+	var_table["ssos3"] = get(S3_fail)
 
 local function write_file()
 
@@ -1526,6 +1531,10 @@ local function write_file()
 		savefile:write("oilqty1="..get(oil_qty_1) .."\n")
 		savefile:write("oilqty2="..get(oil_qty_2) .."\n")
 		savefile:write("oilqty3="..get(oil_qty_3) .."\n")
+		
+		savefile:write("ssos1="..get(S1_fail) .."\n")
+		savefile:write("ssos2="..get(S2_fail) .."\n")
+		savefile:write("ssos3="..get(S3_fail) .."\n")
 		
 		
 		savefile:write("fltnum1="..get(flt_1).."\n")
@@ -2059,6 +2068,9 @@ local function read_file()
 		if var_table["oilqty1"] then set(oil_qty_1,var_table["oilqty1"]) end
 		if var_table["oilqty2"] then set(oil_qty_2,var_table["oilqty2"]) end
 		if var_table["oilqty3"] then set(oil_qty_3,var_table["oilqty3"]) end
+		if var_table["ssos1"] then set(S1_fail,var_table["ssos1"]) end
+		if var_table["ssos2"] then set(S2_fail,var_table["ssos2"]) end
+		if var_table["ssos3"] then set(S3_fail,var_table["ssos3"]) end
 		savefile:close()
 		print("reading last state: OK")
 	else

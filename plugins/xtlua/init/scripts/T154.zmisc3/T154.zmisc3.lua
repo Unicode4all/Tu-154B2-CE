@@ -2022,7 +2022,7 @@ function after_physics()
     seats_move()
     --sard_dbl()
     misc()
-    ssos()
+    --ssos()
     rain_snow_frtchk()
     if T154_kontur_90th < 1 then
         uvo15()

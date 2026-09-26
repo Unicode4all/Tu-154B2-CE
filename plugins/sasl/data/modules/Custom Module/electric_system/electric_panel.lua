@@ -212,6 +212,7 @@ pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
 pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 vu_test = globalPropertyi("sim/custom/gauges/elec/vu_res_test")
 vu_cap = globalPropertyi("sim/custom/gauges/elec/vu_res_test_cap")
+ismaster = globalPropertyf("scp/api/ismaster")
 -- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
 -- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
 -- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
@@ -243,6 +244,7 @@ local conn_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/bat_conn_R
 local disc_L = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/bat_disc_L.wav')
 local disc_R = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/bat_disc_R.wav')
 
+local MASTER = true
 local notLoaded = true
 
 local function reset_switchers()
@@ -319,7 +321,7 @@ local v115_sw_last = get(bus115_volt_sel)
 local phaseSel_115_last = get(bus115_volt_phase_sel)
 
 local function voltmetr115(gain_L, gain_R,dist)
-
+	
 	local volt115_angle = -120
 	local v115_sw = get(bus115_volt_sel)
 	local phaseSel_115 = get(bus115_volt_phase_sel)
@@ -346,7 +348,7 @@ local function voltmetr115(gain_L, gain_R,dist)
 	v115_sw_last = v115_sw
 	phaseSel_115_last = phaseSel_115
     
-	
+	--if MASTER then
 	if volt115_timer < 0.05 then volt115_angle = -120 -- for the switching effect
 	elseif v115_sw == 0 then volt115_angle = interpolate(volt115_table, get(gen1_volt)-phase_corr)
 	elseif v115_sw == 1 then volt115_angle = interpolate(volt115_table, get(gen2_volt)-phase_corr)
@@ -359,10 +361,10 @@ local function voltmetr115(gain_L, gain_R,dist)
 	elseif v115_sw == 8 then volt115_angle = interpolate(volt115_table, get(bus115_2_volt)-phase_corr)
 	elseif v115_sw == 9 then volt115_angle = interpolate(volt115_table, get(bus115_3_volt)-phase_corr)
 	end
-    
-    if phase_corr > 0 then
-        phase_corr = phase_corr - passed * 10
-    end
+	
+	if phase_corr > 0 then
+		phase_corr = phase_corr - passed * 10
+	end
 	
 	-- voltmeter needle
 
@@ -380,46 +382,8 @@ local function voltmetr115(gain_L, gain_R,dist)
 	
 	set(bus115_volt, volt115_actual)
 
-	-- freq-meter needle
-    
-    
-    -- local current_amp_115_tot = get(bus115_1_amp) + get(bus115_3_amp) --get(bus115_em_1_amp) + get(bus115_em_2_amp)
-    -- local now115_work = get(gen1_work) + get(gen2_work) + get(gen3_work) + get(gen4_work) + get(gen5_work)
-    
-    
-    -- if get(disable_def_veh) > 0 and get(gen5_work) > 0 then
-        -- if freq_115_curr_delta - (current_amp_115_tot/4) > -25 then
-            -- freq_115_curr = freq_115_curr_delta - (current_amp_115_tot/4)
-        -- else
-            -- freq_115_curr = -25
-        -- end
-        -- if freq_115_curr_delta - (current_amp_115_tot/4) < 3 then
-            -- freq_115_curr = freq_115_curr_delta - (current_amp_115_tot/4)
-        -- else
-            -- freq_115_curr = 3
-        -- end
-    -- else
-        -- if freq_115_curr_delta - (current_amp_115_tot/5) > -25 then
-            -- freq_115_curr = freq_115_curr_delta - (current_amp_115_tot/5)
-        -- else
-            -- freq_115_curr = -25
-        -- end
-        -- if freq_115_curr_delta - (current_amp_115_tot/5) < 3 then
-            -- freq_115_curr = freq_115_curr_delta - (current_amp_115_tot/5)
-        -- else
-            -- freq_115_curr = 3
-        -- end
-    -- end
-
-    -- if freq_115_curr > 0.5 then
-       -- freq_115_curr_delta = freq_115_curr_delta - math.abs(freq_115_curr) * 4 * passed
-    -- elseif freq_115_curr < -0.5 then
-       -- freq_115_curr_delta = freq_115_curr_delta + math.abs(freq_115_curr) * 0.6 * passed
-    -- end
-    
-    -- set(freq_115,freq_115_curr)
 	local freq_115_curr=0
-    local freq_sel=get(bus115_volt_sel)
+	local freq_sel=get(bus115_volt_sel)
 	if freq_sel==0 then
 		freq_115_curr=2.4*math.max(350,get(freq_gen_1))-960
 	elseif freq_sel==1 then
@@ -467,6 +431,7 @@ local function voltmetr115(gain_L, gain_R,dist)
 	freq115_actual = freq115_actual + freq115_v
 	
 	set(bus115_freq, freq115_actual)
+	--end
 	
 	
 
@@ -511,6 +476,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 	end	
 	ampSel_115_last = ampSel_115
 	ampPhaseSel_115_last = ampPhaseSel_115
+	--if MASTER then
 	-- set angles
 	amp115_timer = amp115_timer + passed
 	local amp115_angle = -120
@@ -557,11 +523,11 @@ local function ampermeter115(gain_L, gain_R,dist)
 		end
 	end
 	
-    
-    if ampphase_corr > 0 then
-        ampphase_corr = ampphase_corr - passed * 10
-    end
-    
+	
+	if ampphase_corr > 0 then
+		ampphase_corr = ampphase_corr - passed * 10
+	end
+	
 	-- needle movement
 	local a115 = (amp115_angle - amp115_actual) * k1 -- needle acceleration
 	amp115_v = amp115_v + a115 * passed -- needle speed
@@ -576,6 +542,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 	amp115_actual = amp115_actual + amp115_v
 	
 	set(bus115_amp, amp115_actual)
+	--end
 	
 
 
@@ -607,7 +574,8 @@ local function voltmeter36(gain_L, gain_R,dist)
 		sasl.al.playSample(rotary_sound_L, false)
 		sasl.al.playSample(rotary_sound_R, false)
 	end	
-	
+	volSel_36_last = volSel_36
+	--if MASTER then
 	local volt36_angle = -120
 	if volt36_timer < 0.05 then volt36_angle = -120
 	elseif volSel_36 < 3 then volt36_angle = interpolate(volt36_table, get(bus36_volt_left))
@@ -635,7 +603,7 @@ local function voltmeter36(gain_L, gain_R,dist)
 
 	
 	set(bus36_volt, volt36_actual)
-	volSel_36_last = volSel_36
+	--end
 end
 				  
 				  
@@ -708,6 +676,7 @@ local function bus27_gaug(gain_L, gain_R,dist)
 	ampSel_27_1_last = ampSel_27_1
 	ampSel_27_2_last = ampSel_27_2
 	
+	--if MASTER then
 	local volt27_angle = -120
 	if volt27_timer < 0.05 then volt27_angle = -120
 	elseif volSel_27 == 0 then volt27_angle = interpolate(volt27_table, get(bat_volt_1))
@@ -778,6 +747,7 @@ local function bus27_gaug(gain_L, gain_R,dist)
 	set(bus27_volt, volt27_actual)
 	set(bus27_amp1, amp27_1_actual)
 	set(bus27_amp2, amp27_2_actual)
+	--end
 	
 end
 
@@ -1024,7 +994,7 @@ end
 local sim_start_timer = 0
 
 function update()
-	
+	MASTER = get(ismaster) ~= 1
 	--print(get(eng1_N1), "   = get(eng2_N1), "   = get(eng3_N1))
 	
 	passed = get(frame_time)
@@ -1058,7 +1028,9 @@ function update()
 	ampermeter115(gain_L, gain_R,dist)
 	voltmeter36(gain_L, gain_R,dist)
 	bus27_gaug(gain_L, gain_R,dist)
-	lamps()
+	if MASTER then
+		lamps()
+	end
 	
 	-- set sim avionics
 	if get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13 then
