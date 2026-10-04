@@ -15,5 +15,6 @@ components = {
 	absu_integrator {},
 	absu_svk {},
 	absu_ppn {},
+	bdg {},
 
 }

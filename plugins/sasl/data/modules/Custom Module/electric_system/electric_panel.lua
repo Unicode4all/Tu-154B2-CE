@@ -212,6 +212,7 @@ pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
 pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 vu_test = globalPropertyi("sim/custom/gauges/elec/vu_res_test")
 vu_cap = globalPropertyi("sim/custom/gauges/elec/vu_res_test_cap")
+kont = globalPropertyi("tu154b2/custom/b2/kontur_on")
 ismaster = globalPropertyf("scp/api/ismaster")
 -- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
 -- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
@@ -904,7 +905,7 @@ local gen_on_2=0
 local gen_on_3=0
 local function lamps()
 	local lamps_brt = math.max((math.max(get(bus27_volt_right), get(bus27_volt_left))  - 10) / 18.5, 0)
-	local test_btn = get(test_lamps) * math.max(get(bus27_volt_right)  - 10 / 18.5, 0)
+	local test_btn = get(test_lamps) * lamps_brt * get(kont)
 		
 	-- lamps logic
 	local gpu_brt = get(gpu_work_bus) * lamps_brt
@@ -917,52 +918,52 @@ local function lamps()
 		
 	if get(freq_gen_1) > 380 and gen_on_1==1 then gen_on_1 = 0 end
 	if get(gen1_volt) < 100 and gen_on_1==0 then gen_on_1 = 1 end
-	gen_1_brt = math.max(gen_on_1,(1-get(gen_1_run))) * lamps_brt
+	gen_1_brt = math.max(gen_on_1,(1-get(gen_1_run)),test_btn) * lamps_brt
 
 	if get(freq_gen_2) > 380 and gen_on_2==1 then gen_on_2 = 0 end
 	if get(gen2_volt) < 100 and gen_on_2==0 then gen_on_2 = 1 end
-	gen_2_brt = math.max(gen_on_2,(1-get(gen_2_run))) * lamps_brt
+	gen_2_brt = math.max(gen_on_2,(1-get(gen_2_run)),test_btn) * lamps_brt
 
 	if get(freq_gen_3) > 380 and gen_on_3==1 then gen_on_3 = 0 end
 	if get(gen3_volt) < 100 and gen_on_3==0 then gen_on_3 = 1 end
-	gen_3_brt = math.max(gen_on_3,(1-get(gen_3_run))) * lamps_brt
+	gen_3_brt = math.max(gen_on_3,(1-get(gen_3_run)),test_btn) * lamps_brt
 	
 	local bus_con_brt = get(buses_connected) * lamps_brt
 
 	local left_bat_brt = 0
 	if get(bus27_source_left) > 2 then left_bat_brt = math.max(get(bat1_on), get(bat3_on)) end
-	left_bat_brt = left_bat_brt * lamps_brt
+	left_bat_brt = math.max(left_bat_brt * lamps_brt,test_btn)
 	
 	local right_bat_brt = 0
 	if get(bus27_source_right) > 2 then right_bat_brt = math.max(get(bat2_on), get(bat4_on)) end
-	right_bat_brt = right_bat_brt * lamps_brt
+	right_bat_brt = math.max(right_bat_brt * lamps_brt,test_btn)
 	
 	local bat_1_brt = 0
 	if get(bat_therm_1) > 100 then bat_1_brt = 1 end
-	bat_1_brt = bat_1_brt * lamps_brt
+	bat_1_brt = math.max(bat_1_brt * lamps_brt,test_btn)
 	
 	local bat_2_brt = 0
 	if get(bat_therm_2) > 100 then bat_2_brt = 1 end
-	bat_2_brt = bat_2_brt * lamps_brt
+	bat_2_brt = math.max(bat_2_brt * lamps_brt,test_btn)
 
 	local bat_3_brt = 0
 	if get(bat_therm_3) > 100 then bat_3_brt = 1 end
-	bat_3_brt = bat_3_brt * lamps_brt
+	bat_3_brt = math.max(bat_3_brt * lamps_brt,test_btn)
 
 	local bat_4_brt = 0
 	if get(bat_therm_4) > 100 then bat_4_brt = 1 end
-	bat_4_brt = bat_4_brt * lamps_brt
+	bat_4_brt = math.max(bat_4_brt * lamps_brt,test_btn)
 
 	
-	local left_VU_brt = get(vu_res_to_L) * lamps_brt*bool2int(get(bus115_1_volt)>100)
-	local right_VU_brt = get(vu_res_to_R) * lamps_brt*bool2int(get(bus115_3_volt)>100)
+	local left_VU_brt = math.max(get(vu_res_to_L) * lamps_brt*bool2int(get(bus115_1_volt)>100),test_btn)
+	local right_VU_brt = math.max(get(vu_res_to_R) * lamps_brt*bool2int(get(bus115_3_volt)>100),test_btn)
 	
-	local L_R_brt = get(bus36_src_L) * lamps_brt
-	local R_L_brt = get(bus36_src_R) * lamps_brt
+	local L_R_brt = math.max(get(bus36_src_L) * lamps_brt,test_btn)
+	local R_L_brt = math.max(get(bus36_src_R) * lamps_brt,test_btn)
 	
 	
-	local pts_1_brt = (1 - get(bus36_pts1_work)) * lamps_brt
-	local pts_2_brt = get(bus36_pts2_work) * lamps_brt
+	local pts_1_brt = math.max(1 - get(bus36_pts1_work),test_btn) * lamps_brt
+	local pts_2_brt = math.max(get(bus36_pts2_work),test_btn) * lamps_brt
 
 	-- set results
 	set(lamp_apu_gen_on, gpu_brt)

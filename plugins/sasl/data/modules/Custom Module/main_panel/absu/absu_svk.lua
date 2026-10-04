@@ -17,42 +17,22 @@ defineProperty("absu_speed_fail", globalPropertyi("tu154b2/custom/failures/absu_
 defineProperty("absu_alt_fail", globalPropertyi("tu154b2/custom/failures/absu_alt_fail"))
 defineProperty("absu_calc_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_roll_fail")) -- отказ бокового канала СТУ
 defineProperty("absu_calc_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_pitch_fail")) -- отказ продольного канала СТУ
-defineProperty("absu_ra1_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_pitch_fail"))
-defineProperty("absu_ra2_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_pitch_fail"))
-defineProperty("absu_ra3_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_pitch_fail"))
+absu_svk_tbl.ra1_pitch_fail = 0
+absu_svk_tbl.ra2_pitch_fail = 0
+absu_svk_tbl.ra3_pitch_fail = 0
 
-defineProperty("absu_ra1_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_roll_fail"))
-defineProperty("absu_ra2_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_roll_fail"))
-defineProperty("absu_ra3_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_roll_fail"))
+absu_svk_tbl.ra1_roll_fail = 0
+absu_svk_tbl.ra2_roll_fail = 0
+absu_svk_tbl.ra3_roll_fail = 0
 
-defineProperty("absu_ra1_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_yaw_fail"))
-defineProperty("absu_ra2_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_yaw_fail"))
-defineProperty("absu_ra3_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_yaw_fail"))
+absu_svk_tbl.ra1_yaw_fail = 0
+absu_svk_tbl.ra2_yaw_fail = 0
+absu_svk_tbl.ra3_yaw_fail = 0
 
-defineProperty("bdg_tet_1_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_tet_1_fail"))
-defineProperty("bdg_tet_2_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_tet_2_fail"))
-defineProperty("bdg_tet_3_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_tet_3_fail"))
-defineProperty("bdg_gam_1_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_gam_1_fail"))
-defineProperty("bdg_gam_2_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_gam_2_fail"))
-defineProperty("bdg_gam_3_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_gam_3_fail"))
-defineProperty("bdg_psi_1_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_psi_1_fail"))
-defineProperty("bdg_psi_2_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_psi_2_fail"))
-defineProperty("bdg_psi_3_fail", globalPropertyi("tu154b2/custom/failures/absu_bdg_psi_3_fail"))
-defineProperty("bap_tet_1_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_thet_1_fail"))
-defineProperty("bap_tet_2_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_thet_2_fail"))
-defineProperty("bap_tet_3_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_thet_3_fail"))
-defineProperty("bap_gam_1_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_gam_1_fail"))
-defineProperty("bap_gam_2_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_gam_2_fail"))
-defineProperty("bap_gam_3_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_gam_3_fail"))
-defineProperty("stu_tet_1_fail", globalPropertyi("tu154b2/custom/failures/absu_stu_thet_1_fail"))
-defineProperty("stu_tet_2_fail", globalPropertyi("tu154b2/custom/failures/absu_stu_thet_2_fail"))
-defineProperty("stu_tet_3_fail", globalPropertyi("tu154b2/custom/failures/absu_stu_thet_3_fail"))
-defineProperty("stu_gam_1_fail", globalPropertyi("tu154b2/custom/failures/absu_stu_gam_1_fail"))
-defineProperty("stu_gam_2_fail", globalPropertyi("tu154b2/custom/failures/absu_stu_gam_2_fail"))
-defineProperty("stu_gam_3_fail", globalPropertyi("tu154b2/custom/failures/absu_stu_gam_3_fail"))
-defineProperty("vu1_fail", globalPropertyi("tu154b2/custom/failures/absu_vu1_fail"))
-defineProperty("vu2_fail", globalPropertyi("tu154b2/custom/failures/absu_vu2_fail"))
-defineProperty("vu3_fail", globalPropertyi("tu154b2/custom/failures/absu_vu3_fail"))
+absu_svk_tbl.bdg_tet_rate = 0
+absu_svk_tbl.bdg_gam_rate = 0
+absu_svk_tbl.bdg_psi_rate = 0
+
 defineProperty("mgv_tet_2", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L"))
 defineProperty("mgv_tet_3", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R"))
 defineProperty("mgv_tet_1", globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch"))
@@ -60,47 +40,45 @@ defineProperty("mgv_gam_2", globalPropertyf("tu154b2/custom/bkk/pkp_roll_left"))
 defineProperty("mgv_gam_3", globalPropertyf("tu154b2/custom/bkk/pkp_roll_right")) -- крен на АГР + в право
 defineProperty("mgv_gam_1", globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll")) -- крен на АГР + в право
 
-defineProperty("mgv_tet_1_fail", globalPropertyi("tu154b2/custom/failures/mgv_thet_1_fail"))
-defineProperty("mgv_tet_2_fail", globalPropertyi("tu154b2/custom/failures/mgv_thet_2_fail"))
-defineProperty("mgv_tet_3_fail", globalPropertyi("tu154b2/custom/failures/mgv_thet_3_fail"))
-defineProperty("mgv_gam_1_fail", globalPropertyi("tu154b2/custom/failures/mgv_gam_1_fail"))
-defineProperty("mgv_gam_2_fail", globalPropertyi("tu154b2/custom/failures/mgv_gam_2_fail"))
-defineProperty("mgv_gam_3_fail", globalPropertyi("tu154b2/custom/failures/mgv_gam_3_fail"))
+absu_svk_tbl.bdg_tet_1_fail = 0 
+absu_svk_tbl.bdg_tet_2_fail = 0 
+absu_svk_tbl.bdg_tet_3_fail = 0 
+absu_svk_tbl.bdg_psi_1_fail = 0 
+absu_svk_tbl.bdg_psi_2_fail = 0 
+absu_svk_tbl.bdg_psi_3_fail = 0 
+absu_svk_tbl.bdg_gam_1_fail = 0 
+absu_svk_tbl.bdg_gam_2_fail = 0 
+absu_svk_tbl.bdg_gam_3_fail = 0 
+absu_svk_tbl.mgv_thet_1_fail = 0
+absu_svk_tbl.mgv_thet_2_fail = 0
+absu_svk_tbl.mgv_thet_3_fail = 0
+absu_svk_tbl.mgv_gam_1_fail = 0
+absu_svk_tbl.mgv_gam_2_fail = 0
+absu_svk_tbl.mgv_gam_3_fail = 0
+absu_svk_tbl.bshu_tet1_mem = 0 
+absu_svk_tbl.bshu_tet2_mem = 0 
+absu_svk_tbl.bshu_tet3_mem = 0 
+absu_svk_tbl.bshu_gam1_mem = 0 
+absu_svk_tbl.bshu_gam2_mem = 0 
+absu_svk_tbl.bshu_gam3_mem = 0 
+absu_svk_tbl.bns_tet1_mem = 0
+absu_svk_tbl.bns_tet2_mem = 0
+absu_svk_tbl.bns_tet3_mem = 0
+absu_svk_tbl.bns_gam1_mem = 0
+absu_svk_tbl.bns_gam2_mem = 0
+absu_svk_tbl.bns_gam3_mem = 0
+absu_svk_tbl.ute1_fail_mem = 0
+absu_svk_tbl.ute2_fail_mem = 0
+absu_svk_tbl.ra_tet_fail = 0
+absu_svk_tbl.ra_gam_fail = 0  
+absu_svk_tbl.ra_psi_fail = 0  
+
 defineProperty("rel_trim_elv", globalPropertyi("sim/operation/failures/rel_trim_elv"))
 defineProperty("elev_trimm_1_pk", globalPropertyi("sim/custom/b2/elev_trimm_1_pk")) -- 
 defineProperty("elev_trimm_2_pk", globalPropertyi("sim/custom/b2/elev_trimm_2_pk")) -- 
 
-defineProperty("ute1_fail", globalPropertyi("tu154b2/custom/failures/ute_1_fail"))
-defineProperty("ute2_fail", globalPropertyi("tu154b2/custom/failures/ute_2_fail"))
-defineProperty("ute1_fail_mem", globalPropertyi("tu154b2/custom/failures/ute_1_fail_mem"))
-defineProperty("ute2_fail_mem", globalPropertyi("tu154b2/custom/failures/ute_2_fail_mem"))
-defineProperty("bshu_tet1_fail",globalPropertyi("tu154b2/custom/failures/bshu_tet_1_fail"))
-defineProperty("bshu_tet2_fail",globalPropertyi("tu154b2/custom/failures/bshu_tet_2_fail"))
-defineProperty("bshu_tet3_fail",globalPropertyi("tu154b2/custom/failures/bshu_tet_3_fail"))
-defineProperty("bshu_tet1_mem",globalPropertyi("tu154b2/custom/failures/bshu_tet_1_fail_mem"))
-defineProperty("bshu_tet2_mem",globalPropertyi("tu154b2/custom/failures/bshu_tet_2_fail_mem"))
-defineProperty("bshu_tet3_mem",globalPropertyi("tu154b2/custom/failures/bshu_tet_3_fail_mem"))
-defineProperty("bshu_gam1_fail",globalPropertyi("tu154b2/custom/failures/bshu_gam_1_fail"))
-defineProperty("bshu_gam2_fail",globalPropertyi("tu154b2/custom/failures/bshu_gam_2_fail"))
-defineProperty("bshu_gam3_fail",globalPropertyi("tu154b2/custom/failures/bshu_gam_3_fail"))
-defineProperty("bshu_gam1_mem",globalPropertyi("tu154b2/custom/failures/bshu_gam_1_fail_mem"))
-defineProperty("bshu_gam2_mem",globalPropertyi("tu154b2/custom/failures/bshu_gam_2_fail_mem"))
-defineProperty("bshu_gam3_mem",globalPropertyi("tu154b2/custom/failures/bshu_gam_3_fail_mem"))
 defineProperty("bshu_tet_fail",globalPropertyi("tu154b2/custom/failures/bshu_tet_fail"))
 defineProperty("bshu_gam_fail",globalPropertyi("tu154b2/custom/failures/bshu_gam_fail"))
-defineProperty("vkv_fail", globalPropertyi("tu154b2/custom/failures/absu_vkv_fail"))
-defineProperty("bns_tet1_fail", globalPropertyi("tu154b2/custom/failures/bns_tet_1_fail"))
-defineProperty("bns_tet2_fail", globalPropertyi("tu154b2/custom/failures/bns_tet_2_fail"))
-defineProperty("bns_tet3_fail", globalPropertyi("tu154b2/custom/failures/bns_tet_3_fail"))
-defineProperty("bns_tet1_mem", globalPropertyi("tu154b2/custom/failures/bns_tet_1_fail_mem"))
-defineProperty("bns_tet2_mem", globalPropertyi("tu154b2/custom/failures/bns_tet_2_fail_mem"))
-defineProperty("bns_tet3_mem", globalPropertyi("tu154b2/custom/failures/bns_tet_3_fail_mem"))
-defineProperty("bns_gam1_fail", globalPropertyi("tu154b2/custom/failures/bns_gam_1_fail"))
-defineProperty("bns_gam2_fail", globalPropertyi("tu154b2/custom/failures/bns_gam_2_fail"))
-defineProperty("bns_gam3_fail", globalPropertyi("tu154b2/custom/failures/bns_gam_3_fail"))
-defineProperty("bns_gam1_mem", globalPropertyi("tu154b2/custom/failures/bns_gam_1_fail_mem"))
-defineProperty("bns_gam2_mem", globalPropertyi("tu154b2/custom/failures/bns_gam_2_fail_mem"))
-defineProperty("bns_gam3_mem", globalPropertyi("tu154b2/custom/failures/bns_gam_3_fail_mem"))
 defineProperty("absu_power_cc", globalPropertyf("tu154b2/custom/absu_power_cc"))
 defineProperty("absu_power_27", globalPropertyf("tu154b2/custom/absu_power_27"))
 
@@ -190,6 +168,36 @@ defineProperty("at_fail_signal", globalPropertyi("tu154b2/custom/absu/at_fail_si
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 
+function KE_otkaz(chan_1,chan_2,chan_3,thres)
+	local ch_1_fail = 0
+	local ch_2_fail = 0
+	local ch_3_fail = 0
+	if math.abs(chan_1-chan_2)>thres and math.abs(chan_1-chan_3)>thres then
+		ch_1_fail = 1
+		if math.abs(chan_3-chan_2)>thres then
+			ch_2_fail = 1
+		end
+	elseif math.abs(chan_2-chan_3)>thres and math.abs(chan_2-chan_1)>thres then
+		ch_2_fail = 1
+		if math.abs(chan_3-chan_1)>thres then
+			ch_3_fail = 1
+		end
+	elseif math.abs(chan_3-chan_2)>thres and math.abs(chan_3-chan_1)>thres then
+		ch_3_fail = 1
+		if math.abs(chan_1-chan_2)>thres then
+			ch_2_fail = 1
+		end
+	end
+	return ch_1_fail, ch_2_fail, ch_3_fail
+end
+
+function kommutator(signal_1,signal_2,signal_3,signal_1_mem,signal_2_mem,signal_3_mem)
+	local signal_res=(signal_1+signal_2+signal_3)/3
+	if signal_1_mem + signal_2_mem + signal_3_mem < 2 then
+		signal_res=(signal_1 * (1-signal_1_mem) + signal_2 * (1-signal_2_mem) + signal_3 * (1-signal_3_mem))/( 3 - signal_1_mem - signal_2_mem - signal_3_mem)
+	end
+	return signal_res
+end
 
 local ra_tet1_mem=0
 local ra_tet2_mem=0
@@ -247,15 +255,15 @@ local s_reg=-2
 local s_run=0
 
 --local pol_timer=0
---local start_timer=0
+absu_svk_tbl.start_timer= -math.random(20)
 local skipped=0
 local init_timer=10
 local test1=-0.2
 local test2=-0.25
 local test3=-0.25
-local demp1_timer=0
-local demp2_timer=0
-local demp3_timer=0
+local ra_1_timer=0
+local ra_2_timer=0
+local ra_3_timer=0
 function update()
 	if get(ismaster) ~= 1 then
 		local passed=get(frame_time)
@@ -280,7 +288,9 @@ function update()
 		local eras=get(snp)
 		local test_svk=get(svk)
 		local kolc=get(hydro_circuit_auto_man)
-		
+		if absu_svk_tbl.start_timer < 100 and power then
+			absu_svk_tbl.start_timer = absu_svk_tbl.start_timer + passed
+		end
 		if init_timer>0 then
 			ra_tet1_mem=0
 			ra_tet2_mem=0
@@ -360,14 +370,14 @@ function update()
 			set(otk_2,0)
 			set(otk_3,0)
 			set(otk_4,0)
-			set(ute1_fail_mem,0)
-			set(ute2_fail_mem,0)
-			set(bshu_tet1_mem,0)
-			set(bshu_tet2_mem,0)
-			set(bshu_tet3_mem,0)
-			set(bshu_gam1_mem,0)
-			set(bshu_gam2_mem,0)
-			set(bshu_gam3_mem,0)
+			absu_svk_tbl.ute1_fail_mem = 0
+			absu_svk_tbl.ute2_fail_mem = 0
+			absu_svk_tbl.bshu_tet1_mem = 0
+			absu_svk_tbl.bshu_tet2_mem = 0
+			absu_svk_tbl.bshu_tet3_mem = 0
+			absu_svk_tbl.bshu_gam1_mem = 0
+			absu_svk_tbl.bshu_gam2_mem = 0
+			absu_svk_tbl.bshu_gam3_mem = 0
 			init_timer=init_timer-passed
 		end
 		
@@ -408,75 +418,75 @@ function update()
 			local stu_check=get(test_stu)
 			local vu_check=get(test_vu)
 			-- update failure memory
-			if ra_tet1_mem==0 and get(absu_ra1_pitch_fail)==1 then ra_tet1_mem=get(absu_ra1_pitch_fail) end
-			if ra_tet2_mem==0 and get(absu_ra2_pitch_fail)==1 then ra_tet2_mem=get(absu_ra2_pitch_fail) end
-			if ra_tet3_mem==0 and get(absu_ra3_pitch_fail)==1 then ra_tet3_mem=get(absu_ra3_pitch_fail) end
-			if ra_gam1_mem==0 and get(absu_ra1_roll_fail)==1 then ra_gam1_mem=get(absu_ra1_roll_fail) end
-			if ra_gam2_mem==0 and get(absu_ra2_roll_fail)==1 then ra_gam2_mem=get(absu_ra2_roll_fail) end
-			if ra_gam3_mem==0 and get(absu_ra3_roll_fail)==1 then ra_gam3_mem=get(absu_ra3_roll_fail) end
-			if ra_psi1_mem==0 and get(absu_ra1_yaw_fail)==1 then ra_psi1_mem=get(absu_ra1_yaw_fail) end
-			if ra_psi2_mem==0 and get(absu_ra2_yaw_fail)==1 then ra_psi2_mem=get(absu_ra2_yaw_fail) end
-			if ra_psi3_mem==0 and get(absu_ra3_yaw_fail)==1 then ra_psi3_mem=get(absu_ra3_yaw_fail) end
-			if bdg_tet1_mem==0 and get(bdg_tet_1_fail)==1 then bdg_tet1_mem=get(bdg_tet_1_fail) end
-			if bdg_tet2_mem==0 and get(bdg_tet_2_fail)==1 then bdg_tet2_mem=get(bdg_tet_2_fail) end
-			if bdg_tet3_mem==0 and get(bdg_tet_3_fail)==1 then bdg_tet3_mem=get(bdg_tet_3_fail) end
-			if bdg_gam1_mem==0 and get(bdg_gam_1_fail)==1 then bdg_gam1_mem=get(bdg_gam_1_fail) end
-			if bdg_gam2_mem==0 and get(bdg_gam_2_fail)==1 then bdg_gam2_mem=get(bdg_gam_2_fail) end
-			if bdg_gam3_mem==0 and get(bdg_gam_3_fail)==1 then bdg_gam3_mem=get(bdg_gam_3_fail) end
-			if bdg_psi1_mem==0 and get(bdg_psi_1_fail)==1 then bdg_psi1_mem=get(bdg_psi_1_fail) end
-			if bdg_psi2_mem==0 and get(bdg_psi_2_fail)==1 then bdg_psi2_mem=get(bdg_psi_2_fail) end
-			if bdg_psi3_mem==0 and get(bdg_psi_3_fail)==1 then bdg_psi3_mem=get(bdg_psi_3_fail) end
-			if bap_tet1_mem==0 and get(bap_tet_1_fail)==1 then bap_tet1_mem=get(bap_tet_1_fail) end
-			if bap_tet2_mem==0 and get(bap_tet_2_fail)==1 then bap_tet2_mem=get(bap_tet_2_fail) end
-			if bap_tet3_mem==0 and get(bap_tet_3_fail)==1 then bap_tet3_mem=get(bap_tet_3_fail) end
-			if bap_gam1_mem==0 and get(bap_gam_1_fail)==1 then bap_gam1_mem=get(bap_gam_1_fail) end
-			if bap_gam2_mem==0 and get(bap_gam_2_fail)==1 then bap_gam2_mem=get(bap_gam_2_fail) end
-			if bap_gam3_mem==0 and get(bap_gam_3_fail)==1 then bap_gam3_mem=get(bap_gam_3_fail) end
-			if vkv_mem==0 and get(vkv_fail)==1 then vkv_mem=get(vkv_fail) end
-			if vu1_mem==0 and get(vu1_fail)==1 then vu1_mem=get(vu1_fail) end
-			if vu2_mem==0 and get(vu2_fail)==1 then vu2_mem=get(vu2_fail) end
-			if vu3_mem==0 and get(vu3_fail)==1 then vu3_mem=get(vu3_fail) end
-			if stu_tet1_mem==0 and get(stu_tet_1_fail)==1 then stu_tet1_mem=get(stu_tet_1_fail) end
-			if stu_tet2_mem==0 and get(stu_tet_2_fail)==1 then stu_tet2_mem=get(stu_tet_2_fail) end
-			if stu_tet3_mem==0 and get(stu_tet_3_fail)==1 then stu_tet3_mem=get(stu_tet_3_fail) end
-			if stu_gam1_mem==0 and get(stu_gam_1_fail)==1 then stu_gam1_mem=get(stu_gam_1_fail) end
-			if stu_gam2_mem==0 and get(stu_gam_2_fail)==1 then stu_gam2_mem=get(stu_gam_2_fail) end
-			if stu_gam3_mem==0 and get(stu_gam_3_fail)==1 then stu_gam3_mem=get(stu_gam_3_fail) end
+			if ra_tet1_mem==0 and absu_svk_tbl.ra1_pitch_fail==1 then ra_tet1_mem=1 end
+			if ra_tet2_mem==0 and absu_svk_tbl.ra2_pitch_fail==1 then ra_tet2_mem=1 end
+			if ra_tet3_mem==0 and absu_svk_tbl.ra3_pitch_fail==1 then ra_tet3_mem=1 end
+			if ra_gam1_mem==0 and absu_svk_tbl.ra1_roll_fail==1 then ra_gam1_mem=1 end
+			if ra_gam2_mem==0 and absu_svk_tbl.ra2_roll_fail==1 then ra_gam2_mem=1 end
+			if ra_gam3_mem==0 and absu_svk_tbl.ra3_roll_fail==1 then ra_gam3_mem=1 end
+			if ra_psi1_mem==0 and absu_svk_tbl.ra1_yaw_fail==1 then ra_psi1_mem=1 end
+			if ra_psi2_mem==0 and absu_svk_tbl.ra2_yaw_fail==1 then ra_psi2_mem=1 end
+			if ra_psi3_mem==0 and absu_svk_tbl.ra3_yaw_fail==1 then ra_psi3_mem=1 end
+			if bdg_tet1_mem==0 and absu_svk_tbl.bdg_tet_1_fail==1 then bdg_tet1_mem=1 end
+			if bdg_tet2_mem==0 and absu_svk_tbl.bdg_tet_2_fail==1 then bdg_tet2_mem=1 end
+			if bdg_tet3_mem==0 and absu_svk_tbl.bdg_tet_3_fail==1 then bdg_tet3_mem=1 end
+			if bdg_gam1_mem==0 and absu_svk_tbl.bdg_gam_1_fail==1 then bdg_gam1_mem=1 end
+			if bdg_gam2_mem==0 and absu_svk_tbl.bdg_gam_2_fail==1 then bdg_gam2_mem=1 end
+			if bdg_gam3_mem==0 and absu_svk_tbl.bdg_gam_3_fail==1 then bdg_gam3_mem=1 end
+			if bdg_psi1_mem==0 and absu_svk_tbl.bdg_psi_1_fail==1 then bdg_psi1_mem=1 end
+			if bdg_psi2_mem==0 and absu_svk_tbl.bdg_psi_2_fail==1 then bdg_psi2_mem=1 end
+			if bdg_psi3_mem==0 and absu_svk_tbl.bdg_psi_3_fail==1 then bdg_psi3_mem=1 end
+			if bap_tet1_mem==0 and absu_svk_tbl.bap_tet_1_fail==1 then bap_tet1_mem=1 end
+			if bap_tet2_mem==0 and absu_svk_tbl.bap_tet_2_fail==1 then bap_tet2_mem=1 end
+			if bap_tet3_mem==0 and absu_svk_tbl.bap_tet_3_fail==1 then bap_tet3_mem=1 end
+			if bap_gam1_mem==0 and absu_svk_tbl.bap_gam_1_fail==1 then bap_gam1_mem=1 end
+			if bap_gam2_mem==0 and absu_svk_tbl.bap_gam_2_fail==1 then bap_gam2_mem=1 end
+			if bap_gam3_mem==0 and absu_svk_tbl.bap_gam_3_fail==1 then bap_gam3_mem=1 end
+			if vkv_mem==0 and absu_svk_tbl.vkv_fail==1 then vkv_mem=1 end
+			if vu1_mem==0 and absu_svk_tbl.vu1_fail==1 then vu1_mem=1 end
+			if vu2_mem==0 and absu_svk_tbl.vu2_fail==1 then vu2_mem=1 end
+			if vu3_mem==0 and absu_svk_tbl.vu3_fail==1 then vu3_mem=1 end
+			if stu_tet1_mem==0 and absu_svk_tbl.stu_tet_1_fail==1 then stu_tet1_mem=1 end
+			if stu_tet2_mem==0 and absu_svk_tbl.stu_tet_2_fail==1 then stu_tet2_mem=1 end
+			if stu_tet3_mem==0 and absu_svk_tbl.stu_tet_3_fail==1 then stu_tet3_mem=1 end
+			if stu_gam1_mem==0 and absu_svk_tbl.stu_gam_1_fail==1 then stu_gam1_mem=1 end
+			if stu_gam2_mem==0 and absu_svk_tbl.stu_gam_2_fail==1 then stu_gam2_mem=1 end
+			if stu_gam3_mem==0 and absu_svk_tbl.stu_gam_3_fail==1 then stu_gam3_mem=1 end
 			if at1_mem==0 and math.max(get(absu_ch1_fail),at1_test)>0 and at_on then at1_mem=math.max(get(absu_ch1_fail),at1_test) end
 			if at2_mem==0 and math.max(get(absu_ch2_fail),at2_test)>0 and at_on then at2_mem=math.max(get(absu_ch2_fail),at2_test) end
 			--if at3_mem==0 and get(bdlu_fail)==1 then at3_mem=get(bdlu_fail) end
 			
-			if mgv_tet1_mem==0 and get(mgv_tet_1_fail)==1 and stu_pitch_on then mgv_tet1_mem=get(mgv_tet_1_fail) end
-			if mgv_tet2_mem==0 and get(mgv_tet_2_fail)==1 and stu_pitch_on then mgv_tet2_mem=get(mgv_tet_2_fail) end
-			if mgv_tet3_mem==0 and get(mgv_tet_3_fail)==1 and stu_pitch_on then mgv_tet3_mem=get(mgv_tet_3_fail) end
-			if mgv_gam1_mem==0 and get(mgv_gam_1_fail)==1 and stu_roll_on then mgv_gam1_mem=get(mgv_gam_1_fail) end
-			if mgv_gam2_mem==0 and get(mgv_gam_2_fail)==1 and stu_roll_on then mgv_gam2_mem=get(mgv_gam_2_fail) end
-			if mgv_gam3_mem==0 and get(mgv_gam_3_fail)==1 and stu_roll_on then mgv_gam3_mem=get(mgv_gam_3_fail) end
-			if mgv_tet_sau1_mem==0 and get(mgv_tet_1_fail)==1 then mgv_tet_sau1_mem=get(mgv_tet_1_fail) end
-			if mgv_tet_sau2_mem==0 and get(mgv_tet_2_fail)==1 then mgv_tet_sau2_mem=get(mgv_tet_2_fail) end
-			if mgv_tet_sau3_mem==0 and get(mgv_tet_3_fail)==1 then mgv_tet_sau3_mem=get(mgv_tet_3_fail) end
-			if mgv_gam_sau1_mem==0 and get(mgv_gam_1_fail)==1 then mgv_gam_sau1_mem=get(mgv_gam_1_fail) end
-			if mgv_gam_sau2_mem==0 and get(mgv_gam_2_fail)==1 then mgv_gam_sau2_mem=get(mgv_gam_2_fail) end
-			if mgv_gam_sau3_mem==0 and get(mgv_gam_3_fail)==1 then mgv_gam_sau3_mem=get(mgv_gam_3_fail) end
+			if mgv_tet1_mem==0 and absu_svk_tbl.mgv_tet_1_fail==1 and stu_pitch_on then mgv_tet1_mem = 1 end
+			if mgv_tet2_mem==0 and absu_svk_tbl.mgv_tet_2_fail==1 and stu_pitch_on then mgv_tet2_mem = 1 end
+			if mgv_tet3_mem==0 and absu_svk_tbl.mgv_tet_3_fail==1 and stu_pitch_on then mgv_tet3_mem = 1 end
+			if mgv_gam1_mem==0 and absu_svk_tbl.mgv_gam_1_fail==1 and stu_roll_on then mgv_gam1_mem = 1 end
+			if mgv_gam2_mem==0 and absu_svk_tbl.mgv_gam_2_fail==1 and stu_roll_on then mgv_gam2_mem = 1 end
+			if mgv_gam3_mem==0 and absu_svk_tbl.mgv_gam_3_fail==1 and stu_roll_on then mgv_gam3_mem = 1 end
+			if mgv_tet_sau1_mem==0 and absu_svk_tbl.mgv_tet_1_fail==1 then mgv_tet_sau1_mem = 1 end
+			if mgv_tet_sau2_mem==0 and absu_svk_tbl.mgv_tet_2_fail==1 then mgv_tet_sau2_mem = 1 end
+			if mgv_tet_sau3_mem==0 and absu_svk_tbl.mgv_tet_3_fail==1 then mgv_tet_sau3_mem = 1 end
+			if mgv_gam_sau1_mem==0 and absu_svk_tbl.mgv_gam_1_fail==1 then mgv_gam_sau1_mem = 1 end
+			if mgv_gam_sau2_mem==0 and absu_svk_tbl.mgv_gam_2_fail==1 then mgv_gam_sau2_mem = 1 end
+			if mgv_gam_sau3_mem==0 and absu_svk_tbl.mgv_gam_3_fail==1 then mgv_gam_sau3_mem = 1 end
 			
-			if get(ute1_fail_mem)==0 and get(ute1_fail)==1 or get(elev_trimm_1_pk)>0 then set(ute1_fail_mem,1) end
-			if get(ute2_fail_mem)==0 and get(ute2_fail)==1 or get(elev_trimm_2_pk)>0 then set(ute2_fail_mem,1) end
-			if get(bshu_tet1_mem)==0 and get(bshu_tet1_fail)==1 then set(bshu_tet1_mem,1) end
-			if get(bshu_tet2_mem)==0 and get(bshu_tet2_fail)==1 then set(bshu_tet2_mem,1) end
-			if get(bshu_tet3_mem)==0 and get(bshu_tet3_fail)==1 then set(bshu_tet3_mem,1) end
-			if get(bshu_gam1_mem)==0 and get(bshu_gam1_fail)==1 then set(bshu_gam1_mem,1) end
-			if get(bshu_gam2_mem)==0 and get(bshu_gam2_fail)==1 then set(bshu_gam2_mem,1) end
-			if get(bshu_gam3_mem)==0 and get(bshu_gam3_fail)==1 then set(bshu_gam3_mem,1) end
-			if get(bns_tet1_mem)==0 and get(bns_tet1_fail)==1 then set(bns_tet1_mem,1) end
-			if get(bns_tet2_mem)==0 and get(bns_tet2_fail)==1 then set(bns_tet2_mem,1) end
-			if get(bns_tet3_mem)==0 and get(bns_tet3_fail)==1 then set(bns_tet3_mem,1) end
-			if get(bns_gam1_mem)==0 and get(bns_gam1_fail)==1 then set(bns_gam1_mem,1) end
-			if get(bns_gam2_mem)==0 and get(bns_gam2_fail)==1 then set(bns_gam2_mem,1) end
-			if get(bns_gam3_mem)==0 and get(bns_gam3_fail)==1 then set(bns_gam3_mem,1) end
+			if absu_svk_tbl.ute1_fail_mem==0 and absu_svk_tbl.ute1_fail==1 or get(elev_trimm_1_pk)>0 then absu_svk_tbl.ute1_fail_mem = 1 end
+			if absu_svk_tbl.ute2_fail_mem==0 and absu_svk_tbl.ute2_fail==1 or get(elev_trimm_2_pk)>0 then absu_svk_tbl.ute2_fail_mem = 1 end
+			if absu_svk_tbl.bshu_tet1_mem==0 and absu_svk_tbl.bshu_tet1_fail==1 then absu_svk_tbl.bshu_tet1_mem = 1 end
+			if absu_svk_tbl.bshu_tet2_mem==0 and absu_svk_tbl.bshu_tet2_fail==1 then absu_svk_tbl.bshu_tet2_mem = 1 end
+			if absu_svk_tbl.bshu_tet3_mem==0 and absu_svk_tbl.bshu_tet3_fail==1 then absu_svk_tbl.bshu_tet3_mem = 1 end
+			if absu_svk_tbl.bshu_gam1_mem==0 and absu_svk_tbl.bshu_gam1_fail==1 then absu_svk_tbl.bshu_gam1_mem = 1 end
+			if absu_svk_tbl.bshu_gam2_mem==0 and absu_svk_tbl.bshu_gam2_fail==1 then absu_svk_tbl.bshu_gam2_mem = 1 end
+			if absu_svk_tbl.bshu_gam3_mem==0 and absu_svk_tbl.bshu_gam3_fail==1 then absu_svk_tbl.bshu_gam3_mem = 1 end
+			if absu_svk_tbl.bns_tet1_mem==0 and absu_svk_tbl.bns_tet1_fail==1 then absu_svk_tbl.bns_tet1_mem = 1 end
+			if absu_svk_tbl.bns_tet2_mem==0 and absu_svk_tbl.bns_tet2_fail==1 then absu_svk_tbl.bns_tet2_mem = 1 end
+			if absu_svk_tbl.bns_tet3_mem==0 and absu_svk_tbl.bns_tet3_fail==1 then absu_svk_tbl.bns_tet3_mem = 1 end
+			if absu_svk_tbl.bns_gam1_mem==0 and absu_svk_tbl.bns_gam1_fail==1 then absu_svk_tbl.bns_gam1_mem = 1 end
+			if absu_svk_tbl.bns_gam2_mem==0 and absu_svk_tbl.bns_gam2_fail==1 then absu_svk_tbl.bns_gam2_mem = 1 end
+			if absu_svk_tbl.bns_gam3_mem==0 and absu_svk_tbl.bns_gam3_fail==1 then absu_svk_tbl.bns_gam3_mem = 1 end
 			--ABSU work light
 			local work=ra_tet1_mem+ra_tet2_mem+ra_tet3_mem+ra_gam1_mem+ra_gam2_mem+ra_gam3_mem+ra_psi1_mem+ra_psi2_mem+ra_psi3_mem+bdg_tet1_mem+bdg_tet2_mem+bdg_tet3_mem+bdg_gam1_mem+bdg_gam2_mem+bdg_gam3_mem+bdg_psi1_mem+bdg_psi2_mem+bdg_psi3_mem+
 			bap_tet1_mem+bap_tet2_mem+bap_tet3_mem+bap_gam1_mem+bap_gam2_mem+bap_gam3_mem+vkv_mem+vkv2_mem+vu1_mem+vu3_mem+stu_tet1_mem+stu_tet2_mem+stu_tet3_mem+stu_gam1_mem+stu_gam2_mem+stu_gam3_mem+at1_mem +at2_mem +at3_mem+mgv_tet1_mem+
-			mgv_tet2_mem+mgv_tet3_mem+mgv_gam1_mem+mgv_gam2_mem+mgv_gam3_mem+mgv_tet_sau1_mem+mgv_tet_sau2_mem+mgv_tet_sau3_mem+mgv_gam_sau1_mem+mgv_gam_sau2_mem+mgv_gam_sau3_mem+(at1_test+at2_test+at3_test)*bool2int(at_on)+get(ute1_fail_mem)+get(ute2_fail_mem)+get(bshu_tet1_mem)+get(bshu_tet2_mem)+get(bshu_tet3_mem)+get(bshu_gam1_mem)+get(bshu_gam2_mem)+get(bshu_gam3_mem)+get(bns_tet1_mem)+get(bns_tet2_mem)+get(bns_tet3_mem)+get(bns_gam1_mem)+get(bns_gam2_mem)+get(bns_gam3_mem)+stu_check+vu_check+get(absu_damp_pitch_fail)+get(absu_damp_roll_fail)+get(absu_damp_yaw_fail)
+			mgv_tet2_mem+mgv_tet3_mem+mgv_gam1_mem+mgv_gam2_mem+mgv_gam3_mem+mgv_tet_sau1_mem+mgv_tet_sau2_mem+mgv_tet_sau3_mem+mgv_gam_sau1_mem+mgv_gam_sau2_mem+mgv_gam_sau3_mem+(at1_test+at2_test+at3_test)*bool2int(at_on)+absu_svk_tbl.ute1_fail_mem+absu_svk_tbl.ute2_fail_mem+absu_svk_tbl.bshu_tet1_mem+absu_svk_tbl.bshu_tet2_mem+absu_svk_tbl.bshu_tet3_mem+absu_svk_tbl.bshu_gam1_mem+absu_svk_tbl.bshu_gam2_mem+absu_svk_tbl.bshu_gam3_mem+absu_svk_tbl.bns_tet1_mem+absu_svk_tbl.bns_tet2_mem+absu_svk_tbl.bns_tet3_mem+absu_svk_tbl.bns_gam1_mem+absu_svk_tbl.bns_gam2_mem+absu_svk_tbl.bns_gam3_mem+stu_check+vu_check+absu_svk_tbl.bkvg_tet_fail+absu_svk_tbl.bkvg_gam_fail+absu_svk_tbl.bkvg_psi_fail+bool2int(absu_svk_tbl.start_timer< 20)
 			if work==0 then
 				set(work_state,1)
 			else
@@ -484,19 +494,19 @@ function update()
 			end	
 			
 			if kolc>0 then
-				ra_gam1_mem=get(absu_ra1_roll_fail)
-				ra_gam2_mem=get(absu_ra2_roll_fail)
-				ra_gam3_mem=get(absu_ra3_roll_fail)
+				ra_gam1_mem=absu_svk_tbl.ra1_roll_fail
+				ra_gam2_mem=absu_svk_tbl.ra2_roll_fail
+				ra_gam3_mem=absu_svk_tbl.ra3_roll_fail
 			end
 			if kolc>0 then
-				ra_tet1_mem=get(absu_ra1_pitch_fail)
-				ra_tet2_mem=get(absu_ra2_pitch_fail)
-				ra_tet3_mem=get(absu_ra3_pitch_fail)
+				ra_tet1_mem=absu_svk_tbl.ra1_pitch_fail
+				ra_tet2_mem=absu_svk_tbl.ra2_pitch_fail
+				ra_tet3_mem=absu_svk_tbl.ra3_pitch_fail
 			end
 			if kolc>0 then
-				ra_psi1_mem=get(absu_ra1_yaw_fail)
-				ra_psi2_mem=get(absu_ra2_yaw_fail)
-				ra_psi3_mem=get(absu_ra3_yaw_fail)
+				ra_psi1_mem=absu_svk_tbl.ra1_yaw_fail
+				ra_psi2_mem=absu_svk_tbl.ra2_yaw_fail
+				ra_psi3_mem=absu_svk_tbl.ra3_yaw_fail
 			end
 			--shift register moves while search is pressed and no faults
 			if get(search_run)==1 then
@@ -508,7 +518,7 @@ function update()
 			end
 			-- skip fault
 			if get(start)>0 and skipped==0 then
-				if s_reg==0 then
+				if s_reg < 0 then
 					s_reg=1.01
 				else
 					s_reg=s_reg+1
@@ -556,144 +566,154 @@ function update()
 			elseif s_reg>4 and s_reg<5 then
 				set(ra_psi,0)
 				set(bdg_tet,1*math.max(get(search),get(test_svk)))
-				if bdg_tet1_mem+bdg_tet2_mem+bdg_tet3_mem>0 then
+				if bdg_tet1_mem+bdg_tet2_mem+bdg_tet3_mem+absu_svk_tbl.bkvg_tet_fail>0 then
 					s_run=0
 				end
 				set(otk_1,bdg_tet1_mem*math.max(get(search),get(test_svk)))
 				set(otk_2,bdg_tet2_mem*math.max(get(search),get(test_svk)))
 				set(otk_3,bdg_tet3_mem*math.max(get(search),get(test_svk)))
-				set(otk_4,bool2int(test1>0 or test2>0 or test3>0))
 				if test1>0 and get(test_svk)>0 then
 					bdg_tet1_mem=1
+					absu_svk_tbl.bkvg_tet_fail = 1
 				end
 				if test2>0 and get(test_svk)>0 then
 					bdg_tet2_mem=1
+					absu_svk_tbl.bkvg_tet_fail = 1
 				end
 				if test3>0 and get(test_svk)>0 then
 					bdg_tet3_mem=1
+					absu_svk_tbl.bkvg_tet_fail = 1
 				end
 				if eras>0 and get(test_svk)>0 then
 					bdg_tet1_mem=0
 					bdg_tet2_mem=0
 					bdg_tet3_mem=0
 				end
+				set(otk_4,bool2int(absu_svk_tbl.bkvg_tet_fail > 0))
 			elseif s_reg>5 and s_reg<6 then
 				set(bdg_tet,0)
 				set(bdg_gam,1*math.max(get(search),get(test_svk)))
-				if bdg_gam1_mem+bdg_gam2_mem+bdg_gam3_mem>0 then
+				if bdg_gam1_mem+bdg_gam2_mem+bdg_gam3_mem+absu_svk_tbl.bkvg_gam_fail>0 then
 					s_run=0
 				end
 				set(otk_1,bdg_gam1_mem*math.max(get(search),get(test_svk)))
 				set(otk_2,bdg_gam2_mem*math.max(get(search),get(test_svk)))
 				set(otk_3,bdg_gam3_mem*math.max(get(search),get(test_svk)))
-				set(otk_4,bool2int(test1>0 or test2>0 or test3>0))
+				
 				if test1>0 and get(test_svk)>0 then
 					bdg_gam1_mem=1
+					absu_svk_tbl.bkvg_gam_fail = 1
 				end
 				if test2>0 and get(test_svk)>0 then
 					bdg_gam2_mem=1
+					absu_svk_tbl.bkvg_gam_fail = 1
 				end
 				if test3>0 and get(test_svk)>0 then
 					bdg_gam3_mem=1
+					absu_svk_tbl.bkvg_gam_fail = 1
 				end
 				if eras>0 and get(test_svk)>0 then
 					bdg_gam1_mem=0
 					bdg_gam2_mem=0
 					bdg_gam3_mem=0
 				end
+				set(otk_4,bool2int(absu_svk_tbl.bkvg_gam_fail > 0))
 			elseif s_reg>6 and s_reg<7 then
 				set(bdg_gam,0)
 				set(bdg_psi,1*math.max(get(search),get(test_svk)))
-				if bdg_psi1_mem+bdg_psi2_mem+bdg_psi3_mem>0 then
+				if bdg_psi1_mem+bdg_psi2_mem+bdg_psi3_mem+absu_svk_tbl.bkvg_psi_fail>0 then
 					s_run=0
 				end
 				set(otk_1,bdg_psi1_mem*math.max(get(search),get(test_svk)))
 				set(otk_2,bdg_psi2_mem*math.max(get(search),get(test_svk)))
 				set(otk_3,bdg_psi3_mem*math.max(get(search),get(test_svk)))
-				set(otk_4,bool2int(test1>0 or test2>0 or test3>0))
 				if test1>0 and get(test_svk)>0 then
 					bdg_psi1_mem=1
+					absu_svk_tbl.bkvg_psi_fail = 1
 				end
 				if test2>0 and get(test_svk)>0 then
 					bdg_psi2_mem=1
+					absu_svk_tbl.bkvg_psi_fail = 1
 				end
 				if test3>0 and get(test_svk)>0 then
 					bdg_psi3_mem=1
+					absu_svk_tbl.bkvg_psi_fail = 1
 				end
 				if eras>0 and get(test_svk)>0 then
 					bdg_psi1_mem=0
 					bdg_psi2_mem=0
 					bdg_psi3_mem=0
 				end
+				set(otk_4,bool2int(absu_svk_tbl.bkvg_psi_fail>0))
 			elseif s_reg>7 and s_reg<8 then
 				set(bdg_psi,0)
 				set(bshu_1,1*math.max(get(search),get(test_svk)))
-				if get(bshu_tet1_mem)+get(bshu_tet2_mem)+get(bshu_tet3_mem)>0 then
+				if absu_svk_tbl.bshu_tet1_mem+absu_svk_tbl.bshu_tet2_mem+absu_svk_tbl.bshu_tet3_mem>0 then
 					s_run=0
 				end
-				set(otk_1,get(bshu_tet1_mem)*math.max(get(search),get(test_svk)))
-				set(otk_2,get(bshu_tet2_mem)*math.max(get(search),get(test_svk)))
-				set(otk_3,get(bshu_tet3_mem)*math.max(get(search),get(test_svk)))
+				set(otk_1,absu_svk_tbl.bshu_tet1_mem*math.max(get(search),get(test_svk)))
+				set(otk_2,absu_svk_tbl.bshu_tet2_mem*math.max(get(search),get(test_svk)))
+				set(otk_3,absu_svk_tbl.bshu_tet3_mem*math.max(get(search),get(test_svk)))
 				set(otk_4,0)
 				if test1>0 and get(test_svk)>0 then
-					set(bshu_tet1_mem,1)
+					absu_svk_tbl.bshu_tet1_mem = 1
 				end
 				if test2>0 and get(test_svk)>0 then
-					set(bshu_tet2_mem,1)
+					absu_svk_tbl.bshu_tet2_mem = 1
 				end
 				if test3>0 and get(test_svk)>0 then
-					set(bshu_tet3_mem,1)
+					absu_svk_tbl.bshu_tet3_mem = 1
 				end
 				if eras>0 and get(test_svk)>0 then
-					set(bshu_tet1_mem,0)
-					set(bshu_tet2_mem,0)
-					set(bshu_tet3_mem,0)
+					absu_svk_tbl.bshu_tet1_mem = 0
+					absu_svk_tbl.bshu_tet2_mem = 0
+					absu_svk_tbl.bshu_tet3_mem = 0
 				end
 			elseif s_reg>8 and s_reg<9 then
 				set(bshu_1,0)
 				set(bshu_2,1*math.max(get(search),get(test_svk)))
-				if get(bshu_gam1_mem)+get(bshu_gam2_mem)+get(bshu_gam3_mem)>0 then
+				if absu_svk_tbl.bshu_gam1_mem+absu_svk_tbl.bshu_gam2_mem+absu_svk_tbl.bshu_gam3_mem>0 then
 					s_run=0
 				end
-				set(otk_1,get(bshu_gam1_mem)*math.max(get(search),get(test_svk)))
-				set(otk_2,get(bshu_gam2_mem)*math.max(get(search),get(test_svk)))
-				set(otk_3,get(bshu_gam3_mem)*math.max(get(search),get(test_svk)))
+				set(otk_1,absu_svk_tbl.bshu_gam1_mem*math.max(get(search),get(test_svk)))
+				set(otk_2,absu_svk_tbl.bshu_gam2_mem*math.max(get(search),get(test_svk)))
+				set(otk_3,absu_svk_tbl.bshu_gam3_mem*math.max(get(search),get(test_svk)))
 				if test1>0 and get(test_svk)>0 then
-					set(bshu_gam1_mem,1)
+					absu_svk_tbl.bshu_gam1_mem = 1
 				end
 				if test2>0 and get(test_svk)>0 then
-					set(bshu_gam2_mem,1)
+					absu_svk_tbl.bshu_gam2_mem = 1
 				end
 				if test3>0 and get(test_svk)>0 then
-					set(bshu_gam3_mem,1)
+					absu_svk_tbl.bshu_gam3_mem = 1
 				end
 				if eras>0 and get(test_svk)>0 then
-					set(bshu_gam1_mem,0)
-					set(bshu_gam2_mem,0)
-					set(bshu_gam3_mem,0)
+					absu_svk_tbl.bshu_gam1_mem = 0
+					absu_svk_tbl.bshu_gam2_mem = 0
+					absu_svk_tbl.bshu_gam3_mem = 0
 				end
 			elseif s_reg>9 and s_reg<10 then
 				set(bshu_2,0)
 				set(bns_tet,1*math.max(get(search),get(test_svk)))
-				if get(bns_tet1_mem)+get(bns_tet2_mem)+get(bns_tet3_mem)>0 then
+				if absu_svk_tbl.bns_tet1_mem+absu_svk_tbl.bns_tet2_mem+absu_svk_tbl.bns_tet3_mem>0 then
 					s_run=0
 				end
-				set(otk_1,get(bns_tet1_mem)*math.max(get(search),get(test_svk)))
-				set(otk_2,get(bns_tet2_mem)*math.max(get(search),get(test_svk)))
-				set(otk_3,get(bns_tet3_mem)*math.max(get(search),get(test_svk)))
+				set(otk_1,absu_svk_tbl.bns_tet1_mem*math.max(get(search),get(test_svk)))
+				set(otk_2,absu_svk_tbl.bns_tet2_mem*math.max(get(search),get(test_svk)))
+				set(otk_3,absu_svk_tbl.bns_tet3_mem*math.max(get(search),get(test_svk)))
 				if test1>0 and get(test_svk)>0 then
-					set(bns_tet1_mem,1)
+					absu_svk_tbl.bns_tet1_mem=1
 				end
 				if test2>0 and get(test_svk)>0 then
-					set(bns_tet2_mem,1)
+					absu_svk_tbl.bns_tet2_mem=1
 				end
 				if test3>0 and get(test_svk)>0 then
-					set(bns_tet3_mem,1)
+					absu_svk_tbl.bns_tet3_mem=1
 				end
 				if eras>0 and get(test_svk)>0 then
-					set(bns_tet1_mem,0)
-					set(bns_tet2_mem,0)
-					set(bns_tet3_mem,0)
+					absu_svk_tbl.bns_tet1_mem=0
+					absu_svk_tbl.bns_tet2_mem=0
+					absu_svk_tbl.bns_tet3_mem=0
 				end
 			elseif s_reg>10 and s_reg<11 then
 				set(bns_tet,0)
@@ -786,20 +806,20 @@ function update()
 			elseif s_reg>14 and s_reg<15 then
 				set(vu,0)
 				set(ute,1*math.max(get(search),get(test_svk)))
-				if get(ute1_fail_mem)+get(ute2_fail_mem)>0 then
+				if absu_svk_tbl.ute1_fail_mem+absu_svk_tbl.ute2_fail_mem>0 then
 					s_run=0
 				end
-				set(otk_1,get(ute1_fail_mem)*math.max(get(search),get(test_svk)))
-				set(otk_2,get(ute2_fail_mem)*math.max(get(search),get(test_svk)))
+				set(otk_1,absu_svk_tbl.ute1_fail_mem*math.max(get(search),get(test_svk)))
+				set(otk_2,absu_svk_tbl.ute2_fail_mem*math.max(get(search),get(test_svk)))
 				if test1>0 and get(test_svk)>0 then
-					set(ute1_fail_mem,1)
+					absu_svk_tbl.ute1_fail_mem = 1
 				end
 				if test2>0 and get(test_svk)>0 then
-					set(ute2_fail_mem,1)
+					absu_svk_tbl.ute2_fail_mem = 1
 				end
 				if eras>0 and get(test_svk)>0 then
-					set(ute1_fail_mem,0)
-					set(ute2_fail_mem,0)
+					absu_svk_tbl.ute1_fail_mem = 0
+					absu_svk_tbl.ute2_fail_mem = 0
 				end
 			elseif s_reg>15 and s_reg<16 then
 				set(ute,0)
@@ -1003,25 +1023,25 @@ function update()
 			elseif s_reg>24 and s_reg<25 then
 				set(ks,0)
 				set(bns_gam,1*math.max(get(search),get(test_svk)))
-				if get(bns_gam1_mem)+get(bns_gam2_mem)+get(bns_gam3_mem)>0 then
+				if absu_svk_tbl.bns_gam1_mem+absu_svk_tbl.bns_gam2_mem+absu_svk_tbl.bns_gam3_mem>0 then
 					s_run=0
 				end
-				set(otk_1,get(bns_gam1_mem)*math.max(get(search),get(test_svk)))
-				set(otk_2,get(bns_gam2_mem)*math.max(get(search),get(test_svk)))
-				set(otk_3,get(bns_gam3_mem)*math.max(get(search),get(test_svk)))
+				set(otk_1,absu_svk_tbl.bns_gam1_mem*math.max(get(search),get(test_svk)))
+				set(otk_2,absu_svk_tbl.bns_gam2_mem*math.max(get(search),get(test_svk)))
+				set(otk_3,absu_svk_tbl.bns_gam3_mem*math.max(get(search),get(test_svk)))
 				if test1>0 and get(test_svk)>0 then
-					set(bns_gam1_mem,1)
+					absu_svk_tbl.bns_gam1_mem=1
 				end
 				if test2>0 and get(test_svk)>0 then
-					set(bns_gam2_mem,1)
+					absu_svk_tbl.bns_gam2_mem=1
 				end
 				if test3>0 and get(test_svk)>0 then
-					set(bns_gam3_mem,1)
+					absu_svk_tbl.bns_gam3_mem=1
 				end
 				if eras>0 and get(test_svk)>0 then
-					set(bns_gam1_mem,0)
-					set(bns_gam2_mem,0)
-					set(bns_gam3_mem,0)
+					absu_svk_tbl.bns_gam1_mem=0
+					absu_svk_tbl.bns_gam2_mem=0
+					absu_svk_tbl.bns_gam3_mem=0
 				end
 			elseif s_reg>25 then
 				set(bns_gam,0)
@@ -1115,18 +1135,6 @@ function update()
 			
 			-- set failures
 			-- dampers
-			local demf_tang1=math.max(bdg_tet1_mem,ra_tet1_mem)
-			local demf_tang2=math.max(bdg_tet2_mem,ra_tet2_mem)
-			local demf_tang3=math.max(bdg_tet3_mem,ra_tet3_mem)
-			
-			
-			local demf_kren1=math.max(bdg_gam1_mem,ra_gam1_mem)
-			local demf_kren2=math.max(bdg_gam2_mem,ra_gam2_mem)
-			local demf_kren3=math.max(bdg_gam3_mem,ra_gam3_mem)
-			
-			local demf_kurs1=math.max(bdg_psi1_mem,ra_psi1_mem)
-			local demf_kurs2=math.max(bdg_psi2_mem,ra_psi2_mem)
-			local demf_kurs3=math.max(bdg_psi3_mem,ra_psi3_mem)
 			local mgv_tet1=get(mgv_tet_1)
 			local mgv_tet2=get(mgv_tet_2)
 			local mgv_tet3=get(mgv_tet_3)
@@ -1136,125 +1144,83 @@ function update()
 			local mgv_gam2=get(mgv_gam_2)
 			local mgv_gam3=get(mgv_gam_3)
 			local mgv_gam_res=0
-			-- gyro commutator
-			if math.abs(mgv_tet1-mgv_tet2)>8 and math.abs(mgv_tet1-mgv_tet3)>8 then
-				set(mgv_tet_1_fail,1)
-				if math.abs(mgv_tet3-mgv_tet2)>8 then
-					set(mgv_tet_2_fail,1)
-				end
-			elseif math.abs(mgv_tet2-mgv_tet3)>8 and math.abs(mgv_tet2-mgv_tet1)>8 then
-				set(mgv_tet_2_fail,1)
-				if math.abs(mgv_tet3-mgv_tet1)>8 then
-					set(mgv_tet_3_fail,1)
-				end
-			elseif math.abs(mgv_tet3-mgv_tet2)>8 and math.abs(mgv_tet3-mgv_tet1)>8 then
-				set(mgv_tet_3_fail,1)
-				if math.abs(mgv_tet1-mgv_tet2)>8 then
-					set(mgv_tet_2_fail,1)
-				end
-			else
-				set(mgv_tet_1_fail,0)
-				set(mgv_tet_2_fail,0)
-				set(mgv_tet_3_fail,0)
-				mgv_tet_res=(mgv_tet1+mgv_tet2+mgv_tet3)/3
-			end
-			if math.abs(mgv_gam1-mgv_gam2)>10 and math.abs(mgv_gam1-mgv_gam3)>10 then
-				set(mgv_gam_1_fail,1)
-				if math.abs(mgv_gam3-mgv_gam2)>10 then
-					set(mgv_gam_2_fail,1)
-				end
-			elseif math.abs(mgv_gam2-mgv_gam3)>10 and math.abs(mgv_gam2-mgv_gam1)>10 then
-				set(mgv_gam_2_fail,1)
-				if math.abs(mgv_gam3-mgv_gam1)>10 then
-					set(mgv_gam_3_fail,1)
-				end
-			elseif math.abs(mgv_gam3-mgv_gam2)>10 and math.abs(mgv_gam3-mgv_gam1)>10 then
-				set(mgv_gam_3_fail,1)
-				if math.abs(mgv_gam1-mgv_gam2)>10 then
-					set(mgv_gam_2_fail,1)
-				end
-			else
-				set(mgv_gam_1_fail,0)
-				set(mgv_gam_2_fail,0)
-				set(mgv_gam_3_fail,0)
-			end
+			--- bdg fail detector and commutator commutator --
+			absu_svk_tbl.bdg_tet_1_fail, absu_svk_tbl.bdg_tet_2_fail, absu_svk_tbl.bdg_tet_3_fail = KE_otkaz(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,0.3)
+			absu_svk_tbl.bdg_gam_1_fail, absu_svk_tbl.bdg_gam_2_fail, absu_svk_tbl.bdg_gam_3_fail = KE_otkaz(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,0.3)
+			absu_svk_tbl.bdg_psi_1_fail, absu_svk_tbl.bdg_psi_2_fail, absu_svk_tbl.bdg_psi_3_fail = KE_otkaz(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,0.3)
+			
+			absu_svk_tbl.bdg_gam_rate=kommutator(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,bdg_gam1_mem,bdg_gam2_mem,bdg_gam3_mem)
+			absu_svk_tbl.bdg_tet_rate=kommutator(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,bdg_tet1_mem,bdg_tet2_mem,bdg_tet3_mem)
+			absu_svk_tbl.bdg_psi_rate=kommutator(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,bdg_psi1_mem,bdg_psi2_mem,bdg_psi3_mem)
+			--- mgv fail detector and commutator ---
+			absu_svk_tbl.mgv_gam_1_fail, absu_svk_tbl.mgv_gam_2_fail, absu_svk_tbl.mgv_gam_3_fail = KE_otkaz(mgv_gam1,mgv_gam2,mgv_gam3,8)
+			absu_svk_tbl.mgv_tet_1_fail, absu_svk_tbl.mgv_tet_2_fail, absu_svk_tbl.mgv_tet_3_fail = KE_otkaz(mgv_tet1,mgv_tet2,mgv_tet3,8)
+
 			if get(roll_submode) > 2 then
-				mgv_gam_res=(mgv_gam1+mgv_gam2+mgv_gam3)/3
-				if mgv_gam_sau1_mem + mgv_gam_sau2_mem + mgv_gam_sau3_mem < 2 then
-					mgv_gam_res=(mgv_gam1 * (1-mgv_gam_sau1_mem) + mgv_gam2 * (1-mgv_gam_sau2_mem) + mgv_gam3 * (1-mgv_gam_sau3_mem))/( 3 - mgv_gam_sau1_mem - mgv_gam_sau2_mem - mgv_gam_sau3_mem)
-				end
+				mgv_gam_res=kommutator(mgv_gam1,mgv_gam2,mgv_gam3,mgv_gam1_mem,mgv_gam2_mem,mgv_gam3_mem)
 			else
-				mgv_gam_res=(mgv_gam1+mgv_gam2+mgv_gam3)/3
-				if mgv_gam1_mem + mgv_gam2_mem + mgv_gam3_mem < 2 then
-					mgv_gam_res=(mgv_gam1 * (1-mgv_gam1_mem) + mgv_gam2 * (1-mgv_gam2_mem) + mgv_gam3 * (1-mgv_gam3_mem))/( 3 - mgv_gam1_mem - mgv_gam2_mem - mgv_gam3_mem)
-				end
+				mgv_gam_res=kommutator(mgv_gam1,mgv_gam2,mgv_gam3,mgv_gam_sau1_mem,mgv_gam_sau2_mem,mgv_gam_sau3_mem)			
 			end
 			if get(pitch_submode) == 5 then
-				mgv_tet_res=(mgv_tet1+mgv_tet2+mgv_tet3)/3
-				if mgv_tet1_mem + mgv_tet2_mem + mgv_tet3_mem < 2 then
-					mgv_tet_res=(mgv_tet1 * (1-mgv_tet1_mem) + mgv_tet2 * (1-mgv_tet2_mem) + mgv_tet3 * (1-mgv_tet3_mem))/( 3 - mgv_tet1_mem - mgv_tet2_mem - mgv_tet3_mem)
-				end
-			else
-				mgv_tet_res=(mgv_tet1+mgv_tet2+mgv_tet3)/3
-				if mgv_tet_sau1_mem + mgv_tet_sau2_mem + mgv_tet_sau3_mem < 2 then
-					mgv_tet_res=(mgv_tet1 * (1-mgv_tet_sau1_mem) + mgv_tet2 * (1-mgv_tet_sau2_mem) + mgv_tet3 * (1-mgv_tet_sau3_mem))/( 3 -mgv_tet_sau1_mem - mgv_tet_sau2_mem - mgv_tet_sau3_mem)
-				end
+				mgv_tet_res=kommutator(mgv_tet1,mgv_tet2,mgv_tet3,mgv_tet1_mem,mgv_tet2_mem,mgv_tet3_mem)
+			else				
+				mgv_tet_res=kommutator(mgv_tet1,mgv_tet2,mgv_tet3,mgv_tet_sau1_mem,mgv_tet_sau2_mem,mgv_tet_sau3_mem)
 			end
 			set(bkk_pitch, mgv_tet_res)
 			set(bkk_roll, mgv_gam_res)
-			-- damper fails, with 250ms delay
-			if (demf_tang1+demf_tang2+demf_tang3)>1 or not power then 
-				if demp1_timer<0.25 then
-					demp1_timer=demp1_timer+passed
+			--- Servo fails, with 250ms delay ---
+			if (ra_tet1_mem+ra_tet2_mem+ra_tet3_mem)>1 or not power then 
+				if ra_1_timer<0.25 then
+					ra_1_timer=ra_1_timer+passed
 				end
 			else
-				if demp1_timer>0 then
-					demp1_timer=demp1_timer-passed*2.5
-					if demp1_timer<0 then
-						demp1_timer=0
+				if ra_1_timer>0 then
+					ra_1_timer=ra_1_timer-passed*2.5
+					if ra_1_timer<0 then
+						ra_1_timer=0
 					end
 				end
 			end
 			
-			if demf_kren1+demf_kren2+demf_kren3>1 or not power then 
-				if demp2_timer<0.25 then
-					demp2_timer=demp2_timer+passed
+			if ra_gam1_mem+ra_gam2_mem+ra_gam3_mem>1 or not power then 
+				if ra_2_timer<0.25 then
+					ra_2_timer=ra_2_timer+passed
 				end
 			else
-				if demp2_timer>0 then
-					demp2_timer=demp2_timer-passed*2.5
-					if demp2_timer<0 then
-						demp2_timer=0
+				if ra_2_timer>0 then
+					ra_2_timer=ra_2_timer-passed*2.5
+					if ra_2_timer<0 then
+						ra_2_timer=0
 					end
 				end
 			end
 			
-			if demf_kurs1+demf_kurs2+demf_kurs3>1 or not power then 
-				if demp3_timer<0.25 then
-					demp3_timer=demp3_timer+passed
+			if ra_psi1_mem+ra_psi2_mem+ra_psi3_mem>1 or not power then 
+				if ra_3_timer<0.25 then
+					ra_3_timer=ra_3_timer+passed
 				end
 			else
-				if demp3_timer>0 then
-					demp3_timer=demp3_timer-passed*2.5
-					if demp3_timer<0 then
-						demp3_timer=0
+				if ra_3_timer>0 then
+					ra_3_timer=ra_3_timer-passed*2.5
+					if ra_3_timer<0 then
+						ra_3_timer=0
 					end
 				end
 			end
-			if demp1_timer==0 then
-				set(absu_damp_pitch_fail, 0) 
-			elseif demp1_timer>=0.2 then
-				set(absu_damp_pitch_fail, 1) 
+			if ra_1_timer==0 then
+				absu_svk_tbl.ra_tet_fail = 0
+			elseif ra_1_timer>=0.2 then
+				absu_svk_tbl.ra_tet_fail = 1
 			end
-			if demp2_timer==0 then
-				set(absu_damp_roll_fail, 0)
-			elseif demp2_timer>=0.2 then
-				set(absu_damp_roll_fail, 1)
+			if ra_2_timer==0 then
+				absu_svk_tbl.ra_gam_fail = 0
+			elseif ra_2_timer>=0.2 then
+				absu_svk_tbl.ra_gam_fail = 1
 			end
-			if demp3_timer==0 then
-				set(absu_damp_yaw_fail, 0)
-			elseif demp3_timer>=0.2 then
-				set(absu_damp_yaw_fail, 1)
+			if ra_3_timer==0 then
+				absu_svk_tbl.ra_psi_fail = 0
+			elseif ra_3_timer>=0.2 then
+				absu_svk_tbl.ra_psi_fail = 1
 			end
 			--mode fallbacks
 			
@@ -1270,7 +1236,7 @@ function update()
 				set(absu_bap_roll_fail,0)
 			end
 			
-			if (mgv_tet_sau1_mem+mgv_tet_sau2_mem+mgv_tet_sau3_mem>1) or (get(ute1_fail_mem)+get(ute2_fail_mem)>1) then 
+			if (mgv_tet_sau1_mem+mgv_tet_sau2_mem+mgv_tet_sau3_mem>1) or (absu_svk_tbl.ute1_fail_mem+absu_svk_tbl.ute2_fail_mem>1) then 
 				set(absu_contr_pitch_fail, 1)
 			else
 				set(absu_contr_pitch_fail, 0)
@@ -1290,13 +1256,13 @@ function update()
 				stu_tet2_mem=1
 				stu_tet3_mem=1
 			end
-			if (stu_gam1_mem+stu_gam2_mem+stu_gam3_mem>1) or (mgv_gam1_mem+mgv_gam2_mem+mgv_gam3_mem>1) or stu_check>0 or get(bns_gam1_mem)+get(bns_gam2_mem)+get(bns_gam3_mem)>1 then 
+			if (stu_gam1_mem+stu_gam2_mem+stu_gam3_mem>1) or (mgv_gam1_mem+mgv_gam2_mem+mgv_gam3_mem>1) or stu_check>0 or absu_svk_tbl.bns_gam1_mem+absu_svk_tbl.bns_gam2_mem+absu_svk_tbl.bns_gam3_mem>1 then 
 				set(absu_calc_roll_fail, 1)
 			else
 				set(absu_calc_roll_fail, 0)
 			end
 			
-			if (stu_tet1_mem+stu_tet2_mem+stu_tet3_mem>1) or (mgv_tet1_mem+mgv_tet2_mem+mgv_tet3_mem>1) or stu_check>0 or get(bns_tet1_mem)+get(bns_tet2_mem)+get(bns_tet3_mem)>1 then 
+			if (stu_tet1_mem+stu_tet2_mem+stu_tet3_mem>1) or (mgv_tet1_mem+mgv_tet2_mem+mgv_tet3_mem>1) or stu_check>0 or absu_svk_tbl.bns_tet1_mem+absu_svk_tbl.bns_tet2_mem+absu_svk_tbl.bns_tet3_mem>1 then 
 				set(absu_calc_pitch_fail, 1)
 			else
 				set(absu_calc_pitch_fail, 0)
@@ -1306,6 +1272,22 @@ function update()
 				set(absu_calc_toga_fail, 1)
 			else
 				set(absu_calc_toga_fail, 0)
+			end
+			--- Damper fails --- 
+			if bdg_gam1_mem+bdg_gam2_mem+bdg_gam3_mem>1 then 
+				set(absu_damp_roll_fail, 1)
+			else
+				set(absu_damp_roll_fail, 0)
+			end
+			if bdg_tet1_mem+bdg_tet2_mem+bdg_tet3_mem>1 then 
+				set(absu_damp_pitch_fail, 1)
+			else
+				set(absu_damp_pitch_fail, 0)
+			end
+			if bdg_psi1_mem+bdg_psi2_mem+bdg_psi3_mem>1 then 
+				set(absu_damp_yaw_fail, 1)
+			else
+				set(absu_damp_yaw_fail, 0)
 			end
 			--VKV fails
 			if math.abs(get(v_left)-get(v_right))>10 and get(v_left) + get(v_right)>100 then  -- vkv fail from indicator difference
@@ -1341,27 +1323,27 @@ function update()
 			set(absu_at1_fail,at1_mem)
 			set(absu_at2_fail,at2_mem)
 			
-			if get(ute1_fail_mem)+get(ute2_fail_mem)>1 then
-				set(rel_trim_elv,6)
-			else
-				set(rel_trim_elv,0)
-			end
-			if get(bshu_tet1_mem)+get(bshu_tet2_mem)+get(bshu_tet3_mem)>1 then
+			-- if absu_svk_tbl.ute1_fail_mem+absu_svk_tbl.ute2_fail_mem>1 then
+				-- set(rel_trim_elv,6)
+			-- else
+				-- set(rel_trim_elv,0)
+			-- end
+			if absu_svk_tbl.bshu_tet1_mem+absu_svk_tbl.bshu_tet2_mem+absu_svk_tbl.bshu_tet3_mem>1 then
 				set(bshu_tet_fail,1)
 			else
 				set(bshu_tet_fail,0)
 			end
-			if get(bshu_gam1_mem)+get(bshu_gam2_mem)+get(bshu_gam3_mem)>1 then
+			if absu_svk_tbl.bshu_gam1_mem+absu_svk_tbl.bshu_gam2_mem+absu_svk_tbl.bshu_gam3_mem>1 then
 				set(bshu_gam_fail,1)
 			else
 				set(bshu_gam_fail,0)
 			end
-			if get(bns_tet1_mem)+get(bns_tet2_mem)+get(bns_tet3_mem)>1 then
+			if absu_svk_tbl.bns_tet1_mem+absu_svk_tbl.bns_tet2_mem+absu_svk_tbl.bns_tet3_mem>1 then
 				set(absu_bns_pitch_fail,1)
 			else
 				set(absu_bns_pitch_fail,0)
 			end
-			if get(bns_gam1_mem)+get(bns_gam2_mem)+get(bns_gam3_mem)>1 then
+			if absu_svk_tbl.bns_gam1_mem+absu_svk_tbl.bns_gam2_mem+absu_svk_tbl.bns_gam3_mem>1 then
 				set(absu_bns_roll_fail,1)
 			else
 				set(absu_bns_roll_fail,0)
@@ -1424,29 +1406,29 @@ function update()
 			mgv_tet1_mem=0
 			mgv_tet2_mem=0
 			mgv_tet3_mem=0
-			set(mgv_tet_1_fail,0)
-			set(mgv_tet_2_fail,0)
-			set(mgv_tet_3_fail,0)
 			mgv_gam1_mem=0
 			mgv_gam2_mem=0
 			mgv_gam3_mem=0
-			set(mgv_gam_1_fail,0)
-			set(mgv_gam_2_fail,0)
-			set(mgv_gam_3_fail,0)
 			mgv_tet_sau1_mem=0
 			mgv_tet_sau2_mem=0
 			mgv_tet_sau3_mem=0
 			mgv_gam_sau1_mem=0
 			mgv_gam_sau2_mem=0
 			mgv_gam_sau3_mem=0
-			set(ute1_fail_mem,0)
-			set(ute2_fail_mem,0)
-			set(bshu_tet1_mem,bool2int(math.random() < 0.00001 * 0.3) )
-			set(bshu_tet2_mem,bool2int(math.random() < 0.00001 * 0.3) )
-			set(bshu_tet3_mem,bool2int(math.random() < 0.00001 * 0.3) )
-			set(bshu_gam1_mem,bool2int(math.random() < 0.00001 * 0.3) )
-			set(bshu_gam2_mem,bool2int(math.random() < 0.00001 * 0.3) )
-			set(bshu_gam3_mem,bool2int(math.random() < 0.00001 * 0.3) )
+			absu_svk_tbl.ute1_fail_mem = 0 
+			absu_svk_tbl.ute2_fail_mem = 0 
+			absu_svk_tbl.bshu_tet1_mem = bool2int(math.random() < 0.00001 * 0.3)
+			absu_svk_tbl.bshu_tet2_mem = bool2int(math.random() < 0.00001 * 0.3)
+			absu_svk_tbl.bshu_tet3_mem = bool2int(math.random() < 0.00001 * 0.3)
+			absu_svk_tbl.bshu_gam1_mem = bool2int(math.random() < 0.00001 * 0.3)
+			absu_svk_tbl.bshu_gam2_mem = bool2int(math.random() < 0.00001 * 0.3)
+			absu_svk_tbl.bshu_gam3_mem = bool2int(math.random() < 0.00001 * 0.3)
+			absu_svk_tbl.bns_tet1_mem = 0
+			absu_svk_tbl.bns_tet2_mem = 0
+			absu_svk_tbl.bns_tet3_mem = 0
+			absu_svk_tbl.bns_gam1_mem = 0
+			absu_svk_tbl.bns_gam2_mem = 0
+			absu_svk_tbl.bns_gam3_mem = 0
 			set(ra_tet,0)
 			set(ra_gam,0)
 			set(ra_psi,0)
@@ -1481,9 +1463,21 @@ function update()
 			set(absu_damp_pitch_fail,0)
 			set(absu_damp_roll_fail,0)
 			set(absu_damp_yaw_fail,0)
+			absu_svk_tbl.mgv_tet_1_fail = 0
+			absu_svk_tbl.mgv_tet_2_fail = 0
+			absu_svk_tbl.mgv_tet_3_fail = 0
+			absu_svk_tbl.mgv_gam_1_fail = 0
+			absu_svk_tbl.mgv_gam_2_fail = 0
+			absu_svk_tbl.mgv_gam_3_fail = 0
+			absu_svk_tbl.ra_tet_fail = 0
+			absu_svk_tbl.ra_gam_fail = 0
+			absu_svk_tbl.ra_psi_fail = 0
 			set(work_state,0)
 			s_run=0
 			s_reg=-2
+			if absu_svk_tbl.start_timer > 0 then
+				absu_svk_tbl.start_timer = 0
+			end
 		end
 	end
 end

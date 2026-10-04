@@ -116,6 +116,7 @@ test_panel.visible = true
 -- kskv_data={}
 tcas_data_tbl={}
 sys_data_tbl={}
+absu_svk_tbl={}
 components = {
 
 -- internal logic

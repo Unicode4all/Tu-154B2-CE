@@ -454,6 +454,48 @@ local function fixAll()
 	sys_data_tbl.starter_fail_2 = 0
 	sys_data_tbl.starter_fail_3 = 0
 	
+	absu_svk_tbl.bap_thet_1_fail = 0
+	absu_svk_tbl.bap_thet_2_fail = 0
+	absu_svk_tbl.bap_thet_3_fail = 0
+	absu_svk_tbl.bap_gam_1_fail = 0 
+	absu_svk_tbl.bap_gam_2_fail = 0 
+	absu_svk_tbl.bap_gam_3_fail = 0 
+	absu_svk_tbl.stu_thet_1_fail = 0
+	absu_svk_tbl.stu_thet_2_fail = 0
+	absu_svk_tbl.stu_thet_3_fail = 0
+	absu_svk_tbl.stu_gam_1_fail = 0 
+	absu_svk_tbl.stu_gam_2_fail = 0 
+	absu_svk_tbl.stu_gam_3_fail = 0 
+	absu_svk_tbl.vu1_fail = 0
+	absu_svk_tbl.vu2_fail = 0
+	absu_svk_tbl.vu3_fail = 0
+	absu_svk_tbl.vkv_fail = 0
+	absu_svk_tbl.bshu_tet1_fail = 0 
+	absu_svk_tbl.bshu_tet2_fail = 0 
+	absu_svk_tbl.bshu_tet3_fail = 0 
+	absu_svk_tbl.bshu_gam1_fail = 0 
+	absu_svk_tbl.bshu_gam2_fail = 0 
+	absu_svk_tbl.bshu_gam3_fail = 0 
+	absu_svk_tbl.bns_tet1_fail = 0
+	absu_svk_tbl.bns_tet2_fail = 0
+	absu_svk_tbl.bns_tet3_fail = 0
+	absu_svk_tbl.bns_gam1_fail = 0
+	absu_svk_tbl.bns_gam2_fail = 0
+	absu_svk_tbl.bns_gam3_fail = 0
+	absu_svk_tbl.ute1_fail = 0 
+	absu_svk_tbl.ute2_fail = 0 
+	absu_svk_tbl.bdg_tet_1_drive_fail = 0
+	absu_svk_tbl.bdg_tet_2_drive_fail = 0
+	absu_svk_tbl.bdg_tet_3_drive_fail = 0
+	absu_svk_tbl.bdg_psi_1_drive_fail = 0
+	absu_svk_tbl.bdg_psi_2_drive_fail = 0
+	absu_svk_tbl.bdg_psi_3_drive_fail = 0
+	absu_svk_tbl.bdg_gam_1_drive_fail = 0
+	absu_svk_tbl.bdg_gam_2_drive_fail = 0
+	absu_svk_tbl.bdg_gam_3_drive_fail = 0
+	
+	
+	
 	set(save_state, 1)
 
 	return true

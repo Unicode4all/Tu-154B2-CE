@@ -213,16 +213,6 @@ defineProperty("absu_calc_pitch_fail", globalPropertyi("tu154b2/custom/failures/
 
 defineProperty("absu_fail_signal", globalPropertyi("tu154b2/custom/absu/absu_fail_signal")) -- сигнал на сирену
 
-defineProperty("absu_ra1_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_roll_fail"))
-defineProperty("absu_ra2_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_roll_fail"))
-defineProperty("absu_ra3_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_roll_fail"))
-defineProperty("absu_ra1_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_pitch_fail"))
-defineProperty("absu_ra2_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_pitch_fail"))
-defineProperty("absu_ra3_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_pitch_fail"))
-defineProperty("absu_ra1_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra1_yaw_fail"))
-defineProperty("absu_ra2_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra2_yaw_fail"))
-defineProperty("absu_ra3_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_ra3_yaw_fail"))
-
 defineProperty("yoke_offset", globalPropertyf("tu154b2/custom/controlls/yoke_offset"))
 defineProperty("absu_work", globalPropertyf("tu154b2/custom/lights/absu_work"))
 defineProperty("vkv_fail", globalPropertyi("tu154b2/custom/failures/absu_alt_fail"))
@@ -420,11 +410,11 @@ local MASTER = get(ismaster) ~= 1
 		local pitch_sw = get(absu_pitch_ch_on) == 1
 		local roll_sw = get(absu_roll_ch_on) == 1
 		
-		local ail_hyd_sw = get(absu_ra1_roll_fail) + get(absu_ra2_roll_fail) + get(absu_ra3_roll_fail) < 2 
+		local ail_hyd_sw = absu_svk_tbl.ra1_roll_fail + absu_svk_tbl.ra2_roll_fail + absu_svk_tbl.ra3_roll_fail < 2 
 		
-		local elev_hyd_sw = get(absu_ra1_pitch_fail) + get(absu_ra2_pitch_fail) + get(absu_ra3_pitch_fail) < 2
+		local elev_hyd_sw = absu_svk_tbl.ra1_pitch_fail + absu_svk_tbl.ra2_pitch_fail + absu_svk_tbl.ra3_pitch_fail < 2
 		
-		local rud_hyd_sw = get(absu_ra1_yaw_fail) + get(absu_ra2_yaw_fail) + get(absu_ra3_yaw_fail) < 2 
+		local rud_hyd_sw = absu_svk_tbl.ra1_yaw_fail + absu_svk_tbl.ra2_yaw_fail + absu_svk_tbl.ra3_yaw_fail < 2 
 		
 		--fail delay 
 		-- if get(absu_damp_roll_fail) == 1 then
@@ -507,19 +497,19 @@ local MASTER = get(ismaster) ~= 1
 			-- end
 		-- end
 		--reactivate roll
-		if sau_sw and roll_mode_main == 0 and get(absu_damp_roll_fail)==0 then 
+		if sau_sw and roll_mode_main == 0 and (absu_svk_tbl.ra_gam_fail == 0 and get(absu_damp_roll_fail) == 0) then 
 			roll_mode_main = 1
 			fail_roll=0
 			--set(absu_fail_signal, 0)
 		end
 		
 		-- reactivate pitch
-		if sau_sw and pitch_mode_main == 0 and get(absu_damp_pitch_fail)==0 then 
+		if sau_sw and pitch_mode_main == 0 and (absu_svk_tbl.ra_tet_fail == 0 and get(absu_damp_pitch_fail) == 0) then 
 			pitch_mode_main = 1 
 			fail_pitch=0
 			--set(absu_fail_signal, 0)
 		end
-		if sau_sw and yaw_damp_failed==1 and get(absu_damp_yaw_fail)==0 then 
+		if sau_sw and yaw_damp_failed==1 and (absu_svk_tbl.ra_psi_fail == 0 and get(absu_damp_yaw_fail) == 0) then 
 			yaw_damp_failed=0
 			fail_yaw=0
 			--set(absu_fail_signal, 0)
@@ -961,9 +951,9 @@ local MASTER = get(ismaster) ~= 1
 		
 		
 		-- lamp signals
-		set(damp_roll_lamp, bool2int(power27 and get(absu_damp_roll_fail)>0))
-		set(damp_pitch_lamp, bool2int(power27 and get(absu_damp_pitch_fail)>0))
-		set(damp_yaw_lamp, bool2int(power27 and get(absu_damp_yaw_fail)>0))
+		set(damp_roll_lamp, bool2int(power27 and (get(absu_damp_roll_fail)>0 or absu_svk_tbl.ra_gam_fail > 0)))
+		set(damp_pitch_lamp, bool2int(power27 and (get(absu_damp_pitch_fail)>0 or absu_svk_tbl.ra_tet_fail > 0)))
+		set(damp_yaw_lamp, bool2int(power27 and (get(absu_damp_yaw_fail)>0 or absu_svk_tbl.ra_psi_fail > 0)))
 		set(roll_contr_lamp, bool2int(power27 and get(bshu_gam_fail) == 1))
 		set(pitch_contr_lamp, bool2int(power27 and get(bshu_tet_fail) == 1))
 		
@@ -1079,7 +1069,7 @@ local MASTER = get(ismaster) ~= 1
 			fail_gs=1
 		end
 		-- damper fails (full channel shutdown)
-		if power27 and get(absu_damp_pitch_fail) == 1 and pitch_mode_main>0 then
+		if power27 and (absu_svk_tbl.ra_tet_fail == 1 or get(absu_damp_pitch_fail) == 1) and pitch_mode_main>0 then
 			--set(absu_fail_signal, 1)
 			fail_pitch=1
 			if pitch_mode_main==2 then
@@ -1088,7 +1078,7 @@ local MASTER = get(ismaster) ~= 1
 			pitch_mode_main=0
 		end
 		
-		if power27 and get(absu_damp_roll_fail) == 1 and roll_mode_main>0 then
+		if power27 and (absu_svk_tbl.ra_gam_fail == 1 or get(absu_damp_roll_fail) == 1) and roll_mode_main>0 then
 			--set(absu_fail_signal, 1)
 			fail_roll=1
 			if roll_mode_main==2 then
@@ -1097,7 +1087,7 @@ local MASTER = get(ismaster) ~= 1
 			roll_mode_main=0
 		end
 		
-		if power27 and get(absu_damp_yaw_fail) == 1 and yaw_damp_failed==0 then
+		if power27 and (absu_svk_tbl.ra_psi_fail == 1 or get(absu_damp_yaw_fail) == 1) and yaw_damp_failed==0 then
 			--set(absu_fail_signal, 1)
 			fail_yaw=1
 			yaw_damp_failed=1

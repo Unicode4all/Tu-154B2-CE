@@ -253,16 +253,6 @@ absu_contr_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_contr_pitc
 absu_calc_toga_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_toga_fail") -- отказ вычислителя УХОД
 absu_calc_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_roll_fail") -- отказ бокового канала СТУ
 absu_calc_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_pitch_fail") -- отказ продольного канала СТУ
--- RA56 failures
-absu_ra1_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_ra1_roll_fail")
-absu_ra2_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_ra2_roll_fail")
-absu_ra3_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_ra3_roll_fail")
-absu_ra1_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_ra1_pitch_fail")
-absu_ra2_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_ra2_pitch_fail")
-absu_ra3_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_ra3_pitch_fail")
-absu_ra1_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_ra1_yaw_fail")
-absu_ra2_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_ra2_yaw_fail")
-absu_ra3_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_ra3_yaw_fail")
 man_at = globalPropertyi("tu154b2/custom/failures/absu_man_at")
 absu_power = globalPropertyi("tu154b2/custom/absu_power_27")
 bdlu_fail = globalPropertyi("tu154b2/custom/failures/absu_bdlu_fail")
@@ -1006,11 +996,11 @@ local function lamps()
 	-- local absu_work_logic = get(pkp_fail_left) + get(pkp_fail_right) + get(mgv_contr_fail) < 2
 	-- absu_work_logic = absu_work_logic and bool2int(get(pressure_ind_1) < 100) + bool2int(get(pressure_ind_2) < 100) + bool2int(get(pressure_ind_3) < 100) < 2
 	
-	local ra56_rud_on = get(absu_ra1_yaw_fail)+get(absu_ra2_yaw_fail)+get(absu_ra3_yaw_fail)==0
+	-- local ra56_rud_on = get(absu_ra1_yaw_fail)+get(absu_ra2_yaw_fail)+get(absu_ra3_yaw_fail)==0
 
-	local ra56_ail_on = get(absu_ra1_roll_fail)+get(absu_ra2_roll_fail)+get(absu_ra3_roll_fail)==0
+	-- local ra56_ail_on = get(absu_ra1_roll_fail)+get(absu_ra2_roll_fail)+get(absu_ra3_roll_fail)==0
 	
-	local ra56_elev_on = get(absu_ra1_pitch_fail)+get(absu_ra2_pitch_fail)+get(absu_ra3_pitch_fail)==0
+	-- local ra56_elev_on = get(absu_ra1_pitch_fail)+get(absu_ra2_pitch_fail)+get(absu_ra3_pitch_fail)==0
 	
 	local chan_1_work = get(absu_roll_mode)>0
 	local chan_2_work = get(absu_pitch_mode)>0
@@ -1036,33 +1026,33 @@ local function lamps()
 	-- eng panel lamps
 	local test_btn_eng = get(lamp_test_eng) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
 	
-	local ra56_roll_fail_1_brt = math.max(bool2int(get(absu_ra1_roll_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) * (1 - get(lamp_4))
+	local ra56_roll_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_roll_fail == 1) * lamps_brt * day_night * power, test_btn_eng) * (1 - get(lamp_4))
 	set(ra56_roll_fail_1, ra56_roll_fail_1_brt)
 	
-	local ra56_roll_fail_2_brt = math.max(bool2int(get(absu_ra2_roll_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_roll_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_roll_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_roll_fail_2, ra56_roll_fail_2_brt)
 	
-	local ra56_roll_fail_3_brt = math.max(bool2int(get(absu_ra3_roll_fail) == 1 ) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_roll_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_roll_fail == 1 ) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_roll_fail_3, ra56_roll_fail_3_brt)
 	
 	
-	local ra56_pitch_fail_1_brt = math.max(bool2int(get(absu_ra1_pitch_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_pitch_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_pitch_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_pitch_fail_1, ra56_pitch_fail_1_brt)
 	
-	local ra56_pitch_fail_2_brt = math.max(bool2int(get(absu_ra2_pitch_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_pitch_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_pitch_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_pitch_fail_2, ra56_pitch_fail_2_brt)
 	
-	local ra56_pitch_fail_3_brt = math.max(bool2int(get(absu_ra3_pitch_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_pitch_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_pitch_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_pitch_fail_3, ra56_pitch_fail_3_brt)
 	
 	
-	local ra56_course_fail_1_brt = math.max(bool2int(get(absu_ra1_yaw_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_course_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_yaw_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_course_fail_1, ra56_course_fail_1_brt)
 	
-	local ra56_course_fail_2_brt = math.max(bool2int(get(absu_ra2_yaw_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_course_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_yaw_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_course_fail_2, ra56_course_fail_2_brt)
 	
-	local ra56_course_fail_3_brt = math.max(bool2int(get(absu_ra3_yaw_fail) == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_course_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_yaw_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
 	set(ra56_course_fail_3, ra56_course_fail_3_brt)
 	
 	local nvu_rez_brt =  test_btn_eng

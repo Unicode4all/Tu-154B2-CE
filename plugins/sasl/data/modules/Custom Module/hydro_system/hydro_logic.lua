@@ -1,137 +1,137 @@
 -- createGlobalPropertyf("sim/custom/controlls/absu_debug1", 0)
 -- createGlobalPropertyf("sim/custom/controlls/absu_debug2", 0)
 -- createGlobalPropertyf("sim/custom/controlls/absu_debug3", 0)
--- defineProperty("absu_debug1", globalPropertyf("tu154b2/custom/controlls/absu_debug1")) 
--- defineProperty("absu_debug2", globalPropertyf("tu154b2/custom/controlls/absu_debug2")) 
--- defineProperty("absu_debug3", globalPropertyf("tu154b2/custom/controlls/absu_debug3")) 
+-- absu_debug1 = globalPropertyf("tu154b2/custom/controlls/absu_debug1") 
+-- absu_debug2 = globalPropertyf("tu154b2/custom/controlls/absu_debug2") 
+-- absu_debug3 = globalPropertyf("tu154b2/custom/controlls/absu_debug3") 
 
 -- this is hydraulic logic
 -- controls
-defineProperty("accum_fill", globalPropertyi("tu154b2/custom/buttons/hydro/accum_fill")) -- зарядка аккумулятора
+accum_fill = globalPropertyi("tu154b2/custom/buttons/hydro/accum_fill") -- зарядка аккумулятора
 
-defineProperty("connect2to1", globalPropertyi("tu154b2/custom/switchers/hydro/connect2to1")) -- подключение 2 ГС на 1 ГС
-defineProperty("pump_2", globalPropertyi("tu154b2/custom/switchers/hydro/pump_2")) -- включение НС 2
-defineProperty("pump_3", globalPropertyi("tu154b2/custom/switchers/hydro/pump_3")) -- включение НС3
+connect2to1 = globalPropertyi("tu154b2/custom/switchers/hydro/connect2to1") -- подключение 2 ГС на 1 ГС
+pump_2 = globalPropertyi("tu154b2/custom/switchers/hydro/pump_2") -- включение НС 2
+pump_3 = globalPropertyi("tu154b2/custom/switchers/hydro/pump_3") -- включение НС3
 
 -- sources
-defineProperty("rpm_high_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1")) -- обороты турбины высокого давления №1
-defineProperty("rpm_high_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2")) -- обороты турбины высокого давления №2
-defineProperty("rpm_high_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3")) -- обороты турбины высокого давления №3
+rpm_high_1 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1") -- обороты турбины высокого давления №1
+rpm_high_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2") -- обороты турбины высокого давления №2
+rpm_high_3 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3") -- обороты турбины высокого давления №3
 
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
 -- results
-defineProperty("gs_press_1", globalPropertyf("tu154b2/custom/hydro/gs_press_1")) -- давление в ГС1
-defineProperty("gs_press_2", globalPropertyf("tu154b2/custom/hydro/gs_press_2")) -- давление в ГС2
-defineProperty("gs_press_3", globalPropertyf("tu154b2/custom/hydro/gs_press_3")) -- давление в ГС3
-defineProperty("gs_press_4", globalPropertyf("tu154b2/custom/hydro/gs_press_4")) -- давление в ГС4
+gs_press_1 = globalPropertyf("tu154b2/custom/hydro/gs_press_1") -- давление в ГС1
+gs_press_2 = globalPropertyf("tu154b2/custom/hydro/gs_press_2") -- давление в ГС2
+gs_press_3 = globalPropertyf("tu154b2/custom/hydro/gs_press_3") -- давление в ГС3
+gs_press_4 = globalPropertyf("tu154b2/custom/hydro/gs_press_4") -- давление в ГС4
 
-defineProperty("bak_qty_1", globalPropertyf("tu154b2/custom/hydro/gs_bak_qty_1")) -- остаток масла в баке
-defineProperty("bak_qty_2", globalPropertyf("tu154b2/custom/hydro/gs_bak_qty_2")) -- остаток масла в баке
-defineProperty("bak_qty_3", globalPropertyf("tu154b2/custom/hydro/gs_bak_qty_3")) -- остаток масла в баке
-
-
--- defineProperty("system_qty_1", globalPropertyf("tu154b2/custom/hydro/gs_qty_1")) -- остаток масла в системе
--- defineProperty("system_qty_2", globalPropertyf("tu154b2/custom/hydro/gs_qty_2")) -- остаток масла в системе
--- defineProperty("system_qty_3", globalPropertyf("tu154b2/custom/hydro/gs_qty_3")) -- остаток масла в системе
+bak_qty_1 = globalPropertyf("tu154b2/custom/hydro/gs_bak_qty_1") -- остаток масла в баке
+bak_qty_2 = globalPropertyf("tu154b2/custom/hydro/gs_bak_qty_2") -- остаток масла в баке
+bak_qty_3 = globalPropertyf("tu154b2/custom/hydro/gs_bak_qty_3") -- остаток масла в баке
 
 
-defineProperty("gs_qty_12_show", globalPropertyf("tu154b2/custom/hydro/gs_qty_12_show")) -- остаток масла в гидробаке
-defineProperty("gs_qty_3_show", globalPropertyf("tu154b2/custom/hydro/gs_qty_3_show")) -- остаток масла в гидробаке
+-- system_qty_1 = globalPropertyf("tu154b2/custom/hydro/gs_qty_1") -- остаток масла в системе
+-- system_qty_2 = globalPropertyf("tu154b2/custom/hydro/gs_qty_2") -- остаток масла в системе
+-- system_qty_3 = globalPropertyf("tu154b2/custom/hydro/gs_qty_3") -- остаток масла в системе
+
+
+gs_qty_12_show = globalPropertyf("tu154b2/custom/hydro/gs_qty_12_show") -- остаток масла в гидробаке
+gs_qty_3_show = globalPropertyf("tu154b2/custom/hydro/gs_qty_3_show") -- остаток масла в гидробаке
 
 
 -- failures
-defineProperty("hs_leak_1", globalPropertyi("tu154b2/custom/failures/hydro_leak_1")) -- leak
-defineProperty("hs_leak_2", globalPropertyi("tu154b2/custom/failures/hydro_leak_2")) -- leak
-defineProperty("hs_leak_3", globalPropertyi("tu154b2/custom/failures/hydro_leak_3")) -- leak
-defineProperty("hs_leak_4", globalPropertyi("tu154b2/custom/failures/hydro_leak_4")) -- leak
+hs_leak_1 = globalPropertyi("tu154b2/custom/failures/hydro_leak_1") -- leak
+hs_leak_2 = globalPropertyi("tu154b2/custom/failures/hydro_leak_2") -- leak
+hs_leak_3 = globalPropertyi("tu154b2/custom/failures/hydro_leak_3") -- leak
+hs_leak_4 = globalPropertyi("tu154b2/custom/failures/hydro_leak_4") -- leak
 
-defineProperty("hydro_pump_fail_11", globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_11")) -- fail
-defineProperty("hydro_pump_fail_12", globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_12")) -- fail
-defineProperty("hydro_pump_fail_2", globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_2")) -- fail
-defineProperty("hydro_pump_fail_3", globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_3")) -- fail
+hydro_pump_fail_11 = globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_11") -- fail
+hydro_pump_fail_12 = globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_12") -- fail
+hydro_pump_fail_2 = globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_2") -- fail
+hydro_pump_fail_3 = globalPropertyi("tu154b2/custom/failures/hydro_pump_fail_3") -- fail
 
-defineProperty("hydro_elec_fail_2", globalPropertyi("tu154b2/custom/failures/hydro_elec_fail_2")) -- fail
-defineProperty("hydro_elec_fail_3", globalPropertyi("tu154b2/custom/failures/hydro_elec_fail_3")) -- fail
+hydro_elec_fail_2 = globalPropertyi("tu154b2/custom/failures/hydro_elec_fail_2") -- fail
+hydro_elec_fail_3 = globalPropertyi("tu154b2/custom/failures/hydro_elec_fail_3") -- fail
 
 
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
 -- users --
 
 -- flaps
--- defineProperty("flap_inn_L", globalPropertyf("sim/flightmodel/controls/wing1l_fla1def")) -- inner flaps left
--- defineProperty("flap_inn_R", globalPropertyf("sim/flightmodel/controls/wing1r_fla1def")) -- inner flaps right
+-- flap_inn_L = globalPropertyf("sim/flightmodel/controls/wing1l_fla1def") -- inner flaps left
+-- flap_inn_R = globalPropertyf("sim/flightmodel/controls/wing1r_fla1def") -- inner flaps right
 
 -- brakes
-defineProperty("l_brake_add", globalPropertyf("tu154b2/custom/brakes/int_brakes_L")) -- реальное положение тормоза
-defineProperty("r_brake_add", globalPropertyf("tu154b2/custom/brakes/int_brakes_R")) -- реальное положение тормоза
+l_brake_add = globalPropertyf("tu154b2/custom/brakes/int_brakes_L") -- реальное положение тормоза
+r_brake_add = globalPropertyf("tu154b2/custom/brakes/int_brakes_R") -- реальное положение тормоза
 
-defineProperty("parkbrake", globalPropertyf("sim/flightmodel/controls/parkbrake")) -- Parking Brake
+parkbrake = globalPropertyf("sim/flightmodel/controls/parkbrake") -- Parking Brake
 
-defineProperty("brake_emerg", globalPropertyf("tu154b2/custom/controlls/brake_emerg")) -- аварийный тормоз
-defineProperty("brake_emerg_L", globalPropertyf("tu154b2/custom/controlls/brake_emerg_L")) -- аварийный тормоз
-defineProperty("brake_emerg_R", globalPropertyf("tu154b2/custom/controlls/brake_emerg_R")) -- аварийный тормоз
+brake_emerg = globalPropertyf("tu154b2/custom/controlls/brake_emerg") -- аварийный тормоз
+brake_emerg_L = globalPropertyf("tu154b2/custom/controlls/brake_emerg_L") -- аварийный тормоз
+brake_emerg_R = globalPropertyf("tu154b2/custom/controlls/brake_emerg_R") -- аварийный тормоз
 
 -- absu
-defineProperty("absu_contr_pitch", globalPropertyf("tu154b2/custom/absu/contr_pitch")) -- отклонение штока РА56 по тангажу
-defineProperty("absu_contr_roll", globalPropertyf("tu154b2/custom/absu/contr_roll")) -- отклонение штока РА56 по крену
-defineProperty("absu_contr_yaw", globalPropertyf("tu154b2/custom/absu/contr_yaw")) -- отклонение штока РА56 по направлению
+absu_contr_pitch = globalPropertyf("tu154b2/custom/absu/contr_pitch") -- отклонение штока РА56 по тангажу
+absu_contr_roll = globalPropertyf("tu154b2/custom/absu/contr_roll") -- отклонение штока РА56 по крену
+absu_contr_yaw = globalPropertyf("tu154b2/custom/absu/contr_yaw") -- отклонение штока РА56 по направлению
 
--- defineProperty("absu_ra1_roll_fail", globalPropertyi("sim/custom/failures/absu_ra1_roll_fail"))
--- defineProperty("absu_ra2_roll_fail", globalPropertyi("sim/custom/failures/absu_ra2_roll_fail"))
--- defineProperty("absu_ra3_roll_fail", globalPropertyi("sim/custom/failures/absu_ra3_roll_fail"))
+-- absu_ra1_roll_fail = globalPropertyi("sim/custom/failures/absu_ra1_roll_fail")
+-- absu_ra2_roll_fail = globalPropertyi("sim/custom/failures/absu_ra2_roll_fail")
+-- absu_ra3_roll_fail = globalPropertyi("sim/custom/failures/absu_ra3_roll_fail")
 
--- defineProperty("absu_ra1_pitch_fail", globalPropertyi("sim/custom/failures/absu_ra1_pitch_fail"))
--- defineProperty("absu_ra2_pitch_fail", globalPropertyi("sim/custom/failures/absu_ra2_pitch_fail"))
--- defineProperty("absu_ra3_pitch_fail", globalPropertyi("sim/custom/failures/absu_ra3_pitch_fail"))
+-- absu_ra1_pitch_fail = globalPropertyi("sim/custom/failures/absu_ra1_pitch_fail")
+-- absu_ra2_pitch_fail = globalPropertyi("sim/custom/failures/absu_ra2_pitch_fail")
+-- absu_ra3_pitch_fail = globalPropertyi("sim/custom/failures/absu_ra3_pitch_fail")
 
--- defineProperty("absu_ra1_yaw_fail", globalPropertyi("sim/custom/failures/absu_ra1_yaw_fail"))
--- defineProperty("absu_ra2_yaw_fail", globalPropertyi("sim/custom/failures/absu_ra2_yaw_fail"))
--- defineProperty("absu_ra3_yaw_fail", globalPropertyi("sim/custom/failures/absu_ra3_yaw_fail"))
+-- absu_ra1_yaw_fail = globalPropertyi("sim/custom/failures/absu_ra1_yaw_fail")
+-- absu_ra2_yaw_fail = globalPropertyi("sim/custom/failures/absu_ra2_yaw_fail")
+-- absu_ra3_yaw_fail = globalPropertyi("sim/custom/failures/absu_ra3_yaw_fail")
 
 
 -- ailerons
-defineProperty("ail_L", globalPropertyf("tu154b2/custom/controlls/ail_L_phys")) -- aileron left Degrees, positive is trailing-edge down. +- 20
-defineProperty("ail_R", globalPropertyf("tu154b2/custom/controlls/ail_R_phys")) -- aileron right Degrees, positive is trailing-edge down. +- 20
+ail_L = globalPropertyf("tu154b2/custom/controlls/ail_L_phys") -- aileron left Degrees, positive is trailing-edge down. +- 20
+ail_R = globalPropertyf("tu154b2/custom/controlls/ail_R_phys") -- aileron right Degrees, positive is trailing-edge down. +- 20
 
 -- spoilers
-defineProperty("spd_brk_inn_L", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]")) -- inner speedbrake left Degrees
-defineProperty("spd_brk_inn_R", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]")) -- inner speedbrake right Degrees
+spd_brk_inn_L = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]") -- inner speedbrake left Degrees
+spd_brk_inn_R = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]") -- inner speedbrake right Degrees
 
-defineProperty("spd_brk_mid_L", globalPropertyf("sim/flightmodel/controls/wing2l_spo2def")) -- middle speedbrake left Degrees
-defineProperty("spd_brk_mid_R", globalPropertyf("sim/flightmodel/controls/wing2r_spo2def")) -- middle speedbrake right Degrees
+spd_brk_mid_L = globalPropertyf("sim/flightmodel/controls/wing2l_spo2def") -- middle speedbrake left Degrees
+spd_brk_mid_R = globalPropertyf("sim/flightmodel/controls/wing2r_spo2def") -- middle speedbrake right Degrees
 
 -- tail
-defineProperty("elevator_L", globalPropertyf("sim/flightmodel/controls/hstab1_elv1def")) -- Degrees, positive is trailing-edge down.
-defineProperty("elevator_R", globalPropertyf("sim/flightmodel/controls/hstab2_elv1def")) -- Degrees, positive is trailing-edge down.
-defineProperty("rudder", globalPropertyf("sim/flightmodel/controls/vstab2_rud1def")) -- degrees, positive is trailing-edge left
+elevator_L = globalPropertyf("sim/flightmodel/controls/hstab1_elv1def") -- Degrees, positive is trailing-edge down.
+elevator_R = globalPropertyf("sim/flightmodel/controls/hstab2_elv1def") -- Degrees, positive is trailing-edge down.
+rudder = globalPropertyf("sim/flightmodel/controls/vstab2_rud1def") -- degrees, positive is trailing-edge left
 
 -- gear
-defineProperty("gear1_deploy", globalProperty("sim/aircraft/parts/acf_gear_deploy[0]"))  -- deploy of front gear
-defineProperty("gear2_deploy", globalProperty("sim/aircraft/parts/acf_gear_deploy[1]"))  -- deploy of right gear
-defineProperty("gear3_deploy", globalProperty("sim/aircraft/parts/acf_gear_deploy[2]"))  -- deploy of left gear
+gear1_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[0]")  -- deploy of front gear
+gear2_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[1]")  -- deploy of right gear
+gear3_deploy = globalProperty("sim/aircraft/parts/acf_gear_deploy[2]")  -- deploy of left gear
 
-defineProperty("gears_retr_lock", globalPropertyi("tu154b2/custom/switchers/gears_retr_lock")) -- блокировка уборки шасси
-defineProperty("gears_ext_3GS", globalPropertyi("tu154b2/custom/switchers/gears_ext_3GS")) -- выпуск шасси от 3ГС
-defineProperty("emerg_gear_ext", globalPropertyi("tu154b2/custom/controll/emerg_gear_ext")) -- ручка аварийного выпуска шасси
-defineProperty("gear_lever", globalPropertyi("tu154b2/custom/controll/gear_lever")) -- ручка выпуска шасси. -1 - уборка, 0 - нейтр, +1 - выпуск
+gears_retr_lock = globalPropertyi("tu154b2/custom/switchers/gears_retr_lock") -- блокировка уборки шасси
+gears_ext_3GS = globalPropertyi("tu154b2/custom/switchers/gears_ext_3GS") -- выпуск шасси от 3ГС
+emerg_gear_ext = globalPropertyi("tu154b2/custom/controll/emerg_gear_ext") -- ручка аварийного выпуска шасси
+gear_lever = globalPropertyi("tu154b2/custom/controll/gear_lever") -- ручка выпуска шасси. -1 - уборка, 0 - нейтр, +1 - выпуск
 
-defineProperty("nws", globalProperty("sim/flightmodel/parts/tire_steer_act[0]")) 
-defineProperty("elevon_L", globalPropertyf("tu154b2/custom/controlls/spoil_L_phys"))
-defineProperty("elevon_R", globalPropertyf("tu154b2/custom/controlls/spoil_R_phys"))
+nws = globalProperty("sim/flightmodel/parts/tire_steer_act[0]") 
+elevon_L = globalPropertyf("tu154b2/custom/controlls/spoil_L_phys")
+elevon_R = globalPropertyf("tu154b2/custom/controlls/spoil_R_phys")
 
 
 
@@ -168,10 +168,10 @@ fluid_3 = globalPropertyf("tu154b2/custom/hydro/gear_fluid_3")
 
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
-defineProperty("elev_coeff", globalPropertyf("tu154b2/custom/controlls/elev_coeff"))
-defineProperty("rud_coeff", globalPropertyf("tu154b2/custom/controlls/rudder_coeff"))
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+elev_coeff = globalPropertyf("tu154b2/custom/controlls/elev_coeff")
+rud_coeff = globalPropertyf("tu154b2/custom/controlls/rudder_coeff")
 
 gear2_deflect = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
 kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th")
@@ -186,12 +186,12 @@ rear_tech_T = globalPropertyf("tu154b2/custom/bleed/rear_tech_temp")
 
 save_state = globalPropertyi("tu154b2/custom/save_state")
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
--- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
--- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
--- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
+-- db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
+-- db5 = globalPropertyf("tu154b2/custom/controlls/debug5")
+-- db6 = globalPropertyf("tu154b2/custom/controlls/debug6")
 
 
 -- set initial values
@@ -480,16 +480,10 @@ if MASTER then
 	local RPM_1 = get(rpm_high_1)
 	local RPM_2 = get(rpm_high_2)
 	local RPM_3 = get(rpm_high_3)
-    -- local c_eng1=7.777777777778315e-05*RPM_1*RPM_1+0.004111111111111*RPM_1*1.2;
-    -- local c_eng2=7.777777777778315e-05*RPM_2*RPM_2+0.004111111111111*RPM_2*1.2;
-    -- local c_eng3=7.777777777778315e-05*RPM_3*RPM_3+0.004111111111111*RPM_3*1.2;
-	-- local eng_k1=math.min(7,9.235209235209163e-04*RPM_1*RPM_1-0.005339105339105*RPM_1)
-	-- local eng_k2=math.min(7,9.235209235209163e-04*RPM_2*RPM_2-0.005339105339105*RPM_2)
-	-- local eng_k3=math.min(7,9.235209235209163e-04*RPM_3*RPM_3-0.005339105339105*RPM_3)
-	local eng_pump_1_1, eng_pump_1_1_bp = NP89(RPM_1*(1 - get(hydro_pump_fail_11)),press_1) --math.max((-3.3/(1+math.exp(-eng_k1*(acc_1-4.2)))+1.64)*c_eng1* (1 - get(hydro_pump_fail_11)),0)
-	local eng_pump_1_2, eng_pump_1_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_12)),press_1) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_1-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_12)),0)
-	local eng_pump_2, eng_pump_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_2)),press_2) --math.max((-3.3/(1+math.exp(-eng_k2*(acc_2-4.2)))+1.64)*c_eng2* (1 - get(hydro_pump_fail_2)),0)
-	local eng_pump_3, eng_pump_3_bp = NP89(RPM_3*(1 - get(hydro_pump_fail_3)),press_3) --math.max((-3.3/(1+math.exp(-eng_k3*(acc_3-4.2)))+1.64)*c_eng3* (1 - get(hydro_pump_fail_3)),0)
+	local eng_pump_1_1, eng_pump_1_1_bp = NP89(RPM_1*(1 - get(hydro_pump_fail_11)),press_1)
+	local eng_pump_1_2, eng_pump_1_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_12)),press_1)
+	local eng_pump_2, eng_pump_2_bp = NP89(RPM_2*(1 - get(hydro_pump_fail_2)),press_2)
+	local eng_pump_3, eng_pump_3_bp = NP89(RPM_3*(1 - get(hydro_pump_fail_3)),press_3)
 	local elec_pump_2 = bool2int(power115_1 and power27R and get(pump_2) == 1 and get(hydro_elec_fail_2) == 0)
 	local elec_pump_3 = bool2int(power115_3 and power27R and get(pump_3) == 1 and get(hydro_elec_fail_3) == 0)
 	local el_pump_2,ns1_bp,W_el_1 = NS46(elec_pump_2 * elec_pump_2_start_timer,press_2)
@@ -830,19 +824,15 @@ if MASTER then
 	
 
 	-- ABSU
-	local absu_pitch_feed1 = math.abs(get(hod1_p)) * 0.0023
-	local absu_pitch_feed2 = math.abs(get(hod2_p)) * 0.0023
-	local absu_pitch_feed3 = math.abs(get(hod3_p)) * 0.0023
-	local absu_roll_feed1 = math.abs(get(hod1_r)) * 0.0023
-	local absu_roll_feed2 = math.abs(get(hod2_r)) * 0.0023
-	local absu_roll_feed3 = math.abs(get(hod3_r)) * 0.0023
-	local absu_yaw_feed1 = math.abs(get(hod1_y)) * 0.0023
-	local absu_yaw_feed2 = math.abs(get(hod2_y)) * 0.0023
-	local absu_yaw_feed3 = math.abs(get(hod3_y)) * 0.0023
-	
-	-- absu_pitch_last = get(absu_contr_pitch)
-	-- absu_roll_last = get(absu_contr_roll)
-	-- absu_yaw_last = get(absu_contr_yaw)
+	local absu_pitch_feed1 = math.max(get(hod1_p),0) * 0.0023 * (1 -absu_svk_tbl.ra1_pitch_fail) / 3
+	local absu_pitch_feed2 = math.max(get(hod2_p),0) * 0.0023 * (1 -absu_svk_tbl.ra2_pitch_fail) / 3
+	local absu_pitch_feed3 = math.max(get(hod3_p),0) * 0.0023 * (1 -absu_svk_tbl.ra3_pitch_fail) / 3
+	local absu_roll_feed1 = math.max(get(hod1_r),0) * 0.0023 * (1 -absu_svk_tbl.ra1_roll_fail) / 3
+	local absu_roll_feed2 = math.max(get(hod2_r),0) * 0.0023 * (1 -absu_svk_tbl.ra2_roll_fail) / 3
+	local absu_roll_feed3 = math.max(get(hod3_r),0) * 0.0023 * (1 -absu_svk_tbl.ra3_roll_fail) / 3
+	local absu_yaw_feed1 = math.max(get(hod1_y),0) * 0.0023 * (1 -absu_svk_tbl.ra1_yaw_fail) / 3
+	local absu_yaw_feed2 = math.max(get(hod2_y),0) * 0.0023 * (1 -absu_svk_tbl.ra2_yaw_fail) / 3
+	local absu_yaw_feed3 = math.max(get(hod3_y),0) * 0.0023 * (1 -absu_svk_tbl.ra3_yaw_fail) / 3
 	
 	if acc_1 > 0 then
 		local flow = absu_pitch_feed1 + absu_roll_feed1 + absu_yaw_feed1
@@ -862,16 +852,6 @@ if MASTER then
 
 
 	-- gears
-	-- -- reduced consumption for extending gears
-	-- if get(gear1_deploy) - gear_pos_1_last>0 then
-		-- gear_feed_1 = math.abs(get(gear1_deploy) - gear_pos_1_last) * 8 / 4
-	-- end
-	-- if get(gear2_deploy) - gear_pos_2_last>0 then
-		-- gear_feed_2 = math.abs(get(gear2_deploy) - gear_pos_2_last) * 17 / 4
-	-- end
-	-- if get(gear3_deploy) - gear_pos_3_last>0 then
-		-- gear_feed_3 = math.abs(get(gear3_deploy) - gear_pos_3_last) * 17 / 4
-	-- end
 	
 	local emer_gear=get(emerg_gear_ext)
 	local emer_gear2=get(gears_ext_3GS)*bool2int(power27R)
@@ -1000,11 +980,7 @@ if MASTER then
 	local pump3_current = W_el_2 / 200 / math.sqrt(3) / 0.8 
 	set(gs_pump_2_cc, math.max(elec_pump_2_start,pump2_current))
 	set(gs_pump_3_cc, math.max(elec_pump_3_start,pump3_current))	
-	
-	-- set(db1,sys_data_tbl.hyd_1_qty)
-	-- set(db2,sys_data_tbl.hyd_2_qty)
-	-- set(db3,sys_data_tbl.hyd_3_qty)
-	
+
 	--print(get(system_qty_1) + get(system_qty_2))
 
 end

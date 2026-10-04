@@ -149,15 +149,6 @@ createGlobalPropertyi("tu154b2/custom/failures/pitot2", 0) -- отказ Пит�
 createGlobalPropertyi("tu154b2/custom/failures/static1", 0) -- отказ полного давления
 createGlobalPropertyi("tu154b2/custom/failures/static2", 0) -- отказ полного давления
 createGlobalPropertyi("tu154b2/custom/failures/AOA", 0) -- отказ УА
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra1_roll_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra2_roll_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra3_roll_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra1_pitch_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra2_pitch_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra3_pitch_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra1_yaw_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra2_yaw_fail", 0)
-createGlobalPropertyi("tu154b2/custom/failures/absu_ra3_yaw_fail", 0)
 createGlobalPropertyi("tu154b2/custom/failures/gen_dist_fail", 0)
 createGlobalPropertyf("tu154b2/custom/radio/ark15_L_signal", 0)
 createGlobalPropertyf("tu154b2/custom/radio/ark15_R_signal", 0)

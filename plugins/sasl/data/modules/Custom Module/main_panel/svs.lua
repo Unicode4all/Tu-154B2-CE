@@ -52,10 +52,10 @@ p_q_smoothed = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
 kontur_90th = globalPropertyi("sim/custom/b2/kontur_90th") -- 
 --sim_alt = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
 qnh_set = globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot")
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
-defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
-defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
+-- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+-- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+-- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
 
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -238,8 +238,8 @@ function update()
 			if get(kontur_90th)==0 then
 				set(qnh_set,p_set*0.0393701)
 			end
-			set(db1,altitude)
-			set(db2,t_avg)
+			-- set(db1,altitude)
+			-- set(db2,t_avg)
 			-- if get(real_alt)==1 then	
 				-- altitude=29.27*t_avg*math.log(101325/p_static)
 				-- altitude_rel=29.27*t_avg*math.log(p_set*133.322/p_static)

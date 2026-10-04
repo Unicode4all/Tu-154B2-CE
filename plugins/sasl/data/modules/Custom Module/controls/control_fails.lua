@@ -44,8 +44,8 @@ defineProperty("rel_collapse3", globalPropertyi("sim/operation/failures/rel_coll
 defineProperty("rel_trim_rud", globalPropertyi("sim/operation/failures/rel_trim_rud")) -- 
 defineProperty("rel_trim_ail", globalPropertyi("sim/operation/failures/rel_trim_ail")) -- 
 defineProperty("rel_trim_elv", globalPropertyi("sim/operation/failures/rel_trim_elv")) -- 
-defineProperty("ute1_fail", globalPropertyi("tu154b2/custom/failures/ute_1_fail"))
-defineProperty("ute2_fail", globalPropertyi("tu154b2/custom/failures/ute_2_fail"))
+-- defineProperty("ute1_fail", globalPropertyi("tu154b2/custom/failures/ute_1_fail"))
+-- defineProperty("ute2_fail", globalPropertyi("tu154b2/custom/failures/ute_2_fail"))
 defineProperty("trim_emerg_elv_fail", globalPropertyi("tu154b2/custom/failures/trim_emerg_elv_fail")) --
 
 defineProperty("rel_tire1", globalPropertyi("sim/operation/failures/rel_tire1")) -- Landing gear tire blowout
@@ -187,8 +187,8 @@ if get(ismaster) ~= 1 then
 			if get(rel_trim_rud) ~= 6 then set(rel_trim_rud, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6) end
 			if get(rel_trim_ail) ~= 6 then set(rel_trim_ail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6) end
 			--if get(rel_trim_elv) ~= 6 then set(rel_trim_elv, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 6) end
-			if get(ute1_fail) ~= 1 then set(ute1_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) ) end
-			if get(ute2_fail) ~= 1 then set(ute2_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) ) end
+			if absu_svk_tbl.ute1_fail ~= 1 then absu_svk_tbl.ute1_fail = bool2int(math.random() < 0.00001 * FAIL * 0.3) end
+			if absu_svk_tbl.ute2_fail ~= 1 then absu_svk_tbl.ute2_fail = bool2int(math.random() < 0.00001 * FAIL * 0.3) end
 			
 			if get(trim_emerg_elv_fail) ~= 1 then set(trim_emerg_elv_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			
@@ -271,16 +271,16 @@ if get(ismaster) ~= 1 then
 		
 		set(rel_trim_rud, 0)
 		set(rel_trim_ail, 0)
-		set(ute1_fail, 0)
-		set(ute2_fail, 0)
+		absu_svk_tbl.ute1_fail = 0
+		absu_svk_tbl.ute2_fail = 0
 		set(trim_emerg_elv_fail, 0)
 	
 	end
-	if get(ute1_fail)+get(ute2_fail)>1 then
-		set(rel_trim_elv,6)
-	else
-		set(rel_trim_elv,0)
-	end
+	-- if absu_svk_tbl.ute1_fail+absu_svk_tbl.ute2_fail>1 then
+		-- set(rel_trim_elv,6)
+	-- else
+		-- set(rel_trim_elv,0)
+	-- end
 
 end
 
