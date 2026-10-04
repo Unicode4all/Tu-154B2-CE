@@ -1,0 +1,6 @@
+Inter: https://github.com/google/fonts/tree/main/ofl/inter
+JetBrains Mono: https://github.com/JetBrains/JetBrainsMono
+Downloaded 2026-10-01. Both fonts are distributed unchanged under SIL OFL 1.1; see accompanying licenses.
+
+Inter SemiBold (unchanged): https://github.com/rsms/inter/releases/download/v4.0/Inter-4.0.zip (extras/ttf/Inter-SemiBold.ttf)
+JetBrains Mono SemiBold (unchanged): https://github.com/JetBrains/JetBrainsMono/blob/master/fonts/ttf/JetBrainsMono-SemiBold.ttf

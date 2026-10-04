@@ -1,3 +1,5 @@
+local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/crew_control.lua")
+local crew_master = globalPropertyf("scp/api/ismaster")
 -- this is hydraulic panel
 
 -- gauges
@@ -367,20 +369,23 @@ local function gauges()
 	set(pressure_ind_3, press_3_ang)
 	set(pressure_ind_emerg, press_4_ang)
 	
-	local left_br = math.min(get(l_brake_add), 1) * 120 * power36 * bool2int(get(rel_lbrakes) < 6) * bool2int(get(gear2_deflect) > 0.06)
-	local right_br = math.min(get(r_brake_add), 1) * 120 * power36 * bool2int(get(rel_rbrakes) < 6) * bool2int(get(gear3_deflect) > 0.06)
-	
-	local v_left_br_set,br_1_set = needle_pos (left_br_act,left_br,passed,v_br1,k_spr,k_dmp,k_v,c_v)
-	left_br_act=br_1_set
-	v_br1=v_left_br_set
-	
-	local v_right_br_set,br_2_set = needle_pos (right_br_act,right_br,passed,v_br2,k_spr,k_dmp,k_v,c_v)
-	right_br_act=br_2_set
-	v_br2=v_right_br_set
-	
-	set(gear_brake_press_L, left_br_act)
-	set(gear_brake_press_R, right_br_act)
-	
+    if not crew_control.active() or get(crew_master) ~= 1 then
+        local left_br = math.min(get(l_brake_add), 1) * 120 * power36 * bool2int(get(rel_lbrakes) < 6) * bool2int(get(gear2_deflect) > 0.06)
+        local right_br = math.min(get(r_brake_add), 1) * 120 * power36 * bool2int(get(rel_rbrakes) < 6) * bool2int(get(gear3_deflect) > 0.06)
+
+        local v_left_br_set,br_1_set = needle_pos (left_br_act,left_br,passed,v_br1,k_spr,k_dmp,k_v,c_v)
+        left_br_act=br_1_set
+        v_br1=v_left_br_set
+
+        local v_right_br_set,br_2_set = needle_pos (right_br_act,right_br,passed,v_br2,k_spr,k_dmp,k_v,c_v)
+        right_br_act=br_2_set
+        v_br2=v_right_br_set
+
+        set(gear_brake_press_L, left_br_act)
+        set(gear_brake_press_R, right_br_act)
+
+    end
+
 	-- oil quantity
 	local test_btn_12 = get(qty_test_12)
 	local test_btn_3 = get(qty_test_3)

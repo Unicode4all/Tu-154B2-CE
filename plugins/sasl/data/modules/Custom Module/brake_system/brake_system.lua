@@ -1,3 +1,4 @@
+local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/crew_control.lua")
 -- this is the brakes system
 
 defineProperty("have_pedals", globalPropertyi("tu154b2/custom/have_pedals"))
@@ -250,13 +251,19 @@ local termo_right = get(thermo)
 
 
 function regular_brk_hnd(phase)
+    if not crew_control.input_allowed() then
+        sim_brake = 0
+
+        return 0
+    end
+
 	if 1 == phase then -- hold
 		set(parking_brake, 0)
 		sim_brake = sim_brake + passed
 		if sim_brake > 1 then sim_brake = 1 end
 	else 
 		sim_brake = 0
-		if get(hascontrol_1) ~= 1 then
+		if crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
 			set(l_brake_add, 0)
 			set(r_brake_add, 0)
 		end
@@ -271,13 +278,19 @@ registerCommandHandler(regular_brk_comm, 0, regular_brk_hnd)
 max_brk_comm = findCommand("sim/flight_controls/brakes_max")
 
 function max_brk_hnd(phase)
+    if not crew_control.input_allowed() then
+        sim_brake = 0
+
+        return 0
+    end
+
 	if 1 == phase then -- hold
 		set(parking_brake, 0)
 		sim_brake = sim_brake + passed * 4
 		if sim_brake > 1 then sim_brake = 1 end
 	else 
 		sim_brake = 0
-		if get(hascontrol_1) ~= 1 then
+		if crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
 			set(l_brake_add, 0)
 			set(r_brake_add, 0)
 		end
@@ -295,7 +308,7 @@ function park_brk_max_hnd(phase)
 	if 0 == phase then -- toggle
 		local brk = 1 - get(parking_brake)
 		
-		if brk == 0 and get(hascontrol_1) ~= 1 then
+		if brk == 0 and crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
 			set(l_brake_add, 0) -- release pedals
 			set(r_brake_add, 0) -- release pedals
 		end
@@ -319,7 +332,7 @@ function park_brk_reg_hnd(phase)
 	if 0 == phase then -- toggle
 		local brk = 1 - get(parking_brake)
 		
-		if brk == 0 and get(hascontrol_1) ~= 1 then
+		if brk == 0 and crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
 			set(l_brake_add, 0) -- release pedals
 			set(r_brake_add, 0) -- release pedals
 		end
@@ -350,6 +363,12 @@ local left_brk = 0
 local right_brk = 0
 
 function left_brk_cmd_hnd(phase)
+    if not crew_control.input_allowed() then
+        left_brk = 0
+
+        return 0
+    end
+
 	if 1 == phase then -- hold
 		left_brk = left_brk + passed * 2
 		if left_brk > 1 then left_brk = 1 end
@@ -363,6 +382,12 @@ function left_brk_cmd_hnd(phase)
 end
 
 function right_brk_cmd_hnd(phase)
+    if not crew_control.input_allowed() then
+        right_brk = 0
+
+        return 0
+    end
+
 	if 1 == phase then -- hold
 		right_brk = right_brk + passed * 2
 		if right_brk > 1 then right_brk = 1 end
@@ -418,6 +443,8 @@ set(joy_value_R, 0)
 local start_timer = 0
 
 function update()
+    crew_control.register_adapter()
+
 	local spd=get(speed)
 	passed = get(frame_time)
 	start_timer=start_timer+passed
@@ -430,6 +457,18 @@ function update()
 	-- pedals
 	local brake_1 = math.max(get(joy_value_L),get(joy_value))
 	local brake_2 = math.max(get(joy_value_R),get(joy_value))
+
+    local crew_active = crew_control.active()
+    if crew_active then
+        if not crew_control.input_allowed() then
+            sim_brake, left_brk, right_brk = 0, 0, 0
+        end
+
+        brake_1, brake_2 = crew_control.brakes(
+            math.max(brake_1, sim_brake, left_brk),
+            math.max(brake_2, sim_brake, right_brk))
+    end
+
 	
 	--[[
 	-- define numbers of pedal axies, if any
@@ -513,10 +552,21 @@ function update()
 	e_brake_last = e_brake
 
 
+    if crew_active and get(ismaster) == 1 then
+        return
+    end
+
 	-- blocks
 	local blocks = get(gear_blocks)
-	local tgt_L=120*math.max(brake_1,sim_brake,park_lvr,left_brk)*bool2int(get(gear2_deflect) > 0.06)  
-	local tgt_R=120*math.max(brake_2,sim_brake,park_lvr,right_brk)*bool2int(get(gear3_deflect) > 0.06) 
+    local demand_left = math.max(brake_1, park_lvr)
+    local demand_right = math.max(brake_2, park_lvr)
+    if not crew_active then
+        demand_left = math.max(demand_left, sim_brake, left_brk)
+        demand_right = math.max(demand_right, sim_brake, right_brk)
+    end
+
+    local tgt_L = 120 * demand_left * bool2int(get(gear2_deflect) > 0.06)
+    local tgt_R = 120 * demand_right * bool2int(get(gear3_deflect) > 0.06)
 	-- pressures
 	local main_press = get(gs_press_1)
 	local emer_press = math.min(get(gs_press_4) / 120, 1)
@@ -662,7 +712,7 @@ end
 	
 	
 	
-local have_control = get(hascontrol_1) ~= 1
+local have_control = crew_active or get(hascontrol_1) ~= 1
 
 if have_control then
 	set(brake_heat_left, termo_left)

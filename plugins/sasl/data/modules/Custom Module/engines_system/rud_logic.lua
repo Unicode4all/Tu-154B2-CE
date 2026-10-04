@@ -1,3 +1,4 @@
+local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/crew_control.lua")
 -- this is simple RUD logic
 
 -- sim/version/xplane_internal_version
@@ -817,7 +818,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		set(R_SC_2,get(R_2))
 		set(R_SC_3,get(R_3))
 	else
-		if get(hascontrol_1) == 2 then
+		if not crew_control.active() and get(hascontrol_1) == 2 then
 			if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
 				set(sim_rud_1,0)
 			else
