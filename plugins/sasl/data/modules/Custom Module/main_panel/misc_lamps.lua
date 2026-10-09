@@ -95,11 +95,7 @@ speaker_speed = globalPropertyi("tu154b2/custom/alarm/speaker_speed") -- пре�
 damp_roll_lamp = globalPropertyi("tu154b2/custom/absu/damp_roll_lamp") -- 
 damp_pitch_lamp = globalPropertyi("tu154b2/custom/absu/damp_pitch_lamp") -- 
 damp_yaw_lamp = globalPropertyi("tu154b2/custom/absu/damp_yaw_lamp") -- 
-roll_contr_lamp = globalPropertyi("tu154b2/custom/absu/roll_contr_lamp") -- 
-pitch_contr_lamp = globalPropertyi("tu154b2/custom/absu/pitch_contr_lamp") -- 
-man_roll_lamp = globalPropertyi("tu154b2/custom/absu/man_roll_lamp") -- 
-man_pitch_lamp = globalPropertyi("tu154b2/custom/absu/man_pitch_lamp") -- 
-man_toga_lamp = globalPropertyi("tu154b2/custom/absu/man_toga_lamp") -- 
+
 
 absu_landing_on = globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on") -- стрелки посадка
 roll_main_mode = globalPropertyi("tu154b2/custom/absu/roll_main_mode") -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб

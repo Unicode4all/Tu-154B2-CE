@@ -109,10 +109,6 @@ chip_detect1 = globalProperty("sim/cockpit/warnings/annunciators/chip_detected[0
 chip_detect2 = globalProperty("sim/cockpit/warnings/annunciators/chip_detected[1]") -- chip in engine1
 chip_detect3 = globalProperty("sim/cockpit/warnings/annunciators/chip_detected[2]") -- chip in engine1
 
-fuel_p_1 = globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[0]")
-fuel_p_2 = globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[1]")
-fuel_p_3 = globalProperty("sim/cockpit2/engine/indicators/fuel_pressure_psi[2]")
-
 oil_p_1 = globalPropertyf("tu154b2/custom/gauges/eng/oil_press_1") -- давление масла двиг 1
 oil_p_2 = globalPropertyf("tu154b2/custom/gauges/eng/oil_press_2") -- давление масла двиг 2
 oil_p_3 = globalPropertyf("tu154b2/custom/gauges/eng/oil_press_3") -- давление масла двиг 3
@@ -298,6 +294,9 @@ local function reset_switchers()
 		set(gauges_on_1_cap, 1)
 		set(gauges_on_2_cap, 1)
 		set(gauges_on_3_cap, 1)
+		sys_data_tbl.eng_line_fill_1 = 0
+		sys_data_tbl.eng_line_fill_2 = 0
+		sys_data_tbl.eng_line_fill_3 = 0
 	end
 	
 	notLoaded = false
@@ -356,7 +355,7 @@ local function lamps_eng1()
 	set(eng1_oil_level, eng1_oil_level_brt)
 	
 	local eng1_oil_p_brt = 0
-	local oil_p = get(oil_p_1)
+	local oil_p = sys_data_tbl.eng_oil_p_1
 	if oil_p < 2.3 then eng1_oil_p_brt = lamps_brt end
 	eng1_oil_p_brt = math.max(eng1_oil_p_brt, test_btn)
 	set(eng1_oil_p, eng1_oil_p_brt)
@@ -453,7 +452,7 @@ local function lamps_eng2()
 	set(eng2_oil_level, eng2_oil_level_brt)
 	
 	local eng2_oil_p_brt = 0
-	local oil_p = get(oil_p_2)
+	local oil_p = sys_data_tbl.eng_oil_p_2
 	if oil_p < 2.3 then eng2_oil_p_brt = 1 end
 	eng2_oil_p_brt = math.max(eng2_oil_p_brt * lamps_brt, test_btn)
 	set(eng2_oil_p, eng2_oil_p_brt)
@@ -546,7 +545,7 @@ local function lamps_eng3()
 	set(eng3_oil_level, eng3_oil_level_brt)
 	
 	local eng3_oil_p_brt = 0
-	local oil_p = get(oil_p_3)
+	local oil_p = sys_data_tbl.eng_oil_p_3
 	if oil_p < 2.3 then eng3_oil_p_brt = 1 end
 	eng3_oil_p_brt = math.max(eng3_oil_p_brt * lamps_brt, test_btn) 
 	set(eng3_oil_p, eng3_oil_p_brt)

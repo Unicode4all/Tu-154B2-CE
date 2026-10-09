@@ -2,154 +2,157 @@ local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/module
 -- this is simple RUD logic
 
 -- sim/version/xplane_internal_version
---defineProperty("xp_version", globalPropertyi("sim/version/xplane_internal_version"))
+--xp_version = globalPropertyi("sim/version/xplane_internal_version")
 -- controls
---defineProperty("tro_comm_1", globalPropertyf("sim/flightmodel/engine/ENGN_thro[0]"))
---defineProperty("tro_comm_2", globalPropertyf("sim/flightmodel/engine/ENGN_thro[1]"))
---defineProperty("tro_comm_3", globalPropertyf("sim/flightmodel/engine/ENGN_thro[2]"))
+--tro_comm_1 = globalPropertyf("sim/flightmodel/engine/ENGN_thro[0]")
+--tro_comm_2 = globalPropertyf("sim/flightmodel/engine/ENGN_thro[1]")
+--tro_comm_3 = globalPropertyf("sim/flightmodel/engine/ENGN_thro[2]")
 
-defineProperty("tro_comm_1", globalPropertyf("tu154b2/custom/SC/engine/ENGN_thro_0")) 
-defineProperty("tro_comm_2", globalPropertyf("tu154b2/custom/SC/engine/ENGN_thro_1")) 
-defineProperty("tro_comm_3", globalPropertyf("tu154b2/custom/SC/engine/ENGN_thro_2"))
-
-
-defineProperty("sim_rud_1", globalProperty("sim/flightmodel/engine/ENGN_thro_use[0]"))
-defineProperty("sim_rud_2", globalProperty("sim/flightmodel/engine/ENGN_thro_use[1]"))
-defineProperty("sim_rud_3", globalProperty("sim/flightmodel/engine/ENGN_thro_use[2]"))
-
-defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
-defineProperty("revers_flap_R", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]")) -- reverse on right engine
-
-defineProperty("eng_modL", globalProperty("sim/flightmodel/engine/ENGN_propmode[0]")) -- reverse on left engine feather=0,normal=1,beta=2,reverse=3
-defineProperty("eng_modR", globalProperty("sim/flightmodel/engine/ENGN_propmode[2]")) -- reverse on right engine feather=0,normal=1,beta=2,reverse=3
+tro_comm_1 = globalPropertyf("tu154b2/custom/SC/engine/ENGN_thro_0") 
+tro_comm_2 = globalPropertyf("tu154b2/custom/SC/engine/ENGN_thro_1") 
+tro_comm_3 = globalPropertyf("tu154b2/custom/SC/engine/ENGN_thro_2")
 
 
+sim_rud_1 = globalProperty("sim/flightmodel/engine/ENGN_thro_use[0]")
+sim_rud_2 = globalProperty("sim/flightmodel/engine/ENGN_thro_use[1]")
+sim_rud_3 = globalProperty("sim/flightmodel/engine/ENGN_thro_use[2]")
 
-defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
-defineProperty("anim_rud2", globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
-defineProperty("anim_rud3", globalPropertyf("tu154b2/custom/controlls/throttle_3")) -- РУД 3
+revers_flap_L = globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]") -- reverse on left engine
+revers_flap_R = globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]") -- reverse on right engine
 
-defineProperty("anim_rud1_ENG", globalPropertyf("tu154b2/custom/controlls/throttle_1_ENG")) -- РУД 1 БИ
-defineProperty("anim_rud2_ENG", globalPropertyf("tu154b2/custom/controlls/throttle_2_ENG")) -- РУД 2 БИ
-defineProperty("anim_rud3_ENG", globalPropertyf("tu154b2/custom/controlls/throttle_3_ENG")) -- РУД 3 БИ
-
-defineProperty("revers_L", globalPropertyf("tu154b2/custom/controlls/revers_L")) -- рычаг реверса лев
-defineProperty("revers_R", globalPropertyf("tu154b2/custom/controlls/revers_R")) -- рычаг реверса прав
+eng_modL = globalProperty("sim/flightmodel/engine/ENGN_propmode[0]") -- reverse on left engine feather=0,normal=1,beta=2,reverse=3
+eng_modR = globalProperty("sim/flightmodel/engine/ENGN_propmode[2]") -- reverse on right engine feather=0,normal=1,beta=2,reverse=3
 
 
 
+anim_rud1 = globalPropertyf("tu154b2/custom/controlls/throttle_1") -- РУД 1
+anim_rud2 = globalPropertyf("tu154b2/custom/controlls/throttle_2") -- РУД 2
+anim_rud3 = globalPropertyf("tu154b2/custom/controlls/throttle_3") -- РУД 3
 
-defineProperty("throttle_lock", globalPropertyf("tu154b2/custom/controlls/throttle_lock")) -- рычаг фиксации РУД
+anim_rud1_ENG = globalPropertyf("tu154b2/custom/controlls/throttle_1_ENG") -- РУД 1 БИ
+anim_rud2_ENG = globalPropertyf("tu154b2/custom/controlls/throttle_2_ENG") -- РУД 2 БИ
+anim_rud3_ENG = globalPropertyf("tu154b2/custom/controlls/throttle_3_ENG") -- РУД 3 БИ
 
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- barometric alt in feet
---defineProperty("baro_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
+revers_L = globalPropertyf("tu154b2/custom/controlls/revers_L") -- рычаг реверса лев
+revers_R = globalPropertyf("tu154b2/custom/controlls/revers_R") -- рычаг реверса прав
 
-defineProperty("rud_1_spd", globalPropertyf("tu154b2/custom/absu/rud_1_spd")) -- скорость изменения положения рычага
-defineProperty("rud_2_spd", globalPropertyf("tu154b2/custom/absu/rud_2_spd")) -- скорость изменения положения рычага
-defineProperty("rud_3_spd", globalPropertyf("tu154b2/custom/absu/rud_3_spd")) -- скорость изменения положения рычага
+
+
+
+throttle_lock = globalPropertyf("tu154b2/custom/controlls/throttle_lock") -- рычаг фиксации РУД
+
+msl_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")  -- barometric alt in feet
+--baro_press = globalPropertyf("sim/weather/barometer_sealevel_inhg")  -- pressire at sea level in.Hg
+
+rud_1_spd = globalPropertyf("tu154b2/custom/absu/rud_1_spd") -- скорость изменения положения рычага
+rud_2_spd = globalPropertyf("tu154b2/custom/absu/rud_2_spd") -- скорость изменения положения рычага
+rud_3_spd = globalPropertyf("tu154b2/custom/absu/rud_3_spd") -- скорость изменения положения рычага
 
 -- failures
-defineProperty("comsta0", globalPropertyi("sim/operation/failures/rel_comsta0")) -- compressor stall
-defineProperty("comsta1", globalPropertyi("sim/operation/failures/rel_comsta1"))
-defineProperty("comsta2", globalPropertyi("sim/operation/failures/rel_comsta2"))
+comsta0 = globalPropertyi("sim/operation/failures/rel_comsta0") -- compressor stall
+comsta1 = globalPropertyi("sim/operation/failures/rel_comsta1")
+comsta2 = globalPropertyi("sim/operation/failures/rel_comsta2")
 
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("outside_air_temp", globalPropertyf("sim/weather/temperature_ambient_c")) -- 
+outside_air_temp = globalPropertyf("sim/weather/temperature_ambient_c") -- 
 
-defineProperty("rev_fail", globalPropertyi("sim/operation/failures/rel_revloc1")) -- reverse fail for logic
-defineProperty("rev_fail_2", globalPropertyi("sim/operation/failures/rel_revers1")) -- reverse fail for logic
-defineProperty("override", globalPropertyi("sim/operation/override/override_throttles"))
-defineProperty("override2", globalPropertyi("sim/operation/override/override_FADEC"))
+rev_fail = globalPropertyi("sim/operation/failures/rel_revloc1") -- reverse fail for logic
+rev_fail_2 = globalPropertyi("sim/operation/failures/rel_revers1") -- reverse fail for logic
+override = globalPropertyi("sim/operation/override/override_throttles")
+override2 = globalPropertyi("sim/operation/override/override_FADEC")
 
 
 -- engine result power
-defineProperty("acf_tmax_1", globalProperty("sim/aircraft/engine/acf_tmax_per_engine[0]")) -- engines power
-defineProperty("acf_tmax_2", globalProperty("sim/aircraft/engine/acf_tmax_per_engine[1]"))
-defineProperty("acf_tmax_3", globalProperty("sim/aircraft/engine/acf_tmax_per_engine[2]"))
+acf_tmax_1 = globalProperty("sim/aircraft/engine/acf_tmax_per_engine[0]") -- engines power
+acf_tmax_2 = globalProperty("sim/aircraft/engine/acf_tmax_per_engine[1]")
+acf_tmax_3 = globalProperty("sim/aircraft/engine/acf_tmax_per_engine[2]")
 
-defineProperty("throttle_ratio_all", globalPropertyf("sim/cockpit2/engine/actuators/throttle_ratio_all")) -- all throttles
+throttle_ratio_all = globalPropertyf("sim/cockpit2/engine/actuators/throttle_ratio_all") -- all throttles
 
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
---defineProperty("kontur_on", globalPropertyf("tu154b2/custom/b2/kontur_on")) -- 
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+--kontur_on = globalPropertyf("tu154b2/custom/b2/kontur_on") -- 
 
-defineProperty("rt1_red", globalPropertyf("tu154b2/custom/SC/engine/rt_red1"))
-defineProperty("rt2_red", globalPropertyf("tu154b2/custom/SC/engine/rt_red2"))
-defineProperty("rt3_red", globalPropertyf("tu154b2/custom/SC/engine/rt_red3"))
+rt1_red = globalPropertyf("tu154b2/custom/SC/engine/rt_red1")
+rt2_red = globalPropertyf("tu154b2/custom/SC/engine/rt_red2")
+rt3_red = globalPropertyf("tu154b2/custom/SC/engine/rt_red3")
 
-defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
-defineProperty("rho", globalPropertyf("sim/weather/rho"))
+rho = globalPropertyf("sim/weather/rho")
 
-defineProperty("rpm1", globalProperty("sim/flightmodel2/engines/N2_percent[0]"))
-defineProperty("rpm2", globalProperty("sim/flightmodel2/engines/N2_percent[1]"))
-defineProperty("rpm3", globalProperty("sim/flightmodel2/engines/N2_percent[2]"))
+rpm1 = globalProperty("sim/flightmodel2/engines/N2_percent[0]")
+rpm2 = globalProperty("sim/flightmodel2/engines/N2_percent[1]")
+rpm3 = globalProperty("sim/flightmodel2/engines/N2_percent[2]")
 
-defineProperty("machno", globalPropertyf("sim/cockpit2/gauges/indicators/mach_pilot"))
-defineProperty("idle_rat", globalPropertyf("sim/aircraft2/engine/high_idle_ratio"))
+machno = globalPropertyf("sim/cockpit2/gauges/indicators/mach_pilot")
+idle_rat = globalPropertyf("sim/aircraft2/engine/high_idle_ratio")
 
--- defineProperty("tgt_1", globalPropertyf("tu154b2/custom/controlls/target_n2_1"))
--- defineProperty("tgt_2", globalPropertyf("tu154b2/custom/controlls/target_n2_2"))
--- defineProperty("tgt_3", globalPropertyf("tu154b2/custom/controlls/target_n2_3"))
+-- tgt_1 = globalPropertyf("tu154b2/custom/controlls/target_n2_1")
+-- tgt_2 = globalPropertyf("tu154b2/custom/controlls/target_n2_2")
+-- tgt_3 = globalPropertyf("tu154b2/custom/controlls/target_n2_3")
 
-defineProperty("temp_SL", globalPropertyf("sim/weather/temperature_sealevel_c"))
-defineProperty("press_SL", globalPropertyf("sim/weather/barometer_sealevel_inhg"))
+temp_SL = globalPropertyf("sim/weather/temperature_sealevel_c")
+press_SL = globalPropertyf("sim/weather/barometer_sealevel_inhg")
 
-defineProperty("flt_idle", globalPropertyf("tu154b2/custom/engines/flight_idle"))
---defineProperty("flt_idle_rpm", globalPropertyf("tu154b2/custom/engines/flight_idle_rpm"))
+flt_idle = globalPropertyf("tu154b2/custom/engines/flight_idle")
+--flt_idle_rpm = globalPropertyf("tu154b2/custom/engines/flight_idle_rpm")
 
-defineProperty("max_n2", globalPropertyf("tu154b2/engine/max_KVD"))
-defineProperty("nom_n2", globalPropertyf("tu154b2/engine/nom_KVD"))
+max_n2 = globalPropertyf("tu154b2/engine/max_KVD")
+nom_n2 = globalPropertyf("tu154b2/engine/nom_KVD")
 
-defineProperty("kpp_up", globalPropertyf("tu154b2/engine/kpp_up"))
-defineProperty("kpp_dn", globalPropertyf("tu154b2/engine/kpp_dn"))
-defineProperty("isa_temp_d", globalPropertyf("tu154b2/custom/engines/d_isa_temp"))
-defineProperty("sc_kvd1", globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd1"))
-defineProperty("sc_kvd2", globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd2"))
-defineProperty("sc_kvd3", globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd3"))
+kpp_up = globalPropertyf("tu154b2/engine/kpp_up")
+kpp_dn = globalPropertyf("tu154b2/engine/kpp_dn")
+isa_temp_d = globalPropertyf("tu154b2/custom/engines/d_isa_temp")
+sc_kvd1 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd1")
+sc_kvd2 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd2")
+sc_kvd3 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd3")
 
-defineProperty("kpp1_fail", globalPropertyf("tu154b2/custom/failures/kpp_1_fail"))
-defineProperty("kpp2_fail", globalPropertyf("tu154b2/custom/failures/kpp_2_fail"))
-defineProperty("kpp3_fail", globalPropertyf("tu154b2/custom/failures/kpp_3_fail"))
-defineProperty("n2_tgt1", globalProperty("sim/flightmodel2/engines/N1_FADEC[1]"))
+kpp1_fail = globalPropertyf("tu154b2/custom/failures/kpp_1_fail")
+kpp2_fail = globalPropertyf("tu154b2/custom/failures/kpp_2_fail")
+kpp3_fail = globalPropertyf("tu154b2/custom/failures/kpp_3_fail")
+n2_tgt1 = globalProperty("sim/flightmodel2/engines/N1_FADEC[1]")
 
-defineProperty("idle_rat2", globalPropertyf("sim/aircraft2/engine/low_idle_ratio"))
-defineProperty("kpp1", globalPropertyf("tu154b2/custom/engine/kpp1"))
-defineProperty("kpp2", globalPropertyf("tu154b2/custom/engine/kpp2"))
-defineProperty("kpp3", globalPropertyf("tu154b2/custom/engine/kpp3"))
+idle_rat2 = globalPropertyf("sim/aircraft2/engine/low_idle_ratio")
+kpp1 = globalPropertyf("tu154b2/custom/engine/kpp1")
+kpp2 = globalPropertyf("tu154b2/custom/engine/kpp2")
+kpp3 = globalPropertyf("tu154b2/custom/engine/kpp3")
 
-defineProperty("FF_1", globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[0]")) -- FF from sim kg/second
-defineProperty("FF_2", globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[1]")) -- FF from sim kg/second
-defineProperty("FF_3", globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[2]")) -- FF from sim kg/second
-defineProperty("true_airspeed", globalPropertyf("sim/flightmodel2/position/true_airspeed"))
-defineProperty("spread", globalPropertyf("tu154b2/custom/engines/thro_spread"))
-defineProperty("pushback", globalPropertyi("bp/connected"))
+FF_1 = globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[0]") -- FF from sim kg/second
+FF_2 = globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[1]") -- FF from sim kg/second
+FF_3 = globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[2]") -- FF from sim kg/second
+true_airspeed = globalPropertyf("sim/flightmodel2/position/true_airspeed")
+spread = globalPropertyf("tu154b2/custom/engines/thro_spread")
+pushback = globalPropertyi("bp/connected")
 
-defineProperty("bleed_1", globalPropertyf("tu154b2/custom/bleedair/eng_1_bleed"))
-defineProperty("bleed_2", globalPropertyf("tu154b2/custom/bleedair/eng_2_bleed"))
-defineProperty("bleed_3", globalPropertyf("tu154b2/custom/bleedair/eng_3_bleed"))
+bleed_1 = globalPropertyf("tu154b2/custom/bleedair/eng_1_bleed")
+bleed_2 = globalPropertyf("tu154b2/custom/bleedair/eng_2_bleed")
+bleed_3 = globalPropertyf("tu154b2/custom/bleedair/eng_3_bleed")
 
-defineProperty("eng1_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[0]"))
-defineProperty("eng2_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]"))
-defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]"))
+eng1_ice = globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[0]")
+eng2_ice = globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]")
+eng3_ice = globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]")
 
-defineProperty("rpm_low_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1")) -- обороты турбины низкого давления №1
-defineProperty("rpm_low_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2")) -- обороты турбины низкого давления №2
-defineProperty("rpm_low_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3")) -- обороты турбины низкого давления №3
+rpm_low_1 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_1") -- обороты турбины низкого давления №1
+rpm_low_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_2") -- обороты турбины низкого давления №2
+rpm_low_3 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_low_3") -- обороты турбины низкого давления №3
 R_1 =  globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[0]")
 R_2 =  globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[1]")
 R_3 =  globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[2]")
 R_SC_1 = globalPropertyf("tu154b2/custom/SC/thrust_1")
 R_SC_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
 R_SC_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
-defineProperty("control_thro_other", globalPropertyf("tu154b2/custom/SC/control_thro_other")) -- другой человек упраляет РУД-ами
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+control_thro_other = globalPropertyf("tu154b2/custom/SC/control_thro_other") -- другой человек упраляет РУД-ами
+
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
+-- db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
+
 
 local t1_corr=0
 local t2_corr=0
@@ -195,13 +198,6 @@ local kpp_idle_corr_table={{-1000, 1.2 },
 					{  4, 0.0}, 
 					{  100,0.0 }} 	
 					
-local eng2_n1_corr_tbl = {{ -100000, 0.0 },    -- bugs walkaround
-					{  55, 0.5 },
-					{  78, 0.5 },
-					{  86, 1 },
-					{  92, 0.75 }, 				
-					{  1000, 0.5 }} 
-					
 local ISA_table = {	{-2,15},
 					{0,15},
 					{0.5,11.8},
@@ -230,10 +226,6 @@ local ISA_table = {	{-2,15},
 					{12,-56.5},
 					{15,-56.5}}
 					
-local rev_corr_tbl = {{ -100000, 1 },    -- bugs walkaround
-					{  0, 0 },
-					{  65, 0.467 },			
-					{  1000, 0.5 }} 
 
 local thro_1 = 0
 local thro_2 = 0
@@ -446,8 +438,8 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	end
 
 	--min_idle=math.max(55.5,-1.6402629234e-01*math.pow(alt_baro/1000,2) + 4.6498254605e+00*alt_baro/1000 + 4.4995506536e+01) --- This is the old model
-	local mid_idle_isa_corr=0.12*d_isa
-	min_idle=math.max(53.5,-2.2412587413e-01*math.pow(alt_baro/1000,2) + 5.3544289044e+00*alt_baro/1000 + 4.4647086247e+01+mid_idle_isa_corr)
+	local min_idle_isa_corr=0.12*d_isa
+	min_idle=math.max(53.5,-2.2412587413e-01*math.pow(alt_baro/1000,2) + 5.3544289044e+00*alt_baro/1000 + 4.4647086247e+01+min_idle_isa_corr)
 	local kpp_idle_corr=interpolate(kpp_idle_corr_table,73-min_idle)
 	--math.max(55.5,1.945*alt_baro/1000+53.61)+get(db1)
 	-- max N2
@@ -705,23 +697,39 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	end
 	-- update throttle position
 	contr_1=contr_1+contr_1_spd*passed
+	-- limit max throttle with declining fuel pressure and create fluctuation
 	if contr_1<0 then
 		contr_1=0
-	elseif contr_1>1 then
-		contr_1=1
+	elseif contr_1>sys_data_tbl.eng_fuel_p_factor_1 then
+		contr_1=sys_data_tbl.eng_fuel_p_factor_1
 	end
+	local delta_fuel = sys_data_tbl.eng_fuel_p_factor_1 - contr_1
+	if delta_fuel < 0.1 then
+		contr_1 = contr_1 + ((0.03395) / (delta_fuel +  0.02371) -0.1) * math.random(-1,1) * 0.03
+	end
+	
 	contr_2=contr_2+contr_2_spd*passed
 	if contr_2<0 then
 		contr_2=0
-	elseif contr_2>1 then
-		contr_2=1
+	elseif contr_2>sys_data_tbl.eng_fuel_p_factor_2 then
+		contr_2=sys_data_tbl.eng_fuel_p_factor_2
 	end
+	delta_fuel = sys_data_tbl.eng_fuel_p_factor_2 - contr_2
+	if delta_fuel < 0.1 then
+		contr_2 = contr_2 + ((0.03395) / (delta_fuel +  0.02371) -0.1) * math.random(-1,1) * 0.025
+	end
+	
 	contr_3=contr_3+contr_3_spd*passed
 	if contr_3<0 then
 		contr_3=0
-	elseif contr_3>1 then
-		contr_3=1
+	elseif contr_3>sys_data_tbl.eng_fuel_p_factor_3 then
+		contr_3=sys_data_tbl.eng_fuel_p_factor_3
 	end
+	delta_fuel = sys_data_tbl.eng_fuel_p_factor_3 - contr_3
+	if delta_fuel < 0.1 then
+		contr_3 = contr_3 + ((0.03395) / (delta_fuel +  0.02371) -0.1) * math.random(-1,1) * 0.031
+	end
+	
 	local MASTER = get(ismaster) ~= 1	
 		
 
@@ -803,8 +811,8 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 			push=1-0.7
 		end
 		-- Reverse thrust correction
-		local rev_L_corr=1--+interpolate(rev_corr_tbl,tas/3.6)*get(revers_flap_L)
-		local rev_R_corr=1--+interpolate(rev_corr_tbl,tas/3.6)*get(revers_flap_R)
+		local rev_L_corr=1
+		local rev_R_corr=1
 		local ice1=1-get(eng1_ice)*0.4
 		local ice2=1-get(eng2_ice)*0.3
 		local ice3=1-get(eng3_ice)*0.4

@@ -49,9 +49,6 @@ defineProperty("to_sfc", globalPropertyf("sim/aircraft/overflow/jet_SFC_takeoff"
 defineProperty("sfc_to_rpm", globalPropertyf("sim/aircraft/overflow/jet_N1_takeoff"))
 defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 defineProperty("idle_FF", globalPropertyf("sim/aircraft/overflow/ff_rat_idle_JET"))
-defineProperty("fill_1", globalPropertyf("tu154b2/custom/fuel/line_1_filled"))
-defineProperty("fill_2", globalPropertyf("tu154b2/custom/fuel/line_2_filled"))
-defineProperty("fill_3", globalPropertyf("tu154b2/custom/fuel/line_3_filled"))
 defineProperty("eng1_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[0]"))
 defineProperty("eng2_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]"))
 defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]"))
@@ -139,9 +136,9 @@ function update()
 	local ias=get(indicated_airspeed)*1.852
 	local alt_baro = get(msl_alt) / 3.28084
 	local min_idle=get(flt_idle)
-	local filling_1=get(fill_1) -- fuel lines filling at pump start.
-	local filling_2=get(fill_2)
-	local filling_3=get(fill_3)
+	local filling_1=sys_data_tbl.eng_line_fill_1 -- fuel lines filling at pump start.
+	local filling_2=sys_data_tbl.eng_line_fill_2
+	local filling_3=sys_data_tbl.eng_line_fill_3
 	local corr_stop=interpolate(idle_corr_stop,alt_baro/1000)
 	local corr_spd=interpolate(idle_ias_tbl,ias)
 	-- FM Fuel Flow
@@ -189,7 +186,10 @@ function update()
 	end
 	--set(db1,corr_idle_1)
 	-- total correction
-	FF_1_corr=FF_1*(1-FF_d_isa_corr*FF_isa_corr_1_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_1)*KPP_corr_1+corr_idle_1+1500*bool2int(filling_1~=filling_1_prev)
+	local FF_1_corr = 0
+	if passed ~= 0 then
+		FF_1_corr=FF_1*(1-FF_d_isa_corr*FF_isa_corr_1_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_1)*KPP_corr_1+corr_idle_1 + math.max(0,(filling_1 - filling_1_prev) / passed) * 2000
+	end
 	-- Engine 2 --
 	--nominal power corr
 	local corr_2=0
@@ -217,8 +217,10 @@ function update()
 		corr_idle_2=0
 	end
 	-- total correction
-	FF_2_corr=FF_2*(1-FF_d_isa_corr*FF_isa_corr_2_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_2)*KPP_corr_2+corr_idle_2+1500*bool2int(filling_2~=filling_2_prev)
-
+	local FF_2_corr = 0
+	if passed ~= 0 then
+		FF_2_corr=FF_2*(1-FF_d_isa_corr*FF_isa_corr_2_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_2)*KPP_corr_2+corr_idle_2 + math.max(0,(filling_2 - filling_2_prev) / passed) * 2000
+	end
 	-- Engine 2 --
 	--nominal power corr
 	local corr_3=0
@@ -250,7 +252,10 @@ function update()
 	local ice2=1+get(eng2_ice)*0.3
 	local ice3=1+get(eng3_ice)*0.4
 	-- total correction
-	FF_3_corr=FF_3*(1-FF_d_isa_corr*FF_isa_corr_3_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_3)*KPP_corr_3+corr_idle_3+1500*bool2int(filling_3~=filling_3_prev)
+	local FF_3_corr = 0
+	if passed ~= 0 then
+		FF_3_corr=FF_3*(1-FF_d_isa_corr*FF_isa_corr_3_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_3)*KPP_corr_3+corr_idle_3 + math.max(0,(filling_3 - filling_3_prev) / passed) * 2000
+	end
 	-- check for NaN
 	if FF_1_corr~=FF_1_corr then
 		FF_1_corr=FF_1

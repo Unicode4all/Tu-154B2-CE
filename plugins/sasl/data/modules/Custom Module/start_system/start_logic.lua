@@ -140,6 +140,10 @@ sim/aircraft/engine/acf_starter_torque_ratio	float	y	Ratio	This is the ratio of 
 sim/aircraft/engine/acf_starter_max_rpm_ratio	float	y	Ratio	This is the ratio of the engine's max RPM that the starter can spin the engine up to before it loses torque.
 --]]
 
+sys_data_tbl.eng_airstart_1 = 0
+sys_data_tbl.eng_airstart_2 = 0
+sys_data_tbl.eng_airstart_3 = 0
+
 local time_last = get(sim_run_time)  -- time for previous frame
 
 local eng1_start_time = time_last - 100
@@ -772,6 +776,11 @@ function update()
 		sys_data_tbl.starter_rpm_1 = starter_rpm_1
 		sys_data_tbl.starter_rpm_2 = starter_rpm_2
 		sys_data_tbl.starter_rpm_3 = starter_rpm_3
+		
+		sys_data_tbl.eng_airstart_1 = bool2int(eng1_starting_air)
+		sys_data_tbl.eng_airstart_2 = bool2int(eng2_starting_air)
+		sys_data_tbl.eng_airstart_3 = bool2int(eng3_starting_air)
+		
 	end
 
 		

@@ -1188,78 +1188,78 @@ end
 -- end
         
   
-    if simDR_light_test_hydro > 0 and bus27 > 0 then
-        if pump_test > 0.8 then
-            simDR_light_fuel_pump_1 = 0
-        end
-        if pump_test > 8.0 then
-            simDR_light_fuel_pump_2 = 0
-        end
-        if pump_test > 1.6 then
-            simDR_light_fuel_pump_3 = 0
-        end
-        if pump_test > 1.4 then
-            simDR_light_fuel_pump_4 = 0
-        end
-        if pump_test > 1.2 then
-            simDR_light_fuel_pump_10 = 0
-        end
-        if pump_test > 1.0 then
-            simDR_light_fuel_pump_11 = 0
-        end
-        if pump_test > 2.9 then
-            simDR_light_fuel_pump_left_5 = 0
-        end
-        if pump_test > 2.7 then
-            simDR_light_fuel_pump_left_6 = 0
-        end
-        if pump_test > 2.5 then
-            simDR_light_fuel_pump_left_7 = 0
-        end
-        if pump_test > 2.3 then
-            simDR_light_fuel_pump_left_8 = 0
-        end
-        if pump_test > 2.1 then
-            simDR_light_fuel_pump_left_9 = 0
-        end
-        if pump_test > 1.9 then
-            simDR_light_fuel_pump_right_5 = 0
-        end
-        if pump_test > 1.7 then
-            simDR_light_fuel_pump_right_6 = 0
-        end
-        if pump_test > 1.5 then
-            simDR_light_fuel_pump_right_7 = 0
-        end
-        if pump_test > 1.3 then
-            simDR_light_fuel_pump_right_8 = 0
-        end
-        if pump_test > 1.1 then
-            simDR_light_fuel_pump_right_8 = 0
-        end
-        if pump_test > 0.9 then
-            simDR_light_fuel_pump_right_9 = 0
-        end
-        if pump_test > 0.7 then
-            simDR_light_fuel_pump_left_2_fail = 0
-        end
-        if pump_test > 0.5 then
-            simDR_light_fuel_pump_right_2_fail = 0
-        end
-        if pump_test > 0.3 then
-            simDR_light_fuel_pump_left_3_fail = 0
-        end
-        if pump_test > 0.1 then
-             simDR_light_fuel_pump_right_3_fail = 0
-        end
-        if pump_test > 0 then
-            pump_test = pump_test -0.45
-        else
-            pump_test = 0
-        end     
-    else
-        pump_test = 3
-    end
+    -- if simDR_light_test_hydro > 0 and bus27 > 0 then
+        -- if pump_test > 0.8 then
+            -- simDR_light_fuel_pump_1 = 0
+        -- end
+        -- if pump_test > 8.0 then
+            -- simDR_light_fuel_pump_2 = 0
+        -- end
+        -- if pump_test > 1.6 then
+            -- simDR_light_fuel_pump_3 = 0
+        -- end
+        -- if pump_test > 1.4 then
+            -- simDR_light_fuel_pump_4 = 0
+        -- end
+        -- if pump_test > 1.2 then
+            -- simDR_light_fuel_pump_10 = 0
+        -- end
+        -- if pump_test > 1.0 then
+            -- simDR_light_fuel_pump_11 = 0
+        -- end
+        -- if pump_test > 2.9 then
+            -- simDR_light_fuel_pump_left_5 = 0
+        -- end
+        -- if pump_test > 2.7 then
+            -- simDR_light_fuel_pump_left_6 = 0
+        -- end
+        -- if pump_test > 2.5 then
+            -- simDR_light_fuel_pump_left_7 = 0
+        -- end
+        -- if pump_test > 2.3 then
+            -- simDR_light_fuel_pump_left_8 = 0
+        -- end
+        -- if pump_test > 2.1 then
+            -- simDR_light_fuel_pump_left_9 = 0
+        -- end
+        -- if pump_test > 1.9 then
+            -- simDR_light_fuel_pump_right_5 = 0
+        -- end
+        -- if pump_test > 1.7 then
+            -- simDR_light_fuel_pump_right_6 = 0
+        -- end
+        -- if pump_test > 1.5 then
+            -- simDR_light_fuel_pump_right_7 = 0
+        -- end
+        -- if pump_test > 1.3 then
+            -- simDR_light_fuel_pump_right_8 = 0
+        -- end
+        -- if pump_test > 1.1 then
+            -- simDR_light_fuel_pump_right_8 = 0
+        -- end
+        -- if pump_test > 0.9 then
+            -- simDR_light_fuel_pump_right_9 = 0
+        -- end
+        -- if pump_test > 0.7 then
+            -- simDR_light_fuel_pump_left_2_fail = 0
+        -- end
+        -- if pump_test > 0.5 then
+            -- simDR_light_fuel_pump_right_2_fail = 0
+        -- end
+        -- if pump_test > 0.3 then
+            -- simDR_light_fuel_pump_left_3_fail = 0
+        -- end
+        -- if pump_test > 0.1 then
+             -- simDR_light_fuel_pump_right_3_fail = 0
+        -- end
+        -- if pump_test > 0 then
+            -- pump_test = pump_test -0.45
+        -- else
+            -- pump_test = 0
+        -- end     
+    -- else
+        -- pump_test = 3
+    -- end
     
     -- if bus27 > 0 then
       -- if simDR_gear_fan > 0 and simDR_on_ground > 0 then

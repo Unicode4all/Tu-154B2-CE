@@ -65,13 +65,13 @@ local red_eng1=0
 local red_eng2=0
 local red_eng3=0
 
-local egt_prev1=0
-local egt_prev2=0
-local egt_prev3=0
+-- local egt_prev1=0
+-- local egt_prev2=0
+-- local egt_prev3=0
 
-local test1_prev=0
-local test2_prev=0
-local test3_prev=0
+-- local test1_prev=0
+-- local test2_prev=0
+-- local test3_prev=0
 
 function update()
 	local power=get(bus27_volt_left)>20
@@ -184,18 +184,16 @@ function update()
 		
 		
 		
-	egt_prev1=temp1
-	egt_prev2=temp2
-	egt_prev3=temp3
+	-- egt_prev1=temp1
+	-- egt_prev2=temp2
+	-- egt_prev3=temp3
 	
-	test1_prev=get(test1)
-	test2_prev=get(test2)
-	test3_prev=get(test3)
-	
-	local MASTER = get(ismaster) ~= 1	
+	-- test1_prev=get(test1)
+	-- test2_prev=get(test2)
+	-- test3_prev=get(test3)
 		
 
-	if MASTER then	
+	if get(ismaster) ~= 1	 then	
 		set(rt1_stop,stop_eng1)
 		set(rt1_red,red_eng1)
 		set(rt2_stop,stop_eng2)

@@ -89,6 +89,7 @@ createGlobalPropertyi("tu154b2/custom/failures/fuel_pump_3l_fail", 0) -- отк�
 createGlobalPropertyi("tu154b2/custom/failures/fuel_pump_3r_fail", 0) -- отказ топливного насоса
 createGlobalPropertyi("tu154b2/custom/failures/fuel_pump_1_fail", 0) -- отказ топливного насоса
 createGlobalPropertyi("tu154b2/custom/failures/fuel_pump_4_fail", 0) -- отказ топливного насоса
+createGlobalPropertyi("tu154b2/custom/failures/res_pump_fail", 0)
 createGlobalPropertyi("tu154b2/custom/failures/fuel_auto_fail", 0) -- отказ автоматики
 createGlobalPropertyi("tu154b2/custom/failures/fuel_level_fail", 0) -- отказ выравнивания
 createGlobalPropertyi("tu154b2/custom/failures/fuel_porc_fail", 0) -- отказ порцевания

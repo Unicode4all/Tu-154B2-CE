@@ -20,6 +20,7 @@ defineProperty("fuel_meter_3r_fail", globalPropertyi("tu154b2/custom/failures/fu
 defineProperty("fuel_meter_1_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_1_fail"))
 defineProperty("fuel_meter_4_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_4_fail"))
 defineProperty("fuel_meter_summ_fail", globalPropertyi("tu154b2/custom/failures/fuel_meter_summ"))
+defineProperty("res_pump_fail", globalPropertyi("tu154b2/custom/failures/res_pump_fail"))
 
 
 
@@ -137,6 +138,7 @@ if MASTER then
 			if get(fuel_meter_1_fail) ~= 1 then set(fuel_meter_1_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(fuel_meter_4_fail) ~= 1 then set(fuel_meter_4_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			if get(fuel_meter_summ_fail) ~= 1 then set(fuel_meter_summ_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
+			if get(res_pump_fail) ~= 1 then set(res_pump_fail, bool2int(math.random() < 0.00001 * FAIL * 0.3) * 1) end
 			
 		
 		end
@@ -170,6 +172,7 @@ if MASTER then
 		set(fuel_meter_1_fail, 0)
 		set(fuel_meter_4_fail, 0)
 		set(fuel_meter_summ_fail, 0)
+		set(res_pump_fail, 0)
 	
 	end
 	

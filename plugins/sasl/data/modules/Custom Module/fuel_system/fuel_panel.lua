@@ -208,6 +208,8 @@ pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 external_view = globalPropertyi("sim/graphics/view/view_is_external") 
 vr_outside = globalPropertyi("sim/graphics/VR/teleport_on_ground")
 
+res_work = globalPropertyi("tu154b2/custom/fuel/res_pump_work")
+
 lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_18")
 lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_19")
 -- db1 = globalPropertyf("tu154b2/custom/controlls/debug1"))
@@ -423,7 +425,7 @@ local function lamps()
 	local fuel_reserv_trans_right_brt = get(reserv_trans) * lamps_brt
 	set(fuel_reserv_trans_right, fuel_reserv_trans_right_brt)
 	
-	local fuel_porc_reserv_brt = get(reserv_pump_test) * lamps_brt 
+	local fuel_porc_reserv_brt = get(res_work) * lamps_brt 
 	set(fuel_porc_reserv, fuel_porc_reserv_brt)
 	
 	--local fuel_level_automat_brt = math.max(get(fuel_level) * get(fuel_flow_mode) * get(fuel_flow_on) * lamps_brt, test_btn)

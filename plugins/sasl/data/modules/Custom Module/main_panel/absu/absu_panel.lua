@@ -1070,8 +1070,11 @@ function update()
 	buttons()
 	switchers()
 	caps()
-	lamps()
-	gauges()
+	if get(ismaster) ~= 1 then
+		lamps()
+		gauges()
+	end
+
 	
 	
 	passed = get(frame_time)

@@ -50,15 +50,15 @@ local kolc2t=0
 local kolc3t=0
 local pow_36_prev=0
 
-local c_contr = 0.5
+local c_contr = 0.4
 local c_ra56 = 30 -- servo efficiency coeff
-local c_hs = 2 -- hydro spring coefficient without hydraulic power
-local c_centr = 0.3 -- center spring coefficient with hydraulic power
-local c_ret = 4
+local c_hs = 3 -- hydro spring coefficient without hydraulic power
+local c_centr = 0.1 -- center spring coefficient with hydraulic power
+local c_ret = 2
 local delta_lim=0.4 -- maximum difference for channel failure detection
-local act_delay_1=8 -- reactivation delay factor (higher=faster)
-local act_delay_2=8
-local act_delay_3=8
+local act_delay_1=5 -- reactivation delay factor (higher=faster)
+local act_delay_2=5
+local act_delay_3=5
 local kolc_delay=20 --deactivation delay factor (higher=faster)
 local lim_exp = 2 -- low hydraulic speed dropoff exponent
 local gs_exp = 0.5 -- low hydraulic efficiency dropoff exponent
@@ -84,9 +84,6 @@ ra_act_prev[1] = ra_act[1]
 ra_act_prev[2] = ra_act[2]
 local v_ra = {0,0,0}
 local yoke_prev = 0
-
-local ra56_cmd = 0 --low pass for command
-local T_lp = 0.5
 
 function min_ind(val1,val2,val3)
 	local min_ind = 0
@@ -115,15 +112,16 @@ function update()
 			local v_lim_base_1=2.10 + 0.5 * sprd
 			local v_lim_base_2=2.0 - 0.5 * sprd
 			local v_lim_base_3=2.6  + 0.1 * sprd
-			local gs1=math.max(get(gs_press_1),0)
-			local gs2=math.max(get(gs_press_2),0)
-			local gs3=math.max(get(gs_press_3),0)
-			local v_yoke = 0
-			ra56_cmd = T_lp/(T_lp+dt)*ra56_cmd+dt/(T_lp+dt)*get(absu_cmd) / c_contr
+			local gs1=math.max(get(gs_press_1),1)
+			local gs2=math.max(get(gs_press_2),1)
+			local gs3=math.max(get(gs_press_3),1)
+			local ra56_cmd  = get(absu_cmd) / c_contr
 			local yoke_pos = get(yoke)
-			v_yoke = (yoke_pos - yoke_prev) / dt
+			local v_yoke = (yoke_pos - yoke_prev) / dt
+			if math.abs(v_yoke) > 5 then
+				v_yoke = 0
+			end
 			yoke_prev = yoke_pos
-
 			local avt=get(hydro_circuit_auto_man)
 			if start_timer>0 then
 				if start_timer>5 then
@@ -226,43 +224,36 @@ function update()
 			--- servo positions ---
 			
 			ra_act[0]=ra_act[0] + v_ra[0] * dt - (ra_act[0] - ra56_act) *c_hs * fail1 * dt * (1-locked_1)
-			ra_act[1]=ra_act[1] + v_ra[1] * dt - (ra_act[1] - ra56_act) *c_hs * fail1 * dt * (1-locked_2)
-			ra_act[2]=ra_act[2] + v_ra[2] * dt - (ra_act[2] - ra56_act) *c_hs * fail1 * dt * (1-locked_3)
+			ra_act[1]=ra_act[1] + v_ra[1] * dt - (ra_act[1] - ra56_act) *c_hs * fail2 * dt * (1-locked_2)
+			ra_act[2]=ra_act[2] + v_ra[2] * dt - (ra_act[2] - ra56_act) *c_hs * fail3 * dt * (1-locked_3)
 			-- hydro spring works only in one direction
-			if ra_act[0] > ra56_act then
+			if ra_act[0] < ra56_act then
 				ra_act[0] = ra56_act
 			end       
-			if ra_act[1] > ra56_act then
+			if ra_act[1] < ra56_act then
 				ra_act[1] = ra56_act
 			end 
-			if ra_act[2] > ra56_act then
+			if ra_act[2] < ra56_act then
 				ra_act[2] = ra56_act
 			end 
 			
 			--- servo lever position ---
-			local centr = ra56_act * c_centr -- centering spring
-			local v_ra56 = (v_ra[0] * (1-fail1) + v_ra[1] * (1-fail2) + v_ra[2] * (1-fail3)) / (3-fail1-fail2-fail3) -- servo speed as mean of channel speeds
+			local centr = ra56_act * c_centr -- centering spring		
+			local v_ra56 = 0
 			if fail1 + fail2 + fail3 < 3 then	
-				if bool2int(math.abs(d_cmd_ra1) < lock_lim and fail1 == 0) + bool2int(math.abs(d_cmd_ra2) < lock_lim and fail2 == 0) + bool2int(math.abs(d_cmd_ra3) < lock_lim and fail3 == 0) == 0 then 
-					local c_yoke = 0
-					if v_yoke ~= 0 then
-						c_yoke = math.max(0,-2.360925747810605 * math.pow(math.abs(v_yoke),-0.073013223183586)+2.357218227854616) * 1 -- yoke movement coefficient (works opposite servo direction)
-					end
-					ra56_act = ra56_act + (v_ra56-centr - c_yoke * v_yoke)*dt
-				else -- if at least one servo has power and is not commanded to move, it will block the lever and other channels. 
-					ra_act[0]=ra_act[0] + (ra56_act-ra_act[0]) * c_ret * dt
-					ra_act[1]=ra_act[1] + (ra56_act-ra_act[1]) * c_ret * dt
-					ra_act[2]=ra_act[2] + (ra56_act-ra_act[2]) * c_ret * dt
+				v_ra56 = (v_ra[0] * (1-fail1) + v_ra[1] * (1-fail2) + v_ra[2] * (1-fail3)) / (3-fail1-fail2-fail3) -- servo speed as mean of channel speeds
+				local c_yoke = 0
+				if v_yoke ~= 0 then
+					c_yoke = math.max(0,-2.360925747810605 * math.pow(math.abs(v_yoke),-0.073013223183586)+2.357218227854616) * 1.2 -- yoke movement coefficient (works opposite servo direction)
 				end
+				ra56_act = ra56_act + (v_ra56-centr - c_yoke * v_yoke)*dt
 			else
 				ra56_act=ra56_act - centr * dt
 			end
-			-- Fade out channel dispersion will fade over time.
-			if math.abs(v_ra56) < 0.1 then
-				ra_act[0]=ra_act[0] + (ra56_act-ra_act[0]) * c_ret * dt * (1-fail1)
-				ra_act[1]=ra_act[1] + (ra56_act-ra_act[1]) * c_ret * dt * (1-fail2)
-				ra_act[2]=ra_act[2] + (ra56_act-ra_act[2]) * c_ret * dt * (1-fail3)
-			end
+			-- Fade out channel dispersion
+			ra_act[0]=ra_act[0] + (ra56_act-ra_act[0]) * c_ret/(1 + 30 * math.abs(v_ra56)) * dt * (1-fail1)
+			ra_act[1]=ra_act[1] + (ra56_act-ra_act[1]) * c_ret/(1 + 30 * math.abs(v_ra56)) * dt * (1-fail2)
+			ra_act[2]=ra_act[2] + (ra56_act-ra_act[2]) * c_ret/(1 + 30 * math.abs(v_ra56)) * dt * (1-fail3)
 			
 			--- detect channel failures
 			if power27==1 then
@@ -360,21 +351,20 @@ function update()
 			absu_svk_tbl.ra1_yaw_fail = bool2int(kolc1>0)
 			absu_svk_tbl.ra2_yaw_fail = bool2int(kolc2>0)
 			absu_svk_tbl.ra3_yaw_fail = bool2int(kolc3>0)
-		
 			set(absu_contr,ra56_act * c_contr)
 			set(hod1,(ra_act[0] - ra_act_prev[0]) / dt)
 			set(hod2,(ra_act[1] - ra_act_prev[1]) / dt)
 			set(hod3,(ra_act[2] - ra_act_prev[2]) / dt)
 			ra_act_prev[0]=ra_act[0]
 			ra_act_prev[1]=ra_act[1]
-			ra_act_prev[2]=ra_act[2]	
+			ra_act_prev[2]=ra_act[2]
 		else
 			set(hod1,0)
 			set(hod2,0)
 			set(hod3,0)
 		end
-		-- set(db1,ra1_act_p)
-		-- set(db2,ra2_act_p)
-		-- set(db3,locked_2)
+		-- set(db1,ra_act[0])
+		-- set(db2,ra_act[1])
+		-- set(db3,ra_act[2])
 	end
 end

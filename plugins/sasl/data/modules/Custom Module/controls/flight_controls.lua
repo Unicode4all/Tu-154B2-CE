@@ -707,13 +707,13 @@ end
 	
 	local cockpit_yoke_yaw = yaw_joy + get(int_yaw_trim)-- + yaw_add
 	
-	if cockpit_yoke_yaw > (1 - force_pos_rud * 0.6) then cockpit_yoke_yaw = (1 - force_pos_rud * 0.6)
-	elseif cockpit_yoke_yaw < -(1 - force_pos_rud * 0.6) then cockpit_yoke_yaw = -(1 - force_pos_rud * 0.6) end	
+	if cockpit_yoke_yaw > (1 - force_pos_rud * 0.7) then cockpit_yoke_yaw = (1 - force_pos_rud * 0.7)
+	elseif cockpit_yoke_yaw < -(1 - force_pos_rud * 0.7) then cockpit_yoke_yaw = -(1 - force_pos_rud * 0.7) end	
 	
 	
 	-- overforce yaw limit mechanism
-	if yaw_joy > 0.9 and yaw_add < 2 then yaw_add = yaw_add + passed * 0.3
-	elseif yaw_joy < -0.9 and yaw_add > -2 then yaw_add = yaw_add - passed * 0.3
+	if yaw_joy > 0.9 and yaw_add < 0.3 then yaw_add = yaw_add + passed * 0.1
+	elseif yaw_joy < -0.9 and yaw_add > -0.3 then yaw_add = yaw_add - passed * 0.1
 	elseif math.abs(yaw_joy) < 0.9 then yaw_add = 0 end
 	
 	cockpit_yoke_yaw = cockpit_yoke_yaw + yaw_add

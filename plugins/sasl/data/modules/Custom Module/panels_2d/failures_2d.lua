@@ -363,6 +363,8 @@ customFails["SSOS Channel 1 Fail"] = globalPropertyi("tu154b2/custom/failures/ss
 customFails["SSOS Channel 2 Fail"] = globalPropertyi("tu154b2/custom/failures/ssos_S2")
 customFails["SSOS Channel 3 Fail"] = globalPropertyi("tu154b2/custom/failures/ssos_S3")
 
+customFails["Backup Fuel Feed Pump Fail"] = globalPropertyi("tu154b2/custom/failures/res_pump_fail")
+
 
 --[[
 defineProperty("system_qty_1", globalPropertyf("tu154b2/custom/hydro/gs_qty_1")) -- остаток масла в системе

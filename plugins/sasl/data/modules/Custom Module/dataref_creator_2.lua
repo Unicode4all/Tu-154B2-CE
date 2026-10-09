@@ -159,6 +159,7 @@ createGlobalPropertyi("tu154b2/custom/fuel/pump_tank1_1_work", 1																
 createGlobalPropertyi("tu154b2/custom/fuel/pump_tank1_2_work", 1																) -- насосы бака 1
 createGlobalPropertyi("tu154b2/custom/fuel/pump_tank1_3_work", 1																) -- насосы бака 1
 createGlobalPropertyi("tu154b2/custom/fuel/pump_tank1_4_work", 1																) -- насосы бака 1
+createGlobalPropertyi("tu154b2/custom/fuel/res_pump_work", 0																)
 createGlobalPropertyi("tu154b2/custom/fuel/reserv_trans", 0																) -- резервная перекачка включена
 createGlobalPropertyi("tu154b2/custom/fuel/auto_tanks_turn", 0																) -- рабочие очередные баки. 0, 1 - не работает, 2, 3, 4
 createGlobalPropertyi("tu154b2/custom/fuel/auto_tank_level_2", 0) -- выравнивание в баках 2. -1 = L, 0 = none, +1 = R
@@ -570,6 +571,7 @@ createGlobalPropertyf("tu154b2/custom/elec/avto_R_amp_B",0)
 createGlobalPropertyf("tu154b2/custom/elec/avto_R_amp_C",0)
 createGlobalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aL_cc",0) 
 createGlobalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aR_cc",0)
+createGlobalPropertyi("tu154b2/custom/fuel/res_pump_cc",0)
 createGlobalPropertyi("tu154b2/custom/SC/engine/rt_stop1",0)
 createGlobalPropertyf("tu154b2/custom/SC/engine/rt_red1",0)
 createGlobalPropertyi("tu154b2/custom/SC/engine/rt_stop2",0)
@@ -710,9 +712,6 @@ createGlobalPropertyi("tu154b2/custom/rsbn/dist_init", 0	)
 -- createGlobalPropertys("tu154b2/custom/xap/KLN90/bline_7", "")
 -- createGlobalPropertys("tu154b2/custom/xap/KLN90/bline_8", "")
 -- createGlobalPropertys("tu154b2/custom/xap/KLN90/scale_line", "")
-createGlobalPropertyf("tu154b2/custom/fuel/line_1_filled", 0)
-createGlobalPropertyf("tu154b2/custom/fuel/line_2_filled", 0)
-createGlobalPropertyf("tu154b2/custom/fuel/line_3_filled", 0)
 createGlobalPropertyf("tu154b2/custom/engines/thro_spread",0)
 createGlobalPropertyi("tu154b2/custom/failures/valve_1", 0)
 createGlobalPropertyi("tu154b2/custom/failures/valve_2", 0)

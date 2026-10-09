@@ -1,80 +1,84 @@
 -- this is fuel pumps logic
 
 -- fuel ammount
-defineProperty("tank1_w", globalProperty("sim/flightmodel/weight/m_fuel[0]")) -- fuel weight
-defineProperty("tank4_w", globalProperty("sim/flightmodel/weight/m_fuel[1]")) -- fuel weight
-defineProperty("tank2R_w", globalProperty("sim/flightmodel/weight/m_fuel[2]")) -- fuel weight
-defineProperty("tank2L_w", globalProperty("sim/flightmodel/weight/m_fuel[3]")) -- fuel weight
-defineProperty("tank3R_w", globalProperty("sim/flightmodel/weight/m_fuel[4]")) -- fuel weight
-defineProperty("tank3L_w", globalProperty("sim/flightmodel/weight/m_fuel[5]")) -- fuel weight
+tank1_w = globalProperty("sim/flightmodel/weight/m_fuel[0]") -- fuel weight
+tank4_w = globalProperty("sim/flightmodel/weight/m_fuel[1]") -- fuel weight
+tank2R_w = globalProperty("sim/flightmodel/weight/m_fuel[2]") -- fuel weight
+tank2L_w = globalProperty("sim/flightmodel/weight/m_fuel[3]") -- fuel weight
+tank3R_w = globalProperty("sim/flightmodel/weight/m_fuel[4]") -- fuel weight
+tank3L_w = globalProperty("sim/flightmodel/weight/m_fuel[5]") -- fuel weight
 
 -- controls
-defineProperty("pump_tank2_left", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_left")) -- насосы бака 2
-defineProperty("pump_tank2_right", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_right")) -- насосы бака 2
-defineProperty("pump_tank3_left", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_left")) -- насосы бака 3
-defineProperty("pump_tank3_right", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_right")) -- насосы бака 3
-defineProperty("pump_tank4", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank4")) -- насосы бака 4
-defineProperty("pump_tank1_1", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_1")) -- насосы бака 1
-defineProperty("pump_tank1_2", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_2")) -- насосы бака 1
-defineProperty("pump_tank1_3", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_3")) -- насосы бака 1
-defineProperty("pump_tank1_4", globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_4")) -- насосы бака 1
+pump_tank2_left = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_left") -- насосы бака 2
+pump_tank2_right = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank2_right") -- насосы бака 2
+pump_tank3_left = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_left") -- насосы бака 3
+pump_tank3_right = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank3_right") -- насосы бака 3
+pump_tank4 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank4") -- насосы бака 4
+pump_tank1_1 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_1") -- насосы бака 1
+pump_tank1_2 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_2") -- насосы бака 1
+pump_tank1_3 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_3") -- насосы бака 1
+pump_tank1_4 = globalPropertyi("tu154b2/custom/switchers/fuel/pump_tank1_4") -- насосы бака 1
+res_pump = globalPropertyi("tu154b2/custom/buttons/eng/reserv_pump_test")
 
-defineProperty("fuel_level", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_level")) -- автомат выравнивания
-defineProperty("fuel_flow_mode", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_mode")) -- режим расходомера. ручное - автомат
-defineProperty("fuel_flow_on", globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_on")) -- автомат расхода
+fuel_level = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_level") -- автомат выравнивания
+fuel_flow_mode = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_mode") -- режим расходомера. ручное - автомат
+fuel_flow_on = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_on") -- автомат расхода
 
 
 -- power sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
 -- failures
-defineProperty("fuel_auto_fail", globalPropertyi("tu154b2/custom/failures/fuel_auto_fail"))
-defineProperty("fuel_level_fail", globalPropertyi("tu154b2/custom/failures/fuel_level_fail"))
+fuel_auto_fail = globalPropertyi("tu154b2/custom/failures/fuel_auto_fail")
+fuel_level_fail = globalPropertyi("tu154b2/custom/failures/fuel_level_fail")
 
-defineProperty("fuel_pump_2l_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_2l_fail")) -- number of failed pumps
-defineProperty("fuel_pump_2r_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_2r_fail"))
-defineProperty("fuel_pump_3l_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_3l_fail"))
-defineProperty("fuel_pump_3r_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_3r_fail"))
-defineProperty("fuel_pump_1_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_1_fail"))
-defineProperty("fuel_pump_4_fail", globalPropertyi("tu154b2/custom/failures/fuel_pump_4_fail"))
+fuel_pump_2l_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_2l_fail") -- number of failed pumps
+fuel_pump_2r_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_2r_fail")
+fuel_pump_3l_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_3l_fail")
+fuel_pump_3r_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_3r_fail")
+fuel_pump_1_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_1_fail")
+fuel_pump_4_fail = globalPropertyi("tu154b2/custom/failures/fuel_pump_4_fail")
+res_pump_fail = globalPropertyi("tu154b2/custom/failures/res_pump_fail")
 
 
 -- results
-defineProperty("pump_tank2_left1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work1"))
-defineProperty("pump_tank2_left2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work2"))
-defineProperty("pump_tank2_right1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work1"))
-defineProperty("pump_tank2_right2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work2"))
-defineProperty("pump_tank3_left1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work1"))
-defineProperty("pump_tank3_left2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work2"))
-defineProperty("pump_tank3_left3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work3"))
-defineProperty("pump_tank3_right1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work1"))
-defineProperty("pump_tank3_right2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work2"))
-defineProperty("pump_tank3_right3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work3"))
-defineProperty("pump_tank41_work", globalPropertyi("tu154b2/custom/fuel/pump_tank4_work1"))
-defineProperty("pump_tank42_work", globalPropertyi("tu154b2/custom/fuel/pump_tank4_work2"))
-defineProperty("pump_tank1_1_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_1_work"))
-defineProperty("pump_tank1_2_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_2_work"))
-defineProperty("pump_tank1_3_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_3_work"))
-defineProperty("pump_tank1_4_work", globalPropertyi("tu154b2/custom/fuel/pump_tank1_4_work"))
+pump_tank2_left1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work1")
+pump_tank2_left2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_left_work2")
+pump_tank2_right1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work1")
+pump_tank2_right2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank2_right_work2")
+pump_tank3_left1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work1")
+pump_tank3_left2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work2")
+pump_tank3_left3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_left_work3")
+pump_tank3_right1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work1")
+pump_tank3_right2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work2")
+pump_tank3_right3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank3_right_work3")
+pump_tank41_work = globalPropertyi("tu154b2/custom/fuel/pump_tank4_work1")
+pump_tank42_work = globalPropertyi("tu154b2/custom/fuel/pump_tank4_work2")
+pump_tank1_1_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_1_work")
+pump_tank1_2_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_2_work")
+pump_tank1_3_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_3_work")
+pump_tank1_4_work = globalPropertyi("tu154b2/custom/fuel/pump_tank1_4_work")
+res_work = globalPropertyi("tu154b2/custom/fuel/res_pump_work")
 
-defineProperty("auto_tanks_turn", globalPropertyi("tu154b2/custom/fuel/auto_tanks_turn")) -- 0 = none, 1 = 2, 2 = 2+3, 3 = 3, 4 = 4
---defineProperty("auto_tank_level", globalPropertyi("tu154b2/custom/fuel/auto_tank_level")) -- выравнивание в баках. -2 - 2L, -3 - 3L, +3 - 3R, +2 - 2R	0
+auto_tanks_turn = globalPropertyi("tu154b2/custom/fuel/auto_tanks_turn") -- 0 = none, 1 = 2, 2 = 2+3, 3 = 3, 4 = 4
+--auto_tank_level = globalPropertyi("tu154b2/custom/fuel/auto_tank_level") -- выравнивание в баках. -2 - 2L, -3 - 3L, +3 - 3R, +2 - 2R	0
 
-defineProperty("auto_tank_level_2", globalPropertyi("tu154b2/custom/fuel/auto_tank_level_2")) -- выравнивание в баках 2. -1 = L, 0 = none, +1 = R	0
-defineProperty("auto_tank_level_3", globalPropertyi("tu154b2/custom/fuel/auto_tank_level_3")) -- выравнивание в баках 3. -1 = L, 0 = none, +1 = R	0
+auto_tank_level_2 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_2") -- выравнивание в баках 2. -1 = L, 0 = none, +1 = R	0
+auto_tank_level_3 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_3") -- выравнивание в баках 3. -1 = L, 0 = none, +1 = R	0
 
 
-defineProperty("fuel_pumps_115_1_cc", globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_1_cc")) -- нагрузка на сеть 1 от топливных насосов
-defineProperty("fuel_pumps_115_3_cc", globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_3_cc")) -- нагрузка на сеть 3 от топливных насосов
+fuel_pumps_115_1_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_1_cc") -- нагрузка на сеть 1 от топливных насосов
+fuel_pumps_115_3_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_3_cc") -- нагрузка на сеть 3 от топливных насосов
 
-defineProperty("fuel_pumps_115_avtL_cc", globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aL_cc")) -- нагрузка на сеть 1 от топливных насосов
-defineProperty("fuel_pumps_115_avtR_cc", globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aR_cc")) -- нагрузка на сеть 3 от топливных насосов
+fuel_pumps_115_avtL_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aL_cc") -- нагрузка на сеть 1 от топливных насосов
+fuel_pumps_115_avtR_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_aR_cc") -- нагрузка на сеть 3 от топливных насосов
+pump_res_cc = globalPropertyi("tu154b2/custom/fuel/res_pump_cc")
 
-defineProperty("avtoL_volt", globalPropertyf("tu154b2/custom/elec/avto_L_volt"))
-defineProperty("avtoR_volt", globalPropertyf("tu154b2/custom/elec/avto_R_volt"))
+avtoL_volt = globalPropertyf("tu154b2/custom/elec/avto_L_volt")
+avtoR_volt = globalPropertyf("tu154b2/custom/elec/avto_R_volt")
 
 avtoL_load_A = globalPropertyf("tu154b2/custom/elec/avto_L_amp_A")
 avtoL_load_B = globalPropertyf("tu154b2/custom/elec/avto_L_amp_B")
@@ -82,8 +86,14 @@ avtoL_load_C = globalPropertyf("tu154b2/custom/elec/avto_L_amp_C")
 avtoR_load_A = globalPropertyf("tu154b2/custom/elec/avto_R_amp_A")
 avtoR_load_B = globalPropertyf("tu154b2/custom/elec/avto_R_amp_B")
 avtoR_load_C = globalPropertyf("tu154b2/custom/elec/avto_R_amp_C")
+
+gen_volt_1 = globalPropertyf("tu154b2/custom/elec/gen1_volt")
+gen_volt_2 = globalPropertyf("tu154b2/custom/elec/gen2_volt")
+gen_volt_3 = globalPropertyf("tu154b2/custom/elec/gen3_volt")
+
+deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 
 -- fuel press after pumps
@@ -91,6 +101,7 @@ local pump_1_1_P = 1
 local pump_1_2_P = 1
 local pump_1_3_P = 1
 local pump_1_4_P = 1
+local pump_res_P = 0
 
 local pump_2L1_P = 1
 local pump_2L2_P = 1
@@ -143,6 +154,12 @@ local pump1_2_work_prev = 0
 local pump1_3_work_prev = 0
 local pump1_4_work_prev = 0
 
+sys_data_tbl.eng_feed_p_1 = 0
+sys_data_tbl.eng_feed_p_2 = 0
+sys_data_tbl.eng_feed_p_3 = 0
+sys_data_tbl.eng_feed_p_4 = 0
+sys_data_tbl.eng_feed_res = 0
+
 
 function update()
 	local passed = get(frame_time)
@@ -190,6 +207,7 @@ function update()
 	local pump1_2_work = 0
 	local pump1_3_work = 0
 	local pump1_4_work = 0
+	local pump_res_work = 0
 
 	local tank_level_2 = 0
 	local tank_level_3 = 0
@@ -402,115 +420,111 @@ function update()
 		pump1_2_work = get(pump_tank1_2) * bool2int(get(fuel_pump_1_fail) < 4)*power_avtR
 		pump1_3_work = get(pump_tank1_3) * bool2int(get(fuel_pump_1_fail) < 3)*power_avtL
 		pump1_4_work = get(pump_tank1_4) * bool2int(get(fuel_pump_1_fail) < 2)*power_avtR
+		local res_pump_on = bool2int((get(gen_volt_1) < 100 and get(gen_volt_2) < 100 and get(gen_volt_3) < 100 and get(deflection_mtr_2) < 0.1) or get(res_pump) > 0)
+		pump_res_work = res_pump_on * bool2int(get(res_pump_fail) < 1 and power_27R)
 	end
 	
 	
 
 	
 	-- calculate pressures
-	-- if pump2L_work > 0 and pump_2L_P < 1 then 
-		-- pump_2L_P = pump_2L_P + passed * 0.8
-	-- elseif pump_2L_P > 0 then 
-		-- pump_2L_P = pump_2L_P - passed * 0.8 
-	-- end
+
 	if pump2L1_work > 0 and pump_2L1_P < 1 then 
-		pump_2L1_P = pump_2L1_P + passed * 0.8
+		pump_2L1_P = pump_2L1_P + passed * 1
 	elseif pump_2L1_P > 0 then 
-		pump_2L1_P = pump_2L1_P - passed * 0.8 
+		pump_2L1_P = pump_2L1_P - passed * 2 
 	end
 	
 	if pump2L2_work > 0 and pump_2L2_P < 1 then 
-		pump_2L2_P = pump_2L2_P + passed * 0.8
+		pump_2L2_P = pump_2L2_P + passed * 1
 	elseif pump_2L2_P > 0 then 
-		pump_2L2_P = pump_2L2_P - passed * 0.8 
+		pump_2L2_P = pump_2L2_P - passed * 2 
 	end
-
-	-- if pump2R_work > 0 and pump_2R_P < 1 then 
-		-- pump_2R_P = pump_2R_P + passed * 0.8
-	-- elseif pump_2R_P > 0 then 
-		-- pump_2R_P = pump_2R_P - passed * 0.8 
-	-- end	
 	
 	if pump2R1_work > 0 and pump_2R1_P < 1 then 
-		pump_2R1_P = pump_2R1_P + passed * 0.8
+		pump_2R1_P = pump_2R1_P + passed * 1
 	elseif pump_2R1_P > 0 then 
-		pump_2R1_P = pump_2R1_P - passed * 0.8 
+		pump_2R1_P = pump_2R1_P - passed * 2 
 	end
 	
 	if pump2R2_work > 0 and pump_2R2_P < 1 then 
-		pump_2R2_P = pump_2R2_P + passed * 0.8
+		pump_2R2_P = pump_2R2_P + passed * 1
 	elseif pump_2R2_P > 0 then 
-		pump_2R2_P = pump_2R2_P - passed * 0.8 
+		pump_2R2_P = pump_2R2_P - passed * 2 
 	end
-
-	-- if pump3L_work > 0 and pump_3L_P < 1 then pump_3L_P = pump_3L_P + passed * 0.8
-	-- elseif pump_3L_P > 0 then pump_3L_P = pump_3L_P - passed * 0.8 end
-
-	-- if pump3R_work > 0 and pump_3R_P < 1 then pump_3R_P = pump_3R_P + passed * 0.8
-	-- elseif pump_3R_P > 0 then pump_3R_P = pump_3R_P - passed * 0.8 end	
 	
 	if pump3L1_work > 0 and pump_3L1_P < 1 then 
-		pump_3L1_P = pump_3L1_P + passed * 0.8
+		pump_3L1_P = pump_3L1_P + passed * 2
 	elseif pump_3L1_P > 0 then 
-		pump_3L1_P = pump_3L1_P - passed * 0.8 
+		pump_3L1_P = pump_3L1_P - passed * 2
 	end
 
 	if pump3L2_work > 0 and pump_3L2_P < 1 then 
-		pump_3L2_P = pump_3L2_P + passed * 0.8
+		pump_3L2_P = pump_3L2_P + passed * 3
 	elseif pump_3L2_P > 0 then 
-		pump_3L2_P = pump_3L2_P - passed * 0.8 
+		pump_3L2_P = pump_3L2_P - passed * 2
 	end
 
 	if pump3L3_work > 0 and pump_3L3_P < 1 then 
-		pump_3L3_P = pump_3L3_P + passed * 0.8
+		pump_3L3_P = pump_3L3_P + passed * 3
 	elseif pump_3L3_P > 0 then 
-		pump_3L3_P = pump_3L3_P - passed * 0.8 
+		pump_3L3_P = pump_3L3_P - passed * 2
 	end
 	
 	if pump3R1_work > 0 and pump_3R1_P < 1 then 
-		pump_3R1_P = pump_3R1_P + passed * 0.8
+		pump_3R1_P = pump_3R1_P + passed * 3
 	elseif pump_3R1_P > 0 then 
-		pump_3R1_P = pump_3R1_P - passed * 0.8 
+		pump_3R1_P = pump_3R1_P - passed * 2
 	end
 
 	if pump3R2_work > 0 and pump_3R2_P < 1 then 
-		pump_3R2_P = pump_3R2_P + passed * 0.8
+		pump_3R2_P = pump_3R2_P + passed * 1
 	elseif pump_3R2_P > 0 then 
-		pump_3R2_P = pump_3R2_P - passed * 0.8 
+		pump_3R2_P = pump_3R2_P - passed * 2
 	end
 
 	if pump3R3_work > 0 and pump_3R3_P < 1 then 
-		pump_3R3_P = pump_3R3_P + passed * 0.8
+		pump_3R3_P = pump_3R3_P + passed * 1
 	elseif pump_3R3_P > 0 then 
-		pump_3R3_P = pump_3R3_P - passed * 0.8 
+		pump_3R3_P = pump_3R3_P - passed * 2
 	end	
-				
-	-- if pump4_work > 0 and pump_4_P < 1 then pump_4_P = pump_4_P + passed * 0.8
-	-- elseif pump_4_P > 0 then pump_4_P = pump_4_P - passed * 0.8 end	
 	
 	if pump41_work > 0 and pump_41_P < 1 then 
-		pump_41_P = pump_41_P + passed * 0.8
+		pump_41_P = pump_41_P + passed * 1
 	elseif pump_41_P > 0 then 
-		pump_41_P = pump_41_P - passed * 0.8 
+		pump_41_P = pump_41_P - passed * 2
 	end
 	
 	if pump42_work > 0 and pump_42_P < 1 then 
-		pump_42_P = pump_42_P + passed * 0.8
+		pump_42_P = pump_42_P + passed * 1
 	elseif pump_42_P > 0 then 
-		pump_42_P = pump_42_P - passed * 0.8 
+		pump_42_P = pump_42_P - passed * 2
 	end
 	
-	if pump1_1_work == 1 and pump_1_1_P < 1 then pump_1_1_P = pump_1_1_P + passed * 0.8
-	elseif pump_1_1_P > 0 then pump_1_1_P = pump_1_1_P - passed * 0.8 end		
-
-	if pump1_2_work == 1 and pump_1_2_P < 1 then pump_1_2_P = pump_1_2_P + passed * 0.8
-	elseif pump_1_2_P > 0 then pump_1_2_P = pump_1_2_P - passed * 0.8 end		
-
-	if pump1_3_work == 1 and pump_1_3_P < 1 then pump_1_3_P = pump_1_3_P + passed * 0.8
-	elseif pump_1_3_P > 0 then pump_1_3_P = pump_1_3_P - passed * 0.8 end	
+	if pump1_1_work == 1 and pump_1_1_P < 1 then pump_1_1_P = pump_1_1_P + passed * 1
+	elseif pump_1_1_P > 0 then pump_1_1_P = pump_1_1_P - passed * 2 end		
 	
-	if pump1_4_work == 1 and pump_1_4_P < 1 then pump_1_4_P = pump_1_4_P + passed * 0.8
-	elseif pump_1_4_P > 0 then pump_1_4_P = pump_1_4_P - passed * 0.8 end	
+	sys_data_tbl.eng_feed_p_1 = pump_1_1_P
+
+	if pump1_2_work == 1 and pump_1_2_P < 1 then pump_1_2_P = pump_1_2_P + passed * 1
+	elseif pump_1_2_P > 0 then pump_1_2_P = pump_1_2_P - passed * 2 end		
+	
+	sys_data_tbl.eng_feed_p_2 = pump_1_2_P
+
+	if pump1_3_work == 1 and pump_1_3_P < 1 then pump_1_3_P = pump_1_3_P + passed * 1
+	elseif pump_1_3_P > 0 then pump_1_3_P = pump_1_3_P - passed * 2 end	
+	
+	sys_data_tbl.eng_feed_p_3 = pump_1_3_P
+	
+	if pump1_4_work == 1 and pump_1_4_P < 1 then pump_1_4_P = pump_1_4_P + passed * 1
+	elseif pump_1_4_P > 0 then pump_1_4_P = pump_1_4_P - passed * 2 end	
+	
+	sys_data_tbl.eng_feed_p_4 = pump_1_4_P
+	
+	if pump_res_work == 1 and pump_res_P < 1 then pump_res_P = pump_res_P + passed * 1
+	elseif pump_res_P > 0 then pump_res_P = pump_res_P - passed * 2 end
+	
+	sys_data_tbl.eng_feed_res = pump_res_P
 	
 	--startup current
 	-- feed pumps
@@ -686,25 +700,26 @@ function update()
 	
 	
 	-- set results
-	set(pump_tank2_left1_work, bool2int(pump_2L1_P > 0.9) )
-	set(pump_tank2_left2_work, bool2int(pump_2L2_P > 0.9) )
-	set(pump_tank2_right1_work, bool2int(pump_2R1_P > 0.9) )
-	set(pump_tank2_right2_work, bool2int(pump_2R2_P > 0.9) )
+	set(pump_tank2_left1_work, bool2int(pump_2L1_P > 0.3) )
+	set(pump_tank2_left2_work, bool2int(pump_2L2_P > 0.31) )
+	set(pump_tank2_right1_work, bool2int(pump_2R1_P > 0.3) )
+	set(pump_tank2_right2_work, bool2int(pump_2R2_P > 0.29) )
 	
-	set(pump_tank3_left1_work, bool2int(pump_3L1_P > 0.9) )
-	set(pump_tank3_left2_work, bool2int(pump_3L2_P > 0.9) )
-	set(pump_tank3_left3_work, bool2int(pump_3L3_P > 0.9) )
-	set(pump_tank3_right1_work, bool2int(pump_3R1_P > 0.9) )
-	set(pump_tank3_right2_work, bool2int(pump_3R2_P > 0.9) )
-	set(pump_tank3_right3_work, bool2int(pump_3R3_P > 0.9) )
+	set(pump_tank3_left1_work, bool2int(pump_3L1_P > 0.3) )
+	set(pump_tank3_left2_work, bool2int(pump_3L2_P > 0.3) )
+	set(pump_tank3_left3_work, bool2int(pump_3L3_P > 0.32) )
+	set(pump_tank3_right1_work, bool2int(pump_3R1_P > 0.3) )
+	set(pump_tank3_right2_work, bool2int(pump_3R2_P > 0.31) )
+	set(pump_tank3_right3_work, bool2int(pump_3R3_P > 0.3) )
 	
 	
-	set(pump_tank41_work, bool2int(pump_41_P > 0.9) )
-	set(pump_tank42_work, bool2int(pump_42_P > 0.9) )
-	set(pump_tank1_1_work, bool2int(pump_1_1_P > 0.9))
-	set(pump_tank1_2_work, bool2int(pump_1_2_P > 0.9))
-	set(pump_tank1_3_work, bool2int(pump_1_3_P > 0.9))
-	set(pump_tank1_4_work, bool2int(pump_1_4_P > 0.9))
+	set(pump_tank41_work, bool2int(pump_41_P > 0.3) )
+	set(pump_tank42_work, bool2int(pump_42_P > 0.31) )
+	set(pump_tank1_1_work, bool2int(pump_1_1_P > 0.29))
+	set(pump_tank1_2_work, bool2int(pump_1_2_P > 0.3))
+	set(pump_tank1_3_work, bool2int(pump_1_3_P > 0.31))
+	set(pump_tank1_4_work, bool2int(pump_1_4_P > 0.28))
+	set(res_work, bool2int(pump_res_P > 0.27))
 
 	set(auto_tanks_turn, tanks_turn)
 	set(auto_tank_level_2, tank_level_2)
@@ -712,6 +727,7 @@ function update()
 	
 	set(fuel_pumps_115_1_cc, bus_1_load)
 	set(fuel_pumps_115_3_cc, bus_3_load)
+	set(pump_res_cc, pump_res_work)
 	set(avtoL_load_A,avtL_load)
 	set(avtoL_load_B,avtL_load)
 	set(avtoL_load_C,avtL_load)

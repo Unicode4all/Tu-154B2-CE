@@ -1,22 +1,22 @@
-defineProperty("absu_at1_fail", globalPropertyi("tu154b2/custom/failures/absu_at1_fail")) -- отказ AT
-defineProperty("absu_at2_fail", globalPropertyi("tu154b2/custom/failures/absu_at2_fail")) -- отказ AT
-defineProperty("absu_ch1_fail", globalPropertyi("tu154b2/custom/failures/absu_at_chan1_fail")) -- отказ AT
-defineProperty("absu_ch2_fail", globalPropertyi("tu154b2/custom/failures/absu_at_chan2_fail"))
-defineProperty("absu_at_fail", globalPropertyi("tu154b2/custom/failures/absu_at_fail"))
-defineProperty("absu_speed_prepare", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare"))
-defineProperty("absu_speed_test", globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_1"))
-defineProperty("absu_speed_off", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_off"))
-defineProperty("absu_stu_test", globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_2"))
-defineProperty("absu_damp_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_damp_roll_fail")) -- отказ демперов крена
-defineProperty("absu_damp_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_damp_pitch_fail")) -- отказ демперов тангажа
-defineProperty("absu_damp_yaw_fail", globalPropertyi("tu154b2/custom/failures/absu_damp_yaw_fail")) -- отказ демперов курса
-defineProperty("absu_contr_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_contr_roll_fail")) -- отказ бокового управления
-defineProperty("absu_contr_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_contr_pitch_fail")) -- отказ продольного управления
-defineProperty("absu_calc_toga_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_toga_fail")) -- отказ вычислителя УХОД
-defineProperty("absu_speed_fail", globalPropertyi("tu154b2/custom/failures/absu_speed_fail"))
-defineProperty("absu_alt_fail", globalPropertyi("tu154b2/custom/failures/absu_alt_fail"))
-defineProperty("absu_calc_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_roll_fail")) -- отказ бокового канала СТУ
-defineProperty("absu_calc_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_calc_pitch_fail")) -- отказ продольного канала СТУ
+absu_at1_fail = globalPropertyi("tu154b2/custom/failures/absu_at1_fail") -- отказ AT
+absu_at2_fail = globalPropertyi("tu154b2/custom/failures/absu_at2_fail") -- отказ AT
+absu_ch1_fail = globalPropertyi("tu154b2/custom/failures/absu_at_chan1_fail") -- отказ AT
+absu_ch2_fail = globalPropertyi("tu154b2/custom/failures/absu_at_chan2_fail")
+absu_at_fail = globalPropertyi("tu154b2/custom/failures/absu_at_fail")
+absu_speed_prepare = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare")
+absu_speed_test = globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_1")
+absu_speed_off = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_off")
+absu_stu_test = globalPropertyi("tu154b2/custom/buttons/console/absu_speed_test_2")
+absu_damp_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_damp_roll_fail") -- отказ демперов крена
+absu_damp_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_damp_pitch_fail") -- отказ демперов тангажа
+absu_damp_yaw_fail = globalPropertyi("tu154b2/custom/failures/absu_damp_yaw_fail") -- отказ демперов курса
+absu_contr_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_contr_roll_fail") -- отказ бокового управления
+absu_contr_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_contr_pitch_fail") -- отказ продольного управления
+absu_calc_toga_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_toga_fail") -- отказ вычислителя УХОД
+absu_speed_fail = globalPropertyi("tu154b2/custom/failures/absu_speed_fail")
+absu_alt_fail = globalPropertyi("tu154b2/custom/failures/absu_alt_fail")
+absu_calc_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_roll_fail") -- отказ бокового канала СТУ
+absu_calc_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_calc_pitch_fail") -- отказ продольного канала СТУ
 absu_svk_tbl.ra1_pitch_fail = 0
 absu_svk_tbl.ra2_pitch_fail = 0
 absu_svk_tbl.ra3_pitch_fail = 0
@@ -33,12 +33,12 @@ absu_svk_tbl.bdg_tet_rate = 0
 absu_svk_tbl.bdg_gam_rate = 0
 absu_svk_tbl.bdg_psi_rate = 0
 
-defineProperty("mgv_tet_2", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L"))
-defineProperty("mgv_tet_3", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R"))
-defineProperty("mgv_tet_1", globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch"))
-defineProperty("mgv_gam_2", globalPropertyf("tu154b2/custom/bkk/pkp_roll_left")) -- крен на АГР + в право
-defineProperty("mgv_gam_3", globalPropertyf("tu154b2/custom/bkk/pkp_roll_right")) -- крен на АГР + в право
-defineProperty("mgv_gam_1", globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll")) -- крен на АГР + в право
+mgv_tet_2 = globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L")
+mgv_tet_3 = globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R")
+mgv_tet_1 = globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch")
+mgv_gam_2 = globalPropertyf("tu154b2/custom/bkk/pkp_roll_left") -- крен на АГР + в право
+mgv_gam_3 = globalPropertyf("tu154b2/custom/bkk/pkp_roll_right") -- крен на АГР + в право
+mgv_gam_1 = globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll") -- крен на АГР + в право
 
 absu_svk_tbl.bdg_tet_1_fail = 0 
 absu_svk_tbl.bdg_tet_2_fail = 0 
@@ -73,100 +73,100 @@ absu_svk_tbl.ra_tet_fail = 0
 absu_svk_tbl.ra_gam_fail = 0  
 absu_svk_tbl.ra_psi_fail = 0  
 
-defineProperty("rel_trim_elv", globalPropertyi("sim/operation/failures/rel_trim_elv"))
-defineProperty("elev_trimm_1_pk", globalPropertyi("sim/custom/b2/elev_trimm_1_pk")) -- 
-defineProperty("elev_trimm_2_pk", globalPropertyi("sim/custom/b2/elev_trimm_2_pk")) -- 
+rel_trim_elv = globalPropertyi("sim/operation/failures/rel_trim_elv")
+elev_trimm_1_pk = globalPropertyi("sim/custom/b2/elev_trimm_1_pk") -- 
+elev_trimm_2_pk = globalPropertyi("sim/custom/b2/elev_trimm_2_pk") -- 
 
-defineProperty("bshu_tet_fail",globalPropertyi("tu154b2/custom/failures/bshu_tet_fail"))
-defineProperty("bshu_gam_fail",globalPropertyi("tu154b2/custom/failures/bshu_gam_fail"))
-defineProperty("absu_power_cc", globalPropertyf("tu154b2/custom/absu_power_cc"))
-defineProperty("absu_power_27", globalPropertyf("tu154b2/custom/absu_power_27"))
+bshu_tet_fail = globalPropertyi("tu154b2/custom/failures/bshu_tet_fail")
+bshu_gam_fail = globalPropertyi("tu154b2/custom/failures/bshu_gam_fail")
+absu_power_cc = globalPropertyf("tu154b2/custom/absu_power_cc")
+absu_power_27 = globalPropertyf("tu154b2/custom/absu_power_27")
 
 
-defineProperty("ra_tet", globalPropertyi("sim/custom/t154/ppn13_lamp1"))
-defineProperty("ra_gam", globalPropertyi("sim/custom/t154/ppn13_lamp2"))
-defineProperty("ra_psi", globalPropertyi("sim/custom/t154/ppn13_lamp3"))
-defineProperty("bdg_tet", globalPropertyi("sim/custom/t154/ppn13_lamp4"))
-defineProperty("bdg_gam", globalPropertyi("sim/custom/t154/ppn13_lamp5"))
-defineProperty("bdg_psi", globalPropertyi("sim/custom/t154/ppn13_lamp6"))
-defineProperty("bshu_1", globalPropertyi("sim/custom/t154/ppn13_lamp7"))
-defineProperty("bshu_2", globalPropertyi("sim/custom/t154/ppn13_lamp8"))
-defineProperty("bns_tet", globalPropertyi("sim/custom/t154/ppn13_lamp9"))
-defineProperty("bap_tet", globalPropertyi("sim/custom/t154/ppn13_lamp10"))
-defineProperty("bap_gam", globalPropertyi("sim/custom/t154/ppn13_lamp11"))
-defineProperty("vkv", globalPropertyi("sim/custom/t154/ppn13_lamp12"))
-defineProperty("vu", globalPropertyi("sim/custom/t154/ppn13_lamp13"))
-defineProperty("ute", globalPropertyi("sim/custom/t154/ppn13_lamp14"))
-defineProperty("stu_tet", globalPropertyi("sim/custom/t154/ppn13_lamp15"))
-defineProperty("stu_gam", globalPropertyi("sim/custom/t154/ppn13_lamp16"))
-defineProperty("at", globalPropertyi("sim/custom/t154/ppn13_lamp17"))
-defineProperty("bsn", globalPropertyi("sim/custom/t154/ppn13_lamp18"))
-defineProperty("mgv_tet", globalPropertyi("sim/custom/t154/ppn13_lamp19"))
-defineProperty("mgv_gam", globalPropertyi("sim/custom/t154/ppn13_lamp20"))
-defineProperty("mgv_tet2", globalPropertyi("sim/custom/t154/ppn13_lamp21"))
-defineProperty("mgv_gam2", globalPropertyi("sim/custom/t154/ppn13_lamp22"))
-defineProperty("ks", globalPropertyi("sim/custom/t154/ppn13_lamp23"))
-defineProperty("bns_gam", globalPropertyi("sim/custom/t154/ppn13_lamp24"))
-defineProperty("otk_1", globalPropertyi("sim/custom/t154/ppn13_lamp25"))
-defineProperty("otk_2", globalPropertyi("sim/custom/t154/ppn13_lamp26"))
-defineProperty("otk_3", globalPropertyi("sim/custom/t154/ppn13_lamp27"))
-defineProperty("otk_4", globalPropertyi("sim/custom/t154/ppn13_lamp28"))
--- defineProperty("cap", globalPropertyi("tu154b2/custom/t154/ppn13_cap"))
-defineProperty("svk", globalPropertyi("sim/custom/t154/ppn13_sbk_test"))
--- defineProperty("auto_test", globalPropertyi("tu154b2/custom/t154/ppn13_absu_test"))
+ra_tet = globalPropertyi("sim/custom/t154/ppn13_lamp1")
+ra_gam = globalPropertyi("sim/custom/t154/ppn13_lamp2")
+ra_psi = globalPropertyi("sim/custom/t154/ppn13_lamp3")
+bdg_tet = globalPropertyi("sim/custom/t154/ppn13_lamp4")
+bdg_gam = globalPropertyi("sim/custom/t154/ppn13_lamp5")
+bdg_psi = globalPropertyi("sim/custom/t154/ppn13_lamp6")
+bshu_1 = globalPropertyi("sim/custom/t154/ppn13_lamp7")
+bshu_2 = globalPropertyi("sim/custom/t154/ppn13_lamp8")
+bns_tet = globalPropertyi("sim/custom/t154/ppn13_lamp9")
+bap_tet = globalPropertyi("sim/custom/t154/ppn13_lamp10")
+bap_gam = globalPropertyi("sim/custom/t154/ppn13_lamp11")
+vkv = globalPropertyi("sim/custom/t154/ppn13_lamp12")
+vu = globalPropertyi("sim/custom/t154/ppn13_lamp13")
+ute = globalPropertyi("sim/custom/t154/ppn13_lamp14")
+stu_tet = globalPropertyi("sim/custom/t154/ppn13_lamp15")
+stu_gam = globalPropertyi("sim/custom/t154/ppn13_lamp16")
+at = globalPropertyi("sim/custom/t154/ppn13_lamp17")
+bsn = globalPropertyi("sim/custom/t154/ppn13_lamp18")
+mgv_tet = globalPropertyi("sim/custom/t154/ppn13_lamp19")
+mgv_gam = globalPropertyi("sim/custom/t154/ppn13_lamp20")
+mgv_tet2 = globalPropertyi("sim/custom/t154/ppn13_lamp21")
+mgv_gam2 = globalPropertyi("sim/custom/t154/ppn13_lamp22")
+ks = globalPropertyi("sim/custom/t154/ppn13_lamp23")
+bns_gam = globalPropertyi("sim/custom/t154/ppn13_lamp24")
+otk_1 = globalPropertyi("sim/custom/t154/ppn13_lamp25")
+otk_2 = globalPropertyi("sim/custom/t154/ppn13_lamp26")
+otk_3 = globalPropertyi("sim/custom/t154/ppn13_lamp27")
+otk_4 = globalPropertyi("sim/custom/t154/ppn13_lamp28")
+-- cap = globalPropertyi("tu154b2/custom/t154/ppn13_cap")
+svk = globalPropertyi("sim/custom/t154/ppn13_sbk_test")
+-- auto_test = globalPropertyi("tu154b2/custom/t154/ppn13_absu_test")
 
-defineProperty("t1", globalPropertyi("sim/custom/t154/ppn13_t1"))
-defineProperty("t2", globalPropertyi("sim/custom/t154/ppn13_t2"))
-defineProperty("t3", globalPropertyi("sim/custom/t154/ppn13_t3"))
-defineProperty("stop", globalPropertyi("sim/custom/t154/ppn13_to_pwr"))
-defineProperty("search", globalPropertyi("sim/custom/t154/ppn13_search"))
-defineProperty("start", globalPropertyi("sim/custom/t154/ppn13_pusk"))
-defineProperty("pol", globalPropertyi("sim/custom/t154/ppn13_pol"))
-defineProperty("snp", globalPropertyi("sim/custom/t154/ppn13_snp"))
-defineProperty("at_mode", globalPropertyi("tu154b2/custom/absu/stu_mode"))
-defineProperty("land_mode", globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on"))
-defineProperty("nav_mode", globalPropertyi("tu154b2/custom/switchers/console/absu_nav_on"))
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
-defineProperty("hydro_circuit_auto_man", globalPropertyi("tu154b2/custom/absu/kolc"))
+t1 = globalPropertyi("sim/custom/t154/ppn13_t1")
+t2 = globalPropertyi("sim/custom/t154/ppn13_t2")
+t3 = globalPropertyi("sim/custom/t154/ppn13_t3")
+stop = globalPropertyi("sim/custom/t154/ppn13_to_pwr")
+search = globalPropertyi("sim/custom/t154/ppn13_search")
+start = globalPropertyi("sim/custom/t154/ppn13_pusk")
+pol = globalPropertyi("sim/custom/t154/ppn13_pol")
+snp = globalPropertyi("sim/custom/t154/ppn13_snp")
+at_mode = globalPropertyi("tu154b2/custom/absu/stu_mode")
+land_mode = globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on")
+nav_mode = globalPropertyi("tu154b2/custom/switchers/console/absu_nav_on")
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
+hydro_circuit_auto_man = globalPropertyi("tu154b2/custom/absu/kolc")
 
-defineProperty("mgv_thet_2", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L"))
-defineProperty("mgv_thet_3", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R"))
-defineProperty("mgv_thet_1", globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch"))
-defineProperty("mgv_gam_2", globalPropertyf("tu154b2/custom/bkk/pkp_roll_left")) -- крен на АГР + в право
-defineProperty("mgv_gam_3", globalPropertyf("tu154b2/custom/bkk/pkp_roll_right")) -- крен на АГР + в право
-defineProperty("mgv_gam_1", globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll")) -- крен на АГР + в право
-defineProperty("bdlu_fail", globalPropertyi("tu154b2/custom/failures/absu_bdlu_fail"))
-defineProperty("work_state", globalPropertyi("tu154b2/custom/failures/absu_work_state"))
+mgv_thet_2 = globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L")
+mgv_thet_3 = globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R")
+mgv_thet_1 = globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch")
+mgv_gam_2 = globalPropertyf("tu154b2/custom/bkk/pkp_roll_left") 
+mgv_gam_3 = globalPropertyf("tu154b2/custom/bkk/pkp_roll_right") 
+mgv_gam_1 = globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll")
+bdlu_fail = globalPropertyi("tu154b2/custom/failures/absu_bdlu_fail")
+work_state = globalPropertyi("tu154b2/custom/failures/absu_work_state")
 
-defineProperty("stu_roll_lamp", globalPropertyf("tu154b2/custom/lights/small/stu_roll")) -- крен
-defineProperty("stu_pitch_lamp", globalPropertyf("tu154b2/custom/lights/small/stu_pitch")) -- тангаж
-defineProperty("stu_toga_lamp", globalPropertyf("tu154b2/custom/lights/small/stu_toga")) -- УХОД
+stu_roll_lamp = globalPropertyf("tu154b2/custom/lights/small/stu_roll") -- крен
+stu_pitch_lamp = globalPropertyf("tu154b2/custom/lights/small/stu_pitch") -- тангаж
+stu_toga_lamp = globalPropertyf("tu154b2/custom/lights/small/stu_toga") -- УХОД
 
-defineProperty("bkk_pitch", globalPropertyf("tu154b2/custom/bkk/bkk_pitch")) -- результирующий тангаж от БКК
-defineProperty("bkk_roll", globalPropertyf("tu154b2/custom/bkk/bkk_roll")) -- результирующий тангаж от БКК
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("search_run", globalPropertyf("tu154b2/custom/absu/ppn_search_delay"))
+bkk_pitch = globalPropertyf("tu154b2/custom/bkk/bkk_pitch") -- результирующий тангаж от БКК
+bkk_roll = globalPropertyf("tu154b2/custom/bkk/bkk_roll") -- результирующий тангаж от БКК
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+search_run = globalPropertyf("tu154b2/custom/absu/ppn_search_delay")
 -- search_started = globalPropertyi("tu154b2/custom/absu/ppn_search_started")
-defineProperty("absu_bap_pitch_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_pitch_fail"))
-defineProperty("absu_bap_roll_fail", globalPropertyi("tu154b2/custom/failures/absu_bap_roll_fail"))
-defineProperty("absu_bns_pitch_fail", globalPropertyi("tu154b2/custom/failures/bns_tet_fail"))
-defineProperty("absu_bns_roll_fail", globalPropertyi("tu154b2/custom/failures/bns_gam_fail"))
-defineProperty("roll_submode", globalPropertyi("tu154b2/custom/absu/roll_sub_mode"))
-defineProperty("pitch_submode", globalPropertyi("tu154b2/custom/absu/pitch_sub_mode")) -- режим АБСУ по тангажу. 0 - выкл, 1 - стаб, 2 - V, 3 - M, 4 - H, 5 - глисс, 6 - уход, 10 - арм глисс
-defineProperty("test_stu", globalPropertyi("tu154b2/custom/failures/absu_stu_test"))
-defineProperty("test_vu", globalPropertyi("tu154b2/custom/failures/absu_vu_test"))
-defineProperty("v_left", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_stby"))
-defineProperty("v_right", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
--- defineProperty("h_left", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_stby"))
--- defineProperty("h_right", globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot"))
-defineProperty("at_fail_signal", globalPropertyi("tu154b2/custom/absu/at_fail_signal"))
+absu_bap_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_bap_pitch_fail")
+absu_bap_roll_fail = globalPropertyi("tu154b2/custom/failures/absu_bap_roll_fail")
+absu_bns_pitch_fail = globalPropertyi("tu154b2/custom/failures/bns_tet_fail")
+absu_bns_roll_fail = globalPropertyi("tu154b2/custom/failures/bns_gam_fail")
+roll_submode = globalPropertyi("tu154b2/custom/absu/roll_sub_mode")
+pitch_submode = globalPropertyi("tu154b2/custom/absu/pitch_sub_mode") -- режим АБСУ по тангажу. 0 - выкл, 1 - стаб, 2 - V, 3 - M, 4 - H, 5 - глисс, 6 - уход, 10 - арм глисс
+test_stu = globalPropertyi("tu154b2/custom/failures/absu_stu_test")
+test_vu = globalPropertyi("tu154b2/custom/failures/absu_vu_test")
+v_left = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_stby")
+v_right = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot")
+-- h_left = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_stby")
+-- h_right = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot")
+at_fail_signal = globalPropertyi("tu154b2/custom/absu/at_fail_signal")
 
 
 
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
 
 function KE_otkaz(chan_1,chan_2,chan_3,thres)
 	local ch_1_fail = 0
@@ -486,7 +486,7 @@ function update()
 			--ABSU work light
 			local work=ra_tet1_mem+ra_tet2_mem+ra_tet3_mem+ra_gam1_mem+ra_gam2_mem+ra_gam3_mem+ra_psi1_mem+ra_psi2_mem+ra_psi3_mem+bdg_tet1_mem+bdg_tet2_mem+bdg_tet3_mem+bdg_gam1_mem+bdg_gam2_mem+bdg_gam3_mem+bdg_psi1_mem+bdg_psi2_mem+bdg_psi3_mem+
 			bap_tet1_mem+bap_tet2_mem+bap_tet3_mem+bap_gam1_mem+bap_gam2_mem+bap_gam3_mem+vkv_mem+vkv2_mem+vu1_mem+vu3_mem+stu_tet1_mem+stu_tet2_mem+stu_tet3_mem+stu_gam1_mem+stu_gam2_mem+stu_gam3_mem+at1_mem +at2_mem +at3_mem+mgv_tet1_mem+
-			mgv_tet2_mem+mgv_tet3_mem+mgv_gam1_mem+mgv_gam2_mem+mgv_gam3_mem+mgv_tet_sau1_mem+mgv_tet_sau2_mem+mgv_tet_sau3_mem+mgv_gam_sau1_mem+mgv_gam_sau2_mem+mgv_gam_sau3_mem+(at1_test+at2_test+at3_test)*bool2int(at_on)+absu_svk_tbl.ute1_fail_mem+absu_svk_tbl.ute2_fail_mem+absu_svk_tbl.bshu_tet1_mem+absu_svk_tbl.bshu_tet2_mem+absu_svk_tbl.bshu_tet3_mem+absu_svk_tbl.bshu_gam1_mem+absu_svk_tbl.bshu_gam2_mem+absu_svk_tbl.bshu_gam3_mem+absu_svk_tbl.bns_tet1_mem+absu_svk_tbl.bns_tet2_mem+absu_svk_tbl.bns_tet3_mem+absu_svk_tbl.bns_gam1_mem+absu_svk_tbl.bns_gam2_mem+absu_svk_tbl.bns_gam3_mem+stu_check+vu_check+absu_svk_tbl.bkvg_tet_fail+absu_svk_tbl.bkvg_gam_fail+absu_svk_tbl.bkvg_psi_fail+bool2int(absu_svk_tbl.start_timer< 20)
+			mgv_tet2_mem+mgv_tet3_mem+mgv_gam1_mem+mgv_gam2_mem+mgv_gam3_mem+mgv_tet_sau1_mem+mgv_tet_sau2_mem+mgv_tet_sau3_mem+mgv_gam_sau1_mem+mgv_gam_sau2_mem+mgv_gam_sau3_mem+(at1_test+at2_test+at3_test)*bool2int(at_on)+absu_svk_tbl.ute1_fail_mem+absu_svk_tbl.ute2_fail_mem+absu_svk_tbl.bshu_tet1_mem+absu_svk_tbl.bshu_tet2_mem+absu_svk_tbl.bshu_tet3_mem+absu_svk_tbl.bshu_gam1_mem+absu_svk_tbl.bshu_gam2_mem+absu_svk_tbl.bshu_gam3_mem+absu_svk_tbl.bns_tet1_mem+absu_svk_tbl.bns_tet2_mem+absu_svk_tbl.bns_tet3_mem+absu_svk_tbl.bns_gam1_mem+absu_svk_tbl.bns_gam2_mem+absu_svk_tbl.bns_gam3_mem+stu_check+vu_check+absu_svk_tbl.bkvg_tet_fail+absu_svk_tbl.bkvg_gam_fail+absu_svk_tbl.bkvg_psi_fail--bool2int(absu_svk_tbl.start_timer< 20)
 			if work==0 then
 				set(work_state,1)
 			else
@@ -1087,54 +1087,17 @@ function update()
 			if s_run==1 then
 				s_reg=s_reg+passed*3
 			end
-	-- deactivate component with more than one sub channel failure		
-			-- if bdg_gam1_mem+bdg_gam2_mem+bdg_gam3_mem>1 then
-				-- bdg_gam1_mem=1
-				-- bdg_gam2_mem=1
-				-- bdg_gam3_mem=1
-			-- end
-			-- if bdg_tet1_mem+bdg_tet2_mem+bdg_tet3_mem>1 then
-				-- bdg_tet1_mem=1
-				-- bdg_tet2_mem=1
-				-- bdg_tet3_mem=1
-			-- end
-			
-			-- if bdg_psi1_mem+bdg_psi2_mem+bdg_psi3_mem>1 then
-				-- bdg_psi1_mem=1
-				-- bdg_psi2_mem=1
-				-- bdg_psi3_mem=1
-			-- end
-			
-			-- if bap_gam1_mem+bap_gam2_mem+bap_gam3_mem>1 then
-				-- bap_gam1_mem=1
-				-- bap_gam2_mem=1
-				-- bap_gam3_mem=1
-			-- end
-			-- if bap_tet1_mem+bap_tet2_mem+bap_tet3_mem>1 then
-				-- bap_tet1_mem=1
-				-- bap_tet2_mem=1
-				-- bap_tet3_mem=1
-			-- end
-			
-			-- if stu_gam1_mem+stu_gam2_mem+stu_gam3_mem>1 then
-				-- stu_gam1_mem=1
-				-- stu_gam2_mem=1
-				-- stu_gam3_mem=1
-			-- end
-			-- if stu_tet1_mem+stu_tet2_mem+stu_tet3_mem>1 then
-				-- stu_tet1_mem=1
-				-- stu_tet2_mem=1
-				-- stu_tet3_mem=1
-			-- end
-			-- if vu1_mem+vu2_mem+vu3_mem>1 then
-				-- vu1_mem=1
-				-- vu2_mem=1
-				-- vu3_mem=1
-			-- end
-			
-			
 			-- set failures
-			-- dampers
+			--- bdg fail detector and commutator commutator --
+			absu_svk_tbl.bdg_tet_1_fail, absu_svk_tbl.bdg_tet_2_fail, absu_svk_tbl.bdg_tet_3_fail = KE_otkaz(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,0.3)
+			absu_svk_tbl.bdg_gam_1_fail, absu_svk_tbl.bdg_gam_2_fail, absu_svk_tbl.bdg_gam_3_fail = KE_otkaz(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,0.3)
+			absu_svk_tbl.bdg_psi_1_fail, absu_svk_tbl.bdg_psi_2_fail, absu_svk_tbl.bdg_psi_3_fail = KE_otkaz(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,0.3)
+			
+			absu_svk_tbl.bdg_gam_rate=kommutator(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,bdg_gam1_mem,bdg_gam2_mem,bdg_gam3_mem)
+			absu_svk_tbl.bdg_tet_rate=kommutator(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,bdg_tet1_mem,bdg_tet2_mem,bdg_tet3_mem)
+			absu_svk_tbl.bdg_psi_rate=kommutator(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,bdg_psi1_mem,bdg_psi2_mem,bdg_psi3_mem)
+			
+			--- mgv fail detector and commutator ---
 			local mgv_tet1=get(mgv_tet_1)
 			local mgv_tet2=get(mgv_tet_2)
 			local mgv_tet3=get(mgv_tet_3)
@@ -1144,15 +1107,6 @@ function update()
 			local mgv_gam2=get(mgv_gam_2)
 			local mgv_gam3=get(mgv_gam_3)
 			local mgv_gam_res=0
-			--- bdg fail detector and commutator commutator --
-			absu_svk_tbl.bdg_tet_1_fail, absu_svk_tbl.bdg_tet_2_fail, absu_svk_tbl.bdg_tet_3_fail = KE_otkaz(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,0.3)
-			absu_svk_tbl.bdg_gam_1_fail, absu_svk_tbl.bdg_gam_2_fail, absu_svk_tbl.bdg_gam_3_fail = KE_otkaz(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,0.3)
-			absu_svk_tbl.bdg_psi_1_fail, absu_svk_tbl.bdg_psi_2_fail, absu_svk_tbl.bdg_psi_3_fail = KE_otkaz(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,0.3)
-			
-			absu_svk_tbl.bdg_gam_rate=kommutator(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,bdg_gam1_mem,bdg_gam2_mem,bdg_gam3_mem)
-			absu_svk_tbl.bdg_tet_rate=kommutator(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,bdg_tet1_mem,bdg_tet2_mem,bdg_tet3_mem)
-			absu_svk_tbl.bdg_psi_rate=kommutator(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,bdg_psi1_mem,bdg_psi2_mem,bdg_psi3_mem)
-			--- mgv fail detector and commutator ---
 			absu_svk_tbl.mgv_gam_1_fail, absu_svk_tbl.mgv_gam_2_fail, absu_svk_tbl.mgv_gam_3_fail = KE_otkaz(mgv_gam1,mgv_gam2,mgv_gam3,8)
 			absu_svk_tbl.mgv_tet_1_fail, absu_svk_tbl.mgv_tet_2_fail, absu_svk_tbl.mgv_tet_3_fail = KE_otkaz(mgv_tet1,mgv_tet2,mgv_tet3,8)
 
