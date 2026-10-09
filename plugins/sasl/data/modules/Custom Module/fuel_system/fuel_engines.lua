@@ -384,17 +384,19 @@ function update()
 	end
 
 	-- engine fails from low pressure condition
+	local low_p_1 = bool2int(press_1 - get(thro_1) > 0.05 and press_1 > p_head * 0.52)
+	local low_p_2 = bool2int(press_2 - get(thro_2) > 0.05 and press_2 > p_head * 0.52)
+	local low_p_3 = bool2int(press_3 - get(thro_3) > 0.05 and press_3 > p_head * 0.52)
 	local idle = get(flt_idle)
 	local kvd_rate_1 = 0
 	--local kvd_rate_2 = 0
 	local kvd_rate_3 = 0
-	local thr = get(thro_1)
 	if passed ~=0 then
 		kvd_rate_1 = (kvd_1 - kvd_1_prev) / passed
 		--kvd_rate_2 = (kvd_2 - kvd_2_prev) / passed
 		kvd_rate_3 = (kvd_3 - kvd_3_prev) / passed
 	end
-	if kvd_1 < idle - 2 and kvd_rate_1 < - 0.34 and press_feed - thr < 0.1 then
+	if kvd_1 < idle - 2 and kvd_rate_1 < - 0.4 and low_p_1 == 0 and Flow_1 > 100 then
 		filled_1 = 0
 	end
 	-- if kvd_3 < idle - 2 and kvd_rate_3 < - 0.34 then
@@ -449,12 +451,9 @@ function update()
 		sys_data_tbl.eng_fuel_p_factor_3 =  sys_data_tbl.eng_fuel_p_factor_3 - (sys_data_tbl.eng_fuel_p_factor_3 - press_3) * passed / (2 + 4.5 * bool2int (sys_data_tbl.eng_fuel_p_factor_3 < press_3))
 
 		-- set results
-		thr = get(thro_1) + 1.7 * (45 - math.min(kvd_1,45)) / 45  
-		set(eng_fuel_press_1, bool2int(press_1 - thr > 0.1))
-		thr = get(thro_2) + 1.7 * (45 - math.min(kvd_2,45)) / 45  
-		set(eng_fuel_press_2, bool2int(press_2 - thr > 0.09))
-		thr = get(thro_3) + 1.7 * (45 - math.min(kvd_3,45)) / 45  
-		set(eng_fuel_press_3, bool2int(press_3 - thr > 0.11))
+		set(eng_fuel_press_1, low_p_1)
+		set(eng_fuel_press_2, low_p_2)
+		set(eng_fuel_press_3, low_p_3)
 		
 		set(fire_vlv_open_1, valve_1)
 		set(fire_vlv_open_2, valve_2)
@@ -462,8 +461,8 @@ function update()
 		
 		-- set(db1,press_1)
 		-- set(db2,press_2)
-		--set(db3,press_3)
-		-- set(db6,sys_data_tbl.eng_line_fill_1)
+		-- set(db3,press_3)
+		-- set(db5,press_eng_1)
 
 	end
 

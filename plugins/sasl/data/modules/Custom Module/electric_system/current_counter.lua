@@ -2,28 +2,28 @@
 
 
 -- busses currents. results
-defineProperty("bus27_amp_left", globalPropertyf("tu154b2/custom/elec/bus27_amp_left")) -- ток сети 27
-defineProperty("bus27_amp_right", globalPropertyf("tu154b2/custom/elec/bus27_amp_right")) -- ток сети 27
+bus27_amp_left = globalPropertyf("tu154b2/custom/elec/bus27_amp_left") -- ток сети 27
+bus27_amp_right = globalPropertyf("tu154b2/custom/elec/bus27_amp_right") -- ток сети 27
 
-defineProperty("bus36_amp_left", globalPropertyf("tu154b2/custom/elec/bus36_amp_left")) -- ток левой сети 36
-defineProperty("bus36_amp_right", globalPropertyf("tu154b2/custom/elec/bus36_amp_right")) -- ток правой сети 36
-defineProperty("bus36_amp_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_amp_pts250_1")) -- ток ПТС250 сети 36 1
-defineProperty("bus36_amp_pts250_2", globalPropertyf("tu154b2/custom/elec/bus36_amp_pts250_2")) -- ток ПТС250 сети 36 2
+bus36_amp_left = globalPropertyf("tu154b2/custom/elec/bus36_amp_left") -- ток левой сети 36
+bus36_amp_right = globalPropertyf("tu154b2/custom/elec/bus36_amp_right") -- ток правой сети 36
+bus36_amp_pts250_1 = globalPropertyf("tu154b2/custom/elec/bus36_amp_pts250_1") -- ток ПТС250 сети 36 1
+bus36_amp_pts250_2 = globalPropertyf("tu154b2/custom/elec/bus36_amp_pts250_2") -- ток ПТС250 сети 36 2
 
-defineProperty("bus115_1_amp_A", globalPropertyf("tu154b2/custom/elec/bus115_1_amp_A"))
-defineProperty("bus115_2_amp_A", globalPropertyf("tu154b2/custom/elec/bus115_2_amp_A"))
-defineProperty("bus115_3_amp_A", globalPropertyf("tu154b2/custom/elec/bus115_3_amp_A"))
+bus115_1_amp_A = globalPropertyf("tu154b2/custom/elec/bus115_1_amp_A")
+bus115_2_amp_A = globalPropertyf("tu154b2/custom/elec/bus115_2_amp_A")
+bus115_3_amp_A = globalPropertyf("tu154b2/custom/elec/bus115_3_amp_A")
 
-defineProperty("bus115_1_amp_B", globalPropertyf("tu154b2/custom/elec/bus115_1_amp_B"))
-defineProperty("bus115_2_amp_B", globalPropertyf("tu154b2/custom/elec/bus115_2_amp_B"))
-defineProperty("bus115_3_amp_B", globalPropertyf("tu154b2/custom/elec/bus115_3_amp_B"))
+bus115_1_amp_B = globalPropertyf("tu154b2/custom/elec/bus115_1_amp_B")
+bus115_2_amp_B = globalPropertyf("tu154b2/custom/elec/bus115_2_amp_B")
+bus115_3_amp_B = globalPropertyf("tu154b2/custom/elec/bus115_3_amp_B")
 
-defineProperty("bus115_1_amp_C", globalPropertyf("tu154b2/custom/elec/bus115_1_amp_C"))
-defineProperty("bus115_2_amp_C", globalPropertyf("tu154b2/custom/elec/bus115_2_amp_C"))
-defineProperty("bus115_3_amp_C", globalPropertyf("tu154b2/custom/elec/bus115_3_amp_C"))
+bus115_1_amp_C = globalPropertyf("tu154b2/custom/elec/bus115_1_amp_C")
+bus115_2_amp_C = globalPropertyf("tu154b2/custom/elec/bus115_2_amp_C")
+bus115_3_amp_C = globalPropertyf("tu154b2/custom/elec/bus115_3_amp_C")
 
---defineProperty("bus115_em_1_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp"))
---defineProperty("bus115_em_2_amp", globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp"))
+--bus115_em_1_amp = globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp")
+--bus115_em_2_amp = globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp")
 
 
 
@@ -32,180 +32,179 @@ defineProperty("bus115_3_amp_C", globalPropertyf("tu154b2/custom/elec/bus115_3_a
 
 -- sources
 -- bus 27v
-defineProperty("bat_amp_cc_1", globalPropertyf("tu154b2/custom/elec/bat_cc_1")) -- ток заряда батареи
-defineProperty("bat_amp_cc_2", globalPropertyf("tu154b2/custom/elec/bat_cc_2")) -- ток заряда батареи
-defineProperty("bat_amp_cc_3", globalPropertyf("tu154b2/custom/elec/bat_cc_3")) -- ток заряда батареи
-defineProperty("bat_amp_cc_4", globalPropertyf("tu154b2/custom/elec/bat_cc_4")) -- ток заряда батареи
-defineProperty("cockpit_light_cc_left", globalPropertyf("tu154b2/custom/elec/cockpit_light_cc_left"))-- нагрузка на левую сеть от освещения в кабине
-defineProperty("cockpit_light_cc_right", globalPropertyf("tu154b2/custom/elec/cockpit_light_cc_right"))-- нагрузка на правую сеть от освещения в кабине
-defineProperty("ext_light_cc_left", globalPropertyf("tu154b2/custom/elec/ext_light_cc_left"))-- нагрузка на левую сеть
-defineProperty("ext_light_cc_right", globalPropertyf("tu154b2/custom/elec/ext_light_cc_right"))-- нагрузка на правую сеть
-defineProperty("apu_start_cc", globalPropertyf("tu154b2/custom/elec/apu_start_cc")) -- потребление тока стартером ВСУ
-defineProperty("fuel_pumps_27_cc", globalPropertyf("tu154b2/custom/elec/fuel_pumps_27_cc")) -- нагрузка на сеть 27в от топливных насосо
+bat_amp_cc_1 = globalPropertyf("tu154b2/custom/elec/bat_cc_1") -- ток заряда батареи
+bat_amp_cc_2 = globalPropertyf("tu154b2/custom/elec/bat_cc_2") -- ток заряда батареи
+bat_amp_cc_3 = globalPropertyf("tu154b2/custom/elec/bat_cc_3") -- ток заряда батареи
+bat_amp_cc_4 = globalPropertyf("tu154b2/custom/elec/bat_cc_4") -- ток заряда батареи
+cockpit_light_cc_left = globalPropertyf("tu154b2/custom/elec/cockpit_light_cc_left")-- нагрузка на левую сеть от освещения в кабине
+cockpit_light_cc_right = globalPropertyf("tu154b2/custom/elec/cockpit_light_cc_right")-- нагрузка на правую сеть от освещения в кабине
+ext_light_cc_left = globalPropertyf("tu154b2/custom/elec/ext_light_cc_left")-- нагрузка на левую сеть
+ext_light_cc_right = globalPropertyf("tu154b2/custom/elec/ext_light_cc_right")-- нагрузка на правую сеть
+fuel_pumps_27_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_27_cc") -- нагрузка на сеть 27в от топливных насосо
 
-defineProperty("ai_27_L_cc", globalPropertyf("tu154b2/custom/antiice/ai_27_L_cc")) -- нагрузка на сеть
-defineProperty("ai_27_R_cc", globalPropertyf("tu154b2/custom/antiice/ai_27_R_cc")) -- нагрузка на сеть
+ai_27_L_cc = globalPropertyf("tu154b2/custom/antiice/ai_27_L_cc") -- нагрузка на сеть
+ai_27_R_cc = globalPropertyf("tu154b2/custom/antiice/ai_27_R_cc") -- нагрузка на сеть
 
-defineProperty("ctr_27_L_cc", globalPropertyf("tu154b2/custom/control/ctr_27_L_cc")) -- нагрузка на сеть
-defineProperty("ctr_27_R_cc", globalPropertyf("tu154b2/custom/control/ctr_27_R_cc")) -- нагрузка на сеть
+ctr_27_L_cc = globalPropertyf("tu154b2/custom/control/ctr_27_L_cc") -- нагрузка на сеть
+ctr_27_R_cc = globalPropertyf("tu154b2/custom/control/ctr_27_R_cc") -- нагрузка на сеть
 
-defineProperty("msrp_27_L_cc", globalPropertyf("tu154b2/custom/msrp/msrp_27_L_cc")) -- нагрузка на сеть
-defineProperty("msrp_27_R_cc", globalPropertyf("tu154b2/custom/msrp/msrp_27_R_cc")) -- нагрузка на сеть
+msrp_27_L_cc = globalPropertyf("tu154b2/custom/msrp/msrp_27_L_cc") -- нагрузка на сеть
+msrp_27_R_cc = globalPropertyf("tu154b2/custom/msrp/msrp_27_R_cc") -- нагрузка на сеть
 
-defineProperty("svs27_cc", globalPropertyf("tu154b2/custom/svs/power_27cc")) -- потребление тока
+svs27_cc = globalPropertyf("tu154b2/custom/svs/power_27cc") -- потребление тока
 
-defineProperty("auasp_pow27_cc", globalPropertyf("tu154b2/custom/elec/auasp_pow27_cc"))
+auasp_pow27_cc = globalPropertyf("tu154b2/custom/elec/auasp_pow27_cc")
 
-defineProperty("rv_сс_1", globalPropertyf("tu154b2/custom/elec/rv5_left_cc"))  -- RV
-defineProperty("rv_сс_2", globalPropertyf("tu154b2/custom/elec/rv5_right_cc"))  -- RV
+rv_сс_1 = globalPropertyf("tu154b2/custom/elec/rv5_left_cc")  -- RV
+rv_сс_2 = globalPropertyf("tu154b2/custom/elec/rv5_right_cc")  -- RV
 
-defineProperty("taws_cc", globalPropertyf("tu154b2/custom/taws/taws_cc"))
+taws_cc = globalPropertyf("tu154b2/custom/taws/taws_cc")
 
-defineProperty("fire_sys_cc", globalPropertyf("tu154b2/custom/fire/fire_sys_cc")) -- потребление тока пожарной системой
+fire_sys_cc = globalPropertyf("tu154b2/custom/fire/fire_sys_cc") -- потребление тока пожарной системой
 
-defineProperty("vhf1_cc", globalPropertyf("tu154b2/custom/radio/vhf1_cc"))
-defineProperty("vhf2_cc", globalPropertyf("tu154b2/custom/radio/vhf2_cc"))
+vhf1_cc = globalPropertyf("tu154b2/custom/radio/vhf1_cc")
+vhf2_cc = globalPropertyf("tu154b2/custom/radio/vhf2_cc")
 
-defineProperty("km5_1_cc", globalPropertyf("tu154b2/custom/tks/km5_1_cc")) -- потребление тока КМ5
-defineProperty("km5_2_cc", globalPropertyf("tu154b2/custom/tks/km5_1_cc")) -- потребление тока КМ5
+km5_1_cc = globalPropertyf("tu154b2/custom/tks/km5_1_cc") -- потребление тока КМ5
+km5_2_cc = globalPropertyf("tu154b2/custom/tks/km5_1_cc") -- потребление тока КМ5
 
-defineProperty("ga_1_cc", globalPropertyf("tu154b2/custom/tks/ga_1_cc")) -- потребление тока ГА осн
-defineProperty("ga_2_cc", globalPropertyf("tu154b2/custom/tks/ga_2_cc")) -- потребление тока ГА контр
-defineProperty("ga_heat_cc", globalPropertyf("tu154b2/custom/tks/ga_heat_cc")) -- потребление тока
-defineProperty("tks_cc", globalPropertyf("tu154b2/custom/tks/tks_cc"))
-defineProperty("bgmk_1_cc", globalPropertyf("tu154b2/custom/tks/bgmk_1_cc")) -- потребление тока БГМК
-defineProperty("bgmk_2_cc", globalPropertyf("tu154b2/custom/tks/bgmk_2_cc")) -- потребление тока БГМК
+ga_1_cc = globalPropertyf("tu154b2/custom/tks/ga_1_cc") -- потребление тока ГА осн
+ga_2_cc = globalPropertyf("tu154b2/custom/tks/ga_2_cc") -- потребление тока ГА контр
+ga_heat_cc = globalPropertyf("tu154b2/custom/tks/ga_heat_cc") -- потребление тока
+tks_cc = globalPropertyf("tu154b2/custom/tks/tks_cc")
+bgmk_1_cc = globalPropertyf("tu154b2/custom/tks/bgmk_1_cc") -- потребление тока БГМК
+bgmk_2_cc = globalPropertyf("tu154b2/custom/tks/bgmk_2_cc") -- потребление тока БГМК
 
-defineProperty("ush_cc", globalPropertyf("tu154b2/custom/tks/ush_cc")) -- потребление тока УШ
+ush_cc = globalPropertyf("tu154b2/custom/tks/ush_cc") -- потребление тока УШ
 
-defineProperty("agr_cc", globalPropertyf("tu154b2/custom/ahz/agr_cc")) -- ток
-defineProperty("ark15_L_cc", globalPropertyf("tu154b2/custom/radio/ark15_L_cc")) -- потребление тока АРК
-defineProperty("ark15_R_cc", globalPropertyf("tu154b2/custom/radio/ark15_R_cc")) -- потребление тока АРК
+agr_cc = globalPropertyf("tu154b2/custom/ahz/agr_cc") -- ток
+ark15_L_cc = globalPropertyf("tu154b2/custom/radio/ark15_L_cc") -- потребление тока АРК
+ark15_R_cc = globalPropertyf("tu154b2/custom/radio/ark15_R_cc") -- потребление тока АРК
 
-defineProperty("diss_cc", globalPropertyf("tu154b2/custom/nvu/diss_cc")) -- потребление от ДИСС
-defineProperty("radar_cc", globalPropertyf("tu154b2/custom/radio/radar_cc")) -- потребление тока от РЛС Гроза
-defineProperty("rsbn_cc", globalPropertyf("tu154b2/custom/radio/rsbn_cc")) -- потребление тока от РСБН
+diss_cc = globalPropertyf("tu154b2/custom/nvu/diss_cc") -- потребление от ДИСС
+radar_cc = globalPropertyf("tu154b2/custom/radio/radar_cc") -- потребление тока от РЛС Гроза
+rsbn_cc = globalPropertyf("tu154b2/custom/radio/rsbn_cc") -- потребление тока от РСБН
 
 
 -- bus 36v
-defineProperty("ctr_36L_cc", globalPropertyf("tu154b2/custom/control/ctr_36L_cc")) -- нагрузка на сеть
-defineProperty("ctr_36R_cc", globalPropertyf("tu154b2/custom/control/ctr_36R_cc")) -- нагрузка на сеть
+ctr_36L_cc = globalPropertyf("tu154b2/custom/control/ctr_36L_cc") -- нагрузка на сеть
+ctr_36R_cc = globalPropertyf("tu154b2/custom/control/ctr_36R_cc") -- нагрузка на сеть
 
-defineProperty("svs36_cc", globalPropertyf("tu154b2/custom/svs/power_36cc")) -- потребление тока
-defineProperty("absu_power_cc", globalPropertyf("tu154b2/custom/absu_power_cc")) -- потребление тока АБСУ
+svs36_cc = globalPropertyf("tu154b2/custom/svs/power_36cc") -- потребление тока
+absu_power_cc = globalPropertyf("tu154b2/custom/absu_power_cc") -- потребление тока АБСУ
 absu_power_27 = globalPropertyi("tu154b2/custom/absu_power_27")
 
-defineProperty("pkp_left_power_cc", globalPropertyf("tu154b2/custom/bkk/pkp_left_power_cc")) -- отребление тока ПКП
-defineProperty("pkp_right_power_cc", globalPropertyf("tu154b2/custom/bkk/pkp_right_power_cc")) -- отребление тока ПКП
-defineProperty("mgv_ctr_power_cc", globalPropertyf("tu154b2/custom/bkk/mgv_ctr_power_cc")) -- отребление тока ПКП
+pkp_left_power_cc = globalPropertyf("tu154b2/custom/bkk/pkp_left_power_cc") -- отребление тока ПКП
+pkp_right_power_cc = globalPropertyf("tu154b2/custom/bkk/pkp_right_power_cc") -- отребление тока ПКП
+mgv_ctr_power_cc = globalPropertyf("tu154b2/custom/bkk/mgv_ctr_power_cc") -- отребление тока ПКП
 
-defineProperty("absu_at_power_cc", globalPropertyf("tu154b2/custom/absu_at_power_cc")) -- потребление тока АБСУ
-defineProperty("nvu_cc", globalPropertyf("tu154b2/custom/nvu/nvu_cc")) -- потребление тока НВУ
+absu_at_power_cc = globalPropertyf("tu154b2/custom/absu_at_power_cc") -- потребление тока АБСУ
+nvu_cc = globalPropertyf("tu154b2/custom/nvu/nvu_cc") -- потребление тока НВУ
 
-defineProperty("nav1_pow_cc", globalPropertyf("tu154b2/custom/radio/nav1_pow_cc")) -- потребление тока от КурсМП
-defineProperty("nav2_pow_cc", globalPropertyf("tu154b2/custom/radio/nav2_pow_cc")) -- потребление тока от КурсМП
+nav1_pow_cc = globalPropertyf("tu154b2/custom/radio/nav1_pow_cc") -- потребление тока от КурсМП
+nav2_pow_cc = globalPropertyf("tu154b2/custom/radio/nav2_pow_cc") -- потребление тока от КурсМП
 
 
 -- bus 115v
-defineProperty("vu1_amp", globalPropertyf("tu154b2/custom/elec/vu1_amp")) -- работа ВУ
-defineProperty("vu2_amp", globalPropertyf("tu154b2/custom/elec/vu2_amp")) -- работа ВУ
-defineProperty("vu3_amp", globalPropertyf("tu154b2/custom/elec/vu_res_amp")) -- работа ВУ
-defineProperty("cockpit_light_cc_115", globalPropertyf("tu154b2/custom/elec/cockpit_light_cc_115"))-- нагрузка на сеть 115 от освещения в кабине
-defineProperty("fuel_pumps_115_1_cc", globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_1_cc")) -- нагрузка на сеть 1 от топливных насосов
-defineProperty("fuel_pumps_115_3_cc", globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_3_cc")) -- нагрузка на сеть 3 от топливных насосов
-defineProperty("gs_pump_2_cc", globalPropertyf("tu154b2/custom/hydro/gs_pump_2_cc")) -- ток насосной станции
-defineProperty("gs_pump_3_cc", globalPropertyf("tu154b2/custom/hydro/gs_pump_3_cc")) -- ток насосной станции
+vu1_amp = globalPropertyf("tu154b2/custom/elec/vu1_amp") -- работа ВУ
+vu2_amp = globalPropertyf("tu154b2/custom/elec/vu2_amp") -- работа ВУ
+vu3_amp = globalPropertyf("tu154b2/custom/elec/vu_res_amp") -- работа ВУ
+cockpit_light_cc_115 = globalPropertyf("tu154b2/custom/elec/cockpit_light_cc_115")-- нагрузка на сеть 115 от освещения в кабине
+fuel_pumps_115_1_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_1_cc") -- нагрузка на сеть 1 от топливных насосов
+fuel_pumps_115_3_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_3_cc") -- нагрузка на сеть 3 от топливных насосов
+gs_pump_2_cc = globalPropertyf("tu154b2/custom/hydro/gs_pump_2_cc") -- ток насосной станции
+gs_pump_3_cc = globalPropertyf("tu154b2/custom/hydro/gs_pump_3_cc") -- ток насосной станции
 
-defineProperty("ai_115_1_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_1_cc")) -- нагрузка на сеть
-defineProperty("ai_115_2_cc_A", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_A")) -- нагрузка на сеть
-defineProperty("ai_115_2_cc_B", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_B")) -- нагрузка на сеть
-defineProperty("ai_115_2_cc_C", globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_C")) -- нагрузка на сеть
-defineProperty("ai_115_3_cc", globalPropertyf("tu154b2/custom/antiice/ai_115_3_cc")) -- нагрузка на сеть
+ai_115_1_cc = globalPropertyf("tu154b2/custom/antiice/ai_115_1_cc") -- нагрузка на сеть
+ai_115_2_cc_A = globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_A") -- нагрузка на сеть
+ai_115_2_cc_B = globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_B") -- нагрузка на сеть
+ai_115_2_cc_C = globalPropertyf("tu154b2/custom/antiice/ai_115_2_cc_C") -- нагрузка на сеть
+ai_115_3_cc = globalPropertyf("tu154b2/custom/antiice/ai_115_3_cc") -- нагрузка на сеть
 
-defineProperty("ctr_115_1_cc", globalPropertyf("tu154b2/custom/control/ctr_115_1_cc")) -- нагрузка на сеть
-defineProperty("ctr_115_3_cc", globalPropertyf("tu154b2/custom/control/ctr_115_3_cc")) -- нагрузка на сеть
+ctr_115_1_cc = globalPropertyf("tu154b2/custom/control/ctr_115_1_cc") -- нагрузка на сеть
+ctr_115_3_cc = globalPropertyf("tu154b2/custom/control/ctr_115_3_cc") -- нагрузка на сеть
 
-defineProperty("svs115_cc", globalPropertyf("tu154b2/custom/svs/power_115cc")) -- потребление тока
+svs115_cc = globalPropertyf("tu154b2/custom/svs/power_115cc") -- потребление тока
 
-defineProperty("auasp_pow115_cc", globalPropertyf("tu154b2/custom/elec/auasp_pow115_cc"))
+auasp_pow115_cc = globalPropertyf("tu154b2/custom/elec/auasp_pow115_cc")
 
-defineProperty("window_heat_1", globalPropertyi("tu154b2/custom/switchers/ovhd/window_heat_1")) -- обогрев стекол. -1 - слабо, 0 - выкл, 1 - сильно
-defineProperty("window_heat_2", globalPropertyi("tu154b2/custom/switchers/ovhd/window_heat_2")) -- обогрев стекол. -1 - слабо, 0 - выкл, 1 - сильно
-defineProperty("window_heat_3", globalPropertyi("tu154b2/custom/switchers/ovhd/window_heat_3")) -- обогрев стекол. -1 - слабо, 0 - выкл, 1 - сильно
+window_heat_1 = globalPropertyi("tu154b2/custom/switchers/ovhd/window_heat_1") -- обогрев стекол. -1 - слабо, 0 - выкл, 1 - сильно
+window_heat_2 = globalPropertyi("tu154b2/custom/switchers/ovhd/window_heat_2") -- обогрев стекол. -1 - слабо, 0 - выкл, 1 - сильно
+window_heat_3 = globalPropertyi("tu154b2/custom/switchers/ovhd/window_heat_3") -- обогрев стекол. -1 - слабо, 0 - выкл, 1 - сильно
 
-defineProperty("sim_beacon", globalPropertyf("sim/cockpit2/switches/beacon_on")) -- beacon lights
+sim_beacon = globalPropertyf("sim/cockpit2/switches/beacon_on") -- beacon lights
 
-defineProperty("tcas", globalPropertyi("tu154b2/custom/switchers/ovhd/tcas_on"))
-defineProperty("tcas_xpdr", globalPropertyi("tu154b2/custom/switchers/ovhd/tra_67_on"))
+tcas = globalPropertyi("tu154b2/custom/switchers/ovhd/tcas_on")
+tcas_xpdr = globalPropertyi("tu154b2/custom/switchers/ovhd/tra_67_on")
 
-defineProperty("micron_1_on", globalPropertyi("tu154b2/custom/switchers/ovhd/micron_1_on"))  -- микрон 1
-defineProperty("micron_2_on", globalPropertyi("tu154b2/custom/switchers/ovhd/micron_2_on"))  -- микрон 2
-defineProperty("spu_on", globalPropertyi("tu154b2/custom/switchers/ovhd/spu_on"))  -- СПУ
-defineProperty("sd75_1_on", globalPropertyi("tu154b2/custom/switchers/ovhd/sd75_1_on"))  -- СД75 1
-defineProperty("sd75_2_on", globalPropertyi("tu154b2/custom/switchers/ovhd/sd75_2_on"))  -- СД75 2
-defineProperty("ovhd_mode", globalPropertyi("tu154b2/custom/switchers/ovhd/transponder_mode"))
+micron_1_on = globalPropertyi("tu154b2/custom/switchers/ovhd/micron_1_on")  -- микрон 1
+micron_2_on = globalPropertyi("tu154b2/custom/switchers/ovhd/micron_2_on")  -- микрон 2
+spu_on = globalPropertyi("tu154b2/custom/switchers/ovhd/spu_on")  -- СПУ
+sd75_1_on = globalPropertyi("tu154b2/custom/switchers/ovhd/sd75_1_on")  -- СД75 1
+sd75_2_on = globalPropertyi("tu154b2/custom/switchers/ovhd/sd75_2_on")  -- СД75 2
+ovhd_mode = globalPropertyi("tu154b2/custom/switchers/ovhd/transponder_mode")
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt")) -- напряжение на сети 115в
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt")) -- напряжение на сети 115в
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt") -- напряжение на сети 115в
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt") -- напряжение на сети 115в
 
-defineProperty("bus36_volt_left", globalPropertyf("tu154b2/custom/elec/bus36_volt_left")) -- напряжение сети 36в лев
-defineProperty("bus36_volt_right", globalPropertyf("tu154b2/custom/elec/bus36_volt_right")) -- напряжение сети 36в прав
-defineProperty("bus36_volt_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")) -- напряжение сети 36 ПТС 1
-defineProperty("bus36_volt_pts250_2", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2")) -- напряжение сети 36 ПТС 2
+bus36_volt_left = globalPropertyf("tu154b2/custom/elec/bus36_volt_left") -- напряжение сети 36в лев
+bus36_volt_right = globalPropertyf("tu154b2/custom/elec/bus36_volt_right") -- напряжение сети 36в прав
+bus36_volt_pts250_1 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1") -- напряжение сети 36 ПТС 1
+bus36_volt_pts250_2 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2") -- напряжение сети 36 ПТС 2
 
---defineProperty("uns_1", globalPropertyi("tu154b2/custom/uns1_on"))
---defineProperty("uns_2", globalPropertyi("tu154b2/custom/uns2_on"))
-defineProperty("mfi_1", globalPropertyi("sim/custom/kontur/left_power"))
-defineProperty("mfi_2", globalPropertyi("sim/custom/kontur/right_power"))
-defineProperty("ubs_1", globalPropertyi("sim/custom/ubs/left_power"))
-defineProperty("ubs_2", globalPropertyi("sim/custom/ubs/right_power"))
-defineProperty("absu_speed_prepare", globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare")) -- подготовка
-defineProperty("gps_power", globalPropertyi("sim/cockpit2/radios/actuators/gps_power"))
-defineProperty("wx_pow", globalPropertyi("sim/custom/kontur/weather_sys"))
+--uns_1 = globalPropertyi("tu154b2/custom/uns1_on")
+--uns_2 = globalPropertyi("tu154b2/custom/uns2_on")
+mfi_1 = globalPropertyi("sim/custom/kontur/left_power")
+mfi_2 = globalPropertyi("sim/custom/kontur/right_power")
+ubs_1 = globalPropertyi("sim/custom/ubs/left_power")
+ubs_2 = globalPropertyi("sim/custom/ubs/right_power")
+absu_speed_prepare = globalPropertyi("tu154b2/custom/switchers/console/absu_speed_prepare") -- подготовка
+gps_power = globalPropertyi("sim/cockpit2/radios/actuators/gps_power")
+wx_pow = globalPropertyi("sim/custom/kontur/weather_sys")
 
-defineProperty("gear_fan", globalPropertyi("tu154b2/custom/switchers/eng/gear_fan"))
+gear_fan = globalPropertyi("tu154b2/custom/switchers/eng/gear_fan")
 
-defineProperty("pts1", globalPropertyi("tu154b2/custom/elec/bus36_pts1_work"))
-defineProperty("pts2", globalPropertyi("tu154b2/custom/elec/bus36_pts2_work"))
-defineProperty("vu_res_to_L", globalPropertyi("tu154b2/custom/elec/vu_res_to_L")) -- резервное ВУ подключено на лев сеть
-defineProperty("vu_res_to_R", globalPropertyi("tu154b2/custom/elec/vu_res_to_R")) -- резервное ВУ подключено на прав сеть
+pts1 = globalPropertyi("tu154b2/custom/elec/bus36_pts1_work")
+pts2 = globalPropertyi("tu154b2/custom/elec/bus36_pts2_work")
+vu_res_to_L = globalPropertyi("tu154b2/custom/elec/vu_res_to_L") -- резервное ВУ подключено на лев сеть
+vu_res_to_R = globalPropertyi("tu154b2/custom/elec/vu_res_to_R") -- резервное ВУ подключено на прав сеть
 
-defineProperty("svet_bort_1", globalPropertyi("sim/custom/cabin/side_light1"))
-defineProperty("svet_bort_2", globalPropertyi("sim/custom/cabin/side_light2"))
-defineProperty("svet_zent_1", globalPropertyi("sim/custom/cabin/cent_light1"))
-defineProperty("svet_zent_2", globalPropertyi("sim/custom/cabin/cent_light2"))
-defineProperty("svet_dezh_1", globalPropertyf("sim/custom/cabin/dezhur_cabin_light1"))
-defineProperty("svet_dezh_2", globalPropertyf("sim/custom/cabin/dezhur_cabin_light2"))
-defineProperty("svet_vest_1", globalPropertyi("sim/custom/cabin/vest_light1"))
-defineProperty("svet_kuch_1", globalPropertyi("sim/custom/cabin/vest_light2"))
-defineProperty("svet_vest_2", globalPropertyi("sim/custom/cabin/vest_light3"))
-defineProperty("svet_kuch_2", globalPropertyi("sim/custom/cabin/kitchen_light1"))
+svet_bort_1 = globalPropertyi("sim/custom/cabin/side_light1")
+svet_bort_2 = globalPropertyi("sim/custom/cabin/side_light2")
+svet_zent_1 = globalPropertyi("sim/custom/cabin/cent_light1")
+svet_zent_2 = globalPropertyi("sim/custom/cabin/cent_light2")
+svet_dezh_1 = globalPropertyf("sim/custom/cabin/dezhur_cabin_light1")
+svet_dezh_2 = globalPropertyf("sim/custom/cabin/dezhur_cabin_light2")
+svet_vest_1 = globalPropertyi("sim/custom/cabin/vest_light1")
+svet_kuch_1 = globalPropertyi("sim/custom/cabin/vest_light2")
+svet_vest_2 = globalPropertyi("sim/custom/cabin/vest_light3")
+svet_kuch_2 = globalPropertyi("sim/custom/cabin/kitchen_light1")
 
-defineProperty("kip_0", globalPropertyi("sim/custom/cabin/lamp7"))
-defineProperty("kip_1", globalPropertyi("sim/custom/cabin/lamp8"))
-defineProperty("kip_2", globalPropertyi("sim/custom/cabin/lamp9"))
-defineProperty("kip_3", globalPropertyi("sim/custom/cabin/lamp10"))
-defineProperty("kip_4", globalPropertyi("sim/custom/cabin/lamp11"))
-defineProperty("kip_5", globalPropertyi("sim/custom/cabin/lamp12"))
-defineProperty("kruzh", globalPropertyi("sim/custom/cabin/lamp13"))
+kip_0 = globalPropertyi("sim/custom/cabin/lamp7")
+kip_1 = globalPropertyi("sim/custom/cabin/lamp8")
+kip_2 = globalPropertyi("sim/custom/cabin/lamp9")
+kip_3 = globalPropertyi("sim/custom/cabin/lamp10")
+kip_4 = globalPropertyi("sim/custom/cabin/lamp11")
+kip_5 = globalPropertyi("sim/custom/cabin/lamp12")
+kruzh = globalPropertyi("sim/custom/cabin/lamp13")
 
--- defineProperty("avtoL_load_A", globalPropertyf("tu154b2/custom/elec/avto_L_amp_A"))
--- defineProperty("avtoL_load_B", globalPropertyf("tu154b2/custom/elec/avto_L_amp_B"))
--- defineProperty("avtoL_load_C", globalPropertyf("tu154b2/custom/elec/avto_L_amp_C"))
--- defineProperty("avtoR_load_A", globalPropertyf("tu154b2/custom/elec/avto_R_amp_A"))
--- defineProperty("avtoR_load_B", globalPropertyf("tu154b2/custom/elec/avto_R_amp_B"))
--- defineProperty("avtoR_load_C", globalPropertyf("tu154b2/custom/elec/avto_R_amp_C"))
+-- avtoL_load_A = globalPropertyf("tu154b2/custom/elec/avto_L_amp_A")
+-- avtoL_load_B = globalPropertyf("tu154b2/custom/elec/avto_L_amp_B")
+-- avtoL_load_C = globalPropertyf("tu154b2/custom/elec/avto_L_amp_C")
+-- avtoR_load_A = globalPropertyf("tu154b2/custom/elec/avto_R_amp_A")
+-- avtoR_load_B = globalPropertyf("tu154b2/custom/elec/avto_R_amp_B")
+-- avtoR_load_C = globalPropertyf("tu154b2/custom/elec/avto_R_amp_C")
 
-defineProperty("emerg_inv115", globalPropertyi("tu154b2/custom/switchers/eng/emerg_inv115"))
-defineProperty("inv115_fail", globalPropertyf("tu154b2/custom/failures/inv115_fail"))
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
-defineProperty("tvg1", globalPropertyi("sim/custom/gauges/eng/eng1_temp_ctrl"))
-defineProperty("tvg2", globalPropertyi("sim/custom/gauges/eng/eng2_temp_ctrl"))
-defineProperty("tvg3", globalPropertyi("sim/custom/gauges/eng/eng3_temp_ctrl"))
+emerg_inv115 = globalPropertyi("tu154b2/custom/switchers/eng/emerg_inv115")
+inv115_fail = globalPropertyf("tu154b2/custom/failures/inv115_fail")
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
+tvg1 = globalPropertyi("sim/custom/gauges/eng/eng1_temp_ctrl")
+tvg2 = globalPropertyi("sim/custom/gauges/eng/eng2_temp_ctrl")
+tvg3 = globalPropertyi("sim/custom/gauges/eng/eng3_temp_ctrl")
 
 com_64_pwr = globalPropertyi("sim/custom/co63_pwr")
 com_64_mode = globalPropertyi("sim/custom/co63_mode")
@@ -218,16 +217,16 @@ vbe_2 = globalPropertyi("tu154b2/custom/switchers/ovhd/vbe_2_on")
 source_36_left = globalPropertyi("tu154b2/custom/elec/bus36_source_left")
 source_36_right = globalPropertyi("tu154b2/custom/elec/bus36_source_right")
 wxr_mode = globalProperty("sim/cockpit2/EFIS/EFIS_weather_mode")
-defineProperty("pump_res_cc", globalPropertyi("tu154b2/custom/fuel/res_pump_cc"))
+pump_res_cc = globalPropertyi("tu154b2/custom/fuel/res_pump_cc")
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
 
-defineProperty("heat", globalPropertyf("tu154b2/custom/engines/heater_current"))
+heat = globalPropertyf("tu154b2/custom/engines/heater_current")
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 

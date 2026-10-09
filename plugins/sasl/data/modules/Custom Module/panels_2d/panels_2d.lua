@@ -33,7 +33,9 @@ defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have 
 
 defineProperty("control_thro_other", globalPropertyf("tu154b2/custom/SC/control_thro_other")) -- другой человек упраляет РУД-ами
 
-
+chk_cmd = sasl.createCommand("t154/panels/toggle_checklist", "Toggle Checklist")
+nvu_cmd = sasl.createCommand("t154/panels/toggle_nvu", "Toggle NVU Panel")
+absu_cmd = sasl.createCommand("t154/panels/toggle_absu", "Toggle ABSU Panel")
 
 
 local coef = (get(window_height) / 1024) * 0.8
@@ -43,6 +45,45 @@ if coef > 1 then coef = 1 end  -- set initial coefficient for float panel's size
 
 
 defineProperty("closeImage", loadImage("close.png"))  -- close cross image
+
+
+function chklst_cmd_handler(phase)
+	if 0 == phase then
+		if get(show_checklist_panel) == 1 then
+			set(show_checklist_panel,0)
+		else
+			set(show_checklist_panel,1)
+		end
+	end
+	return 0
+end
+
+function absu_cmd_handler(phase)
+	if 0 == phase then
+		if get(show_absu_panel) == 1 then
+			set(show_absu_panel,0)
+		else
+			set(show_absu_panel,1)
+		end
+	end
+	return 0
+end
+
+function nvu_cmd_handler(phase)
+	if 0 == phase then
+		if get(show_nvu_panel) == 1 then
+			set(show_nvu_panel,0)
+		else
+			set(show_nvu_panel,1)
+		end
+	end
+	return 0
+end
+
+registerCommandHandler(chk_cmd, 0, chklst_cmd_handler)
+registerCommandHandler(absu_cmd, 0, absu_cmd_handler)
+registerCommandHandler(nvu_cmd, 0, nvu_cmd_handler)
+
 
 
 palette = subpanel {
