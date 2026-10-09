@@ -294,9 +294,6 @@ local function reset_switchers()
 		set(gauges_on_1_cap, 1)
 		set(gauges_on_2_cap, 1)
 		set(gauges_on_3_cap, 1)
-		sys_data_tbl.eng_line_fill_1 = 0
-		sys_data_tbl.eng_line_fill_2 = 0
-		sys_data_tbl.eng_line_fill_3 = 0
 	end
 	
 	notLoaded = false

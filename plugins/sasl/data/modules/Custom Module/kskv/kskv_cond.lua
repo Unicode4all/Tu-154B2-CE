@@ -734,6 +734,9 @@ function update()
 			cabin_2_tube_temp=termo_out
 			cabin_2_T=termo_out
 			temp_ard=termo_out
+			sys_data_tbl.eng_line_fill_1 = 0
+			sys_data_tbl.eng_line_fill_2 = 0
+			sys_data_tbl.eng_line_fill_3 = 0
 			set(gear_blocks,1)
 		end
 		-- local srd_setting=get(srd_set)

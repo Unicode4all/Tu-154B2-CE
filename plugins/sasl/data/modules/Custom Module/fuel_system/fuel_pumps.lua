@@ -521,7 +521,7 @@ function update()
 	
 	sys_data_tbl.eng_feed_p_4 = pump_1_4_P
 	
-	if pump_res_work == 1 and pump_res_P < 1 then pump_res_P = pump_res_P + passed * 1
+	if pump_res_work == 1 and pump_res_P < 1 then pump_res_P = pump_res_P + passed * 0.5
 	elseif pump_res_P > 0 then pump_res_P = pump_res_P - passed * 2 end
 	
 	sys_data_tbl.eng_feed_res = pump_res_P
@@ -719,7 +719,7 @@ function update()
 	set(pump_tank1_2_work, bool2int(pump_1_2_P > 0.3))
 	set(pump_tank1_3_work, bool2int(pump_1_3_P > 0.31))
 	set(pump_tank1_4_work, bool2int(pump_1_4_P > 0.28))
-	set(res_work, bool2int(pump_res_P > 0.27))
+	set(res_work, bool2int(pump_res_P > 0.05))
 
 	set(auto_tanks_turn, tanks_turn)
 	set(auto_tank_level_2, tank_level_2)

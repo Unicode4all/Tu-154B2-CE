@@ -1,11 +1,8 @@
 -- this is magnetic correction gauge KM-5
 
 -- source
-defineProperty("mag_psi", globalPropertyf("sim/flightmodel/position/mag_psi")) -- mag course
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
-
-defineProperty("gforce_fwd", globalPropertyf("sim/flightmodel2/misc/gforce_axil")) -- 
-defineProperty("gforce_side", globalPropertyf("sim/flightmodel2/misc/gforce_side")) -- 
+mag_psi = globalPropertyf("sim/flightmodel/position/mag_psi") -- mag course
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- power
 defineProperty("bus27_volt", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
@@ -25,32 +22,36 @@ defineProperty("km5_needle", globalPropertyf("tu154b2/custom/gauges/eng/km5_need
 defineProperty("course_mk", globalPropertyf("tu154b2/custom/tks/course_mk_1")) -- курс на MK5
 
 defineProperty("km5_cc", globalPropertyf("tu154b2/custom/tks/km5_1_cc")) -- потребление тока КМ5
-defineProperty("ac_roll", globalPropertyf("sim/flightmodel/position/true_phi"))
-defineProperty("ac_pitch", globalPropertyf("sim/flightmodel/position/theta"))
-defineProperty("latitude", globalPropertyd("sim/flightmodel/position/latitude"))
-defineProperty("g_axil", globalPropertyf("sim/flightmodel/forces/g_axil")) 
-defineProperty("g_nrml", globalPropertyf("sim/flightmodel/forces/g_nrml"))
-defineProperty("ahrs_head", globalPropertyf("sim/cockpit/gyros/psi_ind_ahars_pilot_degm"))
-defineProperty("flux_diff", globalProperty("sim/cockpit/gyros/gyr_magnetometer_diff[0]"))
-defineProperty("groundspeed", globalPropertyf("sim/flightmodel2/position/groundspeed"))
-defineProperty("slat_heat", globalPropertyf("sim/cockpit2/ice/ice_surfce_heat_on"))
+ac_roll = globalPropertyf("sim/flightmodel/position/true_phi")
+ac_pitch = globalPropertyf("sim/flightmodel/position/theta")
+latitude = globalPropertyd("sim/flightmodel/position/latitude")
+g_axil = globalPropertyf("sim/flightmodel/forces/g_axil") 
+g_nrml = globalPropertyf("sim/flightmodel/forces/g_nrml")
+ahrs_head = globalPropertyf("sim/cockpit/gyros/psi_ind_ahars_pilot_degm")
+flux_diff = globalProperty("sim/cockpit/gyros/gyr_magnetometer_diff[0]")
+groundspeed = globalPropertyf("sim/flightmodel2/position/groundspeed")
+slat_heat = globalPropertyf("sim/cockpit2/ice/ice_surfce_heat_on")
 defineProperty("flux_err", globalPropertyf("tu154b2/custom/tks/flux_initial_err"))
 defineProperty("flux_err_dist", globalPropertyf("tu154b2/custom/tks/flux_initial_dist"))
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 defineProperty("tks_on", globalPropertyi("tu154b2/custom/switchers/ovhd/tks_on_1")) -- выключатель ТКС 
+roll_a = globalPropertyf("sim/flightmodel/position/P_dot")
+defineProperty("roll_factor", 1)
+
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
 -- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
 -- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
 -- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
 
-
+local roll_a_amp = 0
 local mag_course = 0
 local notLoaded = true
 local start_timer=0
+local damp_timer=0
 local needle_act = 0
 --set(km5_needle, needle_act)
 
@@ -65,6 +66,7 @@ local stand_err_dist=1
 function update()
 	local passed = get(frame_time) 
 	start_timer = start_timer + passed
+	damp_timer = damp_timer + passed
 	local MASTER = get(ismaster) ~= 1	
 	if notLoaded and start_timer > 0.4 then
 		if MASTER then 
@@ -105,7 +107,12 @@ function update()
 		stand_err_c=stand_err_c-get(groundspeed)*passed/stand_err_dist
 	end
 	-- flux gate heading
-	local id_head=true_mag+tilt_err+acc_err+rand_err+stand_err*stand_err_c+5*get(slat_heat)
+	local roll_err = roll_a_amp * math.sin(2*start_timer) * math.exp(-damp_timer)
+	if math.abs(get(roll_a)) > 5 then
+		damp_timer = 0
+		roll_a_amp = math.random(1,2) * get(roll_a)
+	end
+	local id_head = true_mag + tilt_err + acc_err + rand_err + stand_err * stand_err_c + 5 * get(slat_heat) + roll_err
 	if id_head>360 then
 		id_head=id_head-360
 	elseif id_head<0 then
@@ -148,8 +155,8 @@ if MASTER then
 		if cur_dif > 180 then cur_dif = cur_dif - 360
 		elseif cur_dif < -180 then cur_dif = cur_dif + 360 end
 		
-		if cur_dif > 1 then needle_act = needle_act + passed * 20
-		elseif cur_dif < -1 then needle_act = needle_act - passed * 20
+		if cur_dif > 1 then needle_act = needle_act + passed * 20 
+		elseif cur_dif < -1 then needle_act = needle_act - passed * 20 
 		else needle_act = needle_act + cur_dif * passed * 10
 		end
 		

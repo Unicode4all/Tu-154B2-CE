@@ -75,12 +75,12 @@ thro_3 = globalProperty("sim/flightmodel/engine/ENGN_thro_use[2]")
 tank1_w = globalProperty("sim/flightmodel/weight/m_fuel[0]") -- fuel weight
 flt_idle = globalPropertyf("tu154b2/custom/engines/flight_idle")
 
--- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
--- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
--- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
--- db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
--- db5 = globalPropertyf("tu154b2/custom/controlls/debug5")
--- db6 = globalPropertyf("tu154b2/custom/controlls/debug6")
+db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
+db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
+db5 = globalPropertyf("tu154b2/custom/controlls/debug5")
+db6 = globalPropertyf("tu154b2/custom/controlls/debug6")
 
 -- Smart Copilot
 ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -331,17 +331,17 @@ function update()
 	if Flow_1 > 10 then
 		press_1 = (press_1 + ((press_feed * valve_1 + press_eng_1 - Flow_1 / 15000 - press_1) ) * passed * 5) * filled_1
 	else
-		press_1 = (press_1 + ((press_feed-press_1) * valve_1 * 5 - (press_1 - p_head) * 0.001 ) * passed) * filled_1
+		press_1 = (press_1 + ((press_feed-press_1) * valve_1 * 5 - press_1 * 0.001 ) * passed) * filled_1
 	end
 	if Flow_2 > 10 then
 		press_2 = (press_2 + ((press_feed * valve_2 + press_eng_2 - Flow_2 / 15000 - press_2) ) * passed * 5) * filled_2
 	else
-		press_2 = (press_2 + ((press_feed-press_2) * valve_2 * 5 - (press_2 - p_head) * 0.001 ) * passed) * filled_2
+		press_2 = (press_2 + ((press_feed-press_2) * valve_2 * 5 - press_2  * 0.001 ) * passed) * filled_2
 	end
 	if Flow_3 > 10 then
 		press_3 = (press_3 + ((press_feed * valve_3 + press_eng_3 - Flow_3 / 15000 - press_3) ) * passed * 5) * filled_3
 	else
-		press_3 = (press_3 + ((press_feed-press_3) * valve_3 * 5 - (press_3 - p_head) * 0.001 ) * passed) * filled_3
+		press_3 = (press_3 + ((press_feed-press_3) * valve_3 * 5 - press_3 * 0.001 ) * passed) * filled_3
 	end
 	
 	-- fill fuel lines (fuel line holds approx. 60 L)
@@ -384,9 +384,9 @@ function update()
 	end
 
 	-- engine fails from low pressure condition
-	local low_p_1 = bool2int(press_1 - get(thro_1) > 0.05 and press_1 > p_head * 0.52)
-	local low_p_2 = bool2int(press_2 - get(thro_2) > 0.05 and press_2 > p_head * 0.52)
-	local low_p_3 = bool2int(press_3 - get(thro_3) > 0.05 and press_3 > p_head * 0.52)
+	local low_p_1 = bool2int(press_1 - get(thro_1) > 0.05 and press_1 > p_head * 0.53)
+	local low_p_2 = bool2int(press_2 - get(thro_2) > 0.048 and press_2 > p_head * 0.52)
+	local low_p_3 = bool2int(press_3 - get(thro_3) > 0.052 and press_3 > p_head * 0.525)
 	local idle = get(flt_idle)
 	local kvd_rate_1 = 0
 	--local kvd_rate_2 = 0
@@ -459,10 +459,11 @@ function update()
 		set(fire_vlv_open_2, valve_2)
 		set(fire_vlv_open_3, valve_3)
 		
-		-- set(db1,press_1)
-		-- set(db2,press_2)
-		-- set(db3,press_3)
-		-- set(db5,press_eng_1)
+		set(db1,press_1)
+		set(db2,press_2)
+		set(db3,press_3)
+		set(db4,filled_1)
+		set(db5,sys_data_tbl.eng_line_fill_1)
 
 	end
 
