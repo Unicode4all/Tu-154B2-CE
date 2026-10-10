@@ -75,12 +75,12 @@ thro_3 = globalProperty("sim/flightmodel/engine/ENGN_thro_use[2]")
 tank1_w = globalProperty("sim/flightmodel/weight/m_fuel[0]") -- fuel weight
 flt_idle = globalPropertyf("tu154b2/custom/engines/flight_idle")
 
-db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
-db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
-db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
-db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
-db5 = globalPropertyf("tu154b2/custom/controlls/debug5")
-db6 = globalPropertyf("tu154b2/custom/controlls/debug6")
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
+-- db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
+-- db5 = globalPropertyf("tu154b2/custom/controlls/debug5")
+-- db6 = globalPropertyf("tu154b2/custom/controlls/debug6")
 
 -- Smart Copilot
 ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -459,11 +459,11 @@ function update()
 		set(fire_vlv_open_2, valve_2)
 		set(fire_vlv_open_3, valve_3)
 		
-		set(db1,press_1)
-		set(db2,press_2)
-		set(db3,press_3)
-		set(db4,filled_1)
-		set(db5,sys_data_tbl.eng_line_fill_1)
+		-- set(db1,press_1)
+		-- set(db2,press_2)
+		-- set(db3,press_3)
+		-- set(db4,filled_1)
+		-- set(db5,sys_data_tbl.eng_line_fill_1)
 
 	end
 
