@@ -753,85 +753,85 @@ function systems()
  
 --- fuel_auto_off
     
-if simDR_auto_viravn > 0 then
- if simDR_auto_viravn_lit > 0 then
-    if math.abs(simDR_auto_tank3) > 0 and auto_tank3_start == 0 then
-       auto_tank3_start = simDR_auto_tank3
-    end
+-- if simDR_auto_viravn > 0 then
+--  if simDR_auto_viravn_lit > 0 then
+--     if math.abs(simDR_auto_tank3) > 0 and auto_tank3_start == 0 then
+--        auto_tank3_start = simDR_auto_tank3
+--     end
 
-    if math.abs(auto_tank3_start) > 0 then
-        if math.abs(simDR_fuel_tanks[4] - simDR_fuel_tanks[5]) > math.random(0,100) then
-            simDR_auto_tank3 = auto_tank3_start
-        else
-            auto_tank3_start = 0
-        end
+--     if math.abs(auto_tank3_start) > 0 then
+--         if math.abs(simDR_fuel_tanks[4] - simDR_fuel_tanks[5]) > math.random(0,100) then
+--             simDR_auto_tank3 = auto_tank3_start
+--         else
+--             auto_tank3_start = 0
+--         end
 
-        if auto_tank3_start < 0 then
-           simDR_tank31_l = 0
-		   simDR_tank32_l = 0
-		   simDR_tank33_l = 0
-        end
-        if auto_tank3_start > 0 then
-			simDR_tank31_r = 0
-		   simDR_tank32_r = 0
-		   simDR_tank33_r = 0
-        end
-    end
-    if math.abs(simDR_auto_tank2) > 0 and auto_tank2_start == 0 then
-       auto_tank2_start = simDR_auto_tank2
-    end
+--         if auto_tank3_start < 0 then
+--            simDR_tank31_l = 0
+-- 		   simDR_tank32_l = 0
+-- 		   simDR_tank33_l = 0
+--         end
+--         if auto_tank3_start > 0 then
+-- 			simDR_tank31_r = 0
+-- 		   simDR_tank32_r = 0
+-- 		   simDR_tank33_r = 0
+--         end
+--     end
+--     if math.abs(simDR_auto_tank2) > 0 and auto_tank2_start == 0 then
+--        auto_tank2_start = simDR_auto_tank2
+--     end
 
-    if math.abs(auto_tank2_start) > 0 then
-        if math.abs(simDR_fuel_tanks[2] - simDR_fuel_tanks[3]) > math.random(0,100) then
-            simDR_auto_tank2 = auto_tank2_start
-        else
-            auto_tank2_start = 0
-        end
+--     if math.abs(auto_tank2_start) > 0 then
+--         if math.abs(simDR_fuel_tanks[2] - simDR_fuel_tanks[3]) > math.random(0,100) then
+--             simDR_auto_tank2 = auto_tank2_start
+--         else
+--             auto_tank2_start = 0
+--         end
 
-        if auto_tank2_start < 0 then
-           simDR_tank21_l = 0
-		    simDR_tank22_l = 0
-        end
-        if auto_tank2_start > 0 then
-            simDR_tank21_r = 0
-		    simDR_tank22_r = 0
-        end
-    end
-  else
-    auto_tank2_start = 0
-    auto_tank3_start = 0
-  end
-    if math.abs(simDR_fuel_tanks[4] - simDR_fuel_tanks[5]) > math.random(800,1000) and viravn_fail < 1 then 
-        viravn_fail = 1
-    end
+--         if auto_tank2_start < 0 then
+--            simDR_tank21_l = 0
+-- 		    simDR_tank22_l = 0
+--         end
+--         if auto_tank2_start > 0 then
+--             simDR_tank21_r = 0
+-- 		    simDR_tank22_r = 0
+--         end
+--     end
+--   else
+--     auto_tank2_start = 0
+--     auto_tank3_start = 0
+--   end
+--     if math.abs(simDR_fuel_tanks[4] - simDR_fuel_tanks[5]) > math.random(800,1000) and viravn_fail < 1 then 
+--         viravn_fail = 1
+--     end
 
-    if math.abs(simDR_fuel_tanks[2] - simDR_fuel_tanks[3]) > math.random(800,1000) and viravn_fail < 1 then 
-        viravn_fail = 1
-    end
+--     if math.abs(simDR_fuel_tanks[2] - simDR_fuel_tanks[3]) > math.random(800,1000) and viravn_fail < 1 then 
+--         viravn_fail = 1
+--     end
 
-    if viravn_fail > 0 and math.abs(simDR_fuel_tanks[4] - simDR_fuel_tanks[5]) > 790 then
-      if bus36 > 0 then
-        simDR_tank2_l_fail = 1	
-        simDR_tank2_r_fail = 1
-        simDR_tank3_l_fail = 1		
-        simDR_tank3_r_fail = 1
-      end
-        simDR_auto_viravn_fail = 1
-    elseif viravn_fail > 0 and math.abs(simDR_fuel_tanks[2] - simDR_fuel_tanks[3]) > 790 then
-        simDR_auto_viravn_fail = 1
-    elseif viravn_fail > 0 then
-        viravn_fail = 0
-         simDR_auto_viravn_fail = 0
-    end
+--     if viravn_fail > 0 and math.abs(simDR_fuel_tanks[4] - simDR_fuel_tanks[5]) > 790 then
+--       if bus36 > 0 then
+--         simDR_tank2_l_fail = 1	
+--         simDR_tank2_r_fail = 1
+--         simDR_tank3_l_fail = 1		
+--         simDR_tank3_r_fail = 1
+--       end
+--         simDR_auto_viravn_fail = 1
+--     elseif viravn_fail > 0 and math.abs(simDR_fuel_tanks[2] - simDR_fuel_tanks[3]) > 790 then
+--         simDR_auto_viravn_fail = 1
+--     elseif viravn_fail > 0 then
+--         viravn_fail = 0
+--          simDR_auto_viravn_fail = 0
+--     end
            
-else
-   if viravn_fail > 0 then
-      simDR_auto_viravn_fail = 0      
-      viravn_fail = 0
-   end
-    auto_tank2_start = 0
-    auto_tank3_start = 0
-end
+-- else
+--    if viravn_fail > 0 then
+--       simDR_auto_viravn_fail = 0      
+--       viravn_fail = 0
+--    end
+--     auto_tank2_start = 0
+--     auto_tank3_start = 0
+-- end
     
     
 

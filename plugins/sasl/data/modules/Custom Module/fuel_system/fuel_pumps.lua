@@ -23,6 +23,7 @@ res_pump = globalPropertyi("tu154b2/custom/buttons/eng/reserv_pump_test")
 fuel_level = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_level") -- автомат выравнивания
 fuel_flow_mode = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_mode") -- режим расходомера. ручное - автомат
 fuel_flow_on = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_flow_on") -- автомат расхода
+fuel_meter_on = globalPropertyi("tu154b2/custom/switchers/fuel/fuel_meter_on") -- топливомер
 
 
 -- power sources
@@ -66,8 +67,8 @@ res_work = globalPropertyi("tu154b2/custom/fuel/res_pump_work")
 auto_tanks_turn = globalPropertyi("tu154b2/custom/fuel/auto_tanks_turn") -- 0 = none, 1 = 2, 2 = 2+3, 3 = 3, 4 = 4
 --auto_tank_level = globalPropertyi("tu154b2/custom/fuel/auto_tank_level") -- выравнивание в баках. -2 - 2L, -3 - 3L, +3 - 3R, +2 - 2R	0
 
-auto_tank_level_2 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_2") -- выравнивание в баках 2. -1 = L, 0 = none, +1 = R	0
-auto_tank_level_3 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_3") -- выравнивание в баках 3. -1 = L, 0 = none, +1 = R	0
+auto_tank_level_2 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_2") -- выравнивание в баках 2. -1 = L, 0 = none, +1 = R, +2 = exceedance	0
+auto_tank_level_3 = globalPropertyi("tu154b2/custom/fuel/auto_tank_level_3") -- выравнивание в баках 3. -1 = L, 0 = none, +1 = R, +2 = exceedance	0
 
 
 fuel_pumps_115_1_cc = globalPropertyf("tu154b2/custom/elec/fuel_pumps_115_1_cc") -- нагрузка на сеть 1 от топливных насосов
@@ -90,6 +91,12 @@ avtoR_load_C = globalPropertyf("tu154b2/custom/elec/avto_R_amp_C")
 gen_volt_1 = globalPropertyf("tu154b2/custom/elec/gen1_volt")
 gen_volt_2 = globalPropertyf("tu154b2/custom/elec/gen2_volt")
 gen_volt_3 = globalPropertyf("tu154b2/custom/elec/gen3_volt")
+
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
+-- bus parameters
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
 deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
 -- time
@@ -153,6 +160,9 @@ local pump1_1_work_prev = 0
 local pump1_2_work_prev = 0
 local pump1_3_work_prev = 0
 local pump1_4_work_prev = 0
+
+local tank_level_2_start = 0
+local tank_level_3_start = 0
 
 sys_data_tbl.eng_feed_p_1 = 0
 sys_data_tbl.eng_feed_p_2 = 0
@@ -383,33 +393,59 @@ function update()
 	
 	
 	-- leveling logic. 		
-	if get(fuel_level) == 1 and get(fuel_level_fail) == 0 then
-		if tank_qty_2R - tank_qty_2L > 350 then
-			tank_level_2 = -1
-			pump2L1_work = 0
-			pump2L2_work = 0
-		elseif tank_qty_2L - tank_qty_2R > 350 then
-			tank_level_2 = 1
-			pump2R1_work = 0
-			pump2R2_work = 0			
-		else
-			tank_level_2 = 0
+	local fuel_level_power = get(fuel_meter_on) == 1 and (get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13) and (get(bus115_1_volt) > 110 or get(bus115_3_volt) > 110)	
+	local fuel_level_bool = fuel_level_power and get(fuel_level) == 1 and get(fuel_meter_on) == 1 and get(fuel_flow_on) == 1 and get(fuel_auto_fail) == 0 and get(fuel_level_fail) == 0
+	local fuel_level_exceedance = math.abs(tank_qty_2L - tank_qty_2R) > 800 or math.abs(tank_qty_3L - tank_qty_3R) > 800
+
+	if fuel_level_bool then
+
+		if math.abs(tank_qty_2R - tank_qty_2L) < 100 then
+			tank_level_2_start = 0
 		end
-		
-		if tank_qty_3R - tank_qty_3L > 300 then
-			tank_level_3 = -1
-			pump3L1_work = 0
-			pump3L2_work = 0
-			pump3L3_work = 0
-		elseif tank_qty_3L - tank_qty_3R > 300 then
-			tank_level_3 = 1
-			pump3R1_work = 0	
-			pump3R2_work = 0	
-			pump3R3_work = 0	
-		else
-			tank_level_3 = 0
+
+		if math.abs(tank_qty_3R - tank_qty_3L) < 100 then
+			tank_level_3_start = 0
 		end
-	
+
+		if fuel_level_exceedance then
+			tank_level_2 = 2
+			tank_level_3 = 2
+
+		else
+			if tank_level_2_start == -1 or tank_qty_2R - tank_qty_2L > 350 then
+				tank_level_2 = -1
+				tank_level_2_start = -1
+				pump2L1_work = 0
+				pump2L2_work = 0
+			elseif tank_level_2_start == 1 or tank_qty_2L - tank_qty_2R > 350 then
+				tank_level_2 = 1
+				tank_level_2_start = 1
+				pump2R1_work = 0
+				pump2R2_work = 0
+			else
+				tank_level_2 = 0
+			end
+
+			if tank_level_3_start == -1 or tank_qty_3R - tank_qty_3L > 300 then
+				tank_level_3 = -1
+				tank_level_3_start = -1
+				pump3L1_work = 0
+				pump3L2_work = 0
+				pump3L3_work = 0
+			elseif tank_level_3_start == 1 or tank_qty_3L - tank_qty_3R > 300 then
+				tank_level_3 = 1
+				tank_level_3_start = 1
+				pump3R1_work = 0
+				pump3R2_work = 0
+				pump3R3_work = 0
+			else
+				tank_level_3 = 0
+			end
+		end
+
+	else
+		tank_level_2_start = 0
+		tank_level_3_start = 0
 	end
 	
 	
