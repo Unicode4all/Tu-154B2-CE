@@ -410,7 +410,8 @@ function update()
 		if fuel_level_exceedance then
 			tank_level_2 = 2
 			tank_level_3 = 2
-
+			tank_level_2_start = 0
+			tank_level_3_start = 0
 		else
 			if tank_level_2_start == -1 or tank_qty_2R - tank_qty_2L > 350 then
 				tank_level_2 = -1
