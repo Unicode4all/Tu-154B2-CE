@@ -429,8 +429,9 @@ local function lamps()
 	set(fuel_porc_reserv, fuel_porc_reserv_brt)
 	
 	--local fuel_level_automat_brt = math.max(get(fuel_level) * get(fuel_flow_mode) * get(fuel_flow_on) * lamps_brt, test_btn)
+	local fuel_level_power = bool2int(get(fuel_meter_on) == 1 and (get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13) and (get(bus115_1_volt) > 110 or get(bus115_3_volt) > 110))
 	local fuel_level_exceedance = bool2int(tank_level_2 ~= 2)
-	local fuel_level_automat_brt = fuel_level_exceedance * get(fuel_meter_on) * get(fuel_flow_on) * get(fuel_level) * (1-get(fuel_level_fail)) * (1-get(fuel_auto_fail)) * lamps_brt
+	local fuel_level_automat_brt = fuel_level_power * fuel_level_exceedance * get(fuel_meter_on) * get(fuel_flow_on) * get(fuel_level) * (1-get(fuel_level_fail)) * (1-get(fuel_auto_fail)) * lamps_brt
 	set(fuel_level_automat, fuel_level_automat_brt)
 	
 end

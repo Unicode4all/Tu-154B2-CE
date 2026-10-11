@@ -92,6 +92,12 @@ gen_volt_1 = globalPropertyf("tu154b2/custom/elec/gen1_volt")
 gen_volt_2 = globalPropertyf("tu154b2/custom/elec/gen2_volt")
 gen_volt_3 = globalPropertyf("tu154b2/custom/elec/gen3_volt")
 
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
+-- bus parameters
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
+
 deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
 -- time
 frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
@@ -387,7 +393,8 @@ function update()
 	
 	
 	-- leveling logic. 		
-	local fuel_level_bool = get(fuel_level) == 1 and get(fuel_meter_on) == 1 and get(fuel_flow_on) == 1 and get(fuel_auto_fail) == 0 and get(fuel_level_fail) == 0
+	local fuel_level_power = get(fuel_meter_on) == 1 and (get(bus27_volt_left) > 13 or get(bus27_volt_right) > 13) and (get(bus115_1_volt) > 110 or get(bus115_3_volt) > 110)	
+	local fuel_level_bool = fuel_level_power and get(fuel_level) == 1 and get(fuel_meter_on) == 1 and get(fuel_flow_on) == 1 and get(fuel_auto_fail) == 0 and get(fuel_level_fail) == 0
 	local fuel_level_exceedance = math.abs(tank_qty_2L - tank_qty_2R) > 800 or math.abs(tank_qty_3L - tank_qty_3R) > 800
 
 	if fuel_level_bool then
