@@ -1,77 +1,77 @@
 -- this is trimmers logic
--- defineProperty("absu_debug1", globalPropertyf("tu154b2/custom/controlls/absu_debug1")) 
--- defineProperty("absu_debug2", globalPropertyf("tu154b2/custom/controlls/absu_debug2")) 
+-- absu_debug1 = globalPropertyf("tu154b2/custom/controlls/absu_debug1") 
+-- absu_debug2 = globalPropertyf("tu154b2/custom/controlls/absu_debug2") 
 
 
 -- controls
-defineProperty("elev_trimm_sw", globalPropertyi("tu154b2/custom/controll/elev_trimm_switcher")) -- ручка управления триммером РВ. -1 - пикирование, 0 - нейтр, +1 кабрирование
-defineProperty("ail_trimm_sw", globalPropertyi("tu154b2/custom/controll/ail_trimm_sw")) -- переключатель триммера элеронов
-defineProperty("rudd_trimm_sw", globalPropertyi("tu154b2/custom/controll/rudd_trimm_sw")) -- переключатель триммера РН
+elev_trimm_sw = globalPropertyi("tu154b2/custom/controll/elev_trimm_switcher") -- ручка управления триммером РВ. -1 - пикирование, 0 - нейтр, +1 кабрирование
+ail_trimm_sw = globalPropertyi("tu154b2/custom/controll/ail_trimm_sw") -- переключатель триммера элеронов
+rudd_trimm_sw = globalPropertyi("tu154b2/custom/controll/rudd_trimm_sw") -- переключатель триммера РН
 
-defineProperty("external_view", globalPropertyi("sim/graphics/view/view_is_external")) -- enviroment
-defineProperty("warning_volume_ratio", globalPropertyf("sim/operation/sound/warning_volume_ratio")) -- 
+external_view = globalPropertyi("sim/graphics/view/view_is_external") -- enviroment
+warning_volume_ratio = globalPropertyf("sim/operation/sound/warning_volume_ratio") -- 
 
-defineProperty("emerg_elev_trimm", globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm")) -- аварийное управление триммером
+emerg_elev_trimm = globalPropertyi("tu154b2/custom/switchers/console/emerg_elev_trimm") -- аварийное управление триммером
 
 
-defineProperty("absu_pitch_trimm", globalPropertyi("tu154b2/custom/absu/absu_pitch_trimm")) -- комманда триммеру от АБСУ. +1 = вверх, -1 = ввениз
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ")) -- Position of pilot's head relative to CG
+absu_pitch_trimm = globalPropertyi("tu154b2/custom/absu/absu_pitch_trimm") -- комманда триммеру от АБСУ. +1 = вверх, -1 = ввениз
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ") -- Position of pilot's head relative to CG
 
 
 -- results
-defineProperty("int_pitch_trim", globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim")) -- положение триммера руля высоты
-defineProperty("int_roll_trim", globalPropertyf("tu154b2/custom/trimmers/int_roll_trim")) -- положение триммера элеронов
-defineProperty("int_yaw_trim", globalPropertyf("tu154b2/custom/trimmers/int_yaw_trim")) -- положение триммера руля направления
+int_pitch_trim = globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim") -- положение триммера руля высоты
+int_roll_trim = globalPropertyf("tu154b2/custom/trimmers/int_roll_trim") -- положение триммера элеронов
+int_yaw_trim = globalPropertyf("tu154b2/custom/trimmers/int_yaw_trim") -- положение триммера руля направления
 
 
-defineProperty("absu_roll_mode", globalPropertyi("tu154b2/custom/gauges/console/absu_roll_mode")) -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
-defineProperty("absu_pitch_mode", globalPropertyi("tu154b2/custom/gauges/console/absu_pitch_mode")) -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
+absu_roll_mode = globalPropertyi("tu154b2/custom/gauges/console/absu_roll_mode") -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
+absu_pitch_mode = globalPropertyi("tu154b2/custom/gauges/console/absu_pitch_mode") -- режим работы АБСУ. 0 - выкл, 1 - штурвальный, 2 - стаб
 
 
 
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt")) -- напряжение на сети 115в
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt")) -- напряжение на сети 115в
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt") -- напряжение на сети 115в
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt") -- напряжение на сети 115в
 
-defineProperty("bus36_volt_left", globalPropertyf("tu154b2/custom/elec/bus36_volt_left")) -- напряжение сети 36в лев
-defineProperty("bus36_volt_right", globalPropertyf("tu154b2/custom/elec/bus36_volt_right")) -- напряжение сети 36в прав
-defineProperty("bus36_volt_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")) -- напряжение сети 36 ПТС 1
-defineProperty("bus36_volt_pts250_2", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2")) -- напряжение сети 36 ПТС 2
+bus36_volt_left = globalPropertyf("tu154b2/custom/elec/bus36_volt_left") -- напряжение сети 36в лев
+bus36_volt_right = globalPropertyf("tu154b2/custom/elec/bus36_volt_right") -- напряжение сети 36в прав
+bus36_volt_pts250_1 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1") -- напряжение сети 36 ПТС 1
+bus36_volt_pts250_2 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_2") -- напряжение сети 36 ПТС 2
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
 
-defineProperty("ctr_27_L_cc", globalPropertyf("tu154b2/custom/control/ctr_27_L_cc")) -- нагрузка на сеть
-defineProperty("ctr_27_R_cc", globalPropertyf("tu154b2/custom/control/ctr_27_R_cc")) -- нагрузка на сеть
+ctr_27_L_cc = globalPropertyf("tu154b2/custom/control/ctr_27_L_cc") -- нагрузка на сеть
+ctr_27_R_cc = globalPropertyf("tu154b2/custom/control/ctr_27_R_cc") -- нагрузка на сеть
 
-defineProperty("ctr_36L_cc", globalPropertyf("tu154b2/custom/control/ctr_36L_cc")) -- нагрузка на сеть
-defineProperty("ctr_36R_cc", globalPropertyf("tu154b2/custom/control/ctr_36R_cc")) -- нагрузка на сеть
+ctr_36L_cc = globalPropertyf("tu154b2/custom/control/ctr_36L_cc") -- нагрузка на сеть
+ctr_36R_cc = globalPropertyf("tu154b2/custom/control/ctr_36R_cc") -- нагрузка на сеть
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("scp/api/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 -- failures
-defineProperty("rel_trim_rud", globalPropertyi("sim/operation/failures/rel_trim_rud")) -- 
-defineProperty("rel_trim_ail", globalPropertyi("sim/operation/failures/rel_trim_ail")) -- 
-defineProperty("rel_trim_elv", globalPropertyi("sim/operation/failures/rel_trim_elv")) -- 
-defineProperty("trim_emerg_elv_fail", globalPropertyi("tu154b2/custom/failures/trim_emerg_elv_fail")) --
+rel_trim_rud = globalPropertyi("sim/operation/failures/rel_trim_rud") -- 
+rel_trim_ail = globalPropertyi("sim/operation/failures/rel_trim_ail") -- 
+rel_trim_elv = globalPropertyi("sim/operation/failures/rel_trim_elv") -- 
+trim_emerg_elv_fail = globalPropertyi("tu154b2/custom/failures/trim_emerg_elv_fail") --
 
 -- other
-defineProperty("elev_trimm_1_pk", globalPropertyi("sim/custom/b2/elev_trimm_1_pk")) -- 
-defineProperty("elev_trimm_2_pk", globalPropertyi("sim/custom/b2/elev_trimm_2_pk")) -- 
+elev_trimm_1_pk = globalPropertyi("sim/custom/b2/elev_trimm_1_pk") -- 
+elev_trimm_2_pk = globalPropertyi("sim/custom/b2/elev_trimm_2_pk") -- 
 
 emer_trim_cb = globalPropertyi("sim/custom/switchers/emerg_trimm_azs")
 
-defineProperty("pedal_left_sw", globalPropertyi("sim/custom/other/pedal_left_sw")) -- 
-defineProperty("pedal_right_sw", globalPropertyi("sim/custom/other/pedal_right_sw")) -- 
-defineProperty("pedal_left_pos", globalPropertyf("sim/custom/other/pedal_left_pos")) -- 
-defineProperty("pedal_right_pos", globalPropertyf("sim/custom/other/pedal_right_pos")) -- 
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+pedal_left_sw = globalPropertyi("sim/custom/other/pedal_left_sw") -- 
+pedal_right_sw = globalPropertyi("sim/custom/other/pedal_right_sw") -- 
+pedal_left_pos = globalPropertyf("sim/custom/other/pedal_left_pos") -- 
+pedal_right_pos = globalPropertyf("sim/custom/other/pedal_right_pos") -- 
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 -- sound
 local trimm_up = loadSample(moduleDirectory .. '/Custom Sounds/trimm_up.wav')

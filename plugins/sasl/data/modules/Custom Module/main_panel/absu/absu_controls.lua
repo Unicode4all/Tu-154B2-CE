@@ -1396,8 +1396,8 @@ function pitch_holder(elev_cmd) -- manipulates the elevator and trimmer by given
 	
 	if MASTER then
 		-- set trimmer
-		if (delta+ roll_part) > (0.07-0.035*bool2int(pitch_submode == 6)) then set(absu_pitch_trimm, 1)
-		elseif (delta+ roll_part) < (-0.07+0.035*bool2int(pitch_submode == 6)) then set(absu_pitch_trimm, -1)
+		if (delta+ roll_part) > (0.07-0.035*bool2int(pitch_submode == 6)) and pitch_submode > 0 then set(absu_pitch_trimm, 1)
+		elseif (delta+ roll_part) < (-0.07+0.035*bool2int(pitch_submode == 6)) and pitch_submode > 0 then set(absu_pitch_trimm, -1)
 		else set(absu_pitch_trimm, 0) end
 	end
 		-- set elevator pos

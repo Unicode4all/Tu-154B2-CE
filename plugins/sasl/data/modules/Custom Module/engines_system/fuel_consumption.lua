@@ -1,57 +1,58 @@
-defineProperty("sfc_full_lo", globalPropertyf("sim/aircraft/overflow/jet_SFC_locrz"))
-defineProperty("sfc_full_hi", globalPropertyf("sim/aircraft/overflow/jet_SFC_hicrz"))
--- defineProperty("sfc_full_lo", globalPropertyf("sim/aircraft/overflow/SFC_full_lo_JET"))
--- defineProperty("sfc_half_hi", globalPropertyf("sim/aircraft/overflow/SFC_half_hi_JET"))
+sfc_full_lo = globalPropertyf("sim/aircraft/overflow/jet_SFC_locrz")
+sfc_full_hi = globalPropertyf("sim/aircraft/overflow/jet_SFC_hicrz")
+-- sfc_full_lo = globalPropertyf("sim/aircraft/overflow/SFC_full_lo_JET")
+-- sfc_half_hi = globalPropertyf("sim/aircraft/overflow/SFC_half_hi_JET")
 
---defineProperty("idle_FF", globalPropertyf("sim/aircraft/overflow/ff_rat_idle_JET"))
+--idle_FF = globalPropertyf("sim/aircraft/overflow/ff_rat_idle_JET")
 
-defineProperty("temp_SL", globalPropertyf("sim/weather/temperature_sealevel_c"))
-defineProperty("press_SL", globalPropertyf("sim/weather/barometer_sealevel_inhg"))
+temp_SL = globalPropertyf("sim/weather/temperature_sealevel_c")
+press_SL = globalPropertyf("sim/weather/barometer_sealevel_inhg")
 
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- pressure altitude (finally!)
---defineProperty("baro_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
-defineProperty("indicated_airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed"))
+msl_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")  -- pressure altitude (finally!)
+--baro_press = globalPropertyf("sim/weather/barometer_sealevel_inhg")  -- pressire at sea level in.Hg
+indicated_airspeed = globalPropertyf("sim/flightmodel/position/indicated_airspeed")
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+fuel_q_1 = globalProperty("sim/flightmodel/weight/m_fuel[0]")
+flt_idle = globalPropertyf("tu154b2/custom/engines/flight_idle")
 
-defineProperty("fuel_q_1", globalProperty("sim/flightmodel/weight/m_fuel[0]"))
-defineProperty("flt_idle", globalPropertyf("tu154b2/custom/engines/flight_idle"))
+ENGN_FF_1 = globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[0]") -- FF from sim kg/second
+ENGN_FF_2 = globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[1]") -- FF from sim kg/second
+ENGN_FF_3 = globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[2]") -- FF from sim kg/second
 
-defineProperty("ENGN_FF_1", globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[0]")) -- FF from sim kg/second
-defineProperty("ENGN_FF_2", globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[1]")) -- FF from sim kg/second
-defineProperty("ENGN_FF_3", globalProperty("sim/cockpit2/engine/indicators/fuel_flow_kg_sec[2]")) -- FF from sim kg/second
+Flow_1 = globalPropertyf("tu154b2/custom/engines/FuelFlow_1") 
+Flow_2 = globalPropertyf("tu154b2/custom/engines/FuelFlow_2") 
+Flow_3 = globalPropertyf("tu154b2/custom/engines/FuelFlow_3") 
 
-defineProperty("Flow_1", globalPropertyf("tu154b2/custom/engines/FuelFlow_1")) 
-defineProperty("Flow_2", globalPropertyf("tu154b2/custom/engines/FuelFlow_2")) 
-defineProperty("Flow_3", globalPropertyf("tu154b2/custom/engines/FuelFlow_3")) 
+eng1_N2 = globalProperty("sim/flightmodel/engine/ENGN_N2_[0]") -- engine 1 rpm
+eng2_N2 = globalProperty("sim/flightmodel/engine/ENGN_N2_[1]") -- engine 2 rpm
+eng3_N2 = globalProperty("sim/flightmodel/engine/ENGN_N2_[2]") -- engine 3 rpm
 
-defineProperty("eng1_N2", globalProperty("sim/flightmodel/engine/ENGN_N2_[0]")) -- engine 1 rpm
-defineProperty("eng2_N2", globalProperty("sim/flightmodel/engine/ENGN_N2_[1]")) -- engine 2 rpm
-defineProperty("eng3_N2", globalProperty("sim/flightmodel/engine/ENGN_N2_[2]")) -- engine 3 rpm
+kpp1 = globalPropertyf("tu154b2/custom/engine/kpp1")
+kpp2 = globalPropertyf("tu154b2/custom/engine/kpp2")
+kpp3 = globalPropertyf("tu154b2/custom/engine/kpp3")
 
-defineProperty("kpp1", globalPropertyf("tu154b2/custom/engine/kpp1"))
-defineProperty("kpp2", globalPropertyf("tu154b2/custom/engine/kpp2"))
-defineProperty("kpp3", globalPropertyf("tu154b2/custom/engine/kpp3"))
+revers_flap_L = globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]") -- reverse on left engine
+revers_flap_R = globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]") -- reverse on right engine
+true_airspeed = globalPropertyf("sim/flightmodel2/position/true_airspeed")
+machno = globalPropertyf("sim/cockpit2/gauges/indicators/mach_pilot")
+isa_temp_d = globalPropertyf("tu154b2/custom/engines/d_isa_temp")
 
-defineProperty("revers_flap_L", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[0]")) -- reverse on left engine
-defineProperty("revers_flap_R", globalProperty("sim/flightmodel2/engines/thrust_reverser_deploy_ratio[2]")) -- reverse on right engine
-defineProperty("true_airspeed", globalPropertyf("sim/flightmodel2/position/true_airspeed"))
-defineProperty("machno", globalPropertyf("sim/cockpit2/gauges/indicators/mach_pilot"))
-defineProperty("isa_temp_d", globalPropertyf("tu154b2/custom/engines/d_isa_temp"))
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time")
+oat = globalPropertyf("sim/weather/temperature_ambient_c")
+max_n2 = globalPropertyf("tu154b2/engine/max_KVD")
+nom_n2 = globalPropertyf("tu154b2/engine/nom_KVD")
+to_sfc = globalPropertyf("sim/aircraft/overflow/jet_SFC_takeoff")
+sfc_to_rpm = globalPropertyf("sim/aircraft/overflow/jet_N1_takeoff")
+ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+idle_FF = globalPropertyf("sim/aircraft/overflow/ff_rat_idle_JET")
+eng1_ice = globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[0]")
+eng2_ice = globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]")
+eng3_ice = globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]")
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time"))
-defineProperty("oat", globalPropertyf("sim/weather/temperature_ambient_c"))
-defineProperty("max_n2", globalPropertyf("tu154b2/engine/max_KVD"))
-defineProperty("nom_n2", globalPropertyf("tu154b2/engine/nom_KVD"))
-defineProperty("to_sfc", globalPropertyf("sim/aircraft/overflow/jet_SFC_takeoff"))
-defineProperty("sfc_to_rpm", globalPropertyf("sim/aircraft/overflow/jet_N1_takeoff"))
-defineProperty("ismaster", globalPropertyf("scp/api/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("idle_FF", globalPropertyf("sim/aircraft/overflow/ff_rat_idle_JET"))
-defineProperty("eng1_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[0]"))
-defineProperty("eng2_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[1]"))
-defineProperty("eng3_ice", globalProperty("sim/flightmodel/failures/inlet_ice_per_engine[2]"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
+-- db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
 
 local sfc_half=0
 local sfc_full=0
@@ -68,6 +69,8 @@ local rpm_3_lst=0
 local filling_1_prev=0
 local filling_2_prev=0
 local filling_3_prev=0
+
+local fluct_timer = 0
 local idle_ff_blend_tbl= {{-300, 0.25 },
 			{  0, 0.25}, 
 			{  500,1},
@@ -141,6 +144,7 @@ function update()
 	local filling_3=sys_data_tbl.eng_line_fill_3
 	local corr_stop=interpolate(idle_corr_stop,alt_baro/1000)
 	local corr_spd=interpolate(idle_ias_tbl,ias)
+	fluct_timer = fluct_timer + passed
 	-- FM Fuel Flow
 	FF_1 = get(ENGN_FF_1) * 3600
 	FF_2 = get(ENGN_FF_2) * 3600
@@ -187,8 +191,9 @@ function update()
 	--set(db1,corr_idle_1)
 	-- total correction
 	local FF_1_corr = 0
+	local press_fluct = (0.5556 * sys_data_tbl.eng_fuel_p_factor_1 -0.5556) * 0.05
 	if passed ~= 0 then
-		FF_1_corr=FF_1*(1-FF_d_isa_corr*FF_isa_corr_1_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_1)*KPP_corr_1+corr_idle_1 + math.max(0,(filling_1 - filling_1_prev) / passed) * 2000
+		FF_1_corr=FF_1*(1-FF_d_isa_corr*FF_isa_corr_1_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_1)*KPP_corr_1 * (1 +  press_fluct * math.sin( 1.5 * (fluct_timer + math.random() * 0.5))) +corr_idle_1 + math.max(0,(filling_1 - filling_1_prev) / passed) * 2000
 	end
 	-- Engine 2 --
 	--nominal power corr
@@ -218,8 +223,9 @@ function update()
 	end
 	-- total correction
 	local FF_2_corr = 0
+	press_fluct = (0.5556 * sys_data_tbl.eng_fuel_p_factor_2 -0.5556) * 0.05
 	if passed ~= 0 then
-		FF_2_corr=FF_2*(1-FF_d_isa_corr*FF_isa_corr_2_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_2)*KPP_corr_2+corr_idle_2 + math.max(0,(filling_2 - filling_2_prev) / passed) * 2000
+		FF_2_corr=FF_2*(1-FF_d_isa_corr*FF_isa_corr_2_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_2)*KPP_corr_2 * (1 +  press_fluct * math.sin( 1.5 * (fluct_timer + math.random() * 0.5)))+corr_idle_2 + math.max(0,(filling_2 - filling_2_prev) / passed) * 2000
 	end
 	-- Engine 2 --
 	--nominal power corr
@@ -253,8 +259,9 @@ function update()
 	local ice3=1+get(eng3_ice)*0.4
 	-- total correction
 	local FF_3_corr = 0
+	press_fluct = (0.5556 * sys_data_tbl.eng_fuel_p_factor_3 -0.5556) * 0.05
 	if passed ~= 0 then
-		FF_3_corr=FF_3*(1-FF_d_isa_corr*FF_isa_corr_3_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_3)*KPP_corr_3+corr_idle_3 + math.max(0,(filling_3 - filling_3_prev) / passed) * 2000
+		FF_3_corr=FF_3*(1-FF_d_isa_corr*FF_isa_corr_3_fade*interpolate(isa_corr_alt_fade_tbl,alt_baro/1000))*(1-corr_3)*KPP_corr_3 * (1 +  press_fluct * math.sin( 1.5 * (fluct_timer + math.random() * 0.5)))+corr_idle_3 + math.max(0,(filling_3 - filling_3_prev) / passed) * 2000
 	end
 	-- check for NaN
 	if FF_1_corr~=FF_1_corr then

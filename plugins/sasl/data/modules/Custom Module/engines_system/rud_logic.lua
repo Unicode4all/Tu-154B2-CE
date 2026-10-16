@@ -152,6 +152,8 @@ control_thro_other = globalPropertyf("tu154b2/custom/SC/control_thro_other") -- 
 -- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
 -- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
 -- db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
+-- db5 = globalPropertyf("tu154b2/custom/controlls/debug5")
+-- db6 = globalPropertyf("tu154b2/custom/controlls/debug6")
 
 
 local t1_corr=0
@@ -187,6 +189,11 @@ local i_kvd_3=0
 local n2_tgt1=55
 local n2_tgt2=55
 local n2_tgt3=55
+
+sys_data_tbl.eng_fuel_airplug_1 = 0
+sys_data_tbl.eng_fuel_airplug_2 = 0
+sys_data_tbl.eng_fuel_airplug_3 = 0
+
 local kpp_table={{-1, 0 }, 
 					{  0, 0}, 
 					{  50, 0.0}, 
@@ -593,42 +600,68 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	-- rud_lim_2=interpolate(rud_lim_tbl,kvd2)*get(db1)
 	-- rud_lim_3=interpolate(rud_lim_tbl,kvd3)*get(db1)
 	-- set(db2,rud_lim_2)
-	rud_lim=0.25
+	local rud_lim_1 = 0.25 * math.pow(sys_data_tbl.eng_fuel_p_factor_1,3) * (1 - sys_data_tbl.eng_fuel_airplug_1) - 0.015 * sys_data_tbl.eng_fuel_airplug_1
+	if d_kvd_1 < -sys_data_tbl.eng_fuel_p_factor_1 and sys_data_tbl.eng_fuel_p_factor_1 ~= 1 and sys_data_tbl.eng_fuel_airplug_1 == 0 then
+		rud_lim_1 = math.max(-0.01 * math.pow(d_kvd_1,2) * 2,-0.1)
+		if d_kvd_1 < -0.8 then
+			sys_data_tbl.eng_fuel_airplug_1 = 1
+		end
+	end	
+	-- set(db4,rud_lim_1)
+	-- set(db3,d_kvd_1)
+	-- if get(db2)> d_kvd_1 then
+		-- set(db2,d_kvd_1)
+	-- end
+		
+	local rud_lim_2 = 0.25 * math.pow(sys_data_tbl.eng_fuel_p_factor_1,2) * (1 - sys_data_tbl.eng_fuel_airplug_2) - 0.07 * sys_data_tbl.eng_fuel_airplug_2
+	if d_kvd_2 < -sys_data_tbl.eng_fuel_p_factor_2 and sys_data_tbl.eng_fuel_p_factor_2 ~= 1 and sys_data_tbl.eng_fuel_airplug_2 == 0 then
+		rud_lim_2 = math.max(-0.01 * math.pow(d_kvd_2,2) * 1.5,-0.1)
+		if d_kvd_2 < -1.5 then
+			sys_data_tbl.eng_fuel_airplug_2 = 1
+		end
+	end
+	local rud_lim_3 = 0.25 * math.pow(sys_data_tbl.eng_fuel_p_factor_3,3) * (1 - sys_data_tbl.eng_fuel_airplug_3) - 0.014 * sys_data_tbl.eng_fuel_airplug_3
+	if d_kvd_3 < -sys_data_tbl.eng_fuel_p_factor_3 and sys_data_tbl.eng_fuel_p_factor_3 ~= 1 and sys_data_tbl.eng_fuel_airplug_3 == 0 then
+		rud_lim_3 = math.max(-0.01 * math.pow(d_kvd_3,2) * 2.05,-0.1)
+		if d_kvd_3 < -0.8 then
+			sys_data_tbl.eng_fuel_airplug_3 = 1
+		end
+	end
 	local idle_lim_1=2*bool2int(kvd1>55.5-spread_coeff/2-1.3)
 	if kvd1<55.5-spread_coeff/2-idle_lim_1 then
-		contr_1_spd=-rud_lim
+		contr_1_spd=-rud_lim_1
 	end
 	local idle_lim_2=2*bool2int(kvd2>55.5-spread_coeff/3-1.3)
 	if kvd2<55.5-spread_coeff/3-idle_lim_2 then
-		contr_2_spd=-rud_lim
+		contr_2_spd=-rud_lim_2
 	end
 	local idle_lim_3=2*bool2int(kvd3>55.5-spread_coeff-1.3)
 	if kvd3<55.5-spread_coeff-idle_lim_3 then
-		contr_3_spd=-rud_lim
+		contr_3_spd=-rud_lim_3
 	end
 	
 	--limit thorttle speed
 	if kvd1<min_idle then
-		contr_1_spd=math.min(contr_1_spd,rud_lim/(1+alt_baro/2000))
+		contr_1_spd=math.min(contr_1_spd,rud_lim_1/(1+alt_baro/2000))
 	end	
 	if kvd2<min_idle then
-		contr_2_spd=math.min(contr_2_spd,rud_lim/(1+alt_baro/2000))
+		contr_2_spd=math.min(contr_2_spd,rud_lim_2/(1+alt_baro/2000))
 	end	
 	if kvd3<min_idle then
-		contr_3_spd=math.min(contr_3_spd,rud_lim/(1+alt_baro/2000))
+		contr_3_spd=math.min(contr_3_spd,rud_lim_3/(1+alt_baro/2000))
 	end	
-	if contr_1_spd>rud_lim then
-		contr_1_spd=rud_lim
+	if contr_1_spd>rud_lim_1 then
+		contr_1_spd=rud_lim_1
 	-- elseif contr_1_spd<-rud_lim then
 		-- contr_1_spd=-rud_lim
 	end	
-	if contr_2_spd>rud_lim then
-		contr_2_spd=rud_lim
+	if contr_2_spd>rud_lim_2 then
+		contr_2_spd=rud_lim_2
 	-- elseif contr_2_spd<-rud_lim_2 then
 		-- contr_2_spd=-rud_lim_2
 	end
-	if contr_3_spd>rud_lim then
-		contr_3_spd=rud_lim
+	if contr_3_spd>rud_lim_3 then
+		contr_3_spd=rud_lim_3
 	-- elseif contr_3_spd<-rud_lim_3 then
 		-- contr_3_spd=-rud_lim_3
 	end
@@ -700,35 +733,23 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	-- limit max throttle with declining fuel pressure and create fluctuation
 	if contr_1<0 then
 		contr_1=0
-	elseif contr_1>sys_data_tbl.eng_fuel_p_factor_1 then
-		contr_1=sys_data_tbl.eng_fuel_p_factor_1
 	end
-	local delta_fuel = sys_data_tbl.eng_fuel_p_factor_1 - contr_1
-	if delta_fuel < 0.1 then
-		contr_1 = contr_1 + ((0.03395) / (delta_fuel +  0.02371) -0.1) * math.random(-1,1) * 0.03
-	end
-	
+	contr_1 = contr_1 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_1 + 0.5556)
+	-- set(db3,d_kvd_1)
+	-- if get(db2)> d_kvd_1 then
+		-- set(db2,d_kvd_1)
+	-- end
 	contr_2=contr_2+contr_2_spd*passed
 	if contr_2<0 then
 		contr_2=0
-	elseif contr_2>sys_data_tbl.eng_fuel_p_factor_2 then
-		contr_2=sys_data_tbl.eng_fuel_p_factor_2
 	end
-	delta_fuel = sys_data_tbl.eng_fuel_p_factor_2 - contr_2
-	if delta_fuel < 0.1 then
-		contr_2 = contr_2 + ((0.03395) / (delta_fuel +  0.02371) -0.1) * math.random(-1,1) * 0.025
-	end
+	contr_2 = contr_2 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_2 + 0.5556)
 	
 	contr_3=contr_3+contr_3_spd*passed
 	if contr_3<0 then
 		contr_3=0
-	elseif contr_3>sys_data_tbl.eng_fuel_p_factor_3 then
-		contr_3=sys_data_tbl.eng_fuel_p_factor_3
 	end
-	delta_fuel = sys_data_tbl.eng_fuel_p_factor_3 - contr_3
-	if delta_fuel < 0.1 then
-		contr_3 = contr_3 + ((0.03395) / (delta_fuel +  0.02371) -0.1) * math.random(-1,1) * 0.031
-	end
+	contr_3 = contr_3 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_3 + 0.5556)
 	
 	local MASTER = get(ismaster) ~= 1	
 		

@@ -21656,13 +21656,12 @@ ANIM_end
 #ATTR_shiny_rat 0.100000
 #TRIS 40974 66
 #ANIM_end
-
+ATTR_shiny_rat 0.200000
+TRIS 40287 174
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
-ATTR_shiny_rat 0.200000
-TRIS 40287 174
 ATTR_shiny_rat 0.100000
 TRIS 40974 66
 ATTR_shiny_rat 0.100000

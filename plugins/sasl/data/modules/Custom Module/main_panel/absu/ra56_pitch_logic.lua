@@ -112,7 +112,7 @@ function update()
 			local sprd = 0 --get(spread)
 			local v_lim_base_1=2.10 + 0.5 * sprd
 			local v_lim_base_2=2.0 - 0.5 * sprd
-			local v_lim_base_3=2.6  + 0.1 * sprd
+			local v_lim_base_3=2.3  + 0.1 * sprd
 			local gs1=math.max(get(gs_press_1),1)
 			local gs2=math.max(get(gs_press_2),1)
 			local gs3=math.max(get(gs_press_3),1)
@@ -245,7 +245,7 @@ function update()
 				v_ra56 = (v_ra[0] * (1-fail1) + v_ra[1] * (1-fail2) + v_ra[2] * (1-fail3)) / (3-fail1-fail2-fail3) -- servo speed as mean of channel speeds
 				local c_yoke = 0
 				if v_yoke ~= 0 then
-					c_yoke = math.max(0,-2.360925747810605 * math.pow(math.abs(v_yoke),-0.073013223183586)+2.357218227854616) * 1.25 -- yoke movement coefficient (works opposite servo direction)
+					c_yoke = math.max(0,-2.360925747810605 * math.pow(math.abs(v_yoke),-0.073013223183586)+2.357218227854616) * 1.05 -- yoke movement coefficient (works opposite servo direction)
 				end
 				ra56_act = ra56_act + (v_ra56-centr - c_yoke * v_yoke)*dt
 			else

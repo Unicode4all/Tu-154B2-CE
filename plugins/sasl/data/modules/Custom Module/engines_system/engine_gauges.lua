@@ -334,6 +334,13 @@ function oil_temp(flow,nk8_temp,rpm,rpm_knd,pump_press,oil_tmp_prev,case_prev,br
 		return oil_tmp,case_temp,brg_temp
 end
 
+function oil_press(rpm,temp)
+		temp = math.min(temp,100)
+		local c_visc = 1.986249045072574e-05 * math.pow(temp,2)  -0.004049 * temp + 1.056
+		local press = 0.05615 * rpm * c_visc
+		return press
+end
+
 local function vibra_gau()
 
 	local vibr = 0
@@ -439,11 +446,9 @@ local fuel_P_table = {{ -100000, 0.0 },    -- bugs walkaround
           	      {  1000000000, 60 }}    -- bugs walkaround	
 
 local oil_P_table = {{ -100000, 0.0 },    -- bugs walkaround
-				  {  15, 1 },
-				  {  20, 6 },				  -- 
-           	      {  70, 38 }, -- 
-				  {  100, 43 },    -- 
-          	      {  1000000000, 40 }}    -- bugs walkaround	
+				  {  0, 0 },
+				  {  100, 5.55 },				  -- 
+          	      {  1000, 5.55 }}    -- bugs walkaround	
 				  
 local case_t_table = {{ -100000, 0.01 },    -- bugs walkaround
 				  {  0, 0.01 },
@@ -468,9 +473,9 @@ local function emi3()
 	local oilT_3 = -50
 	
 	local rep_mode=get(replay)
-	sys_data_tbl.eng_oil_p_1 = math.min(interpolate(oil_P_table, get(eng1_N2)) * 0.11 * 1/(get(oil_t_1)*0.27/80+0.85)*(1-get(oil_pump_otk_1)/6),4.0)-- * gau_1_on 
-	sys_data_tbl.eng_oil_p_2 = math.min(interpolate(oil_P_table, get(eng2_N2)) * 0.11* 1/(get(oil_t_2)*0.27/80+0.85)*(1-get(oil_pump_otk_2)/6),4.1)-- * gau_2_on
-	sys_data_tbl.eng_oil_p_3 = math.min(interpolate(oil_P_table, get(eng3_N2)) * 0.11* 1/(get(oil_t_3)*0.27/80+0.85)*(1-get(oil_pump_otk_3)/6),4.05)-- * gau_3_on
+	sys_data_tbl.eng_oil_p_1 = math.min(oil_press(get(eng1_N2),oil_tmp_1) * (1 - get(oil_pump_otk_1) / 6),4.0)-- * gau_1_on 
+	sys_data_tbl.eng_oil_p_2 = math.min(oil_press(get(eng2_N2),oil_tmp_2) * (1 - get(oil_pump_otk_2) / 6),4.1)-- * gau_2_on
+	sys_data_tbl.eng_oil_p_3 = math.min(oil_press(get(eng3_N2),oil_tmp_3) * (1 - get(oil_pump_otk_3) / 6),4.05)-- * gau_3_on
 	if power_36_L then 
 		fuelP_1 = sys_data_tbl.eng_nozzle_pressure_1
 		oilP_gauge_1 = sys_data_tbl.eng_oil_p_1

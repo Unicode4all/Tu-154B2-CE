@@ -101,6 +101,7 @@ bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
 -- time
 frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
+kontur = globalPropertyi("tu154b2/custom/b2/kontur_on")
 
 
 -- fuel press after pumps
@@ -457,7 +458,7 @@ function update()
 		pump1_2_work = get(pump_tank1_2) * bool2int(get(fuel_pump_1_fail) < 4)*power_avtR
 		pump1_3_work = get(pump_tank1_3) * bool2int(get(fuel_pump_1_fail) < 3)*power_avtL
 		pump1_4_work = get(pump_tank1_4) * bool2int(get(fuel_pump_1_fail) < 2)*power_avtR
-		local res_pump_on = bool2int((get(gen_volt_1) < 100 and get(gen_volt_2) < 100 and get(gen_volt_3) < 100 and get(deflection_mtr_2) < 0.1) or get(res_pump) > 0)
+		local res_pump_on = bool2int((((get(gen_volt_1) < 100 and get(gen_volt_2) < 100 and get(gen_volt_3) < 100) or (pump_1_1_P +pump_1_2_P + pump_1_3_P + pump_1_4_P < 3.5 and get(kontur) == 1)) and get(deflection_mtr_2) < 0.1) or get(res_pump) > 0)
 		pump_res_work = res_pump_on * bool2int(get(res_pump_fail) < 1 and power_27R)
 	end
 	

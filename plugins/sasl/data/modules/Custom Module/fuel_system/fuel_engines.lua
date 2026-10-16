@@ -86,6 +86,20 @@ flt_idle = globalPropertyf("tu154b2/custom/engines/flight_idle")
 ismaster = globalPropertyf("scp/api/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
 hascontrol_1 = globalPropertyf("scp/api/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
+local ezn_tbl = {{ -10, 1.7 },    -- bugs walkaround
+                  {  0, 1.7 },
+				  { 2.77, 1.55 }, 
+				  { 3.33, 1.25 }, 
+				  {  4.1, 0 },
+          	      {  100, 0 }}    -- bugs walkaround
+
+local ezn2_tbl = {{ -10, 1 },    -- bugs walkaround
+                  {  0, 1 },
+				  { 0.8, 1 }, 
+				  {  1.5, 0 },
+          	      {  100, 0 }}    -- bugs walkaround
+
+
 
 local rod_on_L = loadSample(moduleDirectory .. '/Custom Sounds/ROD_ON_L.wav')
 local rod_off_L = loadSample(moduleDirectory .. '/Custom Sounds/ROD_OFF_L.wav')
@@ -143,7 +157,7 @@ local function inn_balance (src_x, src_z, x, z , cam_hdg)
 	return ch_L, ch_R
 end
 
-local c_eng_p = 0.002
+local c_eng_p = 0.0435
 
 local valve_1 = 0.7
 local valve_2 = 0.7
@@ -168,6 +182,8 @@ local filled_3 = 1
 local kvd_1_prev = get(rpm1)
 local kvd_2_prev = get(rpm2)
 local kvd_3_prev = get(rpm3)
+
+local c_flow = 0.1
 
 
 function update()
@@ -312,40 +328,42 @@ function update()
 	
 	-- fuel pressures
 	local tank_1 = get(tank1_w) / 0.78
-	local Flow_1 = get(FF_1)
-	local Flow_2 = get(FF_2)
-	local Flow_3 = get(FF_3)
+	local Flow_1 = get(FF_1) / 3600 / 0.78
+	local Flow_2 = get(FF_2) / 3600 / 0.78
+	local Flow_3 = get(FF_3) / 3600 / 0.78
 	local kvd_1 = get(rpm1)
 	local kvd_2 = get(rpm2)
 	local kvd_3 = get(rpm3)
 	local pressure_ambient = get(p_amb)
 	local p_head = pressure_ambient / 101325
-	-- pressure from feed tanks
-	local pump_press = math.max(sys_data_tbl.eng_feed_p_1 + sys_data_tbl.eng_feed_p_2 + sys_data_tbl.eng_feed_p_3 + sys_data_tbl.eng_feed_p_4 + sys_data_tbl.eng_feed_res * 0.6 - (Flow_1 + Flow_2 + Flow_3) / 17000,0)
-	local press_feed = pump_press + p_head / 2
-	-- pressure from engine driven pumps
+	-- pump pressures
+	local p_pumps = 0
+	local p_res = 0
+	if sys_data_tbl.eng_feed_p_1 + sys_data_tbl.eng_feed_p_2 +sys_data_tbl.eng_feed_p_3 +sys_data_tbl.eng_feed_p_4 > 0.3 then
+		local F_tot = (Flow_1 + Flow_2 + Flow_3) / (sys_data_tbl.eng_feed_p_1 + sys_data_tbl.eng_feed_p_2 +sys_data_tbl.eng_feed_p_3 +sys_data_tbl.eng_feed_p_4)
+		p_pumps = interpolate(ezn_tbl,F_tot)
+	end
+	if sys_data_tbl.eng_feed_res > 0 then
+		p_res = interpolate(ezn2_tbl,Flow_1 + Flow_2 + Flow_3)
+	end
+	-- common feed line pressure
+	local press_feed = p_pumps + p_res + p_head
+	-- pressure after engine drive pump
 	local press_eng_1 = kvd_1 * c_eng_p
 	local press_eng_2 = kvd_2 * c_eng_p
 	local press_eng_3 = kvd_3 * c_eng_p
-	-- fuel line pressures
-	if Flow_1 > 10 then
-		press_1 = (press_1 + ((press_feed * valve_1 + press_eng_1 - Flow_1 / 15000 - press_1) ) * passed * 5) * filled_1
-	else
-		press_1 = (press_1 + ((press_feed-press_1) * valve_1 * 5 - press_1 * 0.001 ) * passed) * filled_1
-	end
-	if Flow_2 > 10 then
-		press_2 = (press_2 + ((press_feed * valve_2 + press_eng_2 - Flow_2 / 15000 - press_2) ) * passed * 5) * filled_2
-	else
-		press_2 = (press_2 + ((press_feed-press_2) * valve_2 * 5 - press_2  * 0.001 ) * passed) * filled_2
-	end
-	if Flow_3 > 10 then
-		press_3 = (press_3 + ((press_feed * valve_3 + press_eng_3 - Flow_3 / 15000 - press_3) ) * passed * 5) * filled_3
-	else
-		press_3 = (press_3 + ((press_feed-press_3) * valve_3 * 5 - press_3 * 0.001 ) * passed) * filled_3
-	end
+	-- fuel line and regulator pump inlet pressures
+	press_1 = (press_1 + ((press_feed - press_1 - c_flow * Flow_1) * valve_1 * 5 - (press_1 - p_head) * 0.001 ) * passed) * filled_1
+	local press_nr_1 = math.min(5, press_1 + press_eng_1) * filled_1 * bool2int(math.random() < -0.6852 * math.pow(sys_data_tbl.eng_fuel_p_factor_1,2) + 1.198 * sys_data_tbl.eng_fuel_p_factor_1 + 0.488 - sys_data_tbl.eng_fuel_airplug_1 * 0.5)
 	
-	-- fill fuel lines (fuel line holds approx. 60 L)
-	sys_data_tbl.eng_line_fill_1 = sys_data_tbl.eng_line_fill_1 + passed * bool2int(press_feed + press_eng_1 > p_head / 2 and tank_1 > 130) * valve_1  - passed * Flow_1 / 3600 / 0.77 / (valve_1 * 49 + 1) * (1 - math.min(valve_1,bool2int(tank_1 > 130))) 
+	press_2 = (press_2 + ((press_feed - press_2 - c_flow * Flow_2) * valve_2 * 5 - (press_2 - p_head) * 0.001 ) * passed) * filled_2	
+	local press_nr_2 = math.min(5, press_2 + press_eng_2 ) * filled_2 * bool2int(math.random() < 0.05619 * sys_data_tbl.eng_fuel_p_factor_2 + 0.946 - sys_data_tbl.eng_fuel_airplug_2 * 0.5)
+	
+	press_3 = (press_3 + ((press_feed - press_3 - c_flow * Flow_3) * valve_3 * 5 - (press_3 - p_head) * 0.001 ) * passed) * filled_3	
+	local press_nr_3 = math.min(5, press_3 + press_eng_3 ) * filled_3 * bool2int(math.random() < -0.6852 * math.pow(sys_data_tbl.eng_fuel_p_factor_3,2) + 1.198 * sys_data_tbl.eng_fuel_p_factor_3 + 0.488 - sys_data_tbl.eng_fuel_airplug_3 * 0.5)
+	
+	-- fill fuel lines (fuel line holds approx. 60 L) or drain them, depending on fire valve and pumps/FF
+	sys_data_tbl.eng_line_fill_1 = sys_data_tbl.eng_line_fill_1 + passed * bool2int(press_feed + press_eng_1 > p_head + 0.08 and tank_1 > 130) * valve_1  - passed * Flow_1 / (valve_1 * 49 + 1) * (1 - math.min(valve_1,bool2int(tank_1 > 130))) 
 
 	if sys_data_tbl.eng_line_fill_1 > 1 then
 		sys_data_tbl.eng_line_fill_1 = 1
@@ -358,7 +376,7 @@ function update()
 		filled_1 = 1
 	end
 	
-	sys_data_tbl.eng_line_fill_2 = sys_data_tbl.eng_line_fill_2 + passed * bool2int(press_feed + press_eng_2 > p_head / 2 and tank_1 > 145) * valve_2  - passed * Flow_2 / 3600 / 0.77 / (valve_2 * 49 + 1) * (1 - math.min(valve_2,bool2int(tank_1 > 155))) 
+	sys_data_tbl.eng_line_fill_2 = sys_data_tbl.eng_line_fill_2 + passed * bool2int(press_feed + press_eng_2 > p_head + 0.08 and tank_1 > 145) * valve_2  - passed * Flow_2 / (valve_2 * 49 + 1) * (1 - math.min(valve_2,bool2int(tank_1 > 155))) 
 
 	if sys_data_tbl.eng_line_fill_2 > 1 then
 		sys_data_tbl.eng_line_fill_2 = 1
@@ -371,7 +389,7 @@ function update()
 		filled_2 = 1
 	end
 	
-	sys_data_tbl.eng_line_fill_3 = sys_data_tbl.eng_line_fill_3 + passed * bool2int(press_feed + press_eng_3 > p_head / 2 and tank_1 > 155) * valve_3  - passed * Flow_3 / 3600 / 0.77 / (valve_3 * 49 + 1) * (1 - math.min(valve_3,bool2int(tank_1 > 145))) 
+	sys_data_tbl.eng_line_fill_3 = sys_data_tbl.eng_line_fill_3 + passed * bool2int(press_feed + press_eng_3 > p_head + 0.08 and tank_1 > 155) * valve_3  - passed * Flow_3 / (valve_3 * 49 + 1) * (1 - math.min(valve_3,bool2int(tank_1 > 145))) 
 	if sys_data_tbl.eng_line_fill_3 > 1 then
 		sys_data_tbl.eng_line_fill_3 = 1
 	elseif sys_data_tbl.eng_line_fill_3 <0 then
@@ -383,73 +401,67 @@ function update()
 		filled_3 = 1
 	end
 
-	-- engine fails from low pressure condition
-	local low_p_1 = bool2int(press_1 - get(thro_1) > 0.05 and press_1 > p_head * 0.53)
-	local low_p_2 = bool2int(press_2 - get(thro_2) > 0.048 and press_2 > p_head * 0.52)
-	local low_p_3 = bool2int(press_3 - get(thro_3) > 0.052 and press_3 > p_head * 0.525)
-	local idle = get(flt_idle)
-	local kvd_rate_1 = 0
-	--local kvd_rate_2 = 0
-	local kvd_rate_3 = 0
-	if passed ~=0 then
-		kvd_rate_1 = (kvd_1 - kvd_1_prev) / passed
-		--kvd_rate_2 = (kvd_2 - kvd_2_prev) / passed
-		kvd_rate_3 = (kvd_3 - kvd_3_prev) / passed
+	-- low fuel pressure
+	local low_p_1 = bool2int(press_nr_1 >= 1.7)
+	local low_p_2 = bool2int(press_nr_2 > 1.7)
+	local low_p_3 = bool2int(press_nr_3 > 1.71)
+	-- remove airplugs with sufficient pressure
+	if sys_data_tbl.eng_fuel_airplug_1 == 1 and press_1 > 1.1 then
+		sys_data_tbl.eng_fuel_airplug_1 = 0
 	end
-	if kvd_1 < idle - 2 and kvd_rate_1 < - 0.4 and low_p_1 == 0 and Flow_1 > 100 then
-		filled_1 = 0
+	
+	if sys_data_tbl.eng_fuel_airplug_2 == 1 and press_2 > 1.0 then
+		sys_data_tbl.eng_fuel_airplug_2 = 0
 	end
-	-- if kvd_3 < idle - 2 and kvd_rate_3 < - 0.34 then
-		-- filled_3 = 0
-	-- end
-	kvd_1_prev = kvd_1
-	--kvd_2_prev = kvd_2
-	kvd_3_prev = kvd_3
+	
+	if sys_data_tbl.eng_fuel_airplug_3 == 1 and press_3 > 1.1 then
+		sys_data_tbl.eng_fuel_airplug_3 = 0
+	end
+	-- fuel pressure factor. Lower feed pressure leads to engine instability
+	sys_data_tbl.eng_fuel_p_factor_1 = math.max(0,11.25 * math.min(0.36,press_1) -3.05)
+	sys_data_tbl.eng_fuel_p_factor_2 = math.max(0,11.25 * math.min(0.36,press_2+0.05) -3.05)
+	sys_data_tbl.eng_fuel_p_factor_3 = math.max(0,11.25 * math.min(0.36,press_3+0.01) -3.05)
 
 	local MASTER = get(ismaster) ~= 1	
-		
 
 	if MASTER then	
 			-- Nozzle pressures = Compressor discharge pressure + nozzle pressure drop
 		local temp = get(t_amb)
 		local p_rat = pressure_ratio(kvd_1,temp)
-		local dP_noz = nozzle_pressure_drop(Flow_1)
+		local dP_noz = nozzle_pressure_drop(Flow_1*0.78*3600)
 		local nozzle_pressure = p_rat *  pressure_ambient / 101325 + dP_noz
-		
-		-- cut fuel when fire valves and mixture levers are closed
-		if get(fuel_in_1) == 0 or filled_1 == 0 or get(eng_fuel_pmp_fail_1) == 1 or get(rt1_stop) == 1 or mix_1 < 0.7 then 
+		local idle = get(flt_idle)
+		-- cut fuel 
+		if get(fuel_in_1) == 0 or filled_1 == 0 or get(eng_fuel_pmp_fail_1) == 1 or get(rt1_stop) == 1 or mix_1 < 0.7 or (sys_data_tbl.eng_fuel_airplug_1 == 1 and kvd_1 < idle - 7) then 
 			set(engine_1_fuel, 6) set(engine_1_fuel2, 6)
 			nozzle_pressure = 0 
 		else 
 			set(engine_1_fuel, 0) set(engine_1_fuel2, 0) 
 		end
 		sys_data_tbl.eng_nozzle_pressure_1 = nozzle_pressure
-		sys_data_tbl.eng_fuel_p_factor_1 = sys_data_tbl.eng_fuel_p_factor_1 - (sys_data_tbl.eng_fuel_p_factor_1 - press_1) * passed / (2 + 4.5 * bool2int (sys_data_tbl.eng_fuel_p_factor_1 < press_1))
-		
+				
 		p_rat = pressure_ratio(kvd_2,temp)
-		dP_noz = nozzle_pressure_drop(Flow_2)
+		dP_noz = nozzle_pressure_drop(Flow_2*0.78*3600)
 		nozzle_pressure = p_rat *  pressure_ambient / 101325 + dP_noz
-		if get(fuel_in_2) == 0 or filled_2 == 0 or get(eng_fuel_pmp_fail_2) == 1 or get(rt2_stop) == 1 or mix_2 < 0.7 then 
+		if get(fuel_in_2) == 0 or filled_2 == 0 or get(eng_fuel_pmp_fail_2) == 1 or get(rt2_stop) == 1 or mix_2 < 0.7 or (sys_data_tbl.eng_fuel_airplug_2 == 1 and kvd_2 < idle - 9) then 
 			set(engine_2_fuel, 6) set(engine_2_fuel2, 6)
 			nozzle_pressure = 0 
 		else 
 			set(engine_2_fuel, 0) set(engine_2_fuel2, 0) 
 		end
 		sys_data_tbl.eng_nozzle_pressure_2 = nozzle_pressure
-		sys_data_tbl.eng_fuel_p_factor_2 = sys_data_tbl.eng_fuel_p_factor_2 - (sys_data_tbl.eng_fuel_p_factor_2 - press_2) * passed / (2 + 4.5 * bool2int (sys_data_tbl.eng_fuel_p_factor_2 < press_2))
-		
+				
 		p_rat = pressure_ratio(kvd_3,temp)
-		dP_noz = nozzle_pressure_drop(Flow_3)
+		dP_noz = nozzle_pressure_drop(Flow_3*0.78*3600)
 		nozzle_pressure = p_rat *  pressure_ambient / 101325 + dP_noz
-		if get(fuel_in_3) == 0 or filled_3 == 0 or get(eng_fuel_pmp_fail_3) == 1 or get(rt3_stop) == 1 or mix_3 < 0.7 then 
+		if get(fuel_in_3) == 0 or filled_3 == 0 or get(eng_fuel_pmp_fail_3) == 1 or get(rt3_stop) == 1 or mix_3 < 0.7 or (sys_data_tbl.eng_fuel_airplug_3 == 1 and kvd_3 < idle - 7.5) then 
 			set(engine_3_fuel, 6) set(engine_3_fuel2, 6)
 			nozzle_pressure = 0 
 		else 
 			set(engine_3_fuel, 0) set(engine_3_fuel2, 0) 
 		end
 		sys_data_tbl.eng_nozzle_pressure_3 = nozzle_pressure
-		sys_data_tbl.eng_fuel_p_factor_3 =  sys_data_tbl.eng_fuel_p_factor_3 - (sys_data_tbl.eng_fuel_p_factor_3 - press_3) * passed / (2 + 4.5 * bool2int (sys_data_tbl.eng_fuel_p_factor_3 < press_3))
-
+		
 		-- set results
 		set(eng_fuel_press_1, low_p_1)
 		set(eng_fuel_press_2, low_p_2)
@@ -462,8 +474,8 @@ function update()
 		-- set(db1,press_1)
 		-- set(db2,press_2)
 		-- set(db3,press_3)
-		-- set(db4,filled_1)
-		-- set(db5,sys_data_tbl.eng_line_fill_1)
+		-- set(db4,sys_data_tbl.eng_line_fill_2)
+		-- set(db5,press_nr_2)
 
 	end
 

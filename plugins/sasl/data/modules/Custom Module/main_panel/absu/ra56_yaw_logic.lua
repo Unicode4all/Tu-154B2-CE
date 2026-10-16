@@ -244,7 +244,7 @@ function update()
 				v_ra56 = (v_ra[0] * (1-fail1) + v_ra[1] * (1-fail2) + v_ra[2] * (1-fail3)) / (3-fail1-fail2-fail3) -- servo speed as mean of channel speeds
 				local c_yoke = 0
 				if v_yoke ~= 0 then
-					c_yoke = math.max(0,-2.360925747810605 * math.pow(math.abs(v_yoke),-0.073013223183586)+2.357218227854616) * 1.2 -- yoke movement coefficient (works opposite servo direction)
+					c_yoke = math.max(0,-2.360925747810605 * math.pow(math.abs(v_yoke),-0.073013223183586)+2.357218227854616) * 0.9 -- yoke movement coefficient (works opposite servo direction)
 				end
 				ra56_act = ra56_act + (v_ra56-centr - c_yoke * v_yoke)*dt
 			else
