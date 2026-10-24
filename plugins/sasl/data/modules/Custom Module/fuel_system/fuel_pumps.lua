@@ -221,7 +221,7 @@ function update()
 	
 	
 	-- calculate automatic cue mode
-	local auto_fuel_power = power_27R and power115R and get(fuel_flow_on) == 1 and get(fuel_auto_fail) == 0
+	local auto_fuel_power = power_27R and power115R>0 and get(fuel_flow_on) == 1 and get(fuel_auto_fail) == 0
 	local tanks_turn = 0 -- 0 = none, 1 = 2, 2 = 2+3, 3 = 3, 4 = 4
 	if auto_fuel_power then
 		if tank_qty_2L + tank_qty_2R > 7400 then tanks_turn = 1
@@ -389,7 +389,7 @@ function update()
 	
 	
 	-- leveling logic. 		
-	local fuel_level_power = power_27R and power115R	
+	local fuel_level_power = power_27R and power115R>0
 	local fuel_level_bool = fuel_level_power and get(fuel_level) == 1 and get(fuel_meter_on) == 1 and auto_fuel_power and get(fuel_level_fail) == 0 and get(fuel_flow_mode) == 1
 	local fuel_level_exceedance = math.abs(tank_qty_2L - tank_qty_2R) > 820 or math.abs(tank_qty_3L - tank_qty_3R) > 890
 	
@@ -406,7 +406,8 @@ function update()
 		if fuel_level_exceedance then
 			tank_level_2 = 2
 			tank_level_3 = 2
-
+			tank_level_2_start = 0
+			tank_level_3_start = 0
 		else
 			if tank_level_2_start == -1 or tank_qty_2R - tank_qty_2L > 345 then
 				tank_level_2 = -1

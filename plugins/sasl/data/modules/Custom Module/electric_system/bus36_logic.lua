@@ -171,7 +171,7 @@ function update()
 		local bus_2_volt = 0
 		local pts_2_fail = false -- temp
 		
-		if bus_L_volt > 30 then
+		if bus_L_volt > 30 and get(pts250_mode) ~= 1 then
 			bus_2_volt = bus_L_volt
 			set(bus36_amp_left, get(bus36_amp_left) + get(bus36_amp_pts250_2) * 1.05)
 		else
