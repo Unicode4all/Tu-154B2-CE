@@ -143,6 +143,19 @@ simDR_stu_toga = find_dataref("tu154b2/custom/lights/small/stu_toga")
 simDR_at1 = find_dataref("tu154b2/custom/lights/small/at_1")
 simDR_at2 = find_dataref("tu154b2/custom/lights/small/at_2")
 
+simDR_cockpit_mode_set = find_dataref("tu154b2/custom/switchers/airbleed/cockpit_mode_set") -- становка режима обогрева. 0 - нейтр. 1 - авто, 2 - хол, 3 - гор
+simDR_cabin1_mode_set = find_dataref("tu154b2/custom/switchers/airbleed/cabin1_mode_set") -- установка режима обогрева
+simDR_cabin2_mode_set = find_dataref("tu154b2/custom/switchers/airbleed/cabin2_mode_set") -- установка режима обогрева
+
+simDR_left_sys_mode_set = find_dataref("tu154b2/custom/switchers/airbleed/left_sys_mode_set") -- установка режима левой магистрали
+simDR_right_sys_mode_set = find_dataref("tu154b2/custom/switchers/airbleed/right_sys_mode_set") -- установка режима правой магистрали
+simDR_left_vvr_mode_set = find_dataref("sim/custom/b2/vvr_1")
+simDR_right_vvr_mode_set = find_dataref("sim/custom/b2/vvr_2")
+
+simDR_vr = find_dataref("sim/graphics/VR/enabled")
+
+simDR_accum_fill = find_dataref("tu154b2/custom/buttons/hydro/accum_fill")
+
 local zk_lit = 0
 local reset_lit = 0
 local nvu_lit = 0
@@ -689,6 +702,38 @@ function tks_align_CMDhandler(phase, duration)
     end
 end
 
+function kskv_xol_CMDhandler(phase, duration)
+    if phase == 1 then
+        simDR_left_sys_mode_set = 2
+        simDR_right_sys_mode_set = 2
+        simDR_left_vvr_mode_set = 2
+        simDR_right_vvr_mode_set = 2
+        if simDR_vr == 0 then
+            simDR_cockpit_mode_set = 2
+            simDR_cabin1_mode_set = 2
+            simDR_cabin2_mode_set = 2
+        end
+    elseif phase == 2 then
+        simDR_left_sys_mode_set = 0
+        simDR_right_sys_mode_set = 0
+        simDR_left_vvr_mode_set = 0
+        simDR_right_vvr_mode_set = 0
+        if simDR_vr == 0 then
+            simDR_cockpit_mode_set = 0
+            simDR_cabin1_mode_set = 0
+            simDR_cabin2_mode_set = 0
+        end
+    end
+end
+
+function accum_fill_CMDhandler(phase, duration)
+    if phase == 1 then
+        simDR_accum_fill=1
+	elseif phase==2 then
+		simDR_accum_fill=0
+    end
+end
+
 
 
 checklist_next_cmnd	= create_command("t154/checklist_next", " Checklist next", checklist_next_CMDhandler)
@@ -747,6 +792,10 @@ TKS_right_CMD	= create_command("t154/tks/TKS_set_right", "TKS_set_right", tks_ri
 TKS_corr_main_CMD	= create_command("t154/tks/TKS_correct_main", "TKS_correct_main", tks_corr_main_CMDhandler)
 TKS_corr_backup_CMD	= create_command("t154/tks/TKS_correct_control", "TKS_correct_control", tks_corr_backup_CMDhandler)
 TKS_align_CMD	= create_command("t154/tks/TKS_sync", "TKS_sync button", tks_align_CMDhandler)
+
+KSKV_xol_CMD = create_command("t154/kskv/switches_xol", "Hold KSKV Switches in XOL.", kskv_xol_CMDhandler)
+
+accum_fill_CMD = create_command("t154/hydro/accum_fill", "Accum fill", accum_fill_CMDhandler)
 
 function systems()
 
