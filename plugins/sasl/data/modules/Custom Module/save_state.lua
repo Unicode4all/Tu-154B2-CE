@@ -95,6 +95,19 @@ defineProperty("icao_wx_2", globalPropertyi("sim/custom/t154_efb/wx_icao2"))
 defineProperty("icao_wx_3", globalPropertyi("sim/custom/t154_efb/wx_icao3"))
 defineProperty("icao_wx_4", globalPropertyi("sim/custom/t154_efb/wx_icao4"))
 
+defineProperty("icao_dep2_1", globalPropertyi("sim/custom/t154_efb2/fork_dep1"))
+defineProperty("icao_dep2_2", globalPropertyi("sim/custom/t154_efb2/fork_dep2"))
+defineProperty("icao_dep2_3", globalPropertyi("sim/custom/t154_efb2/fork_dep3"))
+defineProperty("icao_dep2_4", globalPropertyi("sim/custom/t154_efb2/fork_dep4"))
+defineProperty("icao_arr2_1", globalPropertyi("sim/custom/t154_efb2/fork_arr1"))
+defineProperty("icao_arr2_2", globalPropertyi("sim/custom/t154_efb2/fork_arr2"))
+defineProperty("icao_arr2_3", globalPropertyi("sim/custom/t154_efb2/fork_arr3"))
+defineProperty("icao_arr2_4", globalPropertyi("sim/custom/t154_efb2/fork_arr4"))
+defineProperty("icao_wx2_1", globalPropertyi("sim/custom/t154_efb2/wx_icao1"))
+defineProperty("icao_wx2_2", globalPropertyi("sim/custom/t154_efb2/wx_icao2"))
+defineProperty("icao_wx2_3", globalPropertyi("sim/custom/t154_efb2/wx_icao3"))
+defineProperty("icao_wx2_4", globalPropertyi("sim/custom/t154_efb2/wx_icao4"))
+
 
 defineProperty("slider0", globalPropertyi("tu154b2/custom/lights/left_pkp_set"))
 defineProperty("slider1", globalPropertyi("tu154b2/custom/lights/right_pkp_set"))
@@ -625,6 +638,19 @@ local var_table = {}
     var_table["icaoWx2"] = get(icao_wx_2)
     var_table["icaoWx3"] = get(icao_wx_3)
     var_table["icaoWx4"] = get(icao_wx_4)
+	
+	var_table["icaoDep21"] = get(icao_dep2_1)
+    var_table["icaoDep22"] = get(icao_dep2_2)
+    var_table["icaoDep23"] = get(icao_dep2_3)
+    var_table["icaoDep24"] = get(icao_dep2_4)
+    var_table["icaoArr21"] = get(icao_arr2_1)
+    var_table["icaoArr22"] = get(icao_arr2_2)
+    var_table["icaoArr23"] = get(icao_arr2_3)
+    var_table["icaoArr24"] = get(icao_arr2_4)
+    var_table["icaoWx21"] = get(icao_wx2_1)
+    var_table["icaoWx22"] = get(icao_wx2_2)
+    var_table["icaoWx23"] = get(icao_wx2_3)
+    var_table["icaoWx24"] = get(icao_wx2_4)
 
 
 
@@ -1133,6 +1159,19 @@ local function write_file()
         savefile:write("icaoWx2="..get(icao_wx_2).."\n")
         savefile:write("icaoWx3="..get(icao_wx_3).."\n")
         savefile:write("icaoWx4="..get(icao_wx_4).."\n")
+		
+		savefile:write("icaoDep21="..get(icao_dep2_1).."\n")
+        savefile:write("icaoDep22="..get(icao_dep2_2).."\n")
+        savefile:write("icaoDep23="..get(icao_dep2_3).."\n")
+        savefile:write("icaoDep24="..get(icao_dep2_4).."\n")
+        savefile:write("icaoArr21="..get(icao_arr2_1).."\n")
+        savefile:write("icaoArr22="..get(icao_arr2_2).."\n")
+        savefile:write("icaoArr23="..get(icao_arr2_3).."\n")
+        savefile:write("icaoArr24="..get(icao_arr2_4).."\n")
+        savefile:write("icaoWx21="..get(icao_wx2_1).."\n")
+        savefile:write("icaoWx22="..get(icao_wx2_2).."\n")
+        savefile:write("icaoWx23="..get(icao_wx2_3).."\n")
+        savefile:write("icaoWx24="..get(icao_wx2_4).."\n")
         
         
 
@@ -1645,19 +1684,31 @@ local function read_file()
             
             
             
-        if var_table["icaoDep1"] then set(icao_dep_1, var_table["icaoDep1"]) end
-        if var_table["icaoDep2"] then set(icao_dep_2, var_table["icaoDep2"]) end
-        if var_table["icaoDep3"] then set(icao_dep_3, var_table["icaoDep3"]) end
-        if var_table["icaoDep4"] then set(icao_dep_4, var_table["icaoDep4"]) end
-        if var_table["icaoArr1"] then set(icao_arr_1, var_table["icaoArr1"]) end
-        if var_table["icaoArr2"] then set(icao_arr_2, var_table["icaoArr2"]) end
-        if var_table["icaoArr3"] then set(icao_arr_3, var_table["icaoArr3"]) end
-        if var_table["icaoArr4"] then set(icao_arr_4, var_table["icaoArr4"]) end
-        if var_table["icaoWx1"] then set(icao_wx_1, var_table["icaoWx1"]) end
-        if var_table["icaoWx2"] then set(icao_wx_2, var_table["icaoWx2"]) end
-        if var_table["icaoWx3"] then set(icao_wx_3, var_table["icaoWx3"]) end
-        if var_table["icaoWx4"] then set(icao_wx_4, var_table["icaoWx4"]) end
+        if var_table["icaoDep1"] then set(icao_dep_1, math.max(1,var_table["icaoDep1"])) end
+        if var_table["icaoDep2"] then set(icao_dep_2, math.max(1,var_table["icaoDep2"])) end
+        if var_table["icaoDep3"] then set(icao_dep_3, math.max(1,var_table["icaoDep3"])) end
+        if var_table["icaoDep4"] then set(icao_dep_4, math.max(1,var_table["icaoDep4"])) end
+        if var_table["icaoArr1"] then set(icao_arr_1, math.max(1,var_table["icaoArr1"])) end
+        if var_table["icaoArr2"] then set(icao_arr_2, math.max(1,var_table["icaoArr2"])) end
+        if var_table["icaoArr3"] then set(icao_arr_3, math.max(1,var_table["icaoArr3"])) end
+        if var_table["icaoArr4"] then set(icao_arr_4, math.max(1,var_table["icaoArr4"])) end
+        if var_table["icaoWx1"] then set(icao_wx_1, math.max(1,var_table["icaoWx1"])) end
+        if var_table["icaoWx2"] then set(icao_wx_2, math.max(1,var_table["icaoWx2"])) end
+        if var_table["icaoWx3"] then set(icao_wx_3, math.max(1,var_table["icaoWx3"])) end
+        if var_table["icaoWx4"] then set(icao_wx_4, math.max(1,var_table["icaoWx4"])) end
         
+		if var_table["icaoDep21"] then set(icao_dep2_1, math.max(1,var_table["icaoDep21"])) end
+        if var_table["icaoDep22"] then set(icao_dep2_2, math.max(1,var_table["icaoDep22"])) end
+        if var_table["icaoDep23"] then set(icao_dep2_3, math.max(1,var_table["icaoDep23"])) end
+        if var_table["icaoDep24"] then set(icao_dep2_4, math.max(1,var_table["icaoDep24"])) end
+        if var_table["icaoArr21"] then set(icao_arr2_1, math.max(1,var_table["icaoArr21"])) end
+        if var_table["icaoArr22"] then set(icao_arr2_2, math.max(1,var_table["icaoArr22"])) end
+        if var_table["icaoArr23"] then set(icao_arr2_3, math.max(1,var_table["icaoArr23"])) end
+        if var_table["icaoArr24"] then set(icao_arr2_4, math.max(1,var_table["icaoArr24"])) end
+        if var_table["icaoWx21"] then set(icao_wx2_1, math.max(1,var_table["icaoWx21"])) end
+        if var_table["icaoWx22"] then set(icao_wx2_2, math.max(1,var_table["icaoWx22"])) end
+        if var_table["icaoWx23"] then set(icao_wx2_3, math.max(1,var_table["icaoWx23"])) end
+        if var_table["icaoWx24"] then set(icao_wx2_4, math.max(1,var_table["icaoWx24"])) end
         
         
         

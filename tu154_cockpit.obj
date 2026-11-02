@@ -5,7 +5,7 @@ OBJ
 GLOBAL_cockpit_lit
 GLOBAL_specular 1.0
 
-POINT_COUNTS 12568 0 0 26763
+POINT_COUNTS 12574 0 0 26769
 VT 4.031418 -5.900269 -21.786407 1.000000 0.000000 0.000000 0.491074 0.381088
 VT 4.031418 -5.900269 -14.257599 1.000000 0.000000 0.000000 0.491074 0.349091
 VT 4.031418 -3.886215 -21.786407 1.000000 0.000000 0.000000 0.466797 0.381088
@@ -12574,6 +12574,12 @@ VT 0.240417 -1.871460 -21.558319 -1.000000 0.000000 0.000000 0.480255 0.348221
 VT 0.240417 -1.873596 -21.571304 -1.000000 0.000000 0.000000 0.480255 0.352142
 VT 0.240417 -1.863937 -21.572891 -1.000000 0.000000 0.000000 0.484711 0.352142
 VT 0.240417 -1.861801 -21.559906 -1.000000 0.000000 0.000000 0.484711 0.348221
+VT	-0.87170398	-1.538269	-21.239304	0.83566767	0.083697923	0.54282063	0.75005382	0
+VT	-0.88143897	-1.404541	-21.244995	0.83565497	0.083933778	0.54280382	0.75005382	0.235641
+VT	-0.77654999	-1.403717	-21.406601	0.83580542	0.083812624	0.54259068	0.9992919	0.235641
+VT	-0.76681501	-1.53743	-21.401001	0.83581811	0.083576746	0.54260743	0.9992919	0
+VT	-0.87170398	-1.538269	-21.239304	0.83566767	0.083697923	0.54282063	0.75005382	0
+VT	-0.77654999	-1.403717	-21.406601	0.83580542	0.083812624	0.54259068	0.9992919	0.235641
 IDX10 0 1 2 2 1 3 4 5 6 6
 IDX10 5 7 8 9 10 10 9 11 12 13
 IDX10 14 14 13 15 16 17 18 18 17 19
@@ -15253,6 +15259,12 @@ IDX10 12558 12560 12561 12562 12563 12561 12560 12564 12565 12566
 IDX 12564
 IDX 12566
 IDX 12567
+IDX	12568
+IDX	12569
+IDX	12570
+IDX	12571
+IDX	12572
+IDX	12573
 ATTR_layer_group Cockpit 0
 ANIM_begin
 ANIM_hide 0.000000 0.001000 tu154b2/custom/anim/gpu_work
@@ -21313,7 +21325,7 @@ ANIM_end
 
 
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/enabled
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/enabled
 
 ANIM_trans 1.632468  0 0 1.632468  0 0 0.000000 0.000000 none
 			ANIM_trans_begin tu154b2/custom/anim/cockpit_window_right
@@ -21353,10 +21365,10 @@ ANIM_trans 1.632468  0 0 1.632468  0 0 0.000000 0.000000 none
 
 
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/power
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/power
 ANIM_begin
-ANIM_hide 0.000000 200.000000 sim/custom/t154_efb/page
-ANIM_show 1.000000 1.000000 sim/custom/t154_efb/page
+ANIM_hide 0.000000 200.000000 sim/custom/t154_efb2/page
+ANIM_show 1.000000 1.000000 sim/custom/t154_efb2/page
 ANIM_begin
 ATTR_draw_enable
 ATTR_cockpit
@@ -21407,8 +21419,8 @@ TRIS 21861 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 200.000000 sim/custom/t154_efb/page
-ANIM_show 11.000000 11.000000 sim/custom/t154_efb/page
+ANIM_hide 0.000000 200.000000 sim/custom/t154_efb2/page
+ANIM_show 11.000000 11.000000 sim/custom/t154_efb2/page
 ANIM_begin
 ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 9500.000000 tu154b2/custom/payload/tank_2R
 ATTR_manip_wheel 25.000000
@@ -21441,15 +21453,15 @@ TRIS 21897 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 200.000000 sim/custom/t154_efb/page
-ANIM_show 2.000000 2.000000 sim/custom/t154_efb/page
+ANIM_hide 0.000000 200.000000 sim/custom/t154_efb2/page
+ANIM_show 2.000000 2.000000 sim/custom/t154_efb2/page
 ANIM_begin
 ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 0.000000 5000.000000 tu154b2/custom/payload/nav_fuel
 ATTR_manip_wheel 100.000000
 TRIS 21903 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb/fc_wind_corr_alt
+ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb2/fc_wind_corr_alt
 ATTR_manip_wheel 10.000000
 TRIS 21909 6
 ANIM_end
@@ -21469,7 +21481,7 @@ ATTR_manip_wheel 100.000000
 TRIS 21927 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb/fc_wind_corr
+ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb2/fc_wind_corr
 ATTR_manip_wheel 10.000000
 TRIS 21933 6
 ANIM_end
@@ -21485,11 +21497,11 @@ TRIS 21945 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/popup_8
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/popup_8
 ANIM_begin
 ATTR_draw_disable
 ATTR_no_cockpit
-ATTR_manip_toggle button 0.000000 0.000000 sim/custom/t154_efb/popup_8
+ATTR_manip_toggle button 0.000000 0.000000 sim/custom/t154_efb2/popup_8
 TRIS 21951 6
 ATTR_solid_camera
 ATTR_draw_enable
@@ -21500,7 +21512,7 @@ TRIS 21957 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/popup_1
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/popup_1
 ANIM_begin
 TRIS 21963 6
 ANIM_end
@@ -21535,7 +21547,7 @@ TRIS 21999 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/popup_5
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/popup_5
 ANIM_begin
 ATTR_solid_camera
 ATTR_draw_enable
@@ -21546,22 +21558,22 @@ TRIS 22005 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/popup_3
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/popup_3
 ANIM_begin
 TRIS 22011 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/popup_4
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/popup_4
 ANIM_begin
 ATTR_no_solid_camera
 ATTR_light_level_reset
 ATTR_reset
-ATTR_manip_command down t154_efb/vol_dn
+ATTR_manip_command down t154_efb2/vol_dn
 TRIS 22017 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command up t154_efb/vol_up
+ATTR_manip_command up t154_efb2/vol_up
 TRIS 22023 6
 ANIM_end
 ANIM_begin
@@ -21580,18 +21592,18 @@ TRIS 22035 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/popup_2
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/popup_2
 ANIM_begin
 ATTR_no_solid_camera
 ATTR_draw_disable
 ATTR_light_level_reset
 ATTR_no_cockpit
 ATTR_reset
-ATTR_manip_toggle button 1.000000 1.000000 sim/custom/t154_efb/efb_power_mode
+ATTR_manip_toggle button 1.000000 1.000000 sim/custom/t154_efb2/efb_power_mode
 TRIS 22041 6
 ANIM_end
 ANIM_begin
-ATTR_manip_toggle button 2.000000 2.000000 sim/custom/t154_efb/efb_power_mode
+ATTR_manip_toggle button 2.000000 2.000000 sim/custom/t154_efb2/efb_power_mode
 TRIS 22047 6
 ANIM_end
 ANIM_begin
@@ -21604,7 +21616,7 @@ TRIS 22053 6
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/popup_9
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/popup_9
 ANIM_begin
 ATTR_no_solid_camera
 ATTR_draw_disable
@@ -21633,11 +21645,11 @@ ATTR_no_solid_camera
 ATTR_draw_disable
 ATTR_light_level_reset
 ATTR_no_cockpit
-ATTR_manip_toggle button 0.000000 1.000000 sim/custom/t154_efb/cable_connect Toggle power cable
+ATTR_manip_toggle button 0.000000 1.000000 sim/custom/t154_efb2/cable_connect Toggle power cable2
 TRIS 22077 6
 ANIM_end
 ANIM_begin
-ATTR_manip_toggle button 0.000000 1.000000 sim/custom/t154_efb/enabled Toggle iPad
+ATTR_manip_toggle button 0.000000 1.000000 sim/custom/t154_efb2/enabled Toggle iPad2
 TRIS 22083 6
 ANIM_end
 ANIM_begin
@@ -21645,14 +21657,28 @@ ATTR_solid_camera
 ATTR_draw_enable
 ATTR_light_level 0.000000 1.000000 avitab/brightness 1000.000000
 ATTR_cockpit
-TRIS 22089 6
+#TRIS 22089 6
+TRIS 26763 6
 ANIM_end
 ANIM_begin
 ATTR_no_solid_camera
 ATTR_draw_disable
 ATTR_light_level_reset
 ATTR_no_cockpit
-ATTR_manip_push button 1.000000 0.000000 sim/custom/t154_efb/power_btn Toggle iPad screen
+ATTR_manip_push button 1.000000 0.000000 sim/custom/t154_efb2/power_btn Toggle iPad2 screen
 TRIS 22095 6
+ANIM_end
+ANIM_end
+ANIM_begin
+ANIM_trans -0.892888 0 -20.984 -0.892888 0 -20.984 0.000000 0.000000 none
+ANIM_rotate 0 1 0 -141.000000 -141.000000 0.000000 0.000000 none
+ANIM_trans -0.46 0 19.79 -0.46 0 19.79 0.000000 0.000000 none
+ANIM_hide 1.000000 1.000000 sim/custom/t154_efb2/enabled
+ANIM_begin
+ATTR_draw_disable
+ATTR_no_cockpit
+ATTR_shiny_rat 0.970000
+ATTR_manip_toggle button 0.000000 1.000000 sim/custom/t154_efb2/enabled Toggle iPad2
+TRIS 21807 6
 ANIM_end
 ANIM_end

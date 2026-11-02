@@ -423,60 +423,60 @@ function aircraft_load()
 end
 
 function vhf()
-if spu_source < 1 then
-    if spu_volume1 > spu_volume2 then
-        audio_vol1 = spu_volume2*simDR_ark1_signal
-        audio_vol2 = spu_volume2*simDR_ark2_signal
-        audio_vol5 = spu_volume2
-        audio_vol6 = spu_volume2
-        audio_vol7 = spu_volume2
-        audio_vol8 = spu_volume2
-        audio_vol9 = spu_volume2
-        audio_vol10 = spu_volume2
-        if vhf1_vol > spu_volume2 then
-            simDR_com1_vol = spu_volume2
-        else
-            simDR_com1_vol = vhf1_vol
-        end
-        if vhf2_vol > spu_volume2 then
-            simDR_com2_vol = spu_volume2
-        else
-            simDR_com2_vol = vhf2_vol
-        end
-    else
-        audio_vol1 = spu_volume1*simDR_ark1_signal
-        audio_vol2 = spu_volume1*simDR_ark2_signal
-        audio_vol5 = spu_volume1
-        audio_vol6 = spu_volume1
-        audio_vol7 = spu_volume1
-        audio_vol8 = spu_volume1
-        audio_vol9 = spu_volume1
-        audio_vol10 = spu_volume1
-        if vhf1_vol > spu_volume1 then
-            simDR_com1_vol = spu_volume1
-        else
-            simDR_com1_vol = vhf1_vol
-        end
-        if vhf2_vol > spu_volume1 then
-            simDR_com2_vol = spu_volume1
-        else
-            simDR_com2_vol = vhf2_vol
-        end
-    end
+-- if spu_source < 1 then
+    -- if spu_volume1 > spu_volume2 then
+        -- audio_vol1 = spu_volume2*simDR_ark1_signal
+        -- audio_vol2 = spu_volume2*simDR_ark2_signal
+        -- audio_vol5 = spu_volume2
+        -- audio_vol6 = spu_volume2
+        -- audio_vol7 = spu_volume2
+        -- audio_vol8 = spu_volume2
+        -- audio_vol9 = spu_volume2
+        -- audio_vol10 = spu_volume2
+        -- if vhf1_vol > spu_volume2 then
+            -- simDR_com1_vol = spu_volume2
+        -- else
+            -- simDR_com1_vol = vhf1_vol
+        -- end
+        -- if vhf2_vol > spu_volume2 then
+            -- simDR_com2_vol = spu_volume2
+        -- else
+            -- simDR_com2_vol = vhf2_vol
+        -- end
+    -- else
+        -- audio_vol1 = spu_volume1*simDR_ark1_signal
+        -- audio_vol2 = spu_volume1*simDR_ark2_signal
+        -- audio_vol5 = spu_volume1
+        -- audio_vol6 = spu_volume1
+        -- audio_vol7 = spu_volume1
+        -- audio_vol8 = spu_volume1
+        -- audio_vol9 = spu_volume1
+        -- audio_vol10 = spu_volume1
+        -- if vhf1_vol > spu_volume1 then
+            -- simDR_com1_vol = spu_volume1
+        -- else
+            -- simDR_com1_vol = vhf1_vol
+        -- end
+        -- if vhf2_vol > spu_volume1 then
+            -- simDR_com2_vol = spu_volume1
+        -- else
+            -- simDR_com2_vol = vhf2_vol
+        -- end
+    -- end
 
 
-else
-    audio_vol1 = 0
-    audio_vol2 = 0
-    simDR_com1_vol = 0
-    simDR_com2_vol = 0
-    audio_vol5 = 0
-    audio_vol6 = 0
-    audio_vol7 = 0
-    audio_vol8 = 0
-    audio_vol9 = 0
-    audio_vol10 = 0
-end
+-- else
+    -- audio_vol1 = 0
+    -- audio_vol2 = 0
+    -- simDR_com1_vol = 0
+    -- simDR_com2_vol = 0
+    -- audio_vol5 = 0
+    -- audio_vol6 = 0
+    -- audio_vol7 = 0
+    -- audio_vol8 = 0
+    -- audio_vol9 = 0
+    -- audio_vol10 = 0
+-- end
         
     if simDR_36vl > 5 then
         bus36 = 1

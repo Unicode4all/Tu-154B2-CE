@@ -5432,7 +5432,7 @@ ANIM_trans 1.632468  0 0 1.632468  0 0 0.000000 0.000000 none
 			ANIM_trans 0.787769  1.46306 21.2471 0.787769  1.46306 21.2471 0.000000 0.000000 none
 			
 ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/enabled
+ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/enabled
 TRIS 10386 78
 ANIM_end
 ANIM_end

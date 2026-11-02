@@ -47,9 +47,15 @@ defineProperty("wx_1", globalPropertys("sim/custom/t154_efb/wx_result_1"))
 defineProperty("wx_2", globalPropertys("sim/custom/t154_efb/wx_result_2"))
 defineProperty("wx_3", globalPropertys("sim/custom/t154_efb/wx_result_3"))
 defineProperty("wx_4", globalPropertys("sim/custom/t154_efb/wx_result_4"))
+defineProperty("wx2", globalPropertys("sim/custom/t154_efb2/wx_icao"))
+defineProperty("wx2_1", globalPropertys("sim/custom/t154_efb2/wx_result_1"))
+defineProperty("wx2_2", globalPropertys("sim/custom/t154_efb2/wx_result_2"))
+defineProperty("wx2_3", globalPropertys("sim/custom/t154_efb2/wx_result_3"))
+defineProperty("wx2_4", globalPropertys("sim/custom/t154_efb2/wx_result_4"))
 --defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 
 get_wx=findCommand("t154_efb/wxr_req")
+get_wx2=findCommand("t154_efb2/wxr_req")
 local metar=""
 local wx_result_1 = ""
 local wx_result_2 = ""
@@ -78,6 +84,27 @@ function get_wx_hnd(phase)
 	end
 
 	registerCommandHandler(get_wx, 0, get_wx_hnd)
+	
+	function get_wx_hnd2(phase)
+		if 1 == phase then
+			local icao = get(wx2)
+			--set(db1,icao)
+			if sasl.weather.getMETARForAirport (icao) then
+				metar = sasl.weather.getMETARForAirport (icao)
+			end
+			wx_result_1 = string.sub(metar,0,string.find(metar, " ", 40))
+			wx_result_2 = string.sub(metar,string.len(wx_result_1)+1,string.find(metar, " ", string.len(wx_result_1)+50))
+			wx_result_3 = string.sub(metar,string.len(wx_result_1)+string.len(wx_result_2)+1,string.find(metar, " ", string.len(wx_result_1)+string.len(wx_result_2)+50))
+			wx_result_4 = string.sub(metar,string.len(wx_result_1)+string.len(wx_result_2)+string.len(wx_result_3)+1)
+			set(wx2_1,wx_result_1)
+			set(wx2_2,wx_result_2)
+			set(wx2_3,wx_result_3)
+			set(wx2_4,wx_result_4)
+		end		
+		return 1
+	end
+
+	registerCommandHandler(get_wx2, 0, get_wx_hnd2)
 
 
 
