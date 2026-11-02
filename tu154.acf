@@ -60054,8 +60054,8 @@ GROUP EFB_ru2
         POS 3786.000000 -86.500000
         IMAGE EFB/ru/page1/dangermac
         DATAREF 
-        SHOW_LESS 35.000000 sim/custom/t154_efb2/cax_nf
-        SHOW_GREATER 18.000000 sim/custom/t154_efb2/cax_nf
+        SHOW_LESS 35.000000 sim/custom/t154_efb/cax_nf
+        SHOW_GREATER 18.000000 sim/custom/t154_efb/cax_nf
         LIGHT_MODE GLASS_AUTO
         LIGHT_RHEOSTAT 21
         CORNERS 28.500000 -8.000000  28.500000 -8.000000  29.333334 -8.000000  29.333334 -8.000000
@@ -60069,7 +60069,7 @@ GROUP EFB_ru2
         POS 4011.000000 -86.500000
         IMAGE EFB/ru/page1/dangermac
         DATAREF 
-        SHOW_LESS 35.000000 sim/custom/t154_efb2/cax_to
+        SHOW_LESS 35.000000 sim/custom/t154_efb/cax_to
         SHOW_GREATER 21.000000 sim/custom/t154_efb2/cax_to
         LIGHT_MODE GLASS_AUTO
         LIGHT_RHEOSTAT 21
@@ -60085,7 +60085,7 @@ GROUP EFB_ru2
         gen_LED pass_count
           POS 3468.000000 72.000000
           IMAGE EFB/ru/text/blue_type
-          DATAREF sim/custom/t154_efb2/pass_count
+          DATAREF sim/custom/t154_efb/pass_count
           LIGHT_MODE GLASS_AUTO
           LIGHT_RHEOSTAT 21
           BUS_SRC 1
@@ -60101,7 +60101,7 @@ GROUP EFB_ru2
         gen_LED pass_weight
           POS 3531.000000 72.000000
           IMAGE EFB/ru/text/blue_type
-          DATAREF sim/custom/t154_efb2/pass_weight
+          DATAREF sim/custom/t154_efb/pass_weight
           LIGHT_MODE GLASS_AUTO
           LIGHT_RHEOSTAT 21
           BUS_SRC 1
@@ -60117,7 +60117,7 @@ GROUP EFB_ru2
         gen_LED cargo_weight
           POS 3531.000000 42.000000
           IMAGE EFB/ru/text/blue_type
-          DATAREF sim/custom/t154_efb2/cargo_weight
+          DATAREF sim/custom/t154_efb/cargo_weight
           LIGHT_MODE GLASS_AUTO
           LIGHT_RHEOSTAT 21
           BUS_SRC 1
@@ -60133,7 +60133,7 @@ GROUP EFB_ru2
         gen_LED payload_weight
           POS 3531.000000 11.000000
           IMAGE EFB/ru/text/blue_type
-          DATAREF sim/custom/t154_efb2/commerc_weight
+          DATAREF sim/custom/t154_efb/commerc_weight
           LIGHT_MODE GLASS_AUTO
           LIGHT_RHEOSTAT 21
           BUS_SRC 1
