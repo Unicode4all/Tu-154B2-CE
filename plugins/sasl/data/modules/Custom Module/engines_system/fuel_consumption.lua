@@ -271,7 +271,7 @@ function update()
 		FF_2_corr=FF_2
 	end
 	if FF_3_corr~=FF_3_corr then
-		FF_3_corr=FF_2
+		FF_3_corr=FF_3
 	end
 	filling_1_prev=filling_1
 	filling_2_prev=filling_2
