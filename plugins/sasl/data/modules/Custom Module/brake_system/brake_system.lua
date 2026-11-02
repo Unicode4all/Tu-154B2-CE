@@ -586,7 +586,7 @@ function update()
 		end
 	end
 	
-	if tgt_L<act_R then
+	if tgt_R<act_R then
 		act_R=tgt_R
 	elseif main_press>=act_R then
 		if main_press>=tgt_R then
