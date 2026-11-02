@@ -613,7 +613,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		-- set(db2,d_kvd_1)
 	-- end
 		
-	local rud_lim_2 = 0.25 * math.pow(sys_data_tbl.eng_fuel_p_factor_1,2) * (1 - sys_data_tbl.eng_fuel_airplug_2) - 0.07 * sys_data_tbl.eng_fuel_airplug_2
+	local rud_lim_2 = 0.25 * math.pow(sys_data_tbl.eng_fuel_p_factor_2,2) * (1 - sys_data_tbl.eng_fuel_airplug_2) - 0.07 * sys_data_tbl.eng_fuel_airplug_2
 	if d_kvd_2 < -sys_data_tbl.eng_fuel_p_factor_2 and sys_data_tbl.eng_fuel_p_factor_2 ~= 1 and sys_data_tbl.eng_fuel_airplug_2 == 0 then
 		rud_lim_2 = math.max(-0.01 * math.pow(d_kvd_2,2) * 1.5,-0.1)
 		if d_kvd_2 < -1.5 then
