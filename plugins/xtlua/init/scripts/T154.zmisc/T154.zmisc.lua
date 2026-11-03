@@ -1848,36 +1848,36 @@ simDR_ark1_lit = simDR_ovhd_fp_flood * 2
 simDR_ark2_lit = simDR_ovhd_fp_flood * 2
 
 
-if hear_spuon > 0 then
-         if simDR_spu_1_source == 1 then
-            simDR_com1_sel = 1
-            hear_spu2 = simDR_spu_1_source -1
-         elseif simDR_spu_1_source == 0 then
-            simDR_com2_sel = 1
-            hear_spu2 = simDR_spu_1_source +1
-         else
-            simDR_com2_sel = 1
-            hear_spu2 = 1
-         end
-        if  sw_sound_hear > 0 then
-            if simDR_sw_sound > -2 then
-            simDR_sw_sound = -2
-            else
-            simDR_sw_sound = -1
-            end
-            sw_sound_hear = 0
-       end
-else
-        if  sw_sound_hear < 1 then
-            if simDR_sw_sound > -2 then
-            simDR_sw_sound = -2
-            else
-            simDR_sw_sound = -1
-            end
-            sw_sound_hear = 1
-       end
-        hear_spu2 = simDR_spu_1_source
-end
+-- if hear_spuon > 0 then
+         -- if simDR_spu_1_source == 1 then
+            -- simDR_com1_sel = 1
+            -- hear_spu2 = simDR_spu_1_source -1
+         -- elseif simDR_spu_1_source == 0 then
+            -- simDR_com2_sel = 1
+            -- hear_spu2 = simDR_spu_1_source +1
+         -- else
+            -- simDR_com2_sel = 1
+            -- hear_spu2 = 1
+         -- end
+        -- if  sw_sound_hear > 0 then
+            -- if simDR_sw_sound > -2 then
+            -- simDR_sw_sound = -2
+            -- else
+            -- simDR_sw_sound = -1
+            -- end
+            -- sw_sound_hear = 0
+       -- end
+-- else
+        -- if  sw_sound_hear < 1 then
+            -- if simDR_sw_sound > -2 then
+            -- simDR_sw_sound = -2
+            -- else
+            -- simDR_sw_sound = -1
+            -- end
+            -- sw_sound_hear = 1
+       -- end
+        -- hear_spu2 = simDR_spu_1_source
+-- end
 
     
     

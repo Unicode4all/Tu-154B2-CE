@@ -1,116 +1,116 @@
 -- this is ground service panel
 size = {655, 880}
 
---defineProperty("save_state", globalPropertyi("tu154b2/custom/save_state")) -- принудительное сохранение состояния самолета
+--save_state = globalPropertyi("tu154b2/custom/save_state") -- принудительное сохранение состояния самолета
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("show_ground_panel",globalPropertyi("tu154b2/custom/panels/show_ground_panel")) -- показать панель наземного обслуживания
+show_ground_panel = globalPropertyi("tu154b2/custom/panels/show_ground_panel") -- показать панель наземного обслуживания
 
-defineProperty("reset_crew",globalPropertyi("tu154b2/custom/sound/reset_crew")) -- сброс фраз команды
+reset_crew = globalPropertyi("tu154b2/custom/sound/reset_crew") -- сброс фраз команды
 
-defineProperty("failures_enabled", globalPropertyi("tu154b2/custom/failures/failures_enabled"))
+failures_enabled = globalPropertyi("tu154b2/custom/failures/failures_enabled")
 
-defineProperty("have_pedals", globalPropertyi("tu154b2/custom/have_pedals"))
+have_pedals = globalPropertyi("tu154b2/custom/have_pedals")
 
---defineProperty("save_state_enabled",globalPropertyi("tu154b2/custom/save_state_enabled")) -- включено ли сохранение состояния самолета
-defineProperty("reset_state",globalPropertyi("tu154b2/custom/reset_state")) -- сброс состояния самолета
-
-
-defineProperty("sounds_volume", globalPropertyi("tu154b2/custom/sounds_voulme")) -- общая громкость звуков
-
-defineProperty("hide_eng_objects", globalPropertyi("tu154b2/custom/lang/hide_eng_objects")) -- спрятать английские объекты кабины
-defineProperty("hide_rus_objects", globalPropertyi("tu154b2/custom/lang/hide_rus_objects")) -- спрятать английские объекты кабины
-
-defineProperty("slider_1", globalProperty("sim/cockpit2/switches/custom_slider_on[0]")) -- window L
-defineProperty("slider_2", globalProperty("sim/cockpit2/switches/custom_slider_on[1]")) -- window R
-defineProperty("slider_3", globalProperty("sim/cockpit2/switches/custom_slider_on[2]")) -- cargo 1
-defineProperty("slider_4", globalProperty("sim/cockpit2/switches/custom_slider_on[3]")) -- cargo 2
-defineProperty("slider_5", globalProperty("sim/cockpit2/switches/custom_slider_on[4]")) -- pax door 1
-defineProperty("slider_6", globalProperty("sim/cockpit2/switches/custom_slider_on[5]")) -- pax door 2
-defineProperty("slider_7", globalProperty("sim/cockpit2/switches/custom_slider_on[6]")) -- kitchen door
-defineProperty("slider_8", globalProperty("sim/cockpit2/switches/custom_slider_on[7]")) --
-defineProperty("slider_9", globalProperty("sim/cockpit2/switches/custom_slider_on[8]")) -- yokes
-defineProperty("slider_10", globalProperty("sim/cockpit2/switches/custom_slider_on[9]")) -- 
-defineProperty("slider_11", globalProperty("sim/cockpit2/switches/custom_slider_on[10]")) -- 
-defineProperty("slider_12", globalProperty("sim/cockpit2/switches/custom_slider_on[11]")) -- 
+--save_state_enabled = globalPropertyi("tu154b2/custom/save_state_enabled") -- включено ли сохранение состояния самолета
+reset_state = globalPropertyi("tu154b2/custom/reset_state") -- сброс состояния самолета
 
 
-defineProperty("gear_blocks", globalPropertyi("tu154b2/custom/anim/gear_blocks")) -- установка блоков шасси
-defineProperty("sensors_caps", globalPropertyi("tu154b2/custom/anim/sensors_caps")) -- установка крышек датчиков
-defineProperty("engine_caps", globalPropertyi("tu154b2/custom/anim/engine_caps")) -- установка крышек двигателей
+sounds_volume = globalPropertyi("tu154b2/custom/sounds_voulme") -- общая громкость звуков
 
-defineProperty("gpu_present", globalPropertyi("tu154b2/custom/anim/gpu_present")) -- 
+hide_eng_objects = globalPropertyi("tu154b2/custom/lang/hide_eng_objects") -- спрятать английские объекты кабины
+hide_rus_objects = globalPropertyi("tu154b2/custom/lang/hide_rus_objects") -- спрятать английские объекты кабины
 
-defineProperty("ladder_1_call", globalPropertyi("tu154b2/custom/anim/ladder_1_call")) -- трап. 100 - скрыт. +50..0 - подъезжает, 0 - стоит возле замолета, 0..-50 - уезжает
-defineProperty("ladder_2_call", globalPropertyi("tu154b2/custom/anim/ladder_2_call")) -- 
-defineProperty("catering_call", globalPropertyi("tu154b2/custom/anim/catering_call")) -- 
-defineProperty("deice_call", globalPropertyi("sim/custom/t154gnd/ai_started")) -- 
-defineProperty("fuel_tanker_call", globalPropertyi("tu154b2/custom/anim/fuel_tanker_call")) -- 
-
-
-defineProperty("ladder_1", globalPropertyf("tu154b2/custom/anim/ladder_1")) -- - скрыт. +50..0 - подъезжает, 0 - стоит возле замолета, 0..-50 - уезжает	100 
-defineProperty("ladder_2", globalPropertyf("tu154b2/custom/anim/ladder_2")) -- 
-defineProperty("catering", globalPropertyf("tu154b2/custom/anim/catering")) -- 
-defineProperty("deice", globalPropertyf("tu154b2/custom/anim/deice")) -- 
-defineProperty("deice2", globalPropertyf("tu154b2/custom/anim/deice2")) -- 
-
-
-defineProperty("mil_tech", globalPropertyi("sim/custom/t154cfg/hide_mil")) 
-
-defineProperty("fuel_tanker", globalPropertyf("tu154b2/custom/anim/fuel_tanker")) -- 
-
-defineProperty("GS", globalPropertyf("sim/flightmodel/position/groundspeed"))  -- ground speed
-
-defineProperty("eng_rpm1", globalProperty("sim/flightmodel/engine/ENGN_N2_[0]"))   
-defineProperty("eng_rpm2", globalProperty("sim/flightmodel/engine/ENGN_N2_[1]"))
-defineProperty("eng_rpm3", globalProperty("sim/flightmodel/engine/ENGN_N2_[2]"))
-
-defineProperty("zone_1_pr",globalPropertyi("tu154b2/custom/payload/zone_1"))
-defineProperty("zone_2_pr",globalPropertyi("tu154b2/custom/payload/zone_2"))
-defineProperty("zone_4_pr",globalPropertyi("tu154b2/custom/payload/zone_4"))
-defineProperty("zone_5_pr",globalPropertyi("tu154b2/custom/payload/zone_5"))
-defineProperty("zone_6_pr",globalPropertyi("tu154b2/custom/payload/zone_6"))
-
-defineProperty("cargo_1_pr",globalPropertyi("tu154b2/custom/payload/cargo_1"))
-defineProperty("cargo_2_pr",globalPropertyi("tu154b2/custom/payload/cargo_2"))
-
-defineProperty("kitchens_pr",globalPropertyi("tu154b2/custom/payload/kitchens"))
-
-defineProperty("enable_walk", globalPropertyi("sim/custom/t154_camera/enable_walk"))
+slider_1 = globalProperty("sim/cockpit2/switches/custom_slider_on[0]") -- window L
+slider_2 = globalProperty("sim/cockpit2/switches/custom_slider_on[1]") -- window R
+slider_3 = globalProperty("sim/cockpit2/switches/custom_slider_on[2]") -- cargo 1
+slider_4 = globalProperty("sim/cockpit2/switches/custom_slider_on[3]") -- cargo 2
+slider_5 = globalProperty("sim/cockpit2/switches/custom_slider_on[4]") -- pax door 1
+slider_6 = globalProperty("sim/cockpit2/switches/custom_slider_on[5]") -- pax door 2
+slider_7 = globalProperty("sim/cockpit2/switches/custom_slider_on[6]") -- kitchen door
+slider_8 = globalProperty("sim/cockpit2/switches/custom_slider_on[7]") --
+slider_9 = globalProperty("sim/cockpit2/switches/custom_slider_on[8]") -- yokes
+slider_10 = globalProperty("sim/cockpit2/switches/custom_slider_on[9]") -- 
+slider_11 = globalProperty("sim/cockpit2/switches/custom_slider_on[10]") -- 
+slider_12 = globalProperty("sim/cockpit2/switches/custom_slider_on[11]") -- 
 
 
-defineProperty("static_fail_L", globalPropertyi("sim/operation/failures/rel_static"))  -- static fail
-defineProperty("static_fail_R", globalPropertyi("sim/operation/failures/rel_static2"))  -- static fail
-defineProperty("rel_pitot", globalPropertyi("sim/operation/failures/rel_pitot")) -- Pitot 1 - Blockage
-defineProperty("rel_pitot2", globalPropertyi("sim/operation/failures/rel_pitot2")) -- Pitot 2 - Blockage
-defineProperty("alpha_fail", globalPropertyi("sim/operation/failures/rel_AOA"))  -- angle of attack fail
+gear_blocks = globalPropertyi("tu154b2/custom/anim/gear_blocks") -- установка блоков шасси
+sensors_caps = globalPropertyi("tu154b2/custom/anim/sensors_caps") -- установка крышек датчиков
+engine_caps = globalPropertyi("tu154b2/custom/anim/engine_caps") -- установка крышек двигателей
 
---defineProperty("parkbrake", globalPropertyf("sim/flightmodel/controls/parkbrake")) -- Parking Brake
---defineProperty("parkbrake", globalPropertyf("tu154b2/custom/SC/controls/parkbrake")) 
+gpu_present = globalPropertyi("tu154b2/custom/anim/gpu_present") -- 
 
-defineProperty("deflection_mtr_1", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[0]")) -- 
-defineProperty("deflection_mtr_2", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")) -- 
-defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]")) -- 
+ladder_1_call = globalPropertyi("tu154b2/custom/anim/ladder_1_call") -- трап. 100 - скрыт. +50..0 - подъезжает, 0 - стоит возле замолета, 0..-50 - уезжает
+ladder_2_call = globalPropertyi("tu154b2/custom/anim/ladder_2_call") -- 
+catering_call = globalPropertyi("tu154b2/custom/anim/catering_call") -- 
+deice_call = globalPropertyi("sim/custom/t154gnd/ai_started") -- 
+fuel_tanker_call = globalPropertyi("tu154b2/custom/anim/fuel_tanker_call") -- 
 
 
-defineProperty("enable_crew_vo", globalPropertyi("tu154b2/custom/sounds/enable_crew_vo")) -- включены фразы екипажа
-defineProperty("show_fail_panel",globalPropertyi("tu154b2/custom/panels/show_fail_panel")) -- показать панель отказов
-defineProperty("show_gns", globalPropertyi("tu154b2/custom/anim/show_gns"))
---defineProperty("show_RXP",globalPropertyi("tu154b2/custom/anim/RXP"))
---defineProperty("RXP_ID",globalPropertyi("RXP/radios/indicators/gps_nav_id"))
+ladder_1 = globalPropertyf("tu154b2/custom/anim/ladder_1") -- - скрыт. +50..0 - подъезжает, 0 - стоит возле замолета, 0..-50 - уезжает	100 
+ladder_2 = globalPropertyf("tu154b2/custom/anim/ladder_2") -- 
+catering = globalPropertyf("tu154b2/custom/anim/catering") -- 
+deice = globalPropertyf("tu154b2/custom/anim/deice") -- 
+deice2 = globalPropertyf("tu154b2/custom/anim/deice2") -- 
 
-defineProperty("thro_spread", globalPropertyf("tu154b2/custom/engines/thro_spread")) -- мощность стартера. 0.18 для нормального запуска
+
+mil_tech = globalPropertyi("sim/custom/t154cfg/hide_mil") 
+
+fuel_tanker = globalPropertyf("tu154b2/custom/anim/fuel_tanker") -- 
+
+GS = globalPropertyf("sim/flightmodel/position/groundspeed")  -- ground speed
+
+eng_rpm1 = globalProperty("sim/flightmodel/engine/ENGN_N2_[0]")   
+eng_rpm2 = globalProperty("sim/flightmodel/engine/ENGN_N2_[1]")
+eng_rpm3 = globalProperty("sim/flightmodel/engine/ENGN_N2_[2]")
+
+zone_1_pr = globalPropertyi("tu154b2/custom/payload/zone_1")
+zone_2_pr = globalPropertyi("tu154b2/custom/payload/zone_2")
+zone_4_pr = globalPropertyi("tu154b2/custom/payload/zone_4")
+zone_5_pr = globalPropertyi("tu154b2/custom/payload/zone_5")
+zone_6_pr = globalPropertyi("tu154b2/custom/payload/zone_6")
+
+cargo_1_pr = globalPropertyi("tu154b2/custom/payload/cargo_1")
+cargo_2_pr = globalPropertyi("tu154b2/custom/payload/cargo_2")
+
+kitchens_pr = globalPropertyi("tu154b2/custom/payload/kitchens")
+
+enable_walk = globalPropertyi("sim/custom/t154_camera/enable_walk")
+
+
+static_fail_L = globalPropertyi("sim/operation/failures/rel_static")  -- static fail
+static_fail_R = globalPropertyi("sim/operation/failures/rel_static2")  -- static fail
+rel_pitot = globalPropertyi("sim/operation/failures/rel_pitot") -- Pitot 1 - Blockage
+rel_pitot2 = globalPropertyi("sim/operation/failures/rel_pitot2") -- Pitot 2 - Blockage
+alpha_fail = globalPropertyi("sim/operation/failures/rel_AOA")  -- angle of attack fail
+
+--parkbrake = globalPropertyf("sim/flightmodel/controls/parkbrake") -- Parking Brake
+--parkbrake = globalPropertyf("tu154b2/custom/SC/controls/parkbrake") 
+
+deflection_mtr_1 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[0]") -- 
+deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]") -- 
+deflection_mtr_3 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]") -- 
+
+
+enable_crew_vo = globalPropertyi("tu154b2/custom/sounds/enable_crew_vo") -- включены фразы екипажа
+show_fail_panel = globalPropertyi("tu154b2/custom/panels/show_fail_panel") -- показать панель отказов
+show_gns = globalPropertyi("tu154b2/custom/anim/show_gns")
+--show_RXP = globalPropertyi("tu154b2/custom/anim/RXP")
+--RXP_ID = globalPropertyi("RXP/radios/indicators/gps_nav_id")
+
+thro_spread = globalPropertyf("tu154b2/custom/engines/thro_spread") -- мощность стартера. 0.18 для нормального запуска
 
 -- custom fails
-defineProperty("pitot_fail1", globalPropertyi("tu154b2/custom/failures/pitot1")) -- Pitot 1 - Blockage
-defineProperty("pitot_fail2", globalPropertyi("tu154b2/custom/failures/pitot2")) -- Pitot 2 - Blockage
-defineProperty("static_fail_L", globalPropertyi("tu154b2/custom/failures/static1"))  -- static fail
-defineProperty("static_fail_R", globalPropertyi("tu154b2/custom/failures/static2"))  -- static fail
-defineProperty("uap_fail", globalPropertyi("tu154b2/custom/failures/AOA")) -- fail
+pitot_fail1 = globalPropertyi("tu154b2/custom/failures/pitot1") -- Pitot 1 - Blockage
+pitot_fail2 = globalPropertyi("tu154b2/custom/failures/pitot2") -- Pitot 2 - Blockage
+static_fail_L = globalPropertyi("tu154b2/custom/failures/static1")  -- static fail
+static_fail_R = globalPropertyi("tu154b2/custom/failures/static2")  -- static fail
+uap_fail = globalPropertyi("tu154b2/custom/failures/AOA") -- fail
 ai_type = globalPropertyi("sim/custom/t154gnd/ai_fluid_type")
 ai_timeout = globalPropertyf("sim/custom/t154gnd/ai_fluid_timeout_set")
-defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
+ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
 
 local text_-- font = loadBitmapFont(moduleDirectory .."/Custom Module/basic_font.fnt")
 
@@ -724,12 +724,10 @@ components = {
 		position = {23, 385, 200, 35},
       
 		onMouseDown = function() 
-			if get(ismaster)~=1 then
-				if get(gear_blocks) ~= 1 and get(GS) < 2 then 
-					set(gear_blocks, 1) 
-				else 
-					set(gear_blocks, 0) 		
-				end
+			if get(gear_blocks) ~= 1 and get(GS) < 2 then 
+				set(gear_blocks, 1) 
+			else 
+				set(gear_blocks, 0) 		
 			end
 			return true
 		end,

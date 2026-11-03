@@ -306,10 +306,10 @@ if MASTER then
 	local power_2 = 0
 	
 	if flaps_mode_1 == 0 and flap_power then -- automatic movements
-		if drive_pos_now < flaps_pos_cmd - 0.35 or flaps_pos_cmd > 44 then 
+		if drive_pos_now < flaps_pos_cmd - 0.35 then 
 			flaps_dir_1 = 1
 			power_1 = 1 - flap_desync
-		elseif drive_pos_now > flaps_pos_cmd + 0.35 or flaps_pos_cmd < 1 then 
+		elseif drive_pos_now > flaps_pos_cmd + 0.35 then 
 			flaps_dir_1 = -1
 			power_1 = 1 - flap_desync
 		else 

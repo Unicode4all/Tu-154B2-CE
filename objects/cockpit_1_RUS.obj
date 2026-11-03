@@ -471589,6 +471589,7 @@ IDX	426155
 			ANIM_rotate	0	0	-1	90.00021	90.00021
 			ANIM_rotate_begin	0	1	-0	sim/cockpit2/radios/actuators/nav_dme_frequency_Mhz[0]
 			ANIM_rotate_key	0	0
+			ANIM_rotate_key 109.900002 0.000000
 			ANIM_rotate_key	110	36.000083
 			ANIM_rotate_key	117.9	36.000083
 			ANIM_rotate_end
@@ -479015,6 +479016,7 @@ IDX	426155
 			ANIM_rotate	0	0	-1	90.00021	90.00021
 			ANIM_rotate_begin	0	1	-0	sim/cockpit2/radios/actuators/nav_dme_frequency_Mhz[1]
 			ANIM_rotate_key	0	0
+			ANIM_rotate_key 109.900002 0.000000
 			ANIM_rotate_key	110	36.000083
 			ANIM_rotate_key	117.9	36.000083
 			ANIM_rotate_end
@@ -479220,6 +479222,7 @@ IDX	426155
 			ANIM_rotate	0	0	-1	90.00021	90.00021
 			ANIM_rotate_begin	0	1	-0	sim/cockpit2/radios/actuators/nav_frequency_Mhz[5]
 			ANIM_rotate_key	0	0
+			ANIM_rotate_key 109.900002 0.000000
 			ANIM_rotate_key	110	36.000083
 			ANIM_rotate_key	117.9	36.000083
 			ANIM_rotate_end
@@ -479275,6 +479278,7 @@ IDX	426155
 			ANIM_rotate	0	0	-1	90.00021	90.00021
 			ANIM_rotate_begin	0	1	-0	sim/cockpit2/radios/actuators/nav_frequency_Mhz[4]
 			ANIM_rotate_key	0	0
+			ANIM_rotate_key 109.900002 0.000000
 			ANIM_rotate_key	110	36.000083
 			ANIM_rotate_key	117.9	36.000083
 			ANIM_rotate_end
