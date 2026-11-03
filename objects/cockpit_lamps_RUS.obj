@@ -79465,8 +79465,8 @@ ANIM_begin
 	ANIM_rotate 0.000000 1.000000 0.000000 246 246 0.000000 0.000000 none
 	ANIM_trans 0.787769  1.46306 21.2471 0.787769  1.46306 21.2471 0.000000 0.000000 none
 	ANIM_begin
-		ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/enabled
-		ATTR_light_level 0.000000 1.000000 sim/custom/t154_efb/power_lit 
+		ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/enabled
+		ATTR_light_level 0.000000 1.000000 sim/custom/t154_efb2/power_lit 
 		TRIS 48351 6
 	ANIM_end
 ANIM_end
