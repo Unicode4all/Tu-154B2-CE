@@ -8556,8 +8556,8 @@ end
 
 --here we read the FPlans
 function readFpl(phase)
-if phase ~= 2 then return end
-local num1 = 0
+if phase ~= 2 and phase ~= 3 then return end
+local num1 = 3 - phase -- phase being 2 means command trigger, which prevents FPL 0 from changing / phase being 3 means trigger during KLN SASL init, thus loading FPL 0 as well 
 while num1 <= 25 do
 FPlan[num1] = {}
 FPlan[num1]["length"] = 0
@@ -8657,7 +8657,7 @@ num1 = num1 + 1
 end
 return false
 end
-readFpl(2)
+readFpl(3)
 sasl.registerCommandHandler(sasl.createCommand("custom/KLN90/reload_fpl", "Reload all flight plan(.fms) files"), 0, readFpl)
 
 
