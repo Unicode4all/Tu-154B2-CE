@@ -21461,7 +21461,7 @@ ATTR_manip_wheel 100.000000
 TRIS 21903 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb2/fc_wind_corr_alt
+ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb/fc_wind_corr_alt
 ATTR_manip_wheel 10.000000
 TRIS 21909 6
 ANIM_end
@@ -21481,7 +21481,7 @@ ATTR_manip_wheel 100.000000
 TRIS 21927 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb2/fc_wind_corr
+ATTR_manip_drag_axis rotate_small 2.000000 0.000000 0.000000 -500.000000 500.000000 sim/custom/t154_efb/fc_wind_corr
 ATTR_manip_wheel 10.000000
 TRIS 21933 6
 ANIM_end
