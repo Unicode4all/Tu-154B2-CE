@@ -225,4 +225,6 @@ components = {
 		position = {1034, 1270, 666, 513},
 	},
 	
+	shtorki {},
+
 }

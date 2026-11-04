@@ -106,9 +106,9 @@ simDR_payl_cabin = find_dataref("tu154b2/custom/payload/cabin_num")
 simDR_payl_tank3l = find_dataref("tu154b2/custom/payload/tank_3L")
 simDR_payl_tank3r = find_dataref("tu154b2/custom/payload/tank_3R")
 simDR_payl_tank4 = find_dataref("tu154b2/custom/payload/tank_4")
-simDR_shtork1 = find_dataref("tu154b2/custom/switchers/spu_4_source")
-simDR_shtork2 = find_dataref("tu154b2/custom/switchers/eng/hydro_trimm_rud_2_cap")
-simDR_shtork3 = find_dataref("tu154b2/custom/switchers/spu_4_mode")
+-- simDR_shtork1 = find_dataref("tu154b2/custom/switchers/spu_4_source")
+-- simDR_shtork2 = find_dataref("tu154b2/custom/switchers/eng/hydro_trimm_rud_2_cap")
+-- simDR_shtork3 = find_dataref("tu154b2/custom/switchers/spu_4_mode")
 simDR_rv_dh_left = find_dataref("tu154b2/custom/gauges/alt/radioalt_dh_left")
 simDR_rv_needle_left = find_dataref("tu154b2/custom/gauges/alt/radioalt_needle_left")
 flaps_lev = find_dataref("tu154b2/custom/controll/flaps_lever")
@@ -606,17 +606,17 @@ function siv1_CMDhandler(phase, duration)
             simDR_sw_sound = 0
         end
     end
-    if phase == 2 then
-        if simDR_shtork1 > 0 then
-            simDR_shtork1 = 0
-        end
-        if simDR_shtork2 > 0 then
-            simDR_shtork2 = 0
-        end
-        if simDR_shtork3 > 0 then
-            simDR_shtork3 = 0
-        end
-    end
+    -- if phase == 2 then
+    --     if simDR_shtork1 > 0 then
+    --         simDR_shtork1 = 0
+    --     end
+    --     if simDR_shtork2 > 0 then
+    --         simDR_shtork2 = 0
+    --     end
+    --     if simDR_shtork3 > 0 then
+    --         simDR_shtork3 = 0
+    --     end
+    -- end
 end
 
 
@@ -1514,17 +1514,17 @@ else
     bus27 = 0
 end
     
-if bus27 > 0 and siv1 > 0 then
-    if simDR_rv_needle_left > simDR_rv_dh_left then  
-        simDR_shtork1 = 2
-        simDR_shtork2 = 1
-        simDR_shtork3 = 2
-    else
-        simDR_shtork1 = 0
-        simDR_shtork2 = 0
-        simDR_shtork3 = 0
-    end
-end
+-- if bus27 > 0 and siv1 > 0 then
+--     if simDR_rv_needle_left > simDR_rv_dh_left then  
+--         simDR_shtork1 = 2
+--         simDR_shtork2 = 1
+--         simDR_shtork3 = 2
+--     else
+--         simDR_shtork1 = 0
+--         simDR_shtork2 = 0
+--         simDR_shtork3 = 0
+--     end
+-- end
 
 if bus27 > 0 then
     simDR_27v_cc = bus27_cc
