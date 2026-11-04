@@ -586,7 +586,7 @@ function update()
 		end
 	end
 	
-	if tgt_L<act_R then
+	if tgt_R<act_R then
 		act_R=tgt_R
 	elseif main_press>=act_R then
 		if main_press>=tgt_R then
@@ -605,7 +605,7 @@ function update()
 	local right_blake_emer = e_brake * emer_press * bool2int(get(gear3_deflect) > 0.06)
 
 	local left_blake = act_L/120* bool2int(get(rel_lbrakes) ~= 6)--math.max(brake_1 * main_press, sim_brake * main_press, left_brk * main_press, park_lvr * main_press) * bool2int(get(gear2_deflect) > 0.06)
-	local right_blake =act_R/120* bool2int(get(rel_lbrakes) ~= 6)-- math.max(brake_2 * main_press, sim_brake * main_press, right_brk * main_press, park_lvr * main_press) * bool2int(get(gear3_deflect) > 0.06)
+	local right_blake =act_R/120* bool2int(get(rel_rbrakes) ~= 6)-- math.max(brake_2 * main_press, sim_brake * main_press, right_brk * main_press, park_lvr * main_press) * bool2int(get(gear3_deflect) > 0.06)
 	-- set(db1,act_L)
 	-- set(db2,act_R)
 	
@@ -692,10 +692,10 @@ end
 		set(therm_R_3,1)
 		set(therm_R_2,0)
 		set(therm_R_1,0)
-	elseif termo_left>250 then
+	elseif termo_right>250 then
 		set(therm_R_2,1)
 		set(therm_R_1,0)
-	elseif termo_left>190 then
+	elseif termo_right>190 then
 		set(therm_R_1,1)
 	end
 	

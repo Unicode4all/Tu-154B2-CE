@@ -343,7 +343,7 @@ end
 			elseif delta_spd < -1 then wind_spd_act = wind_spd_act - passed * 20
 			else wind_spd_act = wind_spd_act + delta_spd * passed * 20
 			end
-			slip_angle = math.deg(math.atan2(diss_wind_speed * math.sin(math.rad(diss_wind_dir)), diss_wind_speed * math.cos(math.rad(diss_wind_dir)) + TAS))
+			slip_angle = math.deg(math.atan2(diss_wind_speed * math.sin(math.rad(diss_wind_dir)), diss_wind_speed * math.cos(math.rad(diss_wind_dir)) + TAS/3.6))
 			set(diss_wind_spd, diss_wind_speed * 3.6)
 		else
 			groundspeed = get(diss_groundspeed) / 3600 -- km/sec	
