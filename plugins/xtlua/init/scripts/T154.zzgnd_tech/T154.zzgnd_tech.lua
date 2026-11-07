@@ -29,6 +29,7 @@ simDR_gs = find_dataref("sim/flightmodel2/position/groundspeed")
 simDR_on_ground = find_dataref("sim/flightmodel/failures/onground_all") 
 
 efb_page = find_dataref("sim/custom/t154_efb/page")
+efb2_page = find_dataref("sim/custom/t154_efb2/page")
 mil_tech = find_dataref("sim/custom/t154cfg/hide_mil")
 simDR_pilot_head_z = find_dataref("sim/graphics/view/pilots_head_z")
 
@@ -75,6 +76,7 @@ ai_to_high =  deferred_dataref("sim/custom/t154gnd/ai_to_high", "number")
 ai_started =  deferred_dataref("sim/custom/t154gnd/ai_started", "number")
 ai_started_h =  deferred_dataref("sim/custom/t154gnd/ai_started_h", "number")
 ai_started_m =  deferred_dataref("sim/custom/t154gnd/ai_started_m", "number")
+simDR_master = find_dataref("tu154b2/crew/ismaster")
 
 local ai_ice_fixed = 0
 local ai_fluid_timeout = 0
@@ -133,68 +135,70 @@ end
 
 function anti_icing()
    
-if ai_started < 1 then
-   if ai_fluid_type == 0 then
-      ai_fluid_timeout = 400*(1.65-simDR_cur_precipt)
-      ai_time = (3+snow_fuse*1.5)*60+(200*(1-mil_tech))
-      ai_to_min = 6
-      ai_to_high = 10
-   elseif ai_fluid_type == 1 then
-      ai_fluid_timeout = 1675*(1.65-simDR_cur_precipt)
-      ai_time = (3+snow_fuse*7.5)*60+(200*(1-mil_tech))
-      ai_to_min = 20
-      ai_to_high = 45
-   elseif ai_fluid_type == 2 then
-      ai_fluid_timeout = 670*(1.65-simDR_cur_precipt)
-      ai_time = (3+snow_fuse*7.5)*60+(200*(1-mil_tech))
-      ai_to_min = 10
-      ai_to_high = 20
-   elseif ai_fluid_type == 3 then
-      ai_fluid_timeout = 2400*(1.65-simDR_cur_precipt)
-      ai_time = (3+snow_fuse*7.5)*60+(200*(1-mil_tech))
-      ai_to_min = 35
-      ai_to_high = 75
-   elseif ai_fluid_type == 4 then
-      ai_fluid_timeout = 2400*(1.65-simDR_cur_precipt)
-      ai_time = (6+snow_fuse*2)*60+(200*(1-mil_tech))
-      ai_to_min = 35
-      ai_to_high = 75
-   end
-end
+	if ai_started < 1 then
+	   if ai_fluid_type == 0 then
+		  ai_fluid_timeout = 400*(1.65-simDR_cur_precipt)
+		  ai_time = (3+snow_fuse*1.5)*60+(200*(1-mil_tech))
+		  ai_to_min = 6
+		  ai_to_high = 10
+	   elseif ai_fluid_type == 1 then
+		  ai_fluid_timeout = 1675*(1.65-simDR_cur_precipt)
+		  ai_time = (3+snow_fuse*7.5)*60+(200*(1-mil_tech))
+		  ai_to_min = 20
+		  ai_to_high = 45
+	   elseif ai_fluid_type == 2 then
+		  ai_fluid_timeout = 670*(1.65-simDR_cur_precipt)
+		  ai_time = (3+snow_fuse*7.5)*60+(200*(1-mil_tech))
+		  ai_to_min = 10
+		  ai_to_high = 20
+	   elseif ai_fluid_type == 3 then
+		  ai_fluid_timeout = 2400*(1.65-simDR_cur_precipt)
+		  ai_time = (3+snow_fuse*7.5)*60+(200*(1-mil_tech))
+		  ai_to_min = 35
+		  ai_to_high = 75
+	   elseif ai_fluid_type == 4 then
+		  ai_fluid_timeout = 2400*(1.65-simDR_cur_precipt)
+		  ai_time = (6+snow_fuse*2)*60+(200*(1-mil_tech))
+		  ai_to_min = 35
+		  ai_to_high = 75
+	   end
+	end
+	if gear_blocks < 1 and simDR_gs < 1 and simDR_on_ground > 0 then
+		if ai_started > 0 then
+			if ai_time > 0 then
+			   ai_time = ai_time - 1*simDR_passed
+				if ai_time > 5 and ai_fluid_timeout_set < 50 then
+					ai_fluid_timeout_set = 50
+				end
+			elseif ai_time <= 0 and snow_fuse >= 0.01 then
+				ai_time = ai_time + 30
+			elseif snow_fuse < 0.01 then
+				ai_fluid_timeout_set = ai_fluid_timeout
+				ai_fluid_type_was = ai_fluid_type+1
+				ai_started_h = simDR_zulu_h
+				ai_started_m = simDR_zulu_m
+				ai_started = 0
+			end
+		end
+	elseif ai_started > 0 then
+		ai_started = 0
+	elseif efb_page == 41 or efb2_page == 41 then
+		if efb_page == 41 then
+			efb_page = 4
+		end
+		if efb2_page == 41 then
+			efb2_page = 4
+		end
+	end
 
-   if gear_blocks < 1 and simDR_gs < 1 and simDR_on_ground > 0 then
-      if ai_started > 0 then
-         if ai_time > 0 then
-               ai_time = ai_time - 1*simDR_passed
-            if ai_time > 5 and ai_fluid_timeout_set < 50 then
-                  ai_fluid_timeout_set = 50
-            end
-		elseif ai_time <= 0 and snow_fuse >= 0.01 then
-			ai_time = ai_time + 30
-		elseif snow_fuse < 0.01 then
-            ai_fluid_timeout_set = ai_fluid_timeout
-            ai_fluid_type_was = ai_fluid_type+1
-            ai_started_h = simDR_zulu_h
-            ai_started_m = simDR_zulu_m
-            ai_started = 0
-         end
-      end
-   elseif ai_started > 0 then
-      ai_started = 0
-   elseif efb_page == 41 then
-      efb_page = 4
-   end
-
-   if ai_fluid_timeout_set > 0 and simDR_on_ground > 0 then
-      ai_fluid_timeout_set = ai_fluid_timeout_set-1*simDR_passed
-   elseif simDR_on_ground < 1 then
-      ai_fluid_timeout_set = 0
-   end
-
-   if simDR_gs > 100 and ai_fluid_type_was > 0 then
-      ai_fluid_type_was = 0
-   end
-
+	if ai_fluid_timeout_set > 0 and simDR_on_ground > 0 then
+		ai_fluid_timeout_set = ai_fluid_timeout_set-1*simDR_passed
+	elseif simDR_on_ground < 1 then
+		ai_fluid_timeout_set = 0
+	end
+	if simDR_gs > 100 and ai_fluid_type_was > 0 then
+		ai_fluid_type_was = 0
+	end
 end
 
 
@@ -550,8 +554,10 @@ end
 
 function after_physics()
     misc_gnd()
-    anti_icing()
-    snow_on_fuse()
+	if simDR_master ~= 1 then
+		anti_icing()
+		snow_on_fuse()
+	end
 end
 
 
