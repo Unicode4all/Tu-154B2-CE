@@ -692,11 +692,6 @@ function update()
 			set(frm_ice2, fus_snow/6) 
 			set(stab_ice_1, fus_snow/6) 
 			set(stab_ice_2,fus_snow/6) 
-		elseif get(frm_ice) > 0 and fus_snow <= 0.01 then
-			set(frm_ice,  0) 
-			set(frm_ice2, 0) 
-			set(stab_ice_1,0) 
-			set(stab_ice_2,0) 
 		end
 		set(wings_heat_on, slat_heat)
 		set(wing_heating, wing_heat)
