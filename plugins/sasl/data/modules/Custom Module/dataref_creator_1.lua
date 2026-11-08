@@ -95,6 +95,7 @@ createGlobalPropertyf("tu154b2/custom/lights/km_panel_flood_set", 0.3) -- рег
 createGlobalPropertyi("tu154b2/custom/lights/cabinl_flood_set", 0) -- выключатель освещения кабины
 createGlobalPropertyi("tu154b2/custom/lights/azs_panel_flood_set", 0) -- выключатель освещения панели АЗС
 createGlobalPropertyi("tu154b2/custom/lights/day_night_set", 0) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+createGlobalPropertyi("tu154b2/custom/lights/day_night_set_eng", 0) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 createGlobalPropertyi("tu154b2/custom/lights/cargo_light_1_set", 0) -- выключатель освещения грузового отсека
 createGlobalPropertyi("tu154b2/custom/lights/cargo_light_2_set", 0) -- выключатель освещения грузового отсека
 createGlobalPropertyi("tu154b2/custom/lights/tech_light_set", 0) -- выключатель освещения технического отсека

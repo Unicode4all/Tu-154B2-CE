@@ -1,45 +1,45 @@
 -- this TAWS panel logic
 
 -- panel controls
-defineProperty("but_view", globalPropertyi("tu154b2/custom/buttons/srpbz/but_view")) -- кнопка ВИД
-defineProperty("but_empty", globalPropertyi("tu154b2/custom/buttons/srpbz/but_empty")) -- кнопка -
-defineProperty("but_down", globalPropertyi("tu154b2/custom/buttons/srpbz/but_down")) -- кнопка масштаб вниз
-defineProperty("but_up", globalPropertyi("tu154b2/custom/taws/taws_button")) -- масштаб вверх
-defineProperty("brightness", globalPropertyf("tu154b2/custom/rotary/srpbz/brightness")) -- ручка яркости
+but_view = globalPropertyi("tu154b2/custom/buttons/srpbz/but_view") -- кнопка ВИД
+but_empty = globalPropertyi("tu154b2/custom/buttons/srpbz/but_empty") -- кнопка -
+but_down = globalPropertyi("tu154b2/custom/buttons/srpbz/but_down") -- кнопка масштаб вниз
+but_up = globalPropertyi("tu154b2/custom/taws/taws_button") -- масштаб вверх
+brightness = globalPropertyf("tu154b2/custom/rotary/srpbz/brightness") -- ручка яркости
 
 -- overhead controls
-defineProperty("egpws_alarm_1", globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_1")) -- сигнализация СРПБЗ общ
-defineProperty("egpws_alarm_2", globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_2")) -- сигнализация СРПБЗ
-defineProperty("egpws_alarm_1_cap", globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_1_cap")) -- сигнализация СРПБЗ общ
-defineProperty("egpws_alarm_2_cap", globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_2_cap")) -- сигнализация СРПБЗ 
-defineProperty("egpws_relief", globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_relief")) -- рельеф
-defineProperty("egpws_mode", globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_mode")) -- QNH - QFE
+egpws_alarm_1 = globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_1") -- сигнализация СРПБЗ общ
+egpws_alarm_2 = globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_2") -- сигнализация СРПБЗ
+egpws_alarm_1_cap = globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_1_cap") -- сигнализация СРПБЗ общ
+egpws_alarm_2_cap = globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_alarm_2_cap") -- сигнализация СРПБЗ 
+egpws_relief = globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_relief") -- рельеф
+egpws_mode = globalPropertyi("tu154b2/custom/switchers/ovhd/egpws_mode") -- QNH - QFE
 
-defineProperty("egpws_control", globalPropertyi("tu154b2/custom/buttons/ovhd/egpws_control")) -- кнопка контроля СРПБЗ
-defineProperty("egpws_contr_gs", globalPropertyi("tu154b2/custom/buttons/ovhd/egpws_contr_gs")) -- контроль СРПБЗ глиссада
+egpws_control = globalPropertyi("tu154b2/custom/buttons/ovhd/egpws_control") -- кнопка контроля СРПБЗ
+egpws_contr_gs = globalPropertyi("tu154b2/custom/buttons/ovhd/egpws_contr_gs") -- контроль СРПБЗ глиссада
 
 
 -- lamps
-defineProperty("pull_up_lamp", globalPropertyf("tu154b2/custom/lights/pull_up")) -- тяни вверх
-defineProperty("check_alt_left_lamp", globalPropertyf("tu154b2/custom/lights/check_alt_left")) -- тяни вверх
-defineProperty("check_alt_right_lamp", globalPropertyf("tu154b2/custom/lights/check_alt_right")) -- тяни вверх
-defineProperty("warning_terrain_lamp", globalPropertyf("tu154b2/custom/lights/warning_terrain")) -- тяни вверх
-defineProperty("gs_low_lamp", globalPropertyf("tu154b2/custom/lights/gs_low")) -- тяни вверх
-defineProperty("srpbz_fail_lamp", globalPropertyf("tu154b2/custom/lights/srpbz_fail")) -- тяни вверх
+pull_up_lamp = globalPropertyf("tu154b2/custom/lights/pull_up") -- тяни вверх
+check_alt_left_lamp = globalPropertyf("tu154b2/custom/lights/check_alt_left") -- тяни вверх
+check_alt_right_lamp = globalPropertyf("tu154b2/custom/lights/check_alt_right") -- тяни вверх
+warning_terrain_lamp = globalPropertyf("tu154b2/custom/lights/warning_terrain") -- тяни вверх
+gs_low_lamp = globalPropertyf("tu154b2/custom/lights/gs_low") -- тяни вверх
+srpbz_fail_lamp = globalPropertyf("tu154b2/custom/lights/srpbz_fail") -- тяни вверх
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп панели ВСУ
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп панели ВСУ
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
-defineProperty("taws_message", globalPropertyi("tu154b2/custom/taws/taws_message")) -- 
+taws_message = globalPropertyi("tu154b2/custom/taws/taws_message") -- 
 -- 0 - none, 1 - Pull UP, 2 - alt callout, 3 - Pull Up, 4 - Terrain, 5 - Terrain Ahead, 6 - Too low, Terrain, 
 -- 7 - Alt collout, 8 - Too low, Gear, 9 - Too low, Flaps, 10 - Check altitude, 11 - Sink Rate, 12 - Don't sink, 13 - Glideslope
 
-defineProperty("taws_alt_left", globalPropertyi("tu154b2/custom/taws/taws_alt_left")) -- сравни высоту на левом высотомере
-defineProperty("taws_alt_right", globalPropertyi("tu154b2/custom/taws/taws_alt_right")) -- сравни высоту на правом высотомере
+taws_alt_left = globalPropertyi("tu154b2/custom/taws/taws_alt_left") -- сравни высоту на левом высотомере
+taws_alt_right = globalPropertyi("tu154b2/custom/taws/taws_alt_right") -- сравни высоту на правом высотомере
 
 -- time
 frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
@@ -203,7 +203,7 @@ local fail_counter = 0
 local function lamps()
 
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	
 	local taws_msg = get(taws_message)

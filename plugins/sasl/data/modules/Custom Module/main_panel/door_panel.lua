@@ -1,37 +1,37 @@
 -- this is the door lights panel
 
 -- controlls
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_doors")) -- кнопка проверки ламп панели двигателей
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_doors") -- кнопка проверки ламп панели двигателей
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set_eng") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("nosewheel_turn_enable", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_enable")) -- выключатель поворота передней стойки на штурвале
-defineProperty("nosewheel_turn_sel", globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel")) -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
+nosewheel_turn_enable = globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_enable") -- выключатель поворота передней стойки на штурвале
+nosewheel_turn_sel = globalPropertyi("tu154b2/custom/switchers/nosewheel_turn_sel") -- переключатель угла поворота передней стойки. 0 - 10, 1 - 63
 
 -- lamps
-defineProperty("other_hatches", globalPropertyf("tu154b2/custom/lights/other_hatches")) -- лампа для незадействованных люков
-defineProperty("left_front_pax_door", globalPropertyf("tu154b2/custom/lights/left_front_pax_door")) -- левая передняя дверь открыта
-defineProperty("left_mid_pax_door", globalPropertyf("tu154b2/custom/lights/left_mid_pax_door")) -- левая средняя дверь открыта
-defineProperty("right_mid_pax_door", globalPropertyf("tu154b2/custom/lights/right_mid_pax_door")) -- средняя средняя дверь открыта
-defineProperty("cargo_front_door", globalPropertyf("tu154b2/custom/lights/cargo_front_door")) -- передний багажный люк
-defineProperty("cargo_back_door", globalPropertyf("tu154b2/custom/lights/cargo_back_door")) -- задний багажный люк
-defineProperty("turn63_lamp", globalPropertyf("tu154b2/custom/lights/turn63_lamp")) -- разворот 63 
-defineProperty("nosewheel_turn_off", globalPropertyf("tu154b2/custom/lights/nosewheel_turn_off")) -- поворот не включен
-defineProperty("busters_off", globalPropertyf("tu154b2/custom/lights/busters_off")) -- лампа бустера
+other_hatches = globalPropertyf("tu154b2/custom/lights/other_hatches") -- лампа для незадействованных люков
+left_front_pax_door = globalPropertyf("tu154b2/custom/lights/left_front_pax_door") -- левая передняя дверь открыта
+left_mid_pax_door = globalPropertyf("tu154b2/custom/lights/left_mid_pax_door") -- левая средняя дверь открыта
+right_mid_pax_door = globalPropertyf("tu154b2/custom/lights/right_mid_pax_door") -- средняя средняя дверь открыта
+cargo_front_door = globalPropertyf("tu154b2/custom/lights/cargo_front_door") -- передний багажный люк
+cargo_back_door = globalPropertyf("tu154b2/custom/lights/cargo_back_door") -- задний багажный люк
+turn63_lamp = globalPropertyf("tu154b2/custom/lights/turn63_lamp") -- разворот 63 
+nosewheel_turn_off = globalPropertyf("tu154b2/custom/lights/nosewheel_turn_off") -- поворот не включен
+busters_off = globalPropertyf("tu154b2/custom/lights/busters_off") -- лампа бустера
 
 -- hatches
-defineProperty("cargo_1", globalPropertyf("tu154b2/custom/anim/cargo_1")) -- положение багажной двери 1. 0 - закрыта, 1 - открыта
-defineProperty("cargo_2", globalPropertyf("tu154b2/custom/anim/cargo_2")) -- положение багажной двери 1. 0 - закрыта, 1 - открыта
-defineProperty("pax_door_1", globalPropertyf("tu154b2/custom/anim/pax_door_1")) -- положение передних пасс дверей
-defineProperty("pax_door_2", globalPropertyf("tu154b2/custom/anim/pax_door_2")) -- положение средних пасс дверей
-defineProperty("pax_door_3", globalPropertyf("tu154b2/custom/anim/pax_door_3")) -- положение правых аварийных дверей
+cargo_1 = globalPropertyf("tu154b2/custom/anim/cargo_1") -- положение багажной двери 1. 0 - закрыта, 1 - открыта
+cargo_2 = globalPropertyf("tu154b2/custom/anim/cargo_2") -- положение багажной двери 1. 0 - закрыта, 1 - открыта
+pax_door_1 = globalPropertyf("tu154b2/custom/anim/pax_door_1") -- положение передних пасс дверей
+pax_door_2 = globalPropertyf("tu154b2/custom/anim/pax_door_2") -- положение средних пасс дверей
+pax_door_3 = globalPropertyf("tu154b2/custom/anim/pax_door_3") -- положение правых аварийных дверей
 
 
-defineProperty("busters_cap", globalPropertyi("tu154b2/custom/switchers/console/busters_cap")) -- крышка выключателей бустеров
+busters_cap = globalPropertyi("tu154b2/custom/switchers/console/busters_cap") -- крышка выключателей бустеров
 
 local door1=0
 local door2=0
@@ -44,7 +44,7 @@ local passed = get(frame_time)
 
 
 local function lamps()
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	

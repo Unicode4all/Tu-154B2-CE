@@ -2,13 +2,13 @@ size = {2048, 2048}
 
 -- define property table
 -- datarefs
-defineProperty("outer_marker", globalPropertyi("sim/cockpit/misc/outer_marker_lit"))   -- runway markers
-defineProperty("middle_marker", globalPropertyi("sim/cockpit/misc/middle_marker_lit"))
-defineProperty("inner_marker", globalPropertyi("sim/cockpit/misc/inner_marker_lit"))
+outer_marker = globalPropertyi("sim/cockpit/misc/outer_marker_lit")   -- runway markers
+middle_marker = globalPropertyi("sim/cockpit/misc/middle_marker_lit")
+inner_marker = globalPropertyi("sim/cockpit/misc/inner_marker_lit")
 
-defineProperty("alt", globalPropertyf("sim/flightmodel/position/y_agl"))
-defineProperty("mrp_mode", globalPropertyi("tu154b2/custom/switchers/ovhd/sp50_nav_mode")) -- 0 - landing, 1 = navigation
---defineProperty("marker_audio", globalPropertyi("sim/cockpit/radios/gear_audio_working"))
+alt = globalPropertyf("sim/flightmodel/position/y_agl")
+mrp_mode = globalPropertyi("tu154b2/custom/switchers/ovhd/sp50_nav_mode") -- 0 - landing, 1 = navigation
+--marker_audio = globalPropertyi("sim/cockpit/radios/gear_audio_working")
 
 --[[
 tu154b2/custom/switchers/ovhd/sp50_mode	int	режим СП50. 0 - ILS, 1 - Katet, 2 - SP-50	0
@@ -18,31 +18,31 @@ tu154b2/custom/switchers/ovhd/sp50_nav_mode	int	режим СП50. посадк�
 
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
-defineProperty("mrp_cc", globalPropertyf("tu154b2/custom/xap/An24_gauges/mrp_cc"))
-defineProperty("mp_1_cc", globalPropertyf("tu154b2/custom/radio/nav1_pow_cc"))
-defineProperty("mp_2_cc", globalPropertyf("tu154b2/custom/radio/nav2_pow_cc"))
+mrp_cc = globalPropertyf("tu154b2/custom/xap/An24_gauges/mrp_cc")
+mp_1_cc = globalPropertyf("tu154b2/custom/radio/nav1_pow_cc")
+mp_2_cc = globalPropertyf("tu154b2/custom/radio/nav2_pow_cc")
 -- sfail
-defineProperty("sim_fail", globalPropertyi("sim/operation/failures/rel_marker"))
-defineProperty("mrp_fail", globalPropertyi("tu154b2/custom/failures/mrp_fail"))
-defineProperty("external_view", globalPropertyi("sim/graphics/view/view_is_external")) -- enviroment
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
+sim_fail = globalPropertyi("sim/operation/failures/rel_marker")
+mrp_fail = globalPropertyi("tu154b2/custom/failures/mrp_fail")
+external_view = globalPropertyi("sim/graphics/view/view_is_external") -- enviroment
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
 
 
 -- lamps
-defineProperty("marker_1", globalPropertyf("tu154b2/custom/lights/marker_1")) -- marker 1
-defineProperty("marker_2", globalPropertyf("tu154b2/custom/lights/marker_2")) -- marker 2
-defineProperty("marker_3", globalPropertyf("tu154b2/custom/lights/marker_3")) -- marker 3
+marker_1 = globalPropertyf("tu154b2/custom/lights/marker_1") -- marker 1
+marker_2 = globalPropertyf("tu154b2/custom/lights/marker_2") -- marker 2
+marker_3 = globalPropertyf("tu154b2/custom/lights/marker_3") -- marker 3
 
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп на передней панели	0
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
-defineProperty("spu_volume2", globalPropertyf("sim/custom/radio/spu_volume2_n"))
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+spu_volume2 = globalPropertyf("sim/custom/radio/spu_volume2_n")
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
 local bell = loadSample(moduleDirectory .. '/Custom Sounds/mrp_bell.wav') --
 local bell2 = loadSample(moduleDirectory .. '/Custom Sounds/mrp_bell2.wav') --
 
@@ -77,7 +77,7 @@ function update()
 	end
 	
 	local test_btn = get(lamp_test) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	-- sounds
 	

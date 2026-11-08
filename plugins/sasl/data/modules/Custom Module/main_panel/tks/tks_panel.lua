@@ -1,43 +1,43 @@
 -- this is TKS panel logic
 
 -- controls
-defineProperty("tks_mode", globalPropertyi("tu154b2/custom/switchers/ovhd/tks_mode")) -- режим ТКС 0 - МК, 1 - ГПК, 2 - АК
-defineProperty("tks_user", globalPropertyi("tu154b2/custom/switchers/ovhd/tks_mode_left")) -- потребители 0 - контр, 1 - осн
-defineProperty("tks_source", globalPropertyi("tu154b2/custom/switchers/ovhd/tks_mode_right")) --  коррекция 0 - контр, 1 - осн
-defineProperty("tks_course_set", globalPropertyi("tu154b2/custom/switchers/ovhd/tks_course_set")) -- задатчик курса
-defineProperty("tks_corrr_button", globalPropertyi("tu154b2/custom/buttons/ovhd/tks_corrr_button")) -- кнопка согласования
-defineProperty("tks_lat_set", globalPropertyf("tu154b2/custom/rotary/ovhd/tks_lat_set")) -- ручка установки широты
+tks_mode = globalPropertyi("tu154b2/custom/switchers/ovhd/tks_mode") -- режим ТКС 0 - МК, 1 - ГПК, 2 - АК
+tks_user = globalPropertyi("tu154b2/custom/switchers/ovhd/tks_mode_left") -- потребители 0 - контр, 1 - осн
+tks_source = globalPropertyi("tu154b2/custom/switchers/ovhd/tks_mode_right") --  коррекция 0 - контр, 1 - осн
+tks_course_set = globalPropertyi("tu154b2/custom/switchers/ovhd/tks_course_set") -- задатчик курса
+tks_corrr_button = globalPropertyi("tu154b2/custom/buttons/ovhd/tks_corrr_button") -- кнопка согласования
+tks_lat_set = globalPropertyf("tu154b2/custom/rotary/ovhd/tks_lat_set") -- ручка установки широты
 
-defineProperty("stabil_ga_main", globalPropertyi("tu154b2/custom/switchers/ovhd/stabil_ga_main")) -- стабилизация ГА по крену осн
-defineProperty("stabil_ga_reserv", globalPropertyi("tu154b2/custom/switchers/ovhd/stabil_ga_reserv")) -- стабилизация ГА резерв
-defineProperty("zaval_osn", globalPropertyi("tu154b2/custom/tks/ga1_tilt"))
-defineProperty("zaval_kontr", globalPropertyi("tu154b2/custom/tks/ga2_tilt"))
+stabil_ga_main = globalPropertyi("tu154b2/custom/switchers/ovhd/stabil_ga_main") -- стабилизация ГА по крену осн
+stabil_ga_reserv = globalPropertyi("tu154b2/custom/switchers/ovhd/stabil_ga_reserv") -- стабилизация ГА резерв
+zaval_osn = globalPropertyi("tu154b2/custom/tks/ga1_tilt")
+zaval_kontr = globalPropertyi("tu154b2/custom/tks/ga2_tilt")
 -- sources
-defineProperty("fail_left", globalPropertyi("tu154b2/custom/tks/fail_left")) -- флаг отказа
-defineProperty("fail_right", globalPropertyi("tu154b2/custom/tks/fail_right")) -- флаг отказа
+fail_left = globalPropertyi("tu154b2/custom/tks/fail_left") -- флаг отказа
+fail_right = globalPropertyi("tu154b2/custom/tks/fail_right") -- флаг отказа
 
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
-defineProperty("mgv_flag", globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag")) -- отказ МГВ
-defineProperty("mgv_contr_fail", globalPropertyi("tu154b2/custom/bkk/mgv_contr_fail")) -- сигнал с БКК - отказ МГВ контр
+mgv_flag = globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag") -- отказ МГВ
+mgv_contr_fail = globalPropertyi("tu154b2/custom/bkk/mgv_contr_fail") -- сигнал с БКК - отказ МГВ контр
 
 -- lamps
-defineProperty("tks_main_fail", globalPropertyf("tu154b2/custom/lights/small/tks_main_fail")) -- отказ осн ГА на ТКС
-defineProperty("tks_contr_fail", globalPropertyf("tu154b2/custom/lights/small/tks_contr_fail")) -- отказ контр ГА на ТКС
+tks_main_fail = globalPropertyf("tu154b2/custom/lights/small/tks_main_fail") -- отказ осн ГА на ТКС
+tks_contr_fail = globalPropertyf("tu154b2/custom/lights/small/tks_contr_fail") -- отказ контр ГА на ТКС
 
-defineProperty("ga_main_fail", globalPropertyf("tu154b2/custom/lights/ga_main_fail")) -- нет резерва Г
-defineProperty("ga_reserve_fail", globalPropertyf("tu154b2/custom/lights/ga_reserve_fail")) -- нет резерва Г
+ga_main_fail = globalPropertyf("tu154b2/custom/lights/ga_main_fail") -- нет резерва Г
+ga_reserve_fail = globalPropertyf("tu154b2/custom/lights/ga_reserve_fail") -- нет резерва Г
 
 
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп на передней панели	0
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
 
 -- sounds
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 
 
@@ -139,7 +139,7 @@ local function lamps()
 	
 	
 	local test_btn = get(lamp_test) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	local fail_main = bool2int(get(fail_left) == 1)
 	local ga_main_fail_brt = math.max(fail_main * lamps_brt, test_btn)

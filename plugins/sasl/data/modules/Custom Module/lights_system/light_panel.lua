@@ -2,120 +2,120 @@
 
 
 -- define controls datarefs
-defineProperty("mid_left_panel_int_set", globalPropertyf("tu154b2/custom/lights/mid_left_panel_int_set")) -- регулятор встроенного освещения передней панели КВС
-defineProperty("left_panel_int_set", globalPropertyf("tu154b2/custom/lights/left_panel_int_set")) --  регулятор встроенного освещения левой панели
-defineProperty("left_panel_fld_set", globalPropertyf("tu154b2/custom/lights/left_panel_flood_set")) --  регулятор встроенного освещения левой панели
-defineProperty("right_panel_fld_set", globalPropertyf("tu154b2/custom/lights/right_panel_flood_set")) --  регулятор встроенного освещения левой панели
-defineProperty("pkp_left", globalPropertyf("tu154b2/custom/lights/left_pkp_set"))
-defineProperty("front_flood", globalPropertyf("tu154b2/custom/lights/front_panel_flood_set"))
-defineProperty("ovhd_back_flood", globalPropertyf("tu154b2/custom/lights/ovhd_back_panel_flood_set"))
-defineProperty("ovhd_front_flood", globalPropertyf("tu154b2/custom/lights/ovhd_front_panel_flood_set"))
-defineProperty("mid_flood", globalPropertyf("tu154b2/custom/lights/mid_panel_flood_set"))
-defineProperty("ovhd_panel", globalPropertyi("tu154b2/custom/lights/ovhd_panel_int_set")) -- 
-defineProperty("nvu_panel", globalPropertyi("tu154b2/custom/lights/mid_left_panel_int_set")) -- 
-defineProperty("pkp_right", globalPropertyi("tu154b2/custom/lights/right_pkp_set")) -- 
+mid_left_panel_int_set = globalPropertyf("tu154b2/custom/lights/mid_left_panel_int_set") -- регулятор встроенного освещения передней панели КВС
+left_panel_int_set = globalPropertyf("tu154b2/custom/lights/left_panel_int_set") --  регулятор встроенного освещения левой панели
+left_panel_fld_set = globalPropertyf("tu154b2/custom/lights/left_panel_flood_set") --  регулятор встроенного освещения левой панели
+right_panel_fld_set = globalPropertyf("tu154b2/custom/lights/right_panel_flood_set") --  регулятор встроенного освещения левой панели
+pkp_left = globalPropertyf("tu154b2/custom/lights/left_pkp_set")
+front_flood = globalPropertyf("tu154b2/custom/lights/front_panel_flood_set")
+ovhd_back_flood = globalPropertyf("tu154b2/custom/lights/ovhd_back_panel_flood_set")
+ovhd_front_flood = globalPropertyf("tu154b2/custom/lights/ovhd_front_panel_flood_set")
+mid_flood = globalPropertyf("tu154b2/custom/lights/mid_panel_flood_set")
+ovhd_panel = globalPropertyi("tu154b2/custom/lights/ovhd_panel_int_set") -- 
+nvu_panel = globalPropertyi("tu154b2/custom/lights/mid_left_panel_int_set") -- 
+pkp_right = globalPropertyi("tu154b2/custom/lights/right_pkp_set") -- 
 
-defineProperty("right_panel_int_set", globalPropertyf("tu154b2/custom/lights/right_panel_int_set")) -- регулятор встроенного освещения правой панели
-defineProperty("mid_right_panel_int_set", globalPropertyf("tu154b2/custom/lights/mid_right_panel_int_set")) -- регулятор встроенного освещения передней панели 2П
-defineProperty("ovhd_panel_int_set", globalPropertyf("tu154b2/custom/lights/ovhd_panel_int_set")) -- регулятор встроенного освещения верхней панели
+right_panel_int_set = globalPropertyf("tu154b2/custom/lights/right_panel_int_set") -- регулятор встроенного освещения правой панели
+mid_right_panel_int_set = globalPropertyf("tu154b2/custom/lights/mid_right_panel_int_set") -- регулятор встроенного освещения передней панели 2П
+ovhd_panel_int_set = globalPropertyf("tu154b2/custom/lights/ovhd_panel_int_set") -- регулятор встроенного освещения верхней панели
 
-defineProperty("cabinl_flood_set", globalPropertyf("tu154b2/custom/lights/cabinl_flood_set")) -- выключатель освещения кабины
-defineProperty("azs_panel_flood_set", globalPropertyf("tu154b2/custom/lights/azs_panel_flood_set")) -- выключатель освещения панели АЗС
-
-
-defineProperty("cargo_light_1_set", globalPropertyf("tu154b2/custom/lights/cargo_light_1_set")) -- выключатель освещения грузового отсека
-defineProperty("cargo_light_2_set", globalPropertyf("tu154b2/custom/lights/cargo_light_2_set")) -- выключатель освещения грузового отсека
-defineProperty("tech_light_set", globalPropertyf("sim/custom/lights/tech_light_set_new")) -- выключатель освещения технического отсека
-defineProperty("gear_nacelle_light_set", globalPropertyf("tu154b2/custom/lights/gear_nacelle_light_set")) -- выключатель освещения гондол шасси
-
-defineProperty("nav_lights_set", globalPropertyi("tu154b2/custom/lights/nav_lights_set")) -- выключатель нав огней
-defineProperty("strobe_set", globalPropertyi("tu154b2/custom/lights/strobe_set")) -- выключатель красных маяков
-defineProperty("wing_light_left_set", globalPropertyi("tu154b2/custom/lights/wing_light_left_set")) -- выключатель подсвета порогов и крыла
-defineProperty("wing_light_right_set", globalPropertyi("tu154b2/custom/lights/wing_light_right_set")) -- выключатель подсвета порогов и крыла
-defineProperty("tail_light_set", globalPropertyi("tu154b2/custom/lights/tail_light_set")) -- выключатель подсвета хвоста
-defineProperty("day_night_set", globalPropertyi("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+cabinl_flood_set = globalPropertyf("tu154b2/custom/lights/cabinl_flood_set") -- выключатель освещения кабины
+azs_panel_flood_set = globalPropertyf("tu154b2/custom/lights/azs_panel_flood_set") -- выключатель освещения панели АЗС
 
 
-defineProperty("landing_ext_set_L", globalPropertyi("tu154b2/custom/lights/landing_ext_set_L")) -- выпуск фар лев
-defineProperty("landing_ext_set_R", globalPropertyi("tu154b2/custom/lights/landing_ext_set_R")) -- выпуск фар прав
-defineProperty("landing_mode_set_L", globalPropertyi("tu154b2/custom/lights/landing_mode_set_L")) -- режим фар лев. -1 - рулежный, 0 - выкл, +1 - посадочный
-defineProperty("landing_mode_set_R", globalPropertyi("tu154b2/custom/lights/landing_mode_set_R")) -- режим фар прав
-defineProperty("light_signal_set", globalPropertyi("tu154b2/custom/lights/light_signal_set")) -- сигнал в полете
+cargo_light_1_set = globalPropertyf("tu154b2/custom/lights/cargo_light_1_set") -- выключатель освещения грузового отсека
+cargo_light_2_set = globalPropertyf("tu154b2/custom/lights/cargo_light_2_set") -- выключатель освещения грузового отсека
+tech_light_set = globalPropertyf("sim/custom/lights/tech_light_set_new") -- выключатель освещения технического отсека
+gear_nacelle_light_set = globalPropertyf("tu154b2/custom/lights/gear_nacelle_light_set") -- выключатель освещения гондол шасси
+
+nav_lights_set = globalPropertyi("tu154b2/custom/lights/nav_lights_set") -- выключатель нав огней
+strobe_set = globalPropertyi("tu154b2/custom/lights/strobe_set") -- выключатель красных маяков
+wing_light_left_set = globalPropertyi("tu154b2/custom/lights/wing_light_left_set") -- выключатель подсвета порогов и крыла
+wing_light_right_set = globalPropertyi("tu154b2/custom/lights/wing_light_right_set") -- выключатель подсвета порогов и крыла
+tail_light_set = globalPropertyi("tu154b2/custom/lights/tail_light_set") -- выключатель подсвета хвоста
+day_night_set = globalPropertyi("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+day_night_set_eng = globalPropertyi("tu154b2/custom/lights/day_night_set_eng")
+
+landing_ext_set_L = globalPropertyi("tu154b2/custom/lights/landing_ext_set_L") -- выпуск фар лев
+landing_ext_set_R = globalPropertyi("tu154b2/custom/lights/landing_ext_set_R") -- выпуск фар прав
+landing_mode_set_L = globalPropertyi("tu154b2/custom/lights/landing_mode_set_L") -- режим фар лев. -1 - рулежный, 0 - выкл, +1 - посадочный
+landing_mode_set_R = globalPropertyi("tu154b2/custom/lights/landing_mode_set_R") -- режим фар прав
+light_signal_set = globalPropertyi("tu154b2/custom/lights/light_signal_set") -- сигнал в полете
 
 
-defineProperty("sign_belts", globalPropertyi("tu154b2/custom/switchers/ovhd/sign_belts")) -- транспарант пристегните ремни
-defineProperty("sign_nosmoke", globalPropertyi("tu154b2/custom/switchers/ovhd/sign_nosmoke")) -- транспарант пристегните ремни
-defineProperty("sign_exit", globalPropertyi("tu154b2/custom/switchers/ovhd/sign_exit")) -- транспарант пристегните ремни
+sign_belts = globalPropertyi("tu154b2/custom/switchers/ovhd/sign_belts") -- транспарант пристегните ремни
+sign_nosmoke = globalPropertyi("tu154b2/custom/switchers/ovhd/sign_nosmoke") -- транспарант пристегните ремни
+sign_exit = globalPropertyi("tu154b2/custom/switchers/ovhd/sign_exit") -- транспарант пристегните ремни
 
-defineProperty("landing_light_off", globalPropertyi("tu154b2/custom/lights/landing_light_off")) -- выключатель фар
-defineProperty("landing_light_off_cap", globalPropertyi("tu154b2/custom/lights/landing_light_off_cap")) -- выключатель фар
-defineProperty("cockpit_door", globalPropertyf("tu154b2/custom/anim/cockpit_door"))
+landing_light_off = globalPropertyi("tu154b2/custom/lights/landing_light_off") -- выключатель фар
+landing_light_off_cap = globalPropertyi("tu154b2/custom/lights/landing_light_off_cap") -- выключатель фар
+cockpit_door = globalPropertyf("tu154b2/custom/anim/cockpit_door")
 ---cabin sw
 
-defineProperty("cabin_sw1", globalPropertyi("sim/custom/cabin/sw_1")) --
-defineProperty("cabin_sw2", globalPropertyi("sim/custom/cabin/sw_2")) --
-defineProperty("cabin_sw3", globalPropertyi("sim/custom/cabin/sw_3")) --
-defineProperty("cabin_sw4", globalPropertyi("sim/custom/cabin/sw_4")) --
-defineProperty("cabin_sw5", globalPropertyi("sim/custom/cabin/sw_5")) --
-defineProperty("cabin_sw6", globalPropertyi("sim/custom/cabin/sw_6")) --
-defineProperty("cabin_sw7", globalPropertyi("sim/custom/cabin/sw_7")) --
-defineProperty("cabin_sw8", globalPropertyi("sim/custom/cabin/sw_8")) --
-defineProperty("cabin_sw9", globalPropertyi("sim/custom/cabin/sw_9")) --
-defineProperty("cabin_sw10", globalPropertyi("sim/custom/cabin/sw_10")) --
-defineProperty("cabin_sw11", globalPropertyi("sim/custom/cabin/sw_11")) --
-defineProperty("cabin_sw12", globalPropertyi("sim/custom/cabin/sw_12")) --
-defineProperty("cabin_sw13", globalPropertyi("sim/custom/cabin/sw_13")) --
-defineProperty("cabin_sw14", globalPropertyi("sim/custom/cabin/sw_14")) --
-defineProperty("cabin_sw15", globalPropertyi("sim/custom/cabin/sw_15")) --
+cabin_sw1 = globalPropertyi("sim/custom/cabin/sw_1") --
+cabin_sw2 = globalPropertyi("sim/custom/cabin/sw_2") --
+cabin_sw3 = globalPropertyi("sim/custom/cabin/sw_3") --
+cabin_sw4 = globalPropertyi("sim/custom/cabin/sw_4") --
+cabin_sw5 = globalPropertyi("sim/custom/cabin/sw_5") --
+cabin_sw6 = globalPropertyi("sim/custom/cabin/sw_6") --
+cabin_sw7 = globalPropertyi("sim/custom/cabin/sw_7") --
+cabin_sw8 = globalPropertyi("sim/custom/cabin/sw_8") --
+cabin_sw9 = globalPropertyi("sim/custom/cabin/sw_9") --
+cabin_sw10 = globalPropertyi("sim/custom/cabin/sw_10") --
+cabin_sw11 = globalPropertyi("sim/custom/cabin/sw_11") --
+cabin_sw12 = globalPropertyi("sim/custom/cabin/sw_12") --
+cabin_sw13 = globalPropertyi("sim/custom/cabin/sw_13") --
+cabin_sw14 = globalPropertyi("sim/custom/cabin/sw_14") --
+cabin_sw15 = globalPropertyi("sim/custom/cabin/sw_15") --
 
-defineProperty("cabin_sw16", globalPropertyi("sim/custom/cabin/sw_16")) --
-defineProperty("cabin_sw17", globalPropertyi("sim/custom/cabin/sw_17")) --
-defineProperty("cabin_sw18", globalPropertyi("sim/custom/cabin/sw_18")) --
-defineProperty("cabin_sw19", globalPropertyi("sim/custom/cabin/sw_19")) --
-defineProperty("cabin_sw20", globalPropertyi("sim/custom/cabin/sw_20")) --
-defineProperty("cabin_sw21", globalPropertyi("sim/custom/cabin/sw_21")) --
-defineProperty("cabin_sw22", globalPropertyi("sim/custom/cabin/sw_22")) --
-defineProperty("cabin_sw23", globalPropertyi("sim/custom/cabin/sw_23")) --
-defineProperty("cabin_sw24", globalPropertyi("sim/custom/cabin/sw_24")) --
-defineProperty("cabin_sw25", globalPropertyi("sim/custom/cabin/sw_25")) --
-defineProperty("cabin_sw26", globalPropertyi("sim/custom/cabin/sw_26")) --
-defineProperty("cabin_sw27", globalPropertyi("sim/custom/cabin/sw_27")) --
-defineProperty("cabin_sw28", globalPropertyi("sim/custom/cabin/sw_28")) --
-defineProperty("cabin_sw29", globalPropertyi("sim/custom/cabin/sw_29")) --
-defineProperty("cabin_sw30", globalPropertyi("sim/custom/cabin/sw_30")) --
-defineProperty("cabin_sw31", globalPropertyi("sim/custom/cabin/sw_31")) --
-defineProperty("cabin_sw32", globalPropertyi("sim/custom/cabin/sw_32")) --
-defineProperty("cabin_sw33", globalPropertyi("sim/custom/cabin/sw_33")) --
-defineProperty("cabin_sw34", globalPropertyi("sim/custom/cabin/sw_34")) --
-defineProperty("cabin_sw35", globalPropertyi("sim/custom/cabin/sw_35")) --
+cabin_sw16 = globalPropertyi("sim/custom/cabin/sw_16") --
+cabin_sw17 = globalPropertyi("sim/custom/cabin/sw_17") --
+cabin_sw18 = globalPropertyi("sim/custom/cabin/sw_18") --
+cabin_sw19 = globalPropertyi("sim/custom/cabin/sw_19") --
+cabin_sw20 = globalPropertyi("sim/custom/cabin/sw_20") --
+cabin_sw21 = globalPropertyi("sim/custom/cabin/sw_21") --
+cabin_sw22 = globalPropertyi("sim/custom/cabin/sw_22") --
+cabin_sw23 = globalPropertyi("sim/custom/cabin/sw_23") --
+cabin_sw24 = globalPropertyi("sim/custom/cabin/sw_24") --
+cabin_sw25 = globalPropertyi("sim/custom/cabin/sw_25") --
+cabin_sw26 = globalPropertyi("sim/custom/cabin/sw_26") --
+cabin_sw27 = globalPropertyi("sim/custom/cabin/sw_27") --
+cabin_sw28 = globalPropertyi("sim/custom/cabin/sw_28") --
+cabin_sw29 = globalPropertyi("sim/custom/cabin/sw_29") --
+cabin_sw30 = globalPropertyi("sim/custom/cabin/sw_30") --
+cabin_sw31 = globalPropertyi("sim/custom/cabin/sw_31") --
+cabin_sw32 = globalPropertyi("sim/custom/cabin/sw_32") --
+cabin_sw33 = globalPropertyi("sim/custom/cabin/sw_33") --
+cabin_sw34 = globalPropertyi("sim/custom/cabin/sw_34") --
+cabin_sw35 = globalPropertyi("sim/custom/cabin/sw_35") --
 
-defineProperty("cabin_sw36", globalPropertyi("sim/custom/cabin/sw_36")) --
-defineProperty("cabin_sw37", globalPropertyi("sim/custom/cabin/sw_37")) --
-defineProperty("cabin_sw38", globalPropertyi("sim/custom/cabin/sw_38")) --
-defineProperty("cabin_sw39", globalPropertyi("sim/custom/cabin/sw_39")) --
-defineProperty("cabin_sw40", globalPropertyi("sim/custom/cabin/sw_40")) --
-defineProperty("cabin_sw41", globalPropertyi("sim/custom/cabin/sw_41")) --
-defineProperty("cabin_sw42", globalPropertyi("sim/custom/cabin/sw_42")) --
-defineProperty("cabin_sw43", globalPropertyi("sim/custom/cabin/sw_43")) --
-defineProperty("cabin_sw44", globalPropertyi("sim/custom/cabin/sw_44")) --
-defineProperty("push_1", globalPropertyi("sim/custom/cabin/push_1")) --
-defineProperty("push_2", globalPropertyi("sim/custom/cabin/push_2")) --
-defineProperty("push_3", globalPropertyi("sim/custom/cabin/push_3")) --
-defineProperty("push_4", globalPropertyi("sim/custom/cabin/push_4")) --
-defineProperty("push_5", globalPropertyi("sim/custom/cabin/push_5")) --
-defineProperty("push_6", globalPropertyi("sim/custom/cabin/push_6")) --
-defineProperty("push_7", globalPropertyi("sim/custom/cabin/push_7")) --
+cabin_sw36 = globalPropertyi("sim/custom/cabin/sw_36") --
+cabin_sw37 = globalPropertyi("sim/custom/cabin/sw_37") --
+cabin_sw38 = globalPropertyi("sim/custom/cabin/sw_38") --
+cabin_sw39 = globalPropertyi("sim/custom/cabin/sw_39") --
+cabin_sw40 = globalPropertyi("sim/custom/cabin/sw_40") --
+cabin_sw41 = globalPropertyi("sim/custom/cabin/sw_41") --
+cabin_sw42 = globalPropertyi("sim/custom/cabin/sw_42") --
+cabin_sw43 = globalPropertyi("sim/custom/cabin/sw_43") --
+cabin_sw44 = globalPropertyi("sim/custom/cabin/sw_44") --
+push_1 = globalPropertyi("sim/custom/cabin/push_1") --
+push_2 = globalPropertyi("sim/custom/cabin/push_2") --
+push_3 = globalPropertyi("sim/custom/cabin/push_3") --
+push_4 = globalPropertyi("sim/custom/cabin/push_4") --
+push_5 = globalPropertyi("sim/custom/cabin/push_5") --
+push_6 = globalPropertyi("sim/custom/cabin/push_6") --
+push_7 = globalPropertyi("sim/custom/cabin/push_7") --
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-defineProperty("vent_1", globalPropertyi("tu154b2/custom/switchers/ovhd/vent_1"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
+vent_1 = globalPropertyi("tu154b2/custom/switchers/ovhd/vent_1")
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 
 -- last variables
@@ -128,6 +128,8 @@ local cargo_2_last = get(cargo_light_2_set)
 local tech_light_last = get(tech_light_set)
 local gear_nacelle_last = get(gear_nacelle_light_set)
 local day_night_last = get(day_night_set)
+local day_night_last_eng = get(day_night_set_eng)
+
 
 local nav_lights_last = get(nav_lights_set)
 local strobe_last = get(strobe_set)
@@ -247,6 +249,7 @@ function update()
 	
 	local cargo_1 = get(cargo_light_1_set)
 	local cargo_2 = get(cargo_light_2_set)
+	local day_night_eng = get(day_night_set_eng)
 	local tech_light = get(tech_light_set)
 	local gear_nacelle = get(gear_nacelle_light_set)	
 	local day_night = get(day_night_set)
@@ -274,7 +277,7 @@ function update()
 	local switchers_center=nav_lights + strobe + wing_light_left + wing_light_right + tail_light + day_night
 	local switchers_land=get(landing_ext_set_L) +  get(landing_ext_set_R) + get(landing_mode_set_L) + get(landing_mode_set_R)
 	local switchers_ovhd=sign_belts_sw + sign_nosmoke_sw + sign_exit_sw + get(vent_1)
-	local switchers_fe = cabinl_flood + azs_panel_flood + cargo_1 + cargo_2 + tech_light + gear_nacelle
+	local switchers_fe = cabinl_flood + azs_panel_flood + cargo_1 + cargo_2 + tech_light + gear_nacelle + day_night_eng
 	local z_pos=get(pilot_Z)
 	local x_pos=get(pilot_X)
 	local plt_hdg=get(pilot_head)
@@ -541,6 +544,7 @@ function update()
 	tech_light_last = tech_light
 	gear_nacelle_last = gear_nacelle
 	day_night_last = day_night
+	day_night_last_eng = day_night_eng
 
 	nav_lights_last = nav_lights
 	strobe_last = strobe

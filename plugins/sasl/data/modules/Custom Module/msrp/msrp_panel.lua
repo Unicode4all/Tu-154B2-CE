@@ -1,57 +1,57 @@
 -- this is the MSRP panel
 
 -- lights
-defineProperty("msrp_mlp_main", globalPropertyf("tu154b2/custom/lights/small/msrp_mlp_main")) -- МСРП. МЛП ОСН
-defineProperty("msrp_mlp_aux", globalPropertyf("tu154b2/custom/lights/small/msrp_mlp_aux")) -- МСРП. МЛП ДОП
-defineProperty("msrp_up2", globalPropertyf("tu154b2/custom/lights/small/msrp_up2")) -- МСРП. УП2
-defineProperty("msrp_mars", globalPropertyf("tu154b2/custom/lights/small/msrp_mars")) -- МСРП. МАРС
+msrp_mlp_main = globalPropertyf("tu154b2/custom/lights/small/msrp_mlp_main") -- МСРП. МЛП ОСН
+msrp_mlp_aux = globalPropertyf("tu154b2/custom/lights/small/msrp_mlp_aux") -- МСРП. МЛП ДОП
+msrp_up2 = globalPropertyf("tu154b2/custom/lights/small/msrp_up2") -- МСРП. УП2
+msrp_mars = globalPropertyf("tu154b2/custom/lights/small/msrp_mars") -- МСРП. МАРС
 
 -- buttons
-defineProperty("lamp_test_msrp", globalPropertyf("tu154b2/custom/buttons/lamp_test_msrp")) -- кнопка проверки ламп МСРП
+lamp_test_msrp = globalPropertyf("tu154b2/custom/buttons/lamp_test_msrp") -- кнопка проверки ламп МСРП
 
 -- controlls
-defineProperty("msrp_date_ten", globalPropertyi("tu154b2/custom/switchers/eng/msrp_date_ten")) -- МРСП дата число десятки
-defineProperty("msrp_date_one", globalPropertyi("tu154b2/custom/switchers/eng/msrp_date_one")) -- МРСП дата число единицы
-defineProperty("msrp_month_ten", globalPropertyi("tu154b2/custom/switchers/eng/msrp_month_ten")) -- МРСП дата месяц десятки
-defineProperty("msrp_month_one", globalPropertyi("tu154b2/custom/switchers/eng/msrp_month_one")) -- МРСП дата месяц единицы
-defineProperty("msrp_year_ten", globalPropertyi("tu154b2/custom/switchers/eng/msrp_year_ten")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_year_one", globalPropertyi("tu154b2/custom/switchers/eng/msrp_year_one")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_route_hun", globalPropertyi("tu154b2/custom/switchers/eng/msrp_route_hun")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_route_ten", globalPropertyi("tu154b2/custom/switchers/eng/msrp_route_ten")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_route_one", globalPropertyi("tu154b2/custom/switchers/eng/msrp_route_one")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_mlp_1", globalPropertyi("tu154b2/custom/switchers/eng/msrp_mlp_1")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_mlp_2", globalPropertyi("tu154b2/custom/switchers/eng/msrp_mlp_2")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_night_day", globalPropertyi("tu154b2/custom/switchers/eng/msrp_night_day")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_main_switch", globalPropertyi("tu154b2/custom/switchers/eng/msrp_main_switch")) -- кнопка проверки ламп МСРП
+msrp_date_ten = globalPropertyi("tu154b2/custom/switchers/eng/msrp_date_ten") -- МРСП дата число десятки
+msrp_date_one = globalPropertyi("tu154b2/custom/switchers/eng/msrp_date_one") -- МРСП дата число единицы
+msrp_month_ten = globalPropertyi("tu154b2/custom/switchers/eng/msrp_month_ten") -- МРСП дата месяц десятки
+msrp_month_one = globalPropertyi("tu154b2/custom/switchers/eng/msrp_month_one") -- МРСП дата месяц единицы
+msrp_year_ten = globalPropertyi("tu154b2/custom/switchers/eng/msrp_year_ten") -- кнопка проверки ламп МСРП
+msrp_year_one = globalPropertyi("tu154b2/custom/switchers/eng/msrp_year_one") -- кнопка проверки ламп МСРП
+msrp_route_hun = globalPropertyi("tu154b2/custom/switchers/eng/msrp_route_hun") -- кнопка проверки ламп МСРП
+msrp_route_ten = globalPropertyi("tu154b2/custom/switchers/eng/msrp_route_ten") -- кнопка проверки ламп МСРП
+msrp_route_one = globalPropertyi("tu154b2/custom/switchers/eng/msrp_route_one") -- кнопка проверки ламп МСРП
+msrp_mlp_1 = globalPropertyi("tu154b2/custom/switchers/eng/msrp_mlp_1") -- кнопка проверки ламп МСРП
+msrp_mlp_2 = globalPropertyi("tu154b2/custom/switchers/eng/msrp_mlp_2") -- кнопка проверки ламп МСРП
+msrp_night_day = globalPropertyi("tu154b2/custom/switchers/eng/msrp_night_day") -- кнопка проверки ламп МСРП
+msrp_main_switch = globalPropertyi("tu154b2/custom/switchers/eng/msrp_main_switch") -- кнопка проверки ламп МСРП
 
-defineProperty("mars_on", globalPropertyi("tu154b2/custom/switchers/ovhd/mars_on")) --  МАРС
-defineProperty("nose_switch", globalProperty("sim/flightmodel2/gear/on_ground[1]"))
+mars_on = globalPropertyi("tu154b2/custom/switchers/ovhd/mars_on") --  МАРС
+nose_switch = globalProperty("sim/flightmodel2/gear/on_ground[1]")
 
 
 -- other sources
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
-defineProperty("msrp_recording", globalPropertyi("tu154b2/custom/msrp/msrp_recording")) -- МСРП в режиме записи
-defineProperty("gen1", globalPropertyf("tu154b2/custom/elec/gen1_work"))
-defineProperty("gen2", globalPropertyf("tu154b2/custom/elec/gen2_work"))
-defineProperty("gen3", globalPropertyf("tu154b2/custom/elec/gen3_work"))
+msrp_recording = globalPropertyi("tu154b2/custom/msrp/msrp_recording") -- МСРП в режиме записи
+gen1 = globalPropertyf("tu154b2/custom/elec/gen1_work")
+gen2 = globalPropertyf("tu154b2/custom/elec/gen2_work")
+gen3 = globalPropertyf("tu154b2/custom/elec/gen3_work")
 
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
-defineProperty("ias", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot"))
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
+ias = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("sard_1", globalProperty("sim/custom/switchers/sard/sard_pribor_cap1"))
-defineProperty("sard_2", globalProperty("sim/custom/switchers/sard/sard_pribor_cap2"))
+sard_1 = globalProperty("sim/custom/switchers/sard/sard_pribor_cap1")
+sard_2 = globalProperty("sim/custom/switchers/sard/sard_pribor_cap2")
 
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 
 
@@ -452,7 +452,7 @@ local function lamps()
 	local nose_sw = 1-get(nose_switch)
 	local main_sw = math.max(get(msrp_main_switch),get(gen1),get(gen2),get(gen3))
 	local test_btn = get(lamp_test_msrp) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * main_sw
-	local day_night = 0.75 + get(msrp_night_day) * 0.25
+	local day_night = 0.5 + get(msrp_night_day) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night * main_sw
 	
 	local record = get(msrp_recording) == 1

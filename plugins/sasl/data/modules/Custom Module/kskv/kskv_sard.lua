@@ -1,97 +1,95 @@
 -- this is pressure control logic
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- internal
-defineProperty("air_usage_L", globalPropertyf("tu154b2/custom/bleed/air_usage_L")) -- расход воздуха лев
-defineProperty("air_usage_R", globalPropertyf("tu154b2/custom/bleed/air_usage_R")) -- расход воздуха прав
+air_usage_L = globalPropertyf("tu154b2/custom/bleed/air_usage_L") -- расход воздуха лев
+air_usage_R = globalPropertyf("tu154b2/custom/bleed/air_usage_R") -- расход воздуха прав
 
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
-defineProperty("sard_panel_lit", globalPropertyf("tu154b2/custom/lights/sard_panel_lit")) -- светимость панели САРД
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+sard_panel_lit = globalPropertyf("tu154b2/custom/lights/sard_panel_lit") -- светимость панели САРД
 
-defineProperty("start_sys_work", globalPropertyf("tu154b2/custom/start/start_sys_work")) -- работа системы запуска
+start_sys_work = globalPropertyf("tu154b2/custom/start/start_sys_work") -- работа системы запуска
 
 -- controls
-defineProperty("sard_cabin_press_set", globalPropertyf("tu154b2/custom/switchers/sard/sard_cabin_press_set_osn")) -- установка давления в кабине
-defineProperty("sard_diff_set", globalPropertyf("tu154b2/custom/switchers/sard/sard_diff_set_osn")) -- установка перепада давлений
-defineProperty("sard_spd_set", globalPropertyf("tu154b2/custom/switchers/sard/sard_spd_set_osn")) -- установка скорости работы САРД
-defineProperty("ditch", globalPropertyi("tu154b2/custom/switchers/eng/sard_disable"))
-defineProperty("sard_cabin_press_set_2", globalPropertyf("tu154b2/custom/switchers/sard/sard_cabin_press_set_dbl"))
-defineProperty("sard_diff_set_2", globalPropertyf("tu154b2/custom/switchers/sard/sard_diff_set_dbl")) 
-defineProperty("sard_spd_set_2", globalPropertyf("tu154b2/custom/switchers/sard/sard_spd_set_dbl"))
+sard_cabin_press_set = globalPropertyf("tu154b2/custom/switchers/sard/sard_cabin_press_set_osn") -- установка давления в кабине
+sard_diff_set = globalPropertyf("tu154b2/custom/switchers/sard/sard_diff_set_osn") -- установка перепада давлений
+sard_spd_set = globalPropertyf("tu154b2/custom/switchers/sard/sard_spd_set_osn") -- установка скорости работы САРД
+ditch = globalPropertyi("tu154b2/custom/switchers/eng/sard_disable")
+sard_cabin_press_set_2 = globalPropertyf("tu154b2/custom/switchers/sard/sard_cabin_press_set_dbl")
+sard_diff_set_2 = globalPropertyf("tu154b2/custom/switchers/sard/sard_diff_set_dbl") 
+sard_spd_set_2 = globalPropertyf("tu154b2/custom/switchers/sard/sard_spd_set_dbl")
 
 
-defineProperty("emerg_decompress", globalPropertyi("tu154b2/custom/switchers/airbleed/emerg_decompress")) -- сброс давления
-
-defineProperty("sard_disable", globalPropertyi("tu154b2/custom/switchers/eng/sard_disable")) -- ерекрытие клапана сброса воздуха
+emerg_decompress = globalPropertyi("tu154b2/custom/switchers/airbleed/emerg_decompress") -- сброс давления
 
 -- windows
-defineProperty("cockpit_window_left", globalPropertyf("tu154b2/custom/anim/cockpit_window_left")) -- открытие форточки
-defineProperty("cockpit_window_right", globalPropertyf("tu154b2/custom/anim/cockpit_window_right")) -- открытие форточки
+cockpit_window_left = globalPropertyf("tu154b2/custom/anim/cockpit_window_left") -- открытие форточки
+cockpit_window_right = globalPropertyf("tu154b2/custom/anim/cockpit_window_right") -- открытие форточки
 
-defineProperty("pax_door_1", globalPropertyf("tu154b2/custom/anim/pax_door_1")) -- положение передних пасс дверей
-defineProperty("pax_door_2", globalPropertyf("tu154b2/custom/anim/pax_door_2")) -- положение средних пасс дверей
-defineProperty("pax_door_3", globalPropertyf("tu154b2/custom/anim/pax_door_3")) -- положение правых аварийных дверей
-defineProperty("cargo_1", globalPropertyf("tu154b2/custom/anim/cargo_1")) -- багаж
-defineProperty("cargo_2", globalPropertyf("tu154b2/custom/anim/cargo_2")) -- багаж
-defineProperty("cockpit_temp", globalPropertyf("tu154b2/custom/bleed/cockpit_temp")) -- температура в кабине
-defineProperty("cabin_1_temp", globalPropertyf("tu154b2/custom/bleed/cabin_1_temp")) -- температура в салоне 1
-defineProperty("cabin_2_temp", globalPropertyf("tu154b2/custom/bleed/cabin_2_temp")) -- температура в салоне 2
+pax_door_1 = globalPropertyf("tu154b2/custom/anim/pax_door_1") -- положение передних пасс дверей
+pax_door_2 = globalPropertyf("tu154b2/custom/anim/pax_door_2") -- положение средних пасс дверей
+pax_door_3 = globalPropertyf("tu154b2/custom/anim/pax_door_3") -- положение правых аварийных дверей
+cargo_1 = globalPropertyf("tu154b2/custom/anim/cargo_1") -- багаж
+cargo_2 = globalPropertyf("tu154b2/custom/anim/cargo_2") -- багаж
+cockpit_temp = globalPropertyf("tu154b2/custom/bleed/cockpit_temp") -- температура в кабине
+cabin_1_temp = globalPropertyf("tu154b2/custom/bleed/cabin_1_temp") -- температура в салоне 1
+cabin_2_temp = globalPropertyf("tu154b2/custom/bleed/cabin_2_temp") -- температура в салоне 2
 
 
 -- failures
-defineProperty("sard_valve_fail", globalPropertyi("tu154b2/custom/failures/sard_valve_fail")) -- отказ выпускного клапана
+sard_valve_fail = globalPropertyi("tu154b2/custom/failures/sard_valve_fail") -- отказ выпускного клапана
 
 
 -- current altitude
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel/position/elevation"))  -- phisical altitude MSL. meters
-defineProperty("msl_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
+msl_alt = globalPropertyf("sim/flightmodel/position/elevation")  -- phisical altitude MSL. meters
+msl_press = globalPropertyf("sim/weather/barometer_sealevel_inhg")  -- pressire at sea level in.Hg
 
 -- results
-defineProperty("dump_to_altitude_on", globalPropertyi("sim/cockpit2/pressurization/actuators/dump_to_altitude_on")) -- Dump pressurization to the current altitude, 0 or 1.
-defineProperty("cabin_altitude_ft", globalPropertyf("sim/cockpit/pressure/cabin_altitude_actual_ft")) -- Cabin altitude 
-defineProperty("cabin_vvi_fpm", globalPropertyf("sim/cockpit/pressure/cabin_vvi_actual_fpm")) -- Cabin VVI commanded, feet.
-defineProperty("cabin_outflow_vlv", globalPropertyf("sim/cockpit/pressure/outflow_valve"))
-defineProperty("override", globalPropertyi("sim/operation/override/override_pressurization"))
---defineProperty("dump_all_on", globalPropertyi("sim/cockpit2/pressurization/actuators/dump_all_on"))
+dump_to_altitude_on = globalPropertyi("sim/cockpit2/pressurization/actuators/dump_to_altitude_on") -- Dump pressurization to the current altitude, 0 or 1.
+cabin_altitude_ft = globalPropertyf("sim/cockpit/pressure/cabin_altitude_actual_ft") -- Cabin altitude 
+cabin_vvi_fpm = globalPropertyf("sim/cockpit/pressure/cabin_vvi_actual_fpm") -- Cabin VVI commanded, feet.
+cabin_outflow_vlv = globalPropertyf("sim/cockpit/pressure/outflow_valve")
+override = globalPropertyi("sim/operation/override/override_pressurization")
+--dump_all_on = globalPropertyi("sim/cockpit2/pressurization/actuators/dump_all_on")
 
 
 -- current state
-defineProperty("cabin_alt_now_ft", globalPropertyf("sim/cockpit2/pressurization/indicators/cabin_altitude_ft")) -- Cabin altitude actually occurring, feet
-defineProperty("pressure_diff_psi", globalPropertyf("sim/cockpit2/pressurization/indicators/pressure_diffential_psi")) -- pounds/square_inch	Cabin differential pressure, psi.
+cabin_alt_now_ft = globalPropertyf("sim/cockpit2/pressurization/indicators/cabin_altitude_ft") -- Cabin altitude actually occurring, feet
+pressure_diff_psi = globalPropertyf("sim/cockpit2/pressurization/indicators/pressure_diffential_psi") -- pounds/square_inch	Cabin differential pressure, psi.
 
---defineProperty("acf_has_press_controls", globalPropertyf("sim/aircraft/view/acf_has_press_controls")) --
-defineProperty("ambient_p", globalPropertyf("sim/weather/aircraft/barometer_current_pas"))
-defineProperty("reg_fail_main", globalPropertyi("tu154b2/custom/failures/srd_regulator_1"))
-defineProperty("reg_fail_back", globalPropertyi("tu154b2/custom/failures/srd_regulator_2"))
-defineProperty("valve_1_fail", globalPropertyi("tu154b2/custom/failures/valve_1"))
-defineProperty("valve_2_fail", globalPropertyi("tu154b2/custom/failures/valve_2"))
-defineProperty("valve_3_fail", globalPropertyi("tu154b2/custom/failures/valve_3"))
-defineProperty("valve_4_fail", globalPropertyi("tu154b2/custom/failures/valve_4"))
+--acf_has_press_controls = globalPropertyf("sim/aircraft/view/acf_has_press_controls") --
+ambient_p = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
+reg_fail_main = globalPropertyi("tu154b2/custom/failures/srd_regulator_1")
+reg_fail_back = globalPropertyi("tu154b2/custom/failures/srd_regulator_2")
+valve_1_fail = globalPropertyi("tu154b2/custom/failures/valve_1")
+valve_2_fail = globalPropertyi("tu154b2/custom/failures/valve_2")
+valve_3_fail = globalPropertyi("tu154b2/custom/failures/valve_3")
+valve_4_fail = globalPropertyi("tu154b2/custom/failures/valve_4")
 
-defineProperty("eject_sw", globalPropertyi("sim/custom/b2/airflow_eject"))
-defineProperty("eject_cap", globalPropertyi("sim/custom/b2/airflow_eject_cap"))
-defineProperty("gear_def", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]"))
-defineProperty("dubl_sw", globalPropertyi("tu154b2/custom/switchers/airbleed/dubler_on"))
+eject_sw = globalPropertyi("sim/custom/b2/airflow_eject")
+eject_cap = globalPropertyi("sim/custom/b2/airflow_eject_cap")
+gear_def = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")
+dubl_sw = globalPropertyi("tu154b2/custom/switchers/airbleed/dubler_on")
 -- B2 gauges
-defineProperty("vys_kab", globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_alt_new"))
-defineProperty("var_kab", globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_vvi_new"))
-defineProperty("izb_davl", globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_diff_new"))
+vys_kab = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_alt_new")
+var_kab = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_vvi_new")
+izb_davl = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_diff_new")
 --additional stuff
-defineProperty("bleed_air", globalPropertyi("tu154b2/custom/kskv/bleed_avail"))
-defineProperty("rpm_high_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1"))
-defineProperty("oat", globalPropertyf("sim/weather/temperature_ambient_c"))
+bleed_air = globalPropertyi("tu154b2/custom/kskv/bleed_avail")
+rpm_high_1 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1")
+oat = globalPropertyf("sim/weather/temperature_ambient_c")
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("tu154b2/crew/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
 
 
 local var_tbl = {{ -100000, -21 },    -- bugs walkaround
@@ -367,8 +365,8 @@ function update()
 		if regulator_switched==1 then
 			p_cmd=p_set_back
 		end
-		A_vlv_1,p_set_1 =valve_4870T(p_ambient,A_vlv_1,p_cmd,p_set_1,p_cab,passed,A_max,A_vlv_ejct,ejct-regulator_switched,P_eject,dmp,fail_vlv_1,cls)
-		A_vlv_2,p_set_2 =valve_4870T(p_ambient,A_vlv_2,p_cmd,p_set_2,p_cab,passed,A_max,A_vlv_ejct,ejct-regulator_switched,P_eject,dmp,fail_vlv_2,cls)
+		A_vlv_1,p_set_1 =valve_4870T(p_ambient,A_vlv_1,p_cmd,p_set_1,p_cab,passed,A_max,A_vlv_ejct,ejct-regulator_switched,P_eject,dmp,fail_vlv_1,0)
+		A_vlv_2,p_set_2 =valve_4870T(p_ambient,A_vlv_2,p_cmd,p_set_2,p_cab,passed,A_max,A_vlv_ejct,ejct-regulator_switched,P_eject,dmp,fail_vlv_2,0)
 		A_vlv_3,p_set_3 =valve_4870T(p_ambient,A_vlv_3,p_cmd,p_set_3,p_cab,passed,A_max,A_vlv_ejct,ejct-regulator_switched,P_eject,dmp,fail_vlv_3,cls)
 		A_vlv_4,p_set_4 =valve_4870T(p_ambient,A_vlv_4,p_cmd,p_set_4,p_cab,passed,A_max,A_vlv_ejct,ejct-regulator_switched,P_eject,dmp,fail_vlv_4,cls)
 		-- set(db2,A_vlv_ejct)

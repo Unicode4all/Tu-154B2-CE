@@ -200,7 +200,7 @@ end
 local function lamps()
 	
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 
 	local dist_autonom_brt = math.max(bool2int(get(rsbn_rec) == 0) * lamps_brt * get(rsbn_on), test_btn) * (1 - get(lamp_1))

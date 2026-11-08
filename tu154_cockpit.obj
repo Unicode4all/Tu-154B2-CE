@@ -18772,6 +18772,7 @@ ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/lights/day_night_set
 TRIS 17877 6
 ANIM_end
 ANIM_begin
+ATTR_manip_toggle up_down 1.000000 0.000000 tu154b2/custom/lights/day_night_set_eng
 TRIS 17883 6
 ANIM_end
 ANIM_begin

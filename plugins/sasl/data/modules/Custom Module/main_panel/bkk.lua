@@ -1,64 +1,64 @@
 -- this is roll control system BKK
 
 -- controll
-defineProperty("bkk_on", globalPropertyi("tu154b2/custom/switchers/ovhd/bkk_on")) -- выключатель
-defineProperty("bkk_contr", globalPropertyi("tu154b2/custom/switchers/ovhd/bkk_contr")) -- контроль
+bkk_on = globalPropertyi("tu154b2/custom/switchers/ovhd/bkk_on") -- выключатель
+bkk_contr = globalPropertyi("tu154b2/custom/switchers/ovhd/bkk_contr") -- контроль
 
 -- roll for check
-defineProperty("roll_a", globalPropertyf("tu154b2/custom/bkk/pkp_roll_left")) -- крен на АГР + в право
-defineProperty("roll_b", globalPropertyf("tu154b2/custom/bkk/pkp_roll_right")) -- крен на АГР + в право
-defineProperty("roll_c", globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll")) -- крен на АГР + в право
+roll_a = globalPropertyf("tu154b2/custom/bkk/pkp_roll_left") -- крен на АГР + в право
+roll_b = globalPropertyf("tu154b2/custom/bkk/pkp_roll_right") -- крен на АГР + в право
+roll_c = globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll") -- крен на АГР + в право
 
 -- pitch for check
-defineProperty("pitch_a", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L")) -- тангаж на АГР + вверх
-defineProperty("pitch_b", globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R")) -- тангаж на АГР + вверх
-defineProperty("pitch_c", globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch")) -- тангаж на АГР + вверх
+pitch_a = globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_L") -- тангаж на АГР + вверх
+pitch_b = globalPropertyf("tu154b2/custom/gyro/ahz_pitch_int_R") -- тангаж на АГР + вверх
+pitch_c = globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch") -- тангаж на АГР + вверх
 
 -- fail
-defineProperty("bkk_fail_1", globalPropertyi("tu154b2/custom/failures/bkk_fail")) -- fail
-defineProperty("bkk_fail_2", globalPropertyi("tu154b2/custom/failures/bkk_fail_2")) -- fail
+bkk_fail_1 = globalPropertyi("tu154b2/custom/failures/bkk_fail") -- fail
+bkk_fail_2 = globalPropertyi("tu154b2/custom/failures/bkk_fail_2") -- fail
 
 
 
 -- results
-defineProperty("left_roll_big", globalPropertyi("tu154b2/custom/bkk/left_roll_big")) -- сигнал с БКК - крен лев велик
-defineProperty("right_roll_big", globalPropertyi("tu154b2/custom/bkk/right_roll_big")) -- сигнал с БКК - крен прав велик
-defineProperty("mgv_contr_fail", globalPropertyi("tu154b2/custom/bkk/mgv_contr_fail")) -- сигнал с БКК - отказ МГВ контр
-defineProperty("no_contr_ag", globalPropertyi("tu154b2/custom/bkk/no_contr_ag")) -- сигнал с БКК - нет контроля АГ
-defineProperty("pkp_fail_left", globalPropertyi("tu154b2/custom/bkk/pkp_fail_left")) -- сигнал с БКК - отказ левого ПКП
-defineProperty("pkp_fail_right", globalPropertyi("tu154b2/custom/bkk/pkp_fail_right")) -- сигнал с БКК - отказ левого ПКП	
+left_roll_big = globalPropertyi("tu154b2/custom/bkk/left_roll_big") -- сигнал с БКК - крен лев велик
+right_roll_big = globalPropertyi("tu154b2/custom/bkk/right_roll_big") -- сигнал с БКК - крен прав велик
+mgv_contr_fail = globalPropertyi("tu154b2/custom/bkk/mgv_contr_fail") -- сигнал с БКК - отказ МГВ контр
+no_contr_ag = globalPropertyi("tu154b2/custom/bkk/no_contr_ag") -- сигнал с БКК - нет контроля АГ
+pkp_fail_left = globalPropertyi("tu154b2/custom/bkk/pkp_fail_left") -- сигнал с БКК - отказ левого ПКП
+pkp_fail_right = globalPropertyi("tu154b2/custom/bkk/pkp_fail_right") -- сигнал с БКК - отказ левого ПКП	
 
 -- lamps
-defineProperty("roll_left_high", globalPropertyf("tu154b2/custom/lights/roll_left_high")) -- крен лев велик
-defineProperty("roll_right_high", globalPropertyf("tu154b2/custom/lights/roll_right_high")) -- крен прав велик
-defineProperty("mgv_control_fail", globalPropertyf("tu154b2/custom/lights/mgv_control_fail")) -- отказ МГВ контр
-defineProperty("no_ag_controll", globalPropertyf("tu154b2/custom/lights/no_ag_controll")) -- нет котроля АГ
+roll_left_high = globalPropertyf("tu154b2/custom/lights/roll_left_high") -- крен лев велик
+roll_right_high = globalPropertyf("tu154b2/custom/lights/roll_right_high") -- крен прав велик
+mgv_control_fail = globalPropertyf("tu154b2/custom/lights/mgv_control_fail") -- отказ МГВ контр
+no_ag_controll = globalPropertyf("tu154b2/custom/lights/no_ag_controll") -- нет котроля АГ
 
-defineProperty("bkk_ok", globalPropertyf("tu154b2/custom/lights/small/bkk_ok")) -- bkk
-
-
-defineProperty("mgv_flag", globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag")) -- отказ МГВ
-defineProperty("ias", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")) -- ias variable
-defineProperty("radio_alt", globalPropertyf("tu154b2/custom/misc/rv5_alt_left")) -- altitude in feet
+bkk_ok = globalPropertyf("tu154b2/custom/lights/small/bkk_ok") -- bkk
 
 
-
---defineProperty("bkk_pitch", globalPropertyf("tu154b2/custom/bkk/bkk_pitch")) -- результирующий тангаж от БКК
---defineProperty("bkk_roll", globalPropertyf("tu154b2/custom/bkk/bkk_roll")) -- результирующий тангаж от БКК
-
---defineProperty("pitch_sub_mode", globalPropertyi("tu154b2/custom/absu/pitch_sub_mode")) -- режим АБСУ по тангажу. 0 - выкл, 1 - стаб, 2 - V, 3 - M, 4 - H, 5 - глисс, 6 - уход
-defineProperty("absu_landing_on", globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on")) -- стрелки посадка
+mgv_flag = globalPropertyf("tu154b2/custom/gyro/mgv_contr_flag") -- отказ МГВ
+ias = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot") -- ias variable
+radio_alt = globalPropertyf("tu154b2/custom/misc/rv5_alt_left") -- altitude in feet
 
 
-defineProperty("test_lamps", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп 
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
-defineProperty("bus36_volt", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1"))
-defineProperty("mgv_contr_sw", globalPropertyi("tu154b2/custom/switchers/ovhd/mgv_contr")) 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
-defineProperty("absu_arrest", globalPropertyi("tu154b2/custom/buttons/console/absu_arrest")) -- кнопки арретировки МГВ
+--bkk_pitch = globalPropertyf("tu154b2/custom/bkk/bkk_pitch") -- результирующий тангаж от БКК
+--bkk_roll = globalPropertyf("tu154b2/custom/bkk/bkk_roll") -- результирующий тангаж от БКК
+
+--pitch_sub_mode = globalPropertyi("tu154b2/custom/absu/pitch_sub_mode") -- режим АБСУ по тангажу. 0 - выкл, 1 - стаб, 2 - V, 3 - M, 4 - H, 5 - глисс, 6 - уход
+absu_landing_on = globalPropertyi("tu154b2/custom/switchers/console/absu_landing_on") -- стрелки посадка
+
+
+test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп 
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
+bus36_volt = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")
+mgv_contr_sw = globalPropertyi("tu154b2/custom/switchers/ovhd/mgv_contr") 
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
+absu_arrest = globalPropertyi("tu154b2/custom/buttons/console/absu_arrest") -- кнопки арретировки МГВ
 
 -- result flags
 local fail_a = false
@@ -226,7 +226,7 @@ function update()
 	
 	
 	
---	print(get(pitch_a), "  ", get(pitch_b), "  ", get(pitch_c), "  ", pitch_res)
+--	print(get(pitch_a), "   = get(pitch_b), "   = get(pitch_c), "  ", pitch_res)
 	
 	-- set(bkk_pitch, pitch_res)
 	-- set(bkk_roll, roll_res)
@@ -245,7 +245,7 @@ function update()
 	
 	-- set lamps
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	
 	

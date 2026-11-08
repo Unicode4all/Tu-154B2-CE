@@ -502,3 +502,63 @@ BEGIN_MANIP drag_axis sim/custom/kontur/rru_r
 	ACTION axis_knob 0 1 0.1 sim/custom/kontur/rru_r
 	DEG_PER_ACTION 10
 END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/radio/spu_volume1_n
+	ACTION axis_knob 0 1 0.05 sim/custom/radio/spu_volume1_n
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis sim/custom/radio/spu_volume2_n
+	ACTION axis_knob 0 1 0.05 sim/custom/radio/spu_volume2_n
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/switchers/spu_1_source
+	ACTION axis_knob 0 5 1 tu154b2/custom/switchers/spu_1_source
+	DEG_PER_ACTION 25
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/radio/spu2_volume1
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/radio/spu2_volume1
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/radio/spu2_volume2
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/radio/spu2_volume2
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/switchers/spu_2_source
+	ACTION axis_knob 0 5 1 tu154b2/custom/switchers/spu_2_source
+	DEG_PER_ACTION 25
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/radio/spu3_volume1
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/radio/spu3_volume1
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/radio/spu3_volume2
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/radio/spu3_volume2
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/switchers/spu_3_source
+	ACTION axis_knob 0 5 1 tu154b2/custom/switchers/spu_3_source
+	DEG_PER_ACTION 25
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/radio/spu4_volume1
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/radio/spu4_volume1
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/radio/spu4_volume2
+	ACTION axis_knob 0 1 0.05 tu154b2/custom/radio/spu4_volume2
+	DEG_PER_ACTION 9
+END_MANIP
+
+BEGIN_MANIP drag_axis tu154b2/custom/switchers/spu_4_source
+	ACTION axis_knob 0 5 1 tu154b2/custom/switchers/spu_4_source
+	DEG_PER_ACTION 25
+END_MANIP

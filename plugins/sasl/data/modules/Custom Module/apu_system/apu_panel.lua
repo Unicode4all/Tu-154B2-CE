@@ -55,7 +55,7 @@ outside_air_temp = globalPropertyf("sim/cockpit2/temperature/outside_air_temp_de
 
 -- lamp sources
 test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_apu") -- кнопка проверки ламп панели ВСУ
-day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set_eng") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 gear_vent_set = globalPropertyi("tu154b2/custom/switchers/eng/gear_fan") -- вентиляция шасси
 
 -- enviroment
@@ -322,7 +322,7 @@ local start_ready_brt = 0
 local function lamps()
 	
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	
 	-- local variables

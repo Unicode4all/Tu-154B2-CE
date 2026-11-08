@@ -480301,7 +480301,7 @@ IDX	426155
 			ANIM_begin
 			ANIM_trans	0.77656001	-1.04756	-19.0749	0.77656001	-1.04756	-19.0749
 			ANIM_rotate	1	0	0	90.00021	90.00021
-			ANIM_rotate_begin	0	1	-0	tu154b2/custom/lights/day_night_set
+			ANIM_rotate_begin	0	1	-0	tu154b2/custom/lights/day_night_set_eng
 			ANIM_rotate_key	0	30.000069
 			ANIM_rotate_key	1	-30.000069
 			ANIM_rotate_end
@@ -481573,7 +481573,7 @@ IDX	426155
 	ANIM_trans	0.85218	-1.55744	-19.155861	0.85218	-1.55744	-19.155861
 	ANIM_rotate_begin	-0.98962498	0.14025335	0.031168489	tu154b2/custom/radio/spu4_volume1
 	ANIM_rotate_key	0	0
-	ANIM_rotate_key	1	90.00021
+	ANIM_rotate_key	1	-90.00021
 	ANIM_rotate_end
 	TRIS	369471 252
 	ANIM_end
@@ -481581,7 +481581,7 @@ IDX	426155
 	ANIM_trans	0.85264999	-1.5569299	-19.09971	0.85264999	-1.5569299	-19.09971
 	ANIM_rotate_begin	-0.98962492	0.14025334	0.031168494	tu154b2/custom/radio/spu4_volume2
 	ANIM_rotate_key	0	0
-	ANIM_rotate_key	1	90.00021
+	ANIM_rotate_key	1	-90.00021
 	ANIM_rotate_end
 	TRIS	369723 252
 	ANIM_end

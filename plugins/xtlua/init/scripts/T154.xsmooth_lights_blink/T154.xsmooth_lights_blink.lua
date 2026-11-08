@@ -7,6 +7,7 @@ end
 --lamp tests
 
 simDR_front_lamp_test = find_dataref("tu154b2/custom/buttons/lamp_test_front")
+simDR_daynight = find_dataref("tu154b2/custom/lights/day_night_set")
 simDR_passed = find_dataref("tu154b2/custom/time/frame_time")
 
 
@@ -251,15 +252,16 @@ end
 
 
 function smooth_light_blink(orig_lit,new_lit,blink_mod)
+	local day = 1 - 0.5 * simDR_daynight
     if orig_lit == 0 and new_lit == 0 and blink_mod == 0 then
         return 0
     elseif blink_mod > 0 and simDR_front_lamp_test < 1 then
         local new_lit_loc = new_lit * 10
         if blink_mod > 1 then
-            if new_lit_loc < 10 then
+            if new_lit_loc < 10 * day then
                 new_lit_loc = math.floor(new_lit_loc + 120 *simDR_passed)
             else
-                new_lit_loc = 10
+                new_lit_loc = 10 * day
             end
         elseif new_lit_loc > 2 then
             new_lit_loc = math.floor(new_lit_loc - 120 *simDR_passed)
@@ -270,6 +272,8 @@ function smooth_light_blink(orig_lit,new_lit,blink_mod)
         local orig_lit_loc = orig_lit * 10
         if orig_lit_loc > new_lit_loc and new_lit_loc < 10 then
             new_lit_loc = math.floor(new_lit_loc + 120 *simDR_passed)
+		elseif orig_lit_loc < new_lit_loc then
+            new_lit_loc = math.floor(new_lit_loc - 120 *simDR_passed)
         elseif orig_lit_loc == 0 and new_lit_loc > 0 then
             new_lit_loc = math.floor(new_lit_loc - 120 *simDR_passed)
         end

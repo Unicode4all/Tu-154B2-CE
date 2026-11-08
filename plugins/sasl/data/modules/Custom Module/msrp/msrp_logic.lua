@@ -1,151 +1,151 @@
 -- this is MSRP recording logic
 
 -- power and controls
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left")) -- напряжение сети 27
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right")) -- напряжение сети 27
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left") -- напряжение сети 27
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right") -- напряжение сети 27
 
-defineProperty("msrp_recording", globalPropertyi("tu154b2/custom/msrp/msrp_recording")) -- МСРП в режиме записи
+msrp_recording = globalPropertyi("tu154b2/custom/msrp/msrp_recording") -- МСРП в режиме записи
 
-defineProperty("msrp_date_ten", globalPropertyf("tu154b2/custom/switchers/eng/msrp_date_ten")) -- МРСП дата число десятки
-defineProperty("msrp_date_one", globalPropertyf("tu154b2/custom/switchers/eng/msrp_date_one")) -- МРСП дата число единицы
-defineProperty("msrp_month_ten", globalPropertyf("tu154b2/custom/switchers/eng/msrp_month_ten")) -- МРСП дата месяц десятки
-defineProperty("msrp_month_one", globalPropertyf("tu154b2/custom/switchers/eng/msrp_month_one")) -- МРСП дата месяц единицы
-defineProperty("msrp_year_ten", globalPropertyf("tu154b2/custom/switchers/eng/msrp_year_ten")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_year_one", globalPropertyf("tu154b2/custom/switchers/eng/msrp_year_one")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_route_hun", globalPropertyf("tu154b2/custom/switchers/eng/msrp_route_hun")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_route_ten", globalPropertyf("tu154b2/custom/switchers/eng/msrp_route_ten")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_route_one", globalPropertyf("tu154b2/custom/switchers/eng/msrp_route_one")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_mlp_1", globalPropertyf("tu154b2/custom/switchers/eng/msrp_mlp_1")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_mlp_2", globalPropertyf("tu154b2/custom/switchers/eng/msrp_mlp_2")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_night_day", globalPropertyf("tu154b2/custom/switchers/eng/msrp_night_day")) -- кнопка проверки ламп МСРП
-defineProperty("msrp_main_switch", globalPropertyf("tu154b2/custom/switchers/eng/msrp_main_switch")) -- главный выключатель
-defineProperty("nose_switch", globalProperty("sim/flightmodel2/gear/on_ground[0]"))
+msrp_date_ten = globalPropertyf("tu154b2/custom/switchers/eng/msrp_date_ten") -- МРСП дата число десятки
+msrp_date_one = globalPropertyf("tu154b2/custom/switchers/eng/msrp_date_one") -- МРСП дата число единицы
+msrp_month_ten = globalPropertyf("tu154b2/custom/switchers/eng/msrp_month_ten") -- МРСП дата месяц десятки
+msrp_month_one = globalPropertyf("tu154b2/custom/switchers/eng/msrp_month_one") -- МРСП дата месяц единицы
+msrp_year_ten = globalPropertyf("tu154b2/custom/switchers/eng/msrp_year_ten") -- кнопка проверки ламп МСРП
+msrp_year_one = globalPropertyf("tu154b2/custom/switchers/eng/msrp_year_one") -- кнопка проверки ламп МСРП
+msrp_route_hun = globalPropertyf("tu154b2/custom/switchers/eng/msrp_route_hun") -- кнопка проверки ламп МСРП
+msrp_route_ten = globalPropertyf("tu154b2/custom/switchers/eng/msrp_route_ten") -- кнопка проверки ламп МСРП
+msrp_route_one = globalPropertyf("tu154b2/custom/switchers/eng/msrp_route_one") -- кнопка проверки ламп МСРП
+msrp_mlp_1 = globalPropertyf("tu154b2/custom/switchers/eng/msrp_mlp_1") -- кнопка проверки ламп МСРП
+msrp_mlp_2 = globalPropertyf("tu154b2/custom/switchers/eng/msrp_mlp_2") -- кнопка проверки ламп МСРП
+msrp_night_day = globalPropertyf("tu154b2/custom/switchers/eng/msrp_night_day") -- кнопка проверки ламп МСРП
+msrp_main_switch = globalPropertyf("tu154b2/custom/switchers/eng/msrp_main_switch") -- главный выключатель
+nose_switch = globalProperty("sim/flightmodel2/gear/on_ground[0]")
 
 
 -- new sources
 
 
-defineProperty("total_flight_time_sec", globalPropertyf("sim/time/total_flight_time_sec"))
+total_flight_time_sec = globalPropertyf("sim/time/total_flight_time_sec")
 
-defineProperty("zulu_time_hours", globalPropertyf("sim/cockpit2/clock_timer/zulu_time_hours"))
-defineProperty("zulu_time_minutes", globalPropertyf("sim/cockpit2/clock_timer/zulu_time_minutes"))
-defineProperty("zulu_time_seconds", globalPropertyf("sim/cockpit2/clock_timer/zulu_time_seconds"))
+zulu_time_hours = globalPropertyf("sim/cockpit2/clock_timer/zulu_time_hours")
+zulu_time_minutes = globalPropertyf("sim/cockpit2/clock_timer/zulu_time_minutes")
+zulu_time_seconds = globalPropertyf("sim/cockpit2/clock_timer/zulu_time_seconds")
 
-defineProperty("latitude", globalPropertyf("sim/flightmodel/position/latitude")) -- degrees	The latitude of the aircraft
-defineProperty("longitude", globalPropertyf("sim/flightmodel/position/longitude")) -- degrees The longitude of the aircraft
-defineProperty("true_crs", globalPropertyf("sim/flightmodel/position/true_psi")) -- degrees True course of the aircraft
-defineProperty("MSL", globalPropertyf("sim/flightmodel/position/elevation")) -- altitude MSL
+latitude = globalPropertyf("sim/flightmodel/position/latitude") -- degrees	The latitude of the aircraft
+longitude = globalPropertyf("sim/flightmodel/position/longitude") -- degrees The longitude of the aircraft
+true_crs = globalPropertyf("sim/flightmodel/position/true_psi") -- degrees True course of the aircraft
+MSL = globalPropertyf("sim/flightmodel/position/elevation") -- altitude MSL
 
 
 
-defineProperty("mgv_pitch", globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch")) -- тангаж на АГР + нос вверх
-defineProperty("mgv_roll", globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll")) -- крен на АГР + в право
-defineProperty("sideslip_degrees", globalPropertyf("sim/cockpit2/gauges/indicators/sideslip_degrees"))
+mgv_pitch = globalPropertyf("tu154b2/custom/gyro/mgv_contr_pitch") -- тангаж на АГР + нос вверх
+mgv_roll = globalPropertyf("tu154b2/custom/gyro/mgv_contr_roll") -- крен на АГР + в право
+sideslip_degrees = globalPropertyf("sim/cockpit2/gauges/indicators/sideslip_degrees")
 
-defineProperty("yoke_pitch", globalPropertyf("tu154b2/custom/controlls/yoke_pitch")) -- поворот штурвала ко тангажу
-defineProperty("yoke_roll", globalPropertyf("tu154b2/custom/controlls/yoke_roll")) -- поворот штурвала ко тангажу
-defineProperty("pedals_turn", globalPropertyf("tu154b2/custom/controlls/pedals")) -- поворот штурвала ко тангажу
+yoke_pitch = globalPropertyf("tu154b2/custom/controlls/yoke_pitch") -- поворот штурвала ко тангажу
+yoke_roll = globalPropertyf("tu154b2/custom/controlls/yoke_roll") -- поворот штурвала ко тангажу
+pedals_turn = globalPropertyf("tu154b2/custom/controlls/pedals") -- поворот штурвала ко тангажу
 
-defineProperty("int_pitch_trim", globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim")) -- положение триммера руля высоты
-defineProperty("int_roll_trim", globalPropertyf("tu154b2/custom/trimmers/int_roll_trim")) -- положение триммера элеронов
-defineProperty("int_yaw_trim", globalPropertyf("tu154b2/custom/trimmers/int_yaw_trim")) -- положение триммера руля направления
+int_pitch_trim = globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim") -- положение триммера руля высоты
+int_roll_trim = globalPropertyf("tu154b2/custom/trimmers/int_roll_trim") -- положение триммера элеронов
+int_yaw_trim = globalPropertyf("tu154b2/custom/trimmers/int_yaw_trim") -- положение триммера руля направления
 
-defineProperty("stab_ind", globalPropertyf("tu154b2/custom/gauges/misc/stab_ind")) -- индикатор положения стаб
-defineProperty("flap_left_ind", globalPropertyf("tu154b2/custom/gauges/misc/flap_left_ind")) -- индикатор положения стаб
-defineProperty("flap_right_ind", globalPropertyf("tu154b2/custom/gauges/misc/flap_right_ind")) -- индикатор положения стаб
-defineProperty("slats", globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio")) -- slats position. this one works too
+stab_ind = globalPropertyf("tu154b2/custom/gauges/misc/stab_ind") -- индикатор положения стаб
+flap_left_ind = globalPropertyf("tu154b2/custom/gauges/misc/flap_left_ind") -- индикатор положения стаб
+flap_right_ind = globalPropertyf("tu154b2/custom/gauges/misc/flap_right_ind") -- индикатор положения стаб
+slats = globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio") -- slats position. this one works too
 
-defineProperty("ail_L", globalPropertyf("sim/flightmodel/controls/wing3l_ail1def")) -- aileron left Degrees, positive is trailing-edge down. +- 20
-defineProperty("ail_R", globalPropertyf("sim/flightmodel/controls/wing3r_ail1def")) -- aileron right Degrees, positive is trailing-edge down. +- 20
+ail_L = globalPropertyf("sim/flightmodel/controls/wing3l_ail1def") -- aileron left Degrees, positive is trailing-edge down. +- 20
+ail_R = globalPropertyf("sim/flightmodel/controls/wing3r_ail1def") -- aileron right Degrees, positive is trailing-edge down. +- 20
 
-defineProperty("elevator_L", globalPropertyf("sim/flightmodel/controls/hstab1_elv1def")) -- Degrees, positive is trailing-edge down.
-defineProperty("elevator_R", globalPropertyf("sim/flightmodel/controls/hstab2_elv1def")) -- Degrees, positive is trailing-edge down.
+elevator_L = globalPropertyf("sim/flightmodel/controls/hstab1_elv1def") -- Degrees, positive is trailing-edge down.
+elevator_R = globalPropertyf("sim/flightmodel/controls/hstab2_elv1def") -- Degrees, positive is trailing-edge down.
 
-defineProperty("rudder", globalPropertyf("sim/flightmodel/controls/vstab2_rud1def")) -- degrees, positive is trailing-edge left
+rudder = globalPropertyf("sim/flightmodel/controls/vstab2_rud1def") -- degrees, positive is trailing-edge left
 
---defineProperty("speedbrake_ratio", globalPropertyf("sim/cockpit2/controls/speedbrake_ratio")) -- sim speedbrake lever
+--speedbrake_ratio = globalPropertyf("sim/cockpit2/controls/speedbrake_ratio") -- sim speedbrake lever
 
 -- spoilers
-defineProperty("spd_brk_inn_L", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]")) -- inner speedbrake left Degrees
-defineProperty("spd_brk_inn_R", globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]")) -- inner speedbrake right Degrees
+spd_brk_inn_L = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[0]") -- inner speedbrake left Degrees
+spd_brk_inn_R = globalProperty("sim/flightmodel2/wing/speedbrake1_deg[1]") -- inner speedbrake right Degrees
 
-defineProperty("spd_brk_mid_L", globalPropertyf("sim/flightmodel/controls/wing2l_spo2def")) -- middle speedbrake left Degrees
-defineProperty("spd_brk_mid_R", globalPropertyf("sim/flightmodel/controls/wing2r_spo2def")) -- middle speedbrake right Degrees
+spd_brk_mid_L = globalPropertyf("sim/flightmodel/controls/wing2l_spo2def") -- middle speedbrake left Degrees
+spd_brk_mid_R = globalPropertyf("sim/flightmodel/controls/wing2r_spo2def") -- middle speedbrake right Degrees
 
-defineProperty("roll_spoil_L", globalPropertyf("sim/flightmodel/controls/wing2l_spo1def")) -- roll spoiler left Degrees
-defineProperty("roll_spoil_R", globalPropertyf("sim/flightmodel/controls/wing2r_spo1def")) -- roll spoiler right Degrees
-
-
-defineProperty("msl_alt", globalPropertyf("sim/flightmodel/position/elevation"))  -- phisical altitude MSL. meters
-defineProperty("msl_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
-defineProperty("rv5_alt", globalPropertyf("tu154b2/custom/misc/rv5_alt_left"))  -- высота на левом высотомере
-defineProperty("vvi", globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_pilot")) -- vertical speed in ft/min
-defineProperty("aoa_ind", globalPropertyf("tu154b2/custom/gauges/misc/aoa_ind")) -- индикатор угла атаки
-defineProperty("gforce_ind", globalPropertyf("tu154b2/custom/gauges/misc/gforce_ind")) -- индикатор макс перегрузки
-defineProperty("ias", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot"))
-defineProperty("mach_svs", globalPropertyf("tu154b2/custom/svs/machno")) -- Mach number
-
-defineProperty("course_gpk", globalPropertyf("tu154b2/custom/tks/course_gpk")) -- результирующий курс ТКС - ГПК
-defineProperty("course_gmk", globalPropertyf("tu154b2/custom/tks/course_gmk")) -- результирующий курс ТКС - ГМК
-
-defineProperty("rpm_high_1", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1")) -- обороты турбины высокого давления №1
-defineProperty("rpm_high_2", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2")) -- обороты турбины высокого давления №2
-defineProperty("rpm_high_3", globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3")) -- обороты турбины высокого давления №3
-
-defineProperty("ENGN_propmode_1", globalProperty("sim/flightmodel/engine/ENGN_propmode[0]"))
-defineProperty("ENGN_propmode_2", globalProperty("sim/flightmodel/engine/ENGN_propmode[1]"))
-defineProperty("ENGN_propmode_3", globalProperty("sim/flightmodel/engine/ENGN_propmode[2]"))
+roll_spoil_L = globalPropertyf("sim/flightmodel/controls/wing2l_spo1def") -- roll spoiler left Degrees
+roll_spoil_R = globalPropertyf("sim/flightmodel/controls/wing2r_spo1def") -- roll spoiler right Degrees
 
 
-defineProperty("fuel_flow_1", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_1")) -- расход топлива двиг 1
-defineProperty("fuel_flow_2", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_2")) -- расход топлива двиг 2
-defineProperty("fuel_flow_3", globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_3")) -- расход топлива двиг 3
+msl_alt = globalPropertyf("sim/flightmodel/position/elevation")  -- phisical altitude MSL. meters
+msl_press = globalPropertyf("sim/weather/barometer_sealevel_inhg")  -- pressire at sea level in.Hg
+rv5_alt = globalPropertyf("tu154b2/custom/misc/rv5_alt_left")  -- высота на левом высотомере
+vvi = globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_pilot") -- vertical speed in ft/min
+aoa_ind = globalPropertyf("tu154b2/custom/gauges/misc/aoa_ind") -- индикатор угла атаки
+gforce_ind = globalPropertyf("tu154b2/custom/gauges/misc/gforce_ind") -- индикатор макс перегрузки
+ias = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")
+mach_svs = globalPropertyf("tu154b2/custom/svs/machno") -- Mach number
 
-defineProperty("m_total", globalPropertyf("sim/flightmodel/weight/m_total")) -- kgs	Total Weight
-defineProperty("m_fuel", globalPropertyf("sim/flightmodel/weight/m_fuel_total")) -- kgs	Fuel Tank Weight - for 9 tanks
-defineProperty("cg_pos_actual", globalPropertyf("tu154b2/custom/misc/cg_pos_actual")) -- актуальное положение CG
+course_gpk = globalPropertyf("tu154b2/custom/tks/course_gpk") -- результирующий курс ТКС - ГПК
+course_gmk = globalPropertyf("tu154b2/custom/tks/course_gmk") -- результирующий курс ТКС - ГМК
 
-defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]")) -- 
+rpm_high_1 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_1") -- обороты турбины высокого давления №1
+rpm_high_2 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_2") -- обороты турбины высокого давления №2
+rpm_high_3 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3") -- обороты турбины высокого давления №3
 
-defineProperty("roll_main_mode", globalPropertyi("tu154b2/custom/absu/roll_main_mode")) -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
-defineProperty("pitch_main_mode", globalPropertyi("tu154b2/custom/absu/pitch_main_mode")) -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
-defineProperty("stu_mode", globalPropertyi("tu154b2/custom/absu/stu_mode")) -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб, 4 - уход	
-
-defineProperty("deploy_ratio_1", globalProperty("sim/flightmodel2/gear/deploy_ratio[0]")) -- 
-defineProperty("deploy_ratio_2", globalProperty("sim/flightmodel2/gear/deploy_ratio[1]")) -- 
-defineProperty("deploy_ratio_3", globalProperty("sim/flightmodel2/gear/deploy_ratio[2]")) -- 
-
-defineProperty("outer_marker", globalPropertyi("sim/cockpit/misc/outer_marker_lit"))   -- runway markers
-defineProperty("middle_marker", globalPropertyi("sim/cockpit/misc/middle_marker_lit"))
-defineProperty("inner_marker", globalPropertyi("sim/cockpit/misc/inner_marker_lit"))
-
-defineProperty("nav_cs_flag", globalPropertyi("tu154b2/custom/radio/nav1_cs_flag"))
-defineProperty("nav_gs_flag", globalPropertyi("tu154b2/custom/radio/nav1_gs_flag"))
-
-defineProperty("nav_cs", globalPropertyf("tu154b2/custom/radio/nav1_cs"))
-defineProperty("nav_gs", globalPropertyf("tu154b2/custom/radio/nav1_gs"))
+ENGN_propmode_1 = globalProperty("sim/flightmodel/engine/ENGN_propmode[0]")
+ENGN_propmode_2 = globalProperty("sim/flightmodel/engine/ENGN_propmode[1]")
+ENGN_propmode_3 = globalProperty("sim/flightmodel/engine/ENGN_propmode[2]")
 
 
-defineProperty("wind_direction_degt", globalPropertyf("sim/weather/wind_direction_degt"))
-defineProperty("wind_speed_kt", globalPropertyf("sim/weather/wind_speed_kt"))
+fuel_flow_1 = globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_1") -- расход топлива двиг 1
+fuel_flow_2 = globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_2") -- расход топлива двиг 2
+fuel_flow_3 = globalPropertyf("tu154b2/custom/gauges/eng/fuel_flow_3") -- расход топлива двиг 3
+
+m_total = globalPropertyf("sim/flightmodel/weight/m_total") -- kgs	Total Weight
+m_fuel = globalPropertyf("sim/flightmodel/weight/m_fuel_total") -- kgs	Fuel Tank Weight - for 9 tanks
+cg_pos_actual = globalPropertyf("tu154b2/custom/misc/cg_pos_actual") -- актуальное положение CG
+
+deflection_mtr_3 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]") -- 
+
+roll_main_mode = globalPropertyi("tu154b2/custom/absu/roll_main_mode") -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
+pitch_main_mode = globalPropertyi("tu154b2/custom/absu/pitch_main_mode") -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
+stu_mode = globalPropertyi("tu154b2/custom/absu/stu_mode") -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб, 4 - уход	
+
+deploy_ratio_1 = globalProperty("sim/flightmodel2/gear/deploy_ratio[0]") -- 
+deploy_ratio_2 = globalProperty("sim/flightmodel2/gear/deploy_ratio[1]") -- 
+deploy_ratio_3 = globalProperty("sim/flightmodel2/gear/deploy_ratio[2]") -- 
+
+outer_marker = globalPropertyi("sim/cockpit/misc/outer_marker_lit")   -- runway markers
+middle_marker = globalPropertyi("sim/cockpit/misc/middle_marker_lit")
+inner_marker = globalPropertyi("sim/cockpit/misc/inner_marker_lit")
+
+nav_cs_flag = globalPropertyi("tu154b2/custom/radio/nav1_cs_flag")
+nav_gs_flag = globalPropertyi("tu154b2/custom/radio/nav1_gs_flag")
+
+nav_cs = globalPropertyf("tu154b2/custom/radio/nav1_cs")
+nav_gs = globalPropertyf("tu154b2/custom/radio/nav1_gs")
+
+
+wind_direction_degt = globalPropertyf("sim/weather/wind_direction_degt")
+wind_speed_kt = globalPropertyf("sim/weather/wind_speed_kt")
 
 
 -- currents
-defineProperty("msrp_27_L_cc", globalPropertyf("tu154b2/custom/msrp/msrp_27_L_cc")) -- нагрузка на сеть
-defineProperty("msrp_27_R_cc", globalPropertyf("tu154b2/custom/msrp/msrp_27_R_cc")) -- нагрузка на сеть
+msrp_27_L_cc = globalPropertyf("tu154b2/custom/msrp/msrp_27_L_cc") -- нагрузка на сеть
+msrp_27_R_cc = globalPropertyf("tu154b2/custom/msrp/msrp_27_R_cc") -- нагрузка на сеть
 
-defineProperty("gen1", globalPropertyf("tu154b2/custom/elec/gen1_work"))
-defineProperty("gen2", globalPropertyf("tu154b2/custom/elec/gen2_work"))
-defineProperty("gen3", globalPropertyf("tu154b2/custom/elec/gen3_work"))
-
-
+gen1 = globalPropertyf("tu154b2/custom/elec/gen1_work")
+gen2 = globalPropertyf("tu154b2/custom/elec/gen2_work")
+gen3 = globalPropertyf("tu154b2/custom/elec/gen3_work")
 
 
-defineProperty("msrp_power", globalPropertyi("tu154b2/custom/msrp/msrp_power"))  -- MSRP power
+
+
+msrp_power = globalPropertyi("tu154b2/custom/msrp/msrp_power")  -- MSRP power
 
 
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 
 local path=sasl.getAircraftPath ()

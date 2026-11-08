@@ -167,6 +167,7 @@ eng_at_on_lamp = globalPropertyf("tu154b2/custom/lights/engines/eng_at_on") -- �
 -- other sources
 lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
 day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+day_night_set_eng = globalPropertyf("tu154b2/custom/lights/day_night_set_eng")
 
 lamp_test_eng = globalPropertyi("tu154b2/custom/buttons/lamp_test_pa56") -- кнопка проверки ламп на панели	БИ
 
@@ -792,8 +793,11 @@ local function lamps()
 	local power=bool2int(get(absu_power)>0)
 	local power115=get(absu_power_cc)>0
 	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
-	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
+	local day_night = 1 - get(day_night_set) * 0.5
+	local day_night_pn = 1
+	local day_night_eng = 1 - get(day_night_set_eng) * 0.5
+	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
+	--local lamps_brt_eng = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	local small_lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) -- small lamps and buttons
 
 	local roll_mode = get(roll_main_mode)
@@ -804,34 +808,34 @@ local function lamps()
 	
 	local pnp_mode=get(absu_pnp_mode_1)
 	-- 	button lamps
-	local absu_zk_lamp_brt = math.max(bool2int(power115 and roll_submode == 2) * lamps_brt * day_night, 0)
+	local absu_zk_lamp_brt = math.max(bool2int(power115 and roll_submode == 2) * lamps_brt * day_night_pn, 0)
 	set(absu_zk_lamp, absu_zk_lamp_brt)
 	
-	local absu_reset_lamp_brt = math.max(bool2int(power115 and roll_submode == 1 and pitch_submode < 5 and get(absu_nvu_arm)+get(absu_az1_arm)+get(absu_az2_arm)+get(absu_app_arm)+get(absu_gs_arm)==0) * lamps_brt * day_night, 0) 
+	local absu_reset_lamp_brt = math.max(bool2int(power115 and roll_submode == 1 and pitch_submode < 5 and get(absu_nvu_arm)+get(absu_az1_arm)+get(absu_az2_arm)+get(absu_app_arm)+get(absu_gs_arm)==0) * lamps_brt * day_night_pn, 0) 
 	set(absu_reset_lamp, absu_reset_lamp_brt)
 	
-	local absu_nvu_lamp_brt = math.max(bool2int(power115 and (roll_submode == 3 or (get(absu_nvu_arm)==1 and pnp_mode==1))) * lamps_brt * day_night, 0)  * (1 - get(lamp_3))
+	local absu_nvu_lamp_brt = math.max(bool2int(power115 and (roll_submode == 3 or (get(absu_nvu_arm)==1 and pnp_mode==1))) * lamps_brt * day_night_pn, 0)  * (1 - get(lamp_3))
 	set(absu_nvu_lamp, absu_nvu_lamp_brt)
 	
-	local absu_az1_lamp_brt = math.max(bool2int(power115 and (roll_submode == 4 or (get(absu_az1_arm)==1 and pnp_mode==2))) * lamps_brt * day_night, 0)
+	local absu_az1_lamp_brt = math.max(bool2int(power115 and (roll_submode == 4 or (get(absu_az1_arm)==1 and pnp_mode==2))) * lamps_brt * day_night_pn, 0)
 	set(absu_az1_lamp, absu_az1_lamp_brt)
 	
-	local absu_az2_lamp_brt = math.max(bool2int(power115 and (roll_submode == 5 or (get(absu_az2_arm)==1 and pnp_mode==3))) * lamps_brt * day_night, 0)
+	local absu_az2_lamp_brt = math.max(bool2int(power115 and (roll_submode == 5 or (get(absu_az2_arm)==1 and pnp_mode==3))) * lamps_brt * day_night_pn, 0)
 	set(absu_az2_lamp, absu_az2_lamp_brt)
 	
-	local absu_app_lamp_brt = math.max(bool2int(power115 and (roll_submode == 6 or roll_submode == 10 or get(absu_app_arm)==2)) * lamps_brt * day_night, 0) 
+	local absu_app_lamp_brt = math.max(bool2int(power115 and (roll_submode == 6 or roll_submode == 10 or get(absu_app_arm)==2)) * lamps_brt * day_night_pn, 0) 
 	set(absu_app_lamp, absu_app_lamp_brt)
 	
-	local absu_gz_lamp_brt = math.max(bool2int(power115 and (pitch_submode == 5 or pitch_submode == 10)) * lamps_brt * day_night, 0) 
+	local absu_gz_lamp_brt = math.max(bool2int(power115 and (pitch_submode == 5 or pitch_submode == 10)) * lamps_brt * day_night_pn, 0) 
 	set(absu_gz_lamp, absu_gz_lamp_brt)
 	
-	local absu_stab_m_lamp_brt = math.max(bool2int(power115 and pitch_submode == 3) * lamps_brt * day_night, 0)  * (1 - get(lamp_1))
+	local absu_stab_m_lamp_brt = math.max(bool2int(power115 and pitch_submode == 3) * lamps_brt * day_night_pn, 0)  * (1 - get(lamp_1))
 	set(absu_stab_m_lamp, absu_stab_m_lamp_brt)
 	
-	local absu_stab_v_lamp_brt = math.max(bool2int(power115 and pitch_submode == 2) * lamps_brt * day_night, 0)  * (1 - get(lamp_2))
+	local absu_stab_v_lamp_brt = math.max(bool2int(power115 and pitch_submode == 2) * lamps_brt * day_night_pn, 0)  * (1 - get(lamp_2))
 	set(absu_stab_v_lamp, absu_stab_v_lamp_brt)
 	
-	local absu_stab_h_lamp_brt = math.max(bool2int(power115 and pitch_submode == 4) * lamps_brt * day_night, 0) 
+	local absu_stab_h_lamp_brt = math.max(bool2int(power115 and pitch_submode == 4) * lamps_brt * day_night_pn, 0) 
 	set(absu_stab_h_lamp, absu_stab_h_lamp_brt)
 	
 	--local absu_stab_lamp_brt = math.max(bool2int(pitch_mode == 2 or roll_mode == 2) * lamps_brt * day_night, test_btn)
@@ -839,16 +843,16 @@ local function lamps()
 	
 	local AT_mode = get(stu_mode)
 	
-	local absu_stab_spd_lamp_brt = math.max(bool2int(AT_mode > 2) * lamps_brt * day_night, 0)
+	local absu_stab_spd_lamp_brt = math.max(bool2int(AT_mode > 2) * lamps_brt * day_night_pn, 0)
 	set(absu_stab_spd_lamp, absu_stab_spd_lamp_brt)
 	
-	local absu_thro1_lamp_brt = math.max(bool2int(AT_mode > 2 and get(absu_throt_off_1) == 1) * lamps_brt * day_night, 0)
+	local absu_thro1_lamp_brt = math.max(bool2int(AT_mode > 2 and get(absu_throt_off_1) == 1) * lamps_brt * day_night_pn, 0)
 	set(absu_thro1_lamp, absu_thro1_lamp_brt)
 	
-	local absu_thro2_lamp_brt = math.max(bool2int(AT_mode > 2 and get(absu_throt_off_2) == 1) * lamps_brt * day_night, 0) 
+	local absu_thro2_lamp_brt = math.max(bool2int(AT_mode > 2 and get(absu_throt_off_2) == 1) * lamps_brt * day_night_pn, 0) 
 	set(absu_thro2_lamp, absu_thro2_lamp_brt)
 	
-	local absu_thro3_lamp_brt = math.max(bool2int(AT_mode > 2 and get(absu_throt_off_3) == 1) * lamps_brt * day_night, 0) 
+	local absu_thro3_lamp_brt = math.max(bool2int(AT_mode > 2 and get(absu_throt_off_3) == 1) * lamps_brt * day_night_pn, 0) 
 	set(absu_thro3_lamp, absu_thro3_lamp_brt)
 
 	
@@ -873,13 +877,13 @@ local function lamps()
 	else
 		set(test_vu,0)
 	end
-	local stu_roll_lamp_brt = math.max(bool2int( (land_prep or nav_prep) and get(absu_calc_roll_fail) == 0 and power115) * lamps_brt * day_night, 0) 
+	local stu_roll_lamp_brt = math.max(bool2int( (land_prep or nav_prep) and get(absu_calc_roll_fail) == 0 and power115) * lamps_brt * day_night_pn, 0) 
 	set(stu_roll_lamp, stu_roll_lamp_brt)
 	
-	local stu_pitch_lamp_brt = math.max(bool2int( land_prep  and get(absu_calc_pitch_fail) == 0 and power115) * lamps_brt * day_night, 0) 
+	local stu_pitch_lamp_brt = math.max(bool2int( land_prep  and get(absu_calc_pitch_fail) == 0 and power115) * lamps_brt * day_night_pn, 0) 
 	set(stu_pitch_lamp, stu_pitch_lamp_brt)
 	
-	local stu_toga_lamp_brt = math.max(bool2int( land_prep  and get(absu_calc_toga_fail) == 0 and power115) * lamps_brt * day_night, 0)
+	local stu_toga_lamp_brt = math.max(bool2int( land_prep  and get(absu_calc_toga_fail) == 0 and power115) * lamps_brt * day_night_pn, 0)
 	set(stu_toga_lamp, stu_toga_lamp_brt)
 	
 	
@@ -892,10 +896,10 @@ local function lamps()
 	end
 	
 	
-	local at_1_lamp_brt = math.max(bool2int(AT_mode > 1 and at_off ~= 1 and stu_test_2_cntr < 8 and get(absu_at1_fail) == 0) * lamps_brt * day_night, 0)
+	local at_1_lamp_brt = math.max(bool2int(AT_mode > 1 and at_off ~= 1 and stu_test_2_cntr < 8 and get(absu_at1_fail) == 0) * lamps_brt * day_night_pn, 0)
 	set(at_1_lamp, at_1_lamp_brt)
 	
-	local at_2_lamp_brt = math.max(bool2int(AT_mode > 1 and at_off ~= -1 and stu_test_2_cntr < 8.2 and get(absu_at2_fail) == 0) * lamps_brt * day_night, 0)
+	local at_2_lamp_brt = math.max(bool2int(AT_mode > 1 and at_off ~= -1 and stu_test_2_cntr < 8.2 and get(absu_at2_fail) == 0) * lamps_brt * day_night_pn, 0)
 	set(at_2_lamp, at_2_lamp_brt)
 	
 	if stu_test_2_cntr >8.3 then
@@ -1040,33 +1044,33 @@ local function lamps()
 	-- eng panel lamps
 	local test_btn_eng = get(lamp_test_eng) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
 	
-	local ra56_roll_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_roll_fail == 1) * lamps_brt * day_night * power, test_btn_eng) * (1 - get(lamp_4))
+	local ra56_roll_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_roll_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) * (1 - get(lamp_4))
 	set(ra56_roll_fail_1, ra56_roll_fail_1_brt)
 	
-	local ra56_roll_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_roll_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_roll_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_roll_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_roll_fail_2, ra56_roll_fail_2_brt)
 	
-	local ra56_roll_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_roll_fail == 1 ) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_roll_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_roll_fail == 1 ) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_roll_fail_3, ra56_roll_fail_3_brt)
 	
 	
-	local ra56_pitch_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_pitch_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_pitch_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_pitch_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_pitch_fail_1, ra56_pitch_fail_1_brt)
 	
-	local ra56_pitch_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_pitch_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_pitch_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_pitch_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_pitch_fail_2, ra56_pitch_fail_2_brt)
 	
-	local ra56_pitch_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_pitch_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_pitch_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_pitch_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_pitch_fail_3, ra56_pitch_fail_3_brt)
 	
 	
-	local ra56_course_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_yaw_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_course_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_yaw_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_course_fail_1, ra56_course_fail_1_brt)
 	
-	local ra56_course_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_yaw_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_course_fail_2_brt = math.max(bool2int(absu_svk_tbl.ra2_yaw_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_course_fail_2, ra56_course_fail_2_brt)
 	
-	local ra56_course_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_yaw_fail == 1) * lamps_brt * day_night * power, test_btn_eng) 
+	local ra56_course_fail_3_brt = math.max(bool2int(absu_svk_tbl.ra3_yaw_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) 
 	set(ra56_course_fail_3, ra56_course_fail_3_brt)
 	
 	local nvu_rez_brt =  test_btn_eng

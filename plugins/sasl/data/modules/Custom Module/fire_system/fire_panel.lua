@@ -87,6 +87,7 @@ eng3_dangerous_vibro = globalPropertyf("tu154b2/custom/lights/engines/eng3_dange
 
 
 day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+day_night_set_eng = globalPropertyf("tu154b2/custom/lights/day_night_set_eng")
 
 -- power
 bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
@@ -370,7 +371,8 @@ local function lamps()
 	local test_btn_frnt = get(lamp_test_front) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	
 	
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 --1 - get(day_night_set) * 0.5
+	local day_night_eng = 1 - get(day_night_set_eng) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	
 	local smoke_test_but1 = get(fire_bag1)
@@ -523,8 +525,8 @@ local function lamps()
 	local fire_lamp_brt = 0
 	local fire_lamp_brt_front = 0
 	--if fire_lit then fire_lamp_brt = 1 end
-	fire_lamp_brt = math.max(fire_det * lamps_brt * day_night, test_btn)
-	fire_lamp_brt_front = math.max(fire_det * lamps_brt * day_night, test_btn,test_btn_frnt)
+	fire_lamp_brt = math.max(fire_det * lamps_brt * day_night_eng, test_btn)
+	fire_lamp_brt_front = math.max(fire_det * lamps_brt * day_night * day_night, test_btn,test_btn_frnt)
 	set(fire_lamp, fire_lamp_brt)
 	set(fire_lamp_front, fire_lamp_brt_front)
 

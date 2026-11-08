@@ -1,61 +1,61 @@
 -- this AOA and G-force indicator
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 -- define property table
-defineProperty("tas", globalPropertyf("sim/flightmodel2/position/true_airspeed")) -- tas variable
-defineProperty("mach", globalPropertyf("tu154b2/custom/gauges/speed/mach_right")) -- Mach number
-defineProperty("gforce", globalPropertyf("sim/flightmodel2/misc/gforce_normal")) -- G overload
-defineProperty("alpha", globalPropertyf("sim/flightmodel2/misc/AoA_angle_degrees"))  -- angle of attack
-defineProperty("alpha_fail", globalPropertyi("sim/operation/failures/rel_AOA"))  -- angle of attack fail
+tas = globalPropertyf("sim/flightmodel2/position/true_airspeed") -- tas variable
+mach = globalPropertyf("tu154b2/custom/gauges/speed/mach_right") -- Mach number
+gforce = globalPropertyf("sim/flightmodel2/misc/gforce_normal") -- G overload
+alpha = globalPropertyf("sim/flightmodel2/misc/AoA_angle_degrees")  -- angle of attack
+alpha_fail = globalPropertyi("sim/operation/failures/rel_AOA")  -- angle of attack fail
 
-defineProperty("flap_inn_L", globalPropertyf("sim/flightmodel/controls/wing1l_fla1def")) -- inner flaps left
-defineProperty("slats", globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio")) -- slats position. this one works too
-defineProperty("rel_pitot", globalPropertyi("sim/operation/failures/rel_pitot")) -- Pitot 1 - Blockage
-defineProperty("deflection_mtr_1", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[0]")) -- 
+flap_inn_L = globalPropertyf("sim/flightmodel/controls/wing1l_fla1def") -- inner flaps left
+slats = globalPropertyf("sim/flightmodel2/controls/slat1_deploy_ratio") -- slats position. this one works too
+rel_pitot = globalPropertyi("sim/operation/failures/rel_pitot") -- Pitot 1 - Blockage
+deflection_mtr_1 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[0]") -- 
 
 
 -- controls
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка теста ламп
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка теста ламп
 
-defineProperty("auasp_on", globalPropertyi("tu154b2/custom/switchers/ovhd/auasp_on")) -- АУАСП
-defineProperty("auasp_contr", globalPropertyi("tu154b2/custom/switchers/ovhd/auasp_contr")) -- АУАСП контроль
+auasp_on = globalPropertyi("tu154b2/custom/switchers/ovhd/auasp_on") -- АУАСП
+auasp_contr = globalPropertyi("tu154b2/custom/switchers/ovhd/auasp_contr") -- АУАСП контроль
 
-defineProperty("gforce_reset", globalPropertyi("tu154b2/custom/buttons/misc/gforce_reset")) -- кнопка сброса стрелок максимальных перегрузок
+gforce_reset = globalPropertyi("tu154b2/custom/buttons/misc/gforce_reset") -- кнопка сброса стрелок максимальных перегрузок
 
-defineProperty("lamp_test", globalPropertyi("tu154b2/custom/buttons/lamp_test_front")) -- кнопка проверки ламп на передней панели	0
-defineProperty("day_night_set", globalPropertyf("tu154b2/custom/lights/day_night_set")) -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
+lamp_test = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
+day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
 -- power
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
 
 
-defineProperty("auasp_pow27_cc", globalPropertyf("tu154b2/custom/elec/auasp_pow27_cc"))
-defineProperty("auasp_pow115_cc", globalPropertyf("tu154b2/custom/elec/auasp_pow115_cc"))
+auasp_pow27_cc = globalPropertyf("tu154b2/custom/elec/auasp_pow27_cc")
+auasp_pow115_cc = globalPropertyf("tu154b2/custom/elec/auasp_pow115_cc")
 
 -- failures
-defineProperty("uap_fail", globalPropertyi("sim/operation/failures/rel_AOA")) -- fail
-defineProperty("warn_fail", globalPropertyi("sim/operation/failures/rel_stall_warn")) -- fail
+uap_fail = globalPropertyi("sim/operation/failures/rel_AOA") -- fail
+warn_fail = globalPropertyi("sim/operation/failures/rel_stall_warn") -- fail
 
 
 
 
 
 -- results
-defineProperty("aoa_ind", globalPropertyf("tu154b2/custom/gauges/misc/aoa_ind")) -- индикатор угла атаки
-defineProperty("aoa_sector", globalPropertyf("tu154b2/custom/gauges/misc/aoa_sector")) -- сектор индикатора угла атаки
-defineProperty("gforce_ind", globalPropertyf("tu154b2/custom/gauges/misc/gforce_ind")) -- индикатор макс перегрузки
-defineProperty("gforce_max", globalPropertyf("tu154b2/custom/gauges/misc/gforce_max")) -- индикатор макс перегрузки
-defineProperty("gforce_min", globalPropertyf("tu154b2/custom/gauges/misc/gforce_min")) -- индикатор мин перегрузки
+aoa_ind = globalPropertyf("tu154b2/custom/gauges/misc/aoa_ind") -- индикатор угла атаки
+aoa_sector = globalPropertyf("tu154b2/custom/gauges/misc/aoa_sector") -- сектор индикатора угла атаки
+gforce_ind = globalPropertyf("tu154b2/custom/gauges/misc/gforce_ind") -- индикатор макс перегрузки
+gforce_max = globalPropertyf("tu154b2/custom/gauges/misc/gforce_max") -- индикатор макс перегрузки
+gforce_min = globalPropertyf("tu154b2/custom/gauges/misc/gforce_min") -- индикатор мин перегрузки
 
-defineProperty("auasp_lamp", globalPropertyf("tu154b2/custom/lights/auasp_lamp")) -- лампа на АУАСП
-defineProperty("alpha_high", globalPropertyf("tu154b2/custom/lights/alpha_high")) -- предельный УА
-defineProperty("g_force_high", globalPropertyf("tu154b2/custom/lights/g_force_high")) -- передельная перегрузка
+auasp_lamp = globalPropertyf("tu154b2/custom/lights/auasp_lamp") -- лампа на АУАСП
+alpha_high = globalPropertyf("tu154b2/custom/lights/alpha_high") -- предельный УА
+g_force_high = globalPropertyf("tu154b2/custom/lights/g_force_high") -- передельная перегрузка
 
-defineProperty("alpha_critical", globalPropertyi("tu154b2/custom/auasp/alpha_critical")) -- сигнал от АУАСП по критическом УА
-defineProperty("gforce_critical", globalPropertyi("tu154b2/custom/auasp/gforce_critical")) -- сигнал от АУАСП по критическом УА
+alpha_critical = globalPropertyi("tu154b2/custom/auasp/alpha_critical") -- сигнал от АУАСП по критическом УА
+gforce_critical = globalPropertyi("tu154b2/custom/auasp/gforce_critical") -- сигнал от АУАСП по критическом УА
 
-defineProperty("speaker_auasp", globalPropertyi("tu154b2/custom/alarm/speaker_auasp")) -- предельный угол атаки или перегрузки
+speaker_auasp = globalPropertyi("tu154b2/custom/alarm/speaker_auasp") -- предельный угол атаки или перегрузки
 p_s = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 p_q = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
 ppd_ice = globalPropertyf("sim/flightmodel/failures/pitot_ice_stby")
@@ -63,12 +63,12 @@ stat_ice = globalPropertyf("sim/flightmodel/failures/stat_ice_stby")
 
 rel_stat = globalPropertyi("sim/operation/failures/rel_static_stby") -- static- Blockage
 rel_pitot2 = globalPropertyi("sim/operation/failures/rel_pitot_stby") -- Pitot 2 - Blockage
-defineProperty("sensors_caps", globalPropertyi("tu154b2/custom/anim/sensors_caps"))  -- чехлы и крышки
---defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
+sensors_caps = globalPropertyi("tu154b2/custom/anim/sensors_caps")  -- чехлы и крышки
+--db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("tu154b2/crew/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
@@ -236,7 +236,7 @@ if MASTER then
 	
 	-- lamps
 	local test_btn = get(lamp_test) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	
 	set(alpha_high, math.max(aoa_crit * lamps_brt, test_btn))
