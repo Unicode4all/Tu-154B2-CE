@@ -147,7 +147,7 @@ R_SC_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
 R_SC_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
 hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 control_thro_other = globalPropertyf("tu154b2/custom/SC/control_thro_other") -- другой человек упраляет РУД-ами
-
+revers_cmd = sasl.createCommand("t154/controlls/maks_revers", "Full Reverse")
 -- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
 -- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
 -- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
@@ -277,18 +277,32 @@ local n2_2=55
 local n2_3=55
 
 rev_comm = findCommand("sim/engines/thrust_reverse_toggle")
+local rev_dn_L = 0
+local rev_dn_R = 0
+local rev_set_L = 0
+local rev_set_R = 0
 mag1_comm = findCommand("sim/magnetos/magnetos_down_1")
 mag2_comm = findCommand("sim/magnetos/magnetos_down_2")
 mag3_comm = findCommand("sim/magnetos/magnetos_down_3")
 
-function rev_comm_hnd(phase)
-	if 0 == phase then -- hold
-		set(throttle_ratio_all, 0)
-		
-	end
-	
-	return 0
-end
+sasl.registerCommandHandler(revers_cmd, 0, function(phase)
+    if phase == SASL_COMMAND_CONTINUE then
+        if get(eng_modL) == 3 then
+			rev_dn_L = 1
+		else
+			rev_dn_L = 0
+		end
+		if get(eng_modR) == 3 then
+			rev_dn_R = 1
+		else
+			rev_dn_R = 0
+		end
+	elseif phase == SASL_COMMAND_END then
+		rev_dn_L = 0
+		rev_dn_R = 0
+    end
+end)
+
 -- target N2 from throttle position
 local function n2_from_uprt (virtual_rud_1_act,corr_temp,delta_idle)
 	local delta=delta_idle*(1-math.min(0.3,virtual_rud_1_act)/0.3)
@@ -394,6 +408,43 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	-- end
 	
 	-- take controls of RUDs
+	-- reverse commands for multicrew
+	if rev_dn_L > 0 then
+		if rev_set_L < 1 then
+			rev_set_L = rev_set_L + passed * 3
+		else
+			rev_set_L = 1
+		end
+		joy_pos_1 = rev_set_L
+	elseif rev_dn_L == 0 and rev_set_L > 0 then
+		if rev_set_L > 0 then
+			rev_set_L = rev_set_L - passed * 2.8
+		else
+			rev_set_L = 0
+		end
+		if rev_L then
+			joy_pos_1 = rev_set_L
+		end
+	end
+	
+	if rev_dn_R > 0 then
+		if rev_set_R < 1 then
+			rev_set_R = rev_set_R + passed * 2.8
+		else
+			rev_set_R = 1
+		end
+		joy_pos_3 = rev_set_R
+	elseif rev_dn_R == 0 and rev_set_R > 0 then
+		if rev_set_R > 0 then
+			rev_set_R = rev_set_R - passed * 3
+		else
+			rev_set_R = 0
+		end
+		if rev_R then
+			joy_pos_3 = rev_set_R
+		end
+	end
+		
 	if stop_lever < 0.2 then
 		if rud_spd_1 ~= 0 then
 			joy_rud_pos_1 = joy_rud_pos_1 + rud_spd_1 * passed

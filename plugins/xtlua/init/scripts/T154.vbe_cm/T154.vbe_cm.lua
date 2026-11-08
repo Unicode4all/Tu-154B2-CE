@@ -29,6 +29,8 @@ simDR_vbe_press_r = find_dataref("tu154b2/custom/gauges/alt/vbe_press_right")
 simDR_vbe_fl_r = find_dataref("tu154b2/custom/gauges/alt/vbe_flightlevel_right")
 simDR_brt_r = find_dataref("tu154b2/custom/gauges/alt/vbe_brt_right")
 simDR_vbe_on_r = find_dataref("tu154b2/custom/switchers/ovhd/vbe_2_on")
+simDR_vbe_std_l= find_dataref("sim/custom/gauges/alt/vbe_left_p_push")
+simDR_vbe_std_r= find_dataref("sim/custom/gauges/alt/vbe_right_p_push")
 -- altitude_1000_l = deferred_dataref("sim/custom/gauges/alt/vbe_cm_l_alt_1000", "number")
 -- altitude_100_l = deferred_dataref("sim/custom/gauges/alt/vbe_cm_l_alt_100", "number")
 -- f_level_l = deferred_dataref("sim/custom/gauges/alt/vbe_cm_l_fl", "number")
@@ -146,7 +148,13 @@ function vbe_l_P_minus_CMDhandler(phase, duration)
 	end
 end	
 
-
+function vbe_l_P_std_CMDhandler(phase, duration)
+	if phase == 1 then
+		simDR_vbe_std_l = 1		
+	elseif phase == 2 then
+		simDR_vbe_std_l = 0
+	end
+end	
 
 
 function vbe_l_H_plus_CMDhandler(phase, duration)
@@ -273,6 +281,14 @@ function vbe_r_P_minus_CMDhandler(phase, duration)
 	end
 end
 
+function vbe_r_P_std_CMDhandler(phase, duration)
+	if phase == 1 then
+		simDR_vbe_std_r = 1		
+	elseif phase == 2 then
+		simDR_vbe_std_r = 0
+	end
+end	
+
 function vbe_r_H_plus_CMDhandler(phase, duration)
 	if master ~= 1 then
 		if phase == 0 then
@@ -336,14 +352,16 @@ function vbe_r_H_minus_CMDhandler(phase, duration)
 end	
 
 
-vbe_l_h_plus	= create_command("vbe/vbe_l_h_plus", "VBE_L H plus", vbe_l_H_plus_CMDhandler)
-vbe_l_h_minus	= create_command("vbe/vbe_l_h_minus", "VBE_L H minus", vbe_l_H_minus_CMDhandler)
-vbe_r_h_plus	= create_command("vbe/vbe_r_h_plus", "VBE_R H plus", vbe_r_H_plus_CMDhandler)
-vbe_r_h_minus	= create_command("vbe/vbe_r_h_minus", "VBE_R H minus", vbe_r_H_minus_CMDhandler)
-vbe_l_p_plus	= create_command("vbe/vbe_l_p_plus", "VBE_L P plus", vbe_l_P_plus_CMDhandler)
-vbe_l_p_minus	= create_command("vbe/vbe_l_p_minus", "VBE_L P minus", vbe_l_P_minus_CMDhandler)
-vbe_r_p_plus	= create_command("vbe/vbe_r_p_plus", "VBE_R P plus", vbe_r_P_plus_CMDhandler)
-vbe_r_p_minus	= create_command("vbe/vbe_r_p_minus", "VBE_R P minus", vbe_r_P_minus_CMDhandler)
+vbe_l_h_plus	= create_command("t154/vbe/vbe_l_h_plus", "VBE_L H plus", vbe_l_H_plus_CMDhandler)
+vbe_l_h_minus	= create_command("t154/vbe/vbe_l_h_minus", "VBE_L H minus", vbe_l_H_minus_CMDhandler)
+vbe_r_h_plus	= create_command("t154/vbe/vbe_r_h_plus", "VBE_R H plus", vbe_r_H_plus_CMDhandler)
+vbe_r_h_minus	= create_command("t154/vbe/vbe_r_h_minus", "VBE_R H minus", vbe_r_H_minus_CMDhandler)
+vbe_l_p_plus	= create_command("t154/vbe/vbe_l_p_plus", "VBE_L P plus", vbe_l_P_plus_CMDhandler)
+vbe_l_p_minus	= create_command("t154/vbe/vbe_l_p_minus", "VBE_L P minus", vbe_l_P_minus_CMDhandler)
+vbe_r_p_plus	= create_command("t154/vbe/vbe_r_p_plus", "VBE_R P plus", vbe_r_P_plus_CMDhandler)
+vbe_r_p_minus	= create_command("t154/vbe/vbe_r_p_minus", "VBE_R P minus", vbe_r_P_minus_CMDhandler)
+vbe_l_P_std	= create_command("t154/vbe/vbe_l_p_std", "VBE_L P STD", vbe_l_P_std_CMDhandler)
+vbe_r_P_std	= create_command("t154/vbe/vbe_r_p_std", "VBE_R P STD", vbe_r_P_std_CMDhandler)
 
 
 
