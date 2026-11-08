@@ -526,7 +526,7 @@ local function lamps()
 	local fire_lamp_brt_front = 0
 	--if fire_lit then fire_lamp_brt = 1 end
 	fire_lamp_brt = math.max(fire_det * lamps_brt * day_night_eng, test_btn)
-	fire_lamp_brt_front = math.max(fire_det * lamps_brt * day_night * day_night, test_btn,test_btn_frnt)
+	fire_lamp_brt_front = math.max(fire_det * lamps_brt * (1 - get(day_night_set) * 0.5), test_btn,test_btn_frnt)
 	set(fire_lamp, fire_lamp_brt)
 	set(fire_lamp_front, fire_lamp_brt_front)
 
