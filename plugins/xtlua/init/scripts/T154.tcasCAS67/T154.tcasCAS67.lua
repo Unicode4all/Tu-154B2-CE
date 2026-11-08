@@ -388,35 +388,35 @@ function tcas2000_r2_dn_CMDhandler(phase, duration)
 					end
 				end
 				if unit_sel == 4 then
-					if flt_nmb_4 >0 then
+					if flt_nmb_4 >1 then
 						flt_nmb_4=flt_nmb_4-1
 					else
 						flt_nmb_4=37
 					end
 				end
 				if unit_sel == 5 then
-					if flt_nmb_5 >0 then
+					if flt_nmb_5 >1 then
 						flt_nmb_5=flt_nmb_5-1
 					else
 						flt_nmb_5=37
 					end
 				end
 				if unit_sel == 6 then
-					if flt_nmb_6 >0 then
+					if flt_nmb_6 >1 then
 						flt_nmb_6=flt_nmb_6-1
 					else
 						flt_nmb_6=37
 					end
 				end
 				if unit_sel == 7 then
-					if flt_nmb_7 >0 then
+					if flt_nmb_7 >1 then
 						flt_nmb_7=flt_nmb_7-1
 					else
 						flt_nmb_7=37
 					end
 				end
 				if unit_sel == 8 then
-					if flt_nmb_8 >0 then
+					if flt_nmb_8 >1 then
 						flt_nmb_8=flt_nmb_8-1
 					else
 						flt_nmb_8=37
