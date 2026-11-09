@@ -16413,27 +16413,27 @@ ATTR_manip_push button 1.000000 0.000000 sim/custom/tcas2000/ta_sel_r
 TRIS 2406 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_left vbe/vbe_l_p_minus
+ATTR_manip_command rotate_medium_left t154/vbe/vbe_l_p_minus
 TRIS 2412 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_right vbe/vbe_l_p_plus
+ATTR_manip_command rotate_medium_right t154/vbe/vbe_l_p_plus
 TRIS 2418 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_left vbe/vbe_l_h_minus
+ATTR_manip_command rotate_medium_left t154/vbe/vbe_l_h_minus
 TRIS 2424 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_right vbe/vbe_l_h_plus
+ATTR_manip_command rotate_medium_right t154/vbe/vbe_l_h_plus
 TRIS 2430 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_right vbe/vbe_r_h_plus
+ATTR_manip_command rotate_medium_right t154/vbe/vbe_r_h_plus
 TRIS 2436 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_left vbe/vbe_r_h_minus
+ATTR_manip_command rotate_medium_left t154/vbe/vbe_r_h_minus
 TRIS 2442 6
 ANIM_end
 ANIM_begin
@@ -16462,11 +16462,11 @@ ATTR_manip_push button 1.000000 0.000000 sim/custom/gauges/alt/vbe_left_p_push
 TRIS 2478 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_right vbe/vbe_r_p_plus
+ATTR_manip_command rotate_medium_right t154/vbe/vbe_r_p_plus
 TRIS 2484 6
 ANIM_end
 ANIM_begin
-ATTR_manip_command rotate_medium_left vbe/vbe_r_p_minus
+ATTR_manip_command rotate_medium_left t154/vbe/vbe_r_p_minus
 TRIS 2490 6
 ANIM_end
 ANIM_begin
