@@ -49182,7 +49182,6 @@ GROUP ITV
 END_GROUP
 GROUP EFB_ru
   SHOW_EQUAL 0.000000 tu154b2/custom/lang/hide_rus_objects
-  GROUP_OPEN
   GROUP battery_prc
     SHOW_EQUAL 1.000000 sim/custom/t154_efb/power
     GROUP_OPEN
@@ -55074,7 +55073,7 @@ GROUP EFB_ru
         POS 2707.000000 217.000000
         IMAGE EFB/ru/config/off
         DATAREF 
-        SHOW_EQUAL 1.000000 sim/custom/t154cfg/hide_antenna
+        SHOW_EQUAL 0.000000 tu154b2/custom/radio/baklan
         LIGHT_MODE GLASS_AUTO
         LIGHT_RHEOSTAT 19
         CORNERS 10.000000 -1.750000  10.000000 -2.000000  10.750000 -2.000000  10.750000 -1.750000
@@ -59544,7 +59543,6 @@ GROUP EFB_ru
 
 END_GROUP
 GROUP EFB_ru2
-  SHOW_EQUAL 0.000000 tu154b2/custom/lang/hide_rus_objects
   GROUP battery_prc
     SHOW_EQUAL 1.000000 sim/custom/t154_efb2/power
     GROUP_OPEN
@@ -65437,7 +65435,7 @@ GROUP EFB_ru2
         POS 3737.000000 217.000000
         IMAGE EFB/ru/config/off
         DATAREF 
-        SHOW_EQUAL 1.000000 sim/custom/t154cfg/hide_antenna
+        SHOW_EQUAL 0.000000 tu154b2/custom/radio/baklan
         LIGHT_MODE GLASS_AUTO
         LIGHT_RHEOSTAT 21
         CORNERS 10.000000 -1.750000  10.000000 -2.000000  10.750000 -2.000000  10.750000 -1.750000
@@ -75782,7 +75780,7 @@ GROUP EFB_en
         POS 2707.000000 217.000000
         IMAGE EFB/en/config/off
         DATAREF 
-        SHOW_EQUAL 1.000000 sim/custom/t154cfg/hide_antenna
+        SHOW_EQUAL 0.000000 tu154b2/custom/radio/baklan
         LIGHT_MODE GLASS_AUTO
         LIGHT_RHEOSTAT 19
         CORNERS 10.000000 -1.750000  10.000000 -2.000000  10.750000 -2.000000  10.750000 -1.750000

@@ -5,7 +5,7 @@ OBJ
 GLOBAL_cockpit_lit
 GLOBAL_specular 1.0
 
-POINT_COUNTS 12574 0 0 26769
+POINT_COUNTS 12586 0 0 26781
 VT 4.031418 -5.900269 -21.786407 1.000000 0.000000 0.000000 0.491074 0.381088
 VT 4.031418 -5.900269 -14.257599 1.000000 0.000000 0.000000 0.491074 0.349091
 VT 4.031418 -3.886215 -21.786407 1.000000 0.000000 0.000000 0.466797 0.381088
@@ -12580,6 +12580,18 @@ VT	-0.77654999	-1.403717	-21.406601	0.83580542	0.083812624	0.54259068	0.9992919	
 VT	-0.76681501	-1.53743	-21.401001	0.83581811	0.083576746	0.54260743	0.9992919	0
 VT	-0.87170398	-1.538269	-21.239304	0.83566767	0.083697923	0.54282063	0.75005382	0
 VT	-0.77654999	-1.403717	-21.406601	0.83580542	0.083812624	0.54259068	0.9992919	0.235641
+VT	0.038605001	-1.032639	-21.146698	0	-0.9137767	0.40621713	0.075576998	0.33181801
+VT	0.038605001	-1.0409549	-21.165405	0	-0.9137767	0.40621713	0.075576998	0.29716501
+VT	-0.029633	-1.032639	-21.146698	0	-0.9137767	0.40621713	0.07045	0.331375
+VT	0.038605001	-1.0409549	-21.165405	0	-0.91377658	0.40621713	0.075576998	0.29716501
+VT	-0.029633	-1.0409549	-21.165405	0	-0.91377658	0.40621713	0.07045	0.296738
+VT	-0.029633	-1.032639	-21.146698	0	-0.91377658	0.40621713	0.07045	0.331375
+VT	0.041779	-1.036819	-21.1483	0	-0.91250324	0.40906948	0.105652	0.20912769
+VT	-0.032806002	-1.043365	-21.162903	0	-0.91250324	0.40906948	0.0033420003	0.17911369
+VT	-0.032806002	-1.036819	-21.1483	0	-0.91250324	0.40906948	0.0033420003	0.20912769
+VT	0.041779	-1.043365	-21.162903	0	-0.91250324	0.40906948	0.105652	0.17911369
+VT	-0.032806002	-1.043365	-21.162903	0	-0.91250324	0.40906948	0.0033420003	0.17911369
+VT	0.041779	-1.036819	-21.1483	0	-0.91250324	0.40906948	0.105652	0.20912769
 IDX10 0 1 2 2 1 3 4 5 6 6
 IDX10 5 7 8 9 10 10 9 11 12 13
 IDX10 14 14 13 15 16 17 18 18 17 19
@@ -15256,15 +15268,18 @@ IDX10 12536 12540 12541 12542 12540 12542 12543 12544 12545 12546
 IDX10 12547 12545 12544 12548 12549 12550 12551 12549 12548 12552
 IDX10 12553 12554 12554 12553 12555 12556 12557 12558 12559 12556
 IDX10 12558 12560 12561 12562 12563 12561 12560 12564 12565 12566
-IDX 12564
-IDX 12566
-IDX 12567
-IDX	12568
-IDX	12569
-IDX	12570
-IDX	12571
-IDX	12572
-IDX	12573
+IDX10 12564 12566 12567 12568 12569 12570 12571 12572 12573 12574
+IDX 12575
+IDX 12576
+IDX 12577
+IDX 12578
+IDX 12579
+IDX 12580
+IDX 12581
+IDX 12582
+IDX 12583
+IDX 12584
+IDX 12585
 ATTR_layer_group Cockpit 0
 ANIM_begin
 ANIM_hide 0.000000 0.001000 tu154b2/custom/anim/gpu_work
@@ -16947,34 +16962,37 @@ ATTR_manip_wheel 5.000000
 TRIS 3192 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/radios/vhf1_vol
-ATTR_manip_wheel 0.080000
-TRIS 3198 6
-ANIM_end
-ANIM_begin
-ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/radios/vhf2_vol
-ATTR_manip_wheel 0.080000
-TRIS 3204 6
-ANIM_end
-ANIM_begin
-ATTR_manip_command_knob rotate_medium t154/vhf/com1_coarse_up t154/vhf/com1_coarse_dn
-TRIS 3210 6
-ATTR_manip_command_knob rotate_medium t154/vhf/com1_fine_up t154/vhf/com1_fine_dn
-TRIS 3216 6
-ANIM_end
-ANIM_begin
-ATTR_manip_command_knob rotate_medium t154/vhf/com2_coarse_up t154/vhf/com2_coarse_dn
-TRIS 3222 6
-ATTR_manip_command_knob rotate_medium t154/vhf/com2_fine_up t154/vhf/com2_fine_dn
-TRIS 3228 6
-ANIM_end
-ANIM_begin
-ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf1_ps
-TRIS 3234 6
-ANIM_end
-ANIM_begin
-ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf2_ps
-TRIS 3240 6
+ANIM_hide 1.000000 1.000000 tu154b2/custom/radio/baklan
+	ANIM_begin
+	ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/radios/vhf1_vol
+	ATTR_manip_wheel 0.080000
+	TRIS 3198 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/radios/vhf2_vol
+	ATTR_manip_wheel 0.080000
+	TRIS 3204 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_command_knob rotate_medium t154/vhf/com1_coarse_up t154/vhf/com1_coarse_dn
+	TRIS 3210 6
+	ATTR_manip_command_knob rotate_medium t154/vhf/com1_fine_up t154/vhf/com1_fine_dn
+	TRIS 3216 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_command_knob rotate_medium t154/vhf/com2_coarse_up t154/vhf/com2_coarse_dn
+	TRIS 3222 6
+	ATTR_manip_command_knob rotate_medium t154/vhf/com2_fine_up t154/vhf/com2_fine_dn
+	TRIS 3228 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf1_ps
+	TRIS 3234 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf2_ps
+	TRIS 3240 6
+	ANIM_end
 ANIM_end
 ANIM_begin
 ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/switchers/ovhd/groza_1
@@ -17177,11 +17195,11 @@ ANIM_begin
 ATTR_manip_command_knob rotate_medium t154/vhf/vhf2_mhz_up t154/vhf/vhf2_mhz_dn
 TRIS 3534 6
 ANIM_end
-ANIM_begin
-ANIM_hide 0.000000 0.000000 sim/custom/radios/vhf1_100mode
-ATTR_cockpit
-TRIS 3540 6
-ANIM_end
+#ANIM_begin
+#ANIM_hide 0.000000 0.000000 sim/custom/radios/vhf1_100mode
+#ATTR_cockpit
+#TRIS 3540 6
+#ANIM_end
 ANIM_begin
 ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/radios/vhf2_vol
 ATTR_manip_wheel 0.080000
@@ -21322,7 +21340,65 @@ ATTR_manip_radio hand 3 tu154b2/custom/radio/spu_select
 TRIS 18453 6
 ANIM_end
 
-
+ANIM_begin
+ANIM_hide 1.000000 1.000000 tu154b2/custom/b2/kontur_on
+ANIM_hide 0.000000 0.000000 tu154b2/custom/radio/baklan
+ANIM_begin
+ATTR_cockpit
+TRIS 3624 12
+ANIM_end
+	ANIM_begin
+	ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/radios/vhf1_vol
+	ATTR_manip_wheel 0.080000
+	TRIS 3552 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_command_knob rotate_medium t154/vhf/com1_coarse_up t154/vhf/com1_coarse_dn
+	TRIS 3558 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_command_knob rotate_medium t154/vhf/com1_fine_up t154/vhf/com1_fine_dn
+	TRIS 3564 6	
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf1_ap
+	TRIS 3588 6
+	ANIM_end
+	ANIM_begin
+	ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf1_ps
+	TRIS 3606 6
+	ANIM_end
+	ANIM_begin
+	ANIM_trans	0	-0.033	-0.0751	0	-0.033	-0.0751 0 0 none
+		ANIM_begin
+		ATTR_cockpit
+		TRIS 26769 12
+		ANIM_end
+		ANIM_begin
+		ATTR_manip_drag_axis rotate_medium 2.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/radios/vhf2_vol
+		ATTR_manip_wheel 0.080000
+		TRIS 3552 6
+		ANIM_end
+		ANIM_begin
+		ATTR_manip_command_knob rotate_medium t154/vhf/com2_coarse_up t154/vhf/com2_coarse_dn
+		TRIS 3558 6
+		ANIM_end
+		ANIM_begin
+		ATTR_manip_command_knob rotate_medium t154/vhf/com2_fine_up t154/vhf/com2_fine_dn
+		TRIS 3564 6
+		ANIM_end
+		ANIM_begin
+		ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf2_ap
+		TRIS 3588 6
+		ANIM_end
+		ANIM_begin
+		ATTR_manip_toggle up_down 1.000000 0.000000 sim/custom/radios/vhf2_ps
+		TRIS 3606 6
+		ANIM_end
+	ANIM_end
+	
+	
+ANIM_end
 
 
 ANIM_begin

@@ -473691,8 +473691,8 @@ IDX	426155
 			ANIM_end
 	ANIM_end
 	ANIM_begin
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	#ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.041110002	-1.05784	-21.178499	-0.041110002	-1.05784	-21.178499
 			ANIM_rotate	1	0	0	-23.497572	-23.497572
@@ -473704,8 +473704,8 @@ IDX	426155
 			ANIM_end
 	ANIM_end
 	ANIM_begin
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	#ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.039489999	-1.05893	-21.178101	0.039489999	-1.05893	-21.178101
 			ANIM_rotate	1	0	0	-23.497572	-23.497572
@@ -473717,8 +473717,8 @@ IDX	426155
 			ANIM_end
 	ANIM_end
 	ANIM_begin
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	#ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.0094299996	-1.05114	-21.174601	0.0094299996	-1.05114	-21.174601
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -473730,8 +473730,8 @@ IDX	426155
 			ANIM_end
 	ANIM_end
 	ANIM_begin
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	#ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.0068999999	-1.05114	-21.174601	-0.0068999999	-1.05114	-21.174601
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474199,7 +474199,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.01578	-1.09036	-21.2624	0.01578	-1.09036	-21.2624
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474213,7 +474213,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.01575	-1.0569201	-21.185499	0.01575	-1.0569201	-21.185499
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474226,7 +474226,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.0062500001	-1.02932	-21.159599	-0.0062500001	-1.02932	-21.159599
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474240,7 +474240,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.0069900001	-1.02932	-21.159599	0.0069900001	-1.02932	-21.159599
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474271,7 +474271,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.01309	-1.02932	-21.159599	0.01309	-1.02932	-21.159599
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474322,7 +474322,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.018859999	-1.02932	-21.159599	0.018859999	-1.02932	-21.159599
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474335,7 +474335,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.01205	-1.02932	-21.159599	-0.01205	-1.02932	-21.159599
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474352,7 +474352,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.0062500001	-1.06309	-21.2363	-0.0062500001	-1.06309	-21.2363
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474365,7 +474365,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.0069900001	-1.06309	-21.2363	0.0069900001	-1.06309	-21.2363
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474396,7 +474396,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.01309	-1.06309	-21.2363	0.01309	-1.06309	-21.2363
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474447,7 +474447,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.018859999	-1.06309	-21.2363	0.018859999	-1.06309	-21.2363
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474460,7 +474460,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.01205	-1.06309	-21.2363	-0.01205	-1.06309	-21.2363
 			ANIM_rotate	0	0	-1	90.00021	90.00021
@@ -474477,7 +474477,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.01061	-1.09525	-21.254101	-0.01061	-1.09525	-21.254101
 			ANIM_rotate	1	0	0	-23.197342	-23.197342
@@ -474491,7 +474491,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.01043	-1.06117	-21.178301	-0.01043	-1.06117	-21.178301
 			ANIM_rotate	1	0	0	-23.197342	-23.197342
@@ -474504,7 +474504,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.04064	-1.06294	-21.169701	-0.04064	-1.06294	-21.169701
 			ANIM_rotate	1	0	0	-22.007309	-22.007309
@@ -474517,7 +474517,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.039250001	-1.06242	-21.169399	0.039250001	-1.06242	-21.169399
 			ANIM_rotate	1	0	0	-22.007309	-22.007309
@@ -474530,7 +474530,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	-0.04064	-1.09645	-21.245399	-0.04064	-1.09645	-21.245399
 			ANIM_rotate	1	0	0	-22.017049	-22.017049
@@ -474543,7 +474543,7 @@ IDX	426155
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 			ANIM_begin
 			ANIM_trans	0.039069999	-1.09645	-21.245399	0.039069999	-1.09645	-21.245399
 			ANIM_rotate	1	0	0	-22.017049	-22.017049
@@ -481403,7 +481403,7 @@ IDX	426155
 	TRIS	34434 222
 	ANIM_end
 	ANIM_begin
-	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
 	ATTR_light_level_reset
 	TRIS	34656 1200
 	ANIM_end
@@ -481460,7 +481460,7 @@ IDX	426155
 	TRIS	57141 1083
 	ANIM_end
 	ANIM_begin
-	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	1	1	tu154b2/custom/radio/baklan
 	ATTR_light_level_reset
 	TRIS	58224 72
 	ANIM_end
@@ -481668,5 +481668,66 @@ IDX	426155
 	ATTR_light_level_reset
 	TRIS	415335 1800
 	ANIM_end
+
+ANIM_begin
+ANIM_trans	0	-0.033	-0.0751	0	-0.033	-0.0751 0 0 none
+	ANIM_begin
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
+	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+			ANIM_begin
+			ANIM_trans	-0.041110002	-1.05784	-21.178499	-0.041110002	-1.05784	-21.178499
+			ANIM_rotate	1	0	0	-23.497572	-23.497572
+			ANIM_rotate_begin	0	1	-0	tu154b2/custom/rotary/ovhd/vhf_2_left
+			ANIM_rotate_key	0	0
+			ANIM_rotate_key	1	9.9998324
+			ANIM_rotate_end
+					TRIS	54642 540
+			ANIM_end
+	ANIM_end
+	ANIM_begin
+	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
+			ANIM_begin
+			ANIM_trans	0.039489999	-1.05893	-21.178101	0.039489999	-1.05893	-21.178101
+			ANIM_rotate	1	0	0	-23.497572	-23.497572
+			ANIM_rotate_begin	0	1	-0	tu154b2/custom/rotary/ovhd/vhf_2_right
+			ANIM_rotate_key	0	0
+			ANIM_rotate_key	1	9.9998324
+			ANIM_rotate_end
+					TRIS	55182 540
+			ANIM_end
+	ANIM_end
+	ANIM_begin
+	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
+			ANIM_begin
+			ANIM_trans	0.0094299996	-1.05114	-21.174601	0.0094299996	-1.05114	-21.174601
+			ANIM_rotate	0	0	-1	90.00021	90.00021
+			ANIM_rotate_begin	0	1	-0	sim/custom/radios/vhf2_ap
+			ANIM_rotate_key	0	39.999903
+			ANIM_rotate_key	1	-39.999903
+			ANIM_rotate_end
+					TRIS	55722 168
+			ANIM_end
+	ANIM_end
+	ANIM_begin
+	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
+			ANIM_begin
+			ANIM_trans	-0.0068999999	-1.05114	-21.174601	-0.0068999999	-1.05114	-21.174601
+			ANIM_rotate	0	0	-1	90.00021	90.00021
+			ANIM_rotate_begin	0	1	-0	sim/custom/radios/vhf2_ps
+			ANIM_rotate_key	0	39.999903
+			ANIM_rotate_key	1	-39.999903
+			ANIM_rotate_end
+					TRIS	55890 168
+			ANIM_end
+	ANIM_end
+	ANIM_begin
+	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
+	ANIM_hide	0	0	tu154b2/custom/radio/baklan
+	TRIS	34656 1200
+	ANIM_end
+ANIM_end
 
 # Build with Blender 2.80 (sub 75) (build b'f6cb5f54494e'). Exported with XPlane2Blender 4.4.0-rc.1+121.20250701124556

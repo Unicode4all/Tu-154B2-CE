@@ -64,6 +64,7 @@ simDR_right_panel_c_lit = find_dataref("tu154b2/custom/lights/mid_right_panel_in
 simDR_left_pnppkp_lit = find_dataref("tu154b2/custom/lights/left_pkp_set")
 simDR_right_pnppkp_lit = find_dataref("tu154b2/custom/lights/right_pkp_set")
 simDR_chocks = find_dataref("tu154b2/custom/anim/gear_blocks")
+simDR_baklan = find_dataref("tu154b2/custom/radio/baklan")
 --*************************************************************************************--
 --** 				        MAIN PROGRAM LOGIC                                       **--
 --*************************************************************************************--
@@ -127,10 +128,15 @@ end
 
 
 function antenna()
-	if T154_hide_antenna < 1 then
-        if simDR_cargo1_pld < 5500 then
-            simDR_cargo1_pld = 5500
-        end
+	-- if T154_hide_antenna < 1 then
+        -- if simDR_cargo1_pld < 5500 then
+            -- simDR_cargo1_pld = 5500
+        -- end
+	-- end		
+	if T154_kontur_on == 1 and simDR_baklan == 0 then
+		simDR_baklan = 1
+	elseif T154_pa_off == 0 and simDR_baklan == 1 then
+		simDR_baklan = 0
 	end
 end
 function autoladder()
@@ -195,10 +201,12 @@ function simconfig_change_antenna_CMDhandler(phase, duration)
         local antenna_cur = simConfigData["data"].SIM.has_antenna
         if antenna_cur == "NO" then
 			antenna_cur = "YES"
-            T154_hide_antenna = 0
+            --T154_hide_antenna = 0
+			simDR_baklan = 1
         else
             antenna_cur = "NO"
-            T154_hide_antenna = 1
+            -- T154_hide_antenna = 1
+			simDR_baklan = 0
 		end
 		simConfigData["data"].SIM.has_antenna = antenna_cur
 		pushSimConfig(simConfigData["data"]["values"])
@@ -369,6 +377,7 @@ function simconfig_kontur_onoff_CMDhandler(phase, duration)
             if kontur_on_off_cur == "OTHER" then
                 kontur_on_off_cur = "YES"
                 T154_kontur_on = 1
+				simDR_baklan = 1
                 T154_kontur_off = 0
                 T154_kontur_90th = 1
                 T154_kontur_70th = 1
@@ -382,6 +391,7 @@ function simconfig_kontur_onoff_CMDhandler(phase, duration)
 				T154_pa_off = 1
             elseif kontur_on_off_cur == "NO" then
                 kontur_on_off_cur = "PA3"
+				simDR_baklan = 0
                 T154_kontur_on = 0
                 T154_kontur_off = 1
                 T154_kontur_90th = 0
@@ -450,9 +460,11 @@ function set_loaded_configs()
 	end
     
 	if simConfigData["data"].SIM.has_antenna == "YES" then
-        T154_hide_antenna = 0
+        --T154_hide_antenna = 0
+		simDR_baklan = 1
     elseif simConfigData["data"].SIM.has_antenna == "NO" then
-        T154_hide_antenna = 1
+        --T154_hide_antenna = 1
+		simDR_baklan = 0
 	end
     
 	if simConfigData["data"].SIM.sync_baro == "CPT" then
@@ -506,6 +518,7 @@ function set_loaded_configs()
         T154_walk_icons = 0
 	end
 	if simConfigData["data"].SIM.kontur_on_off == "YES" then
+		simDR_baklan = 1
         T154_kontur_on = 1
         T154_kontur_off = 0
         T154_kontur_90th = 1
@@ -524,6 +537,7 @@ function set_loaded_configs()
         T154_kontur_70th = 0
 		T154_pa_off = 1
     elseif simConfigData["data"].SIM.kontur_on_off == "PA3" then
+		simDR_baklan = 0
         T154_kontur_on = 0
         T154_kontur_off = 1
         T154_kontur_90th = 0
@@ -531,6 +545,7 @@ function set_loaded_configs()
 		T154_pa_off = 0
 	end
 	T154_newsimconfig_data = 0
+
 end
 
 

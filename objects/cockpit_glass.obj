@@ -5382,6 +5382,7 @@ TRIS 10896 66
 ANIM_end
 ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/b2/kontur_on
+ANIM_hide 1.000000 1.000000 tu154b2/custom/radio/baklan
 TRIS 10962 144
 ANIM_trans 0.017119 0.022611 -0.003469 0.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/b2/kontur_70th
 ATTR_light_level_reset

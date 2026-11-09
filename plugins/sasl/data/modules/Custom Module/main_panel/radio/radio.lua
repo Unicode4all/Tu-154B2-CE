@@ -11,7 +11,7 @@ components = {
 	vhf {
 		position = {13, 556, 420, 93},
 		num = 1,
-		--frequency = globalPropertyf("sim/cockpit2/radios/actuators/com2_frequency_hz"),  -- set the frequency
+		frequency = globalPropertyf("sim/cockpit2/radios/actuators/com2_frequency_hz_833"),  -- set the frequency
 
 		-- controls
 		vhf_left = globalPropertyi("tu154b2/custom/rotary/ovhd/vhf_2_left"),  -- knob
@@ -21,6 +21,9 @@ components = {
 		bus27_volt = globalPropertyf("tu154b2/custom/elec/bus27_volt_right"), -- power
 		com_power = globalPropertyi("sim/cockpit2/radios/actuators/com2_power"), -- sim com power
 		vhf_cc = globalPropertyf("tu154b2/custom/radio/vhf2_cc"),
+		fast_mode = globalProperty("sim/custom/radios/vhf2_100mode"),
+		squel_sw = globalPropertyi("sim/custom/radios/vhf2_ps"),
+		ap_sw = globalPropertyi("sim/custom/radios/vhf2_ap"),
 	},
 	
 	course_mp {

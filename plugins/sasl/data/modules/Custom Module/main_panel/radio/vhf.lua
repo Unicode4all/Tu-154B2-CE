@@ -23,7 +23,7 @@ defineProperty("spu_source", globalPropertyi("tu154b2/custom/switchers/spu_1_sou
 
 -- results
 defineProperty("com_power", globalPropertyi("sim/cockpit2/radios/actuators/com1_power"))
-defineProperty("com_power2", globalPropertyi("sim/cockpit2/radios/actuators/com2_power"))
+--defineProperty("com_power2", globalPropertyi("sim/cockpit2/radios/actuators/com2_power"))
 
 defineProperty("vhf_cc", globalPropertyf("tu154b2/custom/radio/vhf1_cc"))
 
@@ -40,8 +40,7 @@ dme_1 = globalProperty("sim/cockpit2/radios/actuators/nav_dme_frequency_hz[4]")
 dme_2 = globalProperty("sim/cockpit2/radios/actuators/nav_dme_frequency_hz[5]")
 dme_test_1 = globalProperty("sim/custom/b2/sd67_1_test")
 dme_test_2 = globalProperty("sim/custom/b2/sd67_2_test")
-squel_1 = globalProperty("sim/custom/radios/vhf1_ps")
-squel_2 = globalProperty("sim/custom/radios/vhf2_ps")
+defineProperty("squel_sw", globalPropertyi("sim/custom/radios/vhf1_ps"))
 vhf_2_left = globalProperty("sim/custom/vhf2_left_rot")
 vhf_2_right = globalProperty("sim/custom/vhf2_right_rot")
 vhf_3_left = globalProperty("sim/custom/vhf3_left_rot")
@@ -49,7 +48,8 @@ vhf_3_right = globalProperty("sim/custom/vhf3_right_rot")
 kont = globalProperty("tu154b2/custom/b2/kontur_on")
 sd_1_vol = globalPropertyf("tu154b2/custom/switchers/SD67_1_vol")
 sd_2_vol = globalPropertyf("tu154b2/custom/switchers/SD67_2_vol")
-
+defineProperty("fast_mode", globalProperty("sim/custom/radios/vhf1_100mode"))
+defineProperty("ap_sw", globalPropertyi("sim/custom/radios/vhf1_ap"))
 -- Smart Copilot
 ismaster = globalPropertyi("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
 hascontrol_1 = globalPropertyi("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
@@ -148,7 +148,7 @@ local function rotary()
 	local summ_mp_R=get(nav_course_2)
 	local summ_dme=get(dme_1)+get(dme_2)
 	local summ_but=get(dme_test_1)+get(dme_test_2)
-	local summ_sw=get(dme_res_1)+get(dme_res_2)+get(squel_1)+get(squel_2)
+	local summ_sw=get(dme_res_1)+get(dme_res_2)+get(squel_sw)+get(ap_sw)
 	local sd_vol_1=get(sd_1_vol)
 	local sd_vol_2=get(sd_2_vol)
 	
@@ -384,6 +384,65 @@ local function rotary()
 
 end
 
+
+
+local function rotary2()
+	local nav_left_sw = get(vhf_left)
+	local nav_right_sw = get(vhf_right)
+	local summ = nav_left_sw+ nav_right_sw
+	local summ_sw=get(squel_sw)+get(ap_sw)
+	
+	if summ_last ~= summ then 		
+		local z_pos=get(pilot_Z)
+		local z_pos=get(pilot_Z)
+		local x_pos=get(pilot_X)
+		local plt_hdg=get(pilot_head)
+		local gain_L, gain_R = inn_balance (panel_x, panel_z, x_pos, z_pos , plt_hdg)
+		gain_L=gain_L*700
+		gain_R=gain_R*700
+		local dist=1
+		if z_pos-panel_z~=0 then
+			dist=math.min(1,1/math.sqrt(math.pow(z_pos-panel_z,2)+math.pow(x_pos-panel_x,2))/dist_gain)
+		end
+		setSampleGain(rotary_sound_L,gain_L*dist)
+		setSampleGain(rotary_sound_R,gain_R*dist)
+		playSample(rotary_sound_L, false)
+		playSample(rotary_sound_R, false)
+	end
+		
+	if summ_sw_last~=summ_sw then 		
+		local z_pos=get(pilot_Z)
+		local z_pos=get(pilot_Z)
+		local x_pos=get(pilot_X)
+		local plt_hdg=get(pilot_head)
+		local gain_L, gain_R = inn_balance (panel_x, panel_z, x_pos, z_pos , plt_hdg)
+		gain_L=gain_L*700
+		gain_R=gain_R*700
+		local dist=1
+		if z_pos-panel_z~=0 then
+			dist=math.min(1,1/math.sqrt(math.pow(z_pos-panel_z,2)+math.pow(x_pos-panel_x,2))/dist_gain)
+		end
+		setSampleGain(switcher_sound_L,gain_L*dist)
+		setSampleGain(switcher_sound_R,gain_R*dist)
+		playSample(switcher_sound_L, false)
+		playSample(switcher_sound_R, false)
+	end
+		
+	summ_last = summ
+	summ_sw_last=summ_sw
+end
+
+
+
+
+
+
+
+
+
+
+
+
 -- variables for separate manipulations
 
 local freq_100 = 0  -- digits before period
@@ -400,8 +459,11 @@ local knob_last_R = get(vhf_right)
 
 
 function update()
-
-	rotary()
+	if get(num) == 0 then
+		rotary()
+	else 
+		rotary2()
+	end
 	
 	local MASTER = get(ismaster) ~= 1	
 	
@@ -457,7 +519,7 @@ end
 	freq_show = string.format("%.3f", freq/1000)
 	
 	set(com_power, bool2int(power))
-	set(com_power2, bool2int(power))
+	--set(com_power2, bool2int(power))
 	set(vhf_cc, bool2int(power) * 1.2)
 	
 	knob_last_L = left_knob
@@ -495,6 +557,9 @@ components = {
 	radio_display {
 		position = { 35, 20, 160, 140 },
 		color = { 0.2, 1, 0.2, 1 },
+		trunc = function()
+			return get(fast_mode)
+		end,
 		freq = function()
 			return freq_show
 		end,

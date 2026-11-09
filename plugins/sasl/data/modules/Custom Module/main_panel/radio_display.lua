@@ -1,7 +1,7 @@
 
 defineProperty("color", {1,1,1,1})
 defineProperty("freq", "")
-
+defineProperty("trunc", 0)
 font = loadFont("digital7.ttf")
 chrs = {} 
 
@@ -23,8 +23,10 @@ function draw()
     drawText(font, 124, 0, chars[3], 65, true, true, TEXT_ALIGN_LEFT, get(color))
     drawText(font, 165, 0, chars[4], 66, true, true, TEXT_ALIGN_LEFT, get(color))
     drawText(font, 188, 0, chars[5], 65, true, true, TEXT_ALIGN_LEFT, get(color))
-    drawText(font, 246, 0, chars[6], 65, true, true, TEXT_ALIGN_LEFT, get(color))
-    drawText(font, 304, 0, chars[7], 65, true, true, TEXT_ALIGN_LEFT, get(color))
+	if get(trunc) == 0 then
+		drawText(font, 246, 0, chars[6], 65, true, true, TEXT_ALIGN_LEFT, get(color))
+		drawText(font, 304, 0, chars[7], 65, true, true, TEXT_ALIGN_LEFT, get(color))
+	end
 end
 function update()
     sasl.logError("asd")
