@@ -149,7 +149,7 @@ function vbe_l_P_minus_CMDhandler(phase, duration)
 end	
 
 function vbe_l_P_std_CMDhandler(phase, duration)
-	if phase == 1 then
+	if phase == 0 then
 		simDR_vbe_std_l = 1		
 	elseif phase == 2 then
 		simDR_vbe_std_l = 0
@@ -282,7 +282,7 @@ function vbe_r_P_minus_CMDhandler(phase, duration)
 end
 
 function vbe_r_P_std_CMDhandler(phase, duration)
-	if phase == 1 then
+	if phase == 0 then
 		simDR_vbe_std_r = 1		
 	elseif phase == 2 then
 		simDR_vbe_std_r = 0

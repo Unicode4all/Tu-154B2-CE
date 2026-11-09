@@ -33,7 +33,7 @@ simDR_com2_vol = find_dataref("sim/cockpit2/radios/actuators/audio_volume_com2")
 --simDR_sw_sound = find_dataref("tu154b2/custom/lights/tech_light_set")
 simDR_ark1_signal = find_dataref("tu154b2/custom/radio/ark15_L_signal")
 simDR_ark2_signal = find_dataref("tu154b2/custom/radio/ark15_R_signal")
-
+simDR_master = find_dataref("tu154b2/crew/ismaster")
 
 T154_kontur_on = find_dataref("tu154b2/custom/b2/kontur_on")
 
@@ -148,77 +148,85 @@ spu_net = 1
 
 
 function com1_actv_dial_up_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 0 and simDR_baklan == 0 then
-                simCMD_com1_actv_fine_up:once()
-                simDR_vhf_rotary = simDR_vhf_rotary +1
-        else
-                if simDR_bus27left > 5 and simDR_vhf1 > 0 then
-                    simCMD_com1_actv_fine_up_eight:once()
-                    if vhf1_fast < 1 then
-                        vhf1_fast = vhf1_fast +0.15
-                    end
-                    if vhf1_100_mode > 0 then
-                          if simDR_com1_khz < 901 then
-                            simDR_com1_khz = math.ceil(simDR_com1_khz* 0.01) * 100
-                          else
-                            simDR_com1_khz = 0
-                          end
-                    end
-                end
-                simDR_vhf_rotary = simDR_vhf_rotary +1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 0 and simDR_baklan == 0 then
+					simCMD_com1_actv_fine_up:once()
+					simDR_vhf_rotary = simDR_vhf_rotary +1
+			else
+					if simDR_bus27left > 5 and simDR_vhf1 > 0 then
+						simCMD_com1_actv_fine_up_eight:once()
+						if vhf1_fast < 1 then
+							vhf1_fast = vhf1_fast +0.15
+						end
+						if vhf1_100_mode > 0 then
+							  if simDR_com1_khz < 901 then
+								simDR_com1_khz = math.ceil(simDR_com1_khz* 0.01) * 100
+							  else
+								simDR_com1_khz = 0
+							  end
+						end
+					end
+					simDR_vhf_rotary = simDR_vhf_rotary +1
+			end
+		end
+	end
 end
 
 function com1_actv_dial_dn_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 0 and simDR_baklan == 0 then
-                simCMD_com1_actv_fine_dn:once()
-                simDR_vhf_rotary = simDR_vhf_rotary -1
-        else
-            if simDR_bus27left > 5 and simDR_vhf1 > 0 then
-                simCMD_com1_actv_fine_dn_eight:once()
-                if vhf1_fast < 1 then
-                    vhf1_fast = vhf1_fast +0.15
-                end
-                if vhf1_100_mode > 0 then
-                        simDR_com1_khz = math.floor(simDR_com1_khz* 0.01) * 100
-                end
-            end
-            simDR_vhf_rotary = simDR_vhf_rotary -1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 0 and simDR_baklan == 0 then
+					simCMD_com1_actv_fine_dn:once()
+					simDR_vhf_rotary = simDR_vhf_rotary -1
+			else
+				if simDR_bus27left > 5 and simDR_vhf1 > 0 then
+					simCMD_com1_actv_fine_dn_eight:once()
+					if vhf1_fast < 1 then
+						vhf1_fast = vhf1_fast +0.15
+					end
+					if vhf1_100_mode > 0 then
+							simDR_com1_khz = math.floor(simDR_com1_khz* 0.01) * 100
+					end
+				end
+				simDR_vhf_rotary = simDR_vhf_rotary -1
+			end
+		end
+	end
 end
 
 
 
 function com1_actv_c_dial_up_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 0 and simDR_baklan == 0 then
-                simCMD_com1_actv_coarse_up:once()
-                simDR_vhf_l_rotary = simDR_vhf_l_rotary +1
-        else
-            if simDR_bus27left > 5 and simDR_vhf1 > 0 then
-                simCMD_com1_actv_coarse_up_eight:once()
-            end
-            simDR_vhf_l_rotary = simDR_vhf_l_rotary +1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 0 and simDR_baklan == 0 then
+					simCMD_com1_actv_coarse_up:once()
+					simDR_vhf_l_rotary = simDR_vhf_l_rotary +1
+			else
+				if simDR_bus27left > 5 and simDR_vhf1 > 0 then
+					simCMD_com1_actv_coarse_up_eight:once()
+				end
+				simDR_vhf_l_rotary = simDR_vhf_l_rotary +1
+			end
+		end
+	end
 end
 
 function com1_actv_c_dial_dn_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 0 and simDR_baklan == 0 then
-                simCMD_com1_actv_coarse_dn:once()
-                simDR_vhf_l_rotary = simDR_vhf_l_rotary -1
-        else
-            if simDR_bus27left > 5 and simDR_vhf1 > 0 then
-                simCMD_com1_actv_coarse_dn_eight:once()
-            end
-            simDR_vhf_l_rotary = simDR_vhf_l_rotary -1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 0 and simDR_baklan == 0 then
+					simCMD_com1_actv_coarse_dn:once()
+					simDR_vhf_l_rotary = simDR_vhf_l_rotary -1
+			else
+				if simDR_bus27left > 5 and simDR_vhf1 > 0 then
+					simCMD_com1_actv_coarse_dn_eight:once()
+				end
+				simDR_vhf_l_rotary = simDR_vhf_l_rotary -1
+			end
+		end
+	end
 end
 
 
@@ -271,75 +279,83 @@ end
 
 
 function com2_actv_dial_up_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 1 or simDR_baklan == 0  then
-                simCMD_com2_actv_fine_up:once()
-                simDR_vhf2_rotary = simDR_vhf2_rotary +1
-        else
-                if simDR_bus27right > 5 and simDR_vhf2 > 0 then
-                    simCMD_com2_actv_fine_up_eight:once()
-                    if vhf2_fast < 1 then
-                        vhf2_fast = vhf2_fast +0.15
-                    end
-                    if vhf2_100_mode > 0 then
-                          if simDR_com2_khz < 901 then
-                            simDR_com2_khz = math.ceil(simDR_com2_khz* 0.01) * 100
-                          else
-                            simDR_com2_khz = 0
-                          end
-                    end
-                end
-                simDR_vhf2_rotary = simDR_vhf2_rotary -1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 1 or simDR_baklan == 0  then
+					simCMD_com2_actv_fine_up:once()
+					simDR_vhf2_rotary = simDR_vhf2_rotary +1
+			else
+					if simDR_bus27right > 5 and simDR_vhf2 > 0 then
+						simCMD_com2_actv_fine_up_eight:once()
+						if vhf2_fast < 1 then
+							vhf2_fast = vhf2_fast +0.15
+						end
+						if vhf2_100_mode > 0 then
+							  if simDR_com2_khz < 901 then
+								simDR_com2_khz = math.ceil(simDR_com2_khz* 0.01) * 100
+							  else
+								simDR_com2_khz = 0
+							  end
+						end
+					end
+					simDR_vhf2_rotary = simDR_vhf2_rotary -1
+			end
+		end
+	end
 end
 
 function com2_actv_dial_dn_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 1 or simDR_baklan == 0  then
-                simCMD_com2_actv_fine_dn:once()
-                simDR_vhf2_rotary = simDR_vhf2_rotary -1
-        else
-            if simDR_bus27right > 5 and simDR_vhf2 > 0 then
-                simCMD_com2_actv_fine_dn_eight:once()
-                if vhf2_fast < 1 then
-                    vhf2_fast = vhf2_fast +0.15
-                end
-                if vhf2_100_mode > 0 then
-                        simDR_com2_khz = math.floor(simDR_com2_khz* 0.01) * 100
-                end
-            end
-            simDR_vhf2_rotary = simDR_vhf2_rotary +1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 1 or simDR_baklan == 0  then
+					simCMD_com2_actv_fine_dn:once()
+					simDR_vhf2_rotary = simDR_vhf2_rotary -1
+			else
+				if simDR_bus27right > 5 and simDR_vhf2 > 0 then
+					simCMD_com2_actv_fine_dn_eight:once()
+					if vhf2_fast < 1 then
+						vhf2_fast = vhf2_fast +0.15
+					end
+					if vhf2_100_mode > 0 then
+							simDR_com2_khz = math.floor(simDR_com2_khz* 0.01) * 100
+					end
+				end
+				simDR_vhf2_rotary = simDR_vhf2_rotary +1
+			end
+		end
+	end
 end
 
 function com2_actv_c_dial_up_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 0 and simDR_baklan == 0 then
-                simCMD_com2_actv_coarse_up:once()
-                simDR_vhf2_l_rotary = simDR_vhf2_l_rotary +1
-        else
-            if simDR_bus27right > 5 and simDR_vhf2 > 0 then
-                simCMD_com2_actv_coarse_up_eight:once()
-            end
-            simDR_vhf2_l_rotary = simDR_vhf2_l_rotary +1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 0 and simDR_baklan == 0 then
+					simCMD_com2_actv_coarse_up:once()
+					simDR_vhf2_l_rotary = simDR_vhf2_l_rotary +1
+			else
+				if simDR_bus27right > 5 and simDR_vhf2 > 0 then
+					simCMD_com2_actv_coarse_up_eight:once()
+				end
+				simDR_vhf2_l_rotary = simDR_vhf2_l_rotary +1
+			end
+		end
+	end
 end
 
 function com2_actv_c_dial_dn_CMDhandler(phase, duration)
-    if phase == 0 then
-        if T154_kontur_on == 0 and simDR_baklan == 0 then
-                simCMD_com2_actv_coarse_dn:once()
-                simDR_vhf2_l_rotary = simDR_vhf2_l_rotary -1
-        else
-            if simDR_bus27right > 5 and simDR_vhf2 > 0 then
-                simCMD_com2_actv_coarse_dn_eight:once()
-            end
-            simDR_vhf2_l_rotary = simDR_vhf2_l_rotary -1
-        end
-    end
+	if simDR_master ~= 1 then
+		if phase == 0 then
+			if T154_kontur_on == 0 and simDR_baklan == 0 then
+					simCMD_com2_actv_coarse_dn:once()
+					simDR_vhf2_l_rotary = simDR_vhf2_l_rotary -1
+			else
+				if simDR_bus27right > 5 and simDR_vhf2 > 0 then
+					simCMD_com2_actv_coarse_dn_eight:once()
+				end
+				simDR_vhf2_l_rotary = simDR_vhf2_l_rotary -1
+			end
+		end
+	end
 end
 
 
@@ -643,7 +659,7 @@ elseif simDR_36vr > 5 then
 else
     bus36 = 0
 end
-    
+if simDR_master ~=1 then    
     if vhf1_fast > 0 then
         vhf1_fast = vhf1_fast - simDR_passed
     else
@@ -663,7 +679,7 @@ end
     if vhf2_fast > 1 and vhf2_100_mode < 1 then
       vhf2_100_mode = 1
     end
-    
+end    
     
 -- if vhf1_ap > 0 and sw_sound > 0 then
     -- if simDR_sw_sound > -2 then
