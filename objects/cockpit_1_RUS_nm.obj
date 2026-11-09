@@ -481405,7 +481405,15 @@ IDX	426155
 	ANIM_begin
 	ANIM_hide	0	0	tu154b2/custom/radio/baklan
 	ATTR_light_level_reset
-	TRIS	34656 1200
+	TRIS 35316 540
+	ANIM_end
+	ANIM_begin
+	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	TRIS	35244 72
+	ANIM_end
+	ANIM_begin
+	ANIM_hide	0	0	tu154b2/custom/b2/kontur_on
+	TRIS	34656 588
 	ANIM_end
 	ANIM_begin
 	ANIM_hide	0	0	tu154b2/custom/anim/show_taws
@@ -481726,7 +481734,7 @@ ANIM_trans	0	-0.033	-0.0751	0	-0.033	-0.0751 0 0 none
 	ANIM_begin
 	ANIM_hide	1	1	tu154b2/custom/b2/kontur_on
 	ANIM_hide	0	0	tu154b2/custom/radio/baklan
-	TRIS	34656 1200
+	TRIS	35316 540
 	ANIM_end
 ANIM_end
 

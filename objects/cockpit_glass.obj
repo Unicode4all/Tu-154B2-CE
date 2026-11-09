@@ -5252,6 +5252,14 @@ IDX 4114
 IDX 4115
 IDX 4112
 IDX 4114
+ANIM_begin
+ANIM_hide 0.000000 0.000000 tu154b2/custom/radio/baklan
+TRIS 10014 6
+ANIM_begin
+ANIM_trans	0	-0.033	-0.0751	0	-0.033	-0.0751 0 0 none
+TRIS 10014 6
+ANIM_end
+ANIM_end
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_panel_int 
 TRIS 0 42
 ANIM_begin

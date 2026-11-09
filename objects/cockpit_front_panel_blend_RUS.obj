@@ -4031,9 +4031,14 @@ ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/left_panel_flood
 TRIS 0 246
 ANIM_end
 ANIM_begin
+ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
+ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_panel_int
+TRIS 246 300
+ANIM_end
+ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/radio/baklan
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_panel_int
-TRIS 246 444
+TRIS 546 144
 ANIM_end
 ANIM_begin
 #ANIM_hide 1.000000 1.000000 tu154b2/custom/b2/kontur_on
@@ -4059,5 +4064,5 @@ ANIM_hide 0.000000 0.000000 tu154b2/custom/radio/baklan
 ANIM_hide 1.000000 1.000000 tu154b2/custom/b2/kontur_on
 ANIM_trans	0	-0.033	-0.0751	0	-0.033	-0.0751 0 0 none
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_panel_int
-TRIS 246 444
+TRIS 546 144
 ANIM_end
