@@ -26,14 +26,6 @@ function control.input_allowed()
     return value ~= nil and sasl.getDataRef(value) == 1
 end
 
-function control.outputs_allowed(master, hascontrol)
-    if control.active() then
-        return master ~= 1
-    end
-
-    return hascontrol ~= 1
-end
-
 function control.register_adapter()
     local ready = ref("adapter_ready", TYPE_INT)
     if ready then
@@ -45,6 +37,8 @@ function control.brakes(left, right)
     if control.input_allowed() then
         sasl.setDataRef(ref("brake_left_input", TYPE_FLOAT), left)
         sasl.setDataRef(ref("brake_right_input", TYPE_FLOAT), right)
+
+        return left, right
     end
 
     return sasl.getDataRef(ref("brake_left", TYPE_FLOAT)),

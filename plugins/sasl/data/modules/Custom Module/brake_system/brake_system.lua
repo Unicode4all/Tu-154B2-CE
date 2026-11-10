@@ -263,7 +263,7 @@ function regular_brk_hnd(phase)
 		if sim_brake > 1 then sim_brake = 1 end
 	else 
 		sim_brake = 0
-		if crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
+		if get(hascontrol_1) ~= 1 then
 			set(l_brake_add, 0)
 			set(r_brake_add, 0)
 		end
@@ -290,7 +290,7 @@ function max_brk_hnd(phase)
 		if sim_brake > 1 then sim_brake = 1 end
 	else 
 		sim_brake = 0
-		if crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
+		if get(hascontrol_1) ~= 1 then
 			set(l_brake_add, 0)
 			set(r_brake_add, 0)
 		end
@@ -308,7 +308,7 @@ function park_brk_max_hnd(phase)
 	if 0 == phase then -- toggle
 		local brk = 1 - get(parking_brake)
 		
-		if brk == 0 and crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
+		if brk == 0 and get(hascontrol_1) ~= 1 then
 			set(l_brake_add, 0) -- release pedals
 			set(r_brake_add, 0) -- release pedals
 		end
@@ -332,7 +332,7 @@ function park_brk_reg_hnd(phase)
 	if 0 == phase then -- toggle
 		local brk = 1 - get(parking_brake)
 		
-		if brk == 0 and crew_control.outputs_allowed(get(ismaster), get(hascontrol_1)) then
+		if brk == 0 and get(hascontrol_1) ~= 1 then
 			set(l_brake_add, 0) -- release pedals
 			set(r_brake_add, 0) -- release pedals
 		end
@@ -552,9 +552,8 @@ function update()
 	e_brake_last = e_brake
 
 
-    if crew_active and get(ismaster) == 1 then
-        return
-    end
+    local pilot = get(hascontrol_1) ~= 1
+    local master = get(ismaster) ~= 1
 
 	-- blocks
 	local blocks = get(gear_blocks)
@@ -625,6 +624,19 @@ function update()
 	if left_blake < 0.001 then left_blake = 0 end
 	if right_blake < 0.001 then right_blake = 0 end
 	
+
+	if pilot then
+		local spd_coef=math.min(1,(1.333e-05*math.pow(spd*3.6,2) -0.007*spd*3.6+1.317)*(1+0.75*bool2int(get(pave)==3))) --brakes better on asphalt due to lower vibrations
+		local max_brake=brake_c*spd_coef
+
+		set(l_brake_add, math.min(math.max(left_blake*(1-park_lvr),left_blake_emer)*brake_c,max_brake))
+		set(r_brake_add, math.min(math.max(right_blake*(1-park_lvr),right_blake_emer)*brake_c,max_brake))
+		set(parkbrake_2, park)
+	end
+
+	if crew_active and not master then
+		return
+	end
 
 if get(ismaster) ~= 1 then			
 	local FAIL = get(failures_enabled)
@@ -723,17 +735,11 @@ if have_control then
 	else
 		set(anti_skid,1)
 	end
-	local spd_coef=math.min(1,(1.333e-05*math.pow(spd*3.6,2) -0.007*spd*3.6+1.317)*(1+0.75*bool2int(get(pave)==3))) --brakes better on asphalt due to lower vibrations
-	local max_brake=brake_c*spd_coef
-
-	set(l_brake_add, math.min(math.max(left_blake*(1-park_lvr),left_blake_emer)*brake_c,max_brake))
-	set(r_brake_add, math.min(math.max(right_blake*(1-park_lvr),right_blake_emer)*brake_c,max_brake))
 	set(int_brakes_L, math.max(left_blake,park ))
 	set(int_brakes_R, math.max(right_blake, park))
 	--set(parkbrake, park)
 	set(gear2_chock, blocks)
 	set(gear3_chock, blocks)
-	set(parkbrake_2, park)
 	
 	if brake_1 > 0.8 and brake_2 > 0.8 then set(parking_brake, 0) end -- release park lever, if pedals pressed.
 	
