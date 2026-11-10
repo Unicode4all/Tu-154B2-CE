@@ -1,4 +1,3 @@
-local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/crew_control.lua")
 -- this is simple RUD logic
 
 -- sim/version/xplane_internal_version
