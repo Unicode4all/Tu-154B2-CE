@@ -175,6 +175,7 @@ lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_11")
 lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_12")
 
 day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set")
+day_night_set_eng = globalPropertyf("tu154b2/custom/lights/day_night_set_eng")
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
@@ -293,7 +294,9 @@ local function lamps()
 	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	local test_btn_eng = get(lamp_test_eng) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	local day_night = 1 - get(day_night_set) * 0.5
+	local day_night_eng = 1 - get(day_night_set_eng) * 0.5
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
+	local lamps_brt_eng = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night_eng
 	
 	local stab_work_brt = 0
 	local stab_pos_now = - (get(stab_pos) + 1.5)
@@ -515,15 +518,15 @@ local function lamps()
 	set(gears_red_right_eng, gears_red_right_eng_brt)
 	
 	local gears_green_left_eng_brt = bool2int(gear_L_pos >= 0.99)
-	gears_green_left_eng_brt = math.max(gears_green_left_eng_brt * lamps_brt, test_btn_eng)
+	gears_green_left_eng_brt = math.max(gears_green_left_eng_brt * lamps_brt_eng, test_btn_eng)
 	set(gears_green_left_eng, gears_green_left_eng_brt)
 	
 	local gears_green_front_eng_brt = bool2int(gear_F_pos >= 0.99)
-	gears_green_front_eng_brt = math.max(gears_green_front_eng_brt * lamps_brt, test_btn_eng)
+	gears_green_front_eng_brt = math.max(gears_green_front_eng_brt * lamps_brt_eng, test_btn_eng)
 	set(gears_green_front_eng, gears_green_front_eng_brt)
 	
 	local gears_green_right_eng_brt = bool2int(gear_R_pos >= 0.99)
-	gears_green_right_eng_brt = math.max(gears_green_right_eng_brt * lamps_brt, test_btn_eng)
+	gears_green_right_eng_brt = math.max(gears_green_right_eng_brt * lamps_brt_eng, test_btn_eng)
 	set(gears_green_right_eng, gears_green_right_eng_brt)	
 	
 	
