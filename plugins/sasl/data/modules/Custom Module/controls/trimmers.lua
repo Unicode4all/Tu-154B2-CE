@@ -129,7 +129,7 @@ local function inn_balance (src_x, src_z, x, z , cam_hdg)
 end
 
 function update()
-	local MASTER = get(ismaster) ~= 1
+	local MASTER = get(hascontrol_1) ~= 1
 	
 	-- initial
 	local passed = get(frame_time)
