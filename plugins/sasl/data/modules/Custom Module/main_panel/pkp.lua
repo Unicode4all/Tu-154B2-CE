@@ -483,8 +483,8 @@ function update()
 	else
 		flag = get(ahz_flag)
 		if power then
-			res_pitch, pitch_show_2 = get(res_pitch)
-			pitch_int, pitch_absu = get(pitch_int)
+			pitch_show_2 = get(res_pitch)
+			pitch_absu = get(pitch_int)
 			roll_show_2 = get(res_roll)			
 			roll_show = get(res_roll_bkk)			
 		end

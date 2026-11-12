@@ -329,7 +329,7 @@ if get(ismaster) ~= 1 then
 			end
 			if sys_data_tbl.starter_fail_2 ~= 1 and get(apd_working_2) > 0 then 
 				sys_data_tbl.starter_fail_2 = bool2int(math.random() < 0.0001 * FAIL * 0.3) 
-				sset(starter_disc_fail_2,sys_data_tbl.starter_fail_2)
+				set(starter_disc_fail_2,sys_data_tbl.starter_fail_2)
 			end
 			if sys_data_tbl.starter_fail_3 ~= 1 and get(apd_working_3) > 0 then 
 				sys_data_tbl.starter_fail_3 = bool2int(math.random() < 0.0001 * FAIL * 0.3) 

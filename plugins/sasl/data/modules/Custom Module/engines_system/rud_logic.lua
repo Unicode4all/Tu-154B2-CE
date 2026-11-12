@@ -834,9 +834,9 @@ function update()
 			set(sim_rud_3,contr_3)
 		end
 	else
-		contr_1 = sim_rud_1
-		contr_2 = sim_rud_2
-		contr_3 = sim_rud_3
+		contr_1 = get(sim_rud_1)
+		contr_2 = get(sim_rud_2)
+		contr_3 = get(sim_rud_3)
 		i_kvd_1 = 0
 		i_kvd_2 = 0
 		i_kvd_3 = 0
