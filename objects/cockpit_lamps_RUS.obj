@@ -78557,7 +78557,7 @@ ANIM_rotate_end
 ANIM_trans 0.802567 1.492600 21.641899 0.802567 1.492600 21.641899 0.000000 0.000000 none
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/enabled
-ATTR_light_level 0.000000 1.000000  sim/custom/t154_efb/power_lit  700
+ATTR_light_level 0.000000 1.000000  sim/custom/t154_efb/power_lit  300
 TRIS 48351 6
 ANIM_end
 ANIM_end
@@ -78652,7 +78652,7 @@ ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nvu_on  700
 TRIS 51135 96
 ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nvu_corr  700
 TRIS 51231 96
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/mid_left_panel_int  700
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/mid_left_panel_int
 ATTR_no_cull
 TRIS 51327 864
 ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/front_panel_flood  300
@@ -79006,7 +79006,7 @@ ANIM_begin
 ANIM_trans -0.193058 -2.034560 -21.147301 -0.193058 -2.034560 -21.147301 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.000000 1.000000 0.000000 120.000000 0.000000 1.000000 tu154b2/custom/gauges/console/absu_roll_mode
 ANIM_trans 0.193058 2.034560 21.147301 0.193058 2.034560 21.147301 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/mid_left_panel_int  700
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/mid_left_panel_int
 TRIS 59844 84
 ANIM_end
 ANIM_begin
@@ -79407,6 +79407,7 @@ TRIS 153237 18
 ANIM_end
 ANIM_begin
 ANIM_trans 1.1519 0.088 -0.0126 1.1519 0.088 -0.0126
+ATTR_light_level_reset
 TRIS 111792 219
 TRIS 76722 132
 ANIM_end
@@ -79466,7 +79467,7 @@ ANIM_begin
 	ANIM_trans 0.787769  1.46306 21.2471 0.787769  1.46306 21.2471 0.000000 0.000000 none
 	ANIM_begin
 		ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/enabled
-ATTR_light_level 0.000000 1.000000  sim/custom/t154_efb2/power_lit  700
+ATTR_light_level 0.000000 1.000000  sim/custom/t154_efb2/power_lit  300
 		TRIS 48351 6
 	ANIM_end
 ANIM_end
