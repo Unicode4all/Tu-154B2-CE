@@ -1,29 +1,22 @@
 -- Optional Crew154 input bridge. No aircraft calculations live in the plugin.
 local control = {}
-local refs = {}
 
 local function ref(name, kind)
-    if not refs[name] then
-        refs[name] = sasl.findDataRef("crew154/control/" .. name, kind, true)
-    end
+    return sasl.findDataRef("crew154/control/" .. name, kind, true)
+end
 
-    return refs[name]
+local function flag(name)
+    local value = ref(name, TYPE_INT)
+
+    return value ~= nil and sasl.getDataRef(value) == 1
 end
 
 function control.active()
-    local value = ref("active", TYPE_INT)
-
-    return value ~= nil and sasl.getDataRef(value) == 1
+    return flag("active")
 end
 
 function control.input_allowed()
-    if not control.active() then
-        return true
-    end
-
-    local value = ref("owned", TYPE_INT)
-
-    return value ~= nil and sasl.getDataRef(value) == 1
+    return not control.active() or flag("owned")
 end
 
 function control.register_adapter()
@@ -31,6 +24,26 @@ function control.register_adapter()
     if ready then
         sasl.setDataRef(ready, 1)
     end
+end
+
+function control.request_pending()
+    return flag("pending")
+end
+
+function control.take_handover_thrust_commands()
+    local pending = ref("engine_pending", TYPE_INT)
+
+    if not pending or sasl.getDataRef(pending) ~= 1 then
+        return
+    end
+
+    local left = sasl.getDataRef(ref("engine_command_1", TYPE_FLOAT))
+    local center = sasl.getDataRef(ref("engine_command_2", TYPE_FLOAT))
+    local right = sasl.getDataRef(ref("engine_command_3", TYPE_FLOAT))
+
+    sasl.setDataRef(pending, 0)
+
+    return left, center, right
 end
 
 function control.brakes(left, right)

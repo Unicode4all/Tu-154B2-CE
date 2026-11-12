@@ -1,4 +1,6 @@
 -- this is 2d panels logic
+local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/crew_control.lua")
+
 size = {2048, 2048}
 
 -- sim variable
@@ -752,6 +754,51 @@ gnd_button = contextWindow {
 
 
 
+local ctrlLabel = loadImage("crew-control-label.png") -- CTRL button image
+local ctrlCheck = loadImage("crew-control-actions.png", 0, 0, 16, 16) -- CTRL button accept image
+local ctrlCross = loadImage("crew-control-actions.png", 16, 0, 16, 16) -- CTRL button decline image
+local ctrlRed, ctrlYellow, ctrlGreen = {1, 0.25, 0.2, 1}, {1, 0.8, 0.1, 1}, {0.2, 1, 0.35, 1} -- CTRL button colors
+
+local function controlButton(x, action, bottomBorder, drawSymbol)
+    local button = clickable {
+        position = {0, 0, 31, 30},
+        onMouseDown = function()
+            local command = sasl.findCommand("crew154/control/" .. action)
+            if command then sasl.commandOnce(command) end
+            return true
+        end
+    }
+    -- clickable.lua installs its own empty draw handler during construction.
+    function button.draw()
+        sasl.gl.drawRectangle(0, 0, 30, 30, {1, 1, 1, 1})
+        sasl.gl.drawRectangle(1, bottomBorder, 28, 29 - bottomBorder, {0, 0, 0, 1})
+        drawSymbol()
+    end
+    return contextWindow {
+        position = {x, 670, 31, 30},
+        noBackground = true, noResize = true, noDecore = true, noMove = true,
+        components = {button}
+    }
+end
+
+local ctrlButton = controlButton(0, "request", 0, function()
+    local color = ctrlRed
+    if crew_control.request_pending() then
+        color = ctrlYellow
+    elseif crew_control.input_allowed() then
+        color = ctrlGreen
+    end
+    sasl.gl.drawTexture(ctrlLabel, 2, 11, 26, 8, color)
+end)
+
+local ctrlAccept = controlButton(31, "accept", 1, function()
+    sasl.gl.drawTexture(ctrlCheck, 8, 7, 16, 16, ctrlGreen)
+end)
+
+local ctrlDecline = controlButton(62, "decline", 1, function()
+    sasl.gl.drawTexture(ctrlCross, 8, 7, 16, 16, ctrlRed)
+end)
+
 function update()
 	
 	-- main menu logic
@@ -778,6 +825,11 @@ function update()
 	load_button:setIsVisible(get(cockpit_80s)==0 or get(ismaster) > 0)
 	gnd_button:setIsVisible(get(cockpit_80s)==0 or get(ismaster) > 0)
 	thro_button:setIsVisible(get(ismaster) > 0)
+	local active = crew_control.active()
+	local incoming = active and crew_control.request_pending() and crew_control.input_allowed()
+	ctrlButton:setIsVisible(active)
+	ctrlAccept:setIsVisible(incoming)
+	ctrlDecline:setIsVisible(incoming)
 	
 	
 end
