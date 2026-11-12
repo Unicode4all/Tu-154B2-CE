@@ -1,5 +1,5 @@
-local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/crew_control.lua")
 -- this is simple RUD logic
+local crew_control = dofile(sasl.getAircraftPath() .. "/plugins/sasl/data/modules/Custom Module/crew_control.lua")
 
 -- sim/version/xplane_internal_version
 --xp_version = globalPropertyi("sim/version/xplane_internal_version")
@@ -179,6 +179,7 @@ local n_kpp=0.265
 
 local min_idle=0
 				  
+
 local contr_1=0
 local contr_2=0
 local contr_3=0
@@ -805,7 +806,15 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 	local MASTER = get(ismaster) ~= 1	
 		
 
-	if MASTER then	
+	local left, center, right = crew_control.take_handover_thrust_commands()
+	if left ~= nil then
+		-- TODO: Вот тут мы начинаем с положения тяги, которое было
+		-- у прошлого управляющего участника, наверное, как то можно синхронить их проще, пока костыль.
+		contr_1, contr_2, contr_3 = left, center, right
+		i_kvd_1, i_kvd_2, i_kvd_3 = 0, 0, 0
+	end
+
+	if MASTER then
 		-- set results
 		-- set animation
 		set(sc_kvd1,kvd1)
@@ -898,7 +907,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		set(R_SC_2,get(R_2))
 		set(R_SC_3,get(R_3))
 	else
-		if not crew_control.active() and get(hascontrol_1) == 2 then
+		if get(hascontrol_1) == 2 then
 			if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
 				set(sim_rud_1,0)
 			else
@@ -917,6 +926,7 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 			end
 		end
 	end
+
 	
 end
 

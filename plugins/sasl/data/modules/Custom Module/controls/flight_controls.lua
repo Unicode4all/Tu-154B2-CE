@@ -261,6 +261,7 @@ function update()
 	set(overr, 1)
 	
 	local MASTER = get(ismaster) ~= 1
+	local pilot = get(hascontrol_1) ~= 1
 	
 	--print(MASTER)
 	
@@ -352,7 +353,7 @@ function update()
 	
 	-- set results
 	
-if MASTER then
+if pilot then
 	set(ail_L, left_ail_pos * (1 - get(ail_fail_left)))
 	set(ail_R, right_ail_pos * (1 - get(ail_fail_right)))
 	
@@ -692,7 +693,7 @@ end
 	-- else elev_coef = 0.1 end
 
 	
-if MASTER then	
+if pilot then
 	-- set results
 	set(elev_L_ph,elev_left* (1 - get(elev_fail_left)))
 	set(elev_R_ph,elev_right* (1 - get(elev_fail_right)))
@@ -742,18 +743,20 @@ end
 	local rudder_L = 1 - math.max(get(revers_flap_L) - 0.5, 0) * get(rpm_high_1) * 0.015
 	local rudder_R = 1 - math.max(get(revers_flap_R) - 0.5, 0) * get(rpm_high_3) * 0.015
 
-	if MASTER then	
+	if pilot then
 		set(rudder, rudder_pos * ((rudder_L + rudder_R)) * (1 - get(rudder_fail))/2*get(rud_coeff))
 
 		
 		-------------------------------------
-		-- set animations
-		set(spd_brk_inn_anim_L, left_inn_sp_act * (1 - get(fail_spoil_inn_left)))
-		set(spd_brk_inn_anim_R, right_inn_sp_act * (1 - get(fail_spoil_inn_right)))
-		
 		set(yoke_pitch, cockpit_yoke_pitch)
 		set(yoke_roll, cockpit_yoke_roll)
 		set(pedals_turn, cockpit_yoke_yaw)
+	end
+
+	if MASTER then
+		-- set animations
+		set(spd_brk_inn_anim_L, left_inn_sp_act * (1 - get(fail_spoil_inn_left)))
+		set(spd_brk_inn_anim_R, right_inn_sp_act * (1 - get(fail_spoil_inn_right)))
 		
 		set(spoilers_lever, spd_brk_cmd)
 		set(elev_coeff,elev_coef)
