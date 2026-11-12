@@ -33,7 +33,7 @@ ppn_snp = globalPropertyf("sim/custom/t154/ppn13_sbk_test")
 pol = globalPropertyi("sim/custom/t154/ppn13_pol")
 absu_power_27 = globalPropertyi("tu154b2/custom/absu_power_27")
 absu_power = globalPropertyi("tu154b2/custom/absu_power_cc")
-ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+ismaster = globalPropertyf("tu154b2/crew/hascontrol_1") -- Master. 0 = plugin not found, 1 = slave 2 = master
 bus36_volt = globalPropertyf("tu154b2/custom/elec/bus36_volt_left")
 spread = globalPropertyf("tu154b2/custom/engines/thro_spread")
 main_mode = globalPropertyi("tu154b2/custom/absu/pitch_main_mode")
@@ -378,5 +378,11 @@ function update()
 		absu_svk_tbl.ra1_pitch_fail = get(ra1_fail)
 		absu_svk_tbl.ra2_pitch_fail = get(ra2_fail)
 		absu_svk_tbl.ra3_pitch_fail = get(ra3_fail)
+		ra_act[0] = get(absu_contr)
+		ra_act[1] = get(absu_contr)
+		ra_act[2] = get(absu_contr)
+		locked_1 = 0
+		locked_2 = 0
+		locked_3 = 0
 	end
 end

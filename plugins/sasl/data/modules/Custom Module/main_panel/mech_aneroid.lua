@@ -1,78 +1,78 @@
 -- this is some aneroid-mechanic gauges logic.
 
 -- sources
-defineProperty("vvi_L", globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_pilot")) -- vertical speed in ft/min
-defineProperty("vvi_R", globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_copilot"))
---defineProperty("vvi_cab", globalPropertyf("sim/cockpit2/pressurization/indicators/cabin_vvi_fpm"))
+vvi_L = globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_pilot") -- vertical speed in ft/min
+vvi_R = globalPropertyf("sim/cockpit2/gauges/indicators/vvi_fpm_copilot")
+--vvi_cab = globalPropertyf("sim/cockpit2/pressurization/indicators/cabin_vvi_fpm")
 -- get(vvi) * 0.00508 -- m/s
-defineProperty("ias_L", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")) -- indicated airspeed in KTS
-defineProperty("ias_R", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot"))
+ias_L = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot") -- indicated airspeed in KTS
+ias_R = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot")
 -- get(ias) * 1.852 -- km/hr
-defineProperty("actual_cabin_alt", globalPropertyf("sim/cockpit2/pressurization/indicators/cabin_altitude_ft"))
-defineProperty("cabin_press_diff", globalPropertyf("sim/cockpit2/pressurization/indicators/pressure_diffential_psi"))
+actual_cabin_alt = globalPropertyf("sim/cockpit2/pressurization/indicators/cabin_altitude_ft")
+cabin_press_diff = globalPropertyf("sim/cockpit2/pressurization/indicators/pressure_diffential_psi")
 
 -- current altitude
---defineProperty("msl_alt", globalPropertyf("sim/flightmodel2/position/pressure_altitude"))  -- phisical altitude MSL. meters
---defineProperty("msl_press", globalPropertyf("sim/weather/barometer_sealevel_inhg"))  -- pressire at sea level in.Hg
+--msl_alt = globalPropertyf("sim/flightmodel2/position/pressure_altitude")  -- phisical altitude MSL. meters
+--msl_press = globalPropertyf("sim/weather/barometer_sealevel_inhg")  -- pressire at sea level in.Hg
 
 -- failures
-defineProperty("static_fail_L", globalPropertyi("sim/operation/failures/rel_static"))  -- static fail
-defineProperty("static_fail_R", globalPropertyi("sim/operation/failures/rel_static2"))  -- static fail
+static_fail_L = globalPropertyi("sim/operation/failures/rel_static")  -- static fail
+static_fail_R = globalPropertyi("sim/operation/failures/rel_static2")  -- static fail
 -- time
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
 -- caps
-defineProperty("sensors_caps", globalPropertyi("tu154b2/custom/anim/sensors_caps"))  -- чехлы и крышки
+sensors_caps = globalPropertyi("tu154b2/custom/anim/sensors_caps")  -- чехлы и крышки
 
 
 -- gauges
-defineProperty("kus_ias_left", globalPropertyf("tu154b2/custom/gauges/speed/kus_ias_left")) -- приборная скорость на КУС730 КВС
-defineProperty("kus_tas_left", globalPropertyf("tu154b2/custom/gauges/speed/kus_tas_left")) -- истинная скорость на КУС730 КВС
+kus_ias_left = globalPropertyf("tu154b2/custom/gauges/speed/kus_ias_left") -- приборная скорость на КУС730 КВС
+kus_tas_left = globalPropertyf("tu154b2/custom/gauges/speed/kus_tas_left") -- истинная скорость на КУС730 КВС
 
-defineProperty("kus_ias_right", globalPropertyf("tu154b2/custom/gauges/speed/kus_ias_right")) -- приборная скорость на КУС730 2П
-defineProperty("kus_tas_right", globalPropertyf("tu154b2/custom/gauges/speed/kus_tas_right")) -- истинная скорость на КУС730 2П
+kus_ias_right = globalPropertyf("tu154b2/custom/gauges/speed/kus_ias_right") -- приборная скорость на КУС730 2П
+kus_tas_right = globalPropertyf("tu154b2/custom/gauges/speed/kus_tas_right") -- истинная скорость на КУС730 2П
 
-defineProperty("kus_ias_eng", globalPropertyf("tu154b2/custom/gauges/speed/kus_ias_eng")) -- приборная скорость на КУС730 БИ
-defineProperty("kus_tas_eng", globalPropertyf("tu154b2/custom/gauges/speed/kus_tas_eng")) -- истинная скорость на КУС730 БИ
+kus_ias_eng = globalPropertyf("tu154b2/custom/gauges/speed/kus_ias_eng") -- приборная скорость на КУС730 БИ
+kus_tas_eng = globalPropertyf("tu154b2/custom/gauges/speed/kus_tas_eng") -- истинная скорость на КУС730 БИ
 
-defineProperty("ias_left", globalPropertyf("tu154b2/custom/gauges/speed/ias_left")) -- приборная скорость КВС
-defineProperty("ias_right", globalPropertyf("tu154b2/custom/gauges/speed/ias_right")) -- приборная скорость 2П
+ias_left = globalPropertyf("tu154b2/custom/gauges/speed/ias_left") -- приборная скорость КВС
+ias_right = globalPropertyf("tu154b2/custom/gauges/speed/ias_right") -- приборная скорость 2П
 
-defineProperty("var75", globalPropertyf("tu154b2/custom/gauges/alt/var75")) -- выриометр 75 КВС
-defineProperty("var30_L", globalPropertyf("tu154b2/custom/gauges/alt/var30_L")) -- выриометр 30
-defineProperty("var30_R", globalPropertyf("tu154b2/custom/gauges/alt/var30_R"))
-defineProperty("slow_vario", globalPropertyi("sim/custom/t154cfg/slow_vario"))
---defineProperty("var30_cabin", globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_vvi")) -- выриометр кабинный
-defineProperty("cabin_diff", globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_diff")) -- перепад давления
-defineProperty("cabin_alt", globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_alt")) -- высота в кабине
+var75 = globalPropertyf("tu154b2/custom/gauges/alt/var75") -- выриометр 75 КВС
+var30_L = globalPropertyf("tu154b2/custom/gauges/alt/var30_L") -- выриометр 30
+var30_R = globalPropertyf("tu154b2/custom/gauges/alt/var30_R")
+slow_vario = globalPropertyi("sim/custom/t154cfg/slow_vario")
+--var30_cabin = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_vvi") -- выриометр кабинный
+cabin_diff = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_diff") -- перепад давления
+cabin_alt = globalPropertyf("tu154b2/custom/gauges/airbleed/cabin_alt") -- высота в кабине
 
 -- altimeters
-defineProperty("vd15_alt_left", globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_left")) -- высота на ВД15 КВС
---defineProperty("vd15_tri_needle_left", globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_left")) -- стрелка коррекции на ВД15 КВС
-defineProperty("vd15_pressure_left", globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_left")) -- давление на ВД15 КВС
+vd15_alt_left = globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_left") -- высота на ВД15 КВС
+--vd15_tri_needle_left = globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_left") -- стрелка коррекции на ВД15 КВС
+vd15_pressure_left = globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_left") -- давление на ВД15 КВС
 
-defineProperty("vd15_alt_right", globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_right")) -- высота на ВД15 2П
---defineProperty("vd15_tri_needle_right", globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_right")) -- стрелка коррекции на ВД15 2П
-defineProperty("vd15_pressure_right", globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_right")) -- давление на ВД15 2П
+vd15_alt_right = globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_right") -- высота на ВД15 2П
+--vd15_tri_needle_right = globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_right") -- стрелка коррекции на ВД15 2П
+vd15_pressure_right = globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_right") -- давление на ВД15 2П
 
-defineProperty("vd15_alt_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_eng")) -- высота на ВД15 БИ
---defineProperty("vd15_tri_needle_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_eng")) -- стрелка коррекции на ВД15 БИ
-defineProperty("vd15_pressure_eng", globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_eng")) -- давление на ВД15 БИ
+vd15_alt_eng = globalPropertyf("tu154b2/custom/gauges/alt/vd15_alt_eng") -- высота на ВД15 БИ
+--vd15_tri_needle_eng = globalPropertyf("tu154b2/custom/gauges/alt/vd15_tri_needle_eng") -- стрелка коррекции на ВД15 БИ
+vd15_pressure_eng = globalPropertyf("tu154b2/custom/gauges/alt/vd15_pressure_eng") -- давление на ВД15 БИ
 p_stat = globalPropertyf("sim/weather/aircraft/barometer_current_pas")
 true_mach = globalPropertyf("sim/flightmodel/misc/machno")
 p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
 p_q_smoothed = globalPropertyf("tu154b2/custom/svs/p_q_smoothed")
 real_alt = globalPropertyi("sim/custom/t154cfg/ppd_icing")
--- defineProperty("true_mach", globalPropertyf("sim/flightmodel/misc/machno"))
---defineProperty("temp", globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c"))
+-- true_mach = globalPropertyf("sim/flightmodel/misc/machno")
+--temp = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("tu154b2/crew/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
 
 
 local alt_kus_tbl = {{ -50000000, 0.5},    -- bugs workaround
@@ -418,10 +418,7 @@ local MASTER = get(ismaster) ~= 1
 	set(vd15_alt_left, cpt_VM15_alt_act)
 	set(vd15_alt_right, copt_VM15_alt_act)
 	set(vd15_alt_eng, eng_VM15_alt_act)
-	if MASTER then 
-		-- set results
-		set(p_stat_smoothed,static_pressure)
-		set(p_q_smoothed,dynamic_pressure)
+	if get(hascontrol_1) ~= 1 then
 		set(kus_ias_left, kus_ias_act_L)
 		set(kus_tas_left, kus_tas_act_L)
 		set(ias_left, ias_cpt_act)
@@ -434,6 +431,12 @@ local MASTER = get(ismaster) ~= 1
 		set(var75, var75_act)
 		set(var30_L, var30_L_act)
 		set(var30_R, var30_R_act)
+	end
+	if MASTER then 
+		-- set results
+		set(p_stat_smoothed,static_pressure)
+		set(p_q_smoothed,dynamic_pressure)
+		
 		set(cabin_alt, cab_alt)
 		
 		set(cabin_diff, press_diff)

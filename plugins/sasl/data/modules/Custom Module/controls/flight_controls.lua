@@ -349,24 +349,6 @@ function update()
 	
 	local roll_sp_R = 0
 	if right_ail_pos <= -1.5 then roll_sp_R = -((right_ail_pos + 1.5) / 18.5) * 45 end
-	
-	
-	-- set results
-	
-if pilot then
-	set(ail_L, left_ail_pos * (1 - get(ail_fail_left)))
-	set(ail_R, right_ail_pos * (1 - get(ail_fail_right)))
-	
-	set(ail_L_ph, left_ail_pos * (1 - get(ail_fail_left))/ail_corr)
-	set(ail_R_ph, right_ail_pos * (1 - get(ail_fail_right))/ail_corr)
-	
-	set(roll_spoil_L, roll_sp_L * (1 - get(fail_spoil_out_left)))
-	set(roll_spoil_R, roll_sp_R * (1 - get(fail_spoil_out_right)))
-	
-	set(roll_spoil_L_ph, roll_sp_L * (1 - get(fail_spoil_out_left))/ail_corr)
-	set(roll_spoil_R_ph, roll_sp_R * (1 - get(fail_spoil_out_right))/ail_corr)
-end
-
 
 	---------------------------------
 	-- spoilers logic --
@@ -382,8 +364,7 @@ end
             spb_inn=spb_inn - 0.7*passed
         end
     end
-    
-    set(spb_inn_anim,spb_inn)
+
        
 	
     if get(kontur_on) > 0 then
@@ -462,8 +443,7 @@ end
 	end
 
 if MASTER then	
-	set(spd_brk_mid_L, left_mid_sp_act * (1 - get(fail_spoil_mid_left)))
-	set(spd_brk_mid_R, right_mid_sp_act * (1 - get(fail_spoil_mid_right)))
+
 end	
 	
 	---------------------------------
@@ -509,8 +489,6 @@ end
 	--end
 
 if MASTER then	
-	set(spd_brk_inn_L, left_inn_sp_act * (1 - get(fail_spoil_inn_left)))
-	set(spd_brk_inn_R, right_inn_sp_act * (1 - get(fail_spoil_inn_right)))
 end
 	
 
@@ -691,16 +669,6 @@ end
 	
 	-- if mach < 1 then elev_coef = interpolate(mach_tbl, mach)
 	-- else elev_coef = 0.1 end
-
-	
-if pilot then
-	-- set results
-	set(elev_L_ph,elev_left* (1 - get(elev_fail_left)))
-	set(elev_R_ph,elev_right* (1 - get(elev_fail_right)))
-	set(elevator_L, elev_left_aero * elev_coef * (1 - get(elev_fail_left)))
-	set(elevator_R, elev_right_aero * elev_coef * (1 - get(elev_fail_right)))
-end	
-	
 	--print(get(elevator_L), "   = get(elevator_R))
 	
 	-------------------------------------
@@ -744,20 +712,33 @@ end
 	local rudder_R = 1 - math.max(get(revers_flap_R) - 0.5, 0) * get(rpm_high_3) * 0.015
 
 	if pilot then
-		set(rudder, rudder_pos * ((rudder_L + rudder_R)) * (1 - get(rudder_fail))/2*get(rud_coeff))
-
+		-- set results
+		set(elev_L_ph,elev_left* (1 - get(elev_fail_left)))
+		set(elev_R_ph,elev_right* (1 - get(elev_fail_right)))
+		set(elevator_L, elev_left_aero * elev_coef * (1 - get(elev_fail_left)))
+		set(elevator_R, elev_right_aero * elev_coef * (1 - get(elev_fail_right)))
+		set(spd_brk_inn_L, left_inn_sp_act * (1 - get(fail_spoil_inn_left)))
+		set(spd_brk_inn_R, right_inn_sp_act * (1 - get(fail_spoil_inn_right)))
+		set(spd_brk_mid_L, left_mid_sp_act * (1 - get(fail_spoil_mid_left)))
+		set(spd_brk_mid_R, right_mid_sp_act * (1 - get(fail_spoil_mid_right)))
+		set(spb_inn_anim,spb_inn)
+		set(ail_L, left_ail_pos * (1 - get(ail_fail_left)))
+		set(ail_R, right_ail_pos * (1 - get(ail_fail_right)))
 		
-		-------------------------------------
+		set(ail_L_ph, left_ail_pos * (1 - get(ail_fail_left))/ail_corr)
+		set(ail_R_ph, right_ail_pos * (1 - get(ail_fail_right))/ail_corr)
+		
+		set(roll_spoil_L, roll_sp_L * (1 - get(fail_spoil_out_left)))
+		set(roll_spoil_R, roll_sp_R * (1 - get(fail_spoil_out_right)))
+		
+		set(roll_spoil_L_ph, roll_sp_L * (1 - get(fail_spoil_out_left))/ail_corr)
+		set(roll_spoil_R_ph, roll_sp_R * (1 - get(fail_spoil_out_right))/ail_corr)
+		set(rudder, rudder_pos * ((rudder_L + rudder_R)) * (1 - get(rudder_fail))/2*get(rud_coeff))
 		set(yoke_pitch, cockpit_yoke_pitch)
 		set(yoke_roll, cockpit_yoke_roll)
 		set(pedals_turn, cockpit_yoke_yaw)
-	end
-
-	if MASTER then
-		-- set animations
 		set(spd_brk_inn_anim_L, left_inn_sp_act * (1 - get(fail_spoil_inn_left)))
 		set(spd_brk_inn_anim_R, right_inn_sp_act * (1 - get(fail_spoil_inn_right)))
-		
 		set(spoilers_lever, spd_brk_cmd)
 		set(elev_coeff,elev_coef)
 	end	

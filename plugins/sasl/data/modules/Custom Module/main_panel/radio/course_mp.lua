@@ -370,7 +370,7 @@ end
 		end
 	end	
 
-if MASTER then	
+if get(hascontrol_1) ~= 1 then	
 	set(nav_cs, course)
 	set(nav_gs, glidesl)
 	

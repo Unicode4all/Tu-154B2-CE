@@ -92,7 +92,7 @@ defineProperty("absu_needles_on", globalPropertyi("tu154b2/custom/switchers/cons
 defineProperty("absu_power", globalPropertyi("tu154b2/custom/absu_power_cc"))
 -- Smart Copilot
 defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("tu154b2/crew/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -449,40 +449,47 @@ function update()
 	
 	
 	
-local MASTER = get(ismaster) ~= 1	
-	
+	local pilot = get(hascontrol_1) ~= 1	
+		
 
-if MASTER then	
-	
-	-- set results
-	
-	set(ahz_flag, flag)
-	
-	if power then
-		set(res_pitch, pitch_show_2)
-		set(pitch_int, pitch_absu)
-		set(res_roll, roll_show_2)
+	if pilot then	
 		
-		set(res_roll_bkk, roll_show)
-		set(dir_roll, absu_v_act)
-		set(dir_pitch, absu_h_act)	
-	
-		set(speed_plank, spd_dif)
+		-- set results
 		
-		set(course_plank, v_plank_act)
-		set(gs_plank, h_plank_act)
+		set(ahz_flag, flag)
 		
-		set(dir_roll_flag, flag_roll)
-		set(dir_pitch_flag, flag_pitch)
-	-- else
-		-- set(dir_roll_flag, 1)
-		-- set(dir_pitch_flag, 1)
+		if power then
+			set(res_pitch, pitch_show_2)
+			set(pitch_int, pitch_absu)
+			set(res_roll, roll_show_2)
+			
+			set(res_roll_bkk, roll_show)
+			set(dir_roll, absu_v_act)
+			set(dir_pitch, absu_h_act)	
+		
+			set(speed_plank, spd_dif)
+			
+			set(course_plank, v_plank_act)
+			set(gs_plank, h_plank_act)
+			
+			set(dir_roll_flag, flag_roll)
+			set(dir_pitch_flag, flag_pitch)
+		-- else
+			-- set(dir_roll_flag, 1)
+			-- set(dir_pitch_flag, 1)
+		end
+		
+		set(power_cc, bool2int(power))
+	else
+		flag = get(ahz_flag)
+		if power then
+			res_pitch, pitch_show_2 = get(res_pitch)
+			pitch_int, pitch_absu = get(pitch_int)
+			roll_show_2 = get(res_roll)			
+			roll_show = get(res_roll_bkk)			
+		end
+		
 	end
-	
-	set(power_cc, bool2int(power))
-
-	
-end
 	
 	
 end

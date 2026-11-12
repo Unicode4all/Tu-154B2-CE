@@ -104,8 +104,8 @@ flt_idle = globalPropertyf("tu154b2/custom/engines/flight_idle")
 max_n2 = globalPropertyf("tu154b2/engine/max_KVD")
 nom_n2 = globalPropertyf("tu154b2/engine/nom_KVD")
 
-kpp_up = globalPropertyf("tu154b2/engine/kpp_up")
-kpp_dn = globalPropertyf("tu154b2/engine/kpp_dn")
+-- kpp_up = globalPropertyf("tu154b2/engine/kpp_up")
+-- kpp_dn = globalPropertyf("tu154b2/engine/kpp_dn")
 isa_temp_d = globalPropertyf("tu154b2/custom/engines/d_isa_temp")
 sc_kvd1 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd1")
 sc_kvd2 = globalPropertyf("tu154b2/custom/SC/engine/nk8_kvd2")
@@ -145,7 +145,6 @@ R_3 =  globalProperty("sim/cockpit2/engine/indicators/thrust_dry_n[2]")
 R_SC_1 = globalPropertyf("tu154b2/custom/SC/thrust_1")
 R_SC_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
 R_SC_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
-hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 control_thro_other = globalPropertyf("tu154b2/custom/SC/control_thro_other") -- другой человек упраляет РУД-ами
 revers_cmd = sasl.createCommand("t154/controlls/maks_revers", "Full Reverse")
 -- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
@@ -357,6 +356,10 @@ local idle_rat_tbl = {{ -10000, 0.3 },
            	      {  8, 0.86 },
           	      {  100, 0.86 }} 
 				  
+local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
+                  {  0.0, 0.49 },	-- IDLE
+           	      {  1.0, 0.85 }, -- reverse
+          	      {  100000, 0.85 }} -- BUGS workaround
 
 function onModuleInit()
 	set(override,1)
@@ -364,13 +367,8 @@ function onModuleInit()
 end
 
 function update()
-	
-local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
-                  {  0.0, 0.49 },	-- IDLE
-           	      {  1.0, 0.85 }, -- reverse
-          	      {  100000, 0.85 }} -- BUGS workaround
-	
-	
+		
+	local pilot = get(hascontrol_1) ~= 1
 	local eng1_rt=get(rt1_red)
 	local eng2_rt=get(rt2_red)
 	local eng3_rt=get(rt3_red)
@@ -781,61 +779,44 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		virtual_rud_3_act = virtual_rud_3_act - math.min((virtual_rud_3_act - joy_rud_pos_3*(1-0.25*bool2int(rev_R))),0.16*(1-math.max(math.min(alt_baro/1000-4,3),0)*0.5/3+0.1*bool2int(rev_R))) * 1.5  * passed
 	end
 	-- update throttle position
-	contr_1=contr_1+contr_1_spd*passed
-	-- limit max throttle with declining fuel pressure and create fluctuation
-	if contr_1<0 then
-		contr_1=0
-	end
-	contr_1 = contr_1 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_1 + 0.5556)
-	-- set(db3,d_kvd_1)
-	-- if get(db2)> d_kvd_1 then
-		-- set(db2,d_kvd_1)
-	-- end
-	contr_2=contr_2+contr_2_spd*passed
-	if contr_2<0 then
-		contr_2=0
-	end
-	contr_2 = contr_2 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_2 + 0.5556)
-	
-	contr_3=contr_3+contr_3_spd*passed
-	if contr_3<0 then
-		contr_3=0
-	end
-	contr_3 = contr_3 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_3 + 0.5556)
-	
-	local MASTER = get(ismaster) ~= 1	
+	if pilot then
+		contr_1=contr_1+contr_1_spd*passed
+		-- limit max throttle with declining fuel pressure and create fluctuation
+		if contr_1<0 then
+			contr_1=0
+		end
+		contr_1 = contr_1 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_1 + 0.5556)
+		-- set(db3,d_kvd_1)
+		-- if get(db2)> d_kvd_1 then
+			-- set(db2,d_kvd_1)
+		-- end
+		contr_2=contr_2+contr_2_spd*passed
+		if contr_2<0 then
+			contr_2=0
+		end
+		contr_2 = contr_2 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_2 + 0.5556)
 		
-
-	local left, center, right = crew_control.take_handover_thrust_commands()
-	if left ~= nil then
-		-- TODO: Вот тут мы начинаем с положения тяги, которое было
-		-- у прошлого управляющего участника, наверное, как то можно синхронить их проще, пока костыль.
-		contr_1, contr_2, contr_3 = left, center, right
-		i_kvd_1, i_kvd_2, i_kvd_3 = 0, 0, 0
-	end
-
-	if MASTER then
-		-- set results
-		-- set animation
+		contr_3=contr_3+contr_3_spd*passed
+		if contr_3<0 then
+			contr_3=0
+		end
+		contr_3 = contr_3 + math.random(-1,1) * 0.01 * ( -0.5556 * sys_data_tbl.eng_fuel_p_factor_3 + 0.5556)
+		
 		set(sc_kvd1,kvd1)
 		set(sc_kvd2,kvd2)
 		set(sc_kvd3,kvd3)
 		set(anim_rud1, thro_1_anim*(1-bool2int(rev_L)))
 		set(anim_rud2, thro_2_anim)
 		set(anim_rud3, thro_3_anim*(1-bool2int(rev_R)))
-
 		set(anim_rud1_ENG, thro_1_pos_ENG)
 		set(anim_rud2_ENG, thro_2_anim)
 		set(anim_rud3_ENG, thro_3_pos_ENG)
-		
-		set(throttle_lock, stop_lever)
-		
 		set(revers_L, rev_L_pos)
 		set(revers_R, rev_R_pos)
 		set(kpp1,kpp_1)
 		set(kpp2,kpp_2)
 		set(kpp3,kpp_3)
-
+		
 		if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
 			set(sim_rud_1,0)
 		else
@@ -852,6 +833,34 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		else
 			set(sim_rud_3,contr_3)
 		end
+	else
+		contr_1 = sim_rud_1
+		contr_2 = sim_rud_2
+		contr_3 = sim_rud_3
+		i_kvd_1 = 0
+		i_kvd_2 = 0
+		i_kvd_3 = 0
+		contr_1_spd = 0
+		contr_2_spd = 0
+		contr_3_spd = 0
+	end
+	local MASTER = get(ismaster) ~= 1	
+		
+
+	-- local left, center, right = crew_control.take_handover_thrust_commands()
+	-- if left ~= nil then
+		-- -- TODO: Вот тут мы начинаем с положения тяги, которое было
+		-- -- у прошлого управляющего участника, наверное, как то можно синхронить их проще, пока костыль.
+		-- contr_1, contr_2, contr_3 = left, center, right
+		-- i_kvd_1, i_kvd_2, i_kvd_3 = 0, 0, 0
+	-- end
+
+	if MASTER then
+		-- set results
+		-- set animation
+		
+		set(throttle_lock, stop_lever)
+		
 
 		set(flt_idle,min_idle)
 		set(max_n2,thr_max)
@@ -906,25 +915,25 @@ local reverse_table = {{ -10000, 0.04 }, -- BUGS workaround
 		set(R_SC_1,get(R_1))
 		set(R_SC_2,get(R_2))
 		set(R_SC_3,get(R_3))
-	else
-		if get(hascontrol_1) == 2 then
-			if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
-				set(sim_rud_1,0)
-			else
-				set(sim_rud_1,contr_1)
-			end
+	-- else
+		-- if get(hascontrol_1) == 2 then
+			-- if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
+				-- set(sim_rud_1,0)
+			-- else
+				-- set(sim_rud_1,contr_1)
+			-- end
 			
-			if kvd2<54.2-idle_lim_2 then
-				set(sim_rud_2,0)
-			else
-				set(sim_rud_2,contr_2)
-			end
-			if kvd3<54.2-idle_lim_3 then
-				set(sim_rud_3,0)
-			else
-				set(sim_rud_3,contr_3)
-			end
-		end
+			-- if kvd2<54.2-idle_lim_2 then
+				-- set(sim_rud_2,0)
+			-- else
+				-- set(sim_rud_2,contr_2)
+			-- end
+			-- if kvd3<54.2-idle_lim_3 then
+				-- set(sim_rud_3,0)
+			-- else
+				-- set(sim_rud_3,contr_3)
+			-- end
+		-- end
 	end
 
 	

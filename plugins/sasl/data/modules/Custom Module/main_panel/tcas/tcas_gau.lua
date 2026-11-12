@@ -169,12 +169,12 @@ function update()
 	
 local source_vvi = get(vvi)
 if crew_session.active() then
-    if get(ismaster) == 1 then
+    if get(hascontrol_1) == 1 then
         source_vvi = get(vvi_int2)
     else
         set(vvi_int2, source_vvi)
     end
-elseif get(ismaster) ~= 1 then
+elseif get(hascontrol_1) ~= 1 then
     set(vvi_int2, get(vvi_int))
 end
 	

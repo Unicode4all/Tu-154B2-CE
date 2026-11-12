@@ -250,6 +250,7 @@ sys_data_tbl.eng_oil_p_3 = 0
 
 
 local MASTER = get(ismaster) ~= 1	
+local pilot = get(hascontrol_1) ~= 1
 
 local passed = math.min(get(frame_time),1)
 local start_timer=0
@@ -1322,7 +1323,7 @@ function update()
 	passed = get(frame_time)
 	
 	MASTER = get(ismaster) ~= 1	
-	
+	pilot = get(hascontrol_1) ~= 1
 	power_27_L = get(bus27_volt_left) > 13
 	power_27_R = get(bus27_volt_right) > 13
 	power_115 = get(bus115_1_volt) > 105
@@ -1334,9 +1335,11 @@ function update()
 	gau_3_on = 1
 	
 	emi3()	
-	if MASTER then
+	if pilot then
 		tachometers()
-		egt_gauges()		
+		egt_gauges()
+	end
+	if MASTER then		
 		fuel_flow()
 		vibra_gau()
 		oil_qty_gau()

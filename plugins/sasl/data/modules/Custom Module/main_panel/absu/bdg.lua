@@ -93,46 +93,44 @@ function update()
 			spd_psi_3_prev = 1
 		end
 	end
-	if MASTER then
-		local power = bool2int(get(absu_power) > 0 and get(bus36_volt) > 30)
-		local tet_rate = get(pitch_rate)
-		local gam_rate = get(roll_rate)
-		local psi_rate = get(yaw_rate)
-		
-		local spd_tet_1, w_tet_1 = bdg_26(power*1.02,absu_svk_tbl.bdg_tet_1_drive_fail,tet_rate,spd_tet_1_prev,passed)
-		local spd_tet_2, w_tet_2 = bdg_26(power*0.97,absu_svk_tbl.bdg_tet_2_drive_fail,tet_rate,spd_tet_2_prev,passed)
-		local spd_tet_3, w_tet_3 = bdg_26(power*1.05,absu_svk_tbl.bdg_tet_3_drive_fail,tet_rate,spd_tet_3_prev,passed)
-		absu_svk_tbl.bdg_tet_rate_1 = w_tet_1
-		absu_svk_tbl.bdg_tet_rate_2 = w_tet_2
-		absu_svk_tbl.bdg_tet_rate_3 = w_tet_3
-		spd_tet_1_prev = spd_tet_1
-		spd_tet_2_prev = spd_tet_2
-		spd_tet_3_prev = spd_tet_3
-		
-		absu_svk_tbl.bkvg_tet_fail = bkvg_otkaz(spd_tet_1,spd_tet_2,spd_tet_3,power * bool2int(absu_svk_tbl.bdg_tet_1_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_tet_2_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_tet_3_drive_fail == 0),0.03)
-		
-		local spd_gam_1, w_gam_1 = bdg_26(power*1.02,absu_svk_tbl.bdg_gam_1_drive_fail,gam_rate,spd_gam_1_prev,passed)
-		local spd_gam_2, w_gam_2 = bdg_26(power*1.1,absu_svk_tbl.bdg_gam_2_drive_fail,gam_rate,spd_gam_2_prev,passed)
-		local spd_gam_3, w_gam_3 = bdg_26(power*1.05,absu_svk_tbl.bdg_gam_3_drive_fail,gam_rate,spd_gam_3_prev,passed)
-		absu_svk_tbl.bdg_gam_rate_1 = w_gam_1
-		absu_svk_tbl.bdg_gam_rate_2 = w_gam_2
-		absu_svk_tbl.bdg_gam_rate_3 = w_gam_3
-		spd_gam_1_prev = spd_gam_1
-		spd_gam_2_prev = spd_gam_2
-		spd_gam_3_prev = spd_gam_3
-		
-		absu_svk_tbl.bkvg_gam_fail = bkvg_otkaz(spd_gam_1,spd_gam_2,spd_gam_3,power * bool2int(absu_svk_tbl.bdg_gam_1_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_gam_2_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_gam_3_drive_fail == 0),0.03)
-		
-		local spd_psi_1, w_psi_1 = bdg_26(power*1.02,absu_svk_tbl.bdg_psi_1_drive_fail,psi_rate,spd_psi_1_prev,passed)
-		local spd_psi_2, w_psi_2 = bdg_26(power*0.99,absu_svk_tbl.bdg_psi_2_drive_fail,psi_rate,spd_psi_2_prev,passed)
-		local spd_psi_3, w_psi_3 = bdg_26(power*1.02,absu_svk_tbl.bdg_psi_3_drive_fail,psi_rate,spd_psi_3_prev,passed)
-		absu_svk_tbl.bdg_psi_rate_1 = w_psi_1
-		absu_svk_tbl.bdg_psi_rate_2 = w_psi_2
-		absu_svk_tbl.bdg_psi_rate_3 = w_psi_3
-		spd_psi_1_prev = spd_psi_1
-		spd_psi_2_prev = spd_psi_2
-		spd_psi_3_prev = spd_psi_3
-		
-		absu_svk_tbl.bkvg_psi_fail = bkvg_otkaz(spd_psi_1,spd_psi_2,spd_psi_3,power * bool2int(absu_svk_tbl.bdg_psi_1_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_psi_2_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_psi_3_drive_fail == 0),0.03)
-	end
+	local power = bool2int(get(absu_power) > 0 and get(bus36_volt) > 30)
+	local tet_rate = get(pitch_rate)
+	local gam_rate = get(roll_rate)
+	local psi_rate = get(yaw_rate)
+	
+	local spd_tet_1, w_tet_1 = bdg_26(power*1.02,absu_svk_tbl.bdg_tet_1_drive_fail,tet_rate,spd_tet_1_prev,passed)
+	local spd_tet_2, w_tet_2 = bdg_26(power*0.97,absu_svk_tbl.bdg_tet_2_drive_fail,tet_rate,spd_tet_2_prev,passed)
+	local spd_tet_3, w_tet_3 = bdg_26(power*1.05,absu_svk_tbl.bdg_tet_3_drive_fail,tet_rate,spd_tet_3_prev,passed)
+	absu_svk_tbl.bdg_tet_rate_1 = w_tet_1
+	absu_svk_tbl.bdg_tet_rate_2 = w_tet_2
+	absu_svk_tbl.bdg_tet_rate_3 = w_tet_3
+	spd_tet_1_prev = spd_tet_1
+	spd_tet_2_prev = spd_tet_2
+	spd_tet_3_prev = spd_tet_3
+	
+	absu_svk_tbl.bkvg_tet_fail = bkvg_otkaz(spd_tet_1,spd_tet_2,spd_tet_3,power * bool2int(absu_svk_tbl.bdg_tet_1_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_tet_2_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_tet_3_drive_fail == 0),0.03)
+	
+	local spd_gam_1, w_gam_1 = bdg_26(power*1.02,absu_svk_tbl.bdg_gam_1_drive_fail,gam_rate,spd_gam_1_prev,passed)
+	local spd_gam_2, w_gam_2 = bdg_26(power*1.1,absu_svk_tbl.bdg_gam_2_drive_fail,gam_rate,spd_gam_2_prev,passed)
+	local spd_gam_3, w_gam_3 = bdg_26(power*1.05,absu_svk_tbl.bdg_gam_3_drive_fail,gam_rate,spd_gam_3_prev,passed)
+	absu_svk_tbl.bdg_gam_rate_1 = w_gam_1
+	absu_svk_tbl.bdg_gam_rate_2 = w_gam_2
+	absu_svk_tbl.bdg_gam_rate_3 = w_gam_3
+	spd_gam_1_prev = spd_gam_1
+	spd_gam_2_prev = spd_gam_2
+	spd_gam_3_prev = spd_gam_3
+	
+	absu_svk_tbl.bkvg_gam_fail = bkvg_otkaz(spd_gam_1,spd_gam_2,spd_gam_3,power * bool2int(absu_svk_tbl.bdg_gam_1_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_gam_2_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_gam_3_drive_fail == 0),0.03)
+	
+	local spd_psi_1, w_psi_1 = bdg_26(power*1.02,absu_svk_tbl.bdg_psi_1_drive_fail,psi_rate,spd_psi_1_prev,passed)
+	local spd_psi_2, w_psi_2 = bdg_26(power*0.99,absu_svk_tbl.bdg_psi_2_drive_fail,psi_rate,spd_psi_2_prev,passed)
+	local spd_psi_3, w_psi_3 = bdg_26(power*1.02,absu_svk_tbl.bdg_psi_3_drive_fail,psi_rate,spd_psi_3_prev,passed)
+	absu_svk_tbl.bdg_psi_rate_1 = w_psi_1
+	absu_svk_tbl.bdg_psi_rate_2 = w_psi_2
+	absu_svk_tbl.bdg_psi_rate_3 = w_psi_3
+	spd_psi_1_prev = spd_psi_1
+	spd_psi_2_prev = spd_psi_2
+	spd_psi_3_prev = spd_psi_3
+	
+	absu_svk_tbl.bkvg_psi_fail = bkvg_otkaz(spd_psi_1,spd_psi_2,spd_psi_3,power * bool2int(absu_svk_tbl.bdg_psi_1_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_psi_2_drive_fail == 0),power * bool2int(absu_svk_tbl.bdg_psi_3_drive_fail == 0),0.03)
 end

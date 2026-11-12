@@ -160,6 +160,7 @@ local ax_last=0
 function update()
 	
 	local MASTER = get(ismaster) ~= 1
+	local pilot = get(hascontrol_1) ~= 1
 	
 	local passed = get(frame_time)
 	
@@ -321,7 +322,7 @@ function update()
 		
 		marker_act_L = marker_act_L + math.max(math.min((IAS_smth - marker_act_L)*4,20),-20) * passed
 		marker_act_R = marker_act_R + math.max(math.min((IAS_smth - marker_act_R)*4,20),-20) * passed
-		if MASTER then
+		if pilot then
 			set(rud_1_spd, 0)
 			set(rud_2_spd, 0)
 			set(rud_3_spd, 0)
@@ -397,7 +398,7 @@ function update()
 		local rud_spd_3 = main_rud_spd * math.random(95, 105) * 0.01
 		
 		
-		if MASTER then
+		if pilot then
 		
 			-- set results
 			set(rud_1_spd, rud_spd_1 * rud_work_1 * (bool2int(at_1_work + at_2_work>0)))
@@ -414,7 +415,7 @@ function update()
 		marker_act_R = marker_act_R + (IAS_smth - marker_act_R) * passed * 2
 		
 		
-		if MASTER then
+		if pilot then
 			set(rud_1_spd, 11/80 * rud_work_1 * (at_1_work + at_2_work) * 0.5)
 			set(rud_2_spd, 11/80 * rud_work_2 * (at_1_work + at_2_work) * 0.5)
 			set(rud_3_spd, 11/80 * rud_work_3 * (at_1_work + at_2_work) * 0.5)
@@ -424,7 +425,7 @@ function update()
 		spd_diff_ind_R = spd_diff_ind_R - spd_diff_ind_R * passed
 		
 	else
-		if MASTER then
+		if pilot then
 			set(rud_1_spd, 0)
 			set(rud_2_spd, 0)
 			set(rud_3_spd, 0)

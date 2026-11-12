@@ -311,7 +311,7 @@ local rv_switch=1
 local roll_res_need = 0
 local yaw_res_need = 0
 
-local MASTER = get(ismaster) ~= 1
+local MASTER = get(hascontrol_1) ~= 1
 
 -- functions will be defined later
 local function pitch_holder(pitch_hold)
@@ -329,7 +329,7 @@ function update()
 	
 	local passed = get(frame_time)
 	
-	MASTER = get(ismaster) ~= 1	
+	MASTER = get(hascontrol_1) ~= 1	
 	
 	local secondNav = get(absu_use_second_nav) == 1
 	

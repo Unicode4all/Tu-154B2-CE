@@ -145,6 +145,7 @@ stu_toga_lamp = globalPropertyf("tu154b2/custom/lights/small/stu_toga") -- УХ�
 bkk_pitch = globalPropertyf("tu154b2/custom/bkk/bkk_pitch") -- результирующий тангаж от БКК
 bkk_roll = globalPropertyf("tu154b2/custom/bkk/bkk_roll") -- результирующий тангаж от БКК
 ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 search_run = globalPropertyf("tu154b2/custom/absu/ppn_search_delay")
 -- search_started = globalPropertyi("tu154b2/custom/absu/ppn_search_started")
 absu_bap_pitch_fail = globalPropertyi("tu154b2/custom/failures/absu_bap_pitch_fail")
@@ -1432,6 +1433,44 @@ function update()
 			if absu_svk_tbl.start_timer > 0 then
 				absu_svk_tbl.start_timer = 0
 			end
+		end
+	
+	else
+		-- gyro commutator for slave pilot
+		if get(hascontrol_1) ~= 1 and power27 then
+			-- absu_svk_tbl.bdg_tet_1_fail, absu_svk_tbl.bdg_tet_2_fail, absu_svk_tbl.bdg_tet_3_fail = KE_otkaz(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,0.3)
+			-- absu_svk_tbl.bdg_gam_1_fail, absu_svk_tbl.bdg_gam_2_fail, absu_svk_tbl.bdg_gam_3_fail = KE_otkaz(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,0.3)
+			-- absu_svk_tbl.bdg_psi_1_fail, absu_svk_tbl.bdg_psi_2_fail, absu_svk_tbl.bdg_psi_3_fail = KE_otkaz(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,0.3)
+			
+			absu_svk_tbl.bdg_gam_rate=kommutator(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,0,0,0)
+			absu_svk_tbl.bdg_tet_rate=kommutator(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,0,0,0)
+			absu_svk_tbl.bdg_psi_rate=kommutator(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,0,0,0)
+			
+			--- mgv fail detector and commutator ---
+			local mgv_tet1=get(mgv_tet_1)
+			local mgv_tet2=get(mgv_tet_2)
+			local mgv_tet3=get(mgv_tet_3)
+			local mgv_tet_res=0
+			
+			local mgv_gam1=get(mgv_gam_1)
+			local mgv_gam2=get(mgv_gam_2)
+			local mgv_gam3=get(mgv_gam_3)
+			local mgv_gam_res=0
+			-- absu_svk_tbl.mgv_gam_1_fail, absu_svk_tbl.mgv_gam_2_fail, absu_svk_tbl.mgv_gam_3_fail = KE_otkaz(mgv_gam1,mgv_gam2,mgv_gam3,8)
+			-- absu_svk_tbl.mgv_tet_1_fail, absu_svk_tbl.mgv_tet_2_fail, absu_svk_tbl.mgv_tet_3_fail = KE_otkaz(mgv_tet1,mgv_tet2,mgv_tet3,8)
+
+			if get(roll_submode) > 2 then
+				mgv_gam_res=kommutator(mgv_gam1,mgv_gam2,mgv_gam3,0,0,0)
+			else
+				mgv_gam_res=kommutator(mgv_gam1,mgv_gam2,mgv_gam3,0,0,0)			
+			end
+			if get(pitch_submode) == 5 then
+				mgv_tet_res=kommutator(mgv_tet1,mgv_tet2,mgv_tet3,0,0,0)
+			else				
+				mgv_tet_res=kommutator(mgv_tet1,mgv_tet2,mgv_tet3,0,0,0)
+			end
+			set(bkk_pitch, mgv_tet_res)
+			set(bkk_roll, mgv_gam_res)
 		end
 	end
 end
