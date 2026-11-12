@@ -352,6 +352,9 @@ simDR_g_force_high =  find_dataref("tu154b2/custom/lights/g_force_high")
 simDR_stp_1 =  find_dataref("tu154b2/custom/lights/engines/eng1_stp")
 simDR_stp_2 =  find_dataref("tu154b2/custom/lights/engines/eng2_stp")
 simDR_stp_3 =  find_dataref("tu154b2/custom/lights/engines/eng3_stp")
+simDR_to_elevator =  find_dataref("tu154b2/custom/lights/to_elevator")
+simDR_slats_extended =  find_dataref("tu154b2/custom/lights/slats_extended")
+simDR_to_rudder =  find_dataref("tu154b2/custom/lights/to_rudder")
 
 
 simDR_lamp_test_eng = find_dataref("tu154b2/custom/buttons/lamp_test_engines")
@@ -674,7 +677,11 @@ light_fuel_pump_right_9 = deferred_dataref("sim/custom/lights/small/fuel_pump_ri
 stp_eng1_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng1_temp_podsh", "number")
 stp_eng2_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng2_temp_podsh", "number")
 stp_eng3_temp_podsh = deferred_dataref("sim/custom/lights/engines/eng3_temp_podsh", "number")
-
+to_elevator =  deferred_dataref("sim/custom/lights/to_elevator_new", "number")
+to_rudder =  deferred_dataref("sim/custom/lights/to_rudder_new", "number")
+stab_work =  deferred_dataref("sim/custom/lights/stab_work_new", "number")
+slats_extended =  deferred_dataref("sim/custom/lights/slats_extended_new", "number")
+lit_torud_blinks =  deferred_dataref("sim/custom/test", "number")
 
 
 turn_off_bat_4 = deferred_dataref("sim/custom/lights/small/turn_off_bat_4_new", "number")
@@ -1349,6 +1356,10 @@ function new_lights()
 	stp_eng1_temp_podsh = smooth_light(simDR_stp_1,stp_eng1_temp_podsh)
 	stp_eng2_temp_podsh = smooth_light(simDR_stp_2,stp_eng2_temp_podsh)
 	stp_eng3_temp_podsh = smooth_light(simDR_stp_3,stp_eng3_temp_podsh)
+	to_elevator =  smooth_light(simDR_to_elevator,to_elevator)
+	slats_extended =  smooth_light(simDR_slats_extended,slats_extended)
+    stab_work =  smooth_light(simDR_stab_work,stab_work)
+    to_rudder =  smooth_light(simDR_to_rudder,to_rudder)
 end
 
 function new_lights2()

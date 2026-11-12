@@ -482,7 +482,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 	amp115_timer = amp115_timer + passed
 	local amp115_angle = -120
 	if amp115_timer < 1 then amp115_angle = -120
-	elseif ampSel_115 == 0 then 
+	elseif ampSel_115 == 3 and get(apu_rap_select_sw) == -1 then 
 		if ampPhaseSel_115 == 0 then
 			amp115_angle = interpolate(amp115_table, get(gpu_amp_A)-ampphase_corr)
 		elseif ampPhaseSel_115 == 1 then 
@@ -490,7 +490,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 		else
 			amp115_angle = interpolate(amp115_table, get(gpu_amp_C)-ampphase_corr)
 		end
-	elseif ampSel_115 == 1 then 
+	elseif ampSel_115 == 0 then 
 		if ampPhaseSel_115 == 0 then
 			amp115_angle = interpolate(amp115_table, get(gen1_amp_A)-ampphase_corr)
 		elseif ampPhaseSel_115 == 1 then 
@@ -498,7 +498,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 		else
 			amp115_angle = interpolate(amp115_table, get(gen1_amp_C)-ampphase_corr)
 		end
-	elseif ampSel_115 == 2 then 
+	elseif ampSel_115 == 1 then 
 		if ampPhaseSel_115 == 0 then
 			amp115_angle = interpolate(amp115_table, get(gen2_amp_A)-ampphase_corr)
 		elseif ampPhaseSel_115 == 1 then 
@@ -506,7 +506,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 		else
 			amp115_angle = interpolate(amp115_table, get(gen2_amp_C)-ampphase_corr)
 		end
-	elseif ampSel_115 == 3 then 
+	elseif ampSel_115 == 2 then 
 		if ampPhaseSel_115 == 0 then
 			amp115_angle = interpolate(amp115_table, get(gen3_amp_A)-ampphase_corr)
 		elseif ampPhaseSel_115 == 1 then 
@@ -514,7 +514,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 		else
 			amp115_angle = interpolate(amp115_table, get(gen3_amp_C)-ampphase_corr)
 		end
-	elseif ampSel_115 == 4 then 
+	elseif ampSel_115 == 3 then 
 		if ampPhaseSel_115 == 0 then
 			amp115_angle = interpolate(amp115_table, get(gen4_amp_A)-ampphase_corr)
 		elseif ampPhaseSel_115 == 1 then 

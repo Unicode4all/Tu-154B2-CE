@@ -186,9 +186,8 @@ end
 
 local function lamps()
 
-	
-	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.5
+	local day_night = 1 - get(day_night_set) * 0.9
+	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 
 	local diss_memory_brt = math.max(bool2int(get(diss_mode_set) == 2 or get(diss_mode_set) == 10) * lamps_brt, test_btn) * (1 - get(lamp_1))

@@ -452,7 +452,7 @@ local function lamps()
 	local nose_sw = 1-get(nose_switch)
 	local main_sw = math.max(get(msrp_main_switch),get(gen1),get(gen2),get(gen3))
 	local test_btn = get(lamp_test_msrp) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * main_sw
-	local day_night = 0.5 + get(msrp_night_day) * 0.5
+	local day_night = 0.1 + get(msrp_night_day) * 0.9
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night * main_sw
 	
 	local record = get(msrp_recording) == 1

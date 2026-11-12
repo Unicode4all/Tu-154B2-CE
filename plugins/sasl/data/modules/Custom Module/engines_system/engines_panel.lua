@@ -20,7 +20,7 @@ test_lamps = globalPropertyi("tu154b2/custom/buttons/lamp_test_engines") -- кн
 lamp_test_fwd = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
 
 day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set_eng") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
-
+day_night_set_fwd = globalPropertyf("tu154b2/custom/lights/day_night_set")
 -- gauges_on_1 = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_1") -- приборы контроля двигателей
 -- gauges_on_2 = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_2") -- приборы контроля двигателей
 -- gauges_on_3 = globalPropertyi("tu154b2/custom/switchers/eng/gauges_on_3") -- приборы контроля двигателей
@@ -300,8 +300,9 @@ local function reset_switchers()
 end
 
 local function small_lamps()
-	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
+	
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
+	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * lamps_brt
 	
 	local fuel_2500_brt = 0
 	if get(tank1_w) < 2500 then fuel_2500_brt = 1 end
@@ -333,8 +334,8 @@ end
 local revers_flap_L_last = get(revers_flap_L)
 
 local function lamps_eng1()
-	local day_night = 1 - get(day_night_set) * 0.5
-	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
+	local day_night = 1 - get(day_night_set) * 0.9
+	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	
 	local lamps_brt = math.max((get(bus27_volt_left) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng1_N2)	
@@ -431,9 +432,8 @@ local function lamps_eng1()
 end
 
 local function lamps_eng2()
-
-	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.5
+	local day_night = 1 - get(day_night_set) * 0.9
+	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng2_N2)
 	local starter_high_rpm_2_brt = math.max(bool2int(sys_data_tbl.starter_rpm_2 > 45) * (1 - sys_data_tbl.starter_desint_2), test_btn) -- not fake anymore
@@ -524,9 +524,8 @@ end
 
 local revers_flap_R_last = get(revers_flap_R)
 local function lamps_eng3()
-
-	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.5
+	local day_night = 1 - get(day_night_set) * 0.9
+	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night	
 	local lamps_brt = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local RPM = get(eng3_N2)
 	local starter_high_rpm_3_brt = math.max(bool2int(sys_data_tbl.starter_rpm_3 > 45) * (1 - sys_data_tbl.starter_desint_3), test_btn) -- not fake anymore
@@ -622,8 +621,8 @@ end
 
 local function lamps_fwd()
 
-	local day_night = 1 - get(day_night_set) * 0.5
-	local test_btn = get(lamp_test_fwd) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
+	local day_night = 1 - get(day_night_set_fwd) * 0.9
+	local test_btn = get(lamp_test_fwd) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	
 	local lamps_brt_L = math.max((get(bus27_volt_left) - 10) / 18.5, 0) * day_night
 	local lamps_brt_R = math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night

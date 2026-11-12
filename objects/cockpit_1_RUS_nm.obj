@@ -480847,8 +480847,10 @@ IDX	426155
 			ANIM_trans	0.86619997	-1.2602299	-20.059	0.86619997	-1.2602299	-20.059
 			ANIM_rotate	0	0	-1	-90.00021	-90.00021
 			ANIM_rotate_begin	0	1	-0	tu154b2/custom/switchers/eng/bus115_amp_sel
-			ANIM_rotate_key	0	54.999938
-			ANIM_rotate_key	1	23.000245
+			ANIM_rotate_key	0	40
+			ANIM_rotate_key	1	13
+			ANIM_rotate_key	2	-14
+			ANIM_rotate_key	3	-41
 			ANIM_rotate_end
 					TRIS	217848 276
 			ANIM_end

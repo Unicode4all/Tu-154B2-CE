@@ -235,8 +235,8 @@ if MASTER then
 	set(speaker_auasp, math.max(aoa_crit, gf_crit) * bool2int(get(warn_fail) < 6))
 	
 	-- lamps
-	local test_btn = get(lamp_test) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.5
+	local day_night = 1 - get(day_night_set) * 0.9
+	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	
 	set(alpha_high, math.max(aoa_crit * lamps_brt, test_btn))
