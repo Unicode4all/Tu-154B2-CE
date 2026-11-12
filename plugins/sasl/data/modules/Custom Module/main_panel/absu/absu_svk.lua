@@ -1437,7 +1437,7 @@ function update()
 	
 	else
 		-- gyro commutator for slave pilot
-		if get(hascontrol_1) ~= 1 and power27 then
+		if get(hascontrol_1) ~= 1 and get(absu_power_27)>0 then
 			-- absu_svk_tbl.bdg_tet_1_fail, absu_svk_tbl.bdg_tet_2_fail, absu_svk_tbl.bdg_tet_3_fail = KE_otkaz(absu_svk_tbl.bdg_tet_rate_1,absu_svk_tbl.bdg_tet_rate_2,absu_svk_tbl.bdg_tet_rate_3,0.3)
 			-- absu_svk_tbl.bdg_gam_1_fail, absu_svk_tbl.bdg_gam_2_fail, absu_svk_tbl.bdg_gam_3_fail = KE_otkaz(absu_svk_tbl.bdg_gam_rate_1,absu_svk_tbl.bdg_gam_rate_2,absu_svk_tbl.bdg_gam_rate_3,0.3)
 			-- absu_svk_tbl.bdg_psi_1_fail, absu_svk_tbl.bdg_psi_2_fail, absu_svk_tbl.bdg_psi_3_fail = KE_otkaz(absu_svk_tbl.bdg_psi_rate_1,absu_svk_tbl.bdg_psi_rate_2,absu_svk_tbl.bdg_psi_rate_3,0.3)
