@@ -181,6 +181,61 @@ LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.4935 0 0 0 0 0 0 0 0 0 sim/weapons/V_
 LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.3848 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc    #engine panel
 LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.3570 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc   #engine panel
 LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.2545 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc    #engine panel
+ANIM_begin
+ANIM_hide 0 0 tu154b2/custom/lights/day_night_set_eng
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_left_eng
+	LIGHT_SPILL_CUSTOM		0.602 -0.729 -19.57 1 0 0 1 0.15 0 -1 0.2 0.2 # red engineer gear lights spill
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_front_eng
+	LIGHT_SPILL_CUSTOM		0.602 -0.723 -19.54 1 0 0 1 0.15 0 -1 0.2 0.2
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_right_eng
+	LIGHT_SPILL_CUSTOM		0.602 -0.718 -19.51 1 0 0 1 0.15 0 -1 0.2 0.2
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_green_left_eng
+	LIGHT_SPILL_CUSTOM		0.618 -0.735 -19.57 0.2706    0.7882    0.6196 1 0.15 0 -1 0.2 0.2 # green engineer gear lights spill
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_green_front_eng
+	LIGHT_SPILL_CUSTOM		0.618 -0.730 -19.54 0.2706    0.7882    0.6196 1 0.15 0 -1 0.2 0.2
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_green_right_eng
+	LIGHT_SPILL_CUSTOM		0.618 -0.726 -19.51 0.2706    0.7882    0.6196 1 0.15 0 -1 0.2 0.2
+	ANIM_end
+ANIM_end
+
+ANIM_begin
+ANIM_hide 1 1 tu154b2/custom/lights/day_night_set_eng
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_left_eng
+	LIGHT_SPILL_CUSTOM		0.602 -0.729 -19.57 1 0 0 1 0.3 0 -1 0.2 0.2 # red engineer gear lights spill
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_front_eng
+	LIGHT_SPILL_CUSTOM		0.602 -0.723 -19.54 1 0 0 1 0.3 0 -1 0.2 0.2
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_right_eng
+	LIGHT_SPILL_CUSTOM		0.602 -0.718 -19.51 1 0 0 1 0.3 0 -1 0.2 0.2
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_green_left_eng
+	LIGHT_SPILL_CUSTOM		0.618 -0.735 -19.57 0.2706    0.7882    0.6196 1 0.3 0 -1 0.2 0.2 # green engineer gear lights spill
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_green_front_eng
+	LIGHT_SPILL_CUSTOM		0.618 -0.730 -19.54 0.2706    0.7882    0.6196 1 0.3 0 -1 0.2 0.2
+	ANIM_end
+	ANIM_begin
+	ANIM_hide 0 0 tu154b2/custom/lights/gears_green_right_eng
+	LIGHT_SPILL_CUSTOM		0.618 -0.726 -19.51 0.2706    0.7882    0.6196 1 0.3 0 -1 0.2 0.2
+	ANIM_end
+ANIM_end
 
 
 

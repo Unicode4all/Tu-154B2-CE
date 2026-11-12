@@ -77969,103 +77969,103 @@ IDX 62624
 IDX 62626
 IDX 62631
 ATTR_layer_group Cockpit 0
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp18 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp18  700
 ATTR_hard 
 TRIS 0 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp12 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp12  700
 TRIS 6 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp6 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp6  700
 TRIS 12 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp25 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp25  700
 TRIS 18 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp5 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp5  700
 TRIS 24 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp4 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp4  700
 TRIS 30 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp3 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp3  700
 TRIS 36 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp2 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp2  700
 TRIS 42 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp1 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp1  700
 TRIS 48 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp7 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp7  700
 TRIS 54 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp8 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp8  700
 TRIS 60 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp9 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp9  700
 TRIS 66 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp10 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp10  700
 TRIS 72 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp11 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp11  700
 TRIS 78 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp26 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp26  700
 TRIS 84 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp27 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp27  700
 TRIS 90 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp17 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp17  700
 TRIS 96 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp16 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp16  700
 TRIS 102 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp15 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp15  700
 TRIS 108 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp14 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp14  700
 TRIS 114 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp13 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp13  700
 TRIS 120 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp19 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp19  700
 TRIS 126 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp20 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp20  700
 TRIS 132 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp21 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp21  700
 TRIS 138 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp22 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp22  700
 TRIS 144 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp23 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp23  700
 TRIS 150 6
-ATTR_light_level 0.000000 1.000000 sim/custom/t154/ppn13_lamp24 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154/ppn13_lamp24  700
 TRIS 156 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_stop_gas_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_stop_gas_new  700
 TRIS 162 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_stop_gas_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_stop_gas_new  700
 TRIS 180 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_stop_gas_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_stop_gas_new  700
 TRIS 198 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_temp_podsh 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_temp_podsh  700
 TRIS 216 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_temp_podsh 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_temp_podsh  700
 TRIS 234 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_temp_podsh 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_temp_podsh  700
 TRIS 252 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/transponder1_kd_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/transponder1_kd_new  700
 TRIS 270 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/transponder1_kp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/transponder1_kp_new  700
 TRIS 366 96
 ANIM_begin
 ANIM_hide 1.000000 1.000000 sim/custom/optimize
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/gauges/eng/oil_qty_cap
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/oil_meter_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/oil_meter_1_new  700
 TRIS 462 36
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/oil_meter_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/oil_meter_2_new  700
 TRIS 498 36
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 534 273
-ATTR_light_level 0.000000 1.000000 sim/custom/gauges/eng/apu_oil_test_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/gauges/eng/apu_oil_test_lamp  700
 TRIS 807 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/oil_meter_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/oil_meter_3_new  700
 TRIS 903 36
 ANIM_end
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp13 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp13  700
 TRIS 939 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp12 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp12  700
 TRIS 1035 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp11 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp11  700
 TRIS 1131 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp10 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp10  700
 TRIS 1227 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp9 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp9  700
 TRIS 1323 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp8 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp8  700
 TRIS 1419 96
 ATTR_light_level 0.000000 1.100000 sim/custom/cabin/vest_light2 
 ATTR_no_hard
@@ -78086,66 +78086,66 @@ ATTR_light_level 0.000000 1.100000 sim/custom/cabin/cent_light1
 TRIS 2763 330
 ATTR_light_level 0.000000 1.100000 sim/custom/cabin/cent_light2 
 TRIS 3093 480
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/left_mid_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/left_mid_pax_door_new  700
 ATTR_hard 
 TRIS 3573 12
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/right_mid_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/right_mid_pax_door_new  700
 TRIS 3585 12
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/left_front_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/left_front_pax_door_new  700
 TRIS 3597 12
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 3609 648
 ATTR_light_level 0.000000 1.100000 sim/custom/cabin/dezhur_vest_light1 
 ATTR_no_hard
 TRIS 4257 114
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp4 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp4  700
 ATTR_hard 
 TRIS 4371 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp3 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp3  700
 TRIS 4467 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp2 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp2  700
 TRIS 4563 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp1 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp1  700
 TRIS 4659 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp5 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp5  700
 TRIS 4755 576
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp6 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp6  700
 TRIS 5331 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp7 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp7  700
 TRIS 5427 96
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lavatory_lamps 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lavatory_lamps  700
 TRIS 5523 612
-ATTR_light_level 0.000000 1.000000 sim/custom/cabin/lamp80 
+ATTR_light_level 0.000000 1.000000  sim/custom/cabin/lamp80  700
 TRIS 6135 672
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 6807 7437
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/t154gnd/refuel_panel_cap_anim
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_tank3L_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_tank3L_lamp  700
 TRIS 14244 96
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_tank2L_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_tank2L_lamp  700
 TRIS 14340 96
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_tank1_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_tank1_lamp  700
 TRIS 14436 96
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_tank2R_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_tank2R_lamp  700
 TRIS 14532 96
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_tank3R_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_tank3R_lamp  700
 TRIS 14628 96
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_to_azs_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_to_azs_lamp  700
 TRIS 14724 96
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_tank4_lamp 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_tank4_lamp  700
 TRIS 14820 96
-ATTR_light_level 0.000000 1.000000 sim/custom/t154gnd/rp_lit 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154gnd/rp_lit  700
 ATTR_no_cull
 TRIS 14916 108
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 ATTR_cull
 TRIS 15024 1911
 ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_hide -300.000000 0.100000 tu154b2/custom/elec/bus27_volt_left
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/switchers/eng/hydro_trimm_rud_1_cap 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/switchers/eng/hydro_trimm_rud_1_cap  700
 TRIS 16935 108
 ANIM_end
 ANIM_begin
@@ -78155,122 +78155,122 @@ ANIM_trans_key 0.500000 -0.000290 0.000198 0.208098
 ANIM_trans_key 1.000000 0.006607 0.000198 0.266493
 ANIM_trans_end
 ANIM_trans 0.000000 0.000000 0.000000 -0.011430 0.004609 0.335976 0.000000 1.000000 sim/custom/other/right_seat_pos
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 17043 1635
 ANIM_begin
 ANIM_hide -300.000000 0.100000 tu154b2/custom/elec/bus27_volt_left
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/switchers/ovhd/sp50_dme_rsbn 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/switchers/ovhd/sp50_dme_rsbn  700
 TRIS 18678 108
 ANIM_end
 ANIM_begin
 ANIM_trans 0.410320 -1.361130 -20.708797 0.410320 -1.361130 -20.708797 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.984808 -0.173649 0.000000 270.000000 0.000000 1.000000 sim/custom/switchers/ovhd/sp50_dme_rsbn_new
 ANIM_trans -0.410320 1.361130 20.708797 -0.410320 1.361130 20.708797 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 18786 483
 ANIM_end
 ANIM_end
-# ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  1.000000 tu154b2/custom/light/no_LIT  700
 # TRIS 19974 279
-# ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+ATTR_light_level 0.000000 1.000000  1.000000 sim/custom/ssos_test_lit  700
 # TRIS 19269 96
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/b2/kontur_on
-# ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+ATTR_light_level 0.000000 1.000000  1.000000 sim/custom/ssos_test_lit  700
 # TRIS 19269 96
-# ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  1.000000 tu154b2/custom/light/no_LIT  700
 TRIS 19365 606
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/start_apu_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/start_apu_new  700
 TRIS 20253 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_eng_fail_1_new  700
 TRIS 20271 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_reverse_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_reverse_1_new  700
 TRIS 20289 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_eng_fail_2_new  700
 TRIS 20307 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 20325 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_eng_fail_3_new  700
 TRIS 20343 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_reverse_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_reverse_3_new  700
 TRIS 20361 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/trimm_zero_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/trimm_zero_roll_new  700
 TRIS 20379 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/trimm_zero_course_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/trimm_zero_course_new  700
 TRIS 20397 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/damper_course_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/damper_course_new  700
 TRIS 20415 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/damper_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/damper_roll_new  700
 TRIS 20433 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/damper_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/damper_pitch_new  700
 TRIS 20451 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/turn_off_bat_4_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/turn_off_bat_4_new  700
 TRIS 20469 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/turn_off_bat_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/turn_off_bat_2_new  700
 TRIS 20565 96
-ATTR_light_level 0.000000 1.000000 sim/custom/radios/vhf1_ap_lit 
+ATTR_light_level 0.000000 1.000000  sim/custom/radios/vhf1_ap_lit  700
 TRIS 20661 72
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/turn_off_bat_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/turn_off_bat_3_new  700
 TRIS 20733 96
-ATTR_light_level 0.000000 1.000000 sim/custom/kontur/light/left_power 
+ATTR_light_level 0.000000 1.000000  sim/custom/kontur/light/left_power  700
 TRIS 20829 72
-ATTR_light_level 0.000000 1.000000 sim/custom/kontur/light/right_power 
+ATTR_light_level 0.000000 1.000000  sim/custom/kontur/light/right_power  700
 TRIS 20901 72
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/wpt_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/wpt_lamp_new  700
 TRIS 20973 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/msg_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/msg_lamp_new  700
 TRIS 20991 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/cockpit_p_low 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/cockpit_p_low  700
 TRIS 21009 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stuard_call_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stuard_call_new  700
 TRIS 21027 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nvu_fail_new  700
 TRIS 21045 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/turn_off_bat_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/turn_off_bat_1_new  700
 TRIS 21063 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/mgv_control_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/mgv_control_fail_new  700
 TRIS 21159 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_vor_automat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nvu_vor_automat_new  700
 TRIS 21177 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/dist_autonom_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/dist_autonom_new  700
 TRIS 21195 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/correct_on_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/correct_on_new  700
 TRIS 21213 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/change_ch_o_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/change_ch_o_new  700
 TRIS 21231 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/diss_memory_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/diss_memory_new  700
 TRIS 21249 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/azimuth_autonom_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/azimuth_autonom_new  700
 TRIS 21267 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/warning_terrain_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/warning_terrain_new  700
 TRIS 21285 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/srpbz_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/srpbz_fail_new  700
 TRIS 21303 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gs_low_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gs_low_new  700
 TRIS 21321 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/no_reserve_g_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/no_reserve_g_new  700
 TRIS 21339 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/no_reserve_c_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/no_reserve_c_new  700
 TRIS 21357 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/roll_control_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/roll_control_fail_new  700
 TRIS 21375 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/pitch_control_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/pitch_control_fail_new  700
 TRIS 21393 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/to_elevator_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/to_elevator_new  700
 TRIS 21411 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/to_rudder_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/to_rudder_new  700
 TRIS 21429 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/trimm_zero_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/trimm_zero_pitch_new  700
 TRIS 21447 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 21465 9342
 ANIM_begin
 ANIM_trans -0.266297 -1.599260 -21.610397 -0.266297 -1.599260 -21.610397 0.000000 0.000000 none
 ANIM_rotate 0.000000 -0.139173 -0.990268 0.000000 360.000000 0.000000 315.000000 tu154b2/custom/gauges/alt/radioalt_dh_left
 ANIM_trans 0.266297 1.599260 21.610397 0.266297 1.599260 21.610397 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/rv5_left_dh 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/rv5_left_dh  700
 TRIS 30807 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 30903 312
 ANIM_end
 ANIM_begin
@@ -78278,15 +78278,15 @@ ANIM_trans 0.739006 -1.757880 -21.589100 0.739006 -1.757880 -21.589100 0.000000 
 ANIM_rotate 0.000000 -0.139173 -0.990268 0.000000 360.000000 0.000000 315.000000 tu154b2/custom/gauges/alt/radioalt_dh_right
 ANIM_trans -0.739006 1.757880 21.589100 -0.739006 1.757880 21.589100 0.000000 0.000000 none
 TRIS 31215 312
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/rv5_right_dh 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/rv5_right_dh  700
 TRIS 31527 96
 ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_taws
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 19974 279
-ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+ATTR_light_level 0.000000 1.000000  sim/custom/ssos_test_lit  700
 TRIS 19269 96
 ANIM_end
 ANIM_begin
@@ -78295,110 +78295,110 @@ ANIM_begin
 ANIM_trans 0.739181 -1.756060 -21.573997 0.739181 -1.756060 -21.573997 0.000000 0.000000 none
 ANIM_rotate 0.000000 -0.139173 -0.990268 0.000000 300.000000 0.000000 1.000000 sim/custom/b2/rv5_2_lit_lim
 ANIM_trans -0.739181 1.756060 21.573997 -0.739181 1.756060 21.573997 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/rv5_right_dh
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/rv5_right_dh 700
 TRIS 31623 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 31719 312
 ANIM_end
 ANIM_begin
 ANIM_trans -0.266312 -1.597660 -21.595100 -0.266312 -1.597660 -21.595100 0.000000 0.000000 none
 ANIM_rotate 0.000000 -0.139173 -0.990268 0.000000 300.000000 0.000000 1.000000 sim/custom/b2/rv5_1_lit_lim
 ANIM_trans 0.266312 1.597660 21.595100 0.266312 1.597660 21.595100 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/rv5_left_dh 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/rv5_left_dh  700
 TRIS 32031 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 32127 312
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_90th
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/wpt_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/wpt_lamp_new  700
 TRIS 32439 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 #TRIS 32475 1416
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
 TRIS 33363 132
 TRIS 33141 222
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/warning_terrain_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/warning_terrain_new  700
 TRIS 32457 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gs_low_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gs_low_new  700
 TRIS 33891 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/srpbz_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/srpbz_fail_new  700
 TRIS 33909 18
 ANIM_end
 ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_taws
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 74094 18
 ANIM_end
 TRIS 32475 666
 TRIS 33495 396
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/msg_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/msg_lamp_new  700
 TRIS 33927 18
 ANIM_begin
 ANIM_trans 0.783584 -0.107040 0.015200 0.783584 -0.107040 0.015200 0.000000 0.000000 none
 #ANIM_trans 0 0 0.1 0 0 0.1 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/sns_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/sns_lamp_new  700
 TRIS 153183 18
 ANIM_end
 ANIM_end
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 33945 996
-# ATTR_light_level 0.000000 1.000000 sim/custom/ssos_test_lit 
+ATTR_light_level 0.000000 1.000000  1.000000 sim/custom/ssos_test_lit  700
 # TRIS 34941 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/start_apu_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/start_apu_new  700
 TRIS 20253 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stuard_call_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stuard_call_new  700
 TRIS 35037 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nvu_fail_new  700
 TRIS 35055 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/cockpit_p_low 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/cockpit_p_low  700
 TRIS 35073 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/mgv_control_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/mgv_control_fail_new  700
 TRIS 35091 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_vor_automat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nvu_vor_automat_new  700
 TRIS 35109 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/dist_autonom_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/dist_autonom_new  700
 TRIS 35127 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/correct_on_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/correct_on_new  700
 TRIS 35145 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/diss_memory_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/diss_memory_new  700
 TRIS 35163 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/change_ch_o_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/change_ch_o_new  700
 TRIS 35181 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/azimuth_autonom_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/azimuth_autonom_new  700
 TRIS 35199 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/no_reserve_g_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/no_reserve_g_new  700
 TRIS 35217 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/no_reserve_c_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/no_reserve_c_new  700
 TRIS 35235 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/roll_control_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/roll_control_fail_new  700
 TRIS 35253 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/pitch_control_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/pitch_control_fail_new  700
 TRIS 35271 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/damper_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/damper_pitch_new  700
 TRIS 35289 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/damper_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/damper_roll_new  700
 TRIS 35307 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/damper_course_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/damper_course_new  700
 TRIS 35325 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/to_elevator_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/to_elevator_new  700
 TRIS 35343 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/to_rudder_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/to_rudder_new  700
 TRIS 35361 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/trimm_zero_course_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/trimm_zero_course_new  700
 TRIS 35379 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/trimm_zero_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/trimm_zero_roll_new  700
 TRIS 35397 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/trimm_zero_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/trimm_zero_pitch_new  700
 TRIS 35415 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_eng_fail_3_new  700
 TRIS 35433 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_eng_fail_2_new  700
 TRIS 35451 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fp_eng_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fp_eng_fail_1_new  700
 TRIS 35469 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 # TRIS 35487 8472
 TRIS 35487 1512
 TRIS 37029 3762
@@ -78408,38 +78408,38 @@ ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.004000 0.000000 0.000000 1.000000 sim/custom/arm406_sound_off
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/sound_off 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/sound_off  700
 TRIS 43959 78
 ANIM_end
 ANIM_begin
 ANIM_trans 0.758385 -1.040330 -20.219700 0.758385 -1.040330 -20.219700 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.000000 -1.000000 0.000000 16.000000 0.000000 1.000000 sim/custom/eng_light_angle_result
 ANIM_trans -0.758385 1.040330 20.219700 -0.758385 1.040330 20.219700 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 44037 900
 ANIM_begin
 ANIM_trans 0.663619 -0.971292 -19.638000 0.663619 -0.971292 -19.638000 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.000000 -1.000000 0.000000 30.000000 0.000000 1.000000 sim/custom/eng_light_angle2_new
 ANIM_trans -0.663619 0.971292 19.638000 -0.663619 0.971292 19.638000 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/eng_panel_flood 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/eng_panel_flood  300
 TRIS 44937 162
 ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/b2/kontur_70th
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.004000 0.000000 0.000000 1.000000 sim/custom/arm406_dejur_contr
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/dejur_contr 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/dejur_contr  700
 TRIS 45099 78
 ANIM_end
 ANIM_begin
 ANIM_trans -0.014863 -1.892190 -21.574200 -0.014863 -1.892190 -21.574200 0.000000 0.000000 none
 ANIM_rotate -1.000000 0.000000 0.000000 0.000000 5.000000 0.000000 1.000000 tu154b2/custom/b2/kontur_on
 ANIM_trans 0.014863 1.892190 21.574200 0.014863 1.892190 21.574200 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ga_main_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ga_main_fail_new  700
 TRIS 45177 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ga_reserve_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ga_reserve_fail_new  700
 TRIS 45195 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 45213 447
 ANIM_end
 ATTR_no_hard
@@ -78452,77 +78452,77 @@ ANIM_rotate 0.138735 -0.197513 -0.970434 0.000000 270.000000 0.000000 1.000000 s
 ANIM_trans -0.818003 1.206780 20.280298 -0.818003 1.206780 20.280298 0.000000 0.000000 none
 TRIS 47166 483
 ANIM_end
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_bypass_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_bypass_valve_new  700
 TRIS 47649 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_bypass_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_bypass_valve_new  700
 TRIS 47667 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_bypass_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_bypass_valve_new  700
 TRIS 47685 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_fuel_p_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_fuel_p_new  700
 TRIS 47703 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_reverse_doors_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_reverse_doors_new  700
 TRIS 47721 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_reverse_lock_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_reverse_lock_new  700
 TRIS 47739 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_vna33_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_vna33_new  700
 TRIS 47757 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_filter_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_filter_fail_new  700
 TRIS 47775 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_bypass_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_bypass_valve_new  700
 TRIS 47793 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_fuel_p_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_fuel_p_new  700
 TRIS 47811 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_oil_p_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_oil_p_new  700
 TRIS 47829 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_chips_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_chips_new  700
 TRIS 47847 36
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_t_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_t_high_new  700
 TRIS 47883 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_oil_level_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_oil_level_new  700
 TRIS 47901 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng3_high_vibro_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng3_high_vibro_new  700
 TRIS 47919 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng_block_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng_block_new  700
 TRIS 47937 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng_at_on_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng_at_on_new  700
 TRIS 47955 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_vna33_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_vna33_new  700
 TRIS 47973 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_filter_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_filter_fail_new  700
 TRIS 47991 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_bypass_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_bypass_valve_new  700
 TRIS 48009 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_oil_p_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_oil_p_new  700
 TRIS 48027 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_chips_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_chips_new  700
 TRIS 48045 36
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_t_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_t_high_new  700
 TRIS 48081 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_oil_level_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_oil_level_new  700
 TRIS 48099 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng2_high_vibro_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng2_high_vibro_new  700
 TRIS 48117 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_high_vibro_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_high_vibro_new  700
 TRIS 48135 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_chips_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_chips_new  700
 TRIS 48153 36
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_t_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_t_high_new  700
 TRIS 48189 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_oil_level_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_oil_level_new  700
 TRIS 48207 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_fuel_p_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_fuel_p_new  700
 TRIS 48225 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_oil_p_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_oil_p_new  700
 TRIS 48243 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_filter_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_filter_fail_new  700
 TRIS 48261 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_bypass_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_bypass_valve_new  700
 TRIS 48279 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_vna33_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_vna33_new  700
 TRIS 48297 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_reverse_doors_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_reverse_doors_new  700
 TRIS 48315 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/engines/eng1_reverse_lock_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/engines/eng1_reverse_lock_new  700
 TRIS 48333 18
 ANIM_begin
 ANIM_trans_begin tu154b2/custom/anim/cockpit_window_left
@@ -78557,417 +78557,417 @@ ANIM_rotate_end
 ANIM_trans 0.802567 1.492600 21.641899 0.802567 1.492600 21.641899 0.000000 0.000000 none
 ANIM_begin
 ANIM_hide 0.000000 0.000000 sim/custom/t154_efb/enabled
-ATTR_light_level 0.000000 1.000000 sim/custom/t154_efb/power_lit 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154_efb/power_lit  700
 TRIS 48351 6
 ANIM_end
 ANIM_end
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/left_front_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/left_front_pax_door_new  700
 TRIS 48357 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/left_mid_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/left_mid_pax_door_new  700
 TRIS 48375 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/left_front_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/left_front_pax_door_new  700
 TRIS 48393 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/left_mid_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/left_mid_pax_door_new  700
 TRIS 48411 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/other_hatches_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/other_hatches_new  700
 TRIS 48429 108
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/right_mid_pax_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/right_mid_pax_door_new  700
 TRIS 48537 36
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/other_hatches_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/other_hatches_new  700
 TRIS 48573 144
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/cargo_front_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/cargo_front_door_new  700
 TRIS 48717 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/cargo_back_door_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/cargo_back_door_new  700
 TRIS 48735 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/other_hatches_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/other_hatches_new  700
 TRIS 48753 54
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/turn63_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/turn63_lamp_new  700
 TRIS 48807 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nosewheel_turn_off_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nosewheel_turn_off_new  700
 TRIS 48825 18
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.002727 0.002312 0.000000 0.000000 1.000000 sim/custom/b2/smoke_2_button
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire/smoke_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire/smoke_2_new  700
 TRIS 48843 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 48939 84
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.002727 0.002312 0.000000 0.000000 1.000000 sim/custom/b2/smoke_1_button
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire/smoke_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire/smoke_1_new  700
 TRIS 49023 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 49119 84
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.002727 0.002312 0.000000 0.000000 1.000000 sim/custom/b2/fire_eng3_button
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire/fire_eng_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire/fire_eng_3_new  700
 TRIS 49203 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 49299 84
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.002727 0.002312 0.000000 0.000000 1.000000 sim/custom/b2/fire_eng2_button
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire/fire_eng_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire/fire_eng_2_new  700
 TRIS 49383 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 49479 84
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.002727 0.002312 0.000000 0.000000 1.000000 sim/custom/b2/fire_eng1_button
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire/fire_eng_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire/fire_eng_1_new  700
 TRIS 49563 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 49659 84
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.002727 0.002312 0.000000 0.000000 1.000000 sim/custom/b2/fire_apu_button
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire/fire_apu_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire/fire_apu_new  700
 TRIS 49743 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 49839 84
 ANIM_end
 TRIS 49923 864
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/nav_2_to 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nav_2_to  700
 ATTR_no_hard
 TRIS 50787 6
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/nav_2_from 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nav_2_from  700
 TRIS 50793 6
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/nav_1_from 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nav_1_from  700
 TRIS 50799 6
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/nav_1_to 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nav_1_to  700
 TRIS 50805 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/front_hydr_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/front_hydr_fail_3_new  700
 ATTR_hard 
 TRIS 50811 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/front_hydr_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/front_hydr_fail_2_new  700
 TRIS 50907 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/front_hydr_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/front_hydr_fail_1_new  700
 TRIS 51003 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/slats_extended_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/slats_extended_new  700
 TRIS 51099 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_work_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_work_new  700
 TRIS 51117 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/nvu_on 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nvu_on  700
 TRIS 51135 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/nvu_corr 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/nvu_corr  700
 TRIS 51231 96
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/mid_left_panel_int 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/mid_left_panel_int  700
 ATTR_no_cull
 TRIS 51327 864
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/front_panel_flood 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/front_panel_flood  300
 TRIS 52191 72
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_mars_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_mars_new  700
 ATTR_cull
 TRIS 52263 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_up2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_up2_new  700
 TRIS 52359 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_mlp_aux_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_mlp_aux_new  700
 TRIS 52455 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_mlp_main_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_mlp_main_new  700
 TRIS 52551 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/antiice_wings_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/antiice_wings_new  700
 TRIS 52647 192
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/antiice_eng_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/antiice_eng_3_new  700
 TRIS 52839 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/antiice_eng_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/antiice_eng_2_new  700
 TRIS 52935 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/antiice_slats_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/antiice_slats_new  700
 TRIS 53031 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/antiice_eng_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/antiice_eng_1_new  700
 TRIS 53127 96
 ATTR_light_level 0.000000 0.100000 sim/cockpit2/switches/panel_brightness_ratio[0] 
 ATTR_no_hard
 TRIS 53223 504
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/vd15_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/vd15_lamp_new  700
 ATTR_hard 
 TRIS 53727 288
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/absu_work_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/absu_work_new  400
 TRIS 54015 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/tks_main_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/tks_main_fail_new  700
 TRIS 54021 90
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/auasp_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/auasp_lamp_new  700
 TRIS 54111 180
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/exit_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/exit_lamp_new  700
 TRIS 54291 114
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 54405 144
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_rsbn_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_rsbn_left_new  700
 TRIS 54549 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_sp_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_sp_left_new  700
 TRIS 54555 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_vor_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_vor_left_new  700
 TRIS 54561 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_nv_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_nv_left_new  700
 TRIS 54567 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_nv_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_nv_right_new  700
 TRIS 54573 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_vor_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_vor_right_new  700
 TRIS 54579 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_sp_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_sp_right_new  700
 TRIS 54585 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pnp_rsbn_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pnp_rsbn_right_new  700
 TRIS 54591 6
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_front_panel_flood 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/ovhd_front_panel_flood  300
 TRIS 54597 66
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/mid_panel_flood 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/mid_panel_flood  300
 TRIS 54663 60
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/ovhd_back_panel_flood 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/ovhd_back_panel_flood  300
 TRIS 54723 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/marker_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/marker_2_new  700
 TRIS 54729 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/marker_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/marker_3_new  700
 TRIS 54747 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/marker_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/marker_1_new  700
 TRIS 54765 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_m_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_m_new  700
 TRIS 54783 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/vor_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/vor_lamp_new  700
 TRIS 54801 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_v_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_v_new  700
 TRIS 54819 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nvu_lamp_new  700
 TRIS 54837 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_h_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_h_new  700
 TRIS 54855 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_roll_new  700
 TRIS 54873 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_pitch_new  700
 TRIS 54891 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/zk_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/zk_lamp_new  700
 TRIS 54909 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/thrust_automat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/thrust_automat_new  700
 TRIS 54927 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/course_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/course_new  700
 TRIS 54945 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/glideslope_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/glideslope_new  700
 TRIS 54963 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/speed_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/speed_high_new  700
 TRIS 54981 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/sso_connect_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/sso_connect_new  700
 TRIS 54999 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fuel_less_2500_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fuel_less_2500_new  700
 TRIS 55017 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/sso_danger_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/sso_danger_new  700
 TRIS 55035 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/roll_left_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/roll_left_high_new  700
 TRIS 55053 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/toga_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/toga_new  700
 TRIS 55071 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/decision_height_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/decision_height_new  700
 TRIS 55089 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/roll_right_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/roll_right_high_new  700
 TRIS 55107 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/to_not_ready 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/to_not_ready  700
 TRIS 55125 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/wrong_trimm_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/wrong_trimm_new  700
 TRIS 55143 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/controll_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/controll_roll_new  700
 TRIS 55161 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/controll_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/controll_pitch_new  700
 TRIS 55179 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/yoke_sign_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/yoke_sign_new  700
 TRIS 55197 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/triangle_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/triangle_new  700
 TRIS 55215 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/controll_thrust_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/controll_thrust_new  700
 TRIS 55233 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/course_lim_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/course_lim_new  700
 TRIS 55251 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gs_lim_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gs_lim_new  700
 TRIS 55269 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire_new  700
 TRIS 55287 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/flaps_1_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/flaps_1_valve_new  700
 TRIS 55305 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/flaps_2_valve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/flaps_2_valve_new  700
 TRIS 55323 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/spoilers_mid_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/spoilers_mid_left_new  700
 TRIS 55341 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/spoilers_inn_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/spoilers_inn_left_new  700
 TRIS 55359 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/spoilers_inn_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/spoilers_inn_right_new  700
 TRIS 55377 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/spoilers_mid_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/spoilers_mid_right_new  700
 TRIS 55395 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_green_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_green_left_new  700
 TRIS 55413 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_green_front_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_green_front_new  700
 TRIS 55419 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_green_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_green_right_new  700
 TRIS 55425 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_red_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_red_left_new  700
 TRIS 55431 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_red_front_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_red_front_new  700
 TRIS 55437 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_red_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_red_right_new  700
 TRIS 55443 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_not_ext_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_not_ext_new  700
 TRIS 55449 6
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire_new  700
 TRIS 55455 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gs_lim_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gs_lim_new  700
 TRIS 55473 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/course_lim_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/course_lim_new  700
 TRIS 55491 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/controll_thrust_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/controll_thrust_new  700
 TRIS 55509 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/triangle_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/triangle_new  700
 TRIS 55527 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/yoke_sign_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/yoke_sign_new  700
 TRIS 55545 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/controll_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/controll_roll_new  700
 TRIS 55563 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/controll_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/controll_pitch_new  700
 TRIS 55581 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/wrong_trimm_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/wrong_trimm_new  700
 TRIS 55599 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/to_not_ready 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/to_not_ready  700
 TRIS 55617 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/roll_left_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/roll_left_high_new  700
 TRIS 55635 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/decision_height_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/decision_height_new  700
 TRIS 55653 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/toga_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/toga_new  700
 TRIS 55671 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/roll_right_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/roll_right_high_new  700
 TRIS 55689 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/no_ag_controll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/no_ag_controll_new  700
 TRIS 55707 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/sso_danger_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/sso_danger_new  700
 TRIS 55725 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/alpha_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/alpha_high_new  700
 TRIS 55743 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/sso_connect_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/sso_connect_new  700
 TRIS 55761 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/g_force_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/g_force_high_new  700
 TRIS 55779 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/speed_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/speed_high_new  700
 TRIS 55797 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/course_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/course_new  700
 TRIS 55815 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/glideslope_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/glideslope_new  700
 TRIS 55833 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/zk_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/zk_lamp_new  700
 TRIS 55851 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/thrust_automat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/thrust_automat_new  700
 TRIS 55869 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_roll_new  700
 TRIS 55887 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_pitch_new  700
 TRIS 55905 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nvu_lamp_new  700
 TRIS 55923 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_h_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_h_new  700
 TRIS 55941 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/vor_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/vor_lamp_new  700
 TRIS 55959 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_v_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_v_new  700
 TRIS 55977 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/marker_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/marker_1_new  700
 TRIS 55995 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/stab_m_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/stab_m_new  700
 TRIS 56013 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/marker_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/marker_2_new  700
 TRIS 56031 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/marker_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/marker_3_new  700
 TRIS 56049 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_pitch_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_pitch_fail_1_new  700
 TRIS 56067 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_pitch_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_pitch_fail_2_new  700
 TRIS 56085 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_pitch_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_pitch_fail_3_new  700
 TRIS 56103 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_roll_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_roll_fail_1_new  700
 TRIS 56121 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_roll_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_roll_fail_2_new  700
 TRIS 56139 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_roll_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_roll_fail_3_new  700
 TRIS 56157 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_course_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_course_fail_1_new  700
 TRIS 56175 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_course_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_course_fail_2_new  700
 TRIS 56193 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/ra56_course_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/ra56_course_fail_3_new  700
 TRIS 56211 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/nvu_no_reserve_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/nvu_no_reserve_new  700
 TRIS 56229 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/busters_off_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/busters_off_new  700
 TRIS 56247 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_red_left_eng_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_red_left_eng_new  700
 TRIS 56265 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_red_front_eng_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_red_front_eng_new  700
 TRIS 56283 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_red_right_eng_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_red_right_eng_new  700
 TRIS 56301 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_green_left_eng_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_green_left_eng_new  700
 TRIS 56319 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_green_front_eng_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_green_front_eng_new  700
 TRIS 56337 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/gears_green_right_eng_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/gears_green_right_eng_new  700
 TRIS 56355 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/front_hydr_fail_4_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/front_hydr_fail_4_new  700
 TRIS 56373 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/stu_roll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/stu_roll_new  700
 TRIS 56469 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/stu_pitch_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/stu_pitch_new  700
 TRIS 56565 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/stu_toga_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/stu_toga_new  700
 TRIS 56661 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/at_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/at_2_new  700
 TRIS 56757 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/at_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/at_1_new  700
 TRIS 56853 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/bkk_ok_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/bkk_ok_new  700
 TRIS 56949 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/heat_ok_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/heat_ok_1_new  700
 TRIS 57045 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/heat_ok_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/heat_ok_2_new  700
 TRIS 57141 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/heat_ok_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/heat_ok_3_new  700
 TRIS 57237 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/gen_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/gen_fail_3_new  700
 TRIS 57333 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/gen_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/gen_fail_2_new  700
 TRIS 57429 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/gen_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/gen_fail_1_new  700
 TRIS 57525 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/close_toilet_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/close_toilet_new  700
 TRIS 57621 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/srd_low_press_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/srd_low_press_new  700
 TRIS 57717 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/srd_overpress_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/srd_overpress_new  700
 TRIS 57813 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/soi_ice_detected_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/soi_ice_detected_new  700
 TRIS 57909 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/soi_work_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/soi_work_new  700
 TRIS 58005 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_mlp_main_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_mlp_main_new  700
 TRIS 58101 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_mlp_aux_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_mlp_aux_new  700
 TRIS 58197 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_up2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_up2_new  700
 TRIS 58293 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/msrp_mars_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/msrp_mars_new  700
 TRIS 58389 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/tks_contr_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/tks_contr_fail_new  700
 TRIS 58485 90
 ANIM_begin
 ANIM_trans 0.673800 -1.832750 -20.141899 0.673800 -1.832750 -20.141899 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.000000 -1.000000 0.000000 60.000000 0.000000 1.000000 tu154b2/custom/controlls/fuel_cutoff_3
 ANIM_trans -0.673800 1.832750 20.141899 -0.673800 1.832750 20.141899 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 58575 333
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/throttle_3_fire 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/throttle_3_fire  700
 TRIS 58908 90
 ANIM_end
 ANIM_begin
 ANIM_trans 0.673800 -1.832750 -20.167698 0.673800 -1.832750 -20.167698 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.000000 -1.000000 0.000000 60.000000 0.000000 1.000000 tu154b2/custom/controlls/fuel_cutoff_2
 ANIM_trans -0.673800 1.832750 20.167698 -0.673800 1.832750 20.167698 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/throttle_2_fire 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/throttle_2_fire  700
 TRIS 58998 90
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 59088 333
 ANIM_end
 ANIM_begin
@@ -78975,7 +78975,7 @@ ANIM_trans 0.673800 -1.832750 -20.193501 0.673800 -1.832750 -20.193501 0.000000 
 ANIM_rotate 0.000000 0.000000 -1.000000 0.000000 60.000000 0.000000 1.000000 tu154b2/custom/controlls/fuel_cutoff_1
 ANIM_trans -0.673800 1.832750 20.193501 -0.673800 1.832750 20.193501 0.000000 0.000000 none
 TRIS 59421 333
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/throttle_1_fire 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/throttle_1_fire  700
 TRIS 59754 90
 ANIM_end
 ANIM_begin
@@ -79006,7 +79006,7 @@ ANIM_begin
 ANIM_trans -0.193058 -2.034560 -21.147301 -0.193058 -2.034560 -21.147301 0.000000 0.000000 none
 ANIM_rotate 0.000000 0.000000 1.000000 0.000000 120.000000 0.000000 1.000000 tu154b2/custom/gauges/console/absu_roll_mode
 ANIM_trans 0.193058 2.034560 21.147301 0.193058 2.034560 21.147301 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/mid_left_panel_int 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/mid_left_panel_int  700
 TRIS 59844 84
 ANIM_end
 ANIM_begin
@@ -79053,77 +79053,77 @@ TRIS 60432 84
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000294 0.000000 1.000000 tu154b2/custom/buttons/console/absu_zk
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_zk 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_zk
 TRIS 60516 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000294 0.000000 1.000000 tu154b2/custom/buttons/console/absu_reset
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_reset 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_reset
 TRIS 60750 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000761 -0.000289 0.000000 1.000000 tu154b2/custom/buttons/console/absu_az2
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_az2 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_az2
 TRIS 60984 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000784 -0.000291 0.000000 1.000000 tu154b2/custom/buttons/console/absu_az1
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_az1 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_az1
 TRIS 61218 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000761 -0.000289 0.000000 1.000000 tu154b2/custom/buttons/console/absu_nvu
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_nvu 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_nvu 
 TRIS 61452 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000298 0.000000 1.000000 tu154b2/custom/buttons/console/absu_app
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_app 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_app 
 TRIS 61686 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000298 0.000000 1.000000 tu154b2/custom/buttons/console/absu_gs
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_gz 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_gz
 TRIS 61920 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 0.003800 0.001198 0.000000 1.000000 tu154b2/custom/buttons/console/absu_throt_off_1
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_thro1 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro1
 TRIS 62154 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 0.003800 0.001198 0.000000 1.000000 tu154b2/custom/buttons/console/absu_throt_off_2
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_thro2 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro2
 TRIS 62388 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 0.003800 0.001198 0.000000 1.000000 tu154b2/custom/buttons/console/absu_throt_off_3
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_thro3 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro3
 TRIS 62622 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000781 -0.000294 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_speed
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_stab_spd 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_spd
 TRIS 62856 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000807 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_m
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_stab_m 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_m
 TRIS 63090 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000807 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_v
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_stab_v 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_v
 TRIS 63324 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000807 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_h
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_stab_h 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_h
 TRIS 63558 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.001417 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/button/absu_stab 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab
 TRIS 63792 78
 ANIM_end
 ANIM_begin
@@ -79132,131 +79132,131 @@ ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.004000 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/pdu406_sound_off
 ANIM_end
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/turn_on_aux_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/turn_on_aux_new  700
 TRIS 63870 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/fire/fire_switch 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/fire/fire_switch  700
 TRIS 63966 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/button/fire_ng_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/button/fire_ng_new  700
 TRIS 63984 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/button/fire_turn_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/button/fire_turn_3_new  700
 TRIS 64080 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/button/fire_turn_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/button/fire_turn_1_new  700
 TRIS 64176 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/button/fire_turn_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/button/fire_turn_2_new  700
 TRIS 64272 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/vu_on_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/vu_on_2_new  700
 TRIS 64368 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_flow_from_4_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_flow_from_4_new  700
 TRIS 64464 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_tank2_right_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_tank2_right_fail_new  700
 TRIS 64560 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_flow_from_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_flow_from_2_new  700
 TRIS 64656 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_tank3_left_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_tank3_left_fail_new  700
 TRIS 64752 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_tank2_left_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_tank2_left_fail_new  700
 TRIS 64848 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_tank3_right_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_tank3_right_fail_new  700
 TRIS 64944 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_reserv_trans_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_reserv_trans_left_new  700
 TRIS 65040 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_reserv_trans_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_reserv_trans_right_new  700
 TRIS 65136 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_porc_reserv_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_porc_reserv_new  700
 TRIS 65232 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_flow_from_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_flow_from_3_new  700
 TRIS 65328 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/pta6_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/pta6_fail_new  700
 TRIS 65424 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/work_mode_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/work_mode_new  700
 TRIS 65442 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/high_rpm_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/high_rpm_new  700
 TRIS 65460 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/high_temp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/high_temp_new  700
 TRIS 65478 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/start_ready_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/start_ready_new  700
 TRIS 65496 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/low_oil_press_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/low_oil_press_new  700
 TRIS 65514 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/fuel_press_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/fuel_press_new  700
 TRIS 65532 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/low_oil_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/low_oil_new  700
 TRIS 65550 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/apu/doors_open_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/apu/doors_open_new  700
 TRIS 65568 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/left_bus_on_tr2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/left_bus_on_tr2_new  700
 TRIS 65586 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/right_bus_on_tr1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/right_bus_on_tr1_new  700
 TRIS 65682 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pts250_n1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pts250_n1_new  700
 TRIS 65778 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/pts250_n2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/pts250_n2_new  700
 TRIS 65874 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/bus_npk_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/bus_npk_1_new  700
 TRIS 65970 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/bus_npk_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/bus_npk_2_new  700
 TRIS 66066 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_2500_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_2500_new  700
 TRIS 66162 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_left_7_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_left_7_new  700
 TRIS 66258 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_left_5_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_left_5_new  700
 TRIS 66354 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_right_5_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_right_5_new  700
 TRIS 66450 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_right_7_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_right_7_new  700
 TRIS 66546 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_left_8_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_left_8_new  700
 TRIS 66642 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_left_6_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_left_6_new  700
 TRIS 66738 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_right_6_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_right_6_new  700
 TRIS 66834 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_right_8_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_right_8_new  700
 TRIS 66930 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_left_9_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_left_9_new  700
 TRIS 67026 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_right_9_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_right_9_new  700
 TRIS 67122 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_10_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_10_new  700
 TRIS 67218 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_11_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_11_new  700
 TRIS 67314 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_1_new  700
 TRIS 67410 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_2_new  700
 TRIS 67506 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_3_new  700
 TRIS 67602 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_pump_4_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_pump_4_new  700
 TRIS 67698 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_flow_auto_fail_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_flow_auto_fail_new  700
 TRIS 67794 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_cut_off_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_cut_off_1_new  700
 TRIS 67890 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_cut_off_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_cut_off_2_new  700
 TRIS 67986 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_cut_off_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_cut_off_3_new  700
 TRIS 68082 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/fuel_level_automat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/fuel_level_automat_new  700
 TRIS 68178 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/skv_overheat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/skv_overheat_new  700
 TRIS 68274 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/eng_hydr_fail_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/eng_hydr_fail_1_new  700
 TRIS 68370 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/eng_hydr_fail_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/eng_hydr_fail_2_new  700
 TRIS 68466 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/eng_hydr_fail_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/eng_hydr_fail_3_new  700
 TRIS 68562 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/eng_hydr_fail_4_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/eng_hydr_fail_4_new  700
 TRIS 68658 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/skv_overpress_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/skv_overpress_left_new  700
 TRIS 68754 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/skv_overpress_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/skv_overpress_right_new  700
 TRIS 68850 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/tail_temp_high_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/tail_temp_high_new  700
 TRIS 68946 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/right_bus_use_bat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/right_bus_use_bat_new  700
 TRIS 69042 96
 ANIM_begin
 ANIM_hide 20.000000 200.000000 tu154b2/custom/gauges/engine/rpm_low_1
@@ -79271,72 +79271,72 @@ ANIM_begin
 ANIM_hide 0.000000 5.000000 tu154b2/custom/elec/bus27_volt_right
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/buttons/lamp_test_hydro
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/buttons/lamp_test_hydro 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/buttons/lamp_test_hydro  700
 TRIS 69138 480
 ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/lights/small/apd_work_1
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/apd_work_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/apd_work_1_new  700
 TRIS 69618 96
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/lights/small/apd_work_2
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/apd_work_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/apd_work_2_new  700
 TRIS 69714 96
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/lights/small/apd_work_3
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/apd_work_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/apd_work_3_new  700
 TRIS 69810 96
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/lights/small/starter_high_rpm_2
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/starter_high_rpm_2_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/starter_high_rpm_2_new  700
 TRIS 69906 96
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/lights/small/starter_high_rpm_3
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/starter_high_rpm_3_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/starter_high_rpm_3_new  700
 TRIS 70002 96
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/lights/small/starter_high_rpm_1
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/starter_high_rpm_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/starter_high_rpm_1_new  700
 TRIS 70098 96
 ANIM_end
 ANIM_begin
 ANIM_hide 0.100000 1.200000 tu154b2/custom/lights/small/vu_on_2
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/vu_on_1_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/vu_on_1_new  700
 TRIS 70194 96
 ANIM_end
 ANIM_begin
 ANIM_hide 0.100000 1.200000 tu154b2/custom/lights/small/right_bus_use_bat
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/left_bus_use_bat_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/left_bus_use_bat_new  700
 TRIS 70290 96
 ANIM_end
 ANIM_begin
 ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_90th
-ATTR_light_level 0.000000 1.000000 sim/custom/vem72_lit 
+ATTR_light_level 0.000000 1.000000  sim/custom/vem72_lit  700
 TRIS 70386 288
-ATTR_light_level 0.000000 1.000000 sim/custom/co70_lit_test 
+ATTR_light_level 0.000000 1.000000  sim/custom/co70_lit_test  700
 TRIS 70674 96
-ATTR_light_level 0.000000 1.000000 sim/custom/co63_lit_test 
+ATTR_light_level 0.000000 1.000000  sim/custom/co63_lit_test  700
 TRIS 70770 96
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/wpt_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/wpt_lamp_new  700
 TRIS 70866 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/msg_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/msg_lamp_new  700
 TRIS 70884 18
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 70902 3474
 ANIM_begin
 ANIM_trans 0.169717 0.074363 -0.009636 0.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/b2/kontur_70th
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/check_alt_left_new  700
 TRIS 74376 18
 ANIM_end
 ANIM_begin
 ANIM_trans -0.027611 -0.014567 0.002853 0.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/b2/kontur_70th
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/check_alt_right_new  700
 TRIS 74394 18
 ANIM_end
 ANIM_end
@@ -79348,26 +79348,26 @@ TRIS 74412 18
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/anim/show_taws
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/check_alt_left_new  700
 TRIS 74430 18
 ANIM_end
 
 ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_taws
 ANIM_trans 0.169717 0.074363 -0.009636 0.000000 0.000000 0.000000 0.000000 1.000000
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/check_alt_left_new  700
 TRIS 74376 18
 ANIM_end
 
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/small/transponder_green_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/transponder_green_new  700
 TRIS 74448 6
 ANIM_begin
 ANIM_hide 0.000000 0.000000 tu154b2/custom/lights/small/transponder_red
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/lights/small/transponder_red 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/small/transponder_red  700
 TRIS 74454 6
 ANIM_end
 ANIM_end
-ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 74460 7518
 ATTR_no_cull
 TRIS 81978 312
@@ -79376,7 +79376,7 @@ TRIS 82290 70053
 ANIM_begin
 ANIM_begin
 ANIM_hide 1.000000 1.000000 sim/custom/b2/kontur_70th
-##ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_left_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/check_alt_left_new  700
 TRIS 152343 36
 ATTR_light_level_reset
 ATTR_no_hard
@@ -79394,15 +79394,15 @@ ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_taws
 TRIS 152379 354
 ANIM_end
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/sns_lamp_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/sns_lamp_new  700
 ATTR_hard 
 TRIS 153183 18
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/pull_up_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/pull_up_new  700
 TRIS 153201 36
 ANIM_end
 ANIM_begin
 ANIM_trans -0.053633 -0.016086 0.003361 0.000000 0.000000 0.000000 0.000000 1.000000 sim/custom/b2/kontur_70th
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/no_ag_controll_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/no_ag_controll_new  700
 TRIS 153237 18
 ANIM_end
 ANIM_begin
@@ -79415,7 +79415,7 @@ ANIM_begin
 ANIM_hide 1.000000 1.000000 tu154b2/custom/anim/show_taws
 ANIM_begin
 ANIM_trans -0.027611 -0.014567 0.002853 -0.027611 -0.014567 0.002853 0.000000 0.000000 none
-ATTR_light_level 0.000000 1.000000 sim/custom/lights/check_alt_right_new 
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/check_alt_right_new  700
 TRIS 74394 18
 ANIM_end
 TRIS 152361 18
@@ -79466,7 +79466,7 @@ ANIM_begin
 	ANIM_trans 0.787769  1.46306 21.2471 0.787769  1.46306 21.2471 0.000000 0.000000 none
 	ANIM_begin
 		ANIM_hide 0.000000 0.000000 sim/custom/t154_efb2/enabled
-		ATTR_light_level 0.000000 1.000000 sim/custom/t154_efb2/power_lit 
+ATTR_light_level 0.000000 1.000000  sim/custom/t154_efb2/power_lit  700
 		TRIS 48351 6
 	ANIM_end
 ANIM_end

@@ -165,7 +165,7 @@ fire_vlv_open_2 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_2") -- по
 fire_vlv_open_3 = globalPropertyf("tu154b2/custom/fuel/fire_vlv_open_3") -- пожарный кран открыт
 
 frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
-
+day_night_set_eng = globalPropertyf("tu154b2/custom/lights/day_night_set_eng")
 
 -- Smart Copilot
 ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
@@ -287,7 +287,8 @@ local passed = get(frame_time)
 
 local function lamps()
 	
-	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
+	local day_night = 1 - get(day_night_set_eng) * 0.9
+	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) * day_night
 	
 	local pump_2L1 = get(pump_tank2_left1_work)
 	local pump_2L2 = get(pump_tank2_left2_work)

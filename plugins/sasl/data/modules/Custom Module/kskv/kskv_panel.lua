@@ -239,12 +239,12 @@ local function lamps(gain_L, gain_R,dist)
     end
 	lamp_test_srd_last = test_btn
 	
-	local day_night = 1 - get(day_night_set) * 0.25
+	local day_night = 1 - get(day_night_set) * 0.95
 	
 	test_btn = test_btn * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 	
 	local test_btn_frnt = get(lamp_test_front)
-	
+	test_btn_frnt = test_btn_frnt * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local power27_L = get(bus27_volt_left)
 	local power27_R = get(bus27_volt_right)
 	

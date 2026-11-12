@@ -1181,10 +1181,10 @@ end
 
 function bus115_sel3_up_CMDhandler(phase, duration) 
     if phase == 0 then
-        if simDR_bus115_sel3 < 4 then
+        if simDR_bus115_sel3 < 3 then
             simDR_bus115_sel3 = simDR_bus115_sel3 + 1
         else
-            simDR_bus115_sel3 = 4
+            simDR_bus115_sel3 = 3
         end
     end
 end

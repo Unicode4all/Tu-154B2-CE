@@ -792,10 +792,11 @@ local triangle_lit = 0
 local function lamps()
 	local power=bool2int(get(absu_power)>0)
 	local power115=get(absu_power_cc)>0
-	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
-	local day_night = 1 - get(day_night_set) * 0.5
+	local day_night = 1 - get(day_night_set) * 0.9
 	local day_night_pn = 1
-	local day_night_eng = 1 - get(day_night_set_eng) * 0.5
+	local day_night_eng = 1 - get(day_night_set_eng) * 0.9
+	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
+	
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	--local lamps_brt_eng = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	local small_lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0) -- small lamps and buttons
@@ -1037,12 +1038,12 @@ local function lamps()
 	
 	
 	
-	absu_work_brt = math.max(absu_work_brt * lamps_brt * day_night, 0) 
+	absu_work_brt = math.max(absu_work_brt * lamps_brt * day_night_eng, 0) 
 	set(absu_work, absu_work_brt)
 	
 	
 	-- eng panel lamps
-	local test_btn_eng = get(lamp_test_eng) * math.max(get(bus27_volt_right) - 10 / 18.5, 0)
+	local test_btn_eng = get(lamp_test_eng) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night_eng
 	
 	local ra56_roll_fail_1_brt = math.max(bool2int(absu_svk_tbl.ra1_roll_fail == 1) * lamps_brt * day_night_eng * power, test_btn_eng) * (1 - get(lamp_4))
 	set(ra56_roll_fail_1, ra56_roll_fail_1_brt)
