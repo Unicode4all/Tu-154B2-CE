@@ -911,7 +911,7 @@ local function tachometers()
 	end
 	-- rudder coeff here, doesnt belong to engine gauges but needs baro alt and this defined here
 	local rud_cf=interpolate(rudder_corr_tbl,alt_baro)
-if MASTER then	
+
 	set(rud_coeff,rud_cf)
 	local flame1=get(burn1)
 	local flame2=get(burn2)
@@ -1218,7 +1218,7 @@ if MASTER then
 	set(knd_1,eng1_N2_need)
 	set(knd_3,eng3_N2_need)
 
-end
+
 
 end
 
