@@ -114,7 +114,6 @@ deflection_mtr_3 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflectio
 
 
 indicated_airspeed = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_copilot") -- приборная скорость
-machno = globalPropertyf("sim/flightmodel/misc/machno") -- скорость Маха
 
 -- defineProperty("anim_rud1", globalPropertyf("tu154b2/custom/controlls/throttle_1")) -- РУД 1
 -- defineProperty("anim_rud2", globalPropertyf("tu154b2/custom/controlls/throttle_2")) -- РУД 2
@@ -572,9 +571,7 @@ local elev_ind = 0
 -- {10, 0.1}}
 
 
-local function gauges()
-	-- add power here
-	
+local function gauges()	
 	--print(get(stab_pos))
 	
 	if get(bus36_volt_left) > 30 then
@@ -583,24 +580,12 @@ local function gauges()
 		flap_ind_L = get(flap_inn_L)
 		flap_ind_R = get(flap_inn_R)
 	end
-	
-	-- calculate correction for elevator
-	local ias = get(indicated_airspeed) * 1.852
-	local mach = get(machno)
-	
-	-- if mach < 1 then elev_coef = 1 / interpolate(mach_tbl, mach)
-	-- else elev_coef = 1/0.1 end
-	
-	
-	
-	
-	
 	stab_ind_act = stab_ind_act + (stabil_ind - stab_ind_act) * passed * 10
 	elev_ind_act = elev_ind_act + (elev_ind - elev_ind_act) * passed * 10
 	flap_ind_L_act = flap_ind_L_act + (flap_ind_L - flap_ind_L_act) * passed * 10
 	flap_ind_R_act = flap_ind_R_act + (flap_ind_R - flap_ind_R_act) * passed * 10
 	
-	if get(ismaster) ~= 1 then
+	if get(hascontrol_1) ~= 1 then
 		set(stab_ind, stab_ind_act)
 		set(elevator_ind, interpolate(ind_tbl, elev_ind_act))
 		set(flap_left_ind, flap_ind_L_act)

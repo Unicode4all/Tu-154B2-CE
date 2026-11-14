@@ -195,21 +195,18 @@ function update()
 	local flag = bool2int(not power or arrest or fail)
 	
 
-local MASTER = get(ismaster) ~= 1	
+--local MASTER = get(hascontrol_1) ~= 1	
 	
 
-if MASTER then	
-
-	
-	-- set results
+if get(hascontrol_1) ~= 1 then	
 	set(res_roll, roll_show)
-	set(res_pitch, pitch_show)
-	
-	set(ahz_flag, flag)
-	
+	set(res_pitch, pitch_show)	
+	set(ahz_flag, flag)	
 	set(mgv_ctr_power_cc, bool2int(power))
-	
-	--print(power, initial_roll_err, initial_pitch_err, power_roll, power_pitch, flag)
+else
+	roll_show = get(res_roll)
+	pitch_show = get(res_pitch)
+	flag = get(ahz_flag)
 end
 
 	
