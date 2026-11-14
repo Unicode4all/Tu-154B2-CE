@@ -269,7 +269,7 @@ hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 =
 pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
 pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
 pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
-nvu_rez = globalPropertyi("tu154b2/custom/lights/nvu_no_reserve")
+nvu_rez = globalPropertyf("tu154b2/custom/lights/nvu_no_reserve")
 
 lamp_1 = globalPropertyi("tu154b2/custom/failures/lamp_3")
 lamp_2 = globalPropertyi("tu154b2/custom/failures/lamp_4")
@@ -792,9 +792,9 @@ local triangle_lit = 0
 local function lamps()
 	local power=bool2int(get(absu_power)>0)
 	local power115=get(absu_power_cc)>0
-	local day_night = 1 - get(day_night_set) * 0.9
-	local day_night_pn = 1
-	local day_night_eng = 1 - get(day_night_set_eng) * 0.9
+	local day_night = 1 - get(day_night_set) * 0.95
+	local day_night_pn = 1 - get(day_night_set) * 0.95
+	local day_night_eng = 1 - get(day_night_set_eng) * 0.95
 	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)

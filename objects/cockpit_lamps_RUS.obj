@@ -78688,7 +78688,7 @@ ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/tks_main_fail_new  7
 TRIS 54021 90
 ATTR_light_level 0.000000 1.000000  sim/custom/lights/auasp_lamp_new  700
 TRIS 54111 180
-ATTR_light_level 0.000000 1.000000  sim/custom/lights/exit_lamp_new  700
+ATTR_light_level 0.000000 1.000000  sim/custom/lights/exit_lamp_new
 TRIS 54291 114
 ATTR_light_level 0.000000 1.000000  tu154b2/custom/light/no_LIT  700
 TRIS 54405 144
@@ -79053,77 +79053,77 @@ TRIS 60432 84
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000294 0.000000 1.000000 tu154b2/custom/buttons/console/absu_zk
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_zk
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_zk  700
 TRIS 60516 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000294 0.000000 1.000000 tu154b2/custom/buttons/console/absu_reset
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_reset
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_reset  700
 TRIS 60750 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000761 -0.000289 0.000000 1.000000 tu154b2/custom/buttons/console/absu_az2
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_az2
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_az2  700
 TRIS 60984 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000784 -0.000291 0.000000 1.000000 tu154b2/custom/buttons/console/absu_az1
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_az1
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_az1  700
 TRIS 61218 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000761 -0.000289 0.000000 1.000000 tu154b2/custom/buttons/console/absu_nvu
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_nvu 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_nvu   700
 TRIS 61452 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000298 0.000000 1.000000 tu154b2/custom/buttons/console/absu_app
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_app 
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_app   700
 TRIS 61686 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000752 -0.000298 0.000000 1.000000 tu154b2/custom/buttons/console/absu_gs
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_gz
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_gz  700
 TRIS 61920 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 0.003800 0.001198 0.000000 1.000000 tu154b2/custom/buttons/console/absu_throt_off_1
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro1
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro1  700
 TRIS 62154 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 0.003800 0.001198 0.000000 1.000000 tu154b2/custom/buttons/console/absu_throt_off_2
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro2
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro2  700
 TRIS 62388 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 0.003800 0.001198 0.000000 1.000000 tu154b2/custom/buttons/console/absu_throt_off_3
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro3
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_thro3  700
 TRIS 62622 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000781 -0.000294 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_speed
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_spd
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_spd  700
 TRIS 62856 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000807 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_m
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_m
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_m  700
 TRIS 63090 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000807 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_v
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_v
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_v  700
 TRIS 63324 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.000807 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab_h
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_h
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab_h  700
 TRIS 63558 234
 ANIM_end
 ANIM_begin
 ANIM_trans 0.000000 0.000000 0.000000 0.000000 -0.001417 0.000000 0.000000 1.000000 tu154b2/custom/buttons/console/absu_stab
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab
+ATTR_light_level 0.000000 1.000000  tu154b2/custom/lights/button/absu_stab  700
 TRIS 63792 78
 ANIM_end
 ANIM_begin

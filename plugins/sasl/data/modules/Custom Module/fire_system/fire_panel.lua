@@ -367,7 +367,7 @@ local function lamps()
 	local power_sw = get(fire_main_switch)
 	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * power_sw
 	local day_night = 1 --1 - get(day_night_set) * 0.9
-	local day_night_eng = 1 - get(day_night_set_eng) * 0.9
+	local day_night_eng = 1 - get(day_night_set_eng) * 0.95
 	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * power_sw
 	local test_btn_frnt = get(lamp_test_front) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)
 

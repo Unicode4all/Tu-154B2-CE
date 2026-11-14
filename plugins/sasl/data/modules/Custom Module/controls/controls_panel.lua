@@ -291,8 +291,8 @@ local ind_tbl = {
 {100, 20}}
 
 local function lamps()
-	local day_night = 1 - get(day_night_set) * 0.9
-	local day_night_eng = 1 - get(day_night_set_eng) * 0.9
+	local day_night = 1 - get(day_night_set) * 0.95
+	local day_night_eng = 1 - get(day_night_set_eng) * 0.95
 	local test_btn = get(lamp_test) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night
 	local test_btn_eng = get(lamp_test_eng) * math.max((get(bus27_volt_right) - 10) / 18.5, 0) * day_night_eng
 	

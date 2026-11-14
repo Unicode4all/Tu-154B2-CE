@@ -147,7 +147,8 @@ function update()
 	set(rv_flag, flag_show)
 	
 	-- lamp logic
-	local lamp_lit = bool2int(alt_angle < get(dh_set) - 1 and power)
+	local vpr = bool2int(alt_angle < get(dh_set) - 1 and power)
+	local lamp_lit = vpr
 	local light_brt = get(light_lim)
 	if lamp_lit > light_brt then
 		lamp_lit = light_brt
@@ -157,7 +158,7 @@ function update()
 	-- set results
 	if get(ismaster)~=1 then
 		set(rv_lamp, lamp_lit * lamp_coef)
-		set(rv5_dh_signal, lamp_lit)
+		set(rv5_dh_signal, vpr)
 		set(rv_angle, alt_angle_act)
 		set(rv5_alt, alt)
 	end

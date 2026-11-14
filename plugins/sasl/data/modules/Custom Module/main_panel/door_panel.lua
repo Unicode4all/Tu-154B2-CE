@@ -44,7 +44,7 @@ local passed = get(frame_time)
 
 
 local function lamps()
-	local day_night = 1 - get(day_night_set) * 0.9
+	local day_night = 1 - get(day_night_set) * 0.95
 	local test_btn = get(test_lamps) * math.max((get(bus27_volt_right) - 10) / 18.5, 0)* day_night
 	local lamps_brt = math.max((math.max(get(bus27_volt_left), get(bus27_volt_right)) - 10) / 18.5, 0)
 	
