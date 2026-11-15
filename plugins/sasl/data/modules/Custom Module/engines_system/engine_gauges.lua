@@ -726,9 +726,6 @@ local function egt_gauges()
 	local ice1=1+get(eng1_ice)*0.3
 	local ice2=1+get(eng2_ice)*0.25
 	local ice3=1+get(eng3_ice)*0.3
-	set(sim_egt_1,egt_1_need*ice1)
-	set(sim_egt_2,egt_2_need*ice2)
-	set(sim_egt_3,egt_3_need*ice3)
 	
 	if power_1 and ite_1<1 then
 		ite_1=ite_1+passed
@@ -763,17 +760,25 @@ local function egt_gauges()
 	egt_3_sens = egt_3_sens + (egt_3_need*ice3 - egt_3_sens) * passed/5
 
 	-- smooth needle movement
-	egt_1_actual = egt_1_actual + (egt_1_sens+(148-egt_1_sens)*bool2int(test_button1) - egt_1_actual) * passed * ite_1
-	egt_2_actual = egt_2_actual + (egt_2_sens+(152-egt_2_sens)*bool2int(test_button2) - egt_2_actual) * passed * ite_2
-	egt_3_actual = egt_3_actual + (egt_3_sens+(140-egt_3_sens)*bool2int(test_button3) - egt_3_actual) * passed * ite_3
 	
-	set(egt_1, egt_1_actual)
-	set(egt_2, egt_2_actual)
-	set(egt_3, egt_3_actual)
-	
-	set(nk8_temp1, egt_1_sens)
-	set(nk8_temp2, egt_2_sens)
-	set(nk8_temp3, egt_3_sens)
+	if pilot then		
+		egt_1_actual = egt_1_actual + (egt_1_sens+(148-egt_1_sens)*bool2int(test_button1) - egt_1_actual) * passed * ite_1
+		egt_2_actual = egt_2_actual + (egt_2_sens+(152-egt_2_sens)*bool2int(test_button2) - egt_2_actual) * passed * ite_2
+		egt_3_actual = egt_3_actual + (egt_3_sens+(140-egt_3_sens)*bool2int(test_button3) - egt_3_actual) * passed * ite_3
+		set(egt_1, egt_1_actual)
+		set(egt_2, egt_2_actual)
+		set(egt_3, egt_3_actual)
+		set(sim_egt_1,egt_1_need*ice1)
+		set(sim_egt_2,egt_2_need*ice2)
+		set(sim_egt_3,egt_3_need*ice3)
+		set(nk8_temp1, egt_1_sens)
+		set(nk8_temp2, egt_2_sens)
+		set(nk8_temp3, egt_3_sens)
+	else
+		egt_1_actual = get(egt_1)
+		egt_2_actual = get(egt_2)
+		egt_3_actual = get(egt_3)	
+	end
 
 end
 
@@ -902,7 +907,7 @@ end
 
 
 local function tachometers()
-	if get(hascontrol_1) ~= 1 then
+	if pilot then
 		--local alt = get(msl_alt) * 3.28083 -- MSL alt in feet
 		local alt_baro = get(msl_alt) / 3.28084
 		--alt_baro=get(db1)*1000
@@ -1342,9 +1347,7 @@ function update()
 	gau_3_on = 1
 	
 	emi3()	
-	if pilot then
-		egt_gauges()
-	end
+	egt_gauges()
 	tachometers()		
 	if MASTER then		
 		fuel_flow()
