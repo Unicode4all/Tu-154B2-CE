@@ -902,322 +902,329 @@ end
 
 
 local function tachometers()
-	
-	--local alt = get(msl_alt) * 3.28083 -- MSL alt in feet
-	local alt_baro = get(msl_alt) / 3.28084
-	--alt_baro=get(db1)*1000
-	if alt_baro>12000 then
-		alt_baro=12000
-	end
-	-- rudder coeff here, doesnt belong to engine gauges but needs baro alt and this defined here
-	local rud_cf=interpolate(rudder_corr_tbl,alt_baro)
+	if get(hascontrol_1) ~= 1 then
+		--local alt = get(msl_alt) * 3.28083 -- MSL alt in feet
+		local alt_baro = get(msl_alt) / 3.28084
+		--alt_baro=get(db1)*1000
+		if alt_baro>12000 then
+			alt_baro=12000
+		end
+		-- rudder coeff here, doesnt belong to engine gauges but needs baro alt and this defined here
+		local rud_cf=interpolate(rudder_corr_tbl,alt_baro)
 
-	set(rud_coeff,rud_cf)
-	local flame1=get(burn1)
-	local flame2=get(burn2)
-	local flame3=get(burn3)
-	-- high pressure turbine
-	-- windmilling
-	-- if flame1==0 and get(apd_working_1)<1 then
-		-- set(eng1_N2,n2_1_runout)
-	-- end
-	-- if flame2==0 and get(apd_working_2)<1 then
-		-- set(eng2_N2,n2_2_runout)
-	-- end
-	-- if flame3==0 and get(apd_working_3)<1 then
-		-- set(eng3_N2,n2_3_runout)
-	-- end
-	
-	rpm_1 = get(eng1_N2)
-	rpm_2 = get(eng2_N2)
-	rpm_3 = get(eng3_N2)
-	
-	local rev_L=get(revers_flap_L)>0.1
-	local rev_R=get(revers_flap_R)>0.1
-	
-	local kpp_thres=get(kpp_up)
-	local kpp_thres2=get(kpp_dn)
+		set(rud_coeff,rud_cf)
+		local flame1=get(burn1)
+		local flame2=get(burn2)
+		local flame3=get(burn3)
+		-- high pressure turbine
+		-- windmilling
+		-- if flame1==0 and get(apd_working_1)<1 then
+			-- set(eng1_N2,n2_1_runout)
+		-- end
+		-- if flame2==0 and get(apd_working_2)<1 then
+			-- set(eng2_N2,n2_2_runout)
+		-- end
+		-- if flame3==0 and get(apd_working_3)<1 then
+			-- set(eng3_N2,n2_3_runout)
+		-- end
+		
+		rpm_1 = get(eng1_N2)
+		rpm_2 = get(eng2_N2)
+		rpm_3 = get(eng3_N2)
+		
+		local rev_L=get(revers_flap_L)>0.1
+		local rev_R=get(revers_flap_R)>0.1
+		
+		local kpp_thres=get(kpp_up)
+		local kpp_thres2=get(kpp_dn)
 
-	local idle_rpm=get(flt_idle_rpm)
-	
-	local dens=get(rho)
-	local temp=get(temp_SL)
-	local press=get(press_SL)*25.4
-	local rna_thres=temp*(44-36.5)/100+43
-	temp=temp+(760-press)/40*14.7
-	tme=tme+passed
-	tas_LP=passed/(T_tas+passed)*get(true_airspeed)*3.6+tas_LP*T_tas/(T_tas+passed)
-	local high_idle=idle_rpm
-	local d_isa=get(isa_temp_d)
-	q=dens*math.pow((tas_LP/3.6),2)/2
-	
-	-- N2 windmilling and runout calculations
-	if flame1>0 or get(apd_working_1)>0 then
-		n2_1_runout=rpm_1
-	else
-		n2_1_runout=math.max(n2_1_runout+(-n2_c_aero*dens*math.pow(n2_1_runout,2)+n2_c_q*q-n2_c_f)/n2_M_rot*passed,0)
-		rpm_1=n2_1_runout
-		set(eng1_N2,n2_1_runout)
-	end
-	if flame2>0 or get(apd_working_2)>0 then
-		n2_2_runout=rpm_2
-	else
-		n2_2_runout=math.max(n2_2_runout+(-n2_c_aero*dens*math.pow(n2_2_runout,2)+n2_c_q*q-n2_c_f)/n2_M_rot*passed,0)
-		rpm_2=n2_2_runout
-		set(eng2_N2,n2_2_runout)
-	end
-	if flame3>0 or get(apd_working_3)>0 then
-		n2_3_runout=rpm_3
-	else
-		n2_3_runout=math.max(n2_3_runout+(-n2_c_aero*dens*math.pow(n2_3_runout,2)+n2_c_q*q-n2_c_f)/n2_M_rot*passed,0)
-		rpm_3=n2_3_runout
-		set(eng3_N2,n2_3_runout)
-	end
-	
-	-- Engine1 N2
-	eng1_N1_need=rpm_1
-	-- if get(kpp1_fail)>0 then
-		-- eng1_N1_need=interpolate(kpp_fail_table, rpm_1)
-	-- end
-	-- if rpm_1<idle_rpm-0.5 then
-		-- eng1_N1_need=math.max(eng1_N1_need*flame1,interpolate(N2_windmill_table,rpm_1))
-	-- end
-	if ((rpm_1-rpm_1_last)>0 and eng1_N1_need<3.5) or eng1_N1_need<0.3 then
-		eng1_1_ang_act = eng1_1_ang_act-eng1_1_ang_act* passed
-	elseif (rpm_1-rpm_1_last)>0 and eng1_N1_need>=3.5 and eng1_N1_need<5 then
-		eng1_1_ang_act = eng1_1_ang_act+((10* math.exp(-(eng1_N1_need-3.5)*5)*math.sin(10*(eng1_N1_need-3.5))+eng1_N1_need)- eng1_1_ang_act)* passed * 20
-	else
-		eng1_1_ang_act = eng1_1_ang_act + (eng1_N1_need+(-0.145*math.pow(eng1_N1_need,2)+2.425*eng1_N1_need-8.313 )*0.2*math.sin(20*tme)*bool2int(eng1_N1_need>5 and eng1_N1_need<12) - eng1_1_ang_act) * passed *10 --(10-bool2int(rpm_1<55 and rpm_1>14 and (rpm_1-rpm_1_last)>0)*8.5)
-	end
-	set(rpm_high_1, eng1_1_ang_act)
-	-- Engine2 N2
-	eng2_N1_need=rpm_2
-	-- if get(kpp2_fail)>0 then
-		-- eng2_N1_need=interpolate(kpp_fail_table, rpm_2)
-	-- end
-	-- if rpm_2<idle_rpm-0.5 then
-		-- eng2_N1_need=math.max(eng2_N1_need*flame2,interpolate(N2_windmill_table,rpm_2))
-	-- end
-	if ((rpm_2-rpm_2_last)>0 and eng2_N1_need<3.5) or eng2_N1_need<0.9 then
-		eng2_1_ang_act =eng2_1_ang_act-eng2_1_ang_act* passed*2
-	elseif (rpm_2-rpm_2_last)>0 and eng2_N1_need>=3.5 and eng2_N1_need<5 then
-		eng2_1_ang_act = eng2_1_ang_act+((10* math.exp(-(eng2_N1_need-3.5)*5)*math.sin(10*(eng2_N1_need-3.5))+eng2_N1_need)- eng2_1_ang_act)* passed * 20
-	else
-		eng2_1_ang_act = eng2_1_ang_act + (eng2_N1_need+(-0.145*math.pow(eng2_N1_need,2)+2.425*eng2_N1_need-8.313 )*0.17*math.sin(20*tme+1.5)*bool2int(eng2_N1_need>5 and eng2_N1_need<12) - eng2_1_ang_act) * passed * 10
-	end
-	set(rpm_high_2, eng2_1_ang_act)
-	-- Engine3 N2
-	eng3_N1_need=rpm_3
-	if get(kpp3_fail)>0 then
-		eng3_N1_need=interpolate(kpp_fail_table, rpm_3)
-	end
-	--eng3_N1_need=math.max(eng3_N1_need,interpolate(N2_table,rpm_3))
-		-- use sim rpm for windmilling
-	-- if rpm_3<idle_rpm-0.5 then
-		-- eng3_N1_need=math.max(eng3_N1_need*flame3,interpolate(N2_windmill_table,rpm_3))
-	-- end
-	-- if rev_R then
-		-- eng3_N1_need=interpolate(rev_tbl,eng3_N1_need)
-	-- end
-	if ((rpm_3-rpm_3_last)>0 and eng3_N1_need<3.5) or eng3_N1_need<0.3 then
-		eng3_1_ang_act =eng3_1_ang_act-eng3_1_ang_act* passed
-	elseif (rpm_3-rpm_3_last)>0 and eng3_N1_need>=3.5 and eng3_N1_need<5 then
-		eng3_1_ang_act = eng3_1_ang_act+((10* math.exp(-(eng3_N1_need-3.5)*5)*math.sin(10*(eng3_N1_need-3.5))+eng3_N1_need)- eng3_1_ang_act)* passed * 20
-	else
-		eng3_1_ang_act = eng3_1_ang_act + (eng3_N1_need+(-0.145*math.pow(eng3_N1_need,2)+2.425*eng3_N1_need-8.313 )*0.21*math.sin(19*tme)*bool2int(eng3_N1_need>5 and eng3_N1_need<12) - eng3_1_ang_act) * passed * 10
-	end
-	set(rpm_high_3, eng3_1_ang_act)
-	if passed~=0 then
-		delta_rpm_1=(rpm_1-rpm_1_last)/passed
-	end
-	if passed~=0 then
-		delta_rpm_2=(rpm_2-rpm_2_last)/passed
-	end
-	if passed~=0 then
-		delta_rpm_3=(rpm_3-rpm_3_last)/passed
-	end
-	rpm_1_last = rpm_1
-	rpm_2_last = rpm_2
-	rpm_3_last = rpm_3
+		local idle_rpm=get(flt_idle_rpm)
+		
+		local dens=get(rho)
+		local temp=get(temp_SL)
+		local press=get(press_SL)*25.4
+		local rna_thres=temp*(44-36.5)/100+43
+		temp=temp+(760-press)/40*14.7
+		tme=tme+passed
+		tas_LP=passed/(T_tas+passed)*get(true_airspeed)*3.6+tas_LP*T_tas/(T_tas+passed)
+		local high_idle=idle_rpm
+		local d_isa=get(isa_temp_d)
+		q=dens*math.pow((tas_LP/3.6),2)/2
+		
+		-- N2 windmilling and runout calculations
+		if flame1>0 or get(apd_working_1)>0 then
+			n2_1_runout=rpm_1
+		else
+			n2_1_runout=math.max(n2_1_runout+(-n2_c_aero*dens*math.pow(n2_1_runout,2)+n2_c_q*q-n2_c_f)/n2_M_rot*passed,0)
+			rpm_1=n2_1_runout
+			set(eng1_N2,n2_1_runout)
+		end
+		if flame2>0 or get(apd_working_2)>0 then
+			n2_2_runout=rpm_2
+		else
+			n2_2_runout=math.max(n2_2_runout+(-n2_c_aero*dens*math.pow(n2_2_runout,2)+n2_c_q*q-n2_c_f)/n2_M_rot*passed,0)
+			rpm_2=n2_2_runout
+			set(eng2_N2,n2_2_runout)
+		end
+		if flame3>0 or get(apd_working_3)>0 then
+			n2_3_runout=rpm_3
+		else
+			n2_3_runout=math.max(n2_3_runout+(-n2_c_aero*dens*math.pow(n2_3_runout,2)+n2_c_q*q-n2_c_f)/n2_M_rot*passed,0)
+			rpm_3=n2_3_runout
+			set(eng3_N2,n2_3_runout)
+		end
+		
+		-- Engine1 N2
+		eng1_N1_need=rpm_1
+		-- if get(kpp1_fail)>0 then
+			-- eng1_N1_need=interpolate(kpp_fail_table, rpm_1)
+		-- end
+		-- if rpm_1<idle_rpm-0.5 then
+			-- eng1_N1_need=math.max(eng1_N1_need*flame1,interpolate(N2_windmill_table,rpm_1))
+		-- end
+		if ((rpm_1-rpm_1_last)>0 and eng1_N1_need<3.5) or eng1_N1_need<0.3 then
+			eng1_1_ang_act = eng1_1_ang_act-eng1_1_ang_act* passed
+		elseif (rpm_1-rpm_1_last)>0 and eng1_N1_need>=3.5 and eng1_N1_need<5 then
+			eng1_1_ang_act = eng1_1_ang_act+((10* math.exp(-(eng1_N1_need-3.5)*5)*math.sin(10*(eng1_N1_need-3.5))+eng1_N1_need)- eng1_1_ang_act)* passed * 20
+		else
+			eng1_1_ang_act = eng1_1_ang_act + (eng1_N1_need+(-0.145*math.pow(eng1_N1_need,2)+2.425*eng1_N1_need-8.313 )*0.2*math.sin(20*tme)*bool2int(eng1_N1_need>5 and eng1_N1_need<12) - eng1_1_ang_act) * passed *10 --(10-bool2int(rpm_1<55 and rpm_1>14 and (rpm_1-rpm_1_last)>0)*8.5)
+		end
+		set(rpm_high_1, eng1_1_ang_act)
+		-- Engine2 N2
+		eng2_N1_need=rpm_2
+		-- if get(kpp2_fail)>0 then
+			-- eng2_N1_need=interpolate(kpp_fail_table, rpm_2)
+		-- end
+		-- if rpm_2<idle_rpm-0.5 then
+			-- eng2_N1_need=math.max(eng2_N1_need*flame2,interpolate(N2_windmill_table,rpm_2))
+		-- end
+		if ((rpm_2-rpm_2_last)>0 and eng2_N1_need<3.5) or eng2_N1_need<0.9 then
+			eng2_1_ang_act =eng2_1_ang_act-eng2_1_ang_act* passed*2
+		elseif (rpm_2-rpm_2_last)>0 and eng2_N1_need>=3.5 and eng2_N1_need<5 then
+			eng2_1_ang_act = eng2_1_ang_act+((10* math.exp(-(eng2_N1_need-3.5)*5)*math.sin(10*(eng2_N1_need-3.5))+eng2_N1_need)- eng2_1_ang_act)* passed * 20
+		else
+			eng2_1_ang_act = eng2_1_ang_act + (eng2_N1_need+(-0.145*math.pow(eng2_N1_need,2)+2.425*eng2_N1_need-8.313 )*0.17*math.sin(20*tme+1.5)*bool2int(eng2_N1_need>5 and eng2_N1_need<12) - eng2_1_ang_act) * passed * 10
+		end
+		set(rpm_high_2, eng2_1_ang_act)
+		-- Engine3 N2
+		eng3_N1_need=rpm_3
+		if get(kpp3_fail)>0 then
+			eng3_N1_need=interpolate(kpp_fail_table, rpm_3)
+		end
+		--eng3_N1_need=math.max(eng3_N1_need,interpolate(N2_table,rpm_3))
+			-- use sim rpm for windmilling
+		-- if rpm_3<idle_rpm-0.5 then
+			-- eng3_N1_need=math.max(eng3_N1_need*flame3,interpolate(N2_windmill_table,rpm_3))
+		-- end
+		-- if rev_R then
+			-- eng3_N1_need=interpolate(rev_tbl,eng3_N1_need)
+		-- end
+		if ((rpm_3-rpm_3_last)>0 and eng3_N1_need<3.5) or eng3_N1_need<0.3 then
+			eng3_1_ang_act =eng3_1_ang_act-eng3_1_ang_act* passed
+		elseif (rpm_3-rpm_3_last)>0 and eng3_N1_need>=3.5 and eng3_N1_need<5 then
+			eng3_1_ang_act = eng3_1_ang_act+((10* math.exp(-(eng3_N1_need-3.5)*5)*math.sin(10*(eng3_N1_need-3.5))+eng3_N1_need)- eng3_1_ang_act)* passed * 20
+		else
+			eng3_1_ang_act = eng3_1_ang_act + (eng3_N1_need+(-0.145*math.pow(eng3_N1_need,2)+2.425*eng3_N1_need-8.313 )*0.21*math.sin(19*tme)*bool2int(eng3_N1_need>5 and eng3_N1_need<12) - eng3_1_ang_act) * passed * 10
+		end
+		set(rpm_high_3, eng3_1_ang_act)
+		if passed~=0 then
+			delta_rpm_1=(rpm_1-rpm_1_last)/passed
+		end
+		if passed~=0 then
+			delta_rpm_2=(rpm_2-rpm_2_last)/passed
+		end
+		if passed~=0 then
+			delta_rpm_3=(rpm_3-rpm_3_last)/passed
+		end
+		rpm_1_last = rpm_1
+		rpm_2_last = rpm_2
+		rpm_3_last = rpm_3
 
-	-- low pressure turbine
-	
-    -- expected N1 at idle N2
-	local low_idle1=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna1
-	local low_idle2=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,idle_rpm)
-	local low_idle3=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna3
-	local c_q=c_q_base*interpolate(c_q_corr_table,tas_LP)
-	-- correct turbine power coefficient to match idle N1
-	c_turb1=c_aero*dens*math.pow(low_idle1,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
-	c_turb2=c_aero*dens*math.pow(low_idle2,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
-	c_turb3=c_aero*dens*math.pow(low_idle3,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
-	local ias=get(indicated_airspeed)*1.852
-	local wind_angle=math.min(get(wind_dir)-get(acft_dir),360-get(wind_dir)+get(acft_dir))
-	if tas_LP>80 then
-		wind_angle=0
-	end
-	-- if tas_LP>60 then
-		-- wind_angle=1
-	-- end
-	local q1=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_L))
-	local q2=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))
-	local q3=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_R))
-	if math.abs(wind_angle)>90 then
-		q1=q1/2*(1-get(revers_flap_L))
-		q3=q3/2*(1-get(revers_flap_R))
-	end
+		-- low pressure turbine
+		
+		-- expected N1 at idle N2
+		local low_idle1=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna1
+		local low_idle2=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,idle_rpm)
+		local low_idle3=n1_from_n2 (idle_rpm,d_isa,alt_baro/1000,tas_LP)-rna3
+		local c_q=c_q_base*interpolate(c_q_corr_table,tas_LP)
+		-- correct turbine power coefficient to match idle N1
+		c_turb1=c_aero*dens*math.pow(low_idle1,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
+		c_turb2=c_aero*dens*math.pow(low_idle2,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
+		c_turb3=c_aero*dens*math.pow(low_idle3,2)/math.pow(high_idle,2)-c_q*q/math.pow(high_idle,2)
+		local ias=get(indicated_airspeed)*1.852
+		local wind_angle=math.min(get(wind_dir)-get(acft_dir),360-get(wind_dir)+get(acft_dir))
+		if tas_LP>80 then
+			wind_angle=0
+		end
+		-- if tas_LP>60 then
+			-- wind_angle=1
+		-- end
+		local q1=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_L))
+		local q2=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))
+		local q3=q*math.cos(wind_angle/180*3.14)*(1-get(eng_covers))*(1-0.5*get(revers_flap_R))
+		if math.abs(wind_angle)>90 then
+			q1=q1/2*(1-get(revers_flap_L))
+			q3=q3/2*(1-get(revers_flap_R))
+		end
 
-	--N1 as function of N2
-	eng1_N2_need_old=n1_from_n2 (eng1_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna1
-	eng1_N2_need_old=eng1_N2_need_old*interpolate(n1_start_corr_tbl_1,eng1_1_ang_act) -- blend base N1 with start N1
-	--set(db1,eng1_N2_need_old)
-	--IGV
-	if eng1_N2_need>rna_thres and rna1>0 then
-		rna1=rna1 -rna1*passed*(1-0.8*math.max(math.max(rna1,4)-4,0)/2)/2
-		if rna1<0 then
-			rna1=0
+		--N1 as function of N2
+		eng1_N2_need_old=n1_from_n2 (eng1_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna1
+		eng1_N2_need_old=eng1_N2_need_old*interpolate(n1_start_corr_tbl_1,eng1_1_ang_act) -- blend base N1 with start N1
+		--set(db1,eng1_N2_need_old)
+		--IGV
+		if eng1_N2_need>rna_thres and rna1>0 then
+			rna1=rna1 -rna1*passed*(1-0.8*math.max(math.max(rna1,4)-4,0)/2)/2
+			if rna1<0 then
+				rna1=0
+			end
+		elseif eng1_N2_need<rna_thres and rna1<6 then
+			rna1=rna1+(6-rna1)*passed*(1-0.8*(1-math.min(math.min(rna1,2),2)/2))/2
+			if rna1>6 then
+				rna1=6
+			end
 		end
-	elseif eng1_N2_need<rna_thres and rna1<6 then
-		rna1=rna1+(6-rna1)*passed*(1-0.8*(1-math.min(math.min(rna1,2),2)/2))/2
-		if rna1>6 then
-			rna1=6
+		-- Startup N1
+		if eng1_N2_need>=0 then
+			a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.min(eng1_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+		else
+			a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)+c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.max(eng1_N2_need/0.001,-1)
 		end
-	end
-	-- Startup N1
-	if eng1_N2_need>=0 then
-		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)-c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.min(eng1_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+		if start_timer>3 then
+			eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
+		end
+		--set(db1,eng1_N2_need)
+		--set(db2,eng1_N2_need_old)
+		if math.abs(eng1_N2_need)<eng1_N2_need_old*flame1 then
+			eng1_N2_need=eng1_N2_need_old*flame1
+		end
+		if ((eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2) or eng1_N2_need<1  then
+			eng1_2_ang_act=eng1_2_ang_act-eng1_2_ang_act*passed*2
+		elseif (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need>=2 and eng1_N2_need<3 then
+			eng1_2_ang_act= eng1_2_ang_act+((2* math.exp(-(eng1_N2_need-2)*5)*math.sin(10*(eng1_N2_need-2))+eng1_N2_need)- eng1_2_ang_act)* passed * 20
+			needle_1_move=1
+		else
+			eng1_2_ang_act = eng1_2_ang_act + (eng1_N2_need+(-0.04167*math.pow(eng1_N2_need,2)+0.5417*eng1_N2_need-1.5)*0.57*math.sin(20*tme+2)*bool2int(eng1_N2_need>3 and eng1_N2_need<9) - eng1_2_ang_act) * passed * 20  * needle_1_move
+		end
+		if eng1_N2_need>20 then
+			needle_1_move=1
+		elseif eng1_2_ang_act<0.4 then
+			needle_1_move=0
+		end
+		set(rpm_low_1, eng1_2_ang_act)
+		--N1 Engine 2
+		eng2_N2_need_old=n1_from_n2 (eng2_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,eng2_1_ang_act)--small correction for engine without reverse thrust
+		eng2_N2_need_old=eng2_N2_need_old*interpolate(n1_start_corr_tbl_1,eng2_1_ang_act)
+		--IGV
+		if eng2_N2_need>rna_thres+0.5 and rna2>0 then
+			rna2=rna2 -rna2*passed*(1-0.8*math.max(math.max(rna2,4)-4,0)/2)/2
+			if rna2<0 then
+				rna2=0
+			end
+		elseif eng2_N2_need<rna_thres+0.25 and rna2<6 then
+			rna2=rna2+(6-rna2)*passed*(1-0.8*(1-math.min(math.min(rna2,2),2)/2))/2
+			if rna2>6 then
+				rna2=6
+			end
+		end
+		-- Startup N1
+		a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q2-c_f--*1.3*bool2int(eng2_N2_need>0.01)
+		eng2_N2_need = eng2_N2_need+a_N1/M_rot*passed
+		eng2_N2_need=math.max(eng2_N2_need_old*flame2,eng2_N2_need)
+		if ((eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2) or eng2_N2_need<1  then
+			eng2_2_ang_act=eng2_2_ang_act-eng2_2_ang_act*passed*2
+		elseif (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need>=2 and eng2_N2_need<3 then
+			eng2_2_ang_act= eng2_2_ang_act+((2* math.exp(-(eng2_N2_need-2)*5)*math.sin(10*(eng2_N2_need-2))+eng2_N2_need)- eng2_2_ang_act)* passed * 20
+			needle_2_move=1
+		else
+			eng2_2_ang_act = eng2_2_ang_act + (eng2_N2_need+(-0.04167*math.pow(eng2_N2_need,2)+0.5417*eng2_N2_need-1.5)*0.66*math.sin(20*tme+3)*bool2int(eng2_N2_need>3 and eng2_N2_need<9) - eng2_2_ang_act) * passed * 20 * needle_2_move
+		end
+		if eng2_N2_need>20 then
+			needle_2_move=1
+		elseif eng2_2_ang_act<0.4 then
+			needle_2_move=0
+		end
+		set(rpm_low_2, eng2_2_ang_act)
+		--N1 Engine 3
+		eng3_N2_need_old=n1_from_n2 (eng3_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna3
+		eng3_N2_need_old=eng3_N2_need_old*interpolate(n1_start_corr_tbl_1,eng3_1_ang_act)
+		--IGV
+		if eng3_N2_need>rna_thres-0.5 and rna3>0 then
+			rna3=rna3 -rna3*passed*(1-0.8*math.max(math.max(rna3,4)-4,0)/2)/2
+			if rna3<0 then
+				rna3=0
+			end
+		elseif eng3_N2_need<rna_thres+0.5 and rna3<6 then
+			rna3=rna3+(6-rna3)*passed*(1-0.8*(1-math.min(math.min(rna3,2),2)/2))/2
+			if rna3>6 then
+				rna3=6
+			end
+		end
+		--N1 for low and high N2
+		-- Startup N1
+		if eng3_N2_need>=0 then
+			a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.min(eng3_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
+		else
+			a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)+c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.max(eng3_N2_need/0.001,-1)
+		end
+		if start_timer>3 then
+			eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
+		end
+		--eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
+		if math.abs(eng3_N2_need)<eng3_N2_need_old*flame3 then
+			eng3_N2_need=eng3_N2_need_old*flame3
+		end
+		if ((eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2) or eng3_N2_need<1.1 then
+			eng3_2_ang_act=eng3_2_ang_act-eng3_2_ang_act*passed
+		elseif (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need>=2 and eng3_N2_need<3 then
+			eng3_2_ang_act= eng3_2_ang_act+((2* math.exp(-(eng3_N2_need-2)*5)*math.sin(10*(eng3_N2_need-2))+eng3_N2_need)- eng3_2_ang_act)* passed * 20
+			needle_3_move=1
+		else
+			eng3_2_ang_act = eng3_2_ang_act + (eng3_N2_need+(-0.04167*math.pow(eng3_N2_need,2)+0.5417*eng3_N2_need-1.5)*0.45*math.sin(20*tme+1)*bool2int(eng3_N2_need>3 and eng3_N2_need<9) - eng3_2_ang_act) * passed * 20 * needle_3_move
+		end
+		if eng3_N2_need>20 then
+			needle_3_move=1
+		elseif eng3_2_ang_act<0.4 then
+			needle_3_move=0
+		end
+		--if eng1_N2_need<80 then
+		if eng1_N2_need<2 then
+			fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
+		end
+		if fan_1>=360 then
+			fan_1=fan_1-360
+		end
+		--end
+		--if eng3_N2_need<40 then	
+		if eng3_N2_need<2 then
+			fan_3=fan_3+eng3_N2_need/100*rpm_knd/60*360*passed
+		end
+		if fan_3>=360 then
+			fan_3=fan_3-360
+		end
+		--end
+		-- set(db1,eng3_N2_need)
+		-- set(db2,q)
+		-- set(db3,wind_angle)
+		eng1_N2_need_prev=eng1_N2_need
+		eng2_N2_need_prev=eng2_N2_need
+		eng3_N2_need_prev=eng3_N2_need
+		
+		set(rpm_low_3, eng3_2_ang_act)
+		set(igv1,bool2int(rna1>5))
+		set(igv2,bool2int(rna2>5))
+		set(igv3,bool2int(rna3>5))
+		set(rot_1,fan_1)
+		set(rot_3,fan_3)
+		set(knd_1,eng1_N2_need)
+		set(knd_3,eng3_N2_need)
 	else
-		a_N1=c_turb1*math.pow(eng1_1_ang_act,2)*(0.2+0.8*flame1)+c_aero*dens*math.pow(eng1_N2_need,2)+c_q*q1-c_f*math.max(eng1_N2_need/0.001,-1)
+		eng1_2_ang_act = get(rpm_low_1)
+		eng2_2_ang_act = get(rpm_low_2)
+		eng3_2_ang_act = get(rpm_low_3)
+		eng1_1_ang_act = get(rpm_high_1)
+		eng2_1_ang_act = get(rpm_high_2)
+		eng3_1_ang_act = get(rpm_high_3)
 	end
-	if start_timer>3 then
-		eng1_N2_need = eng1_N2_need+a_N1/M_rot*passed
-	end
-	--set(db1,eng1_N2_need)
-	--set(db2,eng1_N2_need_old)
-	if math.abs(eng1_N2_need)<eng1_N2_need_old*flame1 then
-		eng1_N2_need=eng1_N2_need_old*flame1
-	end
-	if ((eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need<2) or eng1_N2_need<1  then
-		eng1_2_ang_act=eng1_2_ang_act-eng1_2_ang_act*passed*2
-	elseif (eng1_N2_need - eng1_N2_need_prev)>0 and eng1_N2_need>=2 and eng1_N2_need<3 then
-		eng1_2_ang_act= eng1_2_ang_act+((2* math.exp(-(eng1_N2_need-2)*5)*math.sin(10*(eng1_N2_need-2))+eng1_N2_need)- eng1_2_ang_act)* passed * 20
-		needle_1_move=1
-	else
-		eng1_2_ang_act = eng1_2_ang_act + (eng1_N2_need+(-0.04167*math.pow(eng1_N2_need,2)+0.5417*eng1_N2_need-1.5)*0.57*math.sin(20*tme+2)*bool2int(eng1_N2_need>3 and eng1_N2_need<9) - eng1_2_ang_act) * passed * 20  * needle_1_move
-	end
-	if eng1_N2_need>20 then
-		needle_1_move=1
-	elseif eng1_2_ang_act<0.4 then
-		needle_1_move=0
-	end
-	set(rpm_low_1, eng1_2_ang_act)
-	--N1 Engine 2
-	eng2_N2_need_old=n1_from_n2 (eng2_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna2-interpolate(eng2_n1_corr_tbl,eng2_1_ang_act)--small correction for engine without reverse thrust
-	eng2_N2_need_old=eng2_N2_need_old*interpolate(n1_start_corr_tbl_1,eng2_1_ang_act)
-	--IGV
-	if eng2_N2_need>rna_thres+0.5 and rna2>0 then
-		rna2=rna2 -rna2*passed*(1-0.8*math.max(math.max(rna2,4)-4,0)/2)/2
-		if rna2<0 then
-			rna2=0
-		end
-	elseif eng2_N2_need<rna_thres+0.25 and rna2<6 then
-		rna2=rna2+(6-rna2)*passed*(1-0.8*(1-math.min(math.min(rna2,2),2)/2))/2
-		if rna2>6 then
-			rna2=6
-		end
-	end
-	-- Startup N1
-	a_N1=c_turb2*math.pow(eng2_1_ang_act,2)*(0.2+0.8*flame2)-c_aero*get(rho)*math.pow(eng2_N2_need,2)+c_q*q2-c_f--*1.3*bool2int(eng2_N2_need>0.01)
-	eng2_N2_need = eng2_N2_need+a_N1/M_rot*passed
-	eng2_N2_need=math.max(eng2_N2_need_old*flame2,eng2_N2_need)
-	if ((eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need<2) or eng2_N2_need<1  then
-		eng2_2_ang_act=eng2_2_ang_act-eng2_2_ang_act*passed*2
-	elseif (eng2_N2_need - eng2_N2_need_prev)>0 and eng2_N2_need>=2 and eng2_N2_need<3 then
-		eng2_2_ang_act= eng2_2_ang_act+((2* math.exp(-(eng2_N2_need-2)*5)*math.sin(10*(eng2_N2_need-2))+eng2_N2_need)- eng2_2_ang_act)* passed * 20
-		needle_2_move=1
-	else
-		eng2_2_ang_act = eng2_2_ang_act + (eng2_N2_need+(-0.04167*math.pow(eng2_N2_need,2)+0.5417*eng2_N2_need-1.5)*0.66*math.sin(20*tme+3)*bool2int(eng2_N2_need>3 and eng2_N2_need<9) - eng2_2_ang_act) * passed * 20 * needle_2_move
-	end
-	if eng2_N2_need>20 then
-		needle_2_move=1
-	elseif eng2_2_ang_act<0.4 then
-		needle_2_move=0
-	end
-	set(rpm_low_2, eng2_2_ang_act)
-	--N1 Engine 3
-	eng3_N2_need_old=n1_from_n2 (eng3_1_ang_act,d_isa,alt_baro/1000,tas_LP)-rna3
-	eng3_N2_need_old=eng3_N2_need_old*interpolate(n1_start_corr_tbl_1,eng3_1_ang_act)
-	--IGV
-	if eng3_N2_need>rna_thres-0.5 and rna3>0 then
-		rna3=rna3 -rna3*passed*(1-0.8*math.max(math.max(rna3,4)-4,0)/2)/2
-		if rna3<0 then
-			rna3=0
-		end
-	elseif eng3_N2_need<rna_thres+0.5 and rna3<6 then
-		rna3=rna3+(6-rna3)*passed*(1-0.8*(1-math.min(math.min(rna3,2),2)/2))/2
-		if rna3>6 then
-			rna3=6
-		end
-	end
-	--N1 for low and high N2
-	-- Startup N1
-	if eng3_N2_need>=0 then
-		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)-c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.min(eng3_N2_need/0.001,1)--*1.1*bool2int(eng1_N2_need>0.01)
-	else
-		a_N1=c_turb3*math.pow(eng3_1_ang_act,2)*(0.2+0.8*flame3)+c_aero*dens*math.pow(eng3_N2_need,2)+c_q*q3-c_f*math.max(eng3_N2_need/0.001,-1)
-	end
-	if start_timer>3 then
-		eng3_N2_need = eng3_N2_need+a_N1/M_rot*passed
-	end
-	--eng3_N2_need=math.max(eng3_N2_need_old*flame3,eng3_N2_need)
-	if math.abs(eng3_N2_need)<eng3_N2_need_old*flame3 then
-		eng3_N2_need=eng3_N2_need_old*flame3
-	end
-	if ((eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need<2) or eng3_N2_need<1.1 then
-		eng3_2_ang_act=eng3_2_ang_act-eng3_2_ang_act*passed
-	elseif (eng3_N2_need - eng3_N2_need_prev)>0 and eng3_N2_need>=2 and eng3_N2_need<3 then
-		eng3_2_ang_act= eng3_2_ang_act+((2* math.exp(-(eng3_N2_need-2)*5)*math.sin(10*(eng3_N2_need-2))+eng3_N2_need)- eng3_2_ang_act)* passed * 20
-		needle_3_move=1
-	else
-		eng3_2_ang_act = eng3_2_ang_act + (eng3_N2_need+(-0.04167*math.pow(eng3_N2_need,2)+0.5417*eng3_N2_need-1.5)*0.45*math.sin(20*tme+1)*bool2int(eng3_N2_need>3 and eng3_N2_need<9) - eng3_2_ang_act) * passed * 20 * needle_3_move
-	end
-	if eng3_N2_need>20 then
-		needle_3_move=1
-	elseif eng3_2_ang_act<0.4 then
-		needle_3_move=0
-	end
-	--if eng1_N2_need<80 then
-	if eng1_N2_need<2 then
-		fan_1=fan_1+eng1_N2_need/100*rpm_knd/60*360*passed
-	end
-	if fan_1>=360 then
-		fan_1=fan_1-360
-	end
-	--end
-	--if eng3_N2_need<40 then	
-	if eng3_N2_need<2 then
-		fan_3=fan_3+eng3_N2_need/100*rpm_knd/60*360*passed
-	end
-	if fan_3>=360 then
-		fan_3=fan_3-360
-	end
-	--end
-	-- set(db1,eng3_N2_need)
-	-- set(db2,q)
-	-- set(db3,wind_angle)
-	eng1_N2_need_prev=eng1_N2_need
-	eng2_N2_need_prev=eng2_N2_need
-	eng3_N2_need_prev=eng3_N2_need
-	
-	set(rpm_low_3, eng3_2_ang_act)
-	set(igv1,bool2int(rna1>5))
-	set(igv2,bool2int(rna2>5))
-	set(igv3,bool2int(rna3>5))
-	set(rot_1,fan_1)
-	set(rot_3,fan_3)
-	set(knd_1,eng1_N2_need)
-	set(knd_3,eng3_N2_need)
-
 
 
 end
@@ -1336,9 +1343,9 @@ function update()
 	
 	emi3()	
 	if pilot then
-		tachometers()
 		egt_gauges()
 	end
+	tachometers()		
 	if MASTER then		
 		fuel_flow()
 		vibra_gau()
