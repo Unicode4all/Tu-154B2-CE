@@ -848,6 +848,9 @@ function update()
 		contr_1 = get(eng_contr_1)
 		contr_2 = get(eng_contr_2)
 		contr_3 = get(eng_contr_3)
+		set(sim_rud_1,contr_1)
+		set(sim_rud_2,contr_2)
+		set(sim_rud_3,contr_3)
 		i_kvd_1 = 0
 		i_kvd_2 = 0
 		i_kvd_3 = 0
