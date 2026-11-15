@@ -147,6 +147,11 @@ R_SC_2 = globalPropertyf("tu154b2/custom/SC/thrust_2")
 R_SC_3 = globalPropertyf("tu154b2/custom/SC/thrust_3")
 control_thro_other = globalPropertyf("tu154b2/custom/SC/control_thro_other") -- другой человек упраляет РУД-ами
 revers_cmd = sasl.createCommand("t154/controlls/maks_revers", "Full Reverse")
+
+eng_contr_1 = globalPropertyf("tu154b2/custom/SC/engine_contr_1")
+eng_contr_2 = globalPropertyf("tu154b2/custom/SC/engine_contr_2")
+eng_contr_3 = globalPropertyf("tu154b2/custom/SC/engine_contr_3")
+
 -- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
 -- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
 -- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
@@ -819,24 +824,30 @@ function update()
 		
 		if kvd1<54.2-idle_lim_1 then -- engine controller takes over above 54.2% N2
 			set(sim_rud_1,0)
+			set(eng_contr_1,0)
 		else
+			set(eng_contr_1,contr_1)
 			set(sim_rud_1,contr_1)
 		end
 		
 		if kvd2<54.2-idle_lim_2 then
 			set(sim_rud_2,0)
+			set(eng_contr_2,0)
 		else
+			set(eng_contr_2,contr_2)
 			set(sim_rud_2,contr_2)
 		end
 		if kvd3<54.2-idle_lim_3 then
 			set(sim_rud_3,0)
+			set(eng_contr_3,0)
 		else
+			set(eng_contr_3,contr_3)
 			set(sim_rud_3,contr_3)
 		end
 	else
-		contr_1 = get(sim_rud_1)
-		contr_2 = get(sim_rud_2)
-		contr_3 = get(sim_rud_3)
+		contr_1 = get(eng_contr_1)
+		contr_2 = get(eng_contr_2)
+		contr_3 = get(eng_contr_3)
 		i_kvd_1 = 0
 		i_kvd_2 = 0
 		i_kvd_3 = 0
