@@ -1229,6 +1229,15 @@ local function tachometers()
 		eng1_1_ang_act = get(rpm_high_1)
 		eng2_1_ang_act = get(rpm_high_2)
 		eng3_1_ang_act = get(rpm_high_3)
+		eng1_N2_need = eng1_2_ang_act
+		eng2_N2_need = eng2_2_ang_act
+		eng3_N2_need = eng3_2_ang_act
+		n2_1_runout = get(rpm_high_1)
+		n2_2_runout = get(rpm_high_2)
+		n2_3_runout = get(rpm_high_3)
+		rna1 = get(igv1) * 6
+		rna2 = get(igv2) * 6
+		rna3 = get(igv3) * 6
 	end
 
 
