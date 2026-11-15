@@ -3,17 +3,18 @@
 
 
 -- SVS
-defineProperty("mach_svs", globalPropertyf("tu154b2/custom/svs/machno")) -- Mach number
---defineProperty("alt_svs", globalPropertyf("sim/flightmodel2/position/pressure_altitude")) -- Altitude by 1013 hpa
-defineProperty("tas_svs", globalPropertyf("tu154b2/custom/svs/true_airspeed")) -- TAS
+mach_svs = globalPropertyf("tu154b2/custom/svs/machno") -- Mach number
+--alt_svs = globalPropertyf("sim/flightmodel2/position/pressure_altitude") -- Altitude by 1013 hpa
+tas_svs = globalPropertyf("tu154b2/custom/svs/true_airspeed") -- TAS
 
-defineProperty("ias", globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot")) -- indicated airspeed in KTS
-defineProperty("pitch_sub_mode", globalPropertyi("tu154b2/custom/absu/pitch_sub_mode"))
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
+ias = globalPropertyf("sim/cockpit2/gauges/indicators/airspeed_kts_pilot") -- indicated airspeed in KTS
+pitch_sub_mode = globalPropertyi("tu154b2/custom/absu/pitch_sub_mode")
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
 
-defineProperty("h_integral", globalPropertyf("tu154b2/custom/absu/d_H_integral")) 
-defineProperty("v_integral", globalPropertyf("tu154b2/custom/absu/d_V_integral")) 
-defineProperty("m_integral", globalPropertyf("tu154b2/custom/absu/d_M_integral")) 
+h_integral = globalPropertyf("tu154b2/custom/absu/d_H_integral") 
+v_integral = globalPropertyf("tu154b2/custom/absu/d_V_integral") 
+m_integral = globalPropertyf("tu154b2/custom/absu/d_M_integral") 
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 --temp = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
 p_stat_smoothed = globalPropertyf("tu154b2/custom/svs/p_s_smoothed")
@@ -224,9 +225,11 @@ function update()
 	
 	end
 	pitch_submode_prev=pitch_submode
-	set(h_integral,integ_h)	
-	set(v_integral,integ_v)	
-	set(m_integral,integ_m)	
+	if get(hascontrol_1) ~= 1 then
+		set(h_integral,integ_h)	
+		set(v_integral,integ_v)	
+		set(m_integral,integ_m)
+	end
 end
 
 

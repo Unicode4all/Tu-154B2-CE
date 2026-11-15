@@ -314,7 +314,7 @@ local function lamps()
 	end
 	if stab_work_lit then stab_work_brt = 1 end
 	stab_work_brt = math.max(stab_work_brt * lamps_brt, test_btn)
-	if get(ismaster) ~= 1 then set(stab_work, stab_work_brt) end
+	if get(ismaster) ~= 1 then  end
 
 	stab_pos_last = stab_pos_now
 	
@@ -324,30 +324,28 @@ local function lamps()
 	
 	local flaps_1_valve_brt = get(flap_drive_1)
 	flaps_1_valve_brt = math.max(flaps_1_valve_brt * lamps_brt, test_btn) * (1 - get(lamp_1))
-	if get(ismaster) ~= 1 then set(flaps_1_valve, flaps_1_valve_brt) end
 	
 	local flaps_2_valve_brt = get(flap_drive_2)
 	flaps_2_valve_brt = math.max(flaps_2_valve_brt * lamps_brt, test_btn)
-	if get(ismaster) ~= 1 then set(flaps_2_valve, flaps_2_valve_brt) end
-	
+
 	-- flap_L_pos_last = flap_pos_now_L
 	-- flap_R_pos_last = flap_pos_now_R
 		
 	local spoilers_mid_left_brt = math.min(1, get(spd_brk_mid_L))
 	spoilers_mid_left_brt = math.max(spoilers_mid_left_brt * lamps_brt, test_btn)
-	set(spoilers_mid_left, spoilers_mid_left_brt)	
+	
 
 	local spoilers_mid_right_brt = math.min(1, get(spd_brk_mid_R))
 	spoilers_mid_right_brt = math.max(spoilers_mid_right_brt * lamps_brt, test_btn) * (1 - get(lamp_2))
-	set(spoilers_mid_right, spoilers_mid_right_brt)	
+	
 
 	local spoilers_inn_left_brt = math.min(1, get(spd_brk_inn_L))
 	spoilers_inn_left_brt = math.max(spoilers_inn_left_brt * lamps_brt, test_btn) 
-	set(spoilers_inn_left, spoilers_inn_left_brt)	
+	
 
 	local spoilers_inn_right_brt = math.min(1, get(spd_brk_inn_R))
 	spoilers_inn_right_brt = math.max(spoilers_inn_right_brt * lamps_brt, test_btn)
-	set(spoilers_inn_right, spoilers_inn_right_brt)		
+	
 	
 	
 	
@@ -379,10 +377,6 @@ local function lamps()
 
 	slats_last = slats_now
 	slats_extended_brt = math.max(slats_extended_brt * lamps_brt, test_btn)
-	if get(ismaster) ~= 1 then set(slats_extended, slats_extended_brt) end	
-	
-
-	
 	local to_rudder_brt = 0
 	local to_elevator_brt = 0
 	
@@ -434,18 +428,30 @@ local function lamps()
 	local trimm_zero_course_brt = 0
 	if math.abs(get(int_yaw_trim)) < 0.002 then trimm_zero_course_brt = 1 end
 	trimm_zero_course_brt = math.max(trimm_zero_course_brt * lamps_brt, test_btn)
-	set(trimm_zero_course, trimm_zero_course_brt)	
+	
 
 	local trimm_zero_roll_brt = 0
 	if math.abs(get(int_roll_trim)) < 0.002 then trimm_zero_roll_brt = 1 end
 	trimm_zero_roll_brt = math.max(trimm_zero_roll_brt * lamps_brt, test_btn)
-	set(trimm_zero_roll, trimm_zero_roll_brt)	
+	
 
 	local trimm_zero_pitch_brt = 0
 	if math.abs(get(int_pitch_trim)) < 0.004 then trimm_zero_pitch_brt = 1 end
 	trimm_zero_pitch_brt = math.max(trimm_zero_pitch_brt * lamps_brt, test_btn)
+	
+	if get(hascontrol_1) ~= 1 then
+		set(stab_work, stab_work_brt)
+		set(flaps_1_valve, flaps_1_valve_brt)
+		set(flaps_2_valve, flaps_2_valve_brt)
+		set(slats_extended, slats_extended_brt) 			
+	end	
+	set(spoilers_mid_left, spoilers_mid_left_brt)	
+	set(spoilers_mid_right, spoilers_mid_right_brt)	
+	set(spoilers_inn_left, spoilers_inn_left_brt)	
+	set(spoilers_inn_right, spoilers_inn_right_brt)		
+	set(trimm_zero_course, trimm_zero_course_brt)
+	set(trimm_zero_roll, trimm_zero_roll_brt)	
 	set(trimm_zero_pitch, trimm_zero_pitch_brt)		
-
 	local gear_F_pos = get(gear1_deploy)
 	local gear_L_pos = get(gear2_deploy)
 	local gear_R_pos = get(gear3_deploy)
