@@ -20147,16 +20147,16 @@ ATTR_manip_toggle hand 1.000000 0.000000 tu154b2/custom/switchers/eng/emerg_gen_
 TRIS 19869 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_medium 0.000000 0.000000 -0.100000 0.000000 2.000000 tu154b2/custom/switchers/spu_4_mode
+ATTR_manip_drag_axis rotate_medium 0.000000 0.000000 -0.100000 0.000000 2.000000 tu154b2/custom/anim/right_blind
 ATTR_manip_wheel 1.000000
 TRIS 19875 6
 ANIM_end
 ANIM_begin
-ATTR_manip_toggle hand 1.000000 0.000000 tu154b2/custom/switchers/eng/hydro_trimm_rud_2_cap
+ATTR_manip_toggle hand 1.000000 0.000000 tu154b2/custom/anim/center_blind
 TRIS 19881 6
 ANIM_end
 ANIM_begin
-ATTR_manip_drag_axis rotate_medium 0.000000 0.000000 -0.100000 0.000000 2.000000 tu154b2/custom/switchers/spu_4_source
+ATTR_manip_drag_axis rotate_medium 0.000000 0.000000 -0.100000 0.000000 2.000000 tu154b2/custom/anim/left_blind
 ATTR_manip_wheel 1.000000
 TRIS 19887 6
 ANIM_end

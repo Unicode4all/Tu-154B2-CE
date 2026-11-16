@@ -16617,44 +16617,44 @@ TRIS 4356 3291
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.100000 1.100000 tu154b2/custom/switchers/eng/hydro_trimm_rud_2_cap
+ANIM_hide 0.100000 1.100000 tu154b2/custom/anim/center_blind
 TRIS 7647 222
 ATTR_cull
 TRIS 7869 816
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 5.000000 tu154b2/custom/switchers/spu_4_mode
+ANIM_hide 0.000000 5.000000 tu154b2/custom/anim/right_blind
 ANIM_begin
-ANIM_show 0.000000 0.000000 tu154b2/custom/switchers/spu_4_mode
+ANIM_show 0.000000 0.000000 tu154b2/custom/anim/right_blind
 TRIS 8685 4320
 ATTR_no_cull
 TRIS 13005 60
 ANIM_end
 ANIM_begin
-ANIM_show 1.000000 1.000000 tu154b2/custom/switchers/spu_4_mode
+ANIM_show 1.000000 1.000000 tu154b2/custom/anim/right_blind
 ATTR_light_level_reset
 ATTR_cull
 TRIS 13065 144
 ANIM_end
 ANIM_begin
-ANIM_show 2.000000 2.000000 tu154b2/custom/switchers/spu_4_mode
+ANIM_show 2.000000 2.000000 tu154b2/custom/anim/right_blind
 TRIS 13209 96
 ANIM_end
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 5.000000 tu154b2/custom/switchers/spu_4_source
+ANIM_hide 0.000000 5.000000 tu154b2/custom/anim/left_blind
 ANIM_begin
-ANIM_show 0.000000 0.000000 tu154b2/custom/switchers/spu_4_source
+ANIM_show 0.000000 0.000000 tu154b2/custom/anim/left_blind
 ATTR_light_level 0.000000 1.000000 tu154b2/custom/light/no_LIT
 TRIS 13305 4380
 ANIM_end
 ANIM_begin
-ANIM_show 1.000000 1.000000 tu154b2/custom/switchers/spu_4_source
+ANIM_show 1.000000 1.000000 tu154b2/custom/anim/left_blind
 ATTR_light_level_reset
 TRIS 17685 96
 ANIM_end
 ANIM_begin
-ANIM_show 2.000000 2.000000 tu154b2/custom/switchers/spu_4_source
+ANIM_show 2.000000 2.000000 tu154b2/custom/anim/left_blind
 TRIS 17781 96
 ANIM_end
 ANIM_end
@@ -16725,7 +16725,7 @@ ATTR_no_cull
 TRIS 26934 222
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/eng/hydro_trimm_rud_2_cap
+ANIM_hide 0.000000 0.900000 tu154b2/custom/anim/center_blind
 ATTR_light_level_reset
 ATTR_cull
 TRIS 27156 828
@@ -16736,21 +16736,21 @@ ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/eng/emerg_gen_on_2
 TRIS 27984 852
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 1.900000 tu154b2/custom/switchers/spu_4_mode
+ANIM_hide 0.000000 1.900000 tu154b2/custom/anim/right_blind
 TRIS 28836 834
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/spu_4_mode
-ANIM_hide 1.100000 5.000000 tu154b2/custom/switchers/spu_4_mode
+ANIM_hide 0.000000 0.900000 tu154b2/custom/anim/right_blind
+ANIM_hide 1.100000 5.000000 tu154b2/custom/anim/right_blind
 TRIS 29670 834
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 0.900000 tu154b2/custom/switchers/spu_4_source
-ANIM_hide 1.100000 5.000000 tu154b2/custom/switchers/spu_4_source
+ANIM_hide 0.000000 0.900000 tu154b2/custom/anim/left_blind
+ANIM_hide 1.100000 5.000000 tu154b2/custom/anim/left_blind
 TRIS 30504 846
 ANIM_end
 ANIM_begin
-ANIM_hide 0.000000 1.900000 tu154b2/custom/switchers/spu_4_source
+ANIM_hide 0.000000 1.900000 tu154b2/custom/anim/left_blind
 TRIS 31350 864
 ANIM_end
 ANIM_begin

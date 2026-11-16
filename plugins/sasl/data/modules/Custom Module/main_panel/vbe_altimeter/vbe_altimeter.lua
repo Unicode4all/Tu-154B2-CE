@@ -58,6 +58,11 @@ sim_alt = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_pilot")
 sim_alt_2 = globalPropertyf("sim/cockpit2/gauges/indicators/altitude_ft_copilot")
 qnh_set = globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_pilot")
 qnh_set_2 = globalPropertyf("sim/cockpit2/gauges/actuators/barometer_setting_in_hg_copilot")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX") -- Position of pilot's head relative to CG
+pilot_Y = globalPropertyf("sim/aircraft/view/acf_peY") -- Position of pilot's head relative to CG
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ") -- Position of pilot's head relative to CG
+vr_outside = globalPropertyi("sim/graphics/VR/teleport_on_ground")
+cockpit_door = globalPropertyf("tu154b2/custom/anim/cockpit_door") --
 --defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 
 
@@ -122,7 +127,7 @@ local switcher_last = get(vbe_on)
 function update()
 	
 	local MASTER = get(ismaster) ~= 1	
-
+	
 	
 	local passed = get(frame_time)
 	local num = get(gauge_num)
@@ -350,22 +355,35 @@ end
 	end
 	
 	-- sounds
-	local external = get(external_view) == 1
-	if ((mode_last ~= border_mode and border_mode == 1) or (mode_last == 0 and border_mode == 2) or (mode_last == 2 and border_mode == 1)) and self_test_timer > 8 and num == 0 and not external and get(kontur_90th) == 1 then
+	local z_pos=get(pilot_Z)
+	local x_pos=get(pilot_X)
+	if get(external_view) > 0 or math.abs(x_pos) > 1.6 or get(pilot_Y) < -0.4 or get(vr_outside) ==1 then
+	   external = 1
+    else
+	   external = 0
+    end
+	local door = 1
+	if z_pos + 1.42 > -19 then
+		door = 0.1 + 0.9 * get(cockpit_door)
+	end
+	local dist_sign=1
+	if z_pos+22.834698~=0 then
+		dist_sign=math.min(1,1/math.sqrt(math.pow(z_pos+22.834698,2)+math.pow(x_pos+0.09365284,2))/0.5) * (1 - external) * door
+	end
+	setSampleGain(vbe_alarm_snd,dist_sign * 1000 * get(warning_volume_ratio))
+	if ((mode_last ~= border_mode and border_mode == 1) or (mode_last == 0 and border_mode == 2) or (mode_last == 2 and border_mode == 1)) and self_test_timer > 8 and num == 0 and get(kontur_90th) == 1 then
 		playSample(vbe_alarm_snd, false)
 	end
 	mode_last = border_mode
 	
 	
-	setSampleGain(vbe_alarm_snd, 1000 * get(warning_volume_ratio))
-	
 	-- self test after power ON
 	self_test_timer = self_test_timer + passed
 	if self_test_timer < 17 then
 		if self_test_timer < 6 then
-			if not isSamplePlaying(vbe_alarm_snd) and self_test_timer > 2 and self_test_timer < 3.5 and num == 0 and not external and get(kontur_90th) == 1 then
+			if not isSamplePlaying(vbe_alarm_snd) and self_test_timer > 2 and self_test_timer < 3.5 and num == 0 and get(kontur_90th) == 1 then
 				playSample(vbe_alarm_snd, false) 
-			elseif external or self_test_timer >= 3.5 then
+			elseif self_test_timer >= 3.5 then
 				stopSample(vbe_alarm_snd)
 			end
 			mode = 0

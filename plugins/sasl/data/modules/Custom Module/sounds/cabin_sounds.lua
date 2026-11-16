@@ -1,103 +1,103 @@
 -- this is the main cabin sounds logic
 
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
-defineProperty("external_view", globalPropertyi("sim/graphics/view/view_is_external")) -- enviroment
+external_view = globalPropertyi("sim/graphics/view/view_is_external") -- enviroment
 
 
 -- logic sources
 
 -- RV
-defineProperty("dh_set_L", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_left"))  -- DH angle
-defineProperty("dh_set_R", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_right"))  -- DH angle
-defineProperty("rv_angle_L", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_left"))  -- RV needle
-defineProperty("rv_angle_R", globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_right"))  -- RV needle
+dh_set_L = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_left")  -- DH angle
+dh_set_R = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_dh_right")  -- DH angle
+rv_angle_L = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_left")  -- RV needle
+rv_angle_R = globalPropertyf("tu154b2/custom/gauges/alt/radioalt_needle_right")  -- RV needle
 
-defineProperty("rv5_dh_signal_left", globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_left"))
-defineProperty("rv5_dh_signal_right", globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_right"))
+rv5_dh_signal_left = globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_left")
+rv5_dh_signal_right = globalPropertyi("tu154b2/custom/misc/rv5_dh_signal_right")
 
 
 -- ABSU
-defineProperty("roll_main_mode", globalPropertyi("tu154b2/custom/absu/roll_main_mode")) -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
-defineProperty("pitch_main_mode", globalPropertyi("tu154b2/custom/absu/pitch_main_mode")) -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
-defineProperty("absu_power_27", globalPropertyf("tu154b2/custom/absu_power_27"))
-defineProperty("stu_mode", globalPropertyi("tu154b2/custom/absu/stu_mode")) -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб,
+roll_main_mode = globalPropertyi("tu154b2/custom/absu/roll_main_mode") -- основной режим АБСУ по крену. 0 - выкл, 1 - штурвальный - 2 - стаб
+pitch_main_mode = globalPropertyi("tu154b2/custom/absu/pitch_main_mode") -- основной режим АБСУ по тангажу. 0 - выкл, 1 - штурвальный - 2 - стаб
+absu_power_27 = globalPropertyf("tu154b2/custom/absu_power_27")
+stu_mode = globalPropertyi("tu154b2/custom/absu/stu_mode") -- режимы автомата тяги 0 - выкл, 1 - вкл, 2 - готов, 3 стаб,
 
-defineProperty("absu_fail_signal", globalPropertyi("tu154b2/custom/absu/absu_fail_signal")) -- сигнал на сирену
-defineProperty("at_fail_signal", globalPropertyi("tu154b2/custom/absu/at_fail_signal"))
-defineProperty("at_blocked", globalPropertyi("tu154b2/custom/failures/absu_at_blocked"))
+absu_fail_signal = globalPropertyi("tu154b2/custom/absu/absu_fail_signal") -- сигнал на сирену
+at_fail_signal = globalPropertyi("tu154b2/custom/absu/at_fail_signal")
+at_blocked = globalPropertyi("tu154b2/custom/failures/absu_at_blocked")
 -- alarm overall
-defineProperty("main_gear_flaps", globalPropertyi("tu154b2/custom/alarm/main_gear_flaps")) -- не взлетное положение закрылков или не выпущенны шасси
-defineProperty("main_pressure", globalPropertyi("tu154b2/custom/alarm/main_pressure")) -- разгерметизация или перенаддув кабины
-defineProperty("speaker_auasp", globalPropertyi("tu154b2/custom/alarm/speaker_auasp")) -- предельный угол атаки или перегрузки
-defineProperty("speaker_fuel", globalPropertyi("tu154b2/custom/alarm/speaker_fuel")) -- остаток топлива 2500 в баке 1
-defineProperty("speaker_speed", globalPropertyi("tu154b2/custom/alarm/speaker_speed")) -- предельная скорость
-defineProperty("speaker_absu", globalPropertyi("tu154b2/custom/alarm/speaker_absu")) -- отключение режимов или отказы АБСУ
+main_gear_flaps = globalPropertyi("tu154b2/custom/alarm/main_gear_flaps") -- не взлетное положение закрылков или не выпущенны шасси
+main_pressure = globalPropertyi("tu154b2/custom/alarm/main_pressure") -- разгерметизация или перенаддув кабины
+speaker_auasp = globalPropertyi("tu154b2/custom/alarm/speaker_auasp") -- предельный угол атаки или перегрузки
+speaker_fuel = globalPropertyi("tu154b2/custom/alarm/speaker_fuel") -- остаток топлива 2500 в баке 1
+speaker_speed = globalPropertyi("tu154b2/custom/alarm/speaker_speed") -- предельная скорость
+speaker_absu = globalPropertyi("tu154b2/custom/alarm/speaker_absu") -- отключение режимов или отказы АБСУ
 
-defineProperty("fire_siren", globalPropertyi("tu154b2/custom/fire/fire_siren")) -- работа сирены
+fire_siren = globalPropertyi("tu154b2/custom/fire/fire_siren") -- работа сирены
 
 -- controls
-defineProperty("srd_buzzer", globalPropertyi("tu154b2/custom/switchers/eng/srd_buzzer")) -- сирена СРД
-defineProperty("fuel_buzzer", globalPropertyi("tu154b2/custom/switchers/eng/fuel_buzzer")) -- сирена топл
+srd_buzzer = globalPropertyi("tu154b2/custom/switchers/eng/srd_buzzer") -- сирена СРД
+fuel_buzzer = globalPropertyi("tu154b2/custom/switchers/eng/fuel_buzzer") -- сирена топл
 
-defineProperty("srd_buzzer_cap", globalPropertyi("tu154b2/custom/switchers/eng/srd_buzzer_cap")) -- сирена СРД
-defineProperty("fuel_buzzer_cap", globalPropertyi("tu154b2/custom/switchers/eng/fuel_buzzer_cap")) -- сирена СРД
+srd_buzzer_cap = globalPropertyi("tu154b2/custom/switchers/eng/srd_buzzer_cap") -- сирена СРД
+fuel_buzzer_cap = globalPropertyi("tu154b2/custom/switchers/eng/fuel_buzzer_cap") -- сирена СРД
 
-defineProperty("srd_buzzer_test", globalPropertyi("tu154b2/custom/buttons/eng/srd_buzzer_test")) -- кнопка проверки
+srd_buzzer_test = globalPropertyi("tu154b2/custom/buttons/eng/srd_buzzer_test") -- кнопка проверки
 
 
 -- МРП
-defineProperty("outer_marker", globalPropertyi("sim/cockpit/misc/outer_marker_lit"))   -- runway markers
-defineProperty("middle_marker", globalPropertyi("sim/cockpit/misc/middle_marker_lit"))
-defineProperty("inner_marker", globalPropertyi("sim/cockpit/misc/inner_marker_lit"))
+outer_marker = globalPropertyi("sim/cockpit/misc/outer_marker_lit")   -- runway markers
+middle_marker = globalPropertyi("sim/cockpit/misc/middle_marker_lit")
+inner_marker = globalPropertyi("sim/cockpit/misc/inner_marker_lit")
 
 -- lights
---defineProperty("light_open_left", globalPropertyf("tu154b2/custom/anim/light_open_left")) -- light open
-defineProperty("light_open_right", globalPropertyf("tu154b2/custom/anim/light_open_right")) -- light open
+--light_open_left = globalPropertyf("tu154b2/custom/anim/light_open_left") -- light open
+light_open_right = globalPropertyf("tu154b2/custom/anim/light_open_right") -- light open
 
-defineProperty("airspeed", globalPropertyf("sim/flightmodel/position/indicated_airspeed")) -- indicated airspeed in KTS
+airspeed = globalPropertyf("sim/flightmodel/position/indicated_airspeed") -- indicated airspeed in KTS
 
 -- power
-defineProperty("bus27_volt_L", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_R", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
-defineProperty("bus36_volt_L", globalPropertyf("tu154b2/custom/elec/bus36_volt_left"))
-defineProperty("bus36_volt_R", globalPropertyf("tu154b2/custom/elec/bus36_volt_right"))
+bus27_volt_L = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_R = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
+bus36_volt_L = globalPropertyf("tu154b2/custom/elec/bus36_volt_left")
+bus36_volt_R = globalPropertyf("tu154b2/custom/elec/bus36_volt_right")
 
--- defineProperty("bus27_source_left", globalPropertyf("tu154b2/custom/elec/bus27_source_left")) -- источник сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 6 - соседняя сеть
--- defineProperty("bus27_source_right", globalPropertyf("tu154b2/custom/elec/bus27_source_right")) -- источник сети. 0 - ничего. 1 - ВУ2, 2 - ВУрезерв, 3 - батареи 2 и 4, 6 - соседняя сеть
+-- bus27_source_left = globalPropertyf("tu154b2/custom/elec/bus27_source_left") -- источник сети. 0 - ничего. 1 - ВУ1, 2 - ВУрезерв, 3 - батареи 1 и 3, 6 - соседняя сеть
+-- bus27_source_right = globalPropertyf("tu154b2/custom/elec/bus27_source_right") -- источник сети. 0 - ничего. 1 - ВУ2, 2 - ВУрезерв, 3 - батареи 2 и 4, 6 - соседняя сеть
 
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX")) -- Position of pilot's head relative to CG
-defineProperty("pilot_Y", globalPropertyf("sim/aircraft/view/acf_peY")) -- Position of pilot's head relative to CG
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ")) -- Position of pilot's head relative to CG
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX") -- Position of pilot's head relative to CG
+pilot_Y = globalPropertyf("sim/aircraft/view/acf_peY") -- Position of pilot's head relative to CG
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ") -- Position of pilot's head relative to CG
 
 
 
 -- air kond
-defineProperty("air_usage_L", globalPropertyf("tu154b2/custom/bleed/air_usage_L")) -- расход воздуха лев
-defineProperty("air_usage_R", globalPropertyf("tu154b2/custom/bleed/air_usage_R")) -- расход воздуха прав
+air_usage_L = globalPropertyf("tu154b2/custom/bleed/air_usage_L") -- расход воздуха лев
+air_usage_R = globalPropertyf("tu154b2/custom/bleed/air_usage_R") -- расход воздуха прав
 
 -- gears
-defineProperty("deflection_mtr_2", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]")) -- 
-defineProperty("deflection_mtr_3", globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]")) -- 
-defineProperty("groundspeed", globalPropertyf("sim/flightmodel/position/groundspeed")) -- GS, m/s
+deflection_mtr_2 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[1]") -- 
+deflection_mtr_3 = globalProperty("sim/flightmodel2/gear/tire_vertical_deflection_mtr[2]") -- 
+groundspeed = globalPropertyf("sim/flightmodel/position/groundspeed") -- GS, m/s
 
 -- flaps
-defineProperty("flaps_lever", globalPropertyf("tu154b2/custom/controll/flaps_lever")) -- sim flaps ratio control. use for axis and commands
+flaps_lever = globalPropertyf("tu154b2/custom/controll/flaps_lever") -- sim flaps ratio control. use for axis and commands
 
 
 -- loudness
-defineProperty("engine_volume_ratio", globalPropertyf("sim/operation/sound/engine_volume_ratio")) -- 
-defineProperty("prop_volume_ratio", globalPropertyf("sim/operation/sound/prop_volume_ratio")) -- 
-defineProperty("ground_volume_ratio", globalPropertyf("sim/operation/sound/ground_volume_ratio")) -- 
-defineProperty("weather_volume_ratio", globalPropertyf("sim/operation/sound/weather_volume_ratio")) -- 
-defineProperty("warning_volume_ratio", globalPropertyf("sim/operation/sound/warning_volume_ratio")) -- 
-defineProperty("radio_volume_ratio", globalPropertyf("sim/operation/sound/radio_volume_ratio")) -- 
-defineProperty("fan_volume_ratio", globalPropertyf("sim/operation/sound/fan_volume_ratio")) -- 
+engine_volume_ratio = globalPropertyf("sim/operation/sound/engine_volume_ratio") -- 
+prop_volume_ratio = globalPropertyf("sim/operation/sound/prop_volume_ratio") -- 
+ground_volume_ratio = globalPropertyf("sim/operation/sound/ground_volume_ratio") -- 
+weather_volume_ratio = globalPropertyf("sim/operation/sound/weather_volume_ratio") -- 
+warning_volume_ratio = globalPropertyf("sim/operation/sound/warning_volume_ratio") -- 
+radio_volume_ratio = globalPropertyf("sim/operation/sound/radio_volume_ratio") -- 
+fan_volume_ratio = globalPropertyf("sim/operation/sound/fan_volume_ratio") -- 
 
 
 -- yoke
-defineProperty("yoke_pitch", globalPropertyf("tu154b2/custom/controlls/yoke_pitch")) -- 
-defineProperty("trimm_pitch", globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim"))
+yoke_pitch = globalPropertyf("tu154b2/custom/controlls/yoke_pitch") -- 
+trimm_pitch = globalPropertyf("tu154b2/custom/trimmers/int_pitch_trim")
 
 
 
@@ -106,121 +106,122 @@ defineProperty("trimm_pitch", globalPropertyf("tu154b2/custom/trimmers/int_pitch
 
 
 -- failures
-defineProperty("main_alarm_fail", globalPropertyi("tu154b2/custom/failures/main_alarm_fail")) -- отказ сирены
-defineProperty("speaker_alarm_fail", globalPropertyi("tu154b2/custom/failures/speaker_alarm_fail")) -- отказ сирены
+main_alarm_fail = globalPropertyi("tu154b2/custom/failures/main_alarm_fail") -- отказ сирены
+speaker_alarm_fail = globalPropertyi("tu154b2/custom/failures/speaker_alarm_fail") -- отказ сирены
 
 -- define sources
-defineProperty("failures_enabled", globalPropertyi("tu154b2/custom/failures/failures_enabled"))
+failures_enabled = globalPropertyi("tu154b2/custom/failures/failures_enabled")
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("tu154b2/crew/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 -- at absu
 
 
-defineProperty("absu_throt_off_1", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_1")) -- кнопка откл Г1 на панели АБСУ
-defineProperty("absu_throt_off_2", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_2")) -- кнопка откл Г2 на панели АБСУ
-defineProperty("absu_throt_off_3", globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_3")) -- кнопка откл Г3 на панели АБСУ
+absu_throt_off_1 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_1") -- кнопка откл Г1 на панели АБСУ
+absu_throt_off_2 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_2") -- кнопка откл Г2 на панели АБСУ
+absu_throt_off_3 = globalPropertyi("tu154b2/custom/buttons/console/absu_throt_off_3") -- кнопка откл Г3 на панели АБСУ
 
 --- bp
 
-defineProperty("vyzov_bp_ready", globalPropertyi("tu154b2/custom/vyzov_bp_ready")) --
-defineProperty("cockpit_door", globalPropertyf("tu154b2/custom/anim/cockpit_door")) --
-defineProperty("slider_8", globalProperty("sim/cockpit2/switches/custom_slider_on[7]")) -- sim slider on
+vyzov_bp_ready = globalPropertyi("tu154b2/custom/vyzov_bp_ready") --
+cockpit_door = globalPropertyf("tu154b2/custom/anim/cockpit_door") --
+slider_8 = globalProperty("sim/cockpit2/switches/custom_slider_on[7]") -- sim slider on
 
 
 ---arm406
 
 
-defineProperty("arm406_test", globalPropertyi("sim/custom/arm406_test")) --
+arm406_test = globalPropertyi("sim/custom/arm406_test") --
 
 
 --- refuel panel
 
-defineProperty("rp_test_push", globalPropertyi("sim/custom/t154gnd/rp_test_push")) --
-defineProperty("rp_cap", globalPropertyi("sim/custom/t154gnd/refuel_panel_cap")) --
-defineProperty("rp_lit_sw", globalPropertyi("sim/custom/t154gnd/rp_lit_sw")) --
-defineProperty("rp_main_sw", globalPropertyi("sim/custom/t154gnd/rp_main_sw")) --
-defineProperty("rp_azs_tank4", globalPropertyi("sim/custom/t154gnd/rp_azs_tank4")) --
-defineProperty("rp_azs_tank1", globalPropertyi("sim/custom/t154gnd/rp_azs_tank1")) --
-defineProperty("rp_azs_tank2L", globalPropertyi("sim/custom/t154gnd/rp_azs_tank2L")) --
-defineProperty("rp_azs_tank3L", globalPropertyi("sim/custom/t154gnd/rp_azs_tank3L")) --
-defineProperty("rp_azs_tank2R", globalPropertyi("sim/custom/t154gnd/rp_azs_tank2R")) --
-defineProperty("rp_azs_tank3R", globalPropertyi("sim/custom/t154gnd/rp_azs_tank3R")) --
-defineProperty("rp_main_mode", globalPropertyi("sim/custom/t154gnd/rp_main_mode")) --
-defineProperty("rp_4t_mode", globalPropertyi("sim/custom/t154gnd/rp_4t_mode")) --
+rp_test_push = globalPropertyi("sim/custom/t154gnd/rp_test_push") --
+rp_cap = globalPropertyi("sim/custom/t154gnd/refuel_panel_cap") --
+rp_lit_sw = globalPropertyi("sim/custom/t154gnd/rp_lit_sw") --
+rp_main_sw = globalPropertyi("sim/custom/t154gnd/rp_main_sw") --
+rp_azs_tank4 = globalPropertyi("sim/custom/t154gnd/rp_azs_tank4") --
+rp_azs_tank1 = globalPropertyi("sim/custom/t154gnd/rp_azs_tank1") --
+rp_azs_tank2L = globalPropertyi("sim/custom/t154gnd/rp_azs_tank2L") --
+rp_azs_tank3L = globalPropertyi("sim/custom/t154gnd/rp_azs_tank3L") --
+rp_azs_tank2R = globalPropertyi("sim/custom/t154gnd/rp_azs_tank2R") --
+rp_azs_tank3R = globalPropertyi("sim/custom/t154gnd/rp_azs_tank3R") --
+rp_main_mode = globalPropertyi("sim/custom/t154gnd/rp_main_mode") --
+rp_4t_mode = globalPropertyi("sim/custom/t154gnd/rp_4t_mode") --
 
 
-defineProperty("ssos_alarm", globalPropertyi("sim/custom/ssos_alarm")) --
-defineProperty("lavatory_horn", globalPropertyi("sim/custom/cabin/lavatory_horn")) --
+ssos_alarm = globalPropertyi("sim/custom/ssos_alarm") --
+lavatory_horn = globalPropertyi("sim/custom/cabin/lavatory_horn") --
 
 --groza
 
--- defineProperty("groza1", globalPropertyi("sim/custom/switchers/ovhd/groza_1")) --
--- defineProperty("groza2", globalPropertyi("sim/custom/switchers/ovhd/groza_2")) --
+-- groza1 = globalPropertyi("sim/custom/switchers/ovhd/groza_1") --
+-- groza2 = globalPropertyi("sim/custom/switchers/ovhd/groza_2") --
 
 --krs-mp2
 
 
--- defineProperty("nav1_obs", globalPropertyi("sim/cockpit/radios/nav1_obs_degm")) --
--- defineProperty("nav2_obs", globalPropertyi("sim/cockpit/radios/nav2_obs_degm")) --
+-- nav1_obs = globalPropertyi("sim/cockpit/radios/nav1_obs_degm") --
+-- nav2_obs = globalPropertyi("sim/cockpit/radios/nav2_obs_degm") --
 
 -- gens
 
--- defineProperty("gen1_work", globalPropertyi("tu154b2/custom/elec/gen1_work")) --
--- defineProperty("gen2_work", globalPropertyi("tu154b2/custom/elec/gen2_work")) --
--- defineProperty("gen3_work", globalPropertyi("tu154b2/custom/elec/gen3_work")) --
--- defineProperty("gen4_work", globalPropertyi("tu154b2/custom/elec/gen4_work")) --
--- defineProperty("gen5_work", globalPropertyi("tu154b2/custom/elec/gpu_work")) --
+-- gen1_work = globalPropertyi("tu154b2/custom/elec/gen1_work") --
+-- gen2_work = globalPropertyi("tu154b2/custom/elec/gen2_work") --
+-- gen3_work = globalPropertyi("tu154b2/custom/elec/gen3_work") --
+-- gen4_work = globalPropertyi("tu154b2/custom/elec/gen4_work") --
+-- gen5_work = globalPropertyi("tu154b2/custom/elec/gpu_work") --
 
 
--- defineProperty("vu1_amp", globalPropertyf("tu154b2/custom/elec/vu1_amp")) --
--- defineProperty("vu2_amp", globalPropertyf("tu154b2/custom/elec/vu2_amp")) --
---defineProperty("disable_def_veh", globalPropertyi("tu154b2/custom/t154cfg/hide_def")) --
+-- vu1_amp = globalPropertyf("tu154b2/custom/elec/vu1_amp") --
+-- vu2_amp = globalPropertyf("tu154b2/custom/elec/vu2_amp") --
+--disable_def_veh = globalPropertyi("tu154b2/custom/t154cfg/hide_def") --
 
--- defineProperty("bus115_amp_1", globalPropertyf("tu154b2/custom/elec/bus115_1_amp")) --
--- defineProperty("bus115_amp_2", globalPropertyf("tu154b2/custom/elec/bus115_2_amp")) --
--- defineProperty("bus115_amp_3", globalPropertyf("tu154b2/custom/elec/bus115_3_amp")) --
--- defineProperty("bus115_amp_4", globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp")) --
--- defineProperty("bus115_amp_5", globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp")) --
-
-
-
---defineProperty("freq_115", globalPropertyi("tu154b2/custom/elec/bus115_freq")) --
-defineProperty("power_115L", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
-defineProperty("power_115R", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
-
-defineProperty("tas_sc", globalPropertyf("tu154b2/custom/SC/true_airspeed"))
+-- bus115_amp_1 = globalPropertyf("tu154b2/custom/elec/bus115_1_amp") --
+-- bus115_amp_2 = globalPropertyf("tu154b2/custom/elec/bus115_2_amp") --
+-- bus115_amp_3 = globalPropertyf("tu154b2/custom/elec/bus115_3_amp") --
+-- bus115_amp_4 = globalPropertyf("tu154b2/custom/elec/bus115_em_1_amp") --
+-- bus115_amp_5 = globalPropertyf("tu154b2/custom/elec/bus115_em_2_amp") --
 
 
 
-defineProperty("cabin_rt1", globalPropertyi("sim/custom/cabin/rt_1")) --
-defineProperty("cabin_rt2", globalPropertyi("sim/custom/cabin/rt_2")) --
+--freq_115 = globalPropertyi("tu154b2/custom/elec/bus115_freq") --
+power_115L = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+power_115R = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
+
+tas_sc = globalPropertyf("tu154b2/custom/SC/true_airspeed")
 
 
 
-defineProperty("push_8", globalPropertyi("sim/custom/gauges/eng/apu_oil_test")) --
-
-defineProperty("true_airspeed", globalPropertyf("sim/flightmodel/position/true_airspeed"))
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
+cabin_rt1 = globalPropertyi("sim/custom/cabin/rt_1") --
+cabin_rt2 = globalPropertyi("sim/custom/cabin/rt_2") --
 
 
-defineProperty("walk_spd", globalPropertyi("sim/custom/t154_camera/walk_spd")) --
-defineProperty("walk_loc", globalPropertyi("sim/custom/t154_camera/walk")) --
-defineProperty("walk_enable", globalPropertyi("sim/custom/t154_camera/enable_walk")) --
 
-defineProperty("alt", globalPropertyf("sim/flightmodel/position/y_agl"))
-defineProperty("vr_outside", globalPropertyi("sim/graphics/VR/teleport_on_ground"))
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+push_8 = globalPropertyi("sim/custom/gauges/eng/apu_oil_test") --
+
+true_airspeed = globalPropertyf("sim/flightmodel/position/true_airspeed")
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+
+
+walk_spd = globalPropertyi("sim/custom/t154_camera/walk_spd") --
+walk_loc = globalPropertyi("sim/custom/t154_camera/walk") --
+walk_enable = globalPropertyi("sim/custom/t154_camera/enable_walk") --
+
+alt = globalPropertyf("sim/flightmodel/position/y_agl")
+vr_outside = globalPropertyi("sim/graphics/VR/teleport_on_ground")
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 
 local yoke_x=-0.50882757
 local yoke_z=-22.854303
-local dist_gain=5
+local dist_gain = 5
+local dist_gain_sign = 0.5
 
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
@@ -253,7 +254,7 @@ end
 -- local lustra_skrip_sound = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/lustra_skrip.wav') --
 local absu_sound = loadSample(moduleDirectory .. '/Custom Sounds/short_speaker.wav') --
 local long_speaker = loadSample(moduleDirectory .. '/Custom Sounds/long_speaker.wav')
-local inverters = loadSample(moduleDirectory .. '/Custom Sounds/inverters.wav') --
+--local inverters = loadSample(moduleDirectory .. '/Custom Sounds/inverters.wav') --
 local long_sirena = loadSample(moduleDirectory .. '/Custom Sounds/long_siren.wav')
 --local short_sirena = loadSample(moduleDirectory .. '/Custom Sounds/short_siren.wav')
 -- local bell = loadSample(moduleDirectory .. '/Custom Sounds/mrp_bell.wav') --
@@ -293,8 +294,8 @@ local stu_last = get(stu_mode)
 
 
 -- local invert_counter = 0
-playSample(inverters, true)
-setSampleGain(inverters, 0)
+-- playSample(inverters, true)
+-- setSampleGain(inverters, 0)
 
 local short_siren_timer = 0
 local short_speaker_timer = 0
@@ -310,7 +311,7 @@ setSampleGain(tr36, 0)
 local switcher_sound = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch.wav')
 local button_sound = loadSample(moduleDirectory .. '/Custom Sounds/plastic_btn.wav')
 local cap_sound = loadSample(moduleDirectory .. '/Custom Sounds/cap.wav')
-local plastic_sound = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch.wav')
+-- local plastic_sound = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch.wav')
 -- local seat_move_sound = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/seat_move.wav')
 -- local arm_sound = loadSample(moduleDirectory .. '/Custom Sounds/new_snds/arm.wav')
 local wind_sound = loadSample(moduleDirectory .. '/Custom Sounds/wind.wav')
@@ -417,59 +418,48 @@ function update()
     
 	
     
-	local plastic = get(cabin_rt1)+get(cabin_rt2)+get(rp_main_mode)+get(rp_4t_mode)
+	-- local plastic = get(cabin_rt1)+get(cabin_rt2)+get(rp_main_mode)+get(rp_4t_mode)
     
 	
-	if plastic ~= plastic_last then playSample(plastic_sound, false) end
+	-- if plastic ~= plastic_last then playSample(plastic_sound, false) end
 	
-	plastic_last = plastic
+	-- plastic_last = plastic
     
     
 	
-	-- local caps = get(fuel_buzzer_cap) + get(rt12_1_dis_cap) + get(rt12_2_dis_cap) + get(rt12_3_dis_cap) + get(elev_trimm_1_pk_cap) + get(elev_trimm_2_pk_cap)
+	-- -- local caps = get(fuel_buzzer_cap) + get(rt12_1_dis_cap) + get(rt12_2_dis_cap) + get(rt12_3_dis_cap) + get(elev_trimm_1_pk_cap) + get(elev_trimm_2_pk_cap)
 	
-	-- if caps ~= caps_last then playSample(cap_sound, false) end
+	-- -- if caps ~= caps_last then playSample(cap_sound, false) end
 	
-	-- caps_last = caps
-	
-	
-	local buttons = get(rp_test_push)
-	
-	if buttons ~= buttons_last then playSample(button_sound, false) end
-	
-	buttons_last = buttons	
+	-- -- caps_last = caps
 	
 	
-    --local scrip = get(lustra_rotate)  + get(sard_pribor_cap1) + get(sard_pribor_cap2) + get(rp_cap)
+	-- local buttons = get(rp_test_push)
 	
-	--if scrip ~= scrip_last and external == 0 then playSample(lustra_skrip_sound, false) end
+	-- if buttons ~= buttons_last then playSample(button_sound, false) end
 	
-	--scrip_last = scrip
+	-- buttons_last = buttons	
+
+	--- Sound gain
+	local gain_L, gain_R = inn_balance (-0.09365284, -22.834698, x_pos, z_pos , plt_hdg)
+	gain_L=gain_L*1000* warn_vl
+	gain_R=gain_R*1000* warn_vl
+	local door = 1
+	if z_pos + 1.42 > -19 then
+		door = 0.1 + 0.9 * get(cockpit_door)
+	end
 	
-	-- local table_moving = get(table_move) + get(seat3) + get(seat4) + get(seat5) + get(seat1_0) + get(seat2_0)
-    
-    -- if math.abs(table_moving - table_move_last) > 0.2 and external == 0 then 
-        -- if not isSamplePlaying(table_sound) then playSample(table_sound, false) end
-    -- end
-        
-    -- table_move_last = table_moving
-    
-	
-    -- local seat = get(seat1) + get(seat2)
-	
-	-- if seat ~= seat_last and external == 0 then 
-        -- if not isSamplePlaying(seat_move_sound) then playSample(seat_move_sound, false) end
-    -- end
-	
-	-- seat_last = seat
-	
-	
-    -- local arm = get(arm1) + get(arm2) + get(arm3)
-	
-	-- if math.abs(arm-arm_last) > 0.2 and external == 0 then playSample(arm_sound, false) end
-	
-	-- arm_last = arm
-	
+	local dist_sign=1
+	if z_pos+22.834698~=0 then
+		dist_sign=math.min(1,1/math.sqrt(math.pow(z_pos+22.834698,2)+math.pow(x_pos+0.09365284,2))/dist_gain_sign) * (1 - external) * door
+	end
+	local dist=1
+	if z_pos+22.834698~=0 then
+		dist=math.min(1,1/math.sqrt(math.pow(z_pos+22.834698,2)+math.pow(x_pos+0.09365284,2))/dist_gain) * (1 - external) * door
+	end
+	setSampleGain(absu_sound,dist_sign*1000 * warn_vl)
+	setSampleGain(long_sirena,dist_sign*1000 * warn_vl)
+	setSampleGain(long_speaker,dist_sign*1000 * warn_vl)
 	
 	----------------------
 	-- RadioAltimeter --
@@ -491,8 +481,8 @@ function update()
 	if not isSamplePlaying(rv5_tone) and RV_counter > 0 then playSample(rv5_tone, true) end
 	if RV_counter <= 0 then stopSample(rv5_tone) end
 	
-	setSampleGain(rv5_tone, 1000 * warn_vl)	
-	setSampleGain(arm406_tone, 1000 * warn_vl)
+	setSampleGain(rv5_tone, 1000 * warn_vl * dist_sign)	
+	setSampleGain(arm406_tone, 1000 * warn_vl * dist_sign)
 	--setSamplePitch(arm406_tone, 600)
     
     if get(arm406_test) > 0 then
@@ -546,7 +536,7 @@ function update()
 	if short_siren_timer > 0.4 then short_siren_timer = 0 end
 	
 	
-	setSampleGain(long_sirena, 1000 * warn_vl*power_27)
+	--setSampleGain(long_sirena, 1000 * warn_vl*power_27)
     
     if get(lavatory_horn)*power_27 > 0 then
         if not isSamplePlaying(lavatory_smoke_sirena) then playSample(lavatory_smoke_sirena, true) end
@@ -558,7 +548,6 @@ function update()
 	------------------
 	-- speaker alarm --
 	------------------
-	
 	local absu_now = get(roll_main_mode) + get(pitch_main_mode)
 	local stu_now = get(stu_mode)
 	local power_absu=get(absu_power_27)>0
@@ -598,16 +587,9 @@ function update()
 	end
 	
     if absu_now ~= absu_last and absu_now >= 3 and external == 0 then
-		local z_pos=get(pilot_Z)
-		local x_pos=get(pilot_X)
-		local plt_hdg=get(pilot_head)
-		local gain_L, gain_R = inn_balance (-0.09365284, -22.834698, x_pos, z_pos , plt_hdg)
-		gain_L=gain_L*1000* warn_vl
-		gain_R=gain_R*1000* warn_vl
-		local dist=1
-		if z_pos+22.834698~=0 then
-			dist=math.min(1,1/math.sqrt(math.pow(z_pos+22.834698,2)+math.pow(x_pos+0.09365284,2))/dist_gain)
-		end
+		-- local z_pos=get(pilot_Z)
+		-- local x_pos=get(pilot_X)
+		-- local plt_hdg=get(pilot_head)
 		setSampleGain(absu_change_sound_L,gain_L*dist)
 		setSampleGain(absu_change_sound_R,gain_R*dist)
 		playSample(absu_change_sound_L, false)
@@ -626,7 +608,7 @@ function update()
 	absu_last = absu_now
 	stu_last = stu_now
 	
-	setSampleGain(long_speaker, 1000 * warn_vl*power_27)
+	--setSampleGain(long_speaker, 1000 * warn_vl*power_27)
     
     setSampleGain(walk_sound, 1000 * warn_vl)
 	
@@ -665,13 +647,13 @@ function update()
 	-- if invert_counter > 1 then invert_counter = 1
 	-- elseif invert_counter < 0 then invert_counter = 0 end
 	
-	local dist = -get(pilot_Z) + 7 +1.42
-	local dist2 = math.min(1,-0.1667*get(pilot_Z)  -2.5)
-	local door=1
-	local door2=1	
-	if get(pilot_Z) +1.42>-19 then
+	dist = -z_pos + 7 +1.42
+	local dist2 = math.min(1,-0.1667*z_pos  -2.5)
+	door=1
+	--local door2=1	
+	if z_pos +1.42>-19 then
 		door=0.05+0.95*get(cockpit_door)
-		door2=0.2+0.8*get(cockpit_door)
+		--door2=0.2+0.8*get(cockpit_door)
 	end
     if get(power_115L)>100 or get(power_115R)>100 then
 		setSampleGain(tr36,1000* (1 - external) * math.max(dist - 25, 0)*run*door)
@@ -775,7 +757,7 @@ function update()
 			local gain2_L, gain2_R = inn_balance (-1*yoke_x, yoke_z, x_pos, z_pos , plt_hdg)
 			gain2_L=gain2_L*math.abs(yoke_spd)*40
 			gain2_R=gain2_R*math.abs(yoke_spd)*40
-			local dist2=1
+			 dist2=1
 			if z_pos-yoke_z~=0 then
 				dist2=math.min(1,1/math.sqrt(math.pow(z_pos-yoke_z,2)+math.pow(x_pos+yoke_x,2))/dist_gain)
 			end
@@ -798,7 +780,7 @@ function update()
 			local gain2_L, gain2_R = inn_balance (-1*yoke_x, yoke_z, x_pos, z_pos , plt_hdg)
 			gain2_L=gain2_L*math.abs(yoke_spd)*40
 			gain2_R=gain2_R*math.abs(yoke_spd)*40
-			local dist2=1
+			dist2=1
 			if z_pos-yoke_z~=0 then
 				dist2=math.min(1,1/math.sqrt(math.pow(z_pos-yoke_z,2)+math.pow(x_pos+yoke_x,2))/dist_gain)
 			end

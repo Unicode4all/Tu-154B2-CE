@@ -144,12 +144,14 @@ main_pressure = globalPropertyi("tu154b2/custom/alarm/main_pressure") -- раз�
 
 -- sounds
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
+local rotary_sound2_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_gal_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
 local switcher_sound_2_L= loadSample(moduleDirectory .. '/Custom Sounds/metal_switch2_L.wav')
 local cap_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/cap_L.wav')
 local button_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_btn_L.wav')
 
 local rotary_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_R.wav')
+local rotary_sound2_R = loadSample(moduleDirectory .. '/Custom Sounds/plastic_gal_R.wav')
 local switcher_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_R.wav')
 local switcher_sound_2_R= loadSample(moduleDirectory .. '/Custom Sounds/metal_switch2_R.wav')
 local cap_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/cap_R.wav')
@@ -371,14 +373,21 @@ local function rotary_sw(gain_L, gain_R,dist)
 	local sys_temp_select_sw = get(sys_temp_select)
 	local spu_sw = get(spu_fe) 
 	
-	local change = sys_temp_select_sw + spu_sw --cockpit_temp_set_sw + cabin1_temp_set_sw + cabin2_temp_set_sw + left_sys_temp_set_sw + right_sys_temp_set_sw + sys_temp_select_sw
-	change = change - sys_temp_select_last - spu_sw_last -- - cockpit_temp_set_last - cabin1_temp_set_last - cabin2_temp_set_last - left_sys_temp_set_last - right_sys_temp_set_last - sys_temp_select_last
-	
+	local change = spu_sw
+	local change2 = sys_temp_select_sw 
+	change = change - spu_sw_last -- - cockpit_temp_set_last - cabin1_temp_set_last - cabin2_temp_set_last - left_sys_temp_set_last - right_sys_temp_set_last - sys_temp_select_last
+	change2 = change2 - sys_temp_select_last
 	if change ~= 0 then
 		setSampleGain(rotary_sound_L,gain_L*dist)
 		setSampleGain(rotary_sound_R,gain_R*dist)
 		playSample(rotary_sound_L, false)
 		playSample(rotary_sound_R, false)
+    end
+	if change2 ~= 0 then
+		setSampleGain(rotary_sound2_L,gain_L*dist)
+		setSampleGain(rotary_sound2_R,gain_R*dist)
+		playSample(rotary_sound2_L, false)
+		playSample(rotary_sound2_R, false)
     end
 	
 	cockpit_temp_set_last = cockpit_temp_set_sw

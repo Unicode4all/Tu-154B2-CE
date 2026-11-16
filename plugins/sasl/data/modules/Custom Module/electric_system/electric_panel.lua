@@ -231,10 +231,10 @@ local dist_gain=5
 local freq_sel_prev=0
 
 -- sounds
-local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
+local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_gal_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
 local cap_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/cap_L.wav')
-local rotary_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_R.wav')
+local rotary_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/plastic_gal_R.wav')
 local switcher_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_R.wav')
 local cap_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/cap_R.wav')
 local switcher_sound2_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch2_L.wav')

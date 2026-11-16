@@ -140,13 +140,13 @@ pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
 pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
 -- sounds
-local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
+local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_gal_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
 local switcher_sound_2_L= loadSample(moduleDirectory .. '/Custom Sounds/metal_switch2_L.wav')
 local cap_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/cap_L.wav')
 local button_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_btn_L.wav')
 
-local rotary_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_R.wav')
+local rotary_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/plastic_gal_R.wav')
 local switcher_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_R.wav')
 local switcher_sound_2_R= loadSample(moduleDirectory .. '/Custom Sounds/metal_switch2_R.wav')
 local cap_sound_R = loadSample(moduleDirectory .. '/Custom Sounds/cap_R.wav')
