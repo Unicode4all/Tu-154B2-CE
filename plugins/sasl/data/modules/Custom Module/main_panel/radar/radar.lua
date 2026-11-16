@@ -121,6 +121,7 @@ defineProperty("grz_right", globalPropertyi("tu154b2/custom/switchers/console/rl
 defineProperty("grz_kontr", globalPropertyf("tu154b2/custom/switchers/console/rls_contr"))
 defineProperty("rls_nakl", globalProperty("tu154b2/custom/switchers/console/rls_tilt"))
 defineProperty("oat", globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c"))
+defineProperty("groz_brg", globalPropertyf("tu154b2/custom/rls/rls_az"))
 defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
 -- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
 -- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
@@ -276,6 +277,7 @@ local power_el = false
 local mode_timer=0
 
 local brg_set=0
+local brg=0
 local wx_gain=1
 local wx_tilt=0
 local wx_mode=0
@@ -285,6 +287,7 @@ local wx_speed=0
 local wx_sect=101
 
 function update()
+	local MASTER = get(ismaster) ~= 1	
 	if get(kontur_on) == 0 then
         local passed = get(frame_time)
 
@@ -417,7 +420,7 @@ function update()
 		------------ Radar Modes Logic---------------
 		local xmt_work=bool2int(get(radar_fail) == 0 or get(backup_xmt)>0) 
 		local contr=0.1+0.9*get(grz_kontr)
-		wx_tilt=get(rls_nakl)-- -40*bool2int(mode==1 or mode==4)
+		wx_tilt=get(rls_nakl) * bool2int(mode==2 or mode==3) -40 * bool2int(mode==1 or mode==4)
 		--local sweep_a=get(sweep_angle)
 		--local alt=get(agl)
 		if mode==0 or not power then -- stby
@@ -441,7 +444,7 @@ function update()
 			wx_mode=4*xmt_work
 			wx_sect=104
 			brg=sweep
-			wx_gain=contr
+			wx_gain=contr*0.9
 			drift_timer=0
 			blanking_timer=0
 		elseif mode==2 then -- meteo
@@ -464,18 +467,22 @@ function update()
 			drift_timer=0
 			blanking_timer=0
 		elseif mode==4 then  --drift
-			if get(grz_left)>0 and brg>-110 and brg_set==0 then
-				brg=brg-passed*(get(grz_kontr)*65+5)
-				brg_set=1
-			elseif get(grz_right)>0 and brg<110 and brg_set==0 then
-				brg=brg+passed*(get(grz_kontr)*65+5)
-				brg_set=1
+			if MASTER then
+				if get(grz_left)>0 and brg>-110 and brg_set==0 then
+					brg=brg-passed*(get(grz_kontr)*65+5)
+					brg_set=1
+				elseif get(grz_right)>0 and brg<110 and brg_set==0 then
+					brg=brg+passed*(get(grz_kontr)*65+5)
+					brg_set=1
+				else
+					brg_set=0
+				end
 			else
-				brg_set=0
+				brg = get(groz_brg)
 			end
 			--set(beam_angle,brg)
 			wx_mode=4*xmt_work
-			wx_gain=2			
+			wx_gain=0.75			
 			tme=tme+passed
 			blanking_timer=0
 			local beam_az=brg
@@ -761,7 +768,6 @@ function update()
             set(rls_weather, 0)
         end
 			-------- Set Datarefs----------
-		local MASTER = get(ismaster) ~= 1	
 		if MASTER then	
 			set(sec_width,wx_sect)
 			set(sec_az,wx_az)
@@ -769,6 +775,7 @@ function update()
 			set(gain,wx_gain)
 			set(wxr_mode,wx_mode)
 			set(sweep_spd,wx_speed)
+			set(groz_brg,brg)
 		end
 
 
