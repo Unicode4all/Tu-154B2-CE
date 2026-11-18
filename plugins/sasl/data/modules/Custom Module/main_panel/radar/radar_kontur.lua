@@ -233,7 +233,7 @@ function update()
 			set(wxr_mode_fo,wx_mode)
 			set(auto_tilt,wx_autotilt)
 			set(auto_tilt_fo,wx_autotilt)
-			if get(stab_sw) + get(kontur_on)>0 and get(pkp)>0 and get(bus36) > 30 and get(pkp_fail)==0 then
+			if get(kontur_on)>0 and get(pkp)>0 and get(bus36) > 30 and get(pkp_fail)==0 then
 				set(stab,1)
 			else
 				set(stab,0)

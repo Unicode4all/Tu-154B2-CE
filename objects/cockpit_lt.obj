@@ -237,7 +237,40 @@ ANIM_hide 1 1 tu154b2/custom/lights/day_night_set_eng
 	ANIM_end
 ANIM_end
 
-
+ANIM_begin
+ANIM_trans 0.000000 0.000000 0.000000 0.000000 0.045944 0.248645 0.000000 1.000000 sim/custom/b2/groza_ext
+ANIM_begin
+ANIM_trans -0.023148 -1.739530 -21.768900 -0.023148 -1.739530 -21.768900 0.000000 0.000000 none
+ANIM_rotate_begin 0.000000 -0.999609 -0.027948 sim/custom/b2/groza_rot
+ANIM_rotate_key 0.000000 0.000000
+ANIM_rotate_key 1.000000 14.000000
+ANIM_rotate_key 2.000000 -14.000000
+ANIM_rotate_end
+ANIM_trans 0.023148 1.739530 21.768900 0.023148 1.739530 21.768900 0.000000 0.000000 none
+	LIGHT_SPILL_CUSTOM    -0.042607 -1.57021 -21.5983 0 0 0 0 0 0 0 0 0 tu154b2/custom/lights/rls_glow_spill
+	LIGHT_SPILL_CUSTOM    0.002607 -1.57021 -21.5983 0 0 0 0 0 0 0 0 0 tu154b2/custom/lights/rls_glow_spill2
+	ANIM_trans -0.02276 -1.5899 -21.5928 -0.02276 -1.5899 -21.5928 0.000000 0.000000 none
+	ANIM_rotate 0 0.2031 0.9792 0 1 0 1 tu154b2/custom/lights/rls_beam_angle
+	ANIM_trans 0.02276 1.5899 21.5928 0.02276 1.5899 21.5928 0.000000 0.000000 none
+	ANIM_trans_begin tu154b2/custom/lights/rls_beam_angle
+	ANIM_trans_key -190 0.01 0 0
+	ANIM_trans_key -180 0.01 0 0
+	ANIM_trans_key -160 0.006 0 0
+	ANIM_trans_key -145 -0.000 0 0
+	ANIM_trans_key -135 -0.009 0 0
+	ANIM_trans_key -120 -0.003 0 0
+	ANIM_trans_key -105 -0.0007 0 0
+	ANIM_trans_key -90 0.002 0 0
+	ANIM_trans_key -75 -0.0007 0 0
+	ANIM_trans_key -60 -0.003 0 0
+	ANIM_trans_key -45 -0.009 0 0
+	ANIM_trans_key -35 -0.000 0 0
+	ANIM_trans_key -20 0.006 0 0
+	ANIM_trans_key 0 0.01 0 0
+	ANIM_trans_key 10 0.01 0 0
+	ANIM_trans_end
+	LIGHT_SPILL_CUSTOM    -0.07276 -1.5899 -21.5928 0 0 0 0 0 0 0 0 0 tu154b2/custom/lights/rls_beam_spill    #groza R G B A Size cone X Y Z 0   -0.9792    0.2031
+ANIM_end
 
 
 ANIM_begin

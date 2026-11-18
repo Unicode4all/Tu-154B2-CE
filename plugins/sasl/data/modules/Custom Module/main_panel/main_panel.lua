@@ -205,8 +205,6 @@ components = {
 	radar {
 		position = {0, 0, 2048, 2048},
 	},
-
-	radar_kontur {},
 	
 	vent {},
 	
@@ -220,9 +218,6 @@ components = {
 	
 	nav_draw {
 		position = {2067, 1660, 500, 400},
-	},
-	radar_test {
-		position = {1034, 1270, 666, 513},
 	},
 	
 }

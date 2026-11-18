@@ -1,25 +1,25 @@
--- this is a better try to make RLS
+-- this is rude try to make RLS
 size = {2048, 2048}
 
 -- define property table
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- time of frame
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- time of frame
 
-defineProperty("deg1", globalPropertyf("sim/flightmodel/position/psi")) -- acf mag heading
-defineProperty("deg2", globalPropertyf("sim/flightmodel/position/hpath")) -- real mag heading
+deg1 = globalPropertyf("sim/flightmodel/position/psi") -- acf mag heading
+deg2 = globalPropertyf("sim/flightmodel/position/hpath") -- real mag heading
 
 -- controls
-defineProperty("rls_on", globalPropertyi("tu154b2/custom/switchers/console/rls_on")) -- power switch
-defineProperty("rls_mode", globalPropertyi("tu154b2/custom/switchers/console/rls_mode")) -- mode switch
-defineProperty("rls_distance", globalPropertyi("tu154b2/custom/switchers/console/rls_distance")) -- distance switch
+rls_on = globalPropertyi("tu154b2/custom/switchers/console/rls_on") -- power switch
+rls_mode = globalPropertyi("tu154b2/custom/switchers/console/rls_mode") -- mode switch
+rls_distance = globalPropertyi("tu154b2/custom/switchers/console/rls_distance") -- distance switch
 
-defineProperty("rls_brt", globalPropertyf("tu154b2/custom/switchers/console/rls_brt")) -- brightness
-defineProperty("rls_contr", globalPropertyf("tu154b2/custom/switchers/console/rls_contr")) -- contrast
-defineProperty("rls_signs", globalPropertyf("tu154b2/custom/switchers/console/rls_signs")) -- signs
-defineProperty("rls_tilt", globalPropertyf("tu154b2/custom/switchers/console/rls_tilt"))
+rls_brt = globalPropertyf("tu154b2/custom/switchers/console/rls_brt") -- brightness
+rls_contr = globalPropertyf("tu154b2/custom/switchers/console/rls_contr") -- contrast
+rls_signs = globalPropertyf("tu154b2/custom/switchers/console/rls_signs") -- signs
+rls_tilt = globalPropertyf("tu154b2/custom/switchers/console/rls_tilt")
 
 -- lamps
-defineProperty("rls_ready", globalPropertyf("tu154b2/custom/lights/small/rls_ready")) -- ready lamp
-defineProperty("rls_weather", globalPropertyf("tu154b2/custom/lights/small/rls_weather")) -- weather lamp
+rls_ready = globalPropertyf("tu154b2/custom/lights/small/rls_ready") -- ready lamp
+rls_weather = globalPropertyf("tu154b2/custom/lights/small/rls_weather") -- weather lamp
 
 --[[
 
@@ -28,47 +28,47 @@ tu154b2/custom/switchers/console/rls_mode
 tu154b2/custom/switchers/console/rls_distance
 
 
-defineProperty("rls_power_sw", globalPropertyi("tu154b2/custom/xap/An24_rls/rls_power_sw")) -- power switch
-defineProperty("rls_power_cc", globalPropertyf("tu154b2/custom/xap/An24_rls/rls_power_cc")) -- power switch
-defineProperty("rls_scan_spd", globalPropertyi("tu154b2/custom/xap/An24_rls/rls_scan_spd")) -- power switch
-defineProperty("rls_mode", globalPropertyi("tu154b2/custom/xap/An24_rls/rls_mode")) -- power switch
-defineProperty("rls_mode_lamp", globalPropertyi("tu154b2/custom/xap/An24_rls/rls_mode_lamp")) -- power switch
-defineProperty("rls_bright", globalPropertyf("tu154b2/custom/xap/An24_rls/rls_bright")) -- power switch
-defineProperty("rls_contr", globalPropertyf("tu154b2/custom/xap/An24_rls/rls_contr")) -- power switch
-defineProperty("rls_signs", globalPropertyf("tu154b2/custom/xap/An24_rls/rls_signs")) -- power switch
+rls_power_sw = globalPropertyi("tu154b2/custom/xap/An24_rls/rls_power_sw") -- power switch
+rls_power_cc = globalPropertyf("tu154b2/custom/xap/An24_rls/rls_power_cc") -- power switch
+rls_scan_spd = globalPropertyi("tu154b2/custom/xap/An24_rls/rls_scan_spd") -- power switch
+rls_mode = globalPropertyi("tu154b2/custom/xap/An24_rls/rls_mode") -- power switch
+rls_mode_lamp = globalPropertyi("tu154b2/custom/xap/An24_rls/rls_mode_lamp") -- power switch
+rls_bright = globalPropertyf("tu154b2/custom/xap/An24_rls/rls_bright") -- power switch
+rls_contr = globalPropertyf("tu154b2/custom/xap/An24_rls/rls_contr") -- power switch
+rls_signs = globalPropertyf("tu154b2/custom/xap/An24_rls/rls_signs") -- power switch
 --]]
 
 
 -- power
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
-defineProperty("bus36_volt_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
+bus36_volt_pts250_1 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
-defineProperty("radar_cc", globalPropertyf("tu154b2/custom/radio/radar_cc")) -- ïîòðåáëåíèå òîêà îò ÐËÑ Ãðîçà
+radar_cc = globalPropertyf("tu154b2/custom/radio/radar_cc") -- Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ðµ Ñ‚Ð¾ÐºÐ° Ð¾Ñ‚ Ð Ð›Ð¡ Ð“Ñ€Ð¾Ð·Ð°
 
 
 
 -- EFIS controls
-defineProperty("map_mode", globalProperty("sim/cockpit2/EFIS/map_mode"))
-defineProperty("map_mode_is_HSI", globalProperty("sim/cockpit2/EFIS/map_mode_is_HSI"))
-defineProperty("map_range", globalProperty("sim/cockpit/switches/EFIS_map_range_selector"))
-defineProperty("wxr_mode", globalProperty("sim/cockpit2/EFIS/EFIS_weather_mode"))
+map_mode = globalProperty("sim/cockpit2/EFIS/map_mode")
+map_mode_is_HSI = globalProperty("sim/cockpit2/EFIS/map_mode_is_HSI")
+map_range = globalProperty("sim/cockpit/switches/EFIS_map_range_selector")
+wxr_mode = globalProperty("sim/cockpit2/EFIS/EFIS_weather_mode")
 
-defineProperty("EFIS_weather_on", globalProperty("sim/cockpit2/EFIS/EFIS_weather_on"))
-defineProperty("EFIS_tcas_on", globalProperty("sim/cockpit2/EFIS/EFIS_tcas_on"))
-defineProperty("EFIS_airport_on", globalProperty("sim/cockpit2/EFIS/EFIS_airport_on"))
-defineProperty("EFIS_vor_on", globalProperty("sim/cockpit2/EFIS/EFIS_vor_on"))
-defineProperty("EFIS_ndb_on", globalProperty("sim/cockpit2/EFIS/EFIS_ndb_on"))
+EFIS_weather_on = globalProperty("sim/cockpit2/EFIS/EFIS_weather_on")
+EFIS_tcas_on = globalProperty("sim/cockpit2/EFIS/EFIS_tcas_on")
+EFIS_airport_on = globalProperty("sim/cockpit2/EFIS/EFIS_airport_on")
+EFIS_vor_on = globalProperty("sim/cockpit2/EFIS/EFIS_vor_on")
+EFIS_ndb_on = globalProperty("sim/cockpit2/EFIS/EFIS_ndb_on")
 
-defineProperty("EFIS_weather_alpha", globalProperty("sim/cockpit/switches/EFIS_weather_alpha"))
+EFIS_weather_alpha = globalProperty("sim/cockpit/switches/EFIS_weather_alpha")
 
 
-defineProperty("EFIS_fix_on", globalProperty("sim/cockpit2/EFIS/EFIS_fix_on"))
-defineProperty("EFIS_page", globalProperty("sim/cockpit2/EFIS/EFIS_page[0]"))
-defineProperty("EFIS_fail", globalProperty("sim/operation/failures/rel_efis_2"))
+EFIS_fix_on = globalProperty("sim/cockpit2/EFIS/EFIS_fix_on")
+EFIS_page = globalProperty("sim/cockpit2/EFIS/EFIS_page[0]")
+EFIS_fail = globalProperty("sim/operation/failures/rel_efis_2")
 
-defineProperty("sweep_angle", globalProperty("sim/cockpit2/EFIS/EFIS_weather_sweep"))
-defineProperty("sweep_spd", globalProperty("sim/cockpit2/EFIS/EFIS_weather_sweeps_per_sec"))
+sweep_angle = globalProperty("sim/cockpit2/EFIS/EFIS_weather_sweep")
+sweep_spd = globalProperty("sim/cockpit2/EFIS/EFIS_weather_sweeps_per_sec")
 
 -- images
 -- defineProperty("mask1", loadImage("radar_mask1.png", 0, 0, 256, 256))
@@ -81,53 +81,65 @@ defineProperty("line", loadImage("radar_line.png", 0, 0, 512, 512))
 defineProperty("angle_scale", loadImage("radar_angle_scale.png", 0, 340, 1024, 690))
 
 --[[
-defineProperty("needle_1", loadImage("radar_scale.png", 0, 190, 256, 4))
-defineProperty("needle_2", loadImage("radar_scale.png", 0, 200, 256, 4))
-defineProperty("needle_3", loadImage("radar_scale.png", 0, 210, 256, 4))
+needle_1", loadImage("radar_scale.png", 0, 190, 256, 4))
+needle_2", loadImage("radar_scale.png", 0, 200, 256, 4))
+needle_3", loadImage("radar_scale.png", 0, 210, 256, 4))
 --]]
 
--- defineProperty("scale_near", loadImage("radar_scale_mark_near.png", 0, 434, 500, 346))
+-- scale_near", loadImage("radar_scale_mark_near.png", 0, 434, 500, 346))
 
--- defineProperty("scale_med", loadImage("radar_scale_marks.png", 0, 434, 500, 346))
--- defineProperty("scale_far", loadImage("radar_scale_mark_far.png", 0, 434, 500, 346))
+-- scale_med", loadImage("radar_scale_marks.png", 0, 434, 500, 346))
+-- scale_far", loadImage("radar_scale_mark_far.png", 0, 434, 500, 346))
 
 
 -- engines
-defineProperty("eng1_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[0]")) -- engine 1 rpm
-defineProperty("eng2_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[1]")) -- engine 2 rpm
-defineProperty("eng3_N1", globalProperty("sim/flightmodel/engine/ENGN_N1_[2]")) -- engine 3 rpm
+eng1_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[0]") -- engine 1 rpm
+eng2_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[1]") -- engine 2 rpm
+eng3_N1 = globalProperty("sim/flightmodel/engine/ENGN_N1_[2]") -- engine 3 rpm
 
-defineProperty("ext", globalPropertyi("sim/custom/b2/groza_ext"))
+ext = globalPropertyi("sim/custom/b2/groza_ext")
 
-defineProperty("kontur_on", globalPropertyi("tu154b2/custom/b2/kontur_on")) --
-defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
-defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
-defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
+kontur_on = globalPropertyi("tu154b2/custom/b2/kontur_on") --
+pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
+pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
+pilot_head = globalPropertyi("sim/graphics/view/pilots_head_psi")
 
-defineProperty("rls_left", globalPropertyi("tu154b2/custom/switchers/console/rls_left"))
-defineProperty("rls_right", globalPropertyi("tu154b2/custom/switchers/console/rls_right"))
---defineProperty("beam_angle", globalPropertyf("tu154b2/custom/rls/rls_drift_angle"))
-defineProperty("sec_az", globalProperty("sim/cockpit2/EFIS/EFIS_weather_sector_brg"))
-defineProperty("sec_width", globalProperty("sim/cockpit2/EFIS/EFIS_weather_sector_width"))
-defineProperty("drift_angle", globalPropertyf("sim/flightmodel2/position/drift_angle"))
-defineProperty("gs", globalPropertyf("sim/flightmodel/position/groundspeed"))
-defineProperty("radar_fail", globalPropertyi("tu154b2/custom/failures/radar_fail")) 
-defineProperty("backup_xmt", globalPropertyf("sim/custom/switchers/ovhd/groza_1"))
---defineProperty("auto_tilt", globalProperty("sim/cockpit2/EFIS/EFIS_weather_auto_tilt"))
-defineProperty("elev", globalProperty("sim/cockpit2/EFIS/EFIS_weather_tilt"))
-defineProperty("gain", globalProperty("sim/cockpit2/EFIS/EFIS_weather_gain"))
-defineProperty("grz_left", globalPropertyi("tu154b2/custom/switchers/console/rls_left"))
-defineProperty("grz_right", globalPropertyi("tu154b2/custom/switchers/console/rls_right"))
-defineProperty("grz_kontr", globalPropertyf("tu154b2/custom/switchers/console/rls_contr"))
-defineProperty("rls_nakl", globalProperty("tu154b2/custom/switchers/console/rls_tilt"))
-defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
--- defineProperty("db1", globalPropertyf("tu154b2/custom/controlls/debug1"))
--- defineProperty("db2", globalPropertyf("tu154b2/custom/controlls/debug2"))
--- defineProperty("db3", globalPropertyf("tu154b2/custom/controlls/debug3"))
--- defineProperty("db4", globalPropertyf("tu154b2/custom/controlls/debug4"))
--- defineProperty("db5", globalPropertyf("tu154b2/custom/controlls/debug5"))
--- defineProperty("db6", globalPropertyf("tu154b2/custom/controlls/debug6"))
--- defineProperty("arc_array", globalPropertyfa("tu154b2/custom/rls/arc"))
+rls_left = globalPropertyi("tu154b2/custom/switchers/console/rls_left")
+rls_right = globalPropertyi("tu154b2/custom/switchers/console/rls_right")
+--beam_angle = globalPropertyf("tu154b2/custom/rls/rls_drift_angle")
+sec_az = globalProperty("sim/cockpit2/EFIS/EFIS_weather_sector_brg")
+sec_width = globalProperty("sim/cockpit2/EFIS/EFIS_weather_sector_width")
+drift_angle = globalPropertyf("sim/flightmodel2/position/drift_angle")
+gs = globalPropertyf("sim/flightmodel/position/groundspeed")
+radar_fail = globalPropertyi("tu154b2/custom/failures/radar_fail") 
+backup_xmt = globalPropertyf("sim/custom/switchers/ovhd/groza_1")
+--auto_tilt = globalProperty("sim/cockpit2/EFIS/EFIS_weather_auto_tilt")
+elev = globalProperty("sim/cockpit2/EFIS/EFIS_weather_tilt")
+gain = globalProperty("sim/cockpit2/EFIS/EFIS_weather_gain")
+grz_left = globalPropertyi("tu154b2/custom/switchers/console/rls_left")
+grz_right = globalPropertyi("tu154b2/custom/switchers/console/rls_right")
+grz_kontr = globalPropertyf("tu154b2/custom/switchers/console/rls_contr")
+rls_nakl = globalProperty("tu154b2/custom/switchers/console/rls_tilt")
+oat = globalPropertyf("sim/weather/aircraft/temperature_ambient_deg_c")
+groz_brg = globalPropertyf("tu154b2/custom/rls/rls_az")
+ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+spill_arr = globalPropertyfa("tu154b2/custom/lights/rls_beam_spill")
+glow_arr = globalPropertyfa("tu154b2/custom/lights/rls_glow_spill")
+glow_arr2 = globalPropertyfa("tu154b2/custom/lights/rls_glow_spill2")
+spill_angle = globalPropertyf("tu154b2/custom/lights/rls_beam_angle")
+-- int_L = globalPropertyf("tu154b2/custom/lights/rls_int_L")
+-- int_R = globalPropertyf("tu154b2/custom/lights/rls_int_R")
+stab = globalProperty("sim/cockpit2/EFIS/EFIS_weather_stab")
+stab_sw = globalProperty("sim/custom/switchers/ovhd/groza_2")
+pkp = globalProperty("tu154b2/custom/switchers/ovhd/pkp_left_on")
+pkp_fail = globalPropertyi("sim/operation/failures/rel_ss_ahz")
+-- db1 = globalPropertyf("tu154b2/custom/controlls/debug1")
+-- db2 = globalPropertyf("tu154b2/custom/controlls/debug2")
+-- db3 = globalPropertyf("tu154b2/custom/controlls/debug3")
+-- db4 = globalPropertyf("tu154b2/custom/controlls/debug4")
+-- db5 = globalPropertyf("tu154b2/custom/controlls/debug5")
+-- db6 = globalPropertyf("tu154b2/custom/controlls/debug6")
+-- arc_array = globalPropertyfa("tu154b2/custom/rls/arc")
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
 local switcher_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/metal_switch_L.wav')
@@ -145,6 +157,8 @@ local sweep_dir=0
 local flicker=0
 local tme=0
 local blanking_timer=0
+local intensity_L = 0
+local intensity_R = 0
 --local arc_arr=get(arc_array)
 
 --local rend_tgt = sasl.gl.createRenderTarget ( 500 , 500 )
@@ -206,6 +220,39 @@ local mask_arr = {}
 for i= 1, 203 do
    mask_arr[i] = 1
 end
+
+local mask_avg_L = 0
+local mask_avg_R = 0
+local spill_alpha = 0
+set(spill_arr, 0 ,1)
+set(spill_arr, 1 ,2)
+set(spill_arr, 0 ,3)
+set(spill_arr, 0, 4)
+set(spill_arr, 0.5, 5)
+set(spill_arr, 0.96, 6)
+set(spill_arr, 0, 7)
+set(spill_arr, 0.2031, 8)
+set(spill_arr, 0.9792, 9)
+
+set(glow_arr, 0 ,1)
+set(glow_arr, 1 ,2)
+set(glow_arr, 0 ,3)
+set(glow_arr, 1, 4)
+set(glow_arr, 0.5, 5)
+set(glow_arr, 0.55, 6)
+set(glow_arr, 0, 7)
+set(glow_arr, 0.2031, 8)
+set(glow_arr, 0.9792, 9)
+
+set(glow_arr2, 0 ,1)
+set(glow_arr2, 1 ,2)
+set(glow_arr2, 0 ,3)
+set(glow_arr2, 1, 4)
+set(glow_arr2, 0.5, 5)
+set(glow_arr2, 0.55, 6)
+set(glow_arr2, 0, 7)
+set(glow_arr2, 0.2031, 8)
+set(glow_arr2, 0.9792, 9)
 
 local function inn_balance (src_x, src_z, x, z , cam_hdg)
 
@@ -275,6 +322,7 @@ local power_el = false
 local mode_timer=0
 
 local brg_set=0
+local brg=0
 local wx_gain=1
 local wx_tilt=0
 local wx_mode=0
@@ -284,6 +332,7 @@ local wx_speed=0
 local wx_sect=101
 
 function update()
+	local MASTER = get(ismaster) ~= 1	
 	if get(kontur_on) == 0 then
         local passed = get(frame_time)
 
@@ -391,10 +440,10 @@ function update()
 
         -- power couner
         if power_switch == 1 and mode == 0 and power_el and power_counter <190 then -- turn ON phase
-            power_counter = power_counter + passed * 1.5
-        elseif power_switch == 0 and power_counter > 180 and power_el then -- turn OFF phase
-            power_counter = 160 
-        elseif (power_switch == 0 or not power_el) and power_counter <= 160 and power_counter > 0 then -- cool down timer
+            power_counter = power_counter + passed * (0.005*get(oat)+1.3)
+        elseif (power_switch == 0 or not power_el) and power_counter > 180  then -- turn OFF phase
+            power_counter = 180 
+        elseif (power_switch == 0 or not power_el) and power_counter > 0 then -- cool down timer
             power_counter = power_counter - passed
 
 
@@ -404,32 +453,49 @@ function update()
             -- power_counter = 0 
         -- end
 
-        power = power_counter >1-- 180
+        power = power_counter > 180
 		if mode_sw_last~=mode and (mode_sw_last==0 or mode_sw_last==4) then
 			mode_timer=0
 		elseif mode_timer<2 then
 			mode_timer=mode_timer+passed		
 		end
 		sweep=get(sweep_angle)
+		-- set(db1,power_counter)
+		-- set(db2,bool2int(power))
 		------------ Radar Modes Logic---------------
 		local xmt_work=bool2int(get(radar_fail) == 0 or get(backup_xmt)>0) 
 		local contr=0.1+0.9*get(grz_kontr)
-		wx_tilt=get(rls_nakl)
+		wx_tilt=get(rls_nakl) * bool2int(mode==2 or mode==3) -40 * bool2int(mode==1 or mode==4)
 		--local sweep_a=get(sweep_angle)
 		--local alt=get(agl)
-		if mode==1 then -- ground
+		if mode==0 or not power then -- stby
+			--set(wxr_mode,0)
+			wx_mode=0
+			wx_gain=0
+			if blanking_timer<10 then
+				blanking_timer=blanking_timer+passed
+			end
+			wx_speed=0.01
+			--set(az,sweep_a+1)
+			--set(az_lim,1)
+			-- set(sec_width,104)
+			-- brg=0
+			-- if get(sweep_angle)<1 and get(sweep_angle)>-1 then
+			--set(sweep,0.000001)
+			-- end
+		elseif mode==1 then -- ground
 			wx_az=0
 			wx_speed=2/3
 			wx_mode=4*xmt_work
 			wx_sect=104
 			brg=sweep
-			wx_gain=contr
+			wx_gain=contr*0.9
 			drift_timer=0
 			blanking_timer=0
 		elseif mode==2 then -- meteo
 			wx_az=0
 			wx_mode=2*xmt_work
-			wx_gain=1
+			wx_gain=0.9
 			wx_speed=2/3
 			brg=sweep
 			wx_sect=104
@@ -438,7 +504,7 @@ function update()
 		elseif mode==3 then --kontur
 			wx_az=0
 			wx_mode=3*xmt_work
-			wx_gain=1.5
+			wx_gain=1.2
 			wx_speed=2/3
 			--set(elev,0)
 			wx_sect=104
@@ -446,18 +512,24 @@ function update()
 			drift_timer=0
 			blanking_timer=0
 		elseif mode==4 then  --drift
-			if get(grz_left)>0 and brg>-110 and brg_set==0 then
-				brg=brg-passed*(get(grz_kontr)*65+5)
-				brg_set=1
-			elseif get(grz_right)>0 and brg<110 and brg_set==0 then
-				brg=brg+passed*(get(grz_kontr)*65+5)
-				brg_set=1
+			if MASTER then
+				if get(grz_left)>0 and brg>-110 and brg_set==0 then
+					brg=brg-passed*(get(grz_kontr)*65+5)
+					wx_sect=5
+					brg_set=1
+				elseif get(grz_right)>0 and brg<110 and brg_set==0 then
+					brg=brg+passed*(get(grz_kontr)*65+5)
+					wx_sect=5
+					brg_set=1
+				else
+					brg_set=0
+				end
 			else
-				brg_set=0
+				brg = get(groz_brg)
 			end
 			--set(beam_angle,brg)
 			wx_mode=4*xmt_work
-			wx_gain=contr			
+			wx_gain=0.75			
 			tme=tme+passed
 			blanking_timer=0
 			local beam_az=brg
@@ -503,27 +575,19 @@ function update()
 					for i= 1, 4 do
 					   ang_near2[i] = 0
 					end
-					drift_fade_tmr=2
+					drift_fade_tmr=2	
+				end
+				if mask_avg_L < 101 then
+					mask_avg_L = mask_avg_L + passed / 2
+				end                                  
+				if mask_avg_R < 101 then             
+					mask_avg_R = mask_avg_R + passed / 2
 				end
 				wx_az=beam_az
 				wx_sect=1
-				wx_speed=1
+				wx_speed=30
 			end
-		else -- stby
-			--set(wxr_mode,0)
-			wx_mode=0
-			wx_gain=0
-			if blanking_timer<10 then
-				blanking_timer=blanking_timer+passed
-			end
-			wx_speed=0.01
-			--set(az,sweep_a+1)
-			--set(az_lim,1)
-			-- set(sec_width,104)
-			-- brg=0
-			-- if get(sweep_angle)<1 and get(sweep_angle)>-1 then
-			--set(sweep,0.000001)
-			-- end
+			set(spill_arr, brightness * flicker * 0.3, 4)
 		end
 		--set(db1,blanking_timer)
 		------ This array shows which angles are blanked in 375km range mode----------
@@ -703,11 +767,28 @@ function update()
 			for i= 1, 4 do
 			   ang_near2[i] = 0
 			end
+			mask_avg_L = 1
+			mask_avg_R = 1
 		else
 			for i= 1, 203 do
 				local temp=mask_arr[i]
 				mask_arr[i] = math.min(1,temp +passed*0.125)
-				--set(arc_array[i],mask_arr[i])
+				if drift_fade_tmr < 2 then
+					if i == 1 then
+						mask_avg_R = mask_arr[i]
+					elseif i < 101 then	
+						mask_avg_R = mask_avg_R + mask_arr[i]
+					elseif i == 101 then
+						mask_avg_L = mask_arr[i]
+					else	
+						mask_avg_L = mask_avg_L + mask_arr[i]
+					end
+				end
+				--set(arc_array, mask_arr[i], i)
+			end
+			if drift_fade_tmr < 2 then
+				mask_avg_L = mask_avg_L / 101
+				mask_avg_R = mask_avg_R / 101
 			end
 			if mode==4 then
 				ind_arc=102-math.floor(brg)
@@ -715,14 +796,14 @@ function update()
 				ind_arc=102-math.floor(sweep)
 			end
 			if mode>0 then
-			mask_arr[ind_arc]=0
+			mask_arr[ind_arc]= 1 - brightness
 				if sweep_dir==-1 and ind_arc<202 then
-					mask_arr[ind_arc+1]=0
-					mask_arr[ind_arc+2]=0
+					mask_arr[ind_arc+1]= 1 - brightness
+					mask_arr[ind_arc+2]= 1 - brightness
 					--mask_arr[ind_arc+3]=0
 				elseif sweep_dir==1 and ind_arc>2 then
-					mask_arr[ind_arc-1]=0
-					mask_arr[ind_arc-2]=0
+					mask_arr[ind_arc-1]= 1 - brightness
+					mask_arr[ind_arc-2]= 1 - brightness
 					--mask_arr[ind_arc-3]=0
 				end
 			end
@@ -731,6 +812,7 @@ function update()
 		--- Drift Mode Radar Blanking
 		if mode~=4 then
 			drift_fade_tmr=0
+			set(spill_arr,  brightness * bool2int(mode > 0) , 4)
 		end
         --high range mask angle
 		if sweep<sweep_prev then
@@ -758,7 +840,6 @@ function update()
             set(rls_weather, 0)
         end
 			-------- Set Datarefs----------
-		local MASTER = get(ismaster) ~= 1	
 		if MASTER then	
 			set(sec_width,wx_sect)
 			set(sec_az,wx_az)
@@ -766,16 +847,34 @@ function update()
 			set(gain,wx_gain)
 			set(wxr_mode,wx_mode)
 			set(sweep_spd,wx_speed)
+			set(groz_brg,brg)
 		end
-
+		-- Antenna stab
+		if get(stab_sw) > 0 and get(pkp)>0 and get(pkp_fail)==0 then
+			set(stab,1)
+		else
+			set(stab,0)
+		end
 
         set(EFIS_weather_alpha, 1)
 
 
         set(radar_cc, bool2int(power_el)*power_switch )
+		set(spill_angle, -90 - brg)
+		-- local glow_L = sys_data_tbl.groza_reflect_intensity_L * math.max (0, math.cos(math.rad((sweep / 2 + 45)))) * brightness * bool2int(mode > 0)
+		-- local glow_R = sys_data_tbl.groza_reflect_intensity_R * math.max (0, math.cos(math.rad((sweep / 2 - 45)))) * brightness * bool2int(mode > 0)
+		intensity_L = intensity_L - (intensity_L  - sys_data_tbl.groza_reflect_intensity_L) * passed / 2
+		intensity_R = intensity_R - (intensity_R  - sys_data_tbl.groza_reflect_intensity_R) * passed / 2
+		local glow_L = intensity_L * (1 - mask_avg_L)
+		local glow_R = intensity_R * (1 - mask_avg_R)
+		-- set(int_L,sys_data_tbl.groza_reflect_intensity_L)
+		-- set(int_R,sys_data_tbl.groza_reflect_intensity_R)
+		set(glow_arr, glow_L, 4)
+		set(glow_arr2, glow_R, 4)
+	else
+		blanking_timer = 10
 	end
 
-	
 end
 
 
@@ -2059,9 +2158,9 @@ components = {
 
     --round edge at the top
 	arc_LIT {
-		R=0.4353,
-	    G=0.4471,
-	    B=0.5333,
+		R=0,
+	    G=0,
+	    B=0,
 	    A=1,
 	    -- position_x=function()
 			-- return 309+get(db1)
@@ -2105,9 +2204,9 @@ components = {
 		-- end
 	-- },
 	arc_alpha_decay{
-		R=0.42,
-	    G=0.435,
-	    B=0.52,
+		R=0,
+	    G=0,
+	    B=0,
 		A1= function()
 		return mask_arr[1]
 		end,
@@ -2722,13 +2821,13 @@ components = {
 		rad_1=0,
 		rad_2=400,
 		visible = function()
-			return false--blanking_timer<10
+			return blanking_timer<10
 		end
 	},
 	arc_LIT {
-		R=0.42,
-	    G=0.435,
-	    B=0.52,
+		R=0,
+	    G=0,
+	    B=0,
 	    A=1,
 	    -- position_x=function()
 			-- return 309+get(db1)
@@ -2758,11 +2857,11 @@ components = {
 			return blanking_timer>=10
 		end
 	},
-	textureLit_alpha {
-		position = {66, 1540, 476, 325},
-		image = get(angle_scale),
-		alpha =0.7,
-	},
+	-- textureLit_alpha {
+		-- position = {66, 1540, 476, 325},
+		-- image = get(angle_scale),
+		-- alpha =1,
+	-- },
 
 }
 
