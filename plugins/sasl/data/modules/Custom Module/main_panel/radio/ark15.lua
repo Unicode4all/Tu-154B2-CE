@@ -57,6 +57,7 @@ defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
 defineProperty("side",1)
+defineProperty("flood_set", globalPropertyf("tu154b2/custom/lights/ovhd_panel_int"))
 
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
@@ -334,8 +335,8 @@ function update()
 	set(active, active_set)
 	
 	-- set backlit
-	local left_lit = bool2int(power and active_set == 0) 
-	local right_lit = bool2int(power and active_set == 1) 
+	local left_lit = bool2int(power and active_set == 0) * get(flood_set)
+	local right_lit = bool2int(power and active_set == 1) * get(flood_set)
 	local backlit = bool2int(power)
 	
 	set(ark_left_lit, left_lit)
