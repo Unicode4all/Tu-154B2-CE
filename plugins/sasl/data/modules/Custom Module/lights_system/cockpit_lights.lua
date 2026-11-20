@@ -162,15 +162,46 @@ l9_7 = globalProperty("sim/weapons/Prad[7]") set(l9_7, 0)  --dz
 l9_8 = globalProperty("sim/weapons/Prad[8]") set(l9_8, 1)  --width
 
 -- свет для передней панели
-l10_0 = globalProperty("sim/weapons/V_msc[0]") set(l10_0, 6)  --r
-l10_1 = globalProperty("sim/weapons/V_msc[1]") set(l10_1, 3.15)  --g
-l10_2 = globalProperty("sim/weapons/V_msc[2]") set(l10_2, 1.05)  --b
+l10_0 = globalProperty("sim/weapons/V_msc[0]") set(l10_0, 0.7)  --r
+l10_1 = globalProperty("sim/weapons/V_msc[1]") set(l10_1, 0.5)  --g
+l10_2 = globalProperty("sim/weapons/V_msc[2]") set(l10_2, 0.1225)  --b
 l10_3 = globalProperty("sim/weapons/V_msc[3]") set(l10_3, 0)  --alfa
-l10_4 = globalProperty("sim/weapons/V_msc[4]") set(l10_4, 0.25) --size
-l10_5 = globalProperty("sim/weapons/V_msc[5]") set(l10_5, 0)  --dx
-l10_6 = globalProperty("sim/weapons/V_msc[6]") set(l10_6, 0)  --dy
-l10_7 = globalProperty("sim/weapons/V_msc[7]") set(l10_7, -0.5)  --dz
-l10_8 = globalProperty("sim/weapons/V_msc[8]") set(l10_8, 0.2)  --width
+l10_4 = globalProperty("sim/weapons/V_msc[4]") set(l10_4, 0.8) --size
+l10_5 = globalProperty("sim/weapons/V_msc[5]") set(l10_5, 0.7)  --width
+l10_6 = globalProperty("sim/weapons/V_msc[6]") set(l10_6, -0.05)  --nx
+l10_7 = globalProperty("sim/weapons/V_msc[7]") set(l10_7, -0.3) --ny 
+l10_8 = globalProperty("sim/weapons/V_msc[8]") set(l10_8, 0.2)  --nz
+
+l10_0_2 = globalProperty("tu154b2/custom/lights/km5_spill[0]") set(l10_0_2, 0.7)  --r
+l10_1_2 = globalProperty("tu154b2/custom/lights/km5_spill[1]") set(l10_1_2, 0.5)  --g
+l10_2_2 = globalProperty("tu154b2/custom/lights/km5_spill[2]") set(l10_2_2, 0.1225)  --b
+l10_3_2 = globalProperty("tu154b2/custom/lights/km5_spill[3]") set(l10_3_2, 0)  --alfa
+l10_4_2 = globalProperty("tu154b2/custom/lights/km5_spill[4]") set(l10_4_2, 0.8) --size
+l10_5_2 = globalProperty("tu154b2/custom/lights/km5_spill[5]") set(l10_5_2, 0.7)  --width
+l10_6_2 = globalProperty("tu154b2/custom/lights/km5_spill[6]") set(l10_6_2, -0.05)  --nx
+l10_7_2 = globalProperty("tu154b2/custom/lights/km5_spill[7]") set(l10_7_2, -0.3) --ny 
+l10_8_2 = globalProperty("tu154b2/custom/lights/km5_spill[8]") set(l10_8_2, -0.2)  --nz
+
+
+-- azs_0 = globalProperty("tu154b2/custom/lights/azs_spill[0]") set(azs_0, 0.7)  --r
+-- azs_1 = globalProperty("tu154b2/custom/lights/azs_spill[1]") set(azs_1, 0.5)  --g
+-- azs_2 = globalProperty("tu154b2/custom/lights/azs_spill[2]") set(azs_2, 0.1225)  --b
+-- azs_3 = globalProperty("tu154b2/custom/lights/azs_spill[3]") set(azs_3, 1)  --alfa
+-- azs_4 = globalProperty("tu154b2/custom/lights/azs_spill[4]") set(azs_4, 0.8) --size
+-- azs_5 = globalProperty("tu154b2/custom/lights/azs_spill[5]") set(azs_5, 0.9)  --width
+-- azs_6 = globalProperty("tu154b2/custom/lights/azs_spill[6]") set(azs_6, 0)  --nx
+-- azs_7 = globalProperty("tu154b2/custom/lights/azs_spill[7]") set(azs_7, 0) --ny 
+-- azs_8 = globalProperty("tu154b2/custom/lights/azs_spill[8]") set(azs_8, -1)  --nz
+
+-- azs_0_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[0]") set(azs_0_2, 0.7)  --r
+-- azs_1_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[1]") set(azs_1_2, 0.5)  --g
+-- azs_2_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[2]") set(azs_2_2, 0.1225)  --b
+-- azs_3_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[3]") set(azs_3_2, 1)  --alfa
+-- azs_4_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[4]") set(azs_4_2, 0.8) --size
+-- azs_5_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[5]") set(azs_5_2, 0.9)  --width
+-- azs_6_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[6]") set(azs_6_2, 0)  --nx
+-- azs_7_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[7]") set(azs_7_2, 0) --ny 
+-- azs_8_2 = globalProperty("tu154b2/custom/lights/azs_spill_2[8]") set(azs_8_2, 1)  --nz
 
 
 -- свет для правой боковой панели
@@ -345,6 +376,7 @@ set(eng_panel_flood, eng_flood)
     
 local km_flood = get(km_panel_flood_set) * light_coef_27_R
 set(l10_3, km_flood * 1.5)
+set(l10_3_2, km_flood * 1.5)
 set(km_panel_flood, km_flood)
 
 local azs_flood = get(azs_panel_flood_set) * light_coef_27_R

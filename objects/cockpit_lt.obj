@@ -177,15 +177,61 @@ ANIM_end
 
 
 
-LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.4935 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc   #engine panel
-LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.3848 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc    #engine panel
-LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.3570 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc   #engine panel
-LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.2545 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc    #engine panel
+LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.4935 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc
+LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.3848 0 0 0 0 0 0 0 0 0 tu154b2/custom/lights/km5_spill 
+LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.3570 0 0 0 0 0 0 0 0 0 sim/weapons/V_msc #KM5 light
+LIGHT_SPILL_CUSTOM    0.82811 -1.27371 -20.2545 0 0 0 0 0 0 0 0 0 tu154b2/custom/lights/km5_spill
+ANIM_begin
+ANIM_hide 0 0 tu154b2/custom/lights/azs_panel_flood
+	LIGHT_SPILL_CUSTOM    1.0031 -1.6037 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -1.6750 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -1.7463 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -1.8171 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -1.8889 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -1.960  -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -2.0315 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -2.102  -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -2.1741 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -2.2454 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    1.0031 -2.3167 -20.434 0.7 0.5 0.1225 1 0.4 0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+
+	LIGHT_SPILL_CUSTOM    1.0031 -1.61887 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -1.69010 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -1.76143 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -1.83221 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -1.90409 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -1.97510 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -2.04665 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -2.11710 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -2.18921 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -2.26054 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    1.0031 -2.33187 -20.428 0.7 0.5 0.1225 1 0.4 0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+
+
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.6037 -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.6750 -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.7463 -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.8171 -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.8889 -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.960  -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    -1.05765 -2.0315 -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+	LIGHT_SPILL_CUSTOM    -1.05765 -2.102  -20.454 0.7 0.5 0.1225 1 0.4 -0.1 0 1 0.7 #tu154b2/custom/lights/azs_spill_2
+
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.61887 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.69010 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.76143 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.83221 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.90409 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    -1.05765 -1.97510 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    -1.05765 -2.04665 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+	LIGHT_SPILL_CUSTOM    -1.05765 -2.11710 -20.460 0.7 0.5 0.1225 1 0.4 -0.1 0 -1 0.7 #tu154b2/custom/lights/azs_spill
+ANIM_end
+
 ANIM_begin
 ANIM_hide 0 0 tu154b2/custom/lights/day_night_set_eng
 	ANIM_begin
 	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_left_eng
-	LIGHT_SPILL_CUSTOM		0.602 -0.729 -19.57 1 0 0 1 0.15 0 -1 0.2 0.2 # red engineer gear lights spill
+	LIGHT_SPILL_CUSTOM		0.602 -0.729 -19.57 1 0 0 1 0.15 0 -1 0.2 0.2 # red engineer gear lights spill R G B A size nX nY nZ cone
 	ANIM_end
 	ANIM_begin
 	ANIM_hide 0 0 tu154b2/custom/lights/gears_red_front_eng

@@ -78212,9 +78212,9 @@ ATTR_light_level 0.000000 1.000000  sim/custom/radios/vhf1_ap_lit  700
 TRIS 20661 72
 ATTR_light_level 0.000000 1.000000  sim/custom/lights/small/turn_off_bat_3_new  700
 TRIS 20733 96
-ATTR_light_level 0.000000 1.000000  sim/custom/kontur/light/left_power  700
+ATTR_light_level 0.000000 1.000000  sim/custom/kontur/light/left_power  400
 TRIS 20829 72
-ATTR_light_level 0.000000 1.000000  sim/custom/kontur/light/right_power  700
+ATTR_light_level 0.000000 1.000000  sim/custom/kontur/light/right_power  400
 TRIS 20901 72
 ATTR_light_level 0.000000 1.000000  sim/custom/lights/wpt_lamp_new  700
 TRIS 20973 18
