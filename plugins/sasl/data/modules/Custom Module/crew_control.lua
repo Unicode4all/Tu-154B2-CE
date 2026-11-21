@@ -46,16 +46,4 @@ function control.take_handover_thrust_commands()
     return left, center, right
 end
 
-function control.brakes(left, right)
-    if control.input_allowed() then
-        sasl.setDataRef(ref("brake_left_input", TYPE_FLOAT), left)
-        sasl.setDataRef(ref("brake_right_input", TYPE_FLOAT), right)
-
-        return left, right
-    end
-
-    return sasl.getDataRef(ref("brake_left", TYPE_FLOAT)),
-        sasl.getDataRef(ref("brake_right", TYPE_FLOAT))
-end
-
 return control
