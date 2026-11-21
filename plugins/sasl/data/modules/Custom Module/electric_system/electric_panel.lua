@@ -1,7 +1,7 @@
 -- this is electric panel. here we have controls and indicators for electric system
 -- controls on panel
-gpu_on = globalPropertyi("tu154b2/custom/switchers/eng/gpu_on") -- выключатель РАП
-apu_gen_on = globalPropertyi("tu154b2/custom/switchers/eng/apu_gen_on") -- выключатель ген ВСУ
+--gpu_on = globalPropertyi("tu154b2/custom/switchers/eng/gpu_on") -- выключатель РАП
+apu_gpu_on = globalPropertyi("sim/custom/gauges/elec/apu_rap_sel") -- выключатель ген ВСУ
 bus115_volt_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus115_volt_sel") -- переключатель источника вольтметра
 bus115_volt_phase_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus115_volt_phase_sel") -- переключатель источника вольтметра
 bus115_amp_sel = globalPropertyi("tu154b2/custom/switchers/eng/bus115_amp_sel") -- переключатель источника амерметра
@@ -204,8 +204,6 @@ freq_gpu = globalPropertyf("tu154b2/custom/elec/gpu_freq")
 gen_1_run = globalPropertyi("tu154b2/custom/elec/gen1_run")
 gen_2_run = globalPropertyi("tu154b2/custom/elec/gen2_run")
 gen_3_run = globalPropertyi("tu154b2/custom/elec/gen3_run")
-
-apu_rap_select_sw = globalPropertyi("sim/custom/gauges/elec/apu_rap_sel")
 
 pilot_Z = globalPropertyf("sim/aircraft/view/acf_peZ")
 pilot_X = globalPropertyf("sim/aircraft/view/acf_peX")
@@ -482,7 +480,7 @@ local function ampermeter115(gain_L, gain_R,dist)
 	amp115_timer = amp115_timer + passed
 	local amp115_angle = -120
 	if amp115_timer < 1 then amp115_angle = -120
-	elseif ampSel_115 == 3 and get(apu_rap_select_sw) == -1 then 
+	elseif ampSel_115 == 3 and get(apu_gpu_on) == -1 then 
 		if ampPhaseSel_115 == 0 then
 			amp115_angle = interpolate(amp115_table, get(gpu_amp_A)-ampphase_corr)
 		elseif ampPhaseSel_115 == 1 then 
@@ -753,9 +751,7 @@ local function bus27_gaug(gain_L, gain_R,dist)
 end
 
 -- switchers
-	local gpu_sw_last = get(gpu_on)
-	local apu_sw_last = get(apu_gen_on)
-	local apu_rap_last=get(apu_rap_select_sw)
+	local apu_sw_last = get(apu_gpu_on)
 	local gen_1_last = get(gen_1_on)
 	local gen_2_last = get(gen_2_on)
 	local gen_3_last = get(gen_3_on)
@@ -776,9 +772,7 @@ end
 	
 local function swichers_check(gain_L, gain_R,dist,gain_L_2, gain_R_2,dist_2)
 
-	local gpu_sw = get(gpu_on)
-	local apu_sw = get(apu_gen_on)
-	local apu_rap=get(apu_rap_select_sw)
+	local apu_sw = get(apu_gpu_on)
 	local gen_1 = get(gen_1_on)
 	local gen_2 = get(gen_2_on)
 	local gen_3 = get(gen_3_on)
@@ -798,10 +792,10 @@ local function swichers_check(gain_L, gain_R,dist,gain_L_2, gain_R_2,dist_2)
 	local bus_con = get(bus27_connect)
 	local vu_test = get(vu_test)
 	
-	local sw_change = gpu_sw - gpu_sw_last + apu_sw - apu_sw_last + gen_1 - gen_1_last + gen_2 - gen_2_last + gen_3 - gen_3_last
+	local sw_change = apu_sw - apu_sw_last + gen_1 - gen_1_last + gen_2 - gen_2_last + gen_3 - gen_3_last
 	sw_change = sw_change + pts_sw - pts_sw_last + pts_LR - pts_LR_last + pts_RL - pts_RL_last + pts_on_sw - pts_sw_on_last + pts_mod - pts_mod_last
 	sw_change = sw_change + vu1 - vu1_last + vu2 - vu2_last + bat1 - bat1_last + bat2 - bat2_last + bat3 - bat3_last + bat4 - bat4_last
-	sw_change = sw_change + emerg_115 + bus_con - emerg_115_last - bus_con_last+bool2int(apu_rap-apu_rap_last>1)
+	sw_change = sw_change + emerg_115 + bus_con - emerg_115_last - bus_con_last
 	local sw_change2=vu_test - vu_test_last
 	if sw_change ~= 0 then 
 		setSampleGain(switcher_sound_L,gain_L*dist)
@@ -842,7 +836,6 @@ local function swichers_check(gain_L, gain_R,dist,gain_L_2, gain_R_2,dist_2)
 		sasl.al.playSample(disc_R, false)
 	end
 	
-	gpu_sw_last = gpu_sw
 	apu_sw_last = apu_sw
 	gen_1_last = gen_1
 	gen_2_last = gen_2
@@ -860,7 +853,6 @@ local function swichers_check(gain_L, gain_R,dist,gain_L_2, gain_R_2,dist_2)
 	bat4_last = bat4
 	emerg_115_last = emerg_115
 	bus_con_last = bus_con
-	apu_rap_last=apu_rap
 	vu_test_last=vu_test
 
 end

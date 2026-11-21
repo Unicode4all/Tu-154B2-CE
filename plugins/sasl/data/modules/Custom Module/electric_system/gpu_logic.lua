@@ -9,7 +9,7 @@ defineProperty("gpu_load_A", globalPropertyf("tu154b2/custom/elec/gpu_amp_A"))
 defineProperty("gpu_load_B", globalPropertyf("tu154b2/custom/elec/gpu_amp_B"))
 defineProperty("gpu_load_C", globalPropertyf("tu154b2/custom/elec/gpu_amp_C"))
 defineProperty("gpu_overload", globalPropertyi("tu154b2/custom/elec/gpu_overload"))
-defineProperty("gpu_on", globalPropertyi("tu154b2/custom/switchers/eng/gpu_on")) -- выключатель РАП
+defineProperty("gpu_on", globalPropertyi("sim/custom/gauges/elec/apu_rap_sel")) -- выключатель РАП
 
 defineProperty("gpu_work_bus", globalPropertyi("tu154b2/custom/elec/gpu_work"))
 
@@ -317,7 +317,7 @@ function update()
 		set(gpu_work_anim, work_timer) -- set animation
 		
 		-- connect GPU to the bus
-		if get(gpu_on) == 1 then 
+		if get(gpu_on) == -1 then 
 			gpu_connect_timer = gpu_connect_timer + passed
 			if gpu_connect_timer >= 0.1 then
 				if work_timer == 1 and get(gpu_overload) ~= 1 then set(gpu_work_bus, 1) 
