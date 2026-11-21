@@ -1,51 +1,51 @@
 -- this is aux ahz logic
-defineProperty("frame_time", globalPropertyf("tu154b2/custom/time/frame_time")) -- flight time
+frame_time = globalPropertyf("tu154b2/custom/time/frame_time") -- flight time
 
---defineProperty("pitch_sim", globalPropertyf("sim/cockpit2/gauges/indicators/pitch_electric_deg_pilot"))
---defineProperty("roll_sim", globalPropertyf("sim/cockpit2/gauges/indicators/roll_electric_deg_pilot"))
+--pitch_sim = globalPropertyf("sim/cockpit2/gauges/indicators/pitch_electric_deg_pilot")
+--roll_sim = globalPropertyf("sim/cockpit2/gauges/indicators/roll_electric_deg_pilot")
 
-defineProperty("pitch_sim", globalPropertyf("sim/flightmodel/position/theta"))
-defineProperty("roll_sim", globalPropertyf("sim/flightmodel/position/phi"))
+pitch_sim = globalPropertyf("sim/flightmodel/position/theta")
+roll_sim = globalPropertyf("sim/flightmodel/position/phi")
 
 --[[
 sim/flightmodel/position/theta	float	y	degrees	The pitch relative to the plane normal to the Y axis in degrees
 sim/flightmodel/position/phi	float	y	degrees	The roll of the aircraft in degrees
 --]]
-defineProperty("N1", globalProperty("sim/flightmodel/engine/ENGN_N2_[1]"))   
-defineProperty("N2", globalProperty("sim/flightmodel/engine/ENGN_N2_[0]"))
-defineProperty("N3", globalProperty("sim/flightmodel/engine/ENGN_N2_[2]"))
+N1 = globalProperty("sim/flightmodel/engine/ENGN_N2_[1]")   
+N2 = globalProperty("sim/flightmodel/engine/ENGN_N2_[0]")
+N3 = globalProperty("sim/flightmodel/engine/ENGN_N2_[2]")
 
 
 -- controls
-defineProperty("pitch_corr_hdl", globalPropertyf("tu154b2/custom/gauges/ahz/pitch_corr_C")) -- коррекция тангажа на АГР + вправо
-defineProperty("agr_on", globalPropertyi("tu154b2/custom/switchers/ovhd/agr_on")) -- выключатель
+pitch_corr_hdl = globalPropertyf("tu154b2/custom/gauges/ahz/pitch_corr_C") -- коррекция тангажа на АГР + вправо
+agr_on = globalPropertyi("tu154b2/custom/switchers/ovhd/agr_on") -- выключатель
 
 -- power
-defineProperty("bus27_volt_left", globalPropertyf("tu154b2/custom/elec/bus27_volt_left"))
-defineProperty("bus27_volt_right", globalPropertyf("tu154b2/custom/elec/bus27_volt_right"))
+bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
+bus27_volt_right = globalPropertyf("tu154b2/custom/elec/bus27_volt_right")
 
-defineProperty("bus36_volt_pts250_1", globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1"))
+bus36_volt_pts250_1 = globalPropertyf("tu154b2/custom/elec/bus36_volt_pts250_1")
 
-defineProperty("bus115_1_volt", globalPropertyf("tu154b2/custom/elec/bus115_1_volt"))
-defineProperty("bus115_2_volt", globalPropertyf("tu154b2/custom/elec/bus115_2_volt"))
-defineProperty("bus115_3_volt", globalPropertyf("tu154b2/custom/elec/bus115_3_volt"))
+bus115_1_volt = globalPropertyf("tu154b2/custom/elec/bus115_1_volt")
+bus115_2_volt = globalPropertyf("tu154b2/custom/elec/bus115_2_volt")
+bus115_3_volt = globalPropertyf("tu154b2/custom/elec/bus115_3_volt")
 
 -- fail
-defineProperty("agr_fail", globalPropertyi("tu154b2/custom/failures/agr_fail")) -- отказ
+agr_fail = globalPropertyi("tu154b2/custom/failures/agr_fail") -- отказ
 
 
 -- results
-defineProperty("res_pitch", globalPropertyf("tu154b2/custom/gauges/ahz/pitch_C")) -- тангаж на АГР + нос вверх
-defineProperty("res_roll", globalPropertyf("tu154b2/custom/gauges/ahz/roll_C")) -- крен на АГР + в право
+res_pitch = globalPropertyf("tu154b2/custom/gauges/ahz/pitch_C") -- тангаж на АГР + нос вверх
+res_roll = globalPropertyf("tu154b2/custom/gauges/ahz/roll_C") -- крен на АГР + в право
 
-defineProperty("agr_cc", globalPropertyf("tu154b2/custom/ahz/agr_cc")) -- ток
+agr_cc = globalPropertyf("tu154b2/custom/ahz/agr_cc") -- ток
 
 
-defineProperty("ahz_flag", globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_C")) -- тангаж на АГР + нос вверх
+ahz_flag = globalPropertyf("tu154b2/custom/gauges/ahz/ahz_flag_C") -- тангаж на АГР + нос вверх
 
 -- Smart Copilot
-defineProperty("ismaster", globalPropertyf("tu154b2/crew/ismaster")) -- Master. 0 = plugin not found, 1 = slave 2 = master
-defineProperty("hascontrol_1", globalPropertyf("tu154b2/crew/hascontrol_1")) -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+--ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
+hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
@@ -197,19 +197,17 @@ function update()
 	-- flag logic
 	local flag = bool2int(power_timer<20 or math.abs(initial_roll_err) + math.abs(initial_pitch_err) + math.abs(power_roll) + math.abs(power_pitch) > 5)
 	
-local MASTER = get(ismaster) ~= 1	
-	
+	local MASTER = get(hascontrol_1) ~= 1	
+		
 
-if MASTER then	
-	
-	
-	-- set results
-	set(res_pitch, pitch_show_2)
-	set(res_roll, roll_show_2)
-	
-	set(ahz_flag, flag)
-
-	
-end
+	if MASTER then	
+		set(res_pitch, pitch_show_2)
+		set(res_roll, roll_show_2)		
+		set(ahz_flag, flag)
+	else
+		pitch_show_2 = get(res_pitch)
+		roll_show_2 = get(res_roll)	
+		flag = get(ahz_flag)
+	end
 	
 end

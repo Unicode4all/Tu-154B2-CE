@@ -38,8 +38,8 @@ defineProperty("gpu_overload", globalPropertyi("tu154b2/custom/elec/gpu_overload
 defineProperty("gen_1_on", globalPropertyi("tu154b2/custom/switchers/eng/gen_1_on")) -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
 defineProperty("gen_2_on", globalPropertyi("tu154b2/custom/switchers/eng/gen_2_on")) -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
 defineProperty("gen_3_on", globalPropertyi("tu154b2/custom/switchers/eng/gen_3_on")) -- выключатель генератора 1. -1 - проверка, 0 - выкл, +1 - вкл
-defineProperty("apu_gen_on", globalPropertyi("tu154b2/custom/switchers/eng/apu_gen_on")) -- выключатель ген ВСУ
-defineProperty("gpu_on_sw", globalPropertyi("tu154b2/custom/switchers/eng/gpu_on")) -- выключатель РАП
+defineProperty("apu_gen_on", globalPropertyi("sim/custom/gauges/elec/apu_rap_sel")) -- выключатель ген ВСУ
+--defineProperty("gpu_on_sw", globalPropertyi("tu154b2/custom/switchers/eng/gpu_on")) -- выключатель РАП
 
 defineProperty("gen1_work", globalPropertyf("tu154b2/custom/elec/gen1_work"))  -- generators connected to the busses and working
 defineProperty("gen2_work", globalPropertyf("tu154b2/custom/elec/gen2_work"))
@@ -327,7 +327,7 @@ function update() -- every frame calculations are here
 		local gen_on1 = get(gen_1_on)*(1-avt_1)
 		local gen_on2 = get(gen_2_on)*(1-avt_2)
 		local gen_on3 = get(gen_3_on)*(1-avt_3)
-		local gen_on4 = get(apu_gen_on)
+		local gen_on4 = bool2int(get(apu_gen_on) == 1)
 		
 		if gen_on1 ~= gen_on_1_last then switch_timer_1 = 0.05 end -- check switch through 0
 		if gen_on2 ~= gen_on_2_last then switch_timer_2 = 0.05 end -- check switch through 0
@@ -697,7 +697,7 @@ function update() -- every frame calculations are here
 		freq_4=gen4_freq_tgt*gen_run_4-- frequency regulator
 		if gen_on_bus_4==1 then
 			gen4_volt =gen4_volt + (gen4_amp_prev-gen4_amp) / 30 
-			gen4_volt = (gen4_volt - (gen4_volt-gen4_volt_tgt)*passed*2) * (1-fail_4)*gen_4_counter*gen_on4  -- voltage regulator 
+			gen4_volt = (gen4_volt - (gen4_volt-gen4_volt_tgt)*passed*2) * (1-fail_4)*gen_4_counter*gen_on4 
 		else
 			gen4_volt = gen4_volt_tgt * (1-fail_4)*gen_run_4
 		end
@@ -709,13 +709,13 @@ function update() -- every frame calculations are here
 		end
 		--small connetion delay for APU
 		if gen_work_4 == 1 then 
-			gen_4_counter = gen_4_counter + passed * 40
+			gen_4_counter = gen_4_counter + passed
 		else 
 			if gen_4_counter>0 then
 				gen_4_counter = 0
 			end
 		end
-		if gen_4_counter > 1 then 
+		if gen_4_counter > 0.02 then 
 			gen_4_counter = 1
 		end
 		
