@@ -18556,11 +18556,11 @@ ATTR_manip_command_knob rotate_large t154/elec/bus27_sel2_up t154/elec/bus27_sel
 TRIS 17541 6
 ANIM_end
 ANIM_begin
-ATTR_manip_push up 1.000000 0.000000 sim/custom/gauges/elec/apu_rap_sel_move
+ATTR_manip_toggle up 1.000000 0.000000 sim/custom/gauges/elec/apu_rap_sel
 TRIS 17547 6
 ANIM_end
 ANIM_begin
-ATTR_manip_push down -1.000000 0.000000 sim/custom/gauges/elec/apu_rap_sel_move
+ATTR_manip_toggle down -1.000000 0.000000 sim/custom/gauges/elec/apu_rap_sel
 TRIS 17553 6
 ANIM_end
 ANIM_begin
