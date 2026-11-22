@@ -526,6 +526,8 @@ createGlobalPropertyf("tu154b2/custom/SC/engine/ENGN_propmode_2", 0) -- упра
 createGlobalPropertyf("tu154b2/custom/SC/gear/tire_steer_command_deg", 0) -- управление передней ногой
 createGlobalPropertyf("tu154b2/custom/SC/controls/l_brake_add", 0) -- управление тормозами
 createGlobalPropertyf("tu154b2/custom/SC/controls/r_brake_add", 0) -- управление тормозами
+createGlobalPropertyf("tu154b2/custom/brakes/pedal_L_result", 0)
+createGlobalPropertyf("tu154b2/custom/brakes/pedal_R_result", 0)
 createGlobalPropertyf("tu154b2/custom/SC/brakes/int_brakes_L", 0) -- управление тормозами
 createGlobalPropertyf("tu154b2/custom/SC/brakes/int_brakes_R", 0) -- управление тормозами
 createGlobalPropertyf("tu154b2/custom/SC/controls/parkbrake", 0) -- управление тормозами

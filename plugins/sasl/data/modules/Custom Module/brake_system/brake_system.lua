@@ -20,17 +20,10 @@ defineProperty("parkbrake", globalPropertyf("sim/flightmodel/controls/parkbrake"
 defineProperty("parkbrake_2", globalPropertyf("sim/cockpit2/controls/parking_brake_ratio")) -- Parking Brake
 
 
---defineProperty("l_brake_add", globalPropertyf("tu154b2/custom/SC/controls/l_brake_add")) 
---defineProperty("r_brake_add", globalPropertyf("tu154b2/custom/SC/controls/r_brake_add")) 
---defineProperty("parkbrake", globalPropertyf("tu154b2/custom/SC/controls/parkbrake")) 
-
-
-
---[[
-defineProperty("l_brake_add_2", globalPropertyf("sim/cockpit2/controls/left_brake_ratio")) -- Left Brake
-defineProperty("r_brake_add_2", globalPropertyf("sim/cockpit2/controls/right_brake_ratio")) -- Right Brake
-defineProperty("parkbrake_2", globalPropertyf("sim/cockpit2/controls/parking_brake_ratio")) -- Parking Brake
---]]
+defineProperty("pedal_L_input", globalPropertyf("tu154b2/custom/SC/controls/l_brake_add"))
+defineProperty("pedal_L_result", globalPropertyf("tu154b2/custom/brakes/pedal_L_result"))
+defineProperty("pedal_R_input", globalPropertyf("tu154b2/custom/SC/controls/r_brake_add"))
+defineProperty("pedal_R_result", globalPropertyf("tu154b2/custom/brakes/pedal_R_result"))
 
 -- controls
 defineProperty("gear_blocks", globalPropertyf("tu154b2/custom/anim/gear_blocks")) -- Parking Brake
@@ -251,19 +244,13 @@ local termo_right = get(thermo)
 
 
 function regular_brk_hnd(phase)
-    if not crew_control.input_allowed() then
-        sim_brake = 0
-
-        return 0
-    end
-
 	if 1 == phase then -- hold
-		set(parking_brake, 0)
+		if crew_control.input_allowed() then set(parking_brake, 0) end
 		sim_brake = sim_brake + passed
 		if sim_brake > 1 then sim_brake = 1 end
-	else 
+	else
 		sim_brake = 0
-		if get(hascontrol_1) ~= 1 then
+		if not crew_control.active() and get(hascontrol_1) ~= 1 then
 			set(l_brake_add, 0)
 			set(r_brake_add, 0)
 		end
@@ -278,19 +265,13 @@ registerCommandHandler(regular_brk_comm, 0, regular_brk_hnd)
 max_brk_comm = findCommand("sim/flight_controls/brakes_max")
 
 function max_brk_hnd(phase)
-    if not crew_control.input_allowed() then
-        sim_brake = 0
-
-        return 0
-    end
-
 	if 1 == phase then -- hold
-		set(parking_brake, 0)
+		if crew_control.input_allowed() then set(parking_brake, 0) end
 		sim_brake = sim_brake + passed * 4
 		if sim_brake > 1 then sim_brake = 1 end
 	else 
 		sim_brake = 0
-		if get(hascontrol_1) ~= 1 then
+		if not crew_control.active() and get(hascontrol_1) ~= 1 then
 			set(l_brake_add, 0)
 			set(r_brake_add, 0)
 		end
@@ -363,16 +344,10 @@ local left_brk = 0
 local right_brk = 0
 
 function left_brk_cmd_hnd(phase)
-    if not crew_control.input_allowed() then
-        left_brk = 0
-
-        return 0
-    end
-
 	if 1 == phase then -- hold
 		left_brk = left_brk + passed * 2
 		if left_brk > 1 then left_brk = 1 end
-		set(parking_brake, 0)
+		if crew_control.input_allowed() then set(parking_brake, 0) end
 		
 	else 
 		left_brk = 0
@@ -382,16 +357,10 @@ function left_brk_cmd_hnd(phase)
 end
 
 function right_brk_cmd_hnd(phase)
-    if not crew_control.input_allowed() then
-        right_brk = 0
-
-        return 0
-    end
-
 	if 1 == phase then -- hold
 		right_brk = right_brk + passed * 2
 		if right_brk > 1 then right_brk = 1 end
-		set(parking_brake, 0)
+		if crew_control.input_allowed() then set(parking_brake, 0) end
 	else 
 		right_brk = 0
 	end
@@ -460,13 +429,10 @@ function update()
 
     local crew_active = crew_control.active()
     if crew_active then
-        if not crew_control.input_allowed() then
-            sim_brake, left_brk, right_brk = 0, 0, 0
-        end
-
-        brake_1, brake_2 = crew_control.brakes(
-            math.max(brake_1, sim_brake, left_brk),
-            math.max(brake_2, sim_brake, right_brk))
+        set(pedal_L_input, math.max(brake_1, sim_brake, left_brk))
+        set(pedal_R_input, math.max(brake_2, sim_brake, right_brk))
+        brake_1 = get(pedal_L_result)
+        brake_2 = get(pedal_R_result)
     end
 
 	
