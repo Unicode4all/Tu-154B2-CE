@@ -485258,7 +485258,7 @@ ATTR_light_level	0	1		1000 3000
 			ANIM_begin
 			ANIM_trans	0.77656001	-1.04756	-19.0749	0.77656001	-1.04756	-19.0749
 			ANIM_rotate	1	0	0	90.00021	90.00021
-			ANIM_rotate_begin	0	1	-0	tu154b2/custom/lights/day_night_set
+			ANIM_rotate_begin	0	1	-0	tu154b2/custom/lights/day_night_set_eng
 			ANIM_rotate_key	0	30.000069
 			ANIM_rotate_key	1	-30.000069
 			ANIM_rotate_end
