@@ -196,6 +196,7 @@ hid_def_gnd = find_dataref("sim/custom/t154cfg/hide_def")
 failures = find_dataref("tu154b2/custom/failures/failures_enabled")
 simDR_efb_brt = find_dataref("sim/cockpit2/switches/instrument_brightness_ratio[19]")
 simDR_master = find_dataref("tu154b2/crew/ismaster")
+spu_select = find_dataref("tu154b2/custom/radio/spu_select") 
 
 --qfe calc
 
@@ -623,7 +624,6 @@ function efb_pwr()
           efb_page = 0
           efb_timer_start = 0
     end
-	simDR_avitab_pwr = efb_power
 end
 
 
@@ -764,14 +764,6 @@ function efb_misc()
     if efb_timer_start > 2 and efb_timer_start < 3 and efb_power < 1 then
        efb_power = 1
     end
-    if simDR_master ~=1 then
-		if efb_page == 0 and efb_power > 0 and efb_popup_1 < 1 and efb_popup_2 < 1 and efb_popup_3 < 1 and efb_popup_4 < 1 and efb_popup_5 < 1 and efb_popup_8 < 1 and efb_popup_9 < 1 then
-		  simDR_avitab_left = 2057
-		  avitab_enbl = 1
-		else
-		  avitab_enbl = 0
-		end
-	end
 
 end
 
@@ -782,9 +774,6 @@ function efb_battery()
     else
        simDR_efb_brt = 0.6
     end
-	if simDR_master ~=1 then
-		simDR_avitab_brt = simDR_efb_brt
-	end
     
     if efb_enabled < 1 then
        efb_cable_connect = 0
@@ -814,7 +803,18 @@ function efb_battery()
     
 end
 
-
+function avtab()
+	if spu_select == 0 then
+		simDR_avitab_brt = simDR_efb_brt
+		simDR_avitab_pwr = efb_power
+		if efb_page == 0 and efb_power > 0 and efb_popup_1 < 1 and efb_popup_2 < 1 and efb_popup_3 < 1 and efb_popup_4 < 1 and efb_popup_5 < 1 and efb_popup_8 < 1 and efb_popup_9 < 1 then
+			simDR_avitab_left = 2057
+			avitab_enbl = 1
+		else
+			avitab_enbl = 0
+		end
+	end
+end
 
 
 function btn1_CMDhandler(phase, duration)
@@ -1159,15 +1159,16 @@ wxr_req_CMD = deferred_command("t154_efb/wxr_req", "EFB WXR req", wxr_req_CMDhan
 
 
 function after_physics()
-    efb_config()    
-    efb_qfe_calc()   
+    efb_config()     
     efb_fuel_calc()
     efb_payload()    
+	avtab()	
 	if simDR_master ~=1 then
 		efb_pwr()
 		efb_battery()
 		efb_misc()
 		efb_to_calc()
 		efb_land_calc()
+		efb_qfe_calc()  
 	end
 end

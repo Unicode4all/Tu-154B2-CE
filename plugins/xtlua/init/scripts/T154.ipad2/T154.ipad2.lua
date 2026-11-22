@@ -196,6 +196,7 @@ hid_def_gnd = find_dataref("sim/custom/t154cfg/hide_def")
 failures = find_dataref("tu154b2/custom/failures/failures_enabled")
 simDR_efb_brt = find_dataref("sim/cockpit2/switches/instrument_brightness_ratio[21]")
 simDR_master = find_dataref("tu154b2/crew/ismaster")
+spu_select = find_dataref("tu154b2/custom/radio/spu_select") 
 
 --qfe calc
 
@@ -801,7 +802,7 @@ function efb_battery()
 end
 
 function avtab()
-	if simDR_master == 1 then
+	if spu_select > 0 then
 		simDR_avitab_brt = simDR_efb_brt
 		simDR_avitab_pwr = efb_power
 		if efb_page == 0 and efb_power > 0 and efb_popup_1 < 1 and efb_popup_2 < 1 and efb_popup_3 < 1 and efb_popup_4 < 1 and efb_popup_5 < 1 and efb_popup_8 < 1 and efb_popup_9 < 1 then
@@ -1157,7 +1158,6 @@ wxr_req_CMD = deferred_command("t154_efb2/wxr_req", "EFB2 WXR req", wxr_req_CMDh
 
 function after_physics()
     efb_config()
-    efb_qfe_calc()
     efb_payload()  
 	avtab()	
 	if simDR_master ~=1 then
@@ -1167,5 +1167,6 @@ function after_physics()
 		efb_pwr()
 		efb_land_calc()
 		efb_to_calc()
+		efb_qfe_calc()
 	end
 end
