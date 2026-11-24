@@ -120,6 +120,8 @@ createGlobalPropertyf("tu154b2/custom/controlls/yoke_roll", 0) -- поворот
 createGlobalPropertyf("tu154b2/custom/controlls/pedals", 0) -- поворот педалей
 createGlobalPropertyf("tu154b2/custom/controlls/brake_L", 0) -- тормоз педалей лев
 createGlobalPropertyf("tu154b2/custom/controlls/brake_R", 0) -- тормоз педалей прав
+createGlobalPropertyf("tu154b2/custom/controlls/brake_FO_L", 0) -- тормоз педалей лев
+createGlobalPropertyf("tu154b2/custom/controlls/brake_FO_R", 0) -- тормоз педалей прав
 createGlobalPropertyf("tu154b2/custom/controlls/brake_emerg", 0) -- аварийный тормоз
 createGlobalPropertyf("tu154b2/custom/controlls/brake_emerg_L", 0) -- аварийный тормоз лев
 createGlobalPropertyf("tu154b2/custom/controlls/brake_emerg_R", 0) -- аварийный тормоз прав

@@ -162317,7 +162317,7 @@ IDX	147515
 								ANIM_rotate_key	1	17.000232
 								ANIM_rotate_end
 												ANIM_begin
-												ANIM_rotate_begin	0	1	-0	tu154b2/custom/controlls/brake_L
+												ANIM_rotate_begin	0	1	-0	tu154b2/custom/controlls/brake_FO_L
 												ANIM_rotate_key	0	0
 												ANIM_rotate_key	1	20.000238
 												ANIM_rotate_end
@@ -162341,7 +162341,7 @@ IDX	147515
 								ANIM_rotate_end
 												ANIM_begin
 												ANIM_rotate	0	0	-1	-179.99985	-179.99985
-												ANIM_rotate_begin	0	1	-0	tu154b2/custom/controlls/brake_R
+												ANIM_rotate_begin	0	1	-0	tu154b2/custom/controlls/brake_FO_R
 												ANIM_rotate_key	0	0
 												ANIM_rotate_key	1	20.000238
 												ANIM_rotate_end

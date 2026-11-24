@@ -47,6 +47,8 @@ defineProperty("SC_int_brakes_L", globalPropertyf("tu154b2/custom/SC/brakes/int_
 defineProperty("SC_int_brakes_R", globalPropertyf("tu154b2/custom/SC/brakes/int_brakes_R")) 
 
 defineProperty("SC_parkbrake", globalPropertyf("tu154b2/custom/SC/controls/parkbrake")) 
+role = globalPropertys("crew154/roles/current")
+role_num = globalPropertyi("tu154b2/custom/crew_role")
 
 
 
@@ -67,6 +69,19 @@ local conr_last = true
 set(override_wheel_steer, 0)
 
 function update()
+	local role_int = 0
+	local role_str = get(role)
+	if string.find(role_str,"FO") then
+		role_int = 1
+	elseif string.find(role_str,"FE") then
+		role_int = 2
+	elseif string.find(role_str,"NAV") then
+		role_int = 3
+	elseif string.find(role_str,"PAX") then
+		role_int = 5
+	end
+	set(role_num,role_int)
+	
 
 	local has_contr = get(hascontrol_1) ~= 1
 	local other_tro = get(control_thro_other) == 1

@@ -40,6 +40,8 @@ defineProperty("parking_brake", globalPropertyi("tu154b2/custom/controll/parking
 
 defineProperty("brake_L", globalPropertyf("tu154b2/custom/controlls/brake_L")) -- 
 defineProperty("brake_R", globalPropertyf("tu154b2/custom/controlls/brake_R")) -- 
+defineProperty("brake_FO_L", globalPropertyf("tu154b2/custom/controlls/brake_FO_L")) -- 
+defineProperty("brake_FO_R", globalPropertyf("tu154b2/custom/controlls/brake_FO_R")) -- 
 
 defineProperty("int_brakes_L", globalPropertyf("tu154b2/custom/brakes/int_brakes_L")) -- реальное положение тормоза
 defineProperty("int_brakes_R", globalPropertyf("tu154b2/custom/brakes/int_brakes_R")) -- реальное положение тормоза
@@ -96,7 +98,7 @@ defineProperty("frict", globalPropertyi("sim/weather/runway_friction"))
 defineProperty("pilot_Z", globalPropertyf("sim/aircraft/view/acf_peZ"))
 defineProperty("pilot_X", globalPropertyf("sim/aircraft/view/acf_peX"))
 defineProperty("pilot_head", globalPropertyi("sim/graphics/view/pilots_head_psi"))
-
+role_num = globalPropertyi("tu154b2/custom/crew_role")
 
 
 local rotary_sound_L = loadSample(moduleDirectory .. '/Custom Sounds/plastic_switch_L.wav')
@@ -599,7 +601,14 @@ function update()
 		set(r_brake_add, math.min(math.max(right_blake*(1-park_lvr),right_blake_emer)*brake_c,max_brake))
 		set(parkbrake_2, park)
 	end
-
+	local role = get(role_num)
+	if role == 0 then
+		set(brake_L, math.max(left_blake, brake_1, park_lvr))
+		set(brake_R, math.max(right_blake, brake_2, park_lvr))
+	elseif role == 1 then
+		set(brake_FO_L, math.max(left_blake, brake_1, park_lvr))
+		set(brake_FO_R, math.max(right_blake, brake_2, park_lvr))
+	end
 	if crew_active and not master then
 		return
 	end
@@ -703,48 +712,14 @@ if have_control then
 	end
 	set(int_brakes_L, math.max(left_blake,park ))
 	set(int_brakes_R, math.max(right_blake, park))
-	--set(parkbrake, park)
 	set(gear2_chock, blocks)
 	set(gear3_chock, blocks)
 	
 	if brake_1 > 0.8 and brake_2 > 0.8 then set(parking_brake, 0) end -- release park lever, if pedals pressed.
 	
-	--print(park_lvr, "  ", park, "  ", get(parkbrake_2))
 	
 end
 
-	--set(parkbrake, 1)
-	
-	
-	-- set pedals animation
-	
-	--local parkAnim = park_lvr
-	--if park == 5 then parkAnim = 0 end
-	
-	set(brake_L, math.max(left_blake, brake_1, park_lvr))
-	set(brake_R, math.max(right_blake, brake_2, park_lvr))
-	
-	
-
-	
---[[	
-	-- reset all axies
-	if get(have_pedals) == 1 then 
-		resetTimer = resetTimer + passed
-	else
-		resetTimer = 0
-	end
-	
-	if resetTimer > 5 then
-		for i = 0, 500 do
-			--print(get(axies_asgn[i+1]))
-			
-			set(axies_asgn[i+1], 0)
-			set(axies_inv[i+1], 0)
-		end
-		resetTimer = 0
-	end
---]]	
 	
 end
 
