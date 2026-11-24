@@ -31,6 +31,10 @@ simDR_on_ground = find_dataref("sim/flightmodel/failures/onground_all")
 efb_page = find_dataref("sim/custom/t154_efb/page")
 efb2_page = find_dataref("sim/custom/t154_efb2/page")
 mil_tech = find_dataref("sim/custom/t154cfg/hide_mil")
+ground_veh_type = find_dataref("sim/custom/t154_efb/ground_veh_type")
+
+crew_stairs_front = deferred_dataref("tu154b2/crew/walk/stairs_front", "number")
+crew_stairs_middle = deferred_dataref("tu154b2/crew/walk/stairs_middle", "number")
 simDR_pilot_head_z = find_dataref("sim/graphics/view/pilots_head_z")
 
 
@@ -554,6 +558,10 @@ end
 
 function after_physics()
     misc_gnd()
+    -- For crew walk map. It shouldn't be zero
+    local stairs_model = ground_veh_type + 1
+    crew_stairs_front = def_ladd1 == 0 and stairs_model or 0
+    crew_stairs_middle = def_ladd2 == 0 and stairs_model or 0
 	if simDR_master ~= 1 then
 		anti_icing()
 		snow_on_fuse()
