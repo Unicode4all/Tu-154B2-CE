@@ -151,20 +151,23 @@ function update()
 				local weatherData3 = sasl.weather.getWeatherAtLocation(sampleLat, sampleLon, sampleAlt3)
 				local return_int = 0
 				local kont_thr = 0.5 -- kontur mode high precipitation areas are drawn black
+				local c_alt=math.min(1,math.max(0,-0.3333*sampleAlt/1000 + 3))
 				if weatherData then
-					return_int = weatherData.precipRate * bool2int(weatherData.precipRate < kont_thr or mode ~= 3) + terr_hit * 0.5
+					return_int = weatherData.precipRate * bool2int(weatherData.precipRate < kont_thr or mode ~= 3) * c_alt + terr_hit * 0.5
 				else
 					return_int = terr_hit
 				end
 				local return_int2 = 0
+				c_alt=math.min(1,math.max(0,-0.3333*sampleAlt2/1000 + 3))
 				if weatherData2 then
-					return_int2 = weatherData2.precipRate * bool2int(weatherData.precipRate < kont_thr or mode ~= 3) + terr_hit2 * 0.5
+					return_int2 = weatherData2.precipRate * bool2int(weatherData.precipRate < kont_thr or mode ~= 3) * c_alt + terr_hit2 * 0.5
 				else
 					return_int2 = terr_hit2
 				end
 				local return_int3 = 0
+				c_alt=math.min(1,math.max(0,-0.3333*sampleAlt3/1000 + 3))
 				if weatherData3 then
-					return_int3 = weatherData3.precipRate * bool2int(weatherData.precipRate < kont_thr or mode ~= 3) + terr_hit3 * 0.5
+					return_int3 = weatherData3.precipRate * bool2int(weatherData.precipRate < kont_thr or mode ~= 3) * c_alt + terr_hit3 * 0.5
 				else
 					return_int3 = terr_hit3 * 0.5
 				end
