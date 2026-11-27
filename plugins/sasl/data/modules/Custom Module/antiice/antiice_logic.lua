@@ -46,6 +46,8 @@ rpm_high_3 = globalPropertyf("tu154b2/custom/gauges/engine/rpm_high_3") -- об�
 termo = globalPropertyf("sim/weather/temperature_ambient_c") -- тепература воздуха
 --termo_in = globalProperty("tu154b2/custom/gauges/airbleed/cockpit_temp") -- тепература воздуха
 termo_tube = globalProperty("tu154b2/custom/bleed/cockpit_tube_t")
+termo_tube_cab1 = globalPropertyf("tu154b2/custom/bleed/cabin1_tube_t") -- температура в трубопроводе в салон 1
+termo_tube_cab2 = globalPropertyf("tu154b2/custom/bleed/cabin2_tube_t") -- температура в трубопроводе в салон 2
 ai_fuid_to = globalPropertyi("sim/custom/t154gnd/ai_fluid_timeout_set") -- тепература воздуха
 
 snow_on_fuse = globalPropertyf("sim/custom/t154gnd/snow_fuse")
@@ -151,9 +153,13 @@ stab_heat_t = globalPropertyf("tu154b2/custom/antiice/stab_heat_t") -- темп�
 pos_blok = globalPropertyi("tu154b2/custom/elec/pos_block")
 le_temp = globalPropertyf("sim/weather/aircraft/temperature_leadingedge_deg_c")
 cockpit_temp = globalPropertyf("tu154b2/custom/bleed/cockpit_temp")
+cabin_1_temp = globalPropertyf("tu154b2/custom/bleed/cabin_1_temp") -- температура в салоне 1
+cabin_2_temp = globalPropertyf("tu154b2/custom/bleed/cabin_2_temp") -- температура в салоне 2
 eng1_N2 = globalProperty("sim/flightmodel/engine/ENGN_N2_[0]")
 rest_ht = globalPropertyi("tu154b2/custom/antiice/cockpit_windows_heat")
+cabin_ht = globalPropertyi("tu154b2/custom/antiice/cabin_windows_heat")
 rest_rate = globalPropertyf("tu154b2/custom/antiice/cockpit_windows_rate")
+cabin_rate = globalPropertyf("tu154b2/custom/antiice/cabin_windows_rate")
 side_rate = globalPropertyf("tu154b2/custom/antiice/side_windows_rate")
 ice_add = globalPropertyf("sim/flightmodel/failures/window_ice_added_delta")
 ice_now = globalProperty("sim/flightmodel/failures/window_ice_per_window[1]")
@@ -214,14 +220,16 @@ local c_trans_air=10 -- air heat transfer coefficient
 local Pr=0.718 -- Prandtl number
 local rho=2500 --glass density and mass
 local m=A*d*rho
-local Q1=m*c_heat*(get(le_temp)+273)
+local Q1=m*c_heat*(get(le_temp)+273) -- heated windshield
 local Q2=m*c_heat*(get(le_temp)+273)
 local Q3=m*c_heat*(get(le_temp)+273)
-local Q4=m*c_heat*(get(le_temp)+273)
+local Q4=m*c_heat*(get(le_temp)+273) -- unheated cockpit side windows
+local Q5=m*c_heat*(get(le_temp)+273) -- cabin windowss
 local temp1=get(le_temp)
 local temp2=get(le_temp)
 local temp3=get(le_temp)
 local temp4=get(le_temp)
+local temp5=get(le_temp)
 local power1=0
 local power2=0
 local power3=0
@@ -260,29 +268,6 @@ function update()
 	--local ice_ratio = get(window_ice)
 	local grnd=get(deflection_mtr_2) < 0.1
 	if MASTER then	
-		-- reset ice ratio
-		-- if ice_ratio > 0.9 or ice_ratio < 0.1 then 
-			-- ice_ratio = 0.5
-			-- set(window_ice, 0.5)
-			-- ice_reseted = true
-		-- else ice_reseted = false
-		-- end
-
-		-- if passed ~= 0 and not ice_reseted then
-			-- if get(ai_fuid_to) > 5 then
-					-- ice_speed = math.abs((ice_ratio - ice_ratio_last) * 2 / passed) *-1
-			-- else
-				-- if math.abs(ice_ratio - ice_ratio_last) > 0.01 then 
-					-- ice_speed = 0
-				-- else
-					-- ice_speed = (ice_ratio - ice_ratio_last) * 2 / passed
-				-- end
-			-- end
-			
-		-- end
-		
-		-- ice_ratio_last = ice_ratio
-
 		-- glass temps
 		-- SO-121 logic
 		if get(soi21_test) == 1 then
@@ -349,28 +334,6 @@ function update()
 		elseif win_heat_sw_3 == -1 and power27_R and power115_3 then 
 			 p_elec_3 = window_amps * 120 * (1 - get(window_heat_fail_3)) 
 		end
-		
-
-		
-		-- local win_ice_1 = get(window_ice_1) + ((ice_speed - window_heat_spd_1) - math.max(out_term * 1,in_term * 0.0002, 0)) * passed
-		-- if win_ice_1 < 0 then win_ice_1 = 0
-		-- elseif win_ice_1 > 1 then win_ice_1 = 1 end
-		-- set(window_ice_1, win_ice_1)
-		
-		-- local win_ice_2 = get(window_ice_2) + ((ice_speed - window_heat_spd_2) - math.max(out_term * 1,in_term * 0.0002, 0)) * passed
-		-- if win_ice_2 < 0 then win_ice_2 = 0
-		-- elseif win_ice_2 > 1 then win_ice_2 = 1 end
-		-- set(window_ice_2, win_ice_2)	
-
-		-- local win_ice_3 = get(window_ice_3) + ((ice_speed - window_heat_spd_3) - math.max(out_term * 1,in_term * 0.0002, 0)) * passed
-		-- if win_ice_3 < 0 then win_ice_3 = 0
-		-- elseif win_ice_3 > 1 then win_ice_3 = 1 end
-		-- set(window_ice_3, win_ice_3)
-
-		-- local win_ice_4 = get(window_ice_4) + (ice_speed - math.max(out_term * 1,in_term * 0.0002, 0)) * passed 
-		-- if win_ice_4 < 0 then win_ice_4 = 0
-		-- elseif win_ice_4 > 1 then win_ice_4 = 1 end
-		-- set(window_ice_4, win_ice_4)
 		---------------glass temperature model----------------
 		-- window heat on?
 		if temp1<temp_thres-3 then
@@ -388,33 +351,42 @@ function update()
 		elseif temp3>temp_thres then
 			power3=0
 		end
-		local temp_cab=get(cockpit_temp)
-		local tube_t=(get(termo_tube)+temp_cab)/2
+		local temp_cockpit=get(cockpit_temp)
+		local temp_cab1=get(cabin_1_temp)
+		local temp_cab2=get(cabin_2_temp)
+		local tube_t=(get(termo_tube)+temp_cockpit)/2
+		local tube_t_cab1=(get(termo_tube_cab1)+temp_cab1)/2
+		local tube_t_cab2=(get(termo_tube_cab2)+temp_cab2)/2
+		local tube_t_cab = (tube_t_cab1 + tube_t_cab2) / 2
 		-- Some physics to calculate heat transfer
 		local v=math.abs(get(tas))
 		local Re_out=1.225*v*L_win/1.85508e-5
 		Nu_out=0.037*math.pow(Re_out,0.8)*Pr/(1+2.443*math.pow(Re_out,-0.1)*(math.pow(Pr,(2/3))-1))
 		local h_out=math.max(10,Nu_out/L_win*c_cond_air)
 		-- energy balance
-		Q1=Q1+(-h_out*A*(temp1-out_term)+p_elec_1*power1-c_trans_air*A*(temp1-tube_t))*passed
-		Q2=Q2+(-h_out*A*(temp2-out_term)+p_elec_2*power2-c_trans_air*A*(temp2-tube_t))*passed
-		Q3=Q3+(-h_out*A*(temp3-out_term)+p_elec_3*power3-c_trans_air*A*(temp3-tube_t))*passed
-		Q4=Q4+(-h_out*A*(temp4-out_term)-c_trans_air*A*(temp4-temp_cab))*passed
+		Q1 = Q1 + (-h_out * A * (temp1 - out_term) + p_elec_1 * power1) * passed
+		Q2 = Q2 + (-h_out * A * (temp2 - out_term) + p_elec_2 * power2) * passed
+		Q3 = Q3 + (-h_out * A * (temp3 - out_term) + p_elec_3 * power3) * passed
+		Q4 = Q4 + (-h_out * A * (temp4 - out_term) - c_trans_air * A *(temp4 - tube_t)) * passed
+		Q5 = Q5 + (-h_out * A * (temp5 - out_term) - c_trans_air * A *(temp5 - tube_t_cab)) * passed
 		-- temperatures
 		temp1=Q1/m/c_heat-273
 		temp2=Q2/m/c_heat-273
 		temp3=Q3/m/c_heat-273
 		temp4=Q4/m/c_heat-273
+		temp5=Q5/m/c_heat-273
 		-- sim heat only works when glass is above 0°C
 		local window_left_on=bool2int(temp1>0)
 		local window_right_on=bool2int(temp2>0)
 		local window_ctr_on=bool2int(temp3>0)
 		local window_rest_on=bool2int(temp4>0)
+		local window_cab_on=bool2int(temp5>0)
 		-- heating effectivness as a function of glass temperature
 		local rate_left=1690/(math.max(0.1,temp1)+0.06897)
 		local rate_right=1690/(math.max(0.1,temp2)+0.06897)
 		local rate_ctr=1690/(math.max(0.1,temp3)+0.06897)
 		local rate_rest=1690/(math.max(0.1,temp4)+0.06897)
+		local rate_cab=1690/(math.max(0.1,temp5)+0.06897)
 			-- heat Pitots and AOA sensor
 		--local nws=get(nosewheel_turn_sel)==0
 		local pitot_sw_1 = bool2int(get(pitot_heat_1)>0 and get(rel_ice_pitot_heat1) ~= 6 and power27_L)
@@ -468,7 +440,7 @@ function update()
 		if ppd_temp_3>95 then
 			set(rel_ice_pitot_heat3,6)
 		end
-		local static_heat=bool2int(temp_cab>5)
+		local static_heat=bool2int(temp_cockpit>5)
 		-- set(stat_1,static_heat)
 		-- set(stat_2,static_heat)
 		-- set(stat_3,static_heat)
@@ -483,9 +455,11 @@ function update()
 			set(right_ht,window_right_on)
 			set(ctr_ht,window_ctr_on)
 			set(rest_ht,window_rest_on)
+			set(cabin_ht,window_cab_on)
 			set(left_rate,rate_left)
 			set(right_rate,rate_right)
 			set(ctr_rate,rate_ctr)
+			set(cabin_rate,rate_cab)
 			set(rest_rate,rate_rest)
 			set(side_rate,rate_rest/4)
 			set(ai_115_1_cc, power1*window_amps*bool2int(p_elec_1>0))
@@ -505,10 +479,12 @@ function update()
 			--set(right_ht,1)
 			--set(ctr_ht,1)
 			set(rest_ht,1)
+			set(cabin_ht,1)
 			--set(left_rate,5)
 			--set(right_rate,5)
 			--set(ctr_rate,5)
 			set(rest_rate,init_rate)
+			set(cabin_rate,init_rate)
 			set(side_rate,init_rate/4)
 		end
 		

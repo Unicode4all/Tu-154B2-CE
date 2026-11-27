@@ -7,7 +7,7 @@ GLOBAL_specular 1.0
 BLEND_GLASS
 RAIN_scale 0.1
 THERMAL_texture windshield_thermal_cabin.png
-THERMAL_source2 0 tu154b2/custom/antiice/cockpit_windows_rate tu154b2/custom/antiice/cockpit_windows_heat
+THERMAL_source2 0 tu154b2/custom/antiice/cabin_windows_rate tu154b2/custom/antiice/cabin_windows_heat
 POINT_COUNTS	8802	0	0	8802
 
 VT	-1.6714098	-1.2556355	6.1729698	-0.93927544	0.34284815	0.014725706	0.44246885	0.9976685
