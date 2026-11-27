@@ -1,11 +1,11 @@
 -- this is water panel on engineer's upper part
 
 -- controls
-wing_light = globalPropertyi("tu154b2/custom/switchers/eng/wing_light") -- габаритные наземные огни на крыле
+--wing_light = globalPropertyi("tu154b2/custom/switchers/eng/wing_light") -- габаритные наземные огни на крыле
 --door_heat = globalPropertyi("tu154b2/custom/switchers/eng/door_heat") -- обогрев дверей
-gear_fan = globalPropertyi("tu154b2/custom/switchers/eng/gear_fan") -- вентиляция шасси
-galley_heat = globalPropertyi("tu154b2/custom/switchers/eng/galley_heat") -- обогрев слива кухни
-lavatory_heat = globalPropertyi("tu154b2/custom/switchers/eng/lavatory_heat") -- обогрев слива туалетов
+--gear_fan = globalPropertyi("tu154b2/custom/switchers/eng/gear_fan") -- вентиляция шасси
+-- galley_heat = globalPropertyi("tu154b2/custom/switchers/eng/galley_heat") -- обогрев слива кухни
+-- lavatory_heat = globalPropertyi("tu154b2/custom/switchers/eng/lavatory_heat") -- обогрев слива туалетов
 water_meter = globalPropertyi("tu154b2/custom/switchers/eng/water_meter") -- уровень воды в баке
 water_compressor_1 = globalPropertyi("tu154b2/custom/switchers/eng/water_compressor_1") -- обогрев слива кухни
 water_compressor_2 = globalPropertyi("tu154b2/custom/switchers/eng/water_compressor_2") -- обогрев слива кухни
@@ -15,22 +15,22 @@ tail_temp_heat = globalPropertyi("tu154b2/custom/switchers/eng/tail_temp_heat") 
 tail_temp_signal_control_1 = globalPropertyi("tu154b2/custom/buttons/eng/tail_temp_signal_control_1") -- контроль сигнала температуры хвостового отсека
 tail_temp_signal_control_2 = globalPropertyi("tu154b2/custom/buttons/eng/tail_temp_signal_control_2") -- контроль сигнала температуры хвостового отсека
 
-lamp_test_eng_up_1 = globalPropertyi("tu154b2/custom/buttons/lamp_test_eng_up_1")
-lamp_test_eng_up_2 = globalPropertyi("tu154b2/custom/buttons/lamp_test_eng_up_2")
+lamp_test_eng_up_1 = globalPropertyi("tu154b2/custom/buttons/lamp_test_hydro")
+--lamp_test_eng_up_2 = globalPropertyi("tu154b2/custom/buttons/lamp_test_eng_up_2")
 
 
 
 water_pressure = globalPropertyf("tu154b2/custom/gauges/eng/water_pressure") -- давление воды
 
 -- lamps
-water_level_1 = globalPropertyf("tu154b2/custom/lights/water_level_1") -- уровень воды 1
-water_level_12 = globalPropertyf("tu154b2/custom/lights/water_level_12") -- уровень воды 1
-water_level_14 = globalPropertyf("tu154b2/custom/lights/water_level_14") -- уровень воды 1
-water_level_0 = globalPropertyf("tu154b2/custom/lights/water_level_0") -- уровень воды 1
+-- water_level_1 = globalPropertyf("tu154b2/custom/lights/water_level_1") -- уровень воды 1
+-- water_level_12 = globalPropertyf("tu154b2/custom/lights/water_level_12") -- уровень воды 1
+-- water_level_14 = globalPropertyf("tu154b2/custom/lights/water_level_14") -- уровень воды 1
+-- water_level_0 = globalPropertyf("tu154b2/custom/lights/water_level_0") -- уровень воды 1
 
 tail_temp_high = globalPropertyf("tu154b2/custom/lights/small/tail_temp_high") -- 
-lavatory_heat_lamp = globalPropertyf("tu154b2/custom/lights/small/lavatory_heat") -- 
-galley_heat_lamp = globalPropertyf("tu154b2/custom/lights/small/galley_heat") -- 
+-- lavatory_heat_lamp = globalPropertyf("tu154b2/custom/lights/small/lavatory_heat") -- 
+-- galley_heat_lamp = globalPropertyf("tu154b2/custom/lights/small/galley_heat") -- 
 
 -- power
 bus27_volt_left = globalPropertyf("tu154b2/custom/elec/bus27_volt_left")
@@ -62,7 +62,7 @@ water_lvl = globalPropertyf("tu154b2/custom/misc/water_level") -- уровень
 
 -- Smart Copilot
 ismaster = globalPropertyf("tu154b2/crew/ismaster") -- Master. 0 = plugin not found, 1 = slave 2 = master
-hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
+-- hascontrol_1 = globalPropertyf("tu154b2/crew/hascontrol_1") -- Have control. 0 = plugin not found, 1 = no control 2 = has control
 
 
 
@@ -112,7 +112,7 @@ local function lamps()
 
 	local lamps_brt = math.max((math.max(get(bus27_volt_right), get(bus27_volt_left))  - 10) / 18.5, 0)
 	local test_btn = get(lamp_test_eng_up_1) * math.max((get(bus27_volt_right)  - 10) / 18.5, 0)
-	local test_btn_2 = get(lamp_test_eng_up_2) * math.max((get(bus27_volt_right)  - 10) / 18.5, 0)
+	--local test_btn_2 = get(lamp_test_eng_up_2) * math.max((get(bus27_volt_right)  - 10) / 18.5, 0)
 	
 	local MASTER = get(ismaster) ~= 1	
 	
@@ -135,26 +135,26 @@ local function lamps()
 	
 	local level_meter = get(water_meter) == 1
 
-	local water_level_1_brt = math.max(bool2int(water_level >= 0.9 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
-	set(water_level_1, water_level_1_brt)
+	-- local water_level_1_brt = math.max(bool2int(water_level >= 0.9 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
+	-- set(water_level_1, water_level_1_brt)
 	
-	local water_level_12_brt = math.max(bool2int(water_level < 0.9 and water_level >= 0.5 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
-	set(water_level_12, water_level_12_brt)
+	-- local water_level_12_brt = math.max(bool2int(water_level < 0.9 and water_level >= 0.5 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
+	-- set(water_level_12, water_level_12_brt)
 	
-	local water_level_14_brt = math.max(bool2int(water_level < 0.5 and water_level >= 0.25 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
-	set(water_level_14, water_level_14_brt)
+	-- local water_level_14_brt = math.max(bool2int(water_level < 0.5 and water_level >= 0.25 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
+	-- set(water_level_14, water_level_14_brt)
 	
-	local water_level_0_brt = math.max(bool2int(water_level < 0.25 and water_level >= 0 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
-	set(water_level_0, water_level_0_brt)
+	-- local water_level_0_brt = math.max(bool2int(water_level < 0.25 and water_level >= 0 and level_meter) * lamps_brt, test_btn, test_btn_2) -- temp
+	-- set(water_level_0, water_level_0_brt)
 	
 	local tail_temp_high_brt = math.max(bool2int(get(tail_temp_signal_control_1) + get(tail_temp_signal_control_2) > 0 or get(rear_tech_compartment_T) > 100) * get(tail_temp_signal) * lamps_brt, test_btn) -- temp
 	set(tail_temp_high, tail_temp_high_brt)
 	
-	local lavatory_heat_brt = math.max(bool2int(get(lavatory_heat) < 0) * lamps_brt, test_btn) -- temp get(lavatory_heat)
-	set(lavatory_heat_lamp, lavatory_heat_brt)
+	-- local lavatory_heat_brt = math.max(bool2int(get(lavatory_heat) < 0) * lamps_brt, test_btn) -- temp get(lavatory_heat)
+	-- set(lavatory_heat_lamp, lavatory_heat_brt)
 	
-	local galley_heat_brt = math.max(bool2int(get(galley_heat) < 0) * lamps_brt, test_btn) -- temp
-	set(galley_heat_lamp, galley_heat_brt)
+	-- local galley_heat_brt = math.max(bool2int(get(galley_heat) < 0) * lamps_brt, test_btn) -- temp
+	-- set(galley_heat_lamp, galley_heat_brt)
 	
 	
 	

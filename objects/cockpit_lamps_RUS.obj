@@ -79269,11 +79269,6 @@ ANIM_hide 20.000000 200.000000 tu154b2/custom/gauges/engine/rpm_low_3
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 5.000000 tu154b2/custom/elec/bus27_volt_right
-ANIM_begin
-ANIM_hide 0.000000 0.200000 tu154b2/custom/buttons/lamp_test_hydro
-ATTR_light_level 0.000000 1.000000  tu154b2/custom/buttons/lamp_test_hydro  700
-TRIS 69138 480
-ANIM_end
 ANIM_end
 ANIM_begin
 ANIM_hide 0.000000 0.200000 tu154b2/custom/lights/small/apd_work_1

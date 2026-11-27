@@ -43,7 +43,7 @@ door_heat = globalPropertyi("tu154b2/custom/switchers/eng/door_heat") -- обо�
 
 
 -- buttons
-lamp_test_srd = globalPropertyi("tu154b2/custom/buttons/lamp_test_srd") -- тест ламп
+lamp_test_srd = globalPropertyi("tu154b2/custom/buttons/lamp_test_hydro") -- тест ламп
 lamp_test_front = globalPropertyi("tu154b2/custom/buttons/lamp_test_front") -- кнопка проверки ламп на передней панели	0
 day_night_set = globalPropertyf("tu154b2/custom/lights/day_night_set") -- переключатель день - ночь. 0 - день, 1 - ночь. приглушает яркость сигнальных ламп.
 
